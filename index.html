@@ -225,6 +225,10 @@ button {
   padding: 0 18px 20px;
 }
 
+.trending::-webkit-scrollbar {
+  display: none;
+}
+
 .trend {
   min-width: 150px;
   padding: 14px;
@@ -303,6 +307,7 @@ button {
 }
 
 .post-actions {
+  position: relative;
   display: flex;
   gap: 26px;
 }
@@ -312,44 +317,46 @@ button {
   background: none;
   color: #888;
   font-size: 14px;
-}.reaction-picker {
-  position: absolute;
-  bottom: 42px;
-  left: 0;
-  display: flex;
-  gap: 5px;
-  padding: 8px 10px;
-  background: #1b1b1b;
-  border: 1px solid #333;
-  border-radius: 30px;
-  box-shadow: 0 8px 25px rgba(0,0,0,.5);
-  z-index: 50;
 }
 
-.reaction-picker button {
-  border: none;
-  background: transparent;
-  font-size: 23px;
-  padding: 3px;
-  transition: transform .15s ease;
-}
-
-.reaction-picker button:hover {
-  transform: scale(1.3);
-}
-
-.post-actions {
-  position: relative;
-}
-
-.post-actions button.liked {
+.post-actions button.reacted {
   color: #d99a4e;
+  font-weight: 700;
 }
 
 .likes {
   color: #777;
   font-size: 12px;
   margin-top: 12px;
+}
+
+.reaction-picker {
+  position: absolute;
+  left: 0;
+  bottom: 38px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 10px;
+  background: #1b1b1b;
+  border: 1px solid #333;
+  border-radius: 30px;
+  box-shadow: 0 8px 25px rgba(0,0,0,.55);
+  z-index: 50;
+}
+
+.reaction-picker button {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-size: 22px;
+  transition: transform .15s ease;
+}
+
+.reaction-picker button:hover {
+  transform: scale(1.3);
 }
 
 .bottom-nav {
@@ -394,213 +401,260 @@ button {
 <body>
 
 <header class="topbar">
-  <div class="logo">Soulaani<span>.</span></div>
+
+  <div class="logo">
+    Soulaani<span>.</span>
+  </div>
 
   <div class="top-icons">
     <button class="icon-btn">⌕</button>
     <button class="icon-btn">♡</button>
   </div>
+
 </header>
 
 <main class="container">
 
-  <section class="profile">
-    <div class="profile-row">
+<section class="profile">
 
-      <div class="avatar">S</div>
+  <div class="profile-row">
 
-      <div>
-        <div class="profile-name">Welcome to Soulaani</div>
-        <div class="profile-handle">@soulaani</div>
-      </div>
-
+    <div class="avatar">
+      S
     </div>
 
-    <div class="profile-stats">
-      <div class="stat">
-        <strong>0</strong>
-        <span>Following</span>
+    <div>
+      <div class="profile-name">
+        Welcome to Soulaani
       </div>
 
-      <div class="stat">
-        <strong>0</strong>
-        <span>Followers</span>
-      </div>
-
-      <div class="stat">
-        <strong>0</strong>
-        <span>Communities</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="stories">
-
-    <div class="story">
-      <div class="story-ring">
-        <div class="story-inner">+</div>
-      </div>
-      Add Story
-    </div>
-
-    <div class="story">
-      <div class="story-ring">
-        <div class="story-inner">🤎</div>
-      </div>
-      Culture
-    </div>
-
-    <div class="story">
-      <div class="story-ring">
-        <div class="story-inner">🎵</div>
-      </div>
-      Music
-    </div>
-
-    <div class="story">
-      <div class="story-ring">
-        <div class="story-inner">🚀</div>
-      </div>
-      Build
-    </div>
-
-    <div class="story">
-      <div class="story-ring">
-        <div class="story-inner">🌍</div>
-      </div>
-      Travel
-    </div>
-
-    <div class="story">
-      <div class="story-ring">
-        <div class="story-inner">🍽️</div>
-      </div>
-      Food
-    </div>
-
-  </section>
-
-  <section class="composer">
-
-    <div class="composer-top">
-      <div class="mini-avatar">S</div>
-
-      <div class="composer-input">
-        What's on your mind?
+      <div class="profile-handle">
+        @soulaani
       </div>
     </div>
 
-    <div class="composer-actions">
-
-      <div class="tools">
-        <span>📷</span>
-        <span>🎥</span>
-        <span>😊</span>
-        <span>📍</span>
-      </div>
-
-      <button class="post-btn">
-        Post
-      </button>
-
-    </div>
-
-  </section>
-
-  <div class="section-title">
-    Trending on Soulaani
   </div>
 
-  <section class="trending">
+  <div class="profile-stats">
 
-    <div class="trend">
-      <small>Trending</small>
-      <strong>#BlackOwned</strong>
+    <div class="stat">
+      <strong>0</strong>
+      <span>Following</span>
     </div>
 
-    <div class="trend">
-      <small>Community</small>
-      <strong>#Soulaani</strong>
+    <div class="stat">
+      <strong>0</strong>
+      <span>Followers</span>
     </div>
 
-    <div class="trend">
-      <small>Culture</small>
-      <strong>#OurCulture</strong>
+    <div class="stat">
+      <strong>0</strong>
+      <span>Communities</span>
     </div>
 
-  </section>
-
-  <div class="section-title">
-    Your Feed
   </div>
 
-  <article class="post">
+</section>
 
-    <div class="post-header">
+<section class="stories">
 
-      <div class="post-avatar">🌍🏾</div>
+  <div class="story">
+    <div class="story-ring">
+      <div class="story-inner">+</div>
+    </div>
+    Add Story
+  </div>
 
-      <div class="post-info">
-        <strong>Soulaani Community</strong>
-        <span>@soulaani · Just now</span>
-      </div>
+  <div class="story">
+    <div class="story-ring">
+      <div class="story-inner">🤎</div>
+    </div>
+    Culture
+  </div>
 
-      <button class="more">•••</button>
+  <div class="story">
+    <div class="story-ring">
+      <div class="story-inner">🎵</div>
+    </div>
+    Music
+  </div>
 
+  <div class="story">
+    <div class="story-ring">
+      <div class="story-inner">🚀</div>
+    </div>
+    Build
+  </div>
+
+  <div class="story">
+    <div class="story-ring">
+      <div class="story-inner">🌍</div>
+    </div>
+    Travel
+  </div>
+
+  <div class="story">
+    <div class="story-ring">
+      <div class="story-inner">🍽️</div>
+    </div>
+    Food
+  </div>
+
+</section>
+
+<section class="composer">
+
+  <div class="composer-top">
+
+    <div class="mini-avatar">
+      S
     </div>
 
-    <p class="post-text">
-      Welcome to Soulaani. A digital home for connection,
-      culture, creativity, love, business, and growth. 🌍🏾
-    </p>
+    <div class="composer-input">
+      What's on your mind?
+    </div>
 
-    <div class="post-image">
+  </div>
+
+  <div class="composer-actions">
+
+    <div class="tools">
+      <span>📷</span>
+      <span>🎥</span>
+      <span>😊</span>
+      <span>📍</span>
+    </div>
+
+    <button class="post-btn">
+      Post
+    </button>
+
+  </div>
+
+</section>
+
+<div class="section-title">
+  Trending on Soulaani
+</div>
+
+<section class="trending">
+
+  <div class="trend">
+    <small>Trending</small>
+    <strong>#BlackOwned</strong>
+  </div>
+
+  <div class="trend">
+    <small>Community</small>
+    <strong>#Soulaani</strong>
+  </div>
+
+  <div class="trend">
+    <small>Culture</small>
+    <strong>#OurCulture</strong>
+  </div>
+
+</section>
+
+<div class="section-title">
+  Your Feed
+</div>
+
+<article class="post">
+
+  <div class="post-header">
+
+    <div class="post-avatar">
       🌍🏾
     </div>
 
-    <div class="post-actions">
-      <<button onclick="toggleReactions(this)">♡ Like</button>
-      <button>💬 Comment</button>
-      <button>↗ Share</button>
+    <div class="post-info">
+      <strong>Soulaani Community</strong>
+      <span>@soulaani · Just now</span>
     </div>
 
-    <div class="likes">
-      0 likes
+    <button class="more">
+      •••
+    </button>
+
+  </div>
+
+  <p class="post-text">
+    Welcome to Soulaani. A digital home for connection,
+    culture, creativity, love, business, and growth. 🌍🏾
+  </p>
+
+  <div class="post-image">
+    🌍🏾
+  </div>
+
+  <div class="post-actions">
+
+    <button onclick="toggleReactions(this)">
+      ♡ Like
+    </button>
+
+    <button>
+      💬 Comment
+    </button>
+
+    <button>
+      ↗ Share
+    </button>
+
+  </div>
+
+  <div class="likes">
+    0 reactions
+  </div>
+
+</article>
+
+<article class="post">
+
+  <div class="post-header">
+
+    <div class="post-avatar">
+      🚀
     </div>
 
-  </article>
-
-  <article class="post">
-
-    <div class="post-header">
-
-      <div class="post-avatar">🚀</div>
-
-      <div class="post-info">
-        <strong>Soulaani Build</strong>
-        <span>@build · Today</span>
-      </div>
-
-      <button class="more">•••</button>
-
+    <div class="post-info">
+      <strong>Soulaani Build</strong>
+      <span>@build · Today</span>
     </div>
 
-    <p class="post-text">
-      Build something meaningful. Connect with people who
-      believe in your ideas and discover opportunities to grow.
-    </p>
+    <button class="more">
+      •••
+    </button>
 
-    <div class="post-actions">
-      <<button onclick="toggleReactions(this)">♡ Like</button>
-      <button>💬 Comment</button>
-      <button>↗ Share</button>
-    </div>
+  </div>
 
-    <div class="likes">
-      0 likes
-    </div>
+  <p class="post-text">
+    Build something meaningful. Connect with people who
+    believe in your ideas and discover opportunities to grow.
+  </p>
 
-  </article>
+  <div class="post-actions">
+
+    <button onclick="toggleReactions(this)">
+      ♡ Like
+    </button>
+
+    <button>
+      💬 Comment
+    </button>
+
+    <button>
+      ↗ Share
+    </button>
+
+  </div>
+
+  <div class="likes">
+    0 reactions
+  </div>
+
+</article>
 
 </main>
 
@@ -634,16 +688,20 @@ button {
 </nav>
 
 <script>
-function toggleReactions(button) {
-  const picker = button.parentElement.querySelector(".reaction-picker");
 
-  if (picker) {
-    picker.remove();
+function toggleReactions(button) {
+
+  const existingPicker =
+    button.parentElement.querySelector(".reaction-picker");
+
+  if (existingPicker) {
+    existingPicker.remove();
     return;
   }
 
-  const newPicker = document.createElement("div");
-  newPicker.className = "reaction-picker";
+  const picker = document.createElement("div");
+
+  picker.className = "reaction-picker";
 
   const reactions = [
     ["❤️", "Love"],
@@ -657,25 +715,47 @@ function toggleReactions(button) {
 
   reactions.forEach(function(reaction) {
 
-    const reactionButton = document.createElement("button");
+    const reactionButton =
+      document.createElement("button");
 
-    reactionButton.innerHTML = reaction[0];
+    reactionButton.textContent = reaction[0];
+
     reactionButton.title = reaction[1];
 
-    reactionButton.onclick = function() {
-      button.innerHTML = reaction[0] + " " + reaction[1];
-      button.classList.add("liked");
-      newPicker.remove();
+    reactionButton.onclick = function(event) {
+
+      event.stopPropagation();
+
+      button.textContent =
+        reaction[0] + " " + reaction[1];
+
+      button.classList.add("reacted");
+
+      picker.remove();
+
     };
 
-    newPicker.appendChild(reactionButton);
+    picker.appendChild(reactionButton);
+
   });
 
-  button.parentElement.appendChild(newPicker);
+  button.parentElement.appendChild(picker);
 }
+
+document.addEventListener("click", function(event) {
+
+  if (!event.target.closest(".post-actions")) {
+
+    document
+      .querySelectorAll(".reaction-picker")
+      .forEach(function(picker) {
+        picker.remove();
+      });
+
   }
 
-}
+});
+
 </script>
 
 </body>
