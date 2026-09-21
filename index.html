@@ -4,9 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Soulaani | Home</title>
+<title>Soulaani</title>
 
 <style>
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -68,6 +69,18 @@ button {
   max-width: 720px;
   margin: auto;
 }
+
+/* PAGE SYSTEM */
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+/* HOME */
 
 .profile {
   padding: 24px 18px 18px;
@@ -407,10 +420,6 @@ button {
   font-weight: 700;
 }
 
-.comment-box button:active {
-  transform: scale(.96);
-}
-
 /* REACTIONS */
 
 .reaction-picker {
@@ -435,11 +444,82 @@ button {
   border: none;
   background: transparent;
   font-size: 22px;
-  transition: transform .15s ease;
 }
 
-.reaction-picker button:hover {
-  transform: scale(1.3);
+/* OTHER PAGES */
+
+.page-header {
+  padding: 28px 18px 18px;
+}
+
+.page-header h1 {
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+.page-header p {
+  color: #888;
+  line-height: 1.5;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 0 18px 25px;
+}
+
+.feature-card {
+  min-height: 145px;
+  padding: 18px;
+  border-radius: 20px;
+  background: #141414;
+  border: 1px solid #282828;
+}
+
+.feature-icon {
+  font-size: 32px;
+  margin-bottom: 18px;
+}
+
+.feature-card strong {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.feature-card span {
+  color: #777;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.discover-card {
+  margin: 12px 18px;
+  padding: 20px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #1d1712, #121212);
+  border: 1px solid #33271c;
+}
+
+.discover-card h3 {
+  margin-bottom: 7px;
+}
+
+.discover-card p {
+  color: #999;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.primary-button {
+  margin-top: 15px;
+  border: none;
+  background: #d99a4e;
+  color: #111;
+  padding: 10px 17px;
+  border-radius: 20px;
+  font-weight: 700;
 }
 
 /* BOTTOM NAVIGATION */
@@ -462,6 +542,8 @@ button {
   text-align: center;
   color: #777;
   font-size: 10px;
+  cursor: pointer;
+  min-width: 55px;
 }
 
 .nav-item div {
@@ -474,12 +556,15 @@ button {
 }
 
 @media (min-width: 800px) {
+
   .container {
     border-left: 1px solid #222;
     border-right: 1px solid #222;
     min-height: 100vh;
   }
+
 }
+
 </style>
 </head>
 
@@ -498,7 +583,13 @@ button {
 
 </header>
 
+
 <main class="container">
+
+
+<!-- HOME -->
+
+<section id="home" class="page active">
 
 <section class="profile">
 
@@ -540,6 +631,7 @@ button {
   </div>
 
 </section>
+
 
 <section class="stories">
 
@@ -587,6 +679,7 @@ button {
 
 </section>
 
+
 <section class="composer">
 
   <div class="composer-top">
@@ -618,6 +711,7 @@ button {
 
 </section>
 
+
 <div class="section-title">
   Trending on Soulaani
 </div>
@@ -641,9 +735,11 @@ button {
 
 </section>
 
+
 <div class="section-title">
   Your Feed
 </div>
+
 
 <article class="post">
 
@@ -695,6 +791,7 @@ button {
 
 </article>
 
+
 <article class="post">
 
   <div class="post-header">
@@ -741,38 +838,291 @@ button {
 
 </article>
 
+</section>
+
+
+<!-- CONNECT -->
+
+<section id="connect" class="page">
+
+  <div class="page-header">
+
+    <h1>Connect</h1>
+
+    <p>
+      Meet people, build communities, and create meaningful connections.
+    </p>
+
+  </div>
+
+  <div class="feature-grid">
+
+    <div class="feature-card">
+      <div class="feature-icon">👥</div>
+      <strong>People</strong>
+      <span>Discover people and creators across Soulaani.</span>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🏘️</div>
+      <strong>Communities</strong>
+      <span>Find communities built around shared interests.</span>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">💬</div>
+      <strong>Messages</strong>
+      <span>Connect privately with your people.</span>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🔎</div>
+      <strong>Find People</strong>
+      <span>Search for people, interests, and communities.</span>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- DATE -->
+
+<section id="date" class="page">
+
+  <div class="page-header">
+
+    <h1>Date</h1>
+
+    <p>
+      A space for meaningful connections, dating, and relationships.
+    </p>
+
+  </div>
+
+  <div class="discover-card">
+
+    <h3>❤️ Dating on Soulaani</h3>
+
+    <p>
+      Discover people, explore profiles, find compatible connections,
+      and build relationships within the community.
+    </p>
+
+    <button class="primary-button">
+      Coming Soon
+    </button>
+
+  </div>
+
+  <div class="feature-grid">
+
+    <div class="feature-card">
+      <div class="feature-icon">❤️</div>
+      <strong>Discover</strong>
+      <span>Explore dating profiles and potential connections.</span>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">✨</div>
+      <strong>Matches</strong>
+      <span>See people who connect with your interests.</span>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">💬</div>
+      <strong>Dating Chat</strong>
+      <span>Talk and get to know your matches.</span>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">⚙️</div>
+      <strong>Preferences</strong>
+      <span>Customize what you're looking for.</span>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- BUILD -->
+
+<section id="build" class="page">
+
+  <div class="page-header">
+
+    <h1>Build</h1>
+
+    <p>
+      Turn ideas into businesses, careers, projects, and opportunities.
+    </p>
+
+  </div>
+
+  <div class="feature-grid">
+
+    <div class="feature-card">
+      <div class="feature-icon">💼</div>
+      <strong>Businesses</strong>
+      <span>Discover and showcase businesses.</span>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🚀</div>
+      <strong>Projects</strong>
+      <span>Build ideas and collaborate with others.</span>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">💰</div>
+      <strong>Opportunities</strong>
+      <span>Find jobs, opportunities, and partnerships.</span>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🎨</div>
+      <strong>Creators</strong>
+      <span>Discover creators and creative work.</span>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- DISCOVER -->
+
+<section id="discover" class="page">
+
+  <div class="page-header">
+
+    <h1>Discover</h1>
+
+    <p>
+      Explore culture, businesses, events, food, music, travel, and more.
+    </p>
+
+  </div>
+
+  <div class="feature-grid">
+
+    <div class="feature-card">
+      <div class="feature-icon">🌍</div>
+      <strong>Culture</strong>
+      <span>Explore culture, history, stories, and experiences.</span>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">📅</div>
+      <strong>Events</strong>
+      <span>Find events and experiences near you.</span>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🛍️</div>
+      <strong>Black-Owned</strong>
+      <span>Discover businesses and products.</span>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🎵</div>
+      <strong>Music</strong>
+      <span>Discover artists, sounds, and culture.</span>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🍽️</div>
+      <strong>Food</strong>
+      <span>Explore restaurants, chefs, and food experiences.</span>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">✈️</div>
+      <strong>Travel</strong>
+      <span>Discover destinations and travel experiences.</span>
+    </div>
+
+  </div>
+
+</section>
+
 </main>
+
+
+<!-- BOTTOM NAVIGATION -->
 
 <nav class="bottom-nav">
 
-  <div class="nav-item active">
+  <div class="nav-item active" onclick="showPage('home', this)">
     <div>⌂</div>
     Home
   </div>
 
-  <div class="nav-item">
+  <div class="nav-item" onclick="showPage('connect', this)">
     <div>♧</div>
     Connect
   </div>
 
-  <div class="nav-item">
+  <div class="nav-item" onclick="showPage('date', this)">
     <div>♡</div>
     Date
   </div>
 
-  <div class="nav-item">
+  <div class="nav-item" onclick="showPage('build', this)">
     <div>🚀</div>
     Build
   </div>
 
-  <div class="nav-item">
+  <div class="nav-item" onclick="showPage('discover', this)">
     <div>🌍</div>
     Discover
   </div>
 
 </nav>
 
+
 <script>
+
+/* PAGE NAVIGATION */
+
+function showPage(pageId, navItem) {
+
+  document
+    .querySelectorAll(".page")
+    .forEach(function(page) {
+
+      page.classList.remove("active");
+
+    });
+
+
+  document
+    .getElementById(pageId)
+    .classList.add("active");
+
+
+  document
+    .querySelectorAll(".nav-item")
+    .forEach(function(item) {
+
+      item.classList.remove("active");
+
+    });
+
+
+  navItem.classList.add("active");
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+/* REACTIONS */
 
 function toggleReactions(button) {
 
@@ -780,15 +1130,23 @@ function toggleReactions(button) {
     button.parentElement.querySelector(".reaction-picker");
 
   if (existingPicker) {
+
     existingPicker.remove();
+
     return;
+
   }
 
-  const picker = document.createElement("div");
 
-  picker.className = "reaction-picker";
+  const picker =
+    document.createElement("div");
+
+  picker.className =
+    "reaction-picker";
+
 
   const reactions = [
+
     ["❤️", "Love"],
     ["👍🏾", "Like"],
     ["😂", "Laugh"],
@@ -796,83 +1154,122 @@ function toggleReactions(button) {
     ["😮", "Wow"],
     ["😢", "Sad"],
     ["👎🏾", "Dislike"]
+
   ];
+
 
   reactions.forEach(function(reaction) {
 
     const reactionButton =
       document.createElement("button");
 
-    reactionButton.textContent = reaction[0];
+    reactionButton.textContent =
+      reaction[0];
 
-    reactionButton.title = reaction[1];
+    reactionButton.title =
+      reaction[1];
 
-    reactionButton.onclick = function(event) {
 
-      event.stopPropagation();
+    reactionButton.onclick =
+      function(event) {
 
-      button.textContent =
-        reaction[0] + " " + reaction[1];
+        event.stopPropagation();
 
-      button.classList.add("reacted");
+        button.textContent =
+          reaction[0] + " " + reaction[1];
 
-      picker.remove();
+        button.classList.add("reacted");
 
-    };
+        picker.remove();
 
-    picker.appendChild(reactionButton);
+      };
+
+
+    picker.appendChild(
+      reactionButton
+    );
 
   });
 
-  button.parentElement.appendChild(picker);
+
+  button.parentElement.appendChild(
+    picker
+  );
+
 }
 
 
-document.addEventListener("click", function(event) {
+document.addEventListener(
+  "click",
+  function(event) {
 
-  if (!event.target.closest(".post-actions")) {
+    if (!event.target.closest(".post-actions")) {
 
-    document
-      .querySelectorAll(".reaction-picker")
-      .forEach(function(picker) {
-        picker.remove();
-      });
+      document
+        .querySelectorAll(".reaction-picker")
+        .forEach(function(picker) {
+
+          picker.remove();
+
+        });
+
+    }
 
   }
+);
 
-});
 
+/* COMMENTS */
 
 function toggleComments(button) {
 
-  const post = button.closest(".post");
+  const post =
+    button.closest(".post");
 
-  let comments = post.querySelector(".comments");
+  let comments =
+    post.querySelector(".comments");
+
 
   if (comments) {
+
     comments.remove();
+
     return;
+
   }
 
-  comments = document.createElement("div");
 
-  comments.className = "comments";
+  comments =
+    document.createElement("div");
+
+  comments.className =
+    "comments";
+
 
   comments.innerHTML = `
+
     <div class="comment-list">
 
       <div class="comment">
+
         <div class="comment-avatar">
           S
         </div>
 
         <div class="comment-content">
+
           <strong>Soulaani</strong>
-          <p>Welcome to the community! 🌍🏾</p>
+
+          <p>
+            Welcome to the community! 🌍🏾
+          </p>
+
         </div>
+
       </div>
 
     </div>
+
 
     <div class="comment-box">
 
@@ -886,12 +1283,18 @@ function toggleComments(button) {
       </button>
 
     </div>
+
   `;
 
-  post.appendChild(comments);
+
+  post.appendChild(
+    comments
+  );
 
 }
 
+
+/* ADD COMMENT */
 
 function addComment(button) {
 
@@ -901,47 +1304,71 @@ function addComment(button) {
   const input =
     commentBox.querySelector("input");
 
+
   const commentText =
     input.value.trim();
 
+
   if (commentText === "") {
+
     return;
+
   }
 
+
   const commentList =
-    commentBox.parentElement.querySelector(".comment-list");
+    commentBox.parentElement
+      .querySelector(".comment-list");
+
 
   const comment =
     document.createElement("div");
 
-  comment.className = "comment";
+  comment.className =
+    "comment";
+
 
   comment.innerHTML = `
+
     <div class="comment-avatar">
       S
     </div>
 
     <div class="comment-content">
+
       <strong>You</strong>
-      <p>${escapeHTML(commentText)}</p>
+
+      <p>
+        ${escapeHTML(commentText)}
+      </p>
+
     </div>
+
   `;
 
-  commentList.appendChild(comment);
+
+  commentList.appendChild(
+    comment
+  );
+
 
   input.value = "";
 
 }
 
 
+/* SECURITY */
+
 function escapeHTML(text) {
 
   const div =
     document.createElement("div");
 
-  div.textContent = text;
+  div.textContent =
+    text;
 
   return div.innerHTML;
+
 }
 
 </script>
