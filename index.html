@@ -4,10 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Soulaani</title>
+<title>Soulaani Home</title>
 
 <style>
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -17,13 +16,12 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   background: #080808;
-  color: #fff;
-  padding-bottom: 82px;
+  color: white;
+  padding-bottom: 80px;
 }
 
 button {
   font-family: inherit;
-  cursor: pointer;
 }
 
 .topbar {
@@ -35,15 +33,14 @@ button {
   align-items: center;
   justify-content: space-between;
   padding: 0 18px;
-  background: rgba(8,8,8,.96);
-  border-bottom: 1px solid #242424;
+  background: rgba(8,8,8,.95);
+  border-bottom: 1px solid #222;
   backdrop-filter: blur(15px);
 }
 
 .logo {
-  font-size: 27px;
+  font-size: 26px;
   font-weight: 800;
-  letter-spacing: -1px;
 }
 
 .logo span {
@@ -52,7 +49,7 @@ button {
 
 .top-icons {
   display: flex;
-  gap: 10px;
+  gap: 16px;
 }
 
 .icon-btn {
@@ -62,7 +59,7 @@ button {
   border: 1px solid #292929;
   background: #151515;
   color: white;
-  font-size: 18px;
+  font-size: 17px;
 }
 
 .container {
@@ -70,20 +67,8 @@ button {
   margin: auto;
 }
 
-/* PAGE SYSTEM */
-
-.page {
-  display: none;
-}
-
-.page.active {
-  display: block;
-}
-
-/* HOME */
-
-.profile {
-  padding: 24px 18px 18px;
+.profile-card {
+  padding: 24px 18px;
   border-bottom: 1px solid #222;
 }
 
@@ -94,124 +79,69 @@ button {
 }
 
 .avatar {
-  width: 62px;
-  height: 62px;
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #e0a35b, #704025);
+  background: linear-gradient(135deg, #d99a4e, #754326);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 26px;
-  font-weight: 800;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 .profile-name {
-  font-size: 19px;
+  font-size: 18px;
   font-weight: 700;
 }
 
 .profile-handle {
-  color: #858585;
-  font-size: 13px;
-  margin-top: 3px;
-}
-
-.profile-stats {
-  display: flex;
-  gap: 24px;
-  margin-top: 18px;
-}
-
-.stat strong {
-  display: block;
-  font-size: 15px;
-}
-
-.stat span {
-  color: #777;
-  font-size: 12px;
-}
-
-.stories {
-  display: flex;
-  gap: 14px;
-  overflow-x: auto;
-  padding: 18px;
-  border-bottom: 1px solid #222;
-}
-
-.stories::-webkit-scrollbar {
-  display: none;
-}
-
-.story {
-  min-width: 66px;
-  text-align: center;
-  font-size: 11px;
-  color: #999;
-}
-
-.story-ring {
-  width: 62px;
-  height: 62px;
-  margin: auto auto 7px;
-  padding: 3px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #d99a4e, #6d3922);
-}
-
-.story-inner {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: #181818;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
+  color: #888;
+  font-size: 14px;
 }
 
 .composer {
   margin: 18px;
   padding: 18px;
   background: #141414;
-  border: 1px solid #282828;
-  border-radius: 20px;
+  border: 1px solid #262626;
+  border-radius: 18px;
 }
 
 .composer-top {
   display: flex;
-  align-items: center;
   gap: 12px;
+  align-items: center;
 }
 
 .mini-avatar {
-  width: 43px;
-  height: 43px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  background: #6e452c;
+  background: #70462c;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .composer-input {
-  color: #888;
   flex: 1;
+  color: #888;
+  font-size: 15px;
 }
 
 .composer-actions {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   margin-top: 16px;
   padding-top: 14px;
-  border-top: 1px solid #272727;
+  border-top: 1px solid #252525;
 }
 
-.tools {
+.action-options {
   display: flex;
-  gap: 17px;
+  gap: 14px;
   color: #d99a4e;
 }
 
@@ -219,49 +149,22 @@ button {
   border: none;
   background: #d99a4e;
   color: #111;
-  padding: 9px 19px;
+  padding: 8px 18px;
   border-radius: 20px;
-  font-weight: 700;
+  font-weight: bold;
 }
 
-.section-title {
-  padding: 4px 18px 12px;
-  color: #aaa;
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.trending {
-  display: flex;
-  gap: 10px;
-  overflow-x: auto;
-  padding: 0 18px 20px;
-}
-
-.trending::-webkit-scrollbar {
-  display: none;
-}
-
-.trend {
-  min-width: 150px;
-  padding: 14px;
-  border-radius: 15px;
-  background: #141414;
-  border: 1px solid #272727;
-}
-
-.trend small {
-  color: #777;
-}
-
-.trend strong {
-  display: block;
-  margin-top: 5px;
+.section-label {
+  padding: 8px 18px;
+  color: #888;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .post {
-  border-top: 1px solid #222;
   padding: 20px 18px;
+  border-top: 1px solid #222;
 }
 
 .post-header {
@@ -271,14 +174,13 @@ button {
 }
 
 .post-avatar {
-  width: 46px;
-  height: 46px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
-  background: #3e3029;
+  background: #3d3029;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
 }
 
 .post-info strong {
@@ -291,259 +193,45 @@ button {
   font-size: 12px;
 }
 
-.more {
-  margin-left: auto;
-  color: #777;
-  background: none;
-  border: none;
-  font-size: 20px;
-}
-
 .post-text {
   margin: 16px 0;
   color: #ddd;
   font-size: 15px;
-  line-height: 1.65;
-}
-
-.post-image {
-  height: 220px;
-  border-radius: 18px;
-  background:
-    radial-gradient(circle at 25% 30%, rgba(217,154,78,.4), transparent 25%),
-    linear-gradient(135deg, #211812, #111);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 15px;
-  font-size: 48px;
+  line-height: 1.6;
 }
 
 .post-actions {
-  position: relative;
   display: flex;
-  gap: 26px;
+  gap: 28px;
+  color: #888;
+  font-size: 14px;
 }
 
 .post-actions button {
-  border: none;
   background: none;
-  color: #888;
-  font-size: 14px;
-}
-
-.post-actions button.reacted {
-  color: #d99a4e;
-  font-weight: 700;
-}
-
-.likes {
-  color: #777;
-  font-size: 12px;
-  margin-top: 12px;
-}
-
-/* COMMENTS */
-
-.comments {
-  margin-top: 16px;
-  padding-top: 16px;
-  border-top: 1px solid #272727;
-}
-
-.comment {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-  margin-bottom: 14px;
-}
-
-.comment-avatar {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: #6e452c;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  flex-shrink: 0;
-}
-
-.comment-content {
-  background: #181818;
-  border-radius: 14px;
-  padding: 9px 12px;
-  flex: 1;
-}
-
-.comment-content strong {
-  display: block;
-  font-size: 13px;
-  margin-bottom: 3px;
-}
-
-.comment-content p {
-  color: #ccc;
-  font-size: 13px;
-  line-height: 1.4;
-  word-break: break-word;
-}
-
-.comment-box {
-  display: flex;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.comment-box input {
-  flex: 1;
-  min-width: 0;
-  background: #151515;
-  border: 1px solid #2b2b2b;
-  border-radius: 20px;
-  padding: 10px 14px;
-  color: white;
-  outline: none;
-}
-
-.comment-box input:focus {
-  border-color: #d99a4e;
-}
-
-.comment-box button {
   border: none;
-  background: #d99a4e;
-  color: #111;
-  padding: 9px 15px;
-  border-radius: 20px;
-  font-weight: 700;
+  color: inherit;
+  font-size: inherit;
 }
-
-/* REACTIONS */
-
-.reaction-picker {
-  position: absolute;
-  left: 0;
-  bottom: 38px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 8px 10px;
-  background: #1b1b1b;
-  border: 1px solid #333;
-  border-radius: 30px;
-  box-shadow: 0 8px 25px rgba(0,0,0,.55);
-  z-index: 50;
-}
-
-.reaction-picker button {
-  width: 34px;
-  height: 34px;
-  padding: 0;
-  border: none;
-  background: transparent;
-  font-size: 22px;
-}
-
-/* OTHER PAGES */
-
-.page-header {
-  padding: 28px 18px 18px;
-}
-
-.page-header h1 {
-  font-size: 30px;
-  margin-bottom: 8px;
-}
-
-.page-header p {
-  color: #888;
-  line-height: 1.5;
-}
-
-.feature-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  padding: 0 18px 25px;
-}
-
-.feature-card {
-  min-height: 145px;
-  padding: 18px;
-  border-radius: 20px;
-  background: #141414;
-  border: 1px solid #282828;
-}
-
-.feature-icon {
-  font-size: 32px;
-  margin-bottom: 18px;
-}
-
-.feature-card strong {
-  display: block;
-  font-size: 16px;
-  margin-bottom: 6px;
-}
-
-.feature-card span {
-  color: #777;
-  font-size: 12px;
-  line-height: 1.4;
-}
-
-.discover-card {
-  margin: 12px 18px;
-  padding: 20px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #1d1712, #121212);
-  border: 1px solid #33271c;
-}
-
-.discover-card h3 {
-  margin-bottom: 7px;
-}
-
-.discover-card p {
-  color: #999;
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-.primary-button {
-  margin-top: 15px;
-  border: none;
-  background: #d99a4e;
-  color: #111;
-  padding: 10px 17px;
-  border-radius: 20px;
-  font-weight: 700;
-}
-
-/* BOTTOM NAVIGATION */
 
 .bottom-nav {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 72px;
   z-index: 200;
+  height: 70px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background: rgba(12,12,12,.98);
-  border-top: 1px solid #272727;
+  background: rgba(12,12,12,.97);
+  border-top: 1px solid #252525;
 }
 
 .nav-item {
-  text-align: center;
   color: #777;
-  font-size: 10px;
-  cursor: pointer;
-  min-width: 55px;
+  text-align: center;
+  font-size: 11px;
 }
 
 .nav-item div {
@@ -556,822 +244,155 @@ button {
 }
 
 @media (min-width: 800px) {
-
   .container {
     border-left: 1px solid #222;
     border-right: 1px solid #222;
     min-height: 100vh;
   }
-
 }
-
 </style>
 </head>
 
 <body>
 
 <header class="topbar">
-
-  <div class="logo">
-    Soulaani<span>.</span>
-  </div>
+  <div class="logo">Soulaani<span>.</span></div>
 
   <div class="top-icons">
     <button class="icon-btn">⌕</button>
     <button class="icon-btn">♡</button>
   </div>
-
 </header>
-
 
 <main class="container">
 
+  <section class="profile-card">
+    <div class="profile-row">
+      <div class="avatar">S</div>
 
-<!-- HOME -->
-
-<section id="home" class="page active">
-
-<section class="profile">
-
-  <div class="profile-row">
-
-    <div class="avatar">
-      S
-    </div>
-
-    <div>
-      <div class="profile-name">
-        Welcome to Soulaani
+      <div>
+        <div class="profile-name">Welcome to Soulaani</div>
+        <div class="profile-handle">@soulaani</div>
       </div>
+    </div>
+  </section>
 
-      <div class="profile-handle">
-        @soulaani
+  <section class="composer">
+
+    <div class="composer-top">
+      <div class="mini-avatar">S</div>
+
+      <div class="composer-input">
+        What's on your mind?
       </div>
     </div>
 
-  </div>
-
-  <div class="profile-stats">
-
-    <div class="stat">
-      <strong>0</strong>
-      <span>Following</span>
-    </div>
-
-    <div class="stat">
-      <strong>0</strong>
-      <span>Followers</span>
-    </div>
-
-    <div class="stat">
-      <strong>0</strong>
-      <span>Communities</span>
-    </div>
-
-  </div>
-
-</section>
-
-
-<section class="stories">
-
-  <div class="story">
-    <div class="story-ring">
-      <div class="story-inner">+</div>
-    </div>
-    Add Story
-  </div>
-
-  <div class="story">
-    <div class="story-ring">
-      <div class="story-inner">🤎</div>
-    </div>
-    Culture
-  </div>
-
-  <div class="story">
-    <div class="story-ring">
-      <div class="story-inner">🎵</div>
-    </div>
-    Music
-  </div>
-
-  <div class="story">
-    <div class="story-ring">
-      <div class="story-inner">🚀</div>
-    </div>
-    Build
-  </div>
-
-  <div class="story">
-    <div class="story-ring">
-      <div class="story-inner">🌍</div>
-    </div>
-    Travel
-  </div>
-
-  <div class="story">
-    <div class="story-ring">
-      <div class="story-inner">🍽️</div>
-    </div>
-    Food
-  </div>
-
-</section>
-
-
-<section class="composer">
-
-  <div class="composer-top">
-
-    <div class="mini-avatar">
-      S
-    </div>
-
-    <div class="composer-input">
-      What's on your mind?
-    </div>
-
-  </div>
-
-  <div class="composer-actions">
-
-    <div class="tools">
-      <span>📷</span>
-      <span>🎥</span>
-      <span>😊</span>
-      <span>📍</span>
-    </div>
-
-    <button class="post-btn">
-      Post
-    </button>
-
-  </div>
-
-</section>
-
-
-<div class="section-title">
-  Trending on Soulaani
-</div>
-
-<section class="trending">
-
-  <div class="trend">
-    <small>Trending</small>
-    <strong>#BlackOwned</strong>
-  </div>
-
-  <div class="trend">
-    <small>Community</small>
-    <strong>#Soulaani</strong>
-  </div>
-
-  <div class="trend">
-    <small>Culture</small>
-    <strong>#OurCulture</strong>
-  </div>
-
-</section>
-
-
-<div class="section-title">
-  Your Feed
-</div>
-
-
-<article class="post">
-
-  <div class="post-header">
-
-    <div class="post-avatar">
-      🌍🏾
-    </div>
-
-    <div class="post-info">
-      <strong>Soulaani Community</strong>
-      <span>@soulaani · Just now</span>
-    </div>
-
-    <button class="more">
-      •••
-    </button>
-
-  </div>
-
-  <p class="post-text">
-    Welcome to Soulaani. A digital home for connection,
-    culture, creativity, love, business, and growth. 🌍🏾
-  </p>
-
-  <div class="post-image">
-    🌍🏾
-  </div>
-
-  <div class="post-actions">
-
-    <button onclick="toggleReactions(this)">
-      ♡ Like
-    </button>
-
-    <button onclick="toggleComments(this)">
-      💬 Comment
-    </button>
-
-    <button>
-      ↗ Share
-    </button>
-
-  </div>
-
-  <div class="likes">
-    0 reactions
-  </div>
-
-</article>
-
-
-<article class="post">
-
-  <div class="post-header">
-
-    <div class="post-avatar">
-      🚀
-    </div>
-
-    <div class="post-info">
-      <strong>Soulaani Build</strong>
-      <span>@build · Today</span>
-    </div>
-
-    <button class="more">
-      •••
-    </button>
-
-  </div>
-
-  <p class="post-text">
-    Build something meaningful. Connect with people who
-    believe in your ideas and discover opportunities to grow.
-  </p>
-
-  <div class="post-actions">
-
-    <button onclick="toggleReactions(this)">
-      ♡ Like
-    </button>
-
-    <button onclick="toggleComments(this)">
-      💬 Comment
-    </button>
-
-    <button>
-      ↗ Share
-    </button>
-
-  </div>
-
-  <div class="likes">
-    0 reactions
-  </div>
-
-</article>
-
-</section>
-
-
-<!-- CONNECT -->
-
-<section id="connect" class="page">
-
-  <div class="page-header">
-
-    <h1>Connect</h1>
-
-    <p>
-      Meet people, build communities, and create meaningful connections.
-    </p>
-
-  </div>
-
-  <div class="feature-grid">
-
-    <div class="feature-card">
-      <div class="feature-icon">👥</div>
-      <strong>People</strong>
-      <span>Discover people and creators across Soulaani.</span>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">🏘️</div>
-      <strong>Communities</strong>
-      <span>Find communities built around shared interests.</span>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">💬</div>
-      <strong>Messages</strong>
-      <span>Connect privately with your people.</span>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">🔎</div>
-      <strong>Find People</strong>
-      <span>Search for people, interests, and communities.</span>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- DATE -->
-
-<section id="date" class="page">
-
-  <div class="page-header">
-
-    <h1>Date</h1>
-
-    <p>
-      A space for meaningful connections, dating, and relationships.
-    </p>
-
-  </div>
-
-  <div class="discover-card">
-
-    <h3>❤️ Dating on Soulaani</h3>
-
-    <p>
-      Discover people, explore profiles, find compatible connections,
-      and build relationships within the community.
-    </p>
-
-    <button class="primary-button">
-      Coming Soon
-    </button>
-
-  </div>
-
-  <div class="feature-grid">
-
-    <div class="feature-card">
-      <div class="feature-icon">❤️</div>
-      <strong>Discover</strong>
-      <span>Explore dating profiles and potential connections.</span>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">✨</div>
-      <strong>Matches</strong>
-      <span>See people who connect with your interests.</span>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">💬</div>
-      <strong>Dating Chat</strong>
-      <span>Talk and get to know your matches.</span>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">⚙️</div>
-      <strong>Preferences</strong>
-      <span>Customize what you're looking for.</span>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- BUILD -->
-
-<section id="build" class="page">
-
-  <div class="page-header">
-
-    <h1>Build</h1>
-
-    <p>
-      Turn ideas into businesses, careers, projects, and opportunities.
-    </p>
-
-  </div>
-
-  <div class="feature-grid">
-
-    <div class="feature-card">
-      <div class="feature-icon">💼</div>
-      <strong>Businesses</strong>
-      <span>Discover and showcase businesses.</span>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">🚀</div>
-      <strong>Projects</strong>
-      <span>Build ideas and collaborate with others.</span>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">💰</div>
-      <strong>Opportunities</strong>
-      <span>Find jobs, opportunities, and partnerships.</span>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">🎨</div>
-      <strong>Creators</strong>
-      <span>Discover creators and creative work.</span>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- DISCOVER -->
-
-<section id="discover" class="page">
-
-  <div class="page-header">
-
-    <h1>Discover</h1>
-
-    <p>
-      Explore culture, businesses, events, food, music, travel, and more.
-    </p>
-
-  </div>
-
-  <div class="feature-grid">
-
-    <div class="feature-card">
-      <div class="feature-icon">🌍</div>
-      <strong>Culture</strong>
-      <span>Explore culture, history, stories, and experiences.</span>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">📅</div>
-      <strong>Events</strong>
-      <span>Find events and experiences near you.</span>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">🛍️</div>
-      <strong>Black-Owned</strong>
-      <span>Discover businesses and products.</span>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">🎵</div>
-      <strong>Music</strong>
-      <span>Discover artists, sounds, and culture.</span>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">🍽️</div>
-      <strong>Food</strong>
-      <span>Explore restaurants, chefs, and food experiences.</span>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">✈️</div>
-      <strong>Travel</strong>
-      <span>Discover destinations and travel experiences.</span>
-    </div>
-
-  </div>
-
-</section>
-
-</main>
-
-
-<!-- BOTTOM NAVIGATION -->
-
-<nav class="bottom-nav">
-
-  <div class="nav-item active" onclick="showPage('home', this)">
-    <div>⌂</div>
-    Home
-  </div>
-
-  <div class="nav-item" onclick="showPage('connect', this)">
-    <div>♧</div>
-    Connect
-  </div>
-
-  <div class="nav-item" onclick="showPage('date', this)">
-    <div>♡</div>
-    Date
-  </div>
-
-  <div class="nav-item" onclick="showPage('build', this)">
-    <div>🚀</div>
-    Build
-  </div>
-
-  <div class="nav-item" onclick="showPage('discover', this)">
-    <div>🌍</div>
-    Discover
-  </div>
-
-</nav>
-
-
-<script>
-
-/* PAGE NAVIGATION */
-
-function showPage(pageId, navItem) {
-
-  document
-    .querySelectorAll(".page")
-    .forEach(function(page) {
-
-      page.classList.remove("active");
-
-    });
-
-
-  document
-    .getElementById(pageId)
-    .classList.add("active");
-
-
-  document
-    .querySelectorAll(".nav-item")
-    .forEach(function(item) {
-
-      item.classList.remove("active");
-
-    });
-
-
-  navItem.classList.add("active");
-
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-
-}
-
-
-/* REACTIONS */
-
-function toggleReactions(button) {
-
-  const existingPicker =
-    button.parentElement.querySelector(".reaction-picker");
-
-  if (existingPicker) {
-
-    existingPicker.remove();
-
-    return;
-
-  }
-
-
-  const picker =
-    document.createElement("div");
-
-  picker.className =
-    "reaction-picker";
-
-
-  const reactions = [
-
-    ["❤️", "Love"],
-    ["👍🏾", "Like"],
-    ["😂", "Laugh"],
-    ["🔥", "Fire"],
-    ["😮", "Wow"],
-    ["😢", "Sad"],
-    ["👎🏾", "Dislike"]
-
-  ];
-
-
-  reactions.forEach(function(reaction) {
-
-    const reactionButton =
-      document.createElement("button");
-
-    reactionButton.textContent =
-      reaction[0];
-
-    reactionButton.title =
-      reaction[1];
-
-
-    reactionButton.onclick =
-      function(event) {
-
-        event.stopPropagation();
-
-        button.textContent =
-          reaction[0] + " " + reaction[1];
-
-        button.classList.add("reacted");
-
-        picker.remove();
-
-      };
-
-
-    picker.appendChild(
-      reactionButton
-    );
-
-  });
-
-
-  button.parentElement.appendChild(
-    picker
-  );
-
-}
-
-
-document.addEventListener(
-  "click",
-  function(event) {
-
-    if (!event.target.closest(".post-actions")) {
-
-      document
-        .querySelectorAll(".reaction-picker")
-        .forEach(function(picker) {
-
-          picker.remove();
-
-        });
-
-    }
-
-  }
-);
-
-
-/* COMMENTS */
-
-function toggleComments(button) {
-
-  const post =
-    button.closest(".post");
-
-  let comments =
-    post.querySelector(".comments");
-
-
-  if (comments) {
-
-    comments.remove();
-
-    return;
-
-  }
-
-
-  comments =
-    document.createElement("div");
-
-  comments.className =
-    "comments";
-
-
-  comments.innerHTML = `
-
-    <div class="comment-list">
-
-      <div class="comment">
-
-        <div class="comment-avatar">
-          S
-        </div>
-
-        <div class="comment-content">
-
-          <strong>Soulaani</strong>
-
-          <p>
-            Welcome to the community! 🌍🏾
-          </p>
-
-        </div>
-
+    <div class="composer-actions">
+
+      <div class="action-options">
+        <span>📷</span>
+        <span>🎥</span>
+        <span>😊</span>
       </div>
 
-    </div>
-
-
-    <div class="comment-box">
-
-      <input
-        type="text"
-        placeholder="Write a comment..."
-      />
-
-      <button onclick="addComment(this)">
+      <button class="post-btn">
         Post
       </button>
 
     </div>
 
-  `;
+  </section>
 
+  <div class="section-label">
+    Your Feed
+  </div>
 
-  post.appendChild(
-    comments
-  );
+  <article class="post">
 
-}
+    <div class="post-header">
 
+      <div class="post-avatar">
+        🌍🏾
+      </div>
 
-/* ADD COMMENT */
-
-function addComment(button) {
-
-  const commentBox =
-    button.parentElement;
-
-  const input =
-    commentBox.querySelector("input");
-
-
-  const commentText =
-    input.value.trim();
-
-
-  if (commentText === "") {
-
-    return;
-
-  }
-
-
-  const commentList =
-    commentBox.parentElement
-      .querySelector(".comment-list");
-
-
-  const comment =
-    document.createElement("div");
-
-  comment.className =
-    "comment";
-
-
-  comment.innerHTML = `
-
-    <div class="comment-avatar">
-      S
-    </div>
-
-    <div class="comment-content">
-
-      <strong>You</strong>
-
-      <p>
-        ${escapeHTML(commentText)}
-      </p>
+      <div class="post-info">
+        <strong>Soulaani Community</strong>
+        <span>@soulaani · Just now</span>
+      </div>
 
     </div>
 
-  `;
+    <p class="post-text">
+      Welcome to Soulaani. A digital home for connection,
+      culture, creativity, love, business, and growth. 🌍🏾
+    </p>
 
+    <div class="post-actions">
+      <button>♡ Like</button>
+      <button>💬 Comment</button>
+      <button>↗ Share</button>
+    </div>
 
-  commentList.appendChild(
-    comment
-  );
+  </article>
 
+  <article class="post">
 
-  input.value = "";
+    <div class="post-header">
 
-}
+      <div class="post-avatar">
+        🚀
+      </div>
 
+      <div class="post-info">
+        <strong>Soulaani Build</strong>
+        <span>@build · Today</span>
+      </div>
 
-/* SECURITY */
+    </div>
 
-function escapeHTML(text) {
+    <p class="post-text">
+      Build something meaningful. Connect with people who
+      believe in your ideas and discover opportunities to grow.
+    </p>
 
-  const div =
-    document.createElement("div");
+    <div class="post-actions">
+      <button>♡ Like</button>
+      <button>💬 Comment</button>
+      <button>↗ Share</button>
+    </div>
 
-  div.textContent =
-    text;
+  </article>
 
-  return div.innerHTML;
+</main>
 
-}
+<nav class="bottom-nav">
 
-</script>
+  <div class="nav-item active">
+    <div>⌂</div>
+    Home
+  </div>
+
+  <div class="nav-item">
+    <div>♧</div>
+    Connect
+  </div>
+
+  <div class="nav-item">
+    <div>♡</div>
+    Date
+  </div>
+
+  <div class="nav-item">
+    <div>🚀</div>
+    Build
+  </div>
+
+  <div class="nav-item">
+    <div>🌍</div>
+    Discover
+  </div>
+
+</nav>
 
 </body>
 </html>
