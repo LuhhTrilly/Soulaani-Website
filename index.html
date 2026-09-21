@@ -1,1518 +1,1336 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Soulaani</title>
-
-<style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: #080808;
-  color: #fff;
-  padding-bottom: 82px;
-}
-
-button,
-select,
-input {
-  font-family: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-.topbar {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 18px;
-  background: rgba(8,8,8,.96);
-  border-bottom: 1px solid #242424;
-  backdrop-filter: blur(15px);
-}
-
-.logo {
-  font-size: 27px;
-  font-weight: 800;
-  letter-spacing: -1px;
-}
-
-.logo span {
-  color: #d99a4e;
-}
-
-.top-icons {
-  display: flex;
-  gap: 10px;
-}
-
-.icon-btn {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  border: 1px solid #292929;
-  background: #151515;
-  color: white;
-  font-size: 18px;
-}
-
-.container {
-  max-width: 720px;
-  margin: auto;
-}
-
-.page {
-  display: none;
-}
-
-.page.active {
-  display: block;
-}
-
-/* HOME */
-
-.profile {
-  padding: 24px 18px 18px;
-  border-bottom: 1px solid #222;
-}
-
-.profile-row {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.avatar {
-  width: 62px;
-  height: 62px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #e0a35b, #704025);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 26px;
-  font-weight: 800;
-}
-
-.profile-name {
-  font-size: 19px;
-  font-weight: 700;
-}
-
-.profile-handle {
-  color: #858585;
-  font-size: 13px;
-  margin-top: 3px;
-}
-
-.profile-stats {
-  display: flex;
-  gap: 24px;
-  margin-top: 18px;
-}
-
-.stat strong {
-  display: block;
-  font-size: 15px;
-}
-
-.stat span {
-  color: #777;
-  font-size: 12px;
-}
-
-.stories {
-  display: flex;
-  gap: 14px;
-  overflow-x: auto;
-  padding: 18px;
-  border-bottom: 1px solid #222;
-}
-
-.stories::-webkit-scrollbar,
-.trending::-webkit-scrollbar,
-.region-row::-webkit-scrollbar {
-  display: none;
-}
-
-.story {
-  min-width: 66px;
-  text-align: center;
-  font-size: 11px;
-  color: #999;
-}
-
-.story-ring {
-  width: 62px;
-  height: 62px;
-  margin: auto auto 7px;
-  padding: 3px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #d99a4e, #6d3922);
-}
-
-.story-inner {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: #181818;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-}
-
-.composer {
-  margin: 18px;
-  padding: 18px;
-  background: #141414;
-  border: 1px solid #282828;
-  border-radius: 20px;
-}
-
-.composer-top {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.mini-avatar {
-  width: 43px;
-  height: 43px;
-  border-radius: 50%;
-  background: #6e452c;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.composer-input {
-  color: #888;
-  flex: 1;
-}
-
-.composer-actions {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 16px;
-  padding-top: 14px;
-  border-top: 1px solid #272727;
-}
-
-.tools {
-  display: flex;
-  gap: 17px;
-  color: #d99a4e;
-}
-
-.post-btn,
-.primary-button {
-  border: none;
-  background: #d99a4e;
-  color: #111;
-  padding: 9px 19px;
-  border-radius: 20px;
-  font-weight: 700;
-}
-
-.section-title,
-.local-title {
-  padding: 4px 18px 12px;
-  color: #aaa;
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.trending {
-  display: flex;
-  gap: 10px;
-  overflow-x: auto;
-  padding: 0 18px 20px;
-}
-
-.trend {
-  min-width: 150px;
-  padding: 14px;
-  border-radius: 15px;
-  background: #141414;
-  border: 1px solid #272727;
-}
-
-.trend small {
-  color: #777;
-}
-
-.trend strong {
-  display: block;
-  margin-top: 5px;
-}
-
-.post {
-  border-top: 1px solid #222;
-  padding: 20px 18px;
-}
-
-.post-header {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-}
-
-.post-avatar {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: #3e3029;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-}
-
-.post-info strong {
-  display: block;
-  font-size: 15px;
-}
-
-.post-info span {
-  color: #777;
-  font-size: 12px;
-}
-
-.more {
-  margin-left: auto;
-  color: #777;
-  background: none;
-  border: none;
-  font-size: 20px;
-}
-
-.post-text {
-  margin: 16px 0;
-  color: #ddd;
-  font-size: 15px;
-  line-height: 1.65;
-}
-
-.post-image {
-  height: 220px;
-  border-radius: 18px;
-  background:
-    radial-gradient(circle at 25% 30%, rgba(217,154,78,.4), transparent 25%),
-    linear-gradient(135deg, #211812, #111);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 15px;
-  font-size: 48px;
-}
-
-.post-actions {
-  position: relative;
-  display: flex;
-  gap: 26px;
-}
-
-.post-actions button {
-  border: none;
-  background: none;
-  color: #888;
-  font-size: 14px;
-}
-
-.post-actions button.reacted {
-  color: #d99a4e;
-  font-weight: 700;
-}
-
-.likes {
-  color: #777;
-  font-size: 12px;
-  margin-top: 12px;
-}
-
-/* COMMENTS */
-
-.comments {
-  margin-top: 16px;
-  padding-top: 16px;
-  border-top: 1px solid #272727;
-}
-
-.comment {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-  margin-bottom: 14px;
-}
-
-.comment-avatar {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: #6e452c;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  flex-shrink: 0;
-}
-
-.comment-content {
-  background: #181818;
-  border-radius: 14px;
-  padding: 9px 12px;
-  flex: 1;
-}
-
-.comment-content strong {
-  display: block;
-  font-size: 13px;
-  margin-bottom: 3px;
-}
-
-.comment-content p {
-  color: #ccc;
-  font-size: 13px;
-  line-height: 1.4;
-  word-break: break-word;
-}
-
-.comment-box {
-  display: flex;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.comment-box input {
-  flex: 1;
-  min-width: 0;
-  background: #151515;
-  border: 1px solid #2b2b2b;
-  border-radius: 20px;
-  padding: 10px 14px;
-  color: white;
-  outline: none;
-}
-
-.comment-box button {
-  border: none;
-  background: #d99a4e;
-  color: #111;
-  padding: 9px 15px;
-  border-radius: 20px;
-  font-weight: 700;
-}
-
-/* REACTIONS */
-
-.reaction-picker {
-  position: absolute;
-  left: 0;
-  bottom: 38px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 8px 10px;
-  background: #1b1b1b;
-  border: 1px solid #333;
-  border-radius: 30px;
-  box-shadow: 0 8px 25px rgba(0,0,0,.55);
-  z-index: 50;
-}
-
-.reaction-picker button {
-  width: 34px;
-  height: 34px;
-  padding: 0;
-  border: none;
-  background: transparent;
-  font-size: 22px;
-}
-
-/* GENERAL PAGES */
-
-.page-header {
-  padding: 28px 18px 18px;
-}
-
-.page-header h1 {
-  font-size: 30px;
-  margin-bottom: 8px;
-}
-
-.page-header p {
-  color: #888;
-  line-height: 1.5;
-}
-
-.feature-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  padding: 0 18px 25px;
-}
-
-.feature-card {
-  min-height: 145px;
-  padding: 18px;
-  border-radius: 20px;
-  background: #141414;
-  border: 1px solid #282828;
-}
-
-.feature-icon {
-  font-size: 32px;
-  margin-bottom: 18px;
-}
-
-.feature-card strong {
-  display: block;
-  font-size: 16px;
-  margin-bottom: 6px;
-}
-
-.feature-card span {
-  color: #777;
-  font-size: 12px;
-  line-height: 1.4;
-}
-
-.discover-card {
-  margin: 12px 18px;
-  padding: 20px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #1d1712, #121212);
-  border: 1px solid #33271c;
-}
-
-.discover-card h3 {
-  margin-bottom: 7px;
-}
-
-.discover-card p {
-  color: #999;
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-.primary-button {
-  margin-top: 15px;
-}
-
-/* LOCATION */
-
-.location-hero {
-  margin: 0 18px 18px;
-  padding: 22px;
-  border-radius: 22px;
-  background:
-    radial-gradient(circle at 90% 10%, rgba(217,154,78,.25), transparent 35%),
-    linear-gradient(135deg, #1c1510, #111);
-  border: 1px solid #38291b;
-}
-
-.location-label {
-  color: #9a9a9a;
-  font-size: 12px;
-  margin-bottom: 7px;
-  text-transform: uppercase;
-  letter-spacing: .8px;
-}
-
-.location-name {
-  font-size: 25px;
-  font-weight: 800;
-}
-
-.location-description {
-  margin-top: 8px;
-  color: #aaa;
-  line-height: 1.5;
-  font-size: 13px;
-}
-
-.location-controls {
-  padding: 0 18px 14px;
-}
-
-.location-controls label {
-  display: block;
-  color: #999;
-  font-size: 12px;
-  margin-bottom: 7px;
-}
-
-.location-select {
-  width: 100%;
-  background: #151515;
-  color: white;
-  border: 1px solid #303030;
-  border-radius: 14px;
-  padding: 13px 14px;
-  outline: none;
-}
-
-.location-select:focus {
-  border-color: #d99a4e;
-}
-
-.city-label {
-  margin-top: 15px;
-}
-
-.city-select {
-  width: 100%;
-  background: #151515;
-  color: white;
-  border: 1px solid #303030;
-  border-radius: 14px;
-  padding: 13px 14px;
-  outline: none;
-}
-
-.city-select:focus {
-  border-color: #d99a4e;
-}
-
-.region-row {
-  display: flex;
-  gap: 9px;
-  overflow-x: auto;
-  padding: 0 18px 20px;
-}
-
-.region-button {
-  white-space: nowrap;
-  border: 1px solid #303030;
-  background: #141414;
-  color: #999;
-  padding: 10px 15px;
-  border-radius: 20px;
-  font-size: 12px;
-}
-
-.region-button.active {
-  background: #d99a4e;
-  color: #111;
-  border-color: #d99a4e;
-  font-weight: 700;
-}
-
-.local-title {
-  font-size: 17px;
-  color: #fff;
-}
-
-.local-feed-card {
-  margin: 0 18px 12px;
-  padding: 17px;
-  border-radius: 18px;
-  background: #141414;
-  border: 1px solid #282828;
-}
-
-.local-feed-top {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.local-avatar {
-  width: 43px;
-  height: 43px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #765034, #322116);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 19px;
-}
-
-.local-feed-name strong {
-  display: block;
-  font-size: 14px;
-}
-
-.local-feed-name span {
-  display: block;
-  color: #777;
-  font-size: 11px;
-  margin-top: 3px;
-}
-
-.local-feed-text {
-  color: #ddd;
-  font-size: 14px;
-  line-height: 1.55;
-  margin-top: 14px;
-}
-
-.local-tag {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 6px 9px;
-  border-radius: 10px;
-  background: #211b16;
-  color: #d99a4e;
-  font-size: 11px;
-}
-
-.local-category-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  padding: 0 18px 25px;
-}
-
-.local-category {
-  padding: 18px;
-  border-radius: 18px;
-  background: #141414;
-  border: 1px solid #282828;
-}
-
-.local-category-icon {
-  font-size: 27px;
-  margin-bottom: 12px;
-}
-
-.local-category strong {
-  display: block;
-  font-size: 14px;
-}
-
-.local-category span {
-  display: block;
-  color: #777;
-  font-size: 11px;
-  margin-top: 5px;
-}
-
-.local-note {
-  margin: 0 18px 25px;
-  padding: 17px;
-  border-radius: 18px;
-  background: #101010;
-  border: 1px solid #252525;
-}
-
-.local-note strong {
-  display: block;
-  margin-bottom: 7px;
-}
-
-.local-note p {
-  color: #888;
-  font-size: 12px;
-  line-height: 1.5;
-}
-
-/* NAV */
-
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 72px;
-  z-index: 200;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background: rgba(12,12,12,.98);
-  border-top: 1px solid #272727;
-}
-
-.nav-item {
-  text-align: center;
-  color: #777;
-  font-size: 10px;
-  cursor: pointer;
-  min-width: 55px;
-}
-
-.nav-item div {
-  font-size: 20px;
-  margin-bottom: 3px;
-}
-
-.nav-item.active {
-  color: #d99a4e;
-}
-
-@media (min-width: 800px) {
-  .container {
-    border-left: 1px solid #222;
-    border-right: 1px solid #222;
-    min-height: 100vh;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0b0b">
+  <title>Soulaani</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #0b0b0b;
+      --card: #151515;
+      --card2: #1b1b1b;
+      --gold: #d99a4e;
+      --gold-light: #f0c27b;
+      --text: #f5f5f5;
+      --muted: #9b9b9b;
+      --border: rgba(255,255,255,0.08);
+      --danger: #d95c5c;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .app {
+      min-height: 100vh;
+      padding-bottom: 90px;
+    }
+
+    .page {
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 18px 16px 30px;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    /* HEADER */
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0 22px;
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--gold-light);
+    }
+
+    .logo span {
+      color: #fff;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 9px;
+    }
+
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: #fff;
+      font-size: 18px;
+    }
+
+    /* GENERAL */
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 19px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+      margin-top: -5px;
+      margin-bottom: 15px;
+    }
+
+    .gold {
+      color: var(--gold-light);
+    }
+
+    /* PROFILE */
+
+    .profile-card {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #d99a4e, #7b4d20);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 27px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .profile-info h1 {
+      font-size: 21px;
+      margin-bottom: 5px;
+    }
+
+    .profile-info p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .stats {
+      display: flex;
+      gap: 22px;
+      margin-top: 11px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 15px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    /* STORIES */
+
+    .stories {
+      display: flex;
+      gap: 13px;
+      overflow-x: auto;
+      padding-bottom: 5px;
+    }
+
+    .stories::-webkit-scrollbar {
+      display: none;
+    }
+
+    .story {
+      min-width: 67px;
+      text-align: center;
+    }
+
+    .story-ring {
+      width: 58px;
+      height: 58px;
+      margin: 0 auto 6px;
+      border-radius: 50%;
+      padding: 2px;
+      background: linear-gradient(135deg, #d99a4e, #f0c27b, #6e421e);
+    }
+
+    .story-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #222;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 800;
+    }
+
+    .story span {
+      font-size: 10px;
+      color: #ccc;
+    }
+
+    /* COMPOSER */
+
+    .composer {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .mini-avatar {
+      width: 43px;
+      height: 43px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: #6c4a2d;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 800;
+    }
+
+    .composer-input {
+      flex: 1;
+      background: #202020;
+      border: 1px solid var(--border);
+      color: #fff;
+      border-radius: 25px;
+      padding: 12px 15px;
+      outline: none;
+    }
+
+    /* TRENDING */
+
+    .trend-list {
+      display: flex;
+      gap: 9px;
+      overflow-x: auto;
+    }
+
+    .trend {
+      background: #202020;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 11px 13px;
+      min-width: 135px;
+    }
+
+    .trend small {
+      color: var(--muted);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .trend strong {
+      color: var(--gold-light);
+      font-size: 13px;
+    }
+
+    /* POSTS */
+
+    .post-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .post-user {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .post-user .mini-avatar {
+      width: 42px;
+      height: 42px;
+    }
+
+    .post-user strong {
+      font-size: 14px;
+    }
+
+    .post-user span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 3px;
+    }
+
+    .post-menu {
+      color: var(--muted);
+      background: none;
+      border: none;
+      font-size: 20px;
+    }
+
+    .post-body {
+      margin-top: 14px;
+      color: #e8e8e8;
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .post-location {
+      color: var(--gold-light);
+      margin-top: 9px;
+      font-size: 12px;
+    }
+
+    .reactions {
+      display: flex;
+      gap: 7px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .reaction-btn {
+      background: #202020;
+      color: #ddd;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 7px 10px;
+      font-size: 12px;
+    }
+
+    .reaction-btn.active {
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+
+    .comment-toggle {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      margin-top: 12px;
+      font-size: 12px;
+    }
+
+    .comments {
+      display: none;
+      margin-top: 13px;
+      border-top: 1px solid var(--border);
+      padding-top: 13px;
+    }
+
+    .comments.open {
+      display: block;
+    }
+
+    .comment {
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .comment strong {
+      font-size: 12px;
+    }
+
+    .comment p {
+      color: #ccc;
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    .comment-form {
+      display: flex;
+      gap: 8px;
+      margin-top: 11px;
+    }
+
+    .comment-input {
+      flex: 1;
+      background: #202020;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      color: #fff;
+      padding: 9px 12px;
+      outline: none;
+    }
+
+    .post-comment {
+      background: var(--gold);
+      border: none;
+      color: #111;
+      font-weight: 800;
+      border-radius: 20px;
+      padding: 8px 13px;
+    }
+
+    /* DISCOVER */
+
+    .discover-hero {
+      background:
+        radial-gradient(circle at top right, rgba(217,154,78,0.25), transparent 42%),
+        linear-gradient(145deg, #18130d, #141414);
+      border: 1px solid rgba(217,154,78,0.22);
+      border-radius: 23px;
+      padding: 22px;
+      margin-bottom: 16px;
+    }
+
+    .discover-hero .eyebrow {
+      color: var(--gold-light);
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 2px;
+      font-weight: 800;
+      margin-bottom: 7px;
+    }
+
+    .discover-hero h1 {
+      font-size: 27px;
+      line-height: 1.12;
+      margin-bottom: 9px;
+    }
+
+    .discover-hero p {
+      color: #bdbdbd;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .region-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 7px;
+      margin-bottom: 17px;
+    }
+
+    .region-btn {
+      background: #1a1a1a;
+      color: #bbb;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 10px 5px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .region-btn.active {
+      background: var(--gold);
+      color: #111;
+      border-color: var(--gold);
+    }
+
+    .location-controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 11px;
+    }
+
+    .field label {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      margin-bottom: 6px;
+    }
+
+    .field select {
+      width: 100%;
+      background: #202020;
+      border: 1px solid var(--border);
+      color: #fff;
+      border-radius: 13px;
+      padding: 12px 10px;
+      outline: none;
+    }
+
+    .local-location {
+      margin-top: 16px;
+      padding: 16px;
+      background: #202020;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .local-location small {
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 9px;
+    }
+
+    .local-location h2 {
+      margin-top: 5px;
+      font-size: 22px;
+    }
+
+    .local-location p {
+      color: var(--muted);
+      margin-top: 5px;
+      font-size: 12px;
+    }
+
+    .local-hashtag {
+      color: var(--gold-light) !important;
+      margin-top: 9px !important;
+    }
+
+    .local-post {
+      background: #202020;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      padding: 14px;
+      margin-top: 10px;
+    }
+
+    .local-post-header {
+      display: flex;
+      gap: 9px;
+      align-items: center;
+    }
+
+    .local-post-header .mini-avatar {
+      width: 38px;
+      height: 38px;
+    }
+
+    .local-post-header strong {
+      font-size: 13px;
+    }
+
+    .local-post-header span {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      margin-top: 2px;
+    }
+
+    .local-post p {
+      margin-top: 10px;
+      color: #ddd;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .explore-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 9px;
+    }
+
+    .explore-card {
+      background: #202020;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px 10px;
+      text-align: center;
+    }
+
+    .explore-card .emoji {
+      font-size: 22px;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .explore-card strong {
+      font-size: 11px;
+    }
+
+    .explore-card span {
+      color: var(--muted);
+      display: block;
+      font-size: 9px;
+      margin-top: 3px;
+    }
+
+    .future-note {
+      margin-top: 15px;
+      padding: 12px;
+      background: rgba(217,154,78,0.07);
+      border: 1px solid rgba(217,154,78,0.13);
+      border-radius: 13px;
+      color: #aaa;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    /* OTHER PAGES */
+
+    .feature-hero {
+      padding: 28px 20px;
+      text-align: center;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 23px;
+    }
+
+    .feature-icon {
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+
+    .feature-hero h1 {
+      font-size: 27px;
+      margin-bottom: 8px;
+    }
+
+    .feature-hero p {
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 13px;
+    }
+
+    .feature-list {
+      margin-top: 16px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .feature-item {
+      padding: 15px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .feature-item span {
+      font-size: 23px;
+    }
+
+    .feature-item strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .feature-item small {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      margin-top: 3px;
+    }
+
+    /* BOTTOM NAV */
+
+    .bottom-nav {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 72px;
+      background: rgba(15,15,15,0.96);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: center;
+      z-index: 100;
+    }
+
+    .nav-inner {
+      width: 100%;
+      max-width: 650px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    .nav-item {
+      background: transparent;
+      border: none;
+      color: #777;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      font-size: 10px;
+    }
+
+    .nav-item .nav-icon {
+      font-size: 20px;
+    }
+
+    .nav-item.active {
+      color: var(--gold-light);
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 600px) {
+      .page {
+        padding-left: 13px;
+        padding-right: 13px;
+      }
+
+      .region-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .region-btn:last-child {
+        grid-column: span 1;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .location-controls {
+        grid-template-columns: 1fr;
+      }
+
+      .explore-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header class="topbar">
+<div class="app">
 
-  <div class="logo">
-    Soulaani<span>.</span>
-  </div>
+  <!-- HOME -->
+  <main id="homePage" class="page active">
 
-  <div class="top-icons">
-    <button class="icon-btn">⌕</button>
-    <button class="icon-btn">♡</button>
-  </div>
+    <div class="topbar">
+      <div class="logo">Soulaani<span>.</span></div>
 
-</header>
-
-<main class="container">
-
-<!-- HOME -->
-
-<section id="home" class="page active">
-
-  <section class="profile">
-
-    <div class="profile-row">
-
-      <div class="avatar">
-        S
+      <div class="top-actions">
+        <button class="icon-btn" aria-label="Search">⌕</button>
+        <button class="icon-btn" aria-label="Favorites">♡</button>
       </div>
+    </div>
 
-      <div>
-        <div class="profile-name">
-          Welcome to Soulaani
+    <section class="card profile-card">
+      <div class="avatar">L</div>
+
+      <div class="profile-info">
+        <h1>Welcome back, <span class="gold">LuhhTrilly</span></h1>
+        <p>Your Soulaani community is waiting.</p>
+
+        <div class="stats">
+          <div class="stat">
+            <strong>1.2K</strong>
+            <span>Followers</span>
+          </div>
+
+          <div class="stat">
+            <strong>438</strong>
+            <span>Following</span>
+          </div>
+
+          <div class="stat">
+            <strong>27</strong>
+            <span>Posts</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">Stories</div>
+
+      <div class="stories">
+        <div class="story">
+          <div class="story-ring">
+            <div class="story-inner">+</div>
+          </div>
+          <span>Your Story</span>
         </div>
 
-        <div class="profile-handle">
-          @soulaani
+        <div class="story">
+          <div class="story-ring">
+            <div class="story-inner">T</div>
+          </div>
+          <span>Tasha</span>
+        </div>
+
+        <div class="story">
+          <div class="story-ring">
+            <div class="story-inner">J</div>
+          </div>
+          <span>Jay</span>
+        </div>
+
+        <div class="story">
+          <div class="story-ring">
+            <div class="story-inner">M</div>
+          </div>
+          <span>Maya</span>
+        </div>
+
+        <div class="story">
+          <div class="story-ring">
+            <div class="story-inner">D</div>
+          </div>
+          <span>DeAndre</span>
+        </div>
+
+        <div class="story">
+          <div class="story-ring">
+            <div class="story-inner">K</div>
+          </div>
+          <span>Kiana</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="composer">
+        <div class="mini-avatar">L</div>
+        <input class="composer-input" type="text" placeholder="What's happening on Soulaani?">
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">Trending on Soulaani</div>
+
+      <div class="trend-list">
+        <div class="trend">
+          <small>Trending</small>
+          <strong>#BlackOwned</strong>
+        </div>
+
+        <div class="trend">
+          <small>Trending</small>
+          <strong>#BlackCulture</strong>
+        </div>
+
+        <div class="trend">
+          <small>Trending</small>
+          <strong>#Soulaani</strong>
+        </div>
+
+        <div class="trend">
+          <small>Trending</small>
+          <strong>#Philly</strong>
+        </div>
+      </div>
+    </section>
+
+    <article class="card">
+      <div class="post-header">
+        <div class="post-user">
+          <div class="mini-avatar">J</div>
+
+          <div>
+            <strong>Jay Williams</strong>
+            <span>2h ago · Philadelphia, PA</span>
+          </div>
+        </div>
+
+        <button class="post-menu">•••</button>
+      </div>
+
+      <div class="post-body">
+        The energy in the city has been different lately. Seeing more people building, creating, and supporting each other. That's what community is supposed to feel like.
+      </div>
+
+      <div class="post-location">📍 Philadelphia, Pennsylvania</div>
+
+      <div class="reactions">
+        <button class="reaction-btn" onclick="react(this,'❤️')">❤️ 7</button>
+        <button class="reaction-btn" onclick="react(this,'👍')">👍</button>
+        <button class="reaction-btn" onclick="react(this,'😂')">😂</button>
+        <button class="reaction-btn" onclick="react(this,'🔥')">🔥</button>
+        <button class="reaction-btn" onclick="react(this,'😮')">😮</button>
+        <button class="reaction-btn" onclick="react(this,'😢')">😢</button>
+        <button class="reaction-btn" onclick="react(this,'👎')">👎</button>
+      </div>
+
+      <button class="comment-toggle" onclick="toggleComments('comments1')">
+        💬 Comments
+      </button>
+
+      <div id="comments1" class="comments">
+        <div class="comment">
+          <strong>Soulaani</strong>
+          <p>This is exactly what community should look like. 🖤</p>
+        </div>
+
+        <div id="commentList1"></div>
+
+        <div class="comment-form">
+          <input id="commentInput1" class="comment-input" type="text" placeholder="Write a comment...">
+          <button class="post-comment" onclick="addComment('commentInput1','commentList1')">
+            Post
+          </button>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="post-header">
+        <div class="post-user">
+          <div class="mini-avatar">M</div>
+
+          <div>
+            <strong>Maya Carter</strong>
+            <span>5h ago · Atlanta, GA</span>
+          </div>
+        </div>
+
+        <button class="post-menu">•••</button>
+      </div>
+
+      <div class="post-body">
+        Black-owned businesses deserve our support all year long. Drop your favorite local spot below so more people can discover it.
+      </div>
+
+      <div class="post-location">📍 Atlanta, Georgia</div>
+
+      <div class="reactions">
+        <button class="reaction-btn" onclick="react(this,'❤️')">❤️ 12</button>
+        <button class="reaction-btn" onclick="react(this,'👍')">👍</button>
+        <button class="reaction-btn" onclick="react(this,'😂')">😂</button>
+        <button class="reaction-btn" onclick="react(this,'🔥')">🔥</button>
+        <button class="reaction-btn" onclick="react(this,'😮')">😮</button>
+        <button class="reaction-btn" onclick="react(this,'😢')">😢</button>
+        <button class="reaction-btn" onclick="react(this,'👎')">👎</button>
+      </div>
+
+      <button class="comment-toggle" onclick="toggleComments('comments2')">
+        💬 Comments
+      </button>
+
+      <div id="comments2" class="comments">
+        <div class="comment">
+          <strong>Soulaani</strong>
+          <p>Local discovery is exactly where we're headed. 🖤</p>
+        </div>
+
+        <div id="commentList2"></div>
+
+        <div class="comment-form">
+          <input id="commentInput2" class="comment-input" type="text" placeholder="Write a comment...">
+          <button class="post-comment" onclick="addComment('commentInput2','commentList2')">
+            Post
+          </button>
+        </div>
+      </div>
+    </article>
+
+  </main>
+
+
+  <!-- CONNECT -->
+  <main id="connectPage" class="page">
+
+    <div class="topbar">
+      <div class="logo">Soulaani<span>.</span></div>
+    </div>
+
+    <section class="feature-hero">
+      <div class="feature-icon">🤝🏾</div>
+      <h1>Connect</h1>
+      <p>
+        Meet people, join communities, share your story, and build meaningful connections across Soulaani.
+      </p>
+    </section>
+
+    <div class="feature-list">
+      <div class="feature-item">
+        <span>👥</span>
+        <div>
+          <strong>People</strong>
+          <small>Discover people and creators.</small>
         </div>
       </div>
 
-    </div>
-
-    <div class="profile-stats">
-
-      <div class="stat">
-        <strong>0</strong>
-        <span>Following</span>
+      <div class="feature-item">
+        <span>🏘️</span>
+        <div>
+          <strong>Communities</strong>
+          <small>Find communities built around shared interests.</small>
+        </div>
       </div>
 
-      <div class="stat">
-        <strong>0</strong>
-        <span>Followers</span>
+      <div class="feature-item">
+        <span>💬</span>
+        <div>
+          <strong>Conversations</strong>
+          <small>Talk about what's happening around you.</small>
+        </div>
       </div>
-
-      <div class="stat">
-        <strong>0</strong>
-        <span>Communities</span>
-      </div>
-
     </div>
 
-  </section>
+  </main>
 
-  <section class="stories">
 
-    <div class="story">
-      <div class="story-ring">
-        <div class="story-inner">+</div>
-      </div>
-      Add Story
+  <!-- DATE -->
+  <main id="datePage" class="page">
+
+    <div class="topbar">
+      <div class="logo">Soulaani<span>.</span></div>
     </div>
 
-    <div class="story">
-      <div class="story-ring">
-        <div class="story-inner">🤎</div>
-      </div>
-      Culture
-    </div>
-
-    <div class="story">
-      <div class="story-ring">
-        <div class="story-inner">🎵</div>
-      </div>
-      Music
-    </div>
-
-    <div class="story">
-      <div class="story-ring">
-        <div class="story-inner">🚀</div>
-      </div>
-      Build
-    </div>
-
-    <div class="story">
-      <div class="story-ring">
-        <div class="story-inner">🌍</div>
-      </div>
-      Travel
-    </div>
-
-    <div class="story">
-      <div class="story-ring">
-        <div class="story-inner">🍽️</div>
-      </div>
-      Food
-    </div>
-
-  </section>
-
-  <section class="composer">
-
-    <div class="composer-top">
-
-      <div class="mini-avatar">
-        S
-      </div>
-
-      <div class="composer-input">
-        What's on your mind?
-      </div>
-
-    </div>
-
-    <div class="composer-actions">
-
-      <div class="tools">
-        <span>📷</span>
-        <span>🎥</span>
-        <span>😊</span>
-        <span>📍</span>
-      </div>
-
-      <button class="post-btn">
-        Post
-      </button>
-
-    </div>
-
-  </section>
-
-  <div class="section-title">
-    Trending on Soulaani
-  </div>
-
-  <section class="trending">
-
-    <div class="trend">
-      <small>Trending</small>
-      <strong>#BlackOwned</strong>
-    </div>
-
-    <div class="trend">
-      <small>Community</small>
-      <strong>#Soulaani</strong>
-    </div>
-
-    <div class="trend">
-      <small>Culture</small>
-      <strong>#OurCulture</strong>
-    </div>
-
-  </section>
-
-  <div class="section-title">
-    Your Feed
-  </div>
-
-  <article class="post">
-
-    <div class="post-header">
-
-      <div class="post-avatar">
-        🌍🏾
-      </div>
-
-      <div class="post-info">
-        <strong>Soulaani Community</strong>
-        <span>@soulaani · Just now</span>
-      </div>
-
-      <button class="more">
-        •••
-      </button>
-
-    </div>
-
-    <p class="post-text">
-      Welcome to Soulaani. A digital home for connection,
-      culture, creativity, love, business, and growth. 🌍🏾
-    </p>
-
-    <div class="post-image">
-      🌍🏾
-    </div>
-
-    <div class="post-actions">
-
-      <button onclick="toggleReactions(this)">
-        ♡ Like
-      </button>
-
-      <button onclick="toggleComments(this)">
-        💬 Comment
-      </button>
-
-      <button>
-        ↗ Share
-      </button>
-
-    </div>
-
-    <div class="likes">
-      0 reactions
-    </div>
-
-  </article>
-
-  <article class="post">
-
-    <div class="post-header">
-
-      <div class="post-avatar">
-        🚀
-      </div>
-
-      <div class="post-info">
-        <strong>Soulaani Build</strong>
-        <span>@build · Today</span>
-      </div>
-
-      <button class="more">
-        •••
-      </button>
-
-    </div>
-
-    <p class="post-text">
-      Build something meaningful. Connect with people who
-      believe in your ideas and discover opportunities to grow.
-    </p>
-
-    <div class="post-actions">
-
-      <button onclick="toggleReactions(this)">
-        ♡ Like
-      </button>
-
-      <button onclick="toggleComments(this)">
-        💬 Comment
-      </button>
-
-      <button>
-        ↗ Share
-      </button>
-
-    </div>
-
-    <div class="likes">
-      0 reactions
-    </div>
-
-  </article>
-
-</section>
-
-
-<!-- CONNECT -->
-
-<section id="connect" class="page">
-
-  <div class="page-header">
-    <h1>Connect</h1>
-
-    <p>
-      Meet people, build communities, and create meaningful connections.
-    </p>
-  </div>
-
-  <div class="feature-grid">
-
-    <div class="feature-card">
-      <div class="feature-icon">👥</div>
-      <strong>People</strong>
-      <span>Discover people and creators across Soulaani.</span>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">🏘️</div>
-      <strong>Communities</strong>
-      <span>Find communities built around shared interests.</span>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">💬</div>
-      <strong>Messages</strong>
-      <span>Connect privately with your people.</span>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">🔎</div>
-      <strong>Find People</strong>
-      <span>Search for people, interests, and communities.</span>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- DATE -->
-
-<section id="date" class="page">
-
-  <div class="page-header">
-
-    <h1>Date</h1>
-
-    <p>
-      A space for meaningful connections, dating, and relationships.
-    </p>
-
-  </div>
-
-  <div class="discover-card">
-
-    <h3>❤️ Dating on Soulaani</h3>
-
-    <p>
-      Discover people, explore profiles, find compatible connections,
-      and build relationships within the community.
-    </p>
-
-    <button class="primary-button">
-      Coming Soon
-    </button>
-
-  </div>
-
-  <div class="feature-grid">
-
-    <div class="feature-card">
+    <section class="feature-hero">
       <div class="feature-icon">❤️</div>
-      <strong>Discover</strong>
-      <span>Explore dating profiles and potential connections.</span>
+      <h1>Date</h1>
+      <p>
+        A dating experience designed around connection, personality, culture, and community.
+      </p>
+    </section>
+
+    <div class="feature-list">
+      <div class="feature-item">
+        <span>💘</span>
+        <div>
+          <strong>Discover</strong>
+          <small>Meet people who share your interests.</small>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <span>📍</span>
+        <div>
+          <strong>Local Dating</strong>
+          <small>Discover people in your city and surrounding areas.</small>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <span>💬</span>
+        <div>
+          <strong>Connections</strong>
+          <small>Build conversations before taking things further.</small>
+        </div>
+      </div>
     </div>
 
-    <div class="feature-card">
-      <div class="feature-icon">✨</div>
-      <strong>Matches</strong>
-      <span>See people who connect with your interests.</span>
+  </main>
+
+
+  <!-- BUILD -->
+  <main id="buildPage" class="page">
+
+    <div class="topbar">
+      <div class="logo">Soulaani<span>.</span></div>
     </div>
 
-    <div class="feature-card">
-      <div class="feature-icon">💬</div>
-      <strong>Dating Chat</strong>
-      <span>Talk and get to know your matches.</span>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">⚙️</div>
-      <strong>Preferences</strong>
-      <span>Customize what you're looking for.</span>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- BUILD -->
-
-<section id="build" class="page">
-
-  <div class="page-header">
-
-    <h1>Build</h1>
-
-    <p>
-      Turn ideas into businesses, careers, projects, and opportunities.
-    </p>
-
-  </div>
-
-  <div class="feature-grid">
-
-    <div class="feature-card">
-      <div class="feature-icon">💼</div>
-      <strong>Businesses</strong>
-      <span>Discover and showcase businesses.</span>
-    </div>
-
-    <div class="feature-card">
+    <section class="feature-hero">
       <div class="feature-icon">🚀</div>
-      <strong>Projects</strong>
-      <span>Build ideas and collaborate with others.</span>
-    </div>
+      <h1>Build</h1>
+      <p>
+        Create, network, promote your work, discover opportunities, and build something bigger.
+      </p>
+    </section>
 
-    <div class="feature-card">
-      <div class="feature-icon">💰</div>
-      <strong>Opportunities</strong>
-      <span>Find jobs, opportunities, and partnerships.</span>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">🎨</div>
-      <strong>Creators</strong>
-      <span>Discover creators and creative work.</span>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- DISCOVER -->
-
-<section id="discover" class="page">
-
-  <div class="page-header">
-
-    <h1>Discover</h1>
-
-    <p>
-      Explore Soulaani through the people, culture, businesses,
-      events, and experiences around you.
-    </p>
-
-  </div>
-
-
-  <div class="local-title">
-    Explore the United States
-  </div>
-
-
-  <div class="region-row">
-
-    <button class="region-button active"
-      onclick="selectRegion('Northeast', this)">
-      Northeast
-    </button>
-
-    <button class="region-button"
-      onclick="selectRegion('South', this)">
-      South
-    </button>
-
-    <button class="region-button"
-      onclick="selectRegion('Midwest', this)">
-      Midwest
-    </button>
-
-    <button class="region-button"
-      onclick="selectRegion('West', this)">
-      West
-    </button>
-
-    <button class="region-button"
-      onclick="selectRegion('Territories', this)">
-      U.S. Territories
-    </button>
-
-  </div>
-
-
-  <div class="location-controls">
-
-    <label for="stateSelect">
-      Choose your state
-    </label>
-
-    <select
-      id="stateSelect"
-      class="location-select"
-      onchange="changeState(this.value)"
-    >
-
-      <option value="Pennsylvania">Pennsylvania</option>
-      <option value="Alabama">Alabama</option>
-      <option value="Alaska">Alaska</option>
-      <option value="Arizona">Arizona</option>
-      <option value="Arkansas">Arkansas</option>
-      <option value="California">California</option>
-      <option value="Colorado">Colorado</option>
-      <option value="Connecticut">Connecticut</option>
-      <option value="Delaware">Delaware</option>
-      <option value="Florida">Florida</option>
-      <option value="Georgia">Georgia</option>
-      <option value="Hawaii">Hawaii</option>
-      <option value="Idaho">Idaho</option>
-      <option value="Illinois">Illinois</option>
-      <option value="Indiana">Indiana</option>
-      <option value="Iowa">Iowa</option>
-      <option value="Kansas">Kansas</option>
-      <option value="Kentucky">Kentucky</option>
-      <option value="Louisiana">Louisiana</option>
-      <option value="Maine">Maine</option>
-      <option value="Maryland">Maryland</option>
-      <option value="Massachusetts">Massachusetts</option>
-      <option value="Michigan">Michigan</option>
-      <option value="Minnesota">Minnesota</option>
-      <option value="Mississippi">Mississippi</option>
-      <option value="Missouri">Missouri</option>
-      <option value="Montana">Montana</option>
-      <option value="Nebraska">Nebraska</option>
-      <option value="Nevada">Nevada</option>
-      <option value="New Hampshire">New Hampshire</option>
-      <option value="New Jersey">New Jersey</option>
-      <option value="New Mexico">New Mexico</option>
-      <option value="New York">New York</option>
-      <option value="North Carolina">North Carolina</option>
-      <option value="North Dakota">North Dakota</option>
-      <option value="Ohio">Ohio</option>
-      <option value="Oklahoma">Oklahoma</option>
-      <option value="Oregon">Oregon</option>
-      <option value="Rhode Island">Rhode Island</option>
-      <option value="South Carolina">South Carolina</option>
-      <option value="South Dakota">South Dakota</option>
-      <option value="Tennessee">Tennessee</option>
-      <option value="Texas">Texas</option>
-      <option value="Utah">Utah</option>
-      <option value="Vermont">Vermont</option>
-      <option value="Virginia">Virginia</option>
-      <option value="Washington">Washington</option>
-      <option value="West Virginia">West Virginia</option>
-      <option value="Wisconsin">Wisconsin</option>
-      <option value="Wyoming">Wyoming</option>
-
-    </select>
-
-
-    <label class="city-label" for="citySelect">
-      Choose your city
-    </label>
-
-    <select
-      id="citySelect"
-      class="city-select"
-      onchange="changeCity(this.value)"
-    >
-    </select>
-
-  </div>
-
-
-  <section class="location-hero">
-
-    <div class="location-label">
-      Your Local Soulaani
-    </div>
-
-    <div
-      id="locationName"
-      class="location-name"
-    >
-      Philadelphia, Pennsylvania
-    </div>
-
-    <p
-      id="locationDescription"
-      class="location-description"
-    >
-      Your local FYP for people, culture, businesses,
-      events, food, music, and conversations around Philadelphia.
-    </p>
-
-  </section>
-
-
-  <div class="local-title">
-    Your Local FYP
-  </div>
-
-
-  <article class="local-feed-card">
-
-    <div class="local-feed-top">
-
-      <div class="local-avatar">
-        🏙️
+    <div class="feature-list">
+      <div class="feature-item">
+        <span>💼</span>
+        <div>
+          <strong>Jobs & Networking</strong>
+          <small>Connect with opportunities and professionals.</small>
+        </div>
       </div>
 
-      <div class="local-feed-name">
+      <div class="feature-item">
+        <span>🏪</span>
+        <div>
+          <strong>Businesses</strong>
+          <small>Build your brand and reach your community.</small>
+        </div>
+      </div>
 
-        <strong id="localCreator">
-          Soulaani Philadelphia
-        </strong>
+      <div class="feature-item">
+        <span>🎨</span>
+        <div>
+          <strong>Creators</strong>
+          <small>Share your work and grow your audience.</small>
+        </div>
+      </div>
+    </div>
 
-        <span>
-          Local community
-        </span>
+  </main>
+
+
+  <!-- DISCOVER -->
+  <main id="discoverPage" class="page">
+
+    <div class="topbar">
+      <div class="logo">Soulaani<span>.</span></div>
+    </div>
+
+    <section class="discover-hero">
+      <div class="eyebrow">Soulaani Local</div>
+
+      <h1>Discover your community.</h1>
+
+      <p>
+        Explore people, culture, businesses, events, food, music, opportunities, and conversations around the places that matter to you.
+      </p>
+    </section>
+
+    <section class="card">
+
+      <div class="section-title">Choose a region</div>
+
+      <div class="region-grid">
+
+        <button
+          class="region-btn active"
+          onclick="selectRegion('Northeast', this)"
+        >
+          Northeast
+        </button>
+
+        <button
+          class="region-btn"
+          onclick="selectRegion('South', this)"
+        >
+          South
+        </button>
+
+        <button
+          class="region-btn"
+          onclick="selectRegion('Midwest', this)"
+        >
+          Midwest
+        </button>
+
+        <button
+          class="region-btn"
+          onclick="selectRegion('West', this)"
+        >
+          West
+        </button>
+
+        <button
+          class="region-btn"
+          onclick="selectRegion('Territories', this)"
+        >
+          Territories
+        </button>
 
       </div>
 
-    </div>
+      <div class="location-controls">
 
-    <p
-      id="localPost"
-      class="local-feed-text"
-    >
-      What's happening in Philadelphia? Discover local
-      conversations, creators, businesses, events, and culture.
-    </p>
+        <div class="field">
+          <label for="stateSelect">State</label>
 
-    <span
-      id="localTag"
-      class="local-tag"
-    >
-      #Philadelphia
-    </span>
+          <select id="stateSelect" onchange="changeState(this.value)">
+          </select>
+        </div>
 
-  </article>
+        <div class="field">
+          <label for="citySelect">City</label>
 
-
-  <article class="local-feed-card">
-
-    <div class="local-feed-top">
-
-      <div class="local-avatar">
-        🎵
-      </div>
-
-      <div class="local-feed-name">
-
-        <strong>
-          Local Culture
-        </strong>
-
-        <span>
-          Trending nearby
-        </span>
+          <select id="citySelect" onchange="changeCity(this.value)">
+          </select>
+        </div>
 
       </div>
 
-    </div>
+      <div class="local-location">
 
-    <p
-      id="localCulture"
-      class="local-feed-text"
-    >
-      Explore the sounds, traditions, food, stories,
-      people, and experiences that make Philadelphia unique.
-    </p>
+        <small>Your Local FYP</small>
 
-    <span class="local-tag">
-      Local Culture
-    </span>
+        <h2 id="localTitle">
+          Philadelphia, Pennsylvania
+        </h2>
 
-  </article>
+        <p id="localDescription">
+          See what's happening around the Black community in Philadelphia.
+        </p>
 
+        <p id="localHashtag" class="local-hashtag">
+          #PhiladelphiaSoulaani
+        </p>
 
-  <div class="local-title">
-    Explore Philadelphia
-  </div>
+      </div>
 
-
-  <div class="local-category-grid">
-
-    <div class="local-category">
-      <div class="local-category-icon">👥</div>
-      <strong>People</strong>
-      <span>Meet people nearby</span>
-    </div>
-
-    <div class="local-category">
-      <div class="local-category-icon">🏪</div>
-      <strong>Businesses</strong>
-      <span>Find local businesses</span>
-    </div>
-
-    <div class="local-category">
-      <div class="local-category-icon">📅</div>
-      <strong>Events</strong>
-      <span>What's happening nearby</span>
-    </div>
-
-    <div class="local-category">
-      <div class="local-category-icon">🍽️</div>
-      <strong>Food</strong>
-      <span>Discover local food</span>
-    </div>
-
-    <div class="local-category">
-      <div class="local-category-icon">🎵</div>
-      <strong>Music</strong>
-      <span>Local artists and sounds</span>
-    </div>
-
-    <div class="local-category">
-      <div class="local-category-icon">💼</div>
-      <strong>Opportunities</strong>
-      <span>Local jobs and networking</span>
-    </div>
-
-  </div>
+    </section>
 
 
-  <div class="local-note">
+    <!-- LOCAL FYP -->
 
-    <strong>
-      📍 Your location will eventually power this FYP
-    </strong>
+    <section class="card">
 
-    <p>
-      In the full Soulaani app, users will be able to use
-      their current location, choose a hometown, or manually
-      explore another city. The feed can then surface relevant
-      local people, posts, businesses, events, culture,
-      dating, and opportunities.
-    </p>
+      <div class="section-title">
+        <span id="fypTitle">Philadelphia</span> Local FYP
+      </div>
 
-  </div>
+      <div class="local-post">
 
-</section>
+        <div class="local-post-header">
+          <div class="mini-avatar">A</div>
 
-</main>
+          <div>
+            <strong id="localPerson1">Local Soulaani Member</strong>
+            <span id="localMeta1">Philadelphia, Pennsylvania</span>
+          </div>
+        </div>
+
+        <p id="localPost1">
+          What's happening in Philadelphia today? Drop your favorite local spots, events, music, and conversations below.
+        </p>
+
+      </div>
 
 
-<!-- BOTTOM NAVIGATION -->
+      <div class="local-post">
+
+        <div class="local-post-header">
+          <div class="mini-avatar">B</div>
+
+          <div>
+            <strong id="localPerson2">Community Creator</strong>
+            <span id="localMeta2">Philadelphia, Pennsylvania</span>
+          </div>
+        </div>
+
+        <p id="localPost2">
+          Building something for the community. Who else is creating something in Philadelphia?
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- EXPLORE LOCAL -->
+
+    <section class="card">
+
+      <div class="section-title">
+        Explore <span id="exploreCity">Philadelphia</span>
+      </div>
+
+      <p class="section-subtitle">
+        Your local Soulaani experience will eventually connect every part of your city.
+      </p>
+
+      <div class="explore-grid">
+
+        <div class="explore-card">
+          <span class="emoji">👥</span>
+          <strong>People</strong>
+          <span>Meet locals</span>
+        </div>
+
+        <div class="explore-card">
+          <span class="emoji">🏪</span>
+          <strong>Businesses</strong>
+          <span>Shop local</span>
+        </div>
+
+        <div class="explore-card">
+          <span class="emoji">🎉</span>
+          <strong>Events</strong>
+          <span>What's happening</span>
+        </div>
+
+        <div class="explore-card">
+          <span class="emoji">🍽️</span>
+          <strong>Food</strong>
+          <span>Local favorites</span>
+        </div>
+
+        <div class="explore-card">
+          <span class="emoji">🎵</span>
+          <strong>Music</strong>
+          <span>Local sounds</span>
+        </div>
+
+        <div class="explore-card">
+          <span class="emoji">💼</span>
+          <strong>Opportunities</strong>
+          <span>Build & network</span>
+        </div>
+
+      </div>
+
+      <div class="future-note">
+        📍 Soulaani's future location system can let people choose their current city, hometown, or another place they want to explore. Later, cities can open into neighborhoods and smaller local areas.
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+
+<!-- BOTTOM NAV -->
 
 <nav class="bottom-nav">
 
-  <div class="nav-item active"
-    onclick="showPage('home', this)">
-    <div>⌂</div>
-    Home
-  </div>
+  <div class="nav-inner">
 
-  <div class="nav-item"
-    onclick="showPage('connect', this)">
-    <div>♧</div>
-    Connect
-  </div>
+    <button
+      class="nav-item active"
+      onclick="showPage('homePage', this)"
+    >
+      <span class="nav-icon">⌂</span>
+      <span>Home</span>
+    </button>
 
-  <div class="nav-item"
-    onclick="showPage('date', this)">
-    <div>♡</div>
-    Date
-  </div>
+    <button
+      class="nav-item"
+      onclick="showPage('connectPage', this)"
+    >
+      <span class="nav-icon">👥</span>
+      <span>Connect</span>
+    </button>
 
-  <div class="nav-item"
-    onclick="showPage('build', this)">
-    <div>🚀</div>
-    Build
-  </div>
+    <button
+      class="nav-item"
+      onclick="showPage('datePage', this)"
+    >
+      <span class="nav-icon">♡</span>
+      <span>Date</span>
+    </button>
 
-  <div class="nav-item"
-    onclick="showPage('discover', this)">
-    <div>🌍</div>
-    Discover
+    <button
+      class="nav-item"
+      onclick="showPage('buildPage', this)"
+    >
+      <span class="nav-icon">🚀</span>
+      <span>Build</span>
+    </button>
+
+    <button
+      class="nav-item"
+      onclick="showPage('discoverPage', this)"
+    >
+      <span class="nav-icon">⌖</span>
+      <span>Discover</span>
+    </button>
+
   </div>
 
 </nav>
@@ -1520,752 +1338,708 @@ button {
 
 <script>
 
-/* PAGE NAVIGATION */
-
-function showPage(pageId, navItem) {
-
-  document.querySelectorAll(".page").forEach(function(page) {
-    page.classList.remove("active");
-  });
-
-  document.getElementById(pageId).classList.add("active");
-
-  document.querySelectorAll(".nav-item").forEach(function(item) {
-    item.classList.remove("active");
-  });
-
-  navItem.classList.add("active");
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-}
-
-
-/* CITY DATA */
-
-const cityData = {
-
-  "Pennsylvania": [
-    "Philadelphia",
-    "Pittsburgh",
-    "Harrisburg",
-    "Allentown",
-    "Lancaster",
-    "Reading",
-    "Erie",
-    "Scranton"
-  ],
-
-  "New York": [
-    "New York City",
-    "Buffalo",
-    "Rochester",
-    "Syracuse",
-    "Albany",
-    "Yonkers"
-  ],
-
-  "New Jersey": [
-    "Newark",
-    "Jersey City",
-    "Paterson",
-    "Trenton",
-    "Elizabeth",
-    "Camden"
-  ],
-
-  "Maryland": [
-    "Baltimore",
-    "Silver Spring",
-    "Bowie",
-    "Rockville",
-    "Frederick"
-  ],
-
-  "Georgia": [
-    "Atlanta",
-    "Savannah",
-    "Augusta",
-    "Columbus",
-    "Macon",
-    "Athens"
-  ],
-
-  "Florida": [
-    "Miami",
-    "Orlando",
-    "Tampa",
-    "Jacksonville",
-    "Fort Lauderdale",
-    "Tallahassee"
-  ],
-
-  "Texas": [
-    "Houston",
-    "Dallas",
-    "Austin",
-    "San Antonio",
-    "Fort Worth",
-    "Arlington",
-    "El Paso"
-  ],
-
-  "California": [
-    "Los Angeles",
-    "San Diego",
-    "San Francisco",
-    "Sacramento",
-    "Oakland",
-    "Long Beach",
-    "San Jose"
-  ],
-
-  "Illinois": [
-    "Chicago",
-    "Aurora",
-    "Rockford",
-    "Joliet",
-    "Peoria"
-  ],
-
-  "Michigan": [
-    "Detroit",
-    "Grand Rapids",
-    "Lansing",
-    "Flint",
-    "Ann Arbor"
-  ],
-
-  "Ohio": [
-    "Columbus",
-    "Cleveland",
-    "Cincinnati",
-    "Toledo",
-    "Dayton",
-    "Akron"
-  ],
-
-  "North Carolina": [
-    "Charlotte",
-    "Raleigh",
-    "Durham",
-    "Greensboro",
-    "Wilmington",
-    "Fayetteville"
-  ],
-
-  "Virginia": [
-    "Richmond",
-    "Virginia Beach",
-    "Norfolk",
-    "Arlington",
-    "Alexandria",
-    "Roanoke"
-  ],
-
-  "Tennessee": [
-    "Memphis",
-    "Nashville",
-    "Knoxville",
-    "Chattanooga",
-    "Clarksville"
-  ],
-
-  "Louisiana": [
-    "New Orleans",
-    "Baton Rouge",
-    "Shreveport",
-    "Lafayette"
-  ],
-
-  "Massachusetts": [
-    "Boston",
-    "Worcester",
-    "Springfield",
-    "Cambridge",
-    "Lowell"
-  ],
-
-  "Connecticut": [
-    "Bridgeport",
-    "New Haven",
-    "Hartford",
-    "Stamford",
-    "Waterbury"
-  ],
-
-  "Delaware": [
-    "Wilmington",
-    "Dover",
-    "Newark"
-  ],
-
-  "South Carolina": [
-    "Charleston",
-    "Columbia",
-    "Greenville",
-    "Myrtle Beach"
-  ],
-
-  "Alabama": [
-    "Birmingham",
-    "Montgomery",
-    "Mobile",
-    "Huntsville"
-  ],
-
-  "Mississippi": [
-    "Jackson",
-    "Gulfport",
-    "Southaven",
-    "Hattiesburg"
-  ],
-
-  "Missouri": [
-    "St. Louis",
-    "Kansas City",
-    "Springfield",
-    "Columbia"
-  ],
-
-  "Indiana": [
-    "Indianapolis",
-    "Fort Wayne",
-    "Evansville",
-    "South Bend"
-  ],
-
-  "Wisconsin": [
-    "Milwaukee",
-    "Madison",
-    "Green Bay",
-    "Kenosha"
-  ],
-
-  "Minnesota": [
-    "Minneapolis",
-    "Saint Paul",
-    "Rochester",
-    "Duluth"
-  ],
-
-  "Colorado": [
-    "Denver",
-    "Colorado Springs",
-    "Aurora",
-    "Fort Collins"
-  ],
-
-  "Arizona": [
-    "Phoenix",
-    "Tucson",
-    "Mesa",
-    "Scottsdale"
-  ],
-
-  "Nevada": [
-    "Las Vegas",
-    "Reno",
-    "Henderson"
-  ],
-
-  "Washington": [
-    "Seattle",
-    "Tacoma",
-    "Spokane",
-    "Vancouver"
-  ],
-
-  "Oregon": [
-    "Portland",
-    "Eugene",
-    "Salem",
-    "Gresham"
-  ],
-
-  "Oklahoma": [
-    "Oklahoma City",
-    "Tulsa",
-    "Norman"
-  ],
-
-  "Kentucky": [
-    "Louisville",
-    "Lexington",
-    "Bowling Green"
-  ],
-
-  "Arkansas": [
-    "Little Rock",
-    "Fort Smith",
-    "Fayetteville"
-  ],
-
-  "Kansas": [
-    "Wichita",
-    "Overland Park",
-    "Kansas City"
-  ],
-
-  "Nebraska": [
-    "Omaha",
-    "Lincoln",
-    "Bellevue"
-  ],
-
-  "Iowa": [
-    "Des Moines",
-    "Cedar Rapids",
-    "Davenport"
-  ],
-
-  "Utah": [
-    "Salt Lake City",
-    "West Valley City",
-    "Provo"
-  ],
-
-  "New Mexico": [
-    "Albuquerque",
-    "Santa Fe",
-    "Las Cruces"
-  ],
-
-  "West Virginia": [
-    "Charleston",
-    "Huntington",
-    "Morgantown"
-  ],
-
-  "Rhode Island": [
-    "Providence",
-    "Warwick",
-    "Cranston"
-  ],
-
-  "New Hampshire": [
-    "Manchester",
-    "Nashua",
-    "Concord"
-  ],
-
-  "Maine": [
-    "Portland",
-    "Lewiston",
-    "Bangor"
-  ],
-
-  "Vermont": [
-    "Burlington",
-    "South Burlington",
-    "Rutland"
-  ],
-
-  "Alaska": [
-    "Anchorage",
-    "Fairbanks",
-    "Juneau"
-  ],
-
-  "Hawaii": [
-    "Honolulu",
-    "Hilo",
-    "Kailua"
-  ],
-
-  "Idaho": [
-    "Boise",
-    "Meridian",
-    "Nampa"
-  ],
-
-  "Montana": [
-    "Billings",
-    "Missoula",
-    "Bozeman"
-  ],
-
-  "North Dakota": [
-    "Fargo",
-    "Bismarck",
-    "Grand Forks"
-  ],
-
-  "South Dakota": [
-    "Sioux Falls",
-    "Rapid City",
-    "Aberdeen"
-  ],
-
-  "Wyoming": [
-    "Cheyenne",
-    "Casper",
-    "Laramie"
-  ]
-};
-
-
-/* PAGE LOCATION STATE */
-
-let currentState = "Pennsylvania";
-let currentCity = "Philadelphia";
-
-
-/* LOAD CITIES */
-
-function loadCities(state) {
-
-  const citySelect =
-    document.getElementById("citySelect");
-
-  citySelect.innerHTML = "";
-
-  const cities =
-    cityData[state] || [state];
-
-  cities.forEach(function(city) {
-
-    const option =
-      document.createElement("option");
-
-    option.value = city;
-    option.textContent = city;
-
-    citySelect.appendChild(option);
-
-  });
-
-  currentCity = cities[0];
-
-  citySelect.value = currentCity;
-
-  updateLocalFYP();
-
-}
-
-
-/* CHANGE STATE */
-
-function changeState(state) {
-
-  currentState = state;
-
-  loadCities(state);
-}
-
-
-/* CHANGE CITY */
-
-function changeCity(city) {
-
-  currentCity = city;
-
-  updateLocalFYP();
-}
-
-
-/* UPDATE LOCAL FYP */
-
-function updateLocalFYP() {
-
-  const locationName =
-    document.getElementById("locationName");
-
-  const locationDescription =
-    document.getElementById("locationDescription");
-
-  const localCreator =
-    document.getElementById("localCreator");
-
-  const localPost =
-    document.getElementById("localPost");
-
-  const localTag =
-    document.getElementById("localTag");
-
-  const localCulture =
-    document.getElementById("localCulture");
-
-
-  locationName.textContent =
-    currentCity + ", " + currentState;
-
-
-  locationDescription.textContent =
-    "Your local FYP for people, culture, businesses, events, food, music, and conversations around " +
-    currentCity +
-    ".";
-
-
-  localCreator.textContent =
-    "Soulaani " + currentCity;
-
-
-  localPost.textContent =
-    "What's happening in " +
-    currentCity +
-    "? Discover local conversations, creators, businesses, events, and culture.";
-
-
-  localTag.textContent =
-    "#" +
-    currentCity
-      .replace(/\s/g, "")
-      .replace(/[^a-zA-Z0-9]/g, "");
-
-
-  localCulture.textContent =
-    "Explore the sounds, traditions, food, stories, people, and experiences that make " +
-    currentCity +
-    " unique.";
-
-}
-
-
-/* REGION BUTTONS */
-
-function selectRegion(region, button) {
-
-  document.querySelectorAll(".region-button")
-    .forEach(function(item) {
-
-      item.classList.remove("active");
+  /* PAGE NAVIGATION */
+
+  function showPage(pageId, navItem) {
+
+    document.querySelectorAll('.page').forEach(function(page) {
+      page.classList.remove('active');
+    });
+
+    document.getElementById(pageId).classList.add('active');
+
+    document.querySelectorAll('.nav-item').forEach(function(item) {
+      item.classList.remove('active');
+    });
+
+    navItem.classList.add('active');
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
+
+  /* U.S. REGION SYSTEM */
+
+  const regions = {
+
+    Northeast: [
+      "Connecticut",
+      "Delaware",
+      "Maine",
+      "Maryland",
+      "Massachusetts",
+      "New Hampshire",
+      "New Jersey",
+      "New York",
+      "Pennsylvania",
+      "Rhode Island",
+      "Vermont"
+    ],
+
+    South: [
+      "Alabama",
+      "Arkansas",
+      "Delaware",
+      "Florida",
+      "Georgia",
+      "Kentucky",
+      "Louisiana",
+      "Maryland",
+      "Mississippi",
+      "North Carolina",
+      "Oklahoma",
+      "South Carolina",
+      "Tennessee",
+      "Texas",
+      "Virginia",
+      "West Virginia"
+    ],
+
+    Midwest: [
+      "Illinois",
+      "Indiana",
+      "Iowa",
+      "Kansas",
+      "Michigan",
+      "Minnesota",
+      "Missouri",
+      "Nebraska",
+      "North Dakota",
+      "Ohio",
+      "South Dakota",
+      "Wisconsin"
+    ],
+
+    West: [
+      "Alaska",
+      "Arizona",
+      "California",
+      "Colorado",
+      "Hawaii",
+      "Idaho",
+      "Montana",
+      "Nevada",
+      "New Mexico",
+      "Oregon",
+      "Utah",
+      "Washington",
+      "Wyoming"
+    ],
+
+    Territories: [
+      "Puerto Rico",
+      "U.S. Virgin Islands",
+      "Guam",
+      "American Samoa",
+      "Northern Mariana Islands"
+    ]
+
+  };
+
+
+  /* CITY DATABASE */
+
+  const cityData = {
+
+    Alabama: ["Birmingham", "Montgomery", "Mobile", "Huntsville"],
+    Alaska: ["Anchorage", "Fairbanks", "Juneau"],
+    Arizona: ["Phoenix", "Tucson", "Mesa", "Scottsdale"],
+    Arkansas: ["Little Rock", "Fort Smith", "Fayetteville"],
+
+    California: [
+      "Los Angeles",
+      "San Diego",
+      "San Francisco",
+      "Sacramento",
+      "Oakland",
+      "Long Beach",
+      "San Jose"
+    ],
+
+    Colorado: [
+      "Denver",
+      "Colorado Springs",
+      "Aurora",
+      "Fort Collins"
+    ],
+
+    Connecticut: [
+      "Bridgeport",
+      "New Haven",
+      "Hartford",
+      "Stamford",
+      "Waterbury"
+    ],
+
+    Delaware: [
+      "Wilmington",
+      "Dover",
+      "Newark"
+    ],
+
+    Florida: [
+      "Miami",
+      "Orlando",
+      "Tampa",
+      "Jacksonville",
+      "Fort Lauderdale",
+      "Tallahassee"
+    ],
+
+    Georgia: [
+      "Atlanta",
+      "Savannah",
+      "Augusta",
+      "Columbus",
+      "Macon",
+      "Athens"
+    ],
+
+    Hawaii: [
+      "Honolulu",
+      "Hilo",
+      "Kailua"
+    ],
+
+    Idaho: [
+      "Boise",
+      "Meridian",
+      "Nampa"
+    ],
+
+    Illinois: [
+      "Chicago",
+      "Aurora",
+      "Rockford",
+      "Joliet",
+      "Peoria"
+    ],
+
+    Indiana: [
+      "Indianapolis",
+      "Fort Wayne",
+      "Evansville",
+      "South Bend"
+    ],
+
+    Iowa: [
+      "Des Moines",
+      "Cedar Rapids",
+      "Davenport"
+    ],
+
+    Kansas: [
+      "Wichita",
+      "Overland Park",
+      "Kansas City"
+    ],
+
+    Kentucky: [
+      "Louisville",
+      "Lexington",
+      "Bowling Green"
+    ],
+
+    Louisiana: [
+      "New Orleans",
+      "Baton Rouge",
+      "Shreveport",
+      "Lafayette"
+    ],
+
+    Maine: [
+      "Portland",
+      "Lewiston",
+      "Bangor"
+    ],
+
+    Maryland: [
+      "Baltimore",
+      "Silver Spring",
+      "Bowie",
+      "Rockville",
+      "Frederick"
+    ],
+
+    Massachusetts: [
+      "Boston",
+      "Worcester",
+      "Springfield",
+      "Cambridge",
+      "Lowell"
+    ],
+
+    Michigan: [
+      "Detroit",
+      "Grand Rapids",
+      "Lansing",
+      "Flint",
+      "Ann Arbor"
+    ],
+
+    Minnesota: [
+      "Minneapolis",
+      "Saint Paul",
+      "Rochester",
+      "Duluth"
+    ],
+
+    Mississippi: [
+      "Jackson",
+      "Gulfport",
+      "Southaven",
+      "Hattiesburg"
+    ],
+
+    Missouri: [
+      "St. Louis",
+      "Kansas City",
+      "Springfield",
+      "Columbia"
+    ],
+
+    Montana: [
+      "Billings",
+      "Missoula",
+      "Bozeman"
+    ],
+
+    Nebraska: [
+      "Omaha",
+      "Lincoln",
+      "Bellevue"
+    ],
+
+    Nevada: [
+      "Las Vegas",
+      "Reno",
+      "Henderson"
+    ],
+
+    "New Hampshire": [
+      "Manchester",
+      "Nashua",
+      "Concord"
+    ],
+
+    "New Jersey": [
+      "Newark",
+      "Jersey City",
+      "Paterson",
+      "Trenton",
+      "Elizabeth",
+      "Camden"
+    ],
+
+    "New Mexico": [
+      "Albuquerque",
+      "Santa Fe",
+      "Las Cruces"
+    ],
+
+    "New York": [
+      "New York City",
+      "Buffalo",
+      "Rochester",
+      "Syracuse",
+      "Albany",
+      "Yonkers"
+    ],
+
+    "North Carolina": [
+      "Charlotte",
+      "Raleigh",
+      "Durham",
+      "Greensboro",
+      "Wilmington",
+      "Fayetteville"
+    ],
+
+    "North Dakota": [
+      "Fargo",
+      "Bismarck",
+      "Grand Forks"
+    ],
+
+    Ohio: [
+      "Columbus",
+      "Cleveland",
+      "Cincinnati",
+      "Toledo",
+      "Dayton",
+      "Akron"
+    ],
+
+    Oklahoma: [
+      "Oklahoma City",
+      "Tulsa",
+      "Norman"
+    ],
+
+    Oregon: [
+      "Portland",
+      "Eugene",
+      "Salem",
+      "Gresham"
+    ],
+
+    Pennsylvania: [
+      "Philadelphia",
+      "Pittsburgh",
+      "Harrisburg",
+      "Allentown",
+      "Lancaster",
+      "Reading",
+      "Erie",
+      "Scranton"
+    ],
+
+    "Rhode Island": [
+      "Providence",
+      "Warwick",
+      "Cranston"
+    ],
+
+    "South Carolina": [
+      "Charleston",
+      "Columbia",
+      "Greenville",
+      "Myrtle Beach"
+    ],
+
+    "South Dakota": [
+      "Sioux Falls",
+      "Rapid City",
+      "Aberdeen"
+    ],
+
+    Tennessee: [
+      "Memphis",
+      "Nashville",
+      "Knoxville",
+      "Chattanooga",
+      "Clarksville"
+    ],
+
+    Texas: [
+      "Houston",
+      "Dallas",
+      "Austin",
+      "San Antonio",
+      "Fort Worth",
+      "Arlington",
+      "El Paso"
+    ],
+
+    Utah: [
+      "Salt Lake City",
+      "West Valley City",
+      "Provo"
+    ],
+
+    Vermont: [
+      "Burlington",
+      "South Burlington",
+      "Rutland"
+    ],
+
+    Virginia: [
+      "Richmond",
+      "Virginia Beach",
+      "Norfolk",
+      "Arlington",
+      "Alexandria",
+      "Roanoke"
+    ],
+
+    Washington: [
+      "Seattle",
+      "Tacoma",
+      "Spokane",
+      "Vancouver"
+    ],
+
+    "West Virginia": [
+      "Charleston",
+      "Huntington",
+      "Morgantown"
+    ],
+
+    Wisconsin: [
+      "Milwaukee",
+      "Madison",
+      "Green Bay",
+      "Kenosha"
+    ],
+
+    Wyoming: [
+      "Cheyenne",
+      "Casper",
+      "Laramie"
+    ],
+
+    "Puerto Rico": [
+      "San Juan",
+      "Ponce",
+      "Mayagüez"
+    ],
+
+    "U.S. Virgin Islands": [
+      "Charlotte Amalie",
+      "Christiansted",
+      "Cruz Bay"
+    ],
+
+    Guam: [
+      "Hagåtña",
+      "Dededo",
+      "Tamuning"
+    ],
+
+    "American Samoa": [
+      "Pago Pago"
+    ],
+
+    "Northern Mariana Islands": [
+      "Saipan"
+    ]
+
+  };
+
+
+  let currentRegion = "Northeast";
+  let currentState = "Pennsylvania";
+  let currentCity = "Philadelphia";
+
+
+  /* REGION SELECTION */
+
+  function selectRegion(region, button) {
+
+    currentRegion = region;
+
+    document.querySelectorAll('.region-btn').forEach(function(btn) {
+      btn.classList.remove('active');
+    });
+
+    button.classList.add('active');
+
+    const availableStates = regions[region] || [];
+
+    const stateSelect = document.getElementById('stateSelect');
+
+    stateSelect.innerHTML = "";
+
+    availableStates.forEach(function(state) {
+
+      const option = document.createElement('option');
+
+      option.value = state;
+      option.textContent = state;
+
+      stateSelect.appendChild(option);
 
     });
 
-  button.classList.add("active");
-}
+    /*
+      Keep Pennsylvania selected when Northeast is selected.
+      Otherwise select the first state in the region.
+    */
 
+    if (availableStates.includes(currentState)) {
 
-/* REACTIONS */
+      stateSelect.value = currentState;
 
-function toggleReactions(button) {
+    } else {
 
-  const existingPicker =
-    button.parentElement.querySelector(".reaction-picker");
+      currentState = availableStates[0];
 
-  if (existingPicker) {
-    existingPicker.remove();
-    return;
-  }
-
-  const picker =
-    document.createElement("div");
-
-  picker.className =
-    "reaction-picker";
-
-  const reactions = [
-    ["❤️", "Love"],
-    ["👍🏾", "Like"],
-    ["😂", "Laugh"],
-    ["🔥", "Fire"],
-    ["😮", "Wow"],
-    ["😢", "Sad"],
-    ["👎🏾", "Dislike"]
-  ];
-
-  reactions.forEach(function(reaction) {
-
-    const reactionButton =
-      document.createElement("button");
-
-    reactionButton.textContent =
-      reaction[0];
-
-    reactionButton.title =
-      reaction[1];
-
-    reactionButton.onclick =
-      function(event) {
-
-        event.stopPropagation();
-
-        button.textContent =
-          reaction[0] +
-          " " +
-          reaction[1];
-
-        button.classList.add("reacted");
-
-        picker.remove();
-
-      };
-
-    picker.appendChild(
-      reactionButton
-    );
-
-  });
-
-  button.parentElement.appendChild(
-    picker
-  );
-}
-
-
-document.addEventListener(
-  "click",
-  function(event) {
-
-    if (!event.target.closest(".post-actions")) {
-
-      document
-        .querySelectorAll(".reaction-picker")
-        .forEach(function(picker) {
-
-          picker.remove();
-
-        });
+      stateSelect.value = currentState;
 
     }
 
-  }
-);
-
-
-/* COMMENTS */
-
-function toggleComments(button) {
-
-  const post =
-    button.closest(".post");
-
-  let comments =
-    post.querySelector(".comments");
-
-  if (comments) {
-    comments.remove();
-    return;
+    loadCities(currentState);
   }
 
-  comments =
-    document.createElement("div");
 
-  comments.className =
-    "comments";
+  /* STATE SELECTION */
 
-  comments.innerHTML = `
+  function changeState(state) {
 
-    <div class="comment-list">
+    currentState = state;
 
-      <div class="comment">
-
-        <div class="comment-avatar">
-          S
-        </div>
-
-        <div class="comment-content">
-
-          <strong>
-            Soulaani
-          </strong>
-
-          <p>
-            Welcome to the community! 🌍🏾
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="comment-box">
-
-      <input
-        type="text"
-        placeholder="Write a comment..."
-      />
-
-      <button onclick="addComment(this)">
-        Post
-      </button>
-
-    </div>
-
-  `;
-
-  post.appendChild(
-    comments
-  );
-}
-
-
-/* ADD COMMENT */
-
-function addComment(button) {
-
-  const commentBox =
-    button.parentElement;
-
-  const input =
-    commentBox.querySelector("input");
-
-  const commentText =
-    input.value.trim();
-
-  if (commentText === "") {
-    return;
+    loadCities(state);
   }
 
-  const commentList =
-    commentBox.parentElement
-      .querySelector(".comment-list");
 
-  const comment =
-    document.createElement("div");
+  /* CITY LOADING */
 
-  comment.className =
-    "comment";
+  function loadCities(state) {
 
-  comment.innerHTML = `
+    const citySelect = document.getElementById('citySelect');
 
-    <div class="comment-avatar">
-      S
-    </div>
+    citySelect.innerHTML = "";
 
-    <div class="comment-content">
+    const cities = cityData[state] || [];
 
-      <strong>
-        You
-      </strong>
+    cities.forEach(function(city) {
 
-      <p>
-        ${escapeHTML(commentText)}
-      </p>
+      const option = document.createElement('option');
 
-    </div>
+      option.value = city;
+      option.textContent = city;
 
-  `;
+      citySelect.appendChild(option);
 
-  commentList.appendChild(
-    comment
-  );
+    });
 
-  input.value = "";
-}
+    if (cities.includes(currentCity)) {
 
+      citySelect.value = currentCity;
 
-/* SECURITY */
+    } else if (cities.length > 0) {
 
-function escapeHTML(text) {
+      currentCity = cities[0];
 
-  const div =
-    document.createElement("div");
+      citySelect.value = currentCity;
 
-  div.textContent =
-    text;
+    }
 
-  return div.innerHTML;
-}
+    updateLocalFYP();
+  }
 
 
-/* START LOCATION SYSTEM */
+  /* CITY SELECTION */
 
-loadCities("Pennsylvania");
+  function changeCity(city) {
+
+    currentCity = city;
+
+    updateLocalFYP();
+  }
+
+
+  /* LOCAL FYP */
+
+  function updateLocalFYP() {
+
+    const city = currentCity;
+    const state = currentState;
+
+    document.getElementById('localTitle').textContent =
+      city + ", " + state;
+
+    document.getElementById('fypTitle').textContent =
+      city;
+
+    document.getElementById('exploreCity').textContent =
+      city;
+
+    document.getElementById('localDescription').textContent =
+      "See what's happening around the Black community in " +
+      city + ", including people, culture, businesses, events, food, music, and opportunities.";
+
+    document.getElementById('localHashtag').textContent =
+      "#" + city.replace(/\s+/g, "") + "Soulaani";
+
+    document.getElementById('localMeta1').textContent =
+      city + ", " + state;
+
+    document.getElementById('localMeta2').textContent =
+      city + ", " + state;
+
+    document.getElementById('localPost1').textContent =
+      "What's happening in " + city + " today? Drop your favorite local spots, events, music, and conversations below.";
+
+    document.getElementById('localPost2').textContent =
+      "Building something for the community. Who else is creating something in " + city + "?";
+
+    document.getElementById('localPerson1').textContent =
+      "Local " + city + " Member";
+
+    document.getElementById('localPerson2').textContent =
+      city + " Community Creator";
+  }
+
+
+  /* REACTIONS */
+
+  function react(button, emoji) {
+
+    const wasActive = button.classList.contains('active');
+
+    button.classList.toggle('active');
+
+    if (!wasActive) {
+
+      const currentText = button.textContent.trim();
+
+      if (!currentText.includes(emoji)) {
+        button.textContent = emoji + " 1";
+      }
+
+    }
+  }
+
+
+  /* COMMENTS */
+
+  function toggleComments(id) {
+
+    const comments = document.getElementById(id);
+
+    comments.classList.toggle('open');
+  }
+
+
+  function addComment(inputId, listId) {
+
+    const input = document.getElementById(inputId);
+    const list = document.getElementById(listId);
+
+    const text = input.value.trim();
+
+    if (!text) {
+      return;
+    }
+
+    const comment = document.createElement('div');
+
+    comment.className = 'comment';
+
+    const strong = document.createElement('strong');
+    strong.textContent = 'You';
+
+    const paragraph = document.createElement('p');
+    paragraph.textContent = text;
+
+    comment.appendChild(strong);
+    comment.appendChild(paragraph);
+
+    list.appendChild(comment);
+
+    input.value = '';
+  }
+
+
+  /* INITIALIZE */
+
+  document.addEventListener('DOMContentLoaded', function() {
+
+    const northeastButton = document.querySelector('.region-btn');
+
+    selectRegion('Northeast', northeastButton);
+
+    const stateSelect = document.getElementById('stateSelect');
+
+    stateSelect.value = 'Pennsylvania';
+
+    loadCities('Pennsylvania');
+
+  });
 
 </script>
 
