@@ -237,6 +237,15 @@ header {
   display: grid;
   place-items: center;
   font-weight: bold;
+  flex-shrink: 0;
+}
+
+.clickable-profile {
+  cursor: pointer;
+}
+
+.clickable-profile:hover {
+  opacity: .85;
 }
 
 .composer input {
@@ -257,6 +266,7 @@ header {
 
 .post-user {
   font-weight: bold;
+  cursor: pointer;
 }
 
 .post-meta {
@@ -371,6 +381,188 @@ header {
 .nav-btn.active {
   color: var(--gold);
   background: #211a13;
+}
+
+/* PROFILE PAGE */
+
+.profile-page-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.back-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: white;
+  font-size: 20px;
+}
+
+.profile-page-top h2 {
+  font-size: 21px;
+}
+
+.full-profile {
+  text-align: center;
+}
+
+.profile-large-avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d99a4e, #70451f);
+  display: grid;
+  place-items: center;
+  font-size: 38px;
+  font-weight: 800;
+  margin: 0 auto 15px;
+  border: 4px solid #272016;
+  box-shadow: 0 0 0 2px var(--gold);
+}
+
+.full-profile h1 {
+  font-size: 29px;
+  margin-bottom: 5px;
+}
+
+.username {
+  color: var(--gold);
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.profile-bio {
+  color: #ccc;
+  line-height: 1.5;
+  max-width: 500px;
+  margin: 0 auto 10px;
+}
+
+.profile-location {
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.profile-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 9px;
+  margin-bottom: 25px;
+}
+
+.profile-btn {
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: white;
+  border-radius: 20px;
+  padding: 10px 19px;
+}
+
+.profile-btn.primary {
+  background: var(--gold);
+  color: #111;
+  border-color: var(--gold);
+  font-weight: bold;
+}
+
+.profile-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 18px;
+  margin-bottom: 24px;
+}
+
+.profile-stat {
+  border-right: 1px solid var(--border);
+}
+
+.profile-stat:last-child {
+  border-right: none;
+}
+
+.profile-stat strong {
+  display: block;
+  font-size: 20px;
+}
+
+.profile-stat span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.interest-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.interest {
+  background: #211a13;
+  border: 1px solid #4a3622;
+  color: var(--gold-light);
+  border-radius: 18px;
+  padding: 8px 12px;
+  font-size: 12px;
+}
+
+.profile-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 25px 0 15px;
+}
+
+.profile-tab {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: #999;
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.profile-tab.active {
+  color: var(--gold);
+  border-color: #61421f;
+  background: #211a13;
+}
+
+.community-card {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 14px;
+  margin-bottom: 10px;
+}
+
+.community-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  background: #211a13;
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+}
+
+.community-card h3 {
+  font-size: 15px;
+}
+
+.community-card p {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 3px;
 }
 
 /* DISCOVER */
@@ -553,6 +745,7 @@ header {
 }
 
 @media (max-width: 700px) {
+
   .location-selectors {
     grid-template-columns: 1fr;
   }
@@ -561,12 +754,10 @@ header {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .profile-card {
-    align-items: flex-start;
-  }
 }
 
 @media (max-width: 430px) {
+
   .page {
     padding: 15px;
   }
@@ -583,6 +774,7 @@ header {
   .hero h1 {
     font-size: 34px;
   }
+
 }
 </style>
 </head>
@@ -592,12 +784,23 @@ header {
 <div class="app">
 
 <header>
-  <div class="logo">Soulaani<span>.</span></div>
+
+  <div class="logo">
+    Soulaani<span>.</span>
+  </div>
 
   <div class="header-icons">
-    <button class="icon-btn">⌕</button>
-    <button class="icon-btn">♡</button>
+
+    <button class="icon-btn">
+      ⌕
+    </button>
+
+    <button class="icon-btn">
+      ♡
+    </button>
+
   </div>
+
 </header>
 
 
@@ -606,18 +809,39 @@ header {
 <section id="home" class="page active">
 
   <div class="hero">
-    <h1>Welcome back, <span>Soulaani.</span></h1>
-    <p>Your community. Your culture. Your people.</p>
+
+    <h1>
+      Welcome back, <span>Soulaani.</span>
+    </h1>
+
+    <p>
+      Your community. Your culture. Your people.
+    </p>
+
   </div>
 
-  <div class="profile-card">
-    <div class="avatar">LT</div>
+
+  <div
+    class="profile-card clickable-profile"
+    onclick="openProfile()"
+  >
+
+    <div class="avatar">
+      LT
+    </div>
 
     <div class="profile-info">
-      <h2>LuhhTrilly</h2>
-      <p>Building the future of Black digital community.</p>
+
+      <h2>
+        LuhhTrilly
+      </h2>
+
+      <p>
+        Building the future of Black digital community.
+      </p>
 
       <div class="stats">
+
         <div class="stat">
           <strong>428</strong>
           <span>Followers</span>
@@ -632,87 +856,196 @@ header {
           <strong>32</strong>
           <span>Posts</span>
         </div>
+
       </div>
+
     </div>
+
   </div>
+
 
   <div class="section-title">
     <h2>Stories</h2>
     <span>See all</span>
   </div>
 
+
   <div class="stories">
+
     <div class="story">
-      <div class="story-ring"><div class="story-inner">+</div></div>
+
+      <div class="story-ring">
+        <div class="story-inner">+</div>
+      </div>
+
       <small>Your Story</small>
+
     </div>
 
+
     <div class="story">
-      <div class="story-ring"><div class="story-inner">🎵</div></div>
+
+      <div class="story-ring">
+        <div class="story-inner">🎵</div>
+      </div>
+
       <small>Music</small>
+
     </div>
 
+
     <div class="story">
-      <div class="story-ring"><div class="story-inner">🔥</div></div>
+
+      <div class="story-ring">
+        <div class="story-inner">🔥</div>
+      </div>
+
       <small>Trending</small>
+
     </div>
 
+
     <div class="story">
-      <div class="story-ring"><div class="story-inner">🍽️</div></div>
+
+      <div class="story-ring">
+        <div class="story-inner">🍽️</div>
+      </div>
+
       <small>Food</small>
+
     </div>
 
+
     <div class="story">
-      <div class="story-ring"><div class="story-inner">💼</div></div>
+
+      <div class="story-ring">
+        <div class="story-inner">💼</div>
+      </div>
+
       <small>Build</small>
+
     </div>
+
   </div>
+
 
   <div class="section-title">
     <h2>What's on your mind?</h2>
   </div>
 
+
   <div class="composer">
+
     <div class="composer-top">
-      <div class="mini-avatar">LT</div>
-      <input id="homePostInput" type="text" placeholder="Share something with Soulaani...">
+
+      <div class="mini-avatar">
+        LT
+      </div>
+
+      <input
+        id="homePostInput"
+        type="text"
+        placeholder="Share something with Soulaani..."
+      >
+
     </div>
+
   </div>
+
 
   <div class="section-title">
-    <h2>Trending on Soulaani</h2>
-    <span>Explore</span>
+
+    <h2>
+      Trending on Soulaani
+    </h2>
+
+    <span>
+      Explore
+    </span>
+
   </div>
 
+
   <div class="post">
+
     <div class="post-header">
-      <div class="mini-avatar">S</div>
-      <div>
-        <div class="post-user">Soulaani Community</div>
-        <div class="post-meta">Trending now</div>
+
+      <div class="mini-avatar">
+        S
       </div>
+
+      <div>
+
+        <div class="post-user">
+          Soulaani Community
+        </div>
+
+        <div class="post-meta">
+          Trending now
+        </div>
+
+      </div>
+
     </div>
+
 
     <p>
       What part of Black culture do you want to see represented more on Soulaani?
       Drop it below. 👇🏾
     </p>
 
+
     <div class="post-actions">
-      <button class="action-btn" onclick="react(this,'❤️')">♡ Like</button>
-      <button class="action-btn" onclick="toggleComments('homeComments')">💬 Comments</button>
+
+      <button
+        class="action-btn"
+        onclick="react(this,'❤️')"
+      >
+        ♡ Like
+      </button>
+
+      <button
+        class="action-btn"
+        onclick="toggleComments('homeComments')"
+      >
+        💬 Comments
+      </button>
+
     </div>
 
-    <div id="homeComments" class="comments">
+
+    <div
+      id="homeComments"
+      class="comments"
+    >
+
       <div class="comment-list">
-        <div class="comment">Welcome to Soulaani! ❤️</div>
+
+        <div class="comment">
+          Welcome to Soulaani! ❤️
+        </div>
+
       </div>
+
 
       <div class="comment-input">
-        <input id="homeCommentInput" placeholder="Write a comment...">
-        <button class="gold-btn" onclick="addComment('homeCommentInput','homeComments')">Post</button>
+
+        <input
+          id="homeCommentInput"
+          placeholder="Write a comment..."
+        >
+
+        <button
+          class="gold-btn"
+          onclick="addComment('homeCommentInput','homeComments')"
+        >
+          Post
+        </button>
+
       </div>
+
     </div>
+
   </div>
 
 </section>
@@ -723,34 +1056,77 @@ header {
 <section id="connect" class="page">
 
   <div class="hero">
-    <h1><span>Connect.</span></h1>
-    <p>Meet people, communities and creators who share your interests.</p>
+
+    <h1>
+      <span>Connect.</span>
+    </h1>
+
+    <p>
+      Meet people, communities and creators who share your interests.
+    </p>
+
   </div>
+
 
   <div class="feature-grid">
 
     <div class="feature-card">
+
       <div class="emoji">👥</div>
-      <h3>People</h3>
-      <p>Discover people and creators within the Soulaani community.</p>
+
+      <h3>
+        People
+      </h3>
+
+      <p>
+        Discover people and creators within the Soulaani community.
+      </p>
+
     </div>
 
+
     <div class="feature-card">
+
       <div class="emoji">🌐</div>
-      <h3>Communities</h3>
-      <p>Find communities centered around culture, interests and location.</p>
+
+      <h3>
+        Communities
+      </h3>
+
+      <p>
+        Find communities centered around culture, interests and location.
+      </p>
+
     </div>
 
+
     <div class="feature-card">
+
       <div class="emoji">💬</div>
-      <h3>Conversations</h3>
-      <p>Join conversations happening around you.</p>
+
+      <h3>
+        Conversations
+      </h3>
+
+      <p>
+        Join conversations happening around you.
+      </p>
+
     </div>
 
+
     <div class="feature-card">
+
       <div class="emoji">🤝🏾</div>
-      <h3>Network</h3>
-      <p>Build meaningful personal and professional connections.</p>
+
+      <h3>
+        Network
+      </h3>
+
+      <p>
+        Build meaningful personal and professional connections.
+      </p>
+
     </div>
 
   </div>
@@ -763,34 +1139,77 @@ header {
 <section id="date" class="page">
 
   <div class="hero">
-    <h1><span>Date.</span></h1>
-    <p>Meet people within your community and discover connections nearby.</p>
+
+    <h1>
+      <span>Date.</span>
+    </h1>
+
+    <p>
+      Meet people within your community and discover connections nearby.
+    </p>
+
   </div>
+
 
   <div class="feature-grid">
 
     <div class="feature-card">
+
       <div class="emoji">❤️</div>
-      <h3>Nearby</h3>
-      <p>Discover people based on your selected local area.</p>
+
+      <h3>
+        Nearby
+      </h3>
+
+      <p>
+        Discover people based on your selected local area.
+      </p>
+
     </div>
 
+
     <div class="feature-card">
+
       <div class="emoji">✨</div>
-      <h3>Discover</h3>
-      <p>Explore profiles and interests that match your vibe.</p>
+
+      <h3>
+        Discover
+      </h3>
+
+      <p>
+        Explore profiles and interests that match your vibe.
+      </p>
+
     </div>
 
+
     <div class="feature-card">
+
       <div class="emoji">📍</div>
-      <h3>Local Dating</h3>
-      <p>Connect with people in your city and neighborhood.</p>
+
+      <h3>
+        Local Dating
+      </h3>
+
+      <p>
+        Connect with people in your city and neighborhood.
+      </p>
+
     </div>
 
+
     <div class="feature-card">
+
       <div class="emoji">🖤</div>
-      <h3>Your Community</h3>
-      <p>Dating designed with Black community and culture in mind.</p>
+
+      <h3>
+        Your Community
+      </h3>
+
+      <p>
+        Dating designed with Black community and culture in mind.
+      </p>
+
     </div>
 
   </div>
@@ -803,34 +1222,77 @@ header {
 <section id="build" class="page">
 
   <div class="hero">
-    <h1><span>Build.</span></h1>
-    <p>Turn ideas, skills and connections into opportunities.</p>
+
+    <h1>
+      <span>Build.</span>
+    </h1>
+
+    <p>
+      Turn ideas, skills and connections into opportunities.
+    </p>
+
   </div>
+
 
   <div class="feature-grid">
 
     <div class="feature-card">
+
       <div class="emoji">💼</div>
-      <h3>Jobs</h3>
-      <p>Discover employment and career opportunities.</p>
+
+      <h3>
+        Jobs
+      </h3>
+
+      <p>
+        Discover employment and career opportunities.
+      </p>
+
     </div>
 
+
     <div class="feature-card">
+
       <div class="emoji">🚀</div>
-      <h3>Businesses</h3>
-      <p>Promote your business and connect with customers.</p>
+
+      <h3>
+        Businesses
+      </h3>
+
+      <p>
+        Promote your business and connect with customers.
+      </p>
+
     </div>
 
+
     <div class="feature-card">
+
       <div class="emoji">🎨</div>
-      <h3>Creators</h3>
-      <p>Showcase your work, talent and creative projects.</p>
+
+      <h3>
+        Creators
+      </h3>
+
+      <p>
+        Showcase your work, talent and creative projects.
+      </p>
+
     </div>
 
+
     <div class="feature-card">
+
       <div class="emoji">🤝🏾</div>
-      <h3>Networking</h3>
-      <p>Find people who can help you build what comes next.</p>
+
+      <h3>
+        Networking
+      </h3>
+
+      <p>
+        Find people who can help you build what comes next.
+      </p>
+
     </div>
 
   </div>
@@ -843,17 +1305,27 @@ header {
 <section id="discover" class="page">
 
   <div class="hero">
-    <h1>Discover <span>Your World.</span></h1>
+
+    <h1>
+      Discover <span>Your World.</span>
+    </h1>
+
     <p>
       Choose a region, state, city and local area to shape the Soulaani experience around you.
     </p>
+
   </div>
+
 
   <div class="location-panel">
 
-    <div class="location-label">Your current Soulaani area</div>
+    <div class="location-label">
+      Your current Soulaani area
+    </div>
 
-    <h2 id="locationHero">Philadelphia, Pennsylvania</h2>
+    <h2 id="locationHero">
+      Philadelphia, Pennsylvania
+    </h2>
 
     <p id="locationDescription">
       Explore people, culture, businesses, events, food, music and opportunities around you.
@@ -863,33 +1335,48 @@ header {
 
 
   <div class="section-title">
-    <h2>Explore the U.S.</h2>
+
+    <h2>
+      Explore the U.S.
+    </h2>
+
   </div>
+
 
   <div class="region-scroll">
 
-    <button class="region-btn active"
-      onclick="selectRegion('Northeast', this)">
+    <button
+      class="region-btn active"
+      onclick="selectRegion('Northeast', this)"
+    >
       Northeast
     </button>
 
-    <button class="region-btn"
-      onclick="selectRegion('South', this)">
+    <button
+      class="region-btn"
+      onclick="selectRegion('South', this)"
+    >
       South
     </button>
 
-    <button class="region-btn"
-      onclick="selectRegion('Midwest', this)">
+    <button
+      class="region-btn"
+      onclick="selectRegion('Midwest', this)"
+    >
       Midwest
     </button>
 
-    <button class="region-btn"
-      onclick="selectRegion('West', this)">
+    <button
+      class="region-btn"
+      onclick="selectRegion('West', this)"
+    >
       West
     </button>
 
-    <button class="region-btn"
-      onclick="selectRegion('Territories', this)">
+    <button
+      class="region-btn"
+      onclick="selectRegion('Territories', this)"
+    >
       Territories
     </button>
 
@@ -899,26 +1386,44 @@ header {
   <div class="location-selectors">
 
     <div class="selector-wrap">
-      <label>State</label>
 
-      <select id="stateSelect" onchange="changeState(this.value)">
-      </select>
+      <label>
+        State
+      </label>
+
+      <select
+        id="stateSelect"
+        onchange="changeState(this.value)"
+      ></select>
+
     </div>
 
 
     <div class="selector-wrap">
-      <label>City</label>
 
-      <select id="citySelect" onchange="changeCity(this.value)">
-      </select>
+      <label>
+        City
+      </label>
+
+      <select
+        id="citySelect"
+        onchange="changeCity(this.value)"
+      ></select>
+
     </div>
 
 
     <div class="selector-wrap">
-      <label>Local Area</label>
 
-      <select id="neighborhoodSelect" onchange="changeNeighborhood(this.value)">
-      </select>
+      <label>
+        Local Area
+      </label>
+
+      <select
+        id="neighborhoodSelect"
+        onchange="changeNeighborhood(this.value)"
+      ></select>
+
     </div>
 
   </div>
@@ -927,68 +1432,142 @@ header {
   <div class="local-fyp-header">
 
     <div>
-      <h2 id="localFypTitle">West Philadelphia Local FYP</h2>
+
+      <h2 id="localFypTitle">
+        Philadelphia Local FYP
+      </h2>
 
       <p id="localFypDescription">
         Your local feed for people, culture and opportunities.
       </p>
+
     </div>
 
-    <div class="live-pill">LOCAL</div>
+    <div class="live-pill">
+      LOCAL
+    </div>
 
   </div>
 
 
-  <!-- LOCAL CATEGORIES -->
-
   <div class="local-grid">
 
     <div class="local-card">
-      <div class="card-icon">👥</div>
-      <h3 id="peopleTitle">People</h3>
-      <p id="peopleText">Discover people around West Philadelphia.</p>
+
+      <div class="card-icon">
+        👥
+      </div>
+
+      <h3>
+        People
+      </h3>
+
+      <p id="peopleText">
+        Discover people around Philadelphia.
+      </p>
+
     </div>
 
-    <div class="local-card">
-      <div class="card-icon">🏪</div>
-      <h3>Businesses</h3>
-      <p id="businessText">Discover Black-owned businesses in the area.</p>
-    </div>
 
     <div class="local-card">
-      <div class="card-icon">📅</div>
-      <h3>Events</h3>
-      <p id="eventText">See what's happening nearby.</p>
+
+      <div class="card-icon">
+        🏪
+      </div>
+
+      <h3>
+        Businesses
+      </h3>
+
+      <p id="businessText">
+        Discover Black-owned businesses in the area.
+      </p>
+
     </div>
 
-    <div class="local-card">
-      <div class="card-icon">🍽️</div>
-      <h3>Food</h3>
-      <p id="foodText">Find local food and dining conversations.</p>
-    </div>
 
     <div class="local-card">
-      <div class="card-icon">🎵</div>
-      <h3>Music</h3>
-      <p id="musicText">Discover artists and sounds from the area.</p>
+
+      <div class="card-icon">
+        📅
+      </div>
+
+      <h3>
+        Events
+      </h3>
+
+      <p id="eventText">
+        See what's happening nearby.
+      </p>
+
     </div>
 
+
     <div class="local-card">
-      <div class="card-icon">💼</div>
-      <h3>Opportunities</h3>
-      <p id="opportunityText">Jobs, networking and opportunities nearby.</p>
+
+      <div class="card-icon">
+        🍽️
+      </div>
+
+      <h3>
+        Food
+      </h3>
+
+      <p id="foodText">
+        Find local food and dining conversations.
+      </p>
+
+    </div>
+
+
+    <div class="local-card">
+
+      <div class="card-icon">
+        🎵
+      </div>
+
+      <h3>
+        Music
+      </h3>
+
+      <p id="musicText">
+        Discover artists and sounds from the area.
+      </p>
+
+    </div>
+
+
+    <div class="local-card">
+
+      <div class="card-icon">
+        💼
+      </div>
+
+      <h3>
+        Opportunities
+      </h3>
+
+      <p id="opportunityText">
+        Jobs, networking and opportunities nearby.
+      </p>
+
     </div>
 
   </div>
 
 
   <div class="section-title">
-    <h2 id="exploreTitle">What's happening in West Philadelphia</h2>
-    <span>Local</span>
+
+    <h2 id="exploreTitle">
+      What's happening in Philadelphia
+    </h2>
+
+    <span>
+      Local
+    </span>
+
   </div>
 
-
-  <!-- DYNAMIC LOCAL POSTS -->
 
   <div id="localFeed">
 
@@ -996,53 +1575,85 @@ header {
 
       <div class="post-header">
 
-        <div class="mini-avatar">W</div>
+        <div class="mini-avatar">
+          W
+        </div>
 
         <div>
-          <div class="post-user" id="postUser1">
+
+          <div
+            class="post-user"
+            onclick="openProfile('West Philly Community')"
+          >
             West Philly Community
           </div>
 
-          <div class="post-meta" id="postMeta1">
-            West Philadelphia • Local FYP
+          <div
+            class="post-meta"
+            id="postMeta1"
+          >
+            Philadelphia • Local FYP
           </div>
 
         </div>
 
       </div>
 
-      <div class="post-location" id="postLocation1">
-        📍 West Philadelphia
+
+      <div
+        class="post-location"
+        id="postLocation1"
+      >
+        📍 Philadelphia
       </div>
+
 
       <p id="postText1">
         What are y'all doing this weekend? Drop your favorite local spots,
-        events and things to do around West Philly. 👇🏾
+        events and things to do around Philadelphia. 👇🏾
       </p>
 
-      <div class="hashtag" id="hashtag1">
-        #WestPhilly #Soulaani
+
+      <div
+        class="hashtag"
+        id="hashtag1"
+      >
+        #Philadelphia #Soulaani
       </div>
+
 
       <div class="post-actions">
 
-        <button class="action-btn" onclick="react(this,'❤️')">
+        <button
+          class="action-btn"
+          onclick="react(this,'❤️')"
+        >
           ♡ Like
         </button>
 
-        <button class="action-btn" onclick="toggleComments('localComments1')">
+        <button
+          class="action-btn"
+          onclick="toggleComments('localComments1')"
+        >
           💬 Comments
         </button>
 
       </div>
 
-      <div id="localComments1" class="comments">
+
+      <div
+        id="localComments1"
+        class="comments"
+      >
 
         <div class="comment-list">
+
           <div class="comment">
             Soulaani is bringing the community together. ❤️
           </div>
+
         </div>
+
 
         <div class="comment-input">
 
@@ -1053,7 +1664,8 @@ header {
 
           <button
             class="gold-btn"
-            onclick="addComment('localCommentInput1','localComments1')">
+            onclick="addComment('localCommentInput1','localComments1')"
+          >
             Post
           </button>
 
@@ -1068,50 +1680,79 @@ header {
 
       <div class="post-header">
 
-        <div class="mini-avatar">L</div>
+        <div class="mini-avatar">
+          L
+        </div>
 
         <div>
 
-          <div class="post-user" id="postUser2">
+          <div
+            class="post-user"
+            onclick="openProfile('Local Soulaani Creator')"
+          >
             Local Soulaani Creator
           </div>
 
-          <div class="post-meta" id="postMeta2">
-            West Philadelphia • Today
+          <div
+            class="post-meta"
+            id="postMeta2"
+          >
+            Philadelphia • Today
           </div>
 
         </div>
 
       </div>
 
-      <div class="post-location" id="postLocation2">
+
+      <div
+        class="post-location"
+        id="postLocation2"
+      >
         🔥 Trending locally
       </div>
+
 
       <p id="postText2">
         Building something for the neighborhood and looking to connect with
         other local creators, entrepreneurs and artists.
       </p>
 
-      <div class="hashtag" id="hashtag2">
-        #BlackCreators #WestPhilly
+
+      <div
+        class="hashtag"
+        id="hashtag2"
+      >
+        #BlackCreators #Philadelphia
       </div>
+
 
       <div class="post-actions">
 
-        <button class="action-btn" onclick="react(this,'🔥')">
+        <button
+          class="action-btn"
+          onclick="react(this,'🔥')"
+        >
           🔥 Like
         </button>
 
-        <button class="action-btn" onclick="toggleComments('localComments2')">
+        <button
+          class="action-btn"
+          onclick="toggleComments('localComments2')"
+        >
           💬 Comments
         </button>
 
       </div>
 
-      <div id="localComments2" class="comments">
+
+      <div
+        id="localComments2"
+        class="comments"
+      >
 
         <div class="comment-list"></div>
+
 
         <div class="comment-input">
 
@@ -1122,7 +1763,8 @@ header {
 
           <button
             class="gold-btn"
-            onclick="addComment('localCommentInput2','localComments2')">
+            onclick="addComment('localCommentInput2','localComments2')"
+          >
             Post
           </button>
 
@@ -1143,31 +1785,374 @@ header {
 </section>
 
 
+<!-- PROFILE -->
+
+<section id="profile" class="page">
+
+  <div class="profile-page-top">
+
+    <button
+      class="back-btn"
+      onclick="showPage('home', document.querySelector('.nav-btn'))"
+    >
+      ‹
+    </button>
+
+    <h2>
+      Profile
+    </h2>
+
+  </div>
+
+
+  <div class="full-profile">
+
+    <div class="profile-large-avatar">
+      LT
+    </div>
+
+    <h1>
+      LuhhTrilly
+    </h1>
+
+    <div class="username">
+      @luhhtrilly
+    </div>
+
+    <p class="profile-bio">
+      Building the future of Black digital community.
+      Connecting culture, people, creativity and opportunity.
+    </p>
+
+    <div class="profile-location">
+      📍 Philadelphia, Pennsylvania
+    </div>
+
+
+    <div class="profile-buttons">
+
+      <button
+        class="profile-btn primary"
+        onclick="editProfile()"
+      >
+        Edit Profile
+      </button>
+
+      <button
+        class="profile-btn"
+        onclick="showPage('discover', document.querySelectorAll('.nav-btn')[4])"
+      >
+        My Area
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="profile-stats">
+
+    <div class="profile-stat">
+
+      <strong>
+        428
+      </strong>
+
+      <span>
+        Followers
+      </span>
+
+    </div>
+
+
+    <div class="profile-stat">
+
+      <strong>
+        187
+      </strong>
+
+      <span>
+        Following
+      </span>
+
+    </div>
+
+
+    <div class="profile-stat">
+
+      <strong>
+        32
+      </strong>
+
+      <span>
+        Posts
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <div class="section-title">
+
+    <h2>
+      Interests
+    </h2>
+
+  </div>
+
+
+  <div class="interest-list">
+
+    <div class="interest">
+      Music
+    </div>
+
+    <div class="interest">
+      Entrepreneurship
+    </div>
+
+    <div class="interest">
+      Culture
+    </div>
+
+    <div class="interest">
+      Technology
+    </div>
+
+    <div class="interest">
+      Fashion
+    </div>
+
+    <div class="interest">
+      Community
+    </div>
+
+  </div>
+
+
+  <div class="profile-tabs">
+
+    <button
+      class="profile-tab active"
+      onclick="showProfileTab('posts', this)"
+    >
+      My Posts
+    </button>
+
+    <button
+      class="profile-tab"
+      onclick="showProfileTab('communities', this)"
+    >
+      My Communities
+    </button>
+
+  </div>
+
+
+  <div id="profilePosts">
+
+    <div class="post">
+
+      <div class="post-header">
+
+        <div class="mini-avatar">
+          LT
+        </div>
+
+        <div>
+
+          <div class="post-user">
+            LuhhTrilly
+          </div>
+
+          <div class="post-meta">
+            Philadelphia • Recently
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <p>
+        Building Soulaani one piece at a time. The goal is simple:
+        create a digital home where Black people can connect, build,
+        date, discover and express themselves.
+      </p>
+
+
+      <div class="hashtag">
+        #Soulaani #Build #Community
+      </div>
+
+
+      <div class="post-actions">
+
+        <button
+          class="action-btn"
+          onclick="react(this,'❤️')"
+        >
+          ♡ Like
+        </button>
+
+        <button
+          class="action-btn"
+          onclick="toggleComments('profileComment1')"
+        >
+          💬 Comments
+        </button>
+
+      </div>
+
+
+      <div
+        id="profileComment1"
+        class="comments"
+      >
+
+        <div class="comment-list"></div>
+
+
+        <div class="comment-input">
+
+          <input
+            id="profileCommentInput1"
+            placeholder="Write a comment..."
+          >
+
+          <button
+            class="gold-btn"
+            onclick="addComment('profileCommentInput1','profileComment1')"
+          >
+            Post
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="profileCommunities"
+    style="display:none;"
+  >
+
+    <div class="community-card">
+
+      <div class="community-icon">
+        🎵
+      </div>
+
+      <div>
+
+        <h3>
+          Black Music & Culture
+        </h3>
+
+        <p>
+          18.4K members
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="community-card">
+
+      <div class="community-icon">
+        🚀
+      </div>
+
+      <div>
+
+        <h3>
+          Black Entrepreneurs
+        </h3>
+
+        <p>
+          12.8K members
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="community-card">
+
+      <div class="community-icon">
+        📍
+      </div>
+
+      <div>
+
+        <h3>
+          Philadelphia Community
+        </h3>
+
+        <p>
+          9.7K members
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
 <!-- BOTTOM NAV -->
 
 <nav class="bottom-nav">
 
-  <button class="nav-btn active" onclick="showPage('home', this)">
+  <button
+    class="nav-btn active"
+    onclick="showPage('home', this)"
+  >
     <span>⌂</span>
     Home
   </button>
 
-  <button class="nav-btn" onclick="showPage('connect', this)">
+
+  <button
+    class="nav-btn"
+    onclick="showPage('connect', this)"
+  >
     <span>♧</span>
     Connect
   </button>
 
-  <button class="nav-btn" onclick="showPage('date', this)">
+
+  <button
+    class="nav-btn"
+    onclick="showPage('date', this)"
+  >
     <span>♡</span>
     Date
   </button>
 
-  <button class="nav-btn" onclick="showPage('build', this)">
+
+  <button
+    class="nav-btn"
+    onclick="showPage('build', this)"
+  >
     <span>◈</span>
     Build
   </button>
 
-  <button class="nav-btn" onclick="showPage('discover', this)">
+
+  <button
+    class="nav-btn"
+    onclick="showPage('discover', this)"
+  >
     <span>⌖</span>
     Discover
   </button>
@@ -1189,24 +2174,91 @@ function showPage(pageId, navItem) {
     page.classList.remove('active');
   });
 
-  const selectedPage = document.getElementById(pageId);
+  const page = document.getElementById(pageId);
 
-  if (selectedPage) {
-    selectedPage.classList.add('active');
+  if (page) {
+    page.classList.add('active');
   }
 
-  document.querySelectorAll('.nav-btn').forEach(btn => {
-    btn.classList.remove('active');
-  });
-
   if (navItem) {
+
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+
     navItem.classList.add('active');
+
   }
 
   window.scrollTo({
     top: 0,
     behavior: 'smooth'
   });
+
+}
+
+
+/* =========================
+   PROFILE
+========================= */
+
+function openProfile() {
+
+  document.querySelectorAll('.page').forEach(page => {
+    page.classList.remove('active');
+  });
+
+  document.getElementById('profile').classList.add('active');
+
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+
+}
+
+
+function editProfile() {
+
+  alert(
+    "Profile editing will be connected to your account system next."
+  );
+
+}
+
+
+function showProfileTab(tab, button) {
+
+  const posts =
+    document.getElementById('profilePosts');
+
+  const communities =
+    document.getElementById('profileCommunities');
+
+
+  document.querySelectorAll('.profile-tab').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  button.classList.add('active');
+
+
+  if (tab === 'posts') {
+
+    posts.style.display = 'block';
+    communities.style.display = 'none';
+
+  } else {
+
+    posts.style.display = 'none';
+    communities.style.display = 'block';
+
+  }
+
 }
 
 
@@ -1637,7 +2689,7 @@ const cityData = {
 
 
 /* =========================
-   NEIGHBORHOODS / LOCAL AREAS
+   NEIGHBORHOODS
 ========================= */
 
 const neighborhoodData = {
@@ -1901,17 +2953,6 @@ const neighborhoodData = {
     "Lake Merritt"
   ],
 
-  "Washington, D.C.": [
-    "All of Washington, D.C.",
-    "Ward 1",
-    "Ward 2",
-    "Ward 4",
-    "Ward 5",
-    "Ward 7",
-    "Ward 8",
-    "Anacostia"
-  ],
-
   "San Juan": [
     "All of San Juan",
     "Santurce",
@@ -1925,7 +2966,7 @@ const neighborhoodData = {
 
 
 /* =========================
-   LOCAL CONTENT DATABASE
+   LOCAL CONTENT
 ========================= */
 
 const localContent = {
@@ -1937,7 +2978,6 @@ const localContent = {
     food: "Find local food spots and neighborhood recommendations.",
     music: "Discover artists, DJs and sounds coming out of West Philly.",
     opportunities: "Find jobs, networking and business opportunities nearby.",
-
     post1User: "West Philly Community",
     post1Text: "What are y'all doing this weekend? Drop your favorite local spots, events and things to do around West Philly. 👇🏾",
     post2User: "West Philly Creator",
@@ -1952,7 +2992,6 @@ const localContent = {
     food: "Share your favorite North Philly restaurants and food spots.",
     music: "Discover local artists and music coming from North Philly.",
     opportunities: "Explore jobs, networking and business opportunities in North Philly.",
-
     post1User: "North Philly Community",
     post1Text: "North Philly, what is happening in the neighborhood this week? Put everybody on to something local. 👇🏾",
     post2User: "North Philly Creator",
@@ -1967,7 +3006,6 @@ const localContent = {
     food: "Find local food, restaurants and neighborhood favorites.",
     music: "Discover local musicians and sounds from South Philly.",
     opportunities: "Explore local jobs, networking and entrepreneurship.",
-
     post1User: "South Philly Community",
     post1Text: "South Philly, what are the spots everybody needs to know about? Drop your recommendations.",
     post2User: "South Philly Creator",
@@ -1982,7 +3020,6 @@ const localContent = {
     food: "Find restaurants, cafes and local food conversations.",
     music: "Discover artists and live music around Center City.",
     opportunities: "Explore jobs, networking events and professional opportunities.",
-
     post1User: "Center City Community",
     post1Text: "What's happening around Center City this week? Share the events and spots everyone should know.",
     post2User: "Center City Creator",
@@ -1997,7 +3034,6 @@ const localContent = {
     food: "Find local food and neighborhood recommendations.",
     music: "Discover music and artists throughout Philadelphia.",
     opportunities: "Explore jobs, networking and business opportunities.",
-
     post1User: "Philadelphia Community",
     post1Text: "Philadelphia, what is happening around the city? Drop your favorite local spots, events and things to do.",
     post2User: "Philly Creator",
@@ -2036,13 +3072,15 @@ function selectRegion(region, button) {
 
   const states = regions[region] || [];
 
-  const stateSelect = document.getElementById('stateSelect');
+  const stateSelect =
+    document.getElementById('stateSelect');
 
   stateSelect.innerHTML = "";
 
   states.forEach(state => {
 
-    const option = document.createElement('option');
+    const option =
+      document.createElement('option');
 
     option.value = state;
     option.textContent = state;
@@ -2052,13 +3090,22 @@ function selectRegion(region, button) {
   });
 
   if (states.includes(currentState)) {
-    stateSelect.value = currentState;
+
+    stateSelect.value =
+      currentState;
+
   } else if (states.length > 0) {
-    currentState = states[0];
-    stateSelect.value = currentState;
+
+    currentState =
+      states[0];
+
+    stateSelect.value =
+      currentState;
+
   }
 
   loadCities(currentState);
+
 }
 
 
@@ -2068,11 +3115,13 @@ function selectRegion(region, button) {
 
 function changeState(state) {
 
-  currentState = state;
+  currentState =
+    state;
 
   loadCities(state);
 
   updateLocalFYP();
+
 }
 
 
@@ -2082,31 +3131,46 @@ function changeState(state) {
 
 function loadCities(state) {
 
-  const citySelect = document.getElementById('citySelect');
+  const citySelect =
+    document.getElementById('citySelect');
 
   citySelect.innerHTML = "";
 
-  const cities = cityData[state] || [];
+  const cities =
+    cityData[state] || [];
 
   cities.forEach(city => {
 
-    const option = document.createElement('option');
+    const option =
+      document.createElement('option');
 
-    option.value = city;
-    option.textContent = city;
+    option.value =
+      city;
+
+    option.textContent =
+      city;
 
     citySelect.appendChild(option);
 
   });
 
   if (cities.includes(currentCity)) {
-    citySelect.value = currentCity;
+
+    citySelect.value =
+      currentCity;
+
   } else if (cities.length > 0) {
-    currentCity = cities[0];
-    citySelect.value = currentCity;
+
+    currentCity =
+      cities[0];
+
+    citySelect.value =
+      currentCity;
+
   }
 
   loadNeighborhoods(currentCity);
+
 }
 
 
@@ -2121,7 +3185,8 @@ function loadNeighborhoods(city) {
 
   neighborhoodSelect.innerHTML = "";
 
-  let neighborhoods = neighborhoodData[city];
+  let neighborhoods =
+    neighborhoodData[city];
 
   if (!neighborhoods || neighborhoods.length === 0) {
 
@@ -2133,10 +3198,14 @@ function loadNeighborhoods(city) {
 
   neighborhoods.forEach(neighborhood => {
 
-    const option = document.createElement('option');
+    const option =
+      document.createElement('option');
 
-    option.value = neighborhood;
-    option.textContent = neighborhood;
+    option.value =
+      neighborhood;
+
+    option.textContent =
+      neighborhood;
 
     neighborhoodSelect.appendChild(option);
 
@@ -2144,16 +3213,21 @@ function loadNeighborhoods(city) {
 
   if (neighborhoods.includes(currentNeighborhood)) {
 
-    neighborhoodSelect.value = currentNeighborhood;
+    neighborhoodSelect.value =
+      currentNeighborhood;
 
   } else {
 
-    currentNeighborhood = neighborhoods[0];
-    neighborhoodSelect.value = currentNeighborhood;
+    currentNeighborhood =
+      neighborhoods[0];
+
+    neighborhoodSelect.value =
+      currentNeighborhood;
 
   }
 
   updateLocalFYP();
+
 }
 
 
@@ -2163,19 +3237,28 @@ function loadNeighborhoods(city) {
 
 function changeCity(city) {
 
-  currentCity = city;
+  currentCity =
+    city;
 
-  const neighborhoods = neighborhoodData[city];
+  const neighborhoods =
+    neighborhoodData[city];
 
   if (neighborhoods && neighborhoods.length > 0) {
-    currentNeighborhood = neighborhoods[0];
+
+    currentNeighborhood =
+      neighborhoods[0];
+
   } else {
-    currentNeighborhood = `All of ${city}`;
+
+    currentNeighborhood =
+      `All of ${city}`;
+
   }
 
   loadNeighborhoods(city);
 
   updateLocalFYP();
+
 }
 
 
@@ -2185,9 +3268,11 @@ function changeCity(city) {
 
 function changeNeighborhood(neighborhood) {
 
-  currentNeighborhood = neighborhood;
+  currentNeighborhood =
+    neighborhood;
 
   updateLocalFYP();
+
 }
 
 
@@ -2197,35 +3282,53 @@ function changeNeighborhood(neighborhood) {
 
 function updateLocalFYP() {
 
-  const area = currentNeighborhood;
-  const city = currentCity;
-  const state = currentState;
+  const area =
+    currentNeighborhood;
 
-  const data = localContent[area] || {
+  const city =
+    currentCity;
 
-    people: `Discover people, creators and communities around ${area}.`,
+  const state =
+    currentState;
 
-    businesses: `Discover Black-owned businesses around ${area}.`,
 
-    events: `Find events and gatherings happening around ${area}.`,
+  const data =
+    localContent[area] || {
 
-    food: `Discover food spots and local recommendations around ${area}.`,
+      people:
+        `Discover people, creators and communities around ${area}.`,
 
-    music: `Discover artists and music from ${area}.`,
+      businesses:
+        `Discover Black-owned businesses around ${area}.`,
 
-    opportunities: `Find jobs, networking and business opportunities around ${area}.`,
+      events:
+        `Find events and gatherings happening around ${area}.`,
 
-    post1User: `${area} Community`,
+      food:
+        `Discover food spots and local recommendations around ${area}.`,
 
-    post1Text: `What's happening around ${area}? Share local events, spots, conversations and recommendations with the community. 👇🏾`,
+      music:
+        `Discover artists and music from ${area}.`,
 
-    post2User: `${area} Creator`,
+      opportunities:
+        `Find jobs, networking and business opportunities around ${area}.`,
 
-    post2Text: `Looking to connect with people, creators, entrepreneurs and artists around ${area}.`,
+      post1User:
+        `${area} Community`,
 
-    hashtag: `#${area.replace(/[^a-zA-Z0-9]/g, '')} #Soulaani`
+      post1Text:
+        `What's happening around ${area}? Share local events, spots, conversations and recommendations with the community. 👇🏾`,
 
-  };
+      post2User:
+        `${area} Creator`,
+
+      post2Text:
+        `Looking to connect with people, creators, entrepreneurs and artists around ${area}.`,
+
+      hashtag:
+        `#${area.replace(/[^a-zA-Z0-9]/g, '')} #Soulaani`
+
+    };
 
 
   const displayArea =
@@ -2278,10 +3381,6 @@ function updateLocalFYP() {
     `What's happening in ${displayArea}`;
 
 
-  document.getElementById('postUser1').textContent =
-    data.post1User;
-
-
   document.getElementById('postMeta1').textContent =
     `${displayArea} • Local FYP`;
 
@@ -2296,10 +3395,6 @@ function updateLocalFYP() {
 
   document.getElementById('hashtag1').textContent =
     data.hashtag;
-
-
-  document.getElementById('postUser2').textContent =
-    data.post2User;
 
 
   document.getElementById('postMeta2').textContent =
@@ -2334,14 +3429,20 @@ function react(button, emoji) {
     button.textContent =
       `${emoji} Like`;
 
-    button.setAttribute('data-reacted', 'false');
+    button.setAttribute(
+      'data-reacted',
+      'false'
+    );
 
   } else {
 
     button.textContent =
       `${emoji} Liked`;
 
-    button.setAttribute('data-reacted', 'true');
+    button.setAttribute(
+      'data-reacted',
+      'true'
+    );
 
   }
 
@@ -2354,14 +3455,21 @@ function react(button, emoji) {
 
 function toggleComments(id) {
 
-  const box = document.getElementById(id);
+  const box =
+    document.getElementById(id);
 
   if (!box) return;
 
   if (box.style.display === 'block') {
-    box.style.display = 'none';
+
+    box.style.display =
+      'none';
+
   } else {
-    box.style.display = 'block';
+
+    box.style.display =
+      'block';
+
   }
 
 }
@@ -2392,13 +3500,16 @@ function addComment(inputId, commentsId) {
   const comment =
     document.createElement('div');
 
-  comment.className = 'comment';
+  comment.className =
+    'comment';
 
-  comment.textContent = text;
+  comment.textContent =
+    text;
 
   list.appendChild(comment);
 
-  input.value = '';
+  input.value =
+    '';
 
 }
 
@@ -2407,50 +3518,59 @@ function addComment(inputId, commentsId) {
    INITIALIZE
 ========================= */
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener(
+  'DOMContentLoaded',
+  function() {
 
-  const northeastButton =
-    document.querySelector('.region-btn');
+    const northeastButton =
+      document.querySelector('.region-btn');
 
-  selectRegion(
-    'Northeast',
-    northeastButton
-  );
+    selectRegion(
+      'Northeast',
+      northeastButton
+    );
 
-  const stateSelect =
-    document.getElementById('stateSelect');
 
-  stateSelect.value =
-    'Pennsylvania';
+    const stateSelect =
+      document.getElementById('stateSelect');
 
-  currentState =
-    'Pennsylvania';
+    stateSelect.value =
+      'Pennsylvania';
 
-  loadCities('Pennsylvania');
+    currentState =
+      'Pennsylvania';
 
-  const citySelect =
-    document.getElementById('citySelect');
 
-  citySelect.value =
-    'Philadelphia';
+    loadCities('Pennsylvania');
 
-  currentCity =
-    'Philadelphia';
 
-  loadNeighborhoods('Philadelphia');
+    const citySelect =
+      document.getElementById('citySelect');
 
-  const neighborhoodSelect =
-    document.getElementById('neighborhoodSelect');
+    citySelect.value =
+      'Philadelphia';
 
-  neighborhoodSelect.value =
-    'All of Philadelphia';
+    currentCity =
+      'Philadelphia';
 
-  currentNeighborhood =
-    'All of Philadelphia';
 
-  updateLocalFYP();
+    loadNeighborhoods('Philadelphia');
 
-});
+
+    const neighborhoodSelect =
+      document.getElementById('neighborhoodSelect');
+
+    neighborhoodSelect.value =
+      'All of Philadelphia';
+
+    currentNeighborhood =
+      'All of Philadelphia';
+
+
+    updateLocalFYP();
+
+  }
+);
 
 </script>
 
