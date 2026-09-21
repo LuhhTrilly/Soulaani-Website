@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Soulaani Home</title>
+<title>Soulaani | Home</title>
 
 <style>
 * {
@@ -16,12 +16,13 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   background: #080808;
-  color: white;
-  padding-bottom: 80px;
+  color: #fff;
+  padding-bottom: 82px;
 }
 
 button {
   font-family: inherit;
+  cursor: pointer;
 }
 
 .topbar {
@@ -33,14 +34,15 @@ button {
   align-items: center;
   justify-content: space-between;
   padding: 0 18px;
-  background: rgba(8,8,8,.95);
-  border-bottom: 1px solid #222;
+  background: rgba(8,8,8,.96);
+  border-bottom: 1px solid #242424;
   backdrop-filter: blur(15px);
 }
 
 .logo {
-  font-size: 26px;
+  font-size: 27px;
   font-weight: 800;
+  letter-spacing: -1px;
 }
 
 .logo span {
@@ -49,7 +51,7 @@ button {
 
 .top-icons {
   display: flex;
-  gap: 16px;
+  gap: 10px;
 }
 
 .icon-btn {
@@ -59,7 +61,7 @@ button {
   border: 1px solid #292929;
   background: #151515;
   color: white;
-  font-size: 17px;
+  font-size: 18px;
 }
 
 .container {
@@ -67,8 +69,8 @@ button {
   margin: auto;
 }
 
-.profile-card {
-  padding: 24px 18px;
+.profile {
+  padding: 24px 18px 18px;
   border-bottom: 1px solid #222;
 }
 
@@ -79,69 +81,124 @@ button {
 }
 
 .avatar {
-  width: 58px;
-  height: 58px;
+  width: 62px;
+  height: 62px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #d99a4e, #754326);
+  background: linear-gradient(135deg, #e0a35b, #704025);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 25px;
-  font-weight: bold;
+  font-size: 26px;
+  font-weight: 800;
 }
 
 .profile-name {
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 700;
 }
 
 .profile-handle {
-  color: #888;
-  font-size: 14px;
+  color: #858585;
+  font-size: 13px;
+  margin-top: 3px;
+}
+
+.profile-stats {
+  display: flex;
+  gap: 24px;
+  margin-top: 18px;
+}
+
+.stat strong {
+  display: block;
+  font-size: 15px;
+}
+
+.stat span {
+  color: #777;
+  font-size: 12px;
+}
+
+.stories {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 18px;
+  border-bottom: 1px solid #222;
+}
+
+.stories::-webkit-scrollbar {
+  display: none;
+}
+
+.story {
+  min-width: 66px;
+  text-align: center;
+  font-size: 11px;
+  color: #999;
+}
+
+.story-ring {
+  width: 62px;
+  height: 62px;
+  margin: auto auto 7px;
+  padding: 3px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d99a4e, #6d3922);
+}
+
+.story-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #181818;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
 }
 
 .composer {
   margin: 18px;
   padding: 18px;
   background: #141414;
-  border: 1px solid #262626;
-  border-radius: 18px;
+  border: 1px solid #282828;
+  border-radius: 20px;
 }
 
 .composer-top {
   display: flex;
-  gap: 12px;
   align-items: center;
+  gap: 12px;
 }
 
 .mini-avatar {
-  width: 42px;
-  height: 42px;
+  width: 43px;
+  height: 43px;
   border-radius: 50%;
-  background: #70462c;
+  background: #6e452c;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .composer-input {
-  flex: 1;
   color: #888;
-  font-size: 15px;
+  flex: 1;
 }
 
 .composer-actions {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   margin-top: 16px;
   padding-top: 14px;
-  border-top: 1px solid #252525;
+  border-top: 1px solid #272727;
 }
 
-.action-options {
+.tools {
   display: flex;
-  gap: 14px;
+  gap: 17px;
   color: #d99a4e;
 }
 
@@ -149,22 +206,45 @@ button {
   border: none;
   background: #d99a4e;
   color: #111;
-  padding: 8px 18px;
+  padding: 9px 19px;
   border-radius: 20px;
-  font-weight: bold;
+  font-weight: 700;
 }
 
-.section-label {
-  padding: 8px 18px;
-  color: #888;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+.section-title {
+  padding: 4px 18px 12px;
+  color: #aaa;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.trending {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 0 18px 20px;
+}
+
+.trend {
+  min-width: 150px;
+  padding: 14px;
+  border-radius: 15px;
+  background: #141414;
+  border: 1px solid #272727;
+}
+
+.trend small {
+  color: #777;
+}
+
+.trend strong {
+  display: block;
+  margin-top: 5px;
 }
 
 .post {
-  padding: 20px 18px;
   border-top: 1px solid #222;
+  padding: 20px 18px;
 }
 
 .post-header {
@@ -174,13 +254,14 @@ button {
 }
 
 .post-avatar {
-  width: 45px;
-  height: 45px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
-  background: #3d3029;
+  background: #3e3029;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 20px;
 }
 
 .post-info strong {
@@ -193,25 +274,54 @@ button {
   font-size: 12px;
 }
 
+.more {
+  margin-left: auto;
+  color: #777;
+  background: none;
+  border: none;
+  font-size: 20px;
+}
+
 .post-text {
   margin: 16px 0;
   color: #ddd;
   font-size: 15px;
-  line-height: 1.6;
+  line-height: 1.65;
+}
+
+.post-image {
+  height: 220px;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 25% 30%, rgba(217,154,78,.4), transparent 25%),
+    linear-gradient(135deg, #211812, #111);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  font-size: 48px;
 }
 
 .post-actions {
   display: flex;
-  gap: 28px;
+  gap: 26px;
+}
+
+.post-actions button {
+  border: none;
+  background: none;
   color: #888;
   font-size: 14px;
 }
 
-.post-actions button {
-  background: none;
-  border: none;
-  color: inherit;
-  font-size: inherit;
+.post-actions button.liked {
+  color: #d99a4e;
+}
+
+.likes {
+  color: #777;
+  font-size: 12px;
+  margin-top: 12px;
 }
 
 .bottom-nav {
@@ -219,19 +329,19 @@ button {
   bottom: 0;
   left: 0;
   right: 0;
+  height: 72px;
   z-index: 200;
-  height: 70px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background: rgba(12,12,12,.97);
-  border-top: 1px solid #252525;
+  background: rgba(12,12,12,.98);
+  border-top: 1px solid #272727;
 }
 
 .nav-item {
-  color: #777;
   text-align: center;
-  font-size: 11px;
+  color: #777;
+  font-size: 10px;
 }
 
 .nav-item div {
@@ -266,15 +376,80 @@ button {
 
 <main class="container">
 
-  <section class="profile-card">
+  <section class="profile">
     <div class="profile-row">
+
       <div class="avatar">S</div>
 
       <div>
         <div class="profile-name">Welcome to Soulaani</div>
         <div class="profile-handle">@soulaani</div>
       </div>
+
     </div>
+
+    <div class="profile-stats">
+      <div class="stat">
+        <strong>0</strong>
+        <span>Following</span>
+      </div>
+
+      <div class="stat">
+        <strong>0</strong>
+        <span>Followers</span>
+      </div>
+
+      <div class="stat">
+        <strong>0</strong>
+        <span>Communities</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="stories">
+
+    <div class="story">
+      <div class="story-ring">
+        <div class="story-inner">+</div>
+      </div>
+      Add Story
+    </div>
+
+    <div class="story">
+      <div class="story-ring">
+        <div class="story-inner">🤎</div>
+      </div>
+      Culture
+    </div>
+
+    <div class="story">
+      <div class="story-ring">
+        <div class="story-inner">🎵</div>
+      </div>
+      Music
+    </div>
+
+    <div class="story">
+      <div class="story-ring">
+        <div class="story-inner">🚀</div>
+      </div>
+      Build
+    </div>
+
+    <div class="story">
+      <div class="story-ring">
+        <div class="story-inner">🌍</div>
+      </div>
+      Travel
+    </div>
+
+    <div class="story">
+      <div class="story-ring">
+        <div class="story-inner">🍽️</div>
+      </div>
+      Food
+    </div>
+
   </section>
 
   <section class="composer">
@@ -289,10 +464,11 @@ button {
 
     <div class="composer-actions">
 
-      <div class="action-options">
+      <div class="tools">
         <span>📷</span>
         <span>🎥</span>
         <span>😊</span>
+        <span>📍</span>
       </div>
 
       <button class="post-btn">
@@ -303,7 +479,30 @@ button {
 
   </section>
 
-  <div class="section-label">
+  <div class="section-title">
+    Trending on Soulaani
+  </div>
+
+  <section class="trending">
+
+    <div class="trend">
+      <small>Trending</small>
+      <strong>#BlackOwned</strong>
+    </div>
+
+    <div class="trend">
+      <small>Community</small>
+      <strong>#Soulaani</strong>
+    </div>
+
+    <div class="trend">
+      <small>Culture</small>
+      <strong>#OurCulture</strong>
+    </div>
+
+  </section>
+
+  <div class="section-title">
     Your Feed
   </div>
 
@@ -311,14 +510,14 @@ button {
 
     <div class="post-header">
 
-      <div class="post-avatar">
-        🌍🏾
-      </div>
+      <div class="post-avatar">🌍🏾</div>
 
       <div class="post-info">
         <strong>Soulaani Community</strong>
         <span>@soulaani · Just now</span>
       </div>
+
+      <button class="more">•••</button>
 
     </div>
 
@@ -327,10 +526,18 @@ button {
       culture, creativity, love, business, and growth. 🌍🏾
     </p>
 
+    <div class="post-image">
+      🌍🏾
+    </div>
+
     <div class="post-actions">
-      <button>♡ Like</button>
+      <button onclick="likePost(this)">♡ Like</button>
       <button>💬 Comment</button>
       <button>↗ Share</button>
+    </div>
+
+    <div class="likes">
+      0 likes
     </div>
 
   </article>
@@ -339,14 +546,14 @@ button {
 
     <div class="post-header">
 
-      <div class="post-avatar">
-        🚀
-      </div>
+      <div class="post-avatar">🚀</div>
 
       <div class="post-info">
         <strong>Soulaani Build</strong>
         <span>@build · Today</span>
       </div>
+
+      <button class="more">•••</button>
 
     </div>
 
@@ -356,9 +563,13 @@ button {
     </p>
 
     <div class="post-actions">
-      <button>♡ Like</button>
+      <button onclick="likePost(this)">♡ Like</button>
       <button>💬 Comment</button>
       <button>↗ Share</button>
+    </div>
+
+    <div class="likes">
+      0 likes
     </div>
 
   </article>
@@ -393,6 +604,20 @@ button {
   </div>
 
 </nav>
+
+<script>
+function likePost(button) {
+
+  button.classList.toggle("liked");
+
+  if (button.classList.contains("liked")) {
+    button.innerHTML = "♥ Liked";
+  } else {
+    button.innerHTML = "♡ Like";
+  }
+
+}
+</script>
 
 </body>
 </html>
