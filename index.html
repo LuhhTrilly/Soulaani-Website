@@ -3,106 +3,418 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Soulaani | Connect. Build. Belong.</title>
-  <link rel="stylesheet" href="styles.css">
+
+  <title>Soulaani | Connect. Build. Date. Grow.</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #090909;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 7%;
+      background: rgba(9, 9, 9, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: #d99a4e;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      font-size: 14px;
+      color: #d0d0d0;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+    }
+
+    .nav-button {
+      background: #d99a4e;
+      color: #111;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .hero {
+      min-height: 82vh;
+      display: flex;
+      align-items: center;
+      padding: 80px 7%;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(217,154,78,0.22), transparent 30%),
+        radial-gradient(circle at 20% 80%, rgba(122,63,42,0.25), transparent 32%),
+        #090909;
+    }
+
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 22px;
+      padding: 8px 14px;
+      border: 1px solid rgba(217,154,78,0.45);
+      border-radius: 999px;
+      color: #e5b36f;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(48px, 8vw, 92px);
+      line-height: 0.98;
+      letter-spacing: -4px;
+      max-width: 900px;
+      margin-bottom: 28px;
+    }
+
+    h1 span {
+      color: #d99a4e;
+    }
+
+    .hero p {
+      max-width: 650px;
+      color: #bdbdbd;
+      font-size: 19px;
+      margin-bottom: 36px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .primary,
+    .secondary {
+      display: inline-block;
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform 0.2s ease;
+    }
+
+    .primary {
+      background: #d99a4e;
+      color: #111;
+    }
+
+    .secondary {
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+    }
+
+    .primary:hover,
+    .secondary:hover {
+      transform: translateY(-3px);
+    }
+
+    .section {
+      padding: 90px 7%;
+    }
+
+    .section-title {
+      max-width: 700px;
+      margin-bottom: 45px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(34px, 5vw, 56px);
+      letter-spacing: -2px;
+      margin-bottom: 14px;
+    }
+
+    .section-title p {
+      color: #999;
+      font-size: 17px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      min-height: 250px;
+      padding: 28px;
+      border-radius: 22px;
+      background: linear-gradient(145deg, #171717, #101010);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(217,154,78,0.45);
+    }
+
+    .icon {
+      font-size: 32px;
+      margin-bottom: 35px;
+    }
+
+    .card h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #999;
+      font-size: 15px;
+    }
+
+    .vision {
+      background: #111111;
+    }
+
+    .vision-box {
+      max-width: 1000px;
+      padding: 55px;
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at top right, rgba(217,154,78,0.18), transparent 35%),
+        #181818;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .vision-box h2 {
+      font-size: clamp(35px, 5vw, 62px);
+      letter-spacing: -2px;
+      margin-bottom: 20px;
+    }
+
+    .vision-box p {
+      max-width: 700px;
+      color: #aaa;
+      font-size: 18px;
+    }
+
+    .cta {
+      text-align: center;
+      padding: 110px 7%;
+      background:
+        radial-gradient(circle, rgba(217,154,78,0.16), transparent 45%),
+        #090909;
+    }
+
+    .cta h2 {
+      font-size: clamp(40px, 6vw, 70px);
+      letter-spacing: -3px;
+      margin-bottom: 18px;
+    }
+
+    .cta p {
+      color: #999;
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+
+    footer {
+      padding: 35px 7%;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: #777;
+      font-size: 14px;
+    }
+
+    @media (max-width: 850px) {
+      .nav-links a:not(.nav-button) {
+        display: none;
+      }
+
+      .features {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .hero {
+        min-height: 78vh;
+        padding-top: 65px;
+        padding-bottom: 65px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        min-height: 210px;
+      }
+
+      .vision-box {
+        padding: 32px;
+      }
+
+      footer {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <header class="nav">
-    <a class="brand" href="#">Soulaani<span>♛</span></a>
-    <nav>
+
+  <nav class="nav">
+    <a href="#" class="logo">Soulaani<span>.</span></a>
+
+    <div class="nav-links">
       <a href="#connect">Connect</a>
       <a href="#date">Date</a>
       <a href="#build">Build</a>
-      <a href="#market">Market</a>
-      <a href="#explore">Explore</a>
-      <a href="#culture">Culture</a>
-    </nav>
-    <div class="nav-actions">
-      <button class="ghost">Log In</button>
-      <button class="gold">Sign Up</button>
+      <a href="#about">About</a>
+      <a href="#join" class="nav-button">Join Soulaani</a>
     </div>
-    <button class="menu" aria-label="Open menu">☰</button>
-  </header>
+  </nav>
 
   <main>
+
     <section class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">THE CULTURE. THE PEOPLE. THE PLATFORM.</p>
-        <h1>Welcome to<br><em>Soulaani.</em></h1>
-        <p class="lead">Connect. Socialize. Date. Build.<br>Shop. Explore. Be You.</p>
-        <p class="sub">A digital home built around Black community, culture, creativity, connection, and growth.</p>
-        <div class="hero-buttons">
-          <button class="gold large">Join Soulaani <span>→</span></button>
-          <button class="outline large">Explore the Vision <span>▷</span></button>
-        </div>
-      </div>
-      <div class="hero-art">
-        <div class="glow"></div>
-        <div class="portrait-card">
-          <div class="portrait-placeholder">S</div>
-          <div class="portrait-caption">
-            <strong>More than social media.</strong>
-            <span>A place to connect, create & grow.</span>
-          </div>
+      <div class="hero-content">
+        <div class="eyebrow">Built for community</div>
+
+        <h1>
+          Your people.<br>
+          Your culture.<br>
+          <span>Your space.</span>
+        </h1>
+
+        <p>
+          Soulaani is a digital home for connection, culture, love,
+          creativity, business, and growth.
+        </p>
+
+        <div class="buttons">
+          <a href="#join" class="primary">Join Soulaani</a>
+          <a href="#explore" class="secondary">Explore the vision</a>
         </div>
       </div>
     </section>
 
-    <section class="pillars">
-      <article id="connect"><span>♧</span><h3>Connect</h3><p>Find people and communities that feel like home.</p></article>
-      <article id="date"><span>♡</span><h3>Date</h3><p>Meet people, make connections, build something real.</p></article>
-      <article id="build"><span>▣</span><h3>Build</h3><p>Jobs, mentorship, networking and business growth.</p></article>
-      <article id="market"><span>♧</span><h3>Market</h3><p>Discover and support Black-owned businesses.</p></article>
-      <article id="explore"><span>⌖</span><h3>Explore</h3><p>Find events, places and opportunities around you.</p></article>
-      <article id="culture"><span>♫</span><h3>Culture</h3><p>Music, art, fashion, food, creators and more.</p></article>
+    <section class="section" id="explore">
+
+      <div class="section-title">
+        <h2>One platform. Many ways to connect.</h2>
+        <p>
+          Soulaani brings the pieces of community together in one place.
+        </p>
+      </div>
+
+      <div class="features">
+
+        <div class="card" id="connect">
+          <div class="icon">🤝🏾</div>
+          <h3>Connect</h3>
+          <p>
+            Find your people, build communities, share ideas,
+            and create meaningful connections.
+          </p>
+        </div>
+
+        <div class="card" id="date">
+          <div class="icon">❤️</div>
+          <h3>Date</h3>
+          <p>
+            Meet people, discover relationships, and create
+            connections built around shared values and interests.
+          </p>
+        </div>
+
+        <div class="card" id="build">
+          <div class="icon">🚀</div>
+          <h3>Build</h3>
+          <p>
+            Create, collaborate, promote your work, discover
+            opportunities, and grow together.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🌍🏾</div>
+          <h3>Discover</h3>
+          <p>
+            Explore culture, businesses, events, creators,
+            communities, and experiences.
+          </p>
+        </div>
+
+      </div>
     </section>
 
-    <section class="preview">
-      <div class="section-heading">
-        <p class="eyebrow">THE FIRST CHAPTER</p>
-        <h2>One platform. <em>Many ways to belong.</em></h2>
-        <p>Soulaani is designed to grow with its community. Start with connection, then unlock the rest.</p>
-      </div>
-      <div class="app-grid">
-        <div class="mock feed">
-          <div class="mock-top"><b>Soulaani</b><span>⌕</span></div>
-          <div class="stories"><i>Y</i><i>J</i><i>T</i><i>M</i></div>
-          <div class="post">
-            <small>Jaylon · 4h</small>
-            <h3>Good energy, real ones, and big dreams.</h3>
-            <div class="fake-photo"></div>
-            <div class="stats">♡ 423 &nbsp; ◌ 56 &nbsp; ↗ 12</div>
-          </div>
-        </div>
-        <div class="mock phone">
-          <div class="notch"></div>
-          <div class="phone-brand">Soulaani</div>
-          <div class="profile-row"><i>N</i><span><b>Niaa</b><small>Good energy only.</small></span></div>
-          <div class="fake-photo tall"></div>
-          <div class="bottom-nav">⌂　♧　♡　♧　⌖</div>
-        </div>
-        <div class="mock feature">
-          <div class="feature-title">Coming to Soulaani</div>
-          <div class="feature-card"><span>♥</span><div><b>Dating</b><small>Discover people with shared interests.</small></div></div>
-          <div class="feature-card"><span>⌖</span><div><b>Events</b><small>Find what's happening in your community.</small></div></div>
-          <div class="feature-card"><span>▣</span><div><b>Build</b><small>Turn connections into opportunities.</small></div></div>
-        </div>
+    <section class="section vision" id="about">
+      <div class="vision-box">
+        <h2>More than a social platform.</h2>
+        <p>
+          Soulaani is being built as a digital ecosystem where people
+          can connect socially, discover opportunities, build businesses,
+          find community, express themselves, and experience culture.
+        </p>
       </div>
     </section>
 
-    <section class="cta">
-      <p class="eyebrow">THE BEGINNING</p>
-      <h2>A stronger Black tomorrow<br><em>starts with us.</em></h2>
-      <button class="gold large">Join the Waitlist →</button>
+    <section class="cta" id="join">
+      <h2>Welcome to Soulaani.</h2>
+      <p>
+        The platform is just getting started. This is the beginning
+        of something much bigger.
+      </p>
+
+      <a href="#" class="primary">Join the community</a>
     </section>
+
   </main>
 
   <footer>
-    <div class="brand">Soulaani<span>♛</span></div>
-    <p>Connect. Build. Belong.</p>
-    <small>© 2026 Soulaani. All rights reserved.</small>
+    <div>© 2026 Soulaani</div>
+    <div>Connect. Build. Date. Grow.</div>
   </footer>
 
-  <script src="script.js"></script>
 </body>
 </html>
