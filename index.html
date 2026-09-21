@@ -1,420 +1,398 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Soulaani | Connect. Build. Date. Grow.</title>
+<title>Soulaani Home</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    html {
-      scroll-behavior: smooth;
-    }
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #080808;
+  color: white;
+  padding-bottom: 80px;
+}
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #090909;
-      color: #ffffff;
-      line-height: 1.6;
-    }
+button {
+  font-family: inherit;
+}
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  background: rgba(8,8,8,.95);
+  border-bottom: 1px solid #222;
+  backdrop-filter: blur(15px);
+}
 
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px 7%;
-      background: rgba(9, 9, 9, 0.92);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
+.logo {
+  font-size: 26px;
+  font-weight: 800;
+}
 
-    .logo {
-      font-size: 28px;
-      font-weight: 800;
-      letter-spacing: -1px;
-    }
+.logo span {
+  color: #d99a4e;
+}
 
-    .logo span {
-      color: #d99a4e;
-    }
+.top-icons {
+  display: flex;
+  gap: 16px;
+}
 
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      align-items: center;
-      font-size: 14px;
-      color: #d0d0d0;
-    }
+.icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid #292929;
+  background: #151515;
+  color: white;
+  font-size: 17px;
+}
 
-    .nav-links a:hover {
-      color: #ffffff;
-    }
+.container {
+  max-width: 720px;
+  margin: auto;
+}
 
-    .nav-button {
-      background: #d99a4e;
-      color: #111;
-      padding: 10px 18px;
-      border-radius: 999px;
-      font-weight: 700;
-    }
+.profile-card {
+  padding: 24px 18px;
+  border-bottom: 1px solid #222;
+}
 
-    .hero {
-      min-height: 82vh;
-      display: flex;
-      align-items: center;
-      padding: 80px 7%;
-      background:
-        radial-gradient(circle at 80% 20%, rgba(217,154,78,0.22), transparent 30%),
-        radial-gradient(circle at 20% 80%, rgba(122,63,42,0.25), transparent 32%),
-        #090909;
-    }
+.profile-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
 
-    .hero-content {
-      max-width: 850px;
-    }
+.avatar {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d99a4e, #754326);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bold;
+}
 
-    .eyebrow {
-      display: inline-block;
-      margin-bottom: 22px;
-      padding: 8px 14px;
-      border: 1px solid rgba(217,154,78,0.45);
-      border-radius: 999px;
-      color: #e5b36f;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
+.profile-name {
+  font-size: 18px;
+  font-weight: 700;
+}
 
-    h1 {
-      font-size: clamp(48px, 8vw, 92px);
-      line-height: 0.98;
-      letter-spacing: -4px;
-      max-width: 900px;
-      margin-bottom: 28px;
-    }
+.profile-handle {
+  color: #888;
+  font-size: 14px;
+}
 
-    h1 span {
-      color: #d99a4e;
-    }
+.composer {
+  margin: 18px;
+  padding: 18px;
+  background: #141414;
+  border: 1px solid #262626;
+  border-radius: 18px;
+}
 
-    .hero p {
-      max-width: 650px;
-      color: #bdbdbd;
-      font-size: 19px;
-      margin-bottom: 36px;
-    }
+.composer-top {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
 
-    .buttons {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
+.mini-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #70462c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    .primary,
-    .secondary {
-      display: inline-block;
-      padding: 14px 24px;
-      border-radius: 999px;
-      font-weight: 700;
-      transition: transform 0.2s ease;
-    }
+.composer-input {
+  flex: 1;
+  color: #888;
+  font-size: 15px;
+}
 
-    .primary {
-      background: #d99a4e;
-      color: #111;
-    }
+.composer-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #252525;
+}
 
-    .secondary {
-      border: 1px solid rgba(255,255,255,0.2);
-      color: white;
-    }
+.action-options {
+  display: flex;
+  gap: 14px;
+  color: #d99a4e;
+}
 
-    .primary:hover,
-    .secondary:hover {
-      transform: translateY(-3px);
-    }
+.post-btn {
+  border: none;
+  background: #d99a4e;
+  color: #111;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-weight: bold;
+}
 
-    .section {
-      padding: 90px 7%;
-    }
+.section-label {
+  padding: 8px 18px;
+  color: #888;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
 
-    .section-title {
-      max-width: 700px;
-      margin-bottom: 45px;
-    }
+.post {
+  padding: 20px 18px;
+  border-top: 1px solid #222;
+}
 
-    .section-title h2 {
-      font-size: clamp(34px, 5vw, 56px);
-      letter-spacing: -2px;
-      margin-bottom: 14px;
-    }
+.post-header {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
 
-    .section-title p {
-      color: #999;
-      font-size: 17px;
-    }
+.post-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #3d3029;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    .features {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
+.post-info strong {
+  display: block;
+  font-size: 15px;
+}
 
-    .card {
-      min-height: 250px;
-      padding: 28px;
-      border-radius: 22px;
-      background: linear-gradient(145deg, #171717, #101010);
-      border: 1px solid rgba(255,255,255,0.08);
-      transition: transform 0.25s ease, border-color 0.25s ease;
-    }
+.post-info span {
+  color: #777;
+  font-size: 12px;
+}
 
-    .card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(217,154,78,0.45);
-    }
+.post-text {
+  margin: 16px 0;
+  color: #ddd;
+  font-size: 15px;
+  line-height: 1.6;
+}
 
-    .icon {
-      font-size: 32px;
-      margin-bottom: 35px;
-    }
+.post-actions {
+  display: flex;
+  gap: 28px;
+  color: #888;
+  font-size: 14px;
+}
 
-    .card h3 {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
+.post-actions button {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: inherit;
+}
 
-    .card p {
-      color: #999;
-      font-size: 15px;
-    }
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  height: 70px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: rgba(12,12,12,.97);
+  border-top: 1px solid #252525;
+}
 
-    .vision {
-      background: #111111;
-    }
+.nav-item {
+  color: #777;
+  text-align: center;
+  font-size: 11px;
+}
 
-    .vision-box {
-      max-width: 1000px;
-      padding: 55px;
-      border-radius: 30px;
-      background:
-        radial-gradient(circle at top right, rgba(217,154,78,0.18), transparent 35%),
-        #181818;
-      border: 1px solid rgba(255,255,255,0.08);
-    }
+.nav-item div {
+  font-size: 20px;
+  margin-bottom: 3px;
+}
 
-    .vision-box h2 {
-      font-size: clamp(35px, 5vw, 62px);
-      letter-spacing: -2px;
-      margin-bottom: 20px;
-    }
+.nav-item.active {
+  color: #d99a4e;
+}
 
-    .vision-box p {
-      max-width: 700px;
-      color: #aaa;
-      font-size: 18px;
-    }
-
-    .cta {
-      text-align: center;
-      padding: 110px 7%;
-      background:
-        radial-gradient(circle, rgba(217,154,78,0.16), transparent 45%),
-        #090909;
-    }
-
-    .cta h2 {
-      font-size: clamp(40px, 6vw, 70px);
-      letter-spacing: -3px;
-      margin-bottom: 18px;
-    }
-
-    .cta p {
-      color: #999;
-      max-width: 600px;
-      margin: 0 auto 30px;
-    }
-
-    footer {
-      padding: 35px 7%;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      color: #777;
-      font-size: 14px;
-    }
-
-    @media (max-width: 850px) {
-      .nav-links a:not(.nav-button) {
-        display: none;
-      }
-
-      .features {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      h1 {
-        letter-spacing: -2px;
-      }
-    }
-
-    @media (max-width: 550px) {
-      .hero {
-        min-height: 78vh;
-        padding-top: 65px;
-        padding-bottom: 65px;
-      }
-
-      .features {
-        grid-template-columns: 1fr;
-      }
-
-      .card {
-        min-height: 210px;
-      }
-
-      .vision-box {
-        padding: 32px;
-      }
-
-      footer {
-        flex-direction: column;
-      }
-    }
-  </style>
+@media (min-width: 800px) {
+  .container {
+    border-left: 1px solid #222;
+    border-right: 1px solid #222;
+    min-height: 100vh;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <nav class="nav">
-    <a href="#" class="logo">Soulaani<span>.</span></a>
+<header class="topbar">
+  <div class="logo">Soulaani<span>.</span></div>
 
-    <div class="nav-links">
-      <a href="#connect">Connect</a>
-      <a href="#date">Date</a>
-      <a href="#build">Build</a>
-      <a href="#about">About</a>
-      <a href="#join" class="nav-button">Join Soulaani</a>
+  <div class="top-icons">
+    <button class="icon-btn">⌕</button>
+    <button class="icon-btn">♡</button>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="profile-card">
+    <div class="profile-row">
+      <div class="avatar">S</div>
+
+      <div>
+        <div class="profile-name">Welcome to Soulaani</div>
+        <div class="profile-handle">@soulaani</div>
+      </div>
     </div>
-  </nav>
+  </section>
 
-  <main>
+  <section class="composer">
 
-    <section class="hero">
-      <div class="hero-content">
-        <div class="eyebrow">Built for community</div>
+    <div class="composer-top">
+      <div class="mini-avatar">S</div>
 
-        <h1>
-          Your people.<br>
-          Your culture.<br>
-          <span>Your space.</span>
-        </h1>
-
-        <p>
-          Soulaani is a digital home for connection, culture, love,
-          creativity, business, and growth.
-        </p>
-
-        <div class="buttons">
-          <a href="#join" class="primary">Join Soulaani</a>
-          <a href="#explore" class="secondary">Explore the vision</a>
-        </div>
+      <div class="composer-input">
+        What's on your mind?
       </div>
-    </section>
+    </div>
 
-    <section class="section" id="explore">
+    <div class="composer-actions">
 
-      <div class="section-title">
-        <h2>One platform. Many ways to connect.</h2>
-        <p>
-          Soulaani brings the pieces of community together in one place.
-        </p>
+      <div class="action-options">
+        <span>📷</span>
+        <span>🎥</span>
+        <span>😊</span>
       </div>
 
-      <div class="features">
+      <button class="post-btn">
+        Post
+      </button>
 
-        <div class="card" id="connect">
-          <div class="icon">🤝🏾</div>
-          <h3>Connect</h3>
-          <p>
-            Find your people, build communities, share ideas,
-            and create meaningful connections.
-          </p>
-        </div>
+    </div>
 
-        <div class="card" id="date">
-          <div class="icon">❤️</div>
-          <h3>Date</h3>
-          <p>
-            Meet people, discover relationships, and create
-            connections built around shared values and interests.
-          </p>
-        </div>
+  </section>
 
-        <div class="card" id="build">
-          <div class="icon">🚀</div>
-          <h3>Build</h3>
-          <p>
-            Create, collaborate, promote your work, discover
-            opportunities, and grow together.
-          </p>
-        </div>
+  <div class="section-label">
+    Your Feed
+  </div>
 
-        <div class="card">
-          <div class="icon">🌍🏾</div>
-          <h3>Discover</h3>
-          <p>
-            Explore culture, businesses, events, creators,
-            communities, and experiences.
-          </p>
-        </div>
+  <article class="post">
 
+    <div class="post-header">
+
+      <div class="post-avatar">
+        🌍🏾
       </div>
-    </section>
 
-    <section class="section vision" id="about">
-      <div class="vision-box">
-        <h2>More than a social platform.</h2>
-        <p>
-          Soulaani is being built as a digital ecosystem where people
-          can connect socially, discover opportunities, build businesses,
-          find community, express themselves, and experience culture.
-        </p>
+      <div class="post-info">
+        <strong>Soulaani Community</strong>
+        <span>@soulaani · Just now</span>
       </div>
-    </section>
 
-    <section class="cta" id="join">
-      <h2>Welcome to Soulaani.</h2>
-      <p>
-        The platform is just getting started. This is the beginning
-        of something much bigger.
-      </p>
+    </div>
 
-      <a href="#" class="primary">Join the community</a>
-    </section>
+    <p class="post-text">
+      Welcome to Soulaani. A digital home for connection,
+      culture, creativity, love, business, and growth. 🌍🏾
+    </p>
 
-  </main>
+    <div class="post-actions">
+      <button>♡ Like</button>
+      <button>💬 Comment</button>
+      <button>↗ Share</button>
+    </div>
 
-  <footer>
-    <div>© 2026 Soulaani</div>
-    <div>Connect. Build. Date. Grow.</div>
-  </footer>
+  </article>
+
+  <article class="post">
+
+    <div class="post-header">
+
+      <div class="post-avatar">
+        🚀
+      </div>
+
+      <div class="post-info">
+        <strong>Soulaani Build</strong>
+        <span>@build · Today</span>
+      </div>
+
+    </div>
+
+    <p class="post-text">
+      Build something meaningful. Connect with people who
+      believe in your ideas and discover opportunities to grow.
+    </p>
+
+    <div class="post-actions">
+      <button>♡ Like</button>
+      <button>💬 Comment</button>
+      <button>↗ Share</button>
+    </div>
+
+  </article>
+
+</main>
+
+<nav class="bottom-nav">
+
+  <div class="nav-item active">
+    <div>⌂</div>
+    Home
+  </div>
+
+  <div class="nav-item">
+    <div>♧</div>
+    Connect
+  </div>
+
+  <div class="nav-item">
+    <div>♡</div>
+    Date
+  </div>
+
+  <div class="nav-item">
+    <div>🚀</div>
+    Build
+  </div>
+
+  <div class="nav-item">
+    <div>🌍</div>
+    Discover
+  </div>
+
+</nav>
 
 </body>
 </html>
