@@ -606,14 +606,45 @@ button {
 </nav>
 
 <script>
-function likePost(button) {
+function toggleReactions(button) {
+  const picker = button.parentElement.querySelector(".reaction-picker");
 
-  button.classList.toggle("liked");
+  if (picker) {
+    picker.remove();
+    return;
+  }
 
-  if (button.classList.contains("liked")) {
-    button.innerHTML = "♥ Liked";
-  } else {
-    button.innerHTML = "♡ Like";
+  const newPicker = document.createElement("div");
+  newPicker.className = "reaction-picker";
+
+  const reactions = [
+    ["❤️", "Love"],
+    ["👍🏾", "Like"],
+    ["😂", "Laugh"],
+    ["🔥", "Fire"],
+    ["😮", "Wow"],
+    ["😢", "Sad"],
+    ["👎🏾", "Dislike"]
+  ];
+
+  reactions.forEach(function(reaction) {
+
+    const reactionButton = document.createElement("button");
+
+    reactionButton.innerHTML = reaction[0];
+    reactionButton.title = reaction[1];
+
+    reactionButton.onclick = function() {
+      button.innerHTML = reaction[0] + " " + reaction[1];
+      button.classList.add("liked");
+      newPicker.remove();
+    };
+
+    newPicker.appendChild(reactionButton);
+  });
+
+  button.parentElement.appendChild(newPicker);
+}
   }
 
 }
