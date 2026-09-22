@@ -383,7 +383,9 @@ header {
   background: #211a13;
 }
 
-/* PROFILE PAGE */
+/* =========================
+   PROFILE PAGE
+========================= */
 
 .profile-page-top {
   display: flex;
@@ -496,6 +498,157 @@ header {
 .profile-stat span {
   color: var(--muted);
   font-size: 12px;
+}
+
+/* =========================
+   PROFILE MUSIC
+========================= */
+
+.profile-music {
+  margin-bottom: 24px;
+}
+
+.music-card {
+  background: linear-gradient(135deg, #1d1813, #111);
+  border: 1px solid #3b2b1b;
+  border-radius: 20px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+.music-card::before {
+  content: "";
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  background: var(--gold);
+  opacity: .05;
+  border-radius: 50%;
+  right: -45px;
+  top: -55px;
+}
+
+.music-art {
+  width: 72px;
+  height: 72px;
+  border-radius: 15px;
+  flex-shrink: 0;
+  background:
+    radial-gradient(circle at 30% 25%, #f0bd75 0 7%, transparent 8%),
+    radial-gradient(circle at 70% 65%, #d99a4e 0 10%, transparent 11%),
+    linear-gradient(135deg, #3a2818, #0e0e0e);
+  border: 1px solid #5a3d20;
+  display: grid;
+  place-items: center;
+  font-size: 28px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.3);
+}
+
+.music-info {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+
+.music-label {
+  color: var(--gold);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  margin-bottom: 5px;
+}
+
+.music-title {
+  font-size: 16px;
+  font-weight: 800;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 4px;
+}
+
+.music-artist {
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.music-play {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--gold);
+  color: #111;
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  flex-shrink: 0;
+  transition: transform .15s ease, background .15s ease;
+}
+
+.music-play:hover {
+  transform: scale(1.06);
+  background: var(--gold-light);
+}
+
+.music-card.playing {
+  border-color: var(--gold);
+  box-shadow: 0 0 25px rgba(217,154,78,.08);
+}
+
+.music-card.playing .music-art {
+  animation: musicPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.04);
+  }
+}
+
+.music-edit {
+  background: transparent;
+  border: none;
+  color: #888;
+  font-size: 12px;
+  padding: 4px 0;
+}
+
+.music-edit:hover {
+  color: var(--gold);
+}
+
+@media (max-width: 430px) {
+
+  .music-card {
+    padding: 13px;
+  }
+
+  .music-art {
+    width: 64px;
+    height: 64px;
+  }
+
+  .music-title {
+    font-size: 14px;
+  }
+
+  .music-play {
+    width: 40px;
+    height: 40px;
+  }
+
 }
 
 .interest-list {
@@ -1071,62 +1224,27 @@ header {
   <div class="feature-grid">
 
     <div class="feature-card">
-
       <div class="emoji">👥</div>
-
-      <h3>
-        People
-      </h3>
-
-      <p>
-        Discover people and creators within the Soulaani community.
-      </p>
-
+      <h3>People</h3>
+      <p>Discover people and creators within the Soulaani community.</p>
     </div>
 
-
     <div class="feature-card">
-
       <div class="emoji">🌐</div>
-
-      <h3>
-        Communities
-      </h3>
-
-      <p>
-        Find communities centered around culture, interests and location.
-      </p>
-
+      <h3>Communities</h3>
+      <p>Find communities centered around culture, interests and location.</p>
     </div>
 
-
     <div class="feature-card">
-
       <div class="emoji">💬</div>
-
-      <h3>
-        Conversations
-      </h3>
-
-      <p>
-        Join conversations happening around you.
-      </p>
-
+      <h3>Conversations</h3>
+      <p>Join conversations happening around you.</p>
     </div>
 
-
     <div class="feature-card">
-
       <div class="emoji">🤝🏾</div>
-
-      <h3>
-        Network
-      </h3>
-
-      <p>
-        Build meaningful personal and professional connections.
-      </p>
-
+      <h3>Network</h3>
+      <p>Build meaningful personal and professional connections.</p>
     </div>
 
   </div>
@@ -1154,62 +1272,27 @@ header {
   <div class="feature-grid">
 
     <div class="feature-card">
-
       <div class="emoji">❤️</div>
-
-      <h3>
-        Nearby
-      </h3>
-
-      <p>
-        Discover people based on your selected local area.
-      </p>
-
+      <h3>Nearby</h3>
+      <p>Discover people based on your selected local area.</p>
     </div>
 
-
     <div class="feature-card">
-
       <div class="emoji">✨</div>
-
-      <h3>
-        Discover
-      </h3>
-
-      <p>
-        Explore profiles and interests that match your vibe.
-      </p>
-
+      <h3>Discover</h3>
+      <p>Explore profiles and interests that match your vibe.</p>
     </div>
 
-
     <div class="feature-card">
-
       <div class="emoji">📍</div>
-
-      <h3>
-        Local Dating
-      </h3>
-
-      <p>
-        Connect with people in your city and neighborhood.
-      </p>
-
+      <h3>Local Dating</h3>
+      <p>Connect with people in your city and neighborhood.</p>
     </div>
 
-
     <div class="feature-card">
-
       <div class="emoji">🖤</div>
-
-      <h3>
-        Your Community
-      </h3>
-
-      <p>
-        Dating designed with Black community and culture in mind.
-      </p>
-
+      <h3>Your Community</h3>
+      <p>Dating designed with Black community and culture in mind.</p>
     </div>
 
   </div>
@@ -1237,62 +1320,27 @@ header {
   <div class="feature-grid">
 
     <div class="feature-card">
-
       <div class="emoji">💼</div>
-
-      <h3>
-        Jobs
-      </h3>
-
-      <p>
-        Discover employment and career opportunities.
-      </p>
-
+      <h3>Jobs</h3>
+      <p>Discover employment and career opportunities.</p>
     </div>
 
-
     <div class="feature-card">
-
       <div class="emoji">🚀</div>
-
-      <h3>
-        Businesses
-      </h3>
-
-      <p>
-        Promote your business and connect with customers.
-      </p>
-
+      <h3>Businesses</h3>
+      <p>Promote your business and connect with customers.</p>
     </div>
 
-
     <div class="feature-card">
-
       <div class="emoji">🎨</div>
-
-      <h3>
-        Creators
-      </h3>
-
-      <p>
-        Showcase your work, talent and creative projects.
-      </p>
-
+      <h3>Creators</h3>
+      <p>Showcase your work, talent and creative projects.</p>
     </div>
 
-
     <div class="feature-card">
-
       <div class="emoji">🤝🏾</div>
-
-      <h3>
-        Networking
-      </h3>
-
-      <p>
-        Find people who can help you build what comes next.
-      </p>
-
+      <h3>Networking</h3>
+      <p>Find people who can help you build what comes next.</p>
     </div>
 
   </div>
@@ -1335,48 +1383,29 @@ header {
 
 
   <div class="section-title">
-
-    <h2>
-      Explore the U.S.
-    </h2>
-
+    <h2>Explore the U.S.</h2>
   </div>
 
 
   <div class="region-scroll">
 
-    <button
-      class="region-btn active"
-      onclick="selectRegion('Northeast', this)"
-    >
+    <button class="region-btn active" onclick="selectRegion('Northeast', this)">
       Northeast
     </button>
 
-    <button
-      class="region-btn"
-      onclick="selectRegion('South', this)"
-    >
+    <button class="region-btn" onclick="selectRegion('South', this)">
       South
     </button>
 
-    <button
-      class="region-btn"
-      onclick="selectRegion('Midwest', this)"
-    >
+    <button class="region-btn" onclick="selectRegion('Midwest', this)">
       Midwest
     </button>
 
-    <button
-      class="region-btn"
-      onclick="selectRegion('West', this)"
-    >
+    <button class="region-btn" onclick="selectRegion('West', this)">
       West
     </button>
 
-    <button
-      class="region-btn"
-      onclick="selectRegion('Territories', this)"
-    >
+    <button class="region-btn" onclick="selectRegion('Territories', this)">
       Territories
     </button>
 
@@ -1387,9 +1416,7 @@ header {
 
     <div class="selector-wrap">
 
-      <label>
-        State
-      </label>
+      <label>State</label>
 
       <select
         id="stateSelect"
@@ -1401,9 +1428,7 @@ header {
 
     <div class="selector-wrap">
 
-      <label>
-        City
-      </label>
+      <label>City</label>
 
       <select
         id="citySelect"
@@ -1415,9 +1440,7 @@ header {
 
     <div class="selector-wrap">
 
-      <label>
-        Local Area
-      </label>
+      <label>Local Area</label>
 
       <select
         id="neighborhoodSelect"
@@ -1453,104 +1476,39 @@ header {
   <div class="local-grid">
 
     <div class="local-card">
-
-      <div class="card-icon">
-        👥
-      </div>
-
-      <h3>
-        People
-      </h3>
-
-      <p id="peopleText">
-        Discover people around Philadelphia.
-      </p>
-
+      <div class="card-icon">👥</div>
+      <h3>People</h3>
+      <p id="peopleText">Discover people around Philadelphia.</p>
     </div>
 
-
     <div class="local-card">
-
-      <div class="card-icon">
-        🏪
-      </div>
-
-      <h3>
-        Businesses
-      </h3>
-
-      <p id="businessText">
-        Discover Black-owned businesses in the area.
-      </p>
-
+      <div class="card-icon">🏪</div>
+      <h3>Businesses</h3>
+      <p id="businessText">Discover Black-owned businesses in the area.</p>
     </div>
 
-
     <div class="local-card">
-
-      <div class="card-icon">
-        📅
-      </div>
-
-      <h3>
-        Events
-      </h3>
-
-      <p id="eventText">
-        See what's happening nearby.
-      </p>
-
+      <div class="card-icon">📅</div>
+      <h3>Events</h3>
+      <p id="eventText">See what's happening nearby.</p>
     </div>
 
-
     <div class="local-card">
-
-      <div class="card-icon">
-        🍽️
-      </div>
-
-      <h3>
-        Food
-      </h3>
-
-      <p id="foodText">
-        Find local food and dining conversations.
-      </p>
-
+      <div class="card-icon">🍽️</div>
+      <h3>Food</h3>
+      <p id="foodText">Find local food and dining conversations.</p>
     </div>
 
-
     <div class="local-card">
-
-      <div class="card-icon">
-        🎵
-      </div>
-
-      <h3>
-        Music
-      </h3>
-
-      <p id="musicText">
-        Discover artists and sounds from the area.
-      </p>
-
+      <div class="card-icon">🎵</div>
+      <h3>Music</h3>
+      <p id="musicText">Discover artists and sounds from the area.</p>
     </div>
 
-
     <div class="local-card">
-
-      <div class="card-icon">
-        💼
-      </div>
-
-      <h3>
-        Opportunities
-      </h3>
-
-      <p id="opportunityText">
-        Jobs, networking and opportunities nearby.
-      </p>
-
+      <div class="card-icon">💼</div>
+      <h3>Opportunities</h3>
+      <p id="opportunityText">Jobs, networking and opportunities nearby.</p>
     </div>
 
   </div>
@@ -1562,9 +1520,7 @@ header {
       What's happening in Philadelphia
     </h2>
 
-    <span>
-      Local
-    </span>
+    <span>Local</span>
 
   </div>
 
@@ -1853,40 +1809,87 @@ header {
   <div class="profile-stats">
 
     <div class="profile-stat">
+      <strong>428</strong>
+      <span>Followers</span>
+    </div>
 
-      <strong>
-        428
-      </strong>
+    <div class="profile-stat">
+      <strong>187</strong>
+      <span>Following</span>
+    </div>
 
-      <span>
-        Followers
-      </span>
+    <div class="profile-stat">
+      <strong>32</strong>
+      <span>Posts</span>
+    </div>
+
+  </div>
+
+
+  <!-- PROFILE MUSIC -->
+
+  <div class="profile-music">
+
+    <div class="section-title">
+
+      <h2>
+        Music
+      </h2>
+
+      <button
+        class="music-edit"
+        onclick="editMusic()"
+      >
+        Edit
+      </button>
 
     </div>
 
 
-    <div class="profile-stat">
+    <div
+      class="music-card"
+      id="profileMusicCard"
+    >
 
-      <strong>
-        187
-      </strong>
-
-      <span>
-        Following
-      </span>
-
-    </div>
+      <div
+        class="music-art"
+        id="profileMusicArt"
+      >
+        🎵
+      </div>
 
 
-    <div class="profile-stat">
+      <div class="music-info">
 
-      <strong>
-        32
-      </strong>
+        <div class="music-label">
+          FEATURED MUSIC
+        </div>
 
-      <span>
-        Posts
-      </span>
+        <div
+          class="music-title"
+          id="profileMusicTitle"
+        >
+          My Featured Song
+        </div>
+
+        <div
+          class="music-artist"
+          id="profileMusicArtist"
+        >
+          Select your favorite artist
+        </div>
+
+      </div>
+
+
+      <button
+        class="music-play"
+        id="profileMusicPlay"
+        onclick="toggleProfileMusic()"
+        aria-label="Play featured music"
+      >
+        ▶
+      </button>
 
     </div>
 
@@ -1904,29 +1907,12 @@ header {
 
   <div class="interest-list">
 
-    <div class="interest">
-      Music
-    </div>
-
-    <div class="interest">
-      Entrepreneurship
-    </div>
-
-    <div class="interest">
-      Culture
-    </div>
-
-    <div class="interest">
-      Technology
-    </div>
-
-    <div class="interest">
-      Fashion
-    </div>
-
-    <div class="interest">
-      Community
-    </div>
+    <div class="interest">Music</div>
+    <div class="interest">Entrepreneurship</div>
+    <div class="interest">Culture</div>
+    <div class="interest">Technology</div>
+    <div class="interest">Fashion</div>
+    <div class="interest">Community</div>
 
   </div>
 
@@ -2121,7 +2107,6 @@ header {
     Home
   </button>
 
-
   <button
     class="nav-btn"
     onclick="showPage('connect', this)"
@@ -2129,7 +2114,6 @@ header {
     <span>♧</span>
     Connect
   </button>
-
 
   <button
     class="nav-btn"
@@ -2139,7 +2123,6 @@ header {
     Date
   </button>
 
-
   <button
     class="nav-btn"
     onclick="showPage('build', this)"
@@ -2147,7 +2130,6 @@ header {
     <span>◈</span>
     Build
   </button>
-
 
   <button
     class="nav-btn"
@@ -2174,7 +2156,8 @@ function showPage(pageId, navItem) {
     page.classList.remove('active');
   });
 
-  const page = document.getElementById(pageId);
+  const page =
+    document.getElementById(pageId);
 
   if (page) {
     page.classList.add('active');
@@ -2202,7 +2185,7 @@ function showPage(pageId, navItem) {
    PROFILE
 ========================= */
 
-function openProfile() {
+function openProfile(profileId = "luhhtrilly") {
 
   document.querySelectorAll('.page').forEach(page => {
     page.classList.remove('active');
@@ -2213,6 +2196,8 @@ function openProfile() {
   document.querySelectorAll('.nav-btn').forEach(btn => {
     btn.classList.remove('active');
   });
+
+  renderProfileMusic(profileId);
 
   window.scrollTo({
     top: 0,
@@ -2258,6 +2243,114 @@ function showProfileTab(tab, button) {
     communities.style.display = 'block';
 
   }
+
+}
+
+
+/* =========================
+   PROFILE MUSIC
+========================= */
+
+const profileMusic = {
+
+  luhhtrilly: {
+    title: "My Featured Song",
+    artist: "Select your favorite artist",
+    artwork: "🎵"
+  }
+
+};
+
+
+let profileMusicPlaying = false;
+
+
+function renderProfileMusic(profileId = "luhhtrilly") {
+
+  const music =
+    profileMusic[profileId];
+
+  if (!music) return;
+
+
+  const title =
+    document.getElementById('profileMusicTitle');
+
+  const artist =
+    document.getElementById('profileMusicArtist');
+
+  const artwork =
+    document.getElementById('profileMusicArt');
+
+
+  if (title) {
+    title.textContent =
+      music.title;
+  }
+
+  if (artist) {
+    artist.textContent =
+      music.artist;
+  }
+
+  if (artwork) {
+    artwork.textContent =
+      music.artwork;
+  }
+
+}
+
+
+function toggleProfileMusic() {
+
+  const card =
+    document.getElementById('profileMusicCard');
+
+  const button =
+    document.getElementById('profileMusicPlay');
+
+
+  if (!card || !button) return;
+
+
+  profileMusicPlaying =
+    !profileMusicPlaying;
+
+
+  if (profileMusicPlaying) {
+
+    card.classList.add('playing');
+
+    button.textContent =
+      "❚❚";
+
+    button.setAttribute(
+      'aria-label',
+      'Pause featured music'
+    );
+
+  } else {
+
+    card.classList.remove('playing');
+
+    button.textContent =
+      "▶";
+
+    button.setAttribute(
+      'aria-label',
+      'Play featured music'
+    );
+
+  }
+
+}
+
+
+function editMusic() {
+
+  alert(
+    "Music selection will connect to your music library next. Each Soulaani user will be able to choose the music displayed on their profile."
+  );
 
 }
 
@@ -3070,7 +3163,8 @@ function selectRegion(region, button) {
     button.classList.add('active');
   }
 
-  const states = regions[region] || [];
+  const states =
+    regions[region] || [];
 
   const stateSelect =
     document.getElementById('stateSelect');
@@ -3568,6 +3662,8 @@ document.addEventListener(
 
 
     updateLocalFYP();
+
+    renderProfileMusic('luhhtrilly');
 
   }
 );
