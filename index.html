@@ -32,7 +32,8 @@ body {
 
 button,
 select,
-input {
+input,
+textarea {
   font: inherit;
 }
 
@@ -412,6 +413,57 @@ header {
   text-align: center;
 }
 
+.profile-cover {
+  height: 170px;
+  border-radius: 24px 24px 0 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(240,189,117,.25), transparent 30%),
+    radial-gradient(circle at 80% 20%, rgba(217,154,78,.18), transparent 35%),
+    linear-gradient(135deg, #2a1d12, #111);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: -55px;
+}
+
+.profile-cover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255,255,255,.03) 45%,
+      transparent 70%
+    );
+}
+
+.profile-cover-edit {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  z-index: 2;
+  background: rgba(0,0,0,.55);
+  color: white;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 18px;
+  padding: 8px 12px;
+  font-size: 12px;
+}
+
+.profile-cover-edit:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.profile-avatar-wrap {
+  position: relative;
+  width: 120px;
+  margin: 0 auto 15px;
+  z-index: 3;
+}
+
 .profile-large-avatar {
   width: 110px;
   height: 110px;
@@ -421,14 +473,39 @@ header {
   place-items: center;
   font-size: 38px;
   font-weight: 800;
-  margin: 0 auto 15px;
+  margin: 0 auto;
   border: 4px solid #272016;
   box-shadow: 0 0 0 2px var(--gold);
+}
+
+.profile-avatar-edit {
+  position: absolute;
+  right: -2px;
+  bottom: 5px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--bg);
+  background: var(--gold);
+  color: #111;
+  font-size: 14px;
 }
 
 .full-profile h1 {
   font-size: 29px;
   margin-bottom: 5px;
+}
+
+.profile-name-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+
+.profile-verified {
+  color: var(--gold);
+  font-size: 16px;
 }
 
 .username {
@@ -455,9 +532,11 @@ header {
   justify-content: center;
   gap: 9px;
   margin-bottom: 25px;
+  flex-wrap: wrap;
 }
 
-.profile-btn {
+.profile-btn,
+.share-profile-btn {
   border: 1px solid var(--border);
   background: var(--card);
   color: white;
@@ -472,6 +551,17 @@ header {
   font-weight: bold;
 }
 
+.profile-btn:hover,
+.share-profile-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.profile-btn.primary:hover {
+  color: #111;
+  background: var(--gold-light);
+}
+
 .profile-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -484,6 +574,7 @@ header {
 
 .profile-stat {
   border-right: 1px solid var(--border);
+  text-align: center;
 }
 
 .profile-stat:last-child {
@@ -498,6 +589,141 @@ header {
 .profile-stat span {
   color: var(--muted);
   font-size: 12px;
+}
+
+/* =========================
+   PROFILE EDITOR
+========================= */
+
+.profile-editor-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.75);
+  backdrop-filter: blur(8px);
+  z-index: 100;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.profile-editor-overlay.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-editor {
+  width: min(560px, 100%);
+  background: #151515;
+  border: 1px solid #333;
+  border-radius: 24px;
+  padding: 22px;
+  box-shadow: 0 25px 80px rgba(0,0,0,.55);
+}
+
+.editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.editor-header h2 {
+  font-size: 22px;
+}
+
+.editor-close {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--card2);
+  color: white;
+  font-size: 20px;
+}
+
+.editor-close:hover {
+  border-color: var(--gold);
+}
+
+.editor-group {
+  margin-bottom: 17px;
+}
+
+.editor-group label {
+  display: block;
+  color: #aaa;
+  font-size: 12px;
+  margin-bottom: 7px;
+}
+
+.editor-group input,
+.editor-group textarea {
+  width: 100%;
+  background: #0f0f0f;
+  border: 1px solid #333;
+  color: white;
+  border-radius: 13px;
+  padding: 12px 13px;
+  outline: none;
+}
+
+.editor-group textarea {
+  min-height: 100px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.editor-group input:focus,
+.editor-group textarea:focus {
+  border-color: var(--gold);
+}
+
+.editor-interests {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.editor-interest {
+  border: 1px solid #3b2b1b;
+  background: #211a13;
+  color: #bbb;
+  border-radius: 18px;
+  padding: 8px 12px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.editor-interest.selected {
+  color: #111;
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+.editor-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.editor-actions button {
+  flex: 1;
+  padding: 12px;
+  border-radius: 20px;
+}
+
+.editor-cancel {
+  background: #202020;
+  border: 1px solid var(--border);
+  color: white;
+}
+
+.editor-save {
+  background: var(--gold);
+  border: none;
+  color: #111;
+  font-weight: 800;
 }
 
 /* =========================
@@ -718,7 +944,9 @@ header {
   margin-top: 3px;
 }
 
-/* DISCOVER */
+/* =========================
+   DISCOVER
+========================= */
 
 .location-panel {
   background: linear-gradient(135deg, #1d1813, #111);
@@ -870,7 +1098,9 @@ header {
   font-size: 13px;
 }
 
-/* OTHER PAGES */
+/* =========================
+   OTHER PAGES
+========================= */
 
 .feature-grid {
   display: grid;
@@ -928,6 +1158,20 @@ header {
     font-size: 34px;
   }
 
+  .profile-cover {
+    height: 145px;
+  }
+
+  .profile-buttons {
+    gap: 7px;
+  }
+
+  .profile-btn,
+  .share-profile-btn {
+    padding: 9px 13px;
+    font-size: 12px;
+  }
+
 }
 </style>
 </head>
@@ -957,7 +1201,9 @@ header {
 </header>
 
 
-<!-- HOME -->
+<!-- =========================
+     HOME
+========================= -->
 
 <section id="home" class="page active">
 
@@ -979,17 +1225,20 @@ header {
     onclick="openProfile()"
   >
 
-    <div class="avatar">
+    <div
+      class="avatar"
+      id="homeAvatar"
+    >
       LT
     </div>
 
     <div class="profile-info">
 
-      <h2>
+      <h2 id="homeProfileName">
         LuhhTrilly
       </h2>
 
-      <p>
+      <p id="homeProfileBio">
         Building the future of Black digital community.
       </p>
 
@@ -1091,7 +1340,10 @@ header {
 
     <div class="composer-top">
 
-      <div class="mini-avatar">
+      <div
+        class="mini-avatar"
+        id="homeComposerAvatar"
+      >
         LT
       </div>
 
@@ -1204,7 +1456,9 @@ header {
 </section>
 
 
-<!-- CONNECT -->
+<!-- =========================
+     CONNECT
+========================= -->
 
 <section id="connect" class="page">
 
@@ -1252,7 +1506,9 @@ header {
 </section>
 
 
-<!-- DATE -->
+<!-- =========================
+     DATE
+========================= -->
 
 <section id="date" class="page">
 
@@ -1300,7 +1556,9 @@ header {
 </section>
 
 
-<!-- BUILD -->
+<!-- =========================
+     BUILD
+========================= -->
 
 <section id="build" class="page">
 
@@ -1348,7 +1606,9 @@ header {
 </section>
 
 
-<!-- DISCOVER -->
+<!-- =========================
+     DISCOVER
+========================= -->
 
 <section id="discover" class="page">
 
@@ -1741,7 +2001,9 @@ header {
 </section>
 
 
-<!-- PROFILE -->
+<!-- =========================
+     PROFILE
+========================= -->
 
 <section id="profile" class="page">
 
@@ -1761,26 +2023,77 @@ header {
   </div>
 
 
+  <div class="profile-cover">
+
+    <button
+      class="profile-cover-edit"
+      onclick="editProfile()"
+    >
+      ✎ Edit Cover
+    </button>
+
+  </div>
+
+
   <div class="full-profile">
 
-    <div class="profile-large-avatar">
-      LT
+    <div class="profile-avatar-wrap">
+
+      <div
+        class="profile-large-avatar"
+        id="profileAvatar"
+      >
+        LT
+      </div>
+
+      <button
+        class="profile-avatar-edit"
+        onclick="editProfile()"
+        aria-label="Edit profile photo"
+      >
+        ✎
+      </button>
+
     </div>
 
-    <h1>
-      LuhhTrilly
-    </h1>
 
-    <div class="username">
+    <div class="profile-name-row">
+
+      <h1 id="profileDisplayName">
+        LuhhTrilly
+      </h1>
+
+      <span
+        class="profile-verified"
+        title="Verified"
+      >
+        ✓
+      </span>
+
+    </div>
+
+
+    <div
+      class="username"
+      id="profileUsername"
+    >
       @luhhtrilly
     </div>
 
-    <p class="profile-bio">
+
+    <p
+      class="profile-bio"
+      id="profileBio"
+    >
       Building the future of Black digital community.
       Connecting culture, people, creativity and opportunity.
     </p>
 
-    <div class="profile-location">
+
+    <div
+      class="profile-location"
+      id="profileLocation"
+    >
       📍 Philadelphia, Pennsylvania
     </div>
 
@@ -1792,6 +2105,13 @@ header {
         onclick="editProfile()"
       >
         Edit Profile
+      </button>
+
+      <button
+        class="share-profile-btn"
+        onclick="shareProfile()"
+      >
+        Share
       </button>
 
       <button
@@ -1905,16 +2225,10 @@ header {
   </div>
 
 
-  <div class="interest-list">
-
-    <div class="interest">Music</div>
-    <div class="interest">Entrepreneurship</div>
-    <div class="interest">Culture</div>
-    <div class="interest">Technology</div>
-    <div class="interest">Fashion</div>
-    <div class="interest">Community</div>
-
-  </div>
+  <div
+    class="interest-list"
+    id="profileInterests"
+  ></div>
 
 
   <div class="profile-tabs">
@@ -1942,13 +2256,19 @@ header {
 
       <div class="post-header">
 
-        <div class="mini-avatar">
+        <div
+          class="mini-avatar"
+          id="profilePostAvatar"
+        >
           LT
         </div>
 
         <div>
 
-          <div class="post-user">
+          <div
+            class="post-user"
+            id="profilePostName"
+          >
             LuhhTrilly
           </div>
 
@@ -2095,7 +2415,224 @@ header {
 </section>
 
 
-<!-- BOTTOM NAV -->
+<!-- =========================
+     PROFILE EDITOR
+========================= -->
+
+<div
+  id="profileEditorOverlay"
+  class="profile-editor-overlay"
+>
+
+  <div class="profile-editor">
+
+    <div class="editor-header">
+
+      <h2>
+        Edit Profile
+      </h2>
+
+      <button
+        class="editor-close"
+        onclick="closeProfileEditor()"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="editor-group">
+
+      <label>
+        Display Name
+      </label>
+
+      <input
+        id="editDisplayName"
+        type="text"
+        maxlength="40"
+      >
+
+    </div>
+
+
+    <div class="editor-group">
+
+      <label>
+        Username
+      </label>
+
+      <input
+        id="editUsername"
+        type="text"
+        maxlength="30"
+      >
+
+    </div>
+
+
+    <div class="editor-group">
+
+      <label>
+        Bio
+      </label>
+
+      <textarea
+        id="editBio"
+        maxlength="180"
+      ></textarea>
+
+    </div>
+
+
+    <div class="editor-group">
+
+      <label>
+        Location
+      </label>
+
+      <input
+        id="editLocation"
+        type="text"
+        maxlength="60"
+      >
+
+    </div>
+
+
+    <div class="editor-group">
+
+      <label>
+        Interests
+      </label>
+
+      <div
+        class="editor-interests"
+        id="editorInterests"
+      >
+
+        <button
+          type="button"
+          class="editor-interest"
+          data-interest="Music"
+          onclick="toggleInterest(this)"
+        >
+          Music
+        </button>
+
+        <button
+          type="button"
+          class="editor-interest"
+          data-interest="Entrepreneurship"
+          onclick="toggleInterest(this)"
+        >
+          Entrepreneurship
+        </button>
+
+        <button
+          type="button"
+          class="editor-interest"
+          data-interest="Culture"
+          onclick="toggleInterest(this)"
+        >
+          Culture
+        </button>
+
+        <button
+          type="button"
+          class="editor-interest"
+          data-interest="Technology"
+          onclick="toggleInterest(this)"
+        >
+          Technology
+        </button>
+
+        <button
+          type="button"
+          class="editor-interest"
+          data-interest="Fashion"
+          onclick="toggleInterest(this)"
+        >
+          Fashion
+        </button>
+
+        <button
+          type="button"
+          class="editor-interest"
+          data-interest="Community"
+          onclick="toggleInterest(this)"
+        >
+          Community
+        </button>
+
+        <button
+          type="button"
+          class="editor-interest"
+          data-interest="Sports"
+          onclick="toggleInterest(this)"
+        >
+          Sports
+        </button>
+
+        <button
+          type="button"
+          class="editor-interest"
+          data-interest="Gaming"
+          onclick="toggleInterest(this)"
+        >
+          Gaming
+        </button>
+
+        <button
+          type="button"
+          class="editor-interest"
+          data-interest="Beauty"
+          onclick="toggleInterest(this)"
+        >
+          Beauty
+        </button>
+
+        <button
+          type="button"
+          class="editor-interest"
+          data-interest="Food"
+          onclick="toggleInterest(this)"
+        >
+          Food
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="editor-actions">
+
+      <button
+        class="editor-cancel"
+        onclick="closeProfileEditor()"
+      >
+        Cancel
+      </button>
+
+      <button
+        class="editor-save"
+        onclick="saveProfile()"
+      >
+        Save Changes
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     BOTTOM NAV
+========================= -->
 
 <nav class="bottom-nav">
 
@@ -2182,6 +2719,54 @@ function showPage(pageId, navItem) {
 
 
 /* =========================
+   PROFILE DATA
+========================= */
+
+const defaultProfile = {
+
+  displayName: "LuhhTrilly",
+
+  username: "luhhtrilly",
+
+  bio:
+    "Building the future of Black digital community. Connecting culture, people, creativity and opportunity.",
+
+  location:
+    "Philadelphia, Pennsylvania",
+
+  initials:
+    "LT",
+
+  interests: [
+    "Music",
+    "Entrepreneurship",
+    "Culture",
+    "Technology",
+    "Fashion",
+    "Community"
+  ]
+
+};
+
+
+let userProfile;
+
+try {
+
+  userProfile =
+    JSON.parse(
+      localStorage.getItem("soulaaniProfile")
+    ) || defaultProfile;
+
+} catch (error) {
+
+  userProfile =
+    defaultProfile;
+
+}
+
+
+/* =========================
    PROFILE
 ========================= */
 
@@ -2199,6 +2784,8 @@ function openProfile(profileId = "luhhtrilly") {
 
   renderProfileMusic(profileId);
 
+  renderUserProfile();
+
   window.scrollTo({
     top: 0,
     behavior: 'smooth'
@@ -2207,14 +2794,458 @@ function openProfile(profileId = "luhhtrilly") {
 }
 
 
+/* =========================
+   PROFILE RENDERING
+========================= */
+
+function renderUserProfile() {
+
+  const name =
+    document.getElementById("profileDisplayName");
+
+  const username =
+    document.getElementById("profileUsername");
+
+  const bio =
+    document.getElementById("profileBio");
+
+  const location =
+    document.getElementById("profileLocation");
+
+  const avatar =
+    document.getElementById("profileAvatar");
+
+  const homeName =
+    document.getElementById("homeProfileName");
+
+  const homeBio =
+    document.getElementById("homeProfileBio");
+
+  const homeAvatar =
+    document.getElementById("homeAvatar");
+
+  const composerAvatar =
+    document.getElementById("homeComposerAvatar");
+
+  const postAvatar =
+    document.getElementById("profilePostAvatar");
+
+  const postName =
+    document.getElementById("profilePostName");
+
+
+  if (name) {
+    name.textContent =
+      userProfile.displayName;
+  }
+
+
+  if (username) {
+    username.textContent =
+      "@" + userProfile.username;
+  }
+
+
+  if (bio) {
+    bio.textContent =
+      userProfile.bio;
+  }
+
+
+  if (location) {
+    location.textContent =
+      "📍 " + userProfile.location;
+  }
+
+
+  if (avatar) {
+    avatar.textContent =
+      userProfile.initials;
+  }
+
+
+  if (homeName) {
+    homeName.textContent =
+      userProfile.displayName;
+  }
+
+
+  if (homeBio) {
+    homeBio.textContent =
+      userProfile.bio;
+  }
+
+
+  if (homeAvatar) {
+    homeAvatar.textContent =
+      userProfile.initials;
+  }
+
+
+  if (composerAvatar) {
+    composerAvatar.textContent =
+      userProfile.initials;
+  }
+
+
+  if (postAvatar) {
+    postAvatar.textContent =
+      userProfile.initials;
+  }
+
+
+  if (postName) {
+    postName.textContent =
+      userProfile.displayName;
+  }
+
+
+  renderInterests();
+
+}
+
+
+/* =========================
+   EDIT PROFILE
+========================= */
+
 function editProfile() {
 
-  alert(
-    "Profile editing will be connected to your account system next."
+  const nameInput =
+    document.getElementById(
+      "editDisplayName"
+    );
+
+  const usernameInput =
+    document.getElementById(
+      "editUsername"
+    );
+
+  const bioInput =
+    document.getElementById(
+      "editBio"
+    );
+
+  const locationInput =
+    document.getElementById(
+      "editLocation"
+    );
+
+
+  if (nameInput) {
+    nameInput.value =
+      userProfile.displayName;
+  }
+
+
+  if (usernameInput) {
+    usernameInput.value =
+      userProfile.username;
+  }
+
+
+  if (bioInput) {
+    bioInput.value =
+      userProfile.bio;
+  }
+
+
+  if (locationInput) {
+    locationInput.value =
+      userProfile.location;
+  }
+
+
+  document.querySelectorAll(
+    ".editor-interest"
+  ).forEach(button => {
+
+    const interest =
+      button.dataset.interest;
+
+    button.classList.toggle(
+      "selected",
+      userProfile.interests.includes(interest)
+    );
+
+  });
+
+
+  document.getElementById(
+    "profileEditorOverlay"
+  ).classList.add("active");
+
+}
+
+
+/* =========================
+   CLOSE PROFILE EDITOR
+========================= */
+
+function closeProfileEditor() {
+
+  document.getElementById(
+    "profileEditorOverlay"
+  ).classList.remove("active");
+
+}
+
+
+/* =========================
+   INTEREST TOGGLE
+========================= */
+
+function toggleInterest(button) {
+
+  button.classList.toggle(
+    "selected"
   );
 
 }
 
+
+/* =========================
+   SAVE PROFILE
+========================= */
+
+function saveProfile() {
+
+  const displayName =
+    document.getElementById(
+      "editDisplayName"
+    ).value.trim();
+
+
+  const username =
+    document.getElementById(
+      "editUsername"
+    ).value
+      .trim()
+      .replace(/^@/, "")
+      .replace(/\s+/g, "")
+      .toLowerCase();
+
+
+  const bio =
+    document.getElementById(
+      "editBio"
+    ).value.trim();
+
+
+  const location =
+    document.getElementById(
+      "editLocation"
+    ).value.trim();
+
+
+  if (!displayName) {
+
+    alert(
+      "Please enter a display name."
+    );
+
+    return;
+
+  }
+
+
+  if (!username) {
+
+    alert(
+      "Please enter a username."
+    );
+
+    return;
+
+  }
+
+
+  const initials =
+    displayName
+      .split(/\s+/)
+      .map(word => word.charAt(0))
+      .join("")
+      .slice(0, 2)
+      .toUpperCase();
+
+
+  const interests = [];
+
+
+  document.querySelectorAll(
+    ".editor-interest.selected"
+  ).forEach(button => {
+
+    interests.push(
+      button.dataset.interest
+    );
+
+  });
+
+
+  userProfile = {
+
+    displayName,
+
+    username,
+
+    bio:
+      bio ||
+      "Welcome to my Soulaani profile.",
+
+    location:
+      location ||
+      "United States",
+
+    initials,
+
+    interests
+
+  };
+
+
+  localStorage.setItem(
+    "soulaaniProfile",
+    JSON.stringify(userProfile)
+  );
+
+
+  renderUserProfile();
+
+  closeProfileEditor();
+
+}
+
+
+/* =========================
+   RENDER INTERESTS
+========================= */
+
+function renderInterests() {
+
+  const container =
+    document.getElementById(
+      "profileInterests"
+    );
+
+
+  if (!container) return;
+
+
+  container.innerHTML = "";
+
+
+  if (
+    !userProfile.interests ||
+    userProfile.interests.length === 0
+  ) {
+
+    const empty =
+      document.createElement("div");
+
+    empty.className =
+      "empty-note";
+
+    empty.textContent =
+      "No interests added yet.";
+
+    container.appendChild(empty);
+
+    return;
+
+  }
+
+
+  userProfile.interests.forEach(
+    interest => {
+
+      const tag =
+        document.createElement("div");
+
+      tag.className =
+        "interest";
+
+      tag.textContent =
+        interest;
+
+      container.appendChild(tag);
+
+    }
+  );
+
+}
+
+
+/* =========================
+   SHARE PROFILE
+========================= */
+
+async function shareProfile() {
+
+  const profileUrl =
+    window.location.href.split("#")[0]
+    + "#profile/"
+    + encodeURIComponent(
+      userProfile.username
+    );
+
+
+  if (
+    navigator.share
+  ) {
+
+    try {
+
+      await navigator.share({
+
+        title:
+          `${userProfile.displayName} on Soulaani`,
+
+        text:
+          `Check out ${userProfile.displayName}'s profile on Soulaani.`,
+
+        url:
+          profileUrl
+
+      });
+
+    } catch (error) {
+
+      console.log(
+        "Share cancelled."
+      );
+
+    }
+
+    return;
+
+  }
+
+
+  try {
+
+    await navigator.clipboard.writeText(
+      profileUrl
+    );
+
+    alert(
+      "Soulaani profile link copied!"
+    );
+
+  } catch (error) {
+
+    alert(
+      profileUrl
+    );
+
+  }
+
+}
+
+
+/* =========================
+   PROFILE TABS
+========================= */
 
 function showProfileTab(tab, button) {
 
@@ -3609,6 +4640,70 @@ function addComment(inputId, commentsId) {
 
 
 /* =========================
+   CLOSE MODAL WHEN CLICKING
+   OUTSIDE EDITOR
+========================= */
+
+document.addEventListener(
+  'click',
+  function(event) {
+
+    const overlay =
+      document.getElementById(
+        'profileEditorOverlay'
+      );
+
+    const editor =
+      document.querySelector(
+        '.profile-editor'
+      );
+
+    if (
+      overlay &&
+      overlay.classList.contains('active') &&
+      event.target === overlay &&
+      !editor.contains(event.target)
+    ) {
+
+      closeProfileEditor();
+
+    }
+
+  }
+);
+
+
+/* =========================
+   ESCAPE KEY
+========================= */
+
+document.addEventListener(
+  'keydown',
+  function(event) {
+
+    if (event.key !== 'Escape') {
+      return;
+    }
+
+    const overlay =
+      document.getElementById(
+        'profileEditorOverlay'
+      );
+
+    if (
+      overlay &&
+      overlay.classList.contains('active')
+    ) {
+
+      closeProfileEditor();
+
+    }
+
+  }
+);
+
+
+/* =========================
    INITIALIZE
 ========================= */
 
@@ -3664,6 +4759,8 @@ document.addEventListener(
     updateLocalFYP();
 
     renderProfileMusic('luhhtrilly');
+
+    renderUserProfile();
 
   }
 );
