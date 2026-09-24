@@ -3,1032 +3,728 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Soulaani</title>
 
 <style>
-
-*{
-box-sizing:border-box;
-margin:0;
-padding:0;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-:root{
---bg:#090909;
---card:#141414;
---card2:#1b1b1b;
---border:#292929;
---text:#fff;
---muted:#999;
---accent:#9b5cff;
---accent2:#c78cff;
---danger:#ff5c70;
---green:#35d07f;
+:root {
+  --bg: #090909;
+  --card: #141414;
+  --card2: #1b1b1b;
+  --border: #292929;
+  --text: #ffffff;
+  --muted: #999999;
+  --soft: #707070;
+  --accent: #9b5cff;
+  --accent2: #c78cff;
+  --green: #35d07f;
+  --danger: #ff5c70;
 }
 
-body{
-background:var(--bg);
-color:var(--text);
-font-family:Arial,Helvetica,sans-serif;
-min-height:100vh;
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
 }
 
 button,
 input,
-textarea,
-select{
-font:inherit;
+textarea {
+  font: inherit;
 }
 
-button{
-cursor:pointer;
+button {
+  cursor: pointer;
 }
 
-.app{
-min-height:100vh;
-}
-
-/* =========================
-HEADER
-========================= */
-
-.header{
-height:68px;
-border-bottom:1px solid var(--border);
-background:rgba(9,9,9,.96);
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 28px;
-position:sticky;
-top:0;
-z-index:100;
-backdrop-filter:blur(15px);
-}
-
-.logo{
-font-size:25px;
-font-weight:800;
-letter-spacing:-1px;
-}
-
-.logo span{
-color:var(--accent);
-}
-
-.header-search{
-width:340px;
-background:#151515;
-border:1px solid var(--border);
-border-radius:24px;
-padding:11px 17px;
-color:white;
-outline:none;
-}
-
-.header-search:focus{
-border-color:var(--accent);
-}
-
-.header-actions{
-display:flex;
-gap:10px;
-}
-
-.icon-btn{
-width:40px;
-height:40px;
-border:1px solid var(--border);
-background:#151515;
-color:white;
-border-radius:50%;
-position:relative;
-}
-
-.icon-btn:hover{
-border-color:var(--accent);
-}
-
-.notification-dot{
-position:absolute;
-right:1px;
-top:1px;
-width:9px;
-height:9px;
-border-radius:50%;
-background:var(--danger);
+.app {
+  min-height: 100vh;
 }
 
 /* =========================
-LAYOUT
+   HEADER
 ========================= */
 
-.main{
-display:grid;
-grid-template-columns:220px minmax(0,1fr) 280px;
-max-width:1450px;
-margin:auto;
+.header {
+  height: 68px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(9,9,9,.96);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(15px);
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.logo span {
+  color: var(--accent);
+}
+
+.header-search {
+  width: 340px;
+  background: #151515;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 11px 17px;
+  color: white;
+  outline: none;
+}
+
+.header-search:focus {
+  border-color: var(--accent);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  background: #151515;
+  color: white;
+  border-radius: 50%;
+}
+
+.icon-btn:hover {
+  border-color: var(--accent);
 }
 
 /* =========================
-SIDEBAR
+   LAYOUT
 ========================= */
 
-.sidebar{
-border-right:1px solid var(--border);
-min-height:calc(100vh - 68px);
-padding:24px 14px;
-position:sticky;
-top:68px;
-height:calc(100vh - 68px);
+.main {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr) 280px;
+  max-width: 1450px;
+  margin: auto;
 }
 
-.nav-item{
-display:flex;
-align-items:center;
-gap:13px;
-width:100%;
-border:none;
-background:transparent;
-color:#aaa;
-padding:13px 15px;
-border-radius:12px;
-margin-bottom:4px;
-text-align:left;
-font-weight:600;
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+  border-right: 1px solid var(--border);
+  min-height: calc(100vh - 68px);
+  padding: 24px 14px;
+  position: sticky;
+  top: 68px;
+  height: calc(100vh - 68px);
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #aaa;
+  padding: 13px 15px;
+  border-radius: 12px;
+  margin-bottom: 4px;
+  text-align: left;
+  font-weight: 600;
 }
 
 .nav-item:hover,
-.nav-item.active{
-background:#1a1a1a;
-color:white;
+.nav-item.active {
+  background: #1a1a1a;
+  color: white;
 }
 
-.nav-item.active{
-box-shadow:inset 3px 0 0 var(--accent);
+.nav-item.active {
+  box-shadow: inset 3px 0 0 var(--accent);
 }
 
-.nav-icon{
-width:22px;
-text-align:center;
+.nav-icon {
+  width: 22px;
+  text-align: center;
 }
 
-.nav-badge{
-margin-left:auto;
-background:var(--accent);
-color:white;
-font-size:11px;
-min-width:20px;
-height:20px;
-border-radius:10px;
-display:flex;
-align-items:center;
-justify-content:center;
-}
-
-.create-btn{
-margin-top:18px;
-width:100%;
-padding:13px;
-border:none;
-border-radius:12px;
-color:white;
-font-weight:700;
-background:linear-gradient(135deg,var(--accent),#7138d4);
+.create-btn {
+  margin-top: 18px;
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent), #7138d4);
 }
 
 /* =========================
-CONTENT
+   CONTENT
 ========================= */
 
-.content{
-padding:28px;
-min-width:0;
+.content {
+  padding: 28px;
+  min-width: 0;
 }
 
-.page{
-display:none;
+.page {
+  display: none;
 }
 
-.page.active{
-display:block;
+.page.active {
+  display: block;
 }
 
-.page-title{
-font-size:28px;
-margin-bottom:7px;
+.page-title {
+  font-size: 28px;
+  margin-bottom: 7px;
 }
 
-.page-subtitle{
-color:var(--muted);
-margin-bottom:25px;
+.page-subtitle {
+  color: var(--muted);
+  margin-bottom: 25px;
 }
 
 /* =========================
-BUTTONS
+   PROFILE
 ========================= */
 
-.btn{
-border:1px solid var(--border);
-background:#1b1b1b;
-color:white;
-padding:10px 17px;
-border-radius:10px;
-font-weight:700;
+.profile-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
 }
 
-.btn:hover{
-border-color:var(--accent);
+.cover {
+  height: 180px;
+  background:
+    radial-gradient(circle at 20% 30%, #8d48ff, transparent 28%),
+    radial-gradient(circle at 80% 20%, #4d247d, transparent 30%),
+    linear-gradient(135deg, #171717, #2b183e);
 }
 
-.btn.primary{
-background:var(--accent);
-border-color:var(--accent);
+.profile-main {
+  padding: 0 25px 25px;
+  position: relative;
+}
+
+.avatar {
+  width: 105px;
+  height: 105px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #a961ff, #5424a2);
+  border: 5px solid var(--card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 38px;
+  font-weight: 800;
+  position: relative;
+  margin-top: -53px;
+}
+
+.profile-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.profile-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  border: 1px solid var(--border);
+  background: #1b1b1b;
+  color: white;
+  padding: 10px 17px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.btn:hover {
+  border-color: var(--accent);
+}
+
+.btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.profile-name {
+  margin-top: 14px;
+  font-size: 26px;
+}
+
+.username {
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.bio {
+  margin-top: 14px;
+  line-height: 1.5;
+  color: #ddd;
+}
+
+.profile-location {
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+.stats {
+  display: flex;
+  gap: 28px;
+  margin-top: 20px;
+}
+
+.stat strong {
+  display: block;
+  font-size: 18px;
+}
+
+.stat span {
+  color: var(--muted);
+  font-size: 13px;
 }
 
 /* =========================
-PROFILE
+   FEED
 ========================= */
 
-.profile-card{
-background:var(--card);
-border:1px solid var(--border);
-border-radius:18px;
-overflow:hidden;
+.composer {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 17px;
+  border-radius: 16px;
+  margin-bottom: 20px;
 }
 
-.cover{
-height:180px;
-background:
-radial-gradient(circle at 20% 30%,#8d48ff,transparent 28%),
-radial-gradient(circle at 80% 20%,#4d247d,transparent 30%),
-linear-gradient(135deg,#171717,#2b183e);
+.composer-row {
+  display: flex;
+  gap: 12px;
 }
 
-.profile-main{
-padding:0 25px 25px;
+.mini-avatar {
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #a961ff, #5424a2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  flex-shrink: 0;
 }
 
-.avatar{
-width:105px;
-height:105px;
-border-radius:50%;
-background:linear-gradient(135deg,#a961ff,#5424a2);
-border:5px solid var(--card);
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:38px;
-font-weight:800;
-margin-top:-53px;
+.post-input {
+  flex: 1;
+  background: #1a1a1a;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: white;
+  padding: 13px;
+  outline: none;
+  resize: none;
 }
 
-.profile-top{
-display:flex;
-justify-content:space-between;
-align-items:flex-end;
+.post-input:focus {
+  border-color: var(--accent);
 }
 
-.profile-actions{
-display:flex;
-gap:8px;
+.composer-bottom {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 12px;
 }
 
-.profile-name{
-margin-top:14px;
-font-size:26px;
+.post {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 16px;
 }
 
-.username{
-color:var(--muted);
-margin-top:4px;
+.post-header {
+  display: flex;
+  align-items: center;
+  gap: 11px;
 }
 
-.bio{
-margin-top:14px;
-line-height:1.5;
-color:#ddd;
+.post-user strong {
+  display: block;
 }
 
-.profile-location{
-color:var(--muted);
-margin-top:10px;
+.post-user span {
+  color: var(--muted);
+  font-size: 13px;
 }
 
-.stats{
-display:flex;
-gap:28px;
-margin-top:20px;
+.post-text {
+  margin: 17px 0;
+  line-height: 1.55;
+  color: #e4e4e4;
 }
 
-.stat strong{
-display:block;
-font-size:18px;
+.post-actions {
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+  display: flex;
+  gap: 8px;
 }
 
-.stat span{
-color:var(--muted);
-font-size:13px;
+.post-action {
+  background: transparent;
+  border: none;
+  color: #999;
+  padding: 8px 12px;
+  border-radius: 9px;
+}
+
+.post-action:hover {
+  background: #202020;
+  color: white;
+}
+
+.post-action.liked {
+  color: var(--danger);
 }
 
 /* =========================
-COMPOSER
+   DISCOVER
 ========================= */
 
-.composer{
-background:var(--card);
-border:1px solid var(--border);
-padding:17px;
-border-radius:16px;
-margin-bottom:20px;
+.location-banner {
+  background:
+    linear-gradient(120deg, rgba(155,92,255,.25), rgba(0,0,0,.2)),
+    var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 23px;
+  margin-bottom: 20px;
 }
 
-.composer-row{
-display:flex;
-gap:12px;
+.location-banner h2 {
+  margin-bottom: 8px;
 }
 
-.mini-avatar{
-width:43px;
-height:43px;
-border-radius:50%;
-background:linear-gradient(135deg,#a961ff,#5424a2);
-display:flex;
-align-items:center;
-justify-content:center;
-font-weight:800;
-flex-shrink:0;
+.location-banner p {
+  color: var(--muted);
 }
 
-.post-input{
-flex:1;
-background:#1a1a1a;
-border:1px solid var(--border);
-border-radius:12px;
-color:white;
-padding:13px;
-outline:none;
-resize:none;
+.location-select {
+  margin-top: 17px;
+  background: #101010;
+  color: white;
+  border: 1px solid var(--border);
+  padding: 11px;
+  border-radius: 10px;
+  width: 100%;
+  outline: none;
 }
 
-.post-input:focus{
-border-color:var(--accent);
+.discovery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
 }
 
-.composer-bottom{
-display:flex;
-justify-content:flex-end;
-margin-top:12px;
+.discovery-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 19px;
+}
+
+.discovery-card .emoji {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.discovery-card h3 {
+  margin-bottom: 7px;
+}
+
+.discovery-card p {
+  color: var(--muted);
+  line-height: 1.4;
 }
 
 /* =========================
-POSTS
+   CONNECT
 ========================= */
 
-.post{
-background:var(--card);
-border:1px solid var(--border);
-border-radius:16px;
-padding:18px;
-margin-bottom:16px;
+.user-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 17px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 12px;
 }
 
-.post-header{
-display:flex;
-align-items:center;
-gap:11px;
+.user-info {
+  flex: 1;
 }
 
-.post-user strong{
-display:block;
+.user-info strong {
+  display: block;
 }
 
-.post-user span{
-color:var(--muted);
-font-size:13px;
+.user-info span {
+  color: var(--muted);
+  font-size: 13px;
 }
 
-.post-text{
-margin:17px 0;
-line-height:1.55;
-color:#e4e4e4;
-white-space:pre-wrap;
-}
-
-.post-actions{
-border-top:1px solid var(--border);
-padding-top:12px;
-display:flex;
-gap:8px;
-}
-
-.post-action{
-background:transparent;
-border:none;
-color:#999;
-padding:8px 12px;
-border-radius:9px;
-}
-
-.post-action:hover{
-background:#202020;
-color:white;
-}
-
-.post-action.liked{
-color:var(--danger);
+.user-card .btn {
+  padding: 8px 13px;
+  font-size: 13px;
 }
 
 /* =========================
-DISCOVER
+   COMMUNITIES
 ========================= */
 
-.location-banner{
-background:
-linear-gradient(120deg,rgba(155,92,255,.25),rgba(0,0,0,.2)),
-var(--card);
-border:1px solid var(--border);
-border-radius:18px;
-padding:23px;
-margin-bottom:20px;
+.community-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
 }
 
-.location-banner h2{
-margin-bottom:8px;
+.community {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
 }
 
-.location-banner p{
-color:var(--muted);
+.community-icon {
+  font-size: 31px;
+  margin-bottom: 12px;
 }
 
-.location-select{
-margin-top:17px;
-background:#101010;
-color:white;
-border:1px solid var(--border);
-padding:11px;
-border-radius:10px;
-width:100%;
-outline:none;
-}
-
-.discovery-grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:15px;
-}
-
-.discovery-card{
-background:var(--card);
-border:1px solid var(--border);
-border-radius:16px;
-padding:19px;
-}
-
-.discovery-card .emoji{
-font-size:28px;
-margin-bottom:12px;
-}
-
-.discovery-card h3{
-margin-bottom:7px;
-}
-
-.discovery-card p{
-color:var(--muted);
-line-height:1.4;
+.community p {
+  color: var(--muted);
+  margin: 8px 0 16px;
+  line-height: 1.4;
 }
 
 /* =========================
-CONNECT
+   RIGHT SIDEBAR
 ========================= */
 
-.user-card{
-background:var(--card);
-border:1px solid var(--border);
-border-radius:16px;
-padding:17px;
-display:flex;
-align-items:center;
-gap:13px;
-margin-bottom:12px;
+.rightbar {
+  border-left: 1px solid var(--border);
+  min-height: calc(100vh - 68px);
+  padding: 25px 18px;
 }
 
-.user-info{
-flex:1;
+.side-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 17px;
+  margin-bottom: 15px;
 }
 
-.user-info strong{
-display:block;
+.side-box h3 {
+  margin-bottom: 15px;
 }
 
-.user-info span{
-color:var(--muted);
-font-size:13px;
+.trending-item {
+  padding: 11px 0;
+  border-bottom: 1px solid #252525;
 }
 
-.user-card .btn{
-padding:8px 13px;
-font-size:13px;
+.trending-item:last-child {
+  border-bottom: none;
+}
+
+.trending-item span {
+  color: var(--muted);
+  display: block;
+  font-size: 12px;
+  margin-bottom: 4px;
 }
 
 /* =========================
-COMMUNITIES
+   MODAL
 ========================= */
 
-.community-grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:15px;
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.72);
+  z-index: 500;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
 
-.community{
-background:var(--card);
-border:1px solid var(--border);
-border-radius:16px;
-padding:20px;
+.modal.show {
+  display: flex;
 }
 
-.community-icon{
-font-size:31px;
-margin-bottom:12px;
+.modal-box {
+  width: 100%;
+  max-width: 500px;
+  background: #151515;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 23px;
 }
 
-.community p{
-color:var(--muted);
-margin:8px 0 16px;
-line-height:1.4;
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.close {
+  border: none;
+  background: transparent;
+  color: #aaa;
+  font-size: 24px;
+}
+
+.modal textarea {
+  width: 100%;
+  min-height: 130px;
+  background: #0e0e0e;
+  color: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 13px;
+  outline: none;
+  resize: vertical;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 13px;
 }
 
 /* =========================
-MESSAGES
+   MOBILE
 ========================= */
 
-.messages-layout{
-display:grid;
-grid-template-columns:280px minmax(0,1fr);
-height:650px;
-background:var(--card);
-border:1px solid var(--border);
-border-radius:18px;
-overflow:hidden;
+.mobile-nav {
+  display: none;
+}
+
+@media (max-width: 1000px) {
+  .main {
+    grid-template-columns: 190px minmax(0,1fr);
+  }
+
+  .rightbar {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+
+  .header {
+    padding: 0 15px;
+    height: 62px;
+  }
+
+  .header-search {
+    display: none;
+  }
+
+  .header-actions .icon-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .main {
+    display: block;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .content {
+    padding: 18px 14px 85px;
+  }
+
+  .mobile-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 66px;
+    background: rgba(15,15,15,.97);
+    border-top: 1px solid var(--border);
+    z-index: 200;
+    justify-content: space-around;
+    align-items: center;
+    backdrop-filter: blur(15px);
+  }
+
+  .mobile-nav button {
+    border: none;
+    background: transparent;
+    color: #777;
+    font-size: 20px;
+  }
+
+  .mobile-nav button.active {
+    color: var(--accent2);
+  }
+
+  .profile-top {
+    align-items: center;
+  }
+
+  .profile-actions {
+    flex-direction: column;
+  }
+
+  .avatar {
+    width: 90px;
+    height: 90px;
+  }
+
+  .discovery-grid,
+  .community-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats {
+    gap: 18px;
+  }
+
+  .page-title {
+    font-size: 24px;
+  }
 }
-
-.conversations{
-border-right:1px solid var(--border);
-overflow-y:auto;
-}
-
-.conversations-header{
-padding:18px;
-border-bottom:1px solid var(--border);
-}
-
-.conversation{
-display:flex;
-align-items:center;
-gap:11px;
-padding:14px;
-border-bottom:1px solid #202020;
-cursor:pointer;
-}
-
-.conversation:hover,
-.conversation.active{
-background:#1c1c1c;
-}
-
-.conversation-info{
-flex:1;
-min-width:0;
-}
-
-.conversation-info strong{
-display:block;
-}
-
-.conversation-info span{
-display:block;
-color:var(--muted);
-font-size:12px;
-white-space:nowrap;
-overflow:hidden;
-text-overflow:ellipsis;
-margin-top:4px;
-}
-
-.unread-count{
-background:var(--accent);
-border-radius:50%;
-width:19px;
-height:19px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:10px;
-}
-
-.chat{
-display:flex;
-flex-direction:column;
-min-width:0;
-}
-
-.chat-header{
-padding:15px 18px;
-border-bottom:1px solid var(--border);
-display:flex;
-align-items:center;
-gap:11px;
-}
-
-.chat-header-info strong{
-display:block;
-}
-
-.chat-header-info span{
-font-size:12px;
-color:var(--green);
-}
-
-.chat-messages{
-flex:1;
-padding:20px;
-overflow-y:auto;
-display:flex;
-flex-direction:column;
-gap:10px;
-}
-
-.message{
-max-width:70%;
-padding:11px 14px;
-border-radius:16px;
-line-height:1.4;
-}
-
-.message.received{
-background:#242424;
-align-self:flex-start;
-border-bottom-left-radius:5px;
-}
-
-.message.sent{
-background:var(--accent);
-align-self:flex-end;
-border-bottom-right-radius:5px;
-}
-
-.message-time{
-font-size:10px;
-opacity:.55;
-margin-top:5px;
-}
-
-.chat-input{
-border-top:1px solid var(--border);
-padding:12px;
-display:flex;
-gap:8px;
-}
-
-.chat-input input{
-flex:1;
-background:#0e0e0e;
-border:1px solid var(--border);
-border-radius:12px;
-color:white;
-padding:12px;
-outline:none;
-}
-
-.chat-input button{
-width:45px;
-border:none;
-border-radius:12px;
-background:var(--accent);
-color:white;
-}
-
-/* =========================
-NOTIFICATIONS
-========================= */
-
-.notification-list{
-background:var(--card);
-border:1px solid var(--border);
-border-radius:16px;
-overflow:hidden;
-}
-
-.notification{
-display:flex;
-align-items:center;
-gap:13px;
-padding:16px;
-border-bottom:1px solid var(--border);
-}
-
-.notification:last-child{
-border-bottom:none;
-}
-
-.notification.unread{
-background:#18121f;
-}
-
-.notification-text{
-flex:1;
-line-height:1.4;
-}
-
-.notification-text span{
-color:var(--muted);
-display:block;
-font-size:12px;
-margin-top:4px;
-}
-
-.notification-dot-large{
-width:9px;
-height:9px;
-background:var(--accent);
-border-radius:50%;
-}
-
-/* =========================
-SETTINGS
-========================= */
-
-.settings-card{
-background:var(--card);
-border:1px solid var(--border);
-border-radius:16px;
-overflow:hidden;
-}
-
-.setting{
-padding:18px;
-border-bottom:1px solid var(--border);
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:20px;
-}
-
-.setting:last-child{
-border-bottom:none;
-}
-
-.setting-info{
-flex:1;
-}
-
-.setting-info strong{
-display:block;
-margin-bottom:5px;
-}
-
-.setting-info span{
-color:var(--muted);
-font-size:13px;
-line-height:1.4;
-}
-
-.setting input,
-.setting select{
-background:#101010;
-color:white;
-border:1px solid var(--border);
-border-radius:9px;
-padding:9px;
-}
-
-/* =========================
-MODALS
-========================= */
-
-.modal{
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.72);
-z-index:500;
-align-items:center;
-justify-content:center;
-padding:20px;
-}
-
-.modal.show{
-display:flex;
-}
-
-.modal-box{
-width:100%;
-max-width:500px;
-background:#151515;
-border:1px solid var(--border);
-border-radius:18px;
-padding:23px;
-}
-
-.modal-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:18px;
-}
-
-.close{
-border:none;
-background:transparent;
-color:#aaa;
-font-size:24px;
-}
-
-.modal textarea{
-width:100%;
-min-height:130px;
-background:#0e0e0e;
-color:white;
-border:1px solid var(--border);
-border-radius:12px;
-padding:13px;
-outline:none;
-resize:vertical;
-}
-
-.modal-footer{
-display:flex;
-justify-content:flex-end;
-margin-top:13px;
-}
-
-/* =========================
-TOAST
-========================= */
-
-.toast{
-position:fixed;
-bottom:85px;
-left:50%;
-transform:translateX(-50%) translateY(20px);
-background:#222;
-border:1px solid var(--border);
-color:white;
-padding:13px 18px;
-border-radius:12px;
-opacity:0;
-pointer-events:none;
-transition:.25s;
-z-index:1000;
-}
-
-.toast.show{
-opacity:1;
-transform:translateX(-50%) translateY(0);
-}
-
-/* =========================
-MOBILE
-========================= */
-
-.mobile-nav{
-display:none;
-}
-
-@media(max-width:1000px){
-
-.main{
-grid-template-columns:190px minmax(0,1fr);
-}
-
-.rightbar{
-display:none;
-}
-
-}
-
-@media(max-width:700px){
-
-.header{
-padding:0 15px;
-height:62px;
-}
-
-.header-search{
-display:none;
-}
-
-.header-actions .icon-btn{
-width:36px;
-height:36px;
-}
-
-.main{
-display:block;
-}
-
-.sidebar{
-display:none;
-}
-
-.content{
-padding:18px 14px 85px;
-}
-
-.mobile-nav{
-display:flex;
-position:fixed;
-bottom:0;
-left:0;
-right:0;
-height:66px;
-background:rgba(15,15,15,.97);
-border-top:1px solid var(--border);
-z-index:200;
-justify-content:space-around;
-align-items:center;
-backdrop-filter:blur(15px);
-}
-
-.mobile-nav button{
-border:none;
-background:transparent;
-color:#777;
-font-size:20px;
-}
-
-.mobile-nav button.active{
-color:var(--accent2);
-}
-
-.profile-top{
-align-items:center;
-}
-
-.profile-actions{
-flex-direction:column;
-}
-
-.avatar{
-width:90px;
-height:90px;
-}
-
-.discovery-grid,
-.community-grid{
-grid-template-columns:1fr;
-}
-
-.stats{
-gap:18px;
-}
-
-.page-title{
-font-size:24px;
-}
-
-.messages-layout{
-grid-template-columns:1fr;
-height:650px;
-}
-
-.conversations{
-display:none;
-}
-
-.chat{
-display:flex;
-}
-
-.setting{
-align-items:flex-start;
-flex-direction:column;
-}
-
-.message{
-max-width:85%;
-}
-
-}
-
-/* =========================
-EMPTY STATE
-========================= */
-
-.empty{
-padding:50px 20px;
-text-align:center;
-color:var(--muted);
-}
-
-.empty-icon{
-font-size:40px;
-margin-bottom:12px;
-}
-
 </style>
 </head>
 
@@ -1036,2411 +732,1132 @@ margin-bottom:12px;
 
 <div class="app">
 
-<!-- HEADER -->
-
-<header class="header">
-
-<div class="logo">
-Soulaani<span>.</span>
-</div>
-
-<input
-class="header-search"
-id="searchInput"
-placeholder="Search Soulaani..."
->
-
-<div class="header-actions">
-
-<button
-class="icon-btn"
-onclick="openPage('notifications')"
-id="notificationButton"
->
-♡
-</button>
-
-<button
-class="icon-btn"
-onclick="openPage('messages')"
-id="messageButton"
->
-✉
-</button>
-
-<button
-class="icon-btn"
-onclick="openPage('profile')"
->
-S
-</button>
-
-</div>
-
-</header>
-
-
-<div class="main">
-
-<!-- SIDEBAR -->
-
-<aside class="sidebar">
-
-<button
-class="nav-item active"
-onclick="openPage('home',this)"
->
-<span class="nav-icon">⌂</span>
-Home
-</button>
-
-<button
-class="nav-item"
-onclick="openPage('discover',this)"
->
-<span class="nav-icon">◉</span>
-Discover
-</button>
-
-<button
-class="nav-item"
-onclick="openPage('connect',this)"
->
-<span class="nav-icon">♧</span>
-Connect
-</button>
-
-<button
-class="nav-item"
-onclick="openPage('communities',this)"
->
-<span class="nav-icon">♟</span>
-Communities
-</button>
-
-<button
-class="nav-item"
-onclick="openPage('messages',this)"
->
-<span class="nav-icon">✉</span>
-Messages
-<span
-class="nav-badge"
-id="messageBadge"
-style="display:none;"
->
-0
-</span>
-</button>
-
-<button
-class="nav-item"
-onclick="openPage('notifications',this)"
->
-<span class="nav-icon">♡</span>
-Notifications
-<span
-class="nav-badge"
-id="notificationBadge"
-style="display:none;"
->
-0
-</span>
-</button>
-
-<button
-class="nav-item"
-onclick="openPage('profile',this)"
->
-<span class="nav-icon">◎</span>
-Profile
-</button>
-
-<button
-class="nav-item"
-onclick="showComingSoon('Date')"
->
-<span class="nav-icon">♡</span>
-Date
-</button>
-
-<button
-class="nav-item"
-onclick="showComingSoon('Build')"
->
-<span class="nav-icon">✦</span>
-Build
-</button>
+  <!-- HEADER -->
+  <header class="header">
 
-<button
-class="nav-item"
-onclick="openPage('settings',this)"
->
-<span class="nav-icon">⚙</span>
-Settings
-</button>
-
-<button
-class="create-btn"
-onclick="openPostModal()"
->
-+ Create
-</button>
-
-</aside>
-
-
-<!-- CONTENT -->
+    <div class="logo">
+      Soulaani<span>.</span>
+    </div>
 
-<main class="content">
-
-
-<!-- HOME -->
-
-<section
-class="page active"
-id="home"
->
-
-<h1 class="page-title">
-Home
-</h1>
-
-<p class="page-subtitle">
-Your community. Your culture. Your world.
-</p>
-
-<div class="composer">
-
-<div class="composer-row">
-
-<div
-class="mini-avatar"
-id="composerAvatar"
->
-S
-</div>
-
-<textarea
-id="homePostInput"
-class="post-input"
-rows="2"
-placeholder="What's happening in your world?"
-></textarea>
-
-</div>
-
-<div class="composer-bottom">
-
-<button
-class="btn primary"
-onclick="createPost()"
->
-Post
-</button>
-
-</div>
-
-</div>
-
-<div id="feed"></div>
-
-</section>
-
-
-<!-- DISCOVER -->
-
-<section
-class="page"
-id="discover"
->
-
-<h1 class="page-title">
-Discover
-</h1>
-
-<p class="page-subtitle">
-Explore what's happening around you and across the culture.
-</p>
-
-<div class="location-banner">
-
-<h2>📍 Explore your area</h2>
-
-<p>
-Find people, businesses, food, music, events and culture around you.
-</p>
-
-<select
-class="location-select"
-id="locationSelect"
-onchange="changeLocation(this.value)"
->
-
-<option>Harrisburg, PA</option>
-<option>Philadelphia, PA</option>
-<option>Baltimore, MD</option>
-<option>New York, NY</option>
-<option>Atlanta, GA</option>
-<option>Detroit, MI</option>
-<option>Los Angeles, CA</option>
-
-</select>
-
-</div>
-
-<div class="discovery-grid">
-
-<div class="discovery-card">
-<div class="emoji">👥</div>
-<h3>People</h3>
-<p>
-Discover people in your area and connect with new members of the community.
-</p>
-</div>
-
-<div class="discovery-card">
-<div class="emoji">🏪</div>
-<h3>Black-Owned Businesses</h3>
-<p>
-Explore restaurants, shops, services and businesses in your local area.
-</p>
-</div>
+    <input
+      class="header-search"
+      type="text"
+      placeholder="Search Soulaani..."
+      id="searchInput"
+    >
 
-<div class="discovery-card">
-<div class="emoji">🎵</div>
-<h3>Music</h3>
-<p>
-Discover local artists, DJs, producers and the sounds coming from your city.
-</p>
-</div>
+    <div class="header-actions">
+      <button class="icon-btn" onclick="showNotification()">♡</button>
+      <button class="icon-btn" onclick="showMessage()">✉</button>
+      <button class="icon-btn" onclick="openPage('profile')">S</button>
+    </div>
 
-<div class="discovery-card">
-<div class="emoji">🎉</div>
-<h3>Events</h3>
-<p>
-Find community events, nightlife, festivals, meetups and more.
-</p>
-</div>
+  </header>
 
-<div class="discovery-card">
-<div class="emoji">🍽️</div>
-<h3>Food</h3>
-<p>
-Find local food spots and cultural food experiences.
-</p>
-</div>
 
-<div class="discovery-card">
-<div class="emoji">🔥</div>
-<h3>Trending</h3>
-<p>
-See what people around the community are talking about right now.
-</p>
-</div>
+  <div class="main">
 
-</div>
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
 
-</section>
+      <button class="nav-item active" onclick="openPage('home', this)">
+        <span class="nav-icon">⌂</span>
+        Home
+      </button>
 
+      <button class="nav-item" onclick="openPage('discover', this)">
+        <span class="nav-icon">◉</span>
+        Discover
+      </button>
 
-<!-- CONNECT -->
+      <button class="nav-item" onclick="openPage('connect', this)">
+        <span class="nav-icon">♧</span>
+        Connect
+      </button>
 
-<section
-class="page"
-id="connect"
->
+      <button class="nav-item" onclick="openPage('communities', this)">
+        <span class="nav-icon">♟</span>
+        Communities
+      </button>
 
-<h1 class="page-title">
-Connect
-</h1>
+      <button class="nav-item" onclick="openPage('profile', this)">
+        <span class="nav-icon">◎</span>
+        Profile
+      </button>
 
-<p class="page-subtitle">
-Find people and build your network.
-</p>
+      <button class="nav-item" onclick="showComingSoon('Date')">
+        <span class="nav-icon">♡</span>
+        Date
+      </button>
 
-<div id="peopleList"></div>
+      <button class="nav-item" onclick="showComingSoon('Build')">
+        <span class="nav-icon">✦</span>
+        Build
+      </button>
 
-</section>
+      <button class="create-btn" onclick="openPostModal()">
+        + Create
+      </button>
 
+    </aside>
 
-<!-- COMMUNITIES -->
 
-<section
-class="page"
-id="communities"
->
+    <!-- MAIN CONTENT -->
+    <main class="content">
 
-<h1 class="page-title">
-Communities
-</h1>
+      <!-- HOME -->
+      <section class="page active" id="home">
 
-<p class="page-subtitle">
-Find your people around the things you care about.
-</p>
+        <h1 class="page-title">Home</h1>
+        <p class="page-subtitle">
+          Your community. Your culture. Your world.
+        </p>
 
-<div
-class="community-grid"
-id="communityList"
-></div>
+        <div class="composer">
 
-</section>
+          <div class="composer-row">
 
+            <div class="mini-avatar">
+              S
+            </div>
 
-<!-- MESSAGES -->
+            <textarea
+              id="homePostInput"
+              class="post-input"
+              rows="2"
+              placeholder="What's happening in your world?"
+            ></textarea>
 
-<section
-class="page"
-id="messages"
->
+          </div>
 
-<h1 class="page-title">
-Messages
-</h1>
+          <div class="composer-bottom">
 
-<p class="page-subtitle">
-Talk to your people.
-</p>
+            <button class="btn primary" onclick="createPost()">
+              Post
+            </button>
 
-<div class="messages-layout">
+          </div>
 
-<div class="conversations">
+        </div>
 
-<div class="conversations-header">
 
-<strong>
-Messages
-</strong>
+        <div id="feed">
 
-</div>
+          <article class="post">
 
-<div id="conversationList"></div>
+            <div class="post-header">
 
-</div>
+              <div class="mini-avatar">
+                J
+              </div>
 
+              <div class="post-user">
+                <strong>Jordan Williams</strong>
+                <span>@jordanw • 2h</span>
+              </div>
 
-<div class="chat">
+            </div>
 
-<div class="chat-header">
+            <div class="post-text">
+              Nothing like discovering another Black-owned spot in the city. The food, the music, the atmosphere... this is exactly why community matters. 🔥
+            </div>
 
-<div
-class="mini-avatar"
-id="chatAvatar"
->
-J
-</div>
+            <div class="post-actions">
 
-<div class="chat-header-info">
+              <button class="post-action" onclick="toggleLike(this)">
+                ♡ Like
+              </button>
 
-<strong id="chatName">
-Jordan Williams
-</strong>
+              <button class="post-action">
+                💬 Comment
+              </button>
 
-<span>
-● Online
-</span>
+              <button class="post-action">
+                ↗ Share
+              </button>
 
-</div>
+            </div>
 
-</div>
+          </article>
 
 
-<div
-class="chat-messages"
-id="chatMessages"
->
-</div>
+          <article class="post">
 
+            <div class="post-header">
 
-<div class="chat-input">
+              <div class="mini-avatar">
+                M
+              </div>
 
-<input
-id="messageInput"
-placeholder="Write a message..."
-onkeydown="handleMessageKey(event)"
->
+              <div class="post-user">
+                <strong>Maya Carter</strong>
+                <span>@mayacarter • 5h</span>
+              </div>
 
-<button
-onclick="sendMessage()"
->
-➤
-</button>
+            </div>
 
-</div>
+            <div class="post-text">
+              What cities should Soulaani highlight next? I want to see local culture, events, businesses and people from everywhere. 🌎
+            </div>
 
-</div>
+            <div class="post-actions">
 
-</div>
+              <button class="post-action" onclick="toggleLike(this)">
+                ♡ Like
+              </button>
 
-</section>
+              <button class="post-action">
+                💬 Comment
+              </button>
 
+              <button class="post-action">
+                ↗ Share
+              </button>
 
-<!-- NOTIFICATIONS -->
+            </div>
 
-<section
-class="page"
-id="notifications"
->
+          </article>
 
-<h1 class="page-title">
-Notifications
-</h1>
 
-<p class="page-subtitle">
-Stay up to date with what's happening around you.
-</p>
+          <article class="post">
 
-<div
-class="notification-list"
-id="notificationList"
-></div>
+            <div class="post-header">
 
-</section>
+              <div class="mini-avatar">
+                D
+              </div>
 
+              <div class="post-user">
+                <strong>DeAndre R.</strong>
+                <span>@dreonthebeat • 8h</span>
+              </div>
 
-<!-- PROFILE -->
+            </div>
 
-<section
-class="page"
-id="profile"
->
+            <div class="post-text">
+              New music dropping soon. Tap in if you're into independent artists and producers. 🎧
+            </div>
 
-<h1 class="page-title">
-Profile
-</h1>
+            <div class="post-actions">
 
-<p class="page-subtitle">
-Your Soulaani identity.
-</p>
+              <button class="post-action" onclick="toggleLike(this)">
+                ♡ Like
+              </button>
 
-<div class="profile-card">
+              <button class="post-action">
+                💬 Comment
+              </button>
 
-<div class="cover"></div>
+              <button class="post-action">
+                ↗ Share
+              </button>
 
-<div class="profile-main">
+            </div>
 
-<div class="profile-top">
+          </article>
 
-<div
-class="avatar"
-id="profileAvatar"
->
-S
-</div>
+        </div>
 
-<div class="profile-actions">
+      </section>
 
-<button
-class="btn"
-onclick="editProfile()"
->
-Edit Profile
-</button>
 
-<button
-class="btn"
-onclick="shareProfile()"
->
-Share
-</button>
+      <!-- DISCOVER -->
+      <section class="page" id="discover">
 
-</div>
+        <h1 class="page-title">
+          Discover
+        </h1>
 
-</div>
+        <p class="page-subtitle">
+          Explore what's happening around you and across the culture.
+        </p>
 
-<h2
-class="profile-name"
-id="profileName"
->
-Soulaani User
-</h2>
 
-<div
-class="username"
-id="profileUsername"
->
-@soulaaniuser
-</div>
+        <div class="location-banner">
 
-<div
-class="bio"
-id="profileBio"
->
-Building connections, discovering culture and finding community on Soulaani.
-</div>
+          <h2>📍 Explore your area</h2>
 
-<div
-class="profile-location"
-id="profileLocation"
->
-📍 Harrisburg, Pennsylvania
-</div>
+          <p>
+            Find people, businesses, food, music, events and culture around you.
+          </p>
 
-<div class="stats">
+          <select class="location-select" onchange="changeLocation(this.value)">
 
-<div class="stat">
-<strong id="followerCount">
-128
-</strong>
-<span>Followers</span>
-</div>
+            <option value="Harrisburg, PA">
+              Harrisburg, Pennsylvania
+            </option>
 
-<div class="stat">
-<strong id="followingCount">
-0
-</strong>
-<span>Following</span>
-</div>
+            <option value="Philadelphia, PA">
+              Philadelphia, Pennsylvania
+            </option>
 
-<div class="stat">
-<strong id="postCount">
-0
-</strong>
-<span>Posts</span>
-</div>
+            <option value="Baltimore, MD">
+              Baltimore, Maryland
+            </option>
 
-</div>
+            <option value="New York, NY">
+              New York, New York
+            </option>
 
-</div>
+            <option value="Atlanta, GA">
+              Atlanta, Georgia
+            </option>
 
-</div>
+            <option value="Detroit, MI">
+              Detroit, Michigan
+            </option>
 
-</section>
+            <option value="Los Angeles, CA">
+              Los Angeles, California
+            </option>
 
+          </select>
 
-<!-- SETTINGS -->
+        </div>
 
-<section
-class="page"
-id="settings"
->
 
-<h1 class="page-title">
-Settings
-</h1>
+        <div class="discovery-grid">
 
-<p class="page-subtitle">
-Control your Soulaani experience.
-</p>
+          <div class="discovery-card">
 
-<div class="settings-card">
+            <div class="emoji">👥</div>
 
-<div class="setting">
+            <h3>People</h3>
 
-<div class="setting-info">
+            <p>
+              Discover people in your area and connect with new members of the community.
+            </p>
 
-<strong>
-Display Name
-</strong>
+          </div>
 
-<span>
-The name people see on your profile.
-</span>
 
-</div>
+          <div class="discovery-card">
 
-<input
-id="settingsName"
-type="text"
-onchange="saveProfileSetting()"
->
+            <div class="emoji">🏪</div>
 
-</div>
+            <h3>Black-Owned Businesses</h3>
 
+            <p>
+              Explore restaurants, shops, services and businesses in your local area.
+            </p>
 
-<div class="setting">
+          </div>
 
-<div class="setting-info">
 
-<strong>
-Username
-</strong>
+          <div class="discovery-card">
 
-<span>
-Your unique Soulaani username.
-</span>
+            <div class="emoji">🎵</div>
 
-</div>
+            <h3>Music</h3>
 
-<input
-id="settingsUsername"
-type="text"
-onchange="saveProfileSetting()"
->
+            <p>
+              Discover local artists, DJs, producers and the sounds coming from your city.
+            </p>
 
-</div>
+          </div>
 
 
-<div class="setting">
+          <div class="discovery-card">
 
-<div class="setting-info">
+            <div class="emoji">🎉</div>
 
-<strong>
-Location
-</strong>
+            <h3>Events</h3>
 
-<span>
-Used to personalize Discover.
-</span>
+            <p>
+              Find community events, nightlife, festivals, meetups and more.
+            </p>
 
-</div>
+          </div>
 
-<select
-id="settingsLocation"
-onchange="saveProfileSetting()"
->
 
-<option>Harrisburg, Pennsylvania</option>
-<option>Philadelphia, Pennsylvania</option>
-<option>Baltimore, Maryland</option>
-<option>New York, New York</option>
-<option>Atlanta, Georgia</option>
-<option>Detroit, Michigan</option>
-<option>Los Angeles, California</option>
+          <div class="discovery-card">
 
-</select>
+            <div class="emoji">🍽️</div>
 
-</div>
+            <h3>Food</h3>
 
-</div>
+            <p>
+              Find local food spots and cultural food experiences.
+            </p>
 
-</section>
+          </div>
 
-</main>
 
+          <div class="discovery-card">
 
-<!-- RIGHT SIDEBAR -->
+            <div class="emoji">🔥</div>
 
-<aside class="rightbar">
+            <h3>Trending</h3>
 
-<div class="side-box">
+            <p>
+              See what people around the community are talking about right now.
+            </p>
 
-<h3>
-Trending on Soulaani
-</h3>
+          </div>
 
-<div class="trending-item">
-<span>Trending</span>
-Black-owned businesses
-</div>
+        </div>
 
-<div class="trending-item">
-<span>Music</span>
-New artists to watch
-</div>
+      </section>
 
-<div class="trending-item">
-<span>Community</span>
-Local events this weekend
-</div>
 
-<div class="trending-item">
-<span>Culture</span>
-What's happening in your city
-</div>
+      <!-- CONNECT -->
+      <section class="page" id="connect">
 
-</div>
+        <h1 class="page-title">
+          Connect
+        </h1>
 
+        <p class="page-subtitle">
+          Find people and build your network.
+        </p>
 
-<div class="side-box">
 
-<h3>
-Who to follow
-</h3>
+        <div class="user-card">
 
-<div class="trending-item">
-<strong>Marcus Reed</strong>
-<span>@marcusreed</span>
-</div>
+          <div class="mini-avatar">A</div>
 
-<div class="trending-item">
-<strong>Jasmine B.</strong>
-<span>@jasmineb</span>
-</div>
+          <div class="user-info">
 
-<div class="trending-item">
-<strong>Chris Miles</strong>
-<span>@chrismiles</span>
-</div>
+            <strong>Alex Johnson</strong>
+            <span>@alexj • Music & Culture</span>
 
-</div>
+          </div>
 
+          <button class="btn primary" onclick="toggleFollow(this)">
+            Follow
+          </button>
 
-<div class="side-box">
+        </div>
 
-<h3>
-Soulaani
-</h3>
 
-<p style="color:#999;line-height:1.5;">
-A digital home for community, culture, connection and opportunity.
-</p>
+        <div class="user-card">
 
-</div>
+          <div class="mini-avatar">T</div>
 
-</aside>
+          <div class="user-info">
 
-</div>
+            <strong>Taylor Brown</strong>
+            <span>@tayb • Philadelphia</span>
 
+          </div>
 
-<!-- MOBILE NAV -->
+          <button class="btn primary" onclick="toggleFollow(this)">
+            Follow
+          </button>
 
-<nav class="mobile-nav">
+        </div>
 
-<button
-class="active"
-onclick="openPage('home',this)"
->
-⌂
-</button>
 
-<button
-onclick="openPage('discover',this)"
->
-◉
-</button>
+        <div class="user-card">
 
-<button
-onclick="openPage('connect',this)"
->
-♧
-</button>
+          <div class="mini-avatar">K</div>
 
-<button
-onclick="openPage('messages',this)"
->
-✉
-</button>
+          <div class="user-info">
 
-<button
-onclick="openPage('profile',this)"
->
-◎
-</button>
+            <strong>Kam Williams</strong>
+            <span>@kamw • Entrepreneur</span>
 
-</nav>
+          </div>
 
+          <button class="btn primary" onclick="toggleFollow(this)">
+            Follow
+          </button>
 
-<!-- POST MODAL -->
+        </div>
 
-<div
-class="modal"
-id="postModal"
->
 
-<div class="modal-box">
+        <div class="user-card">
 
-<div class="modal-header">
+          <div class="mini-avatar">N</div>
 
-<h2>
-Create Post
-</h2>
+          <div class="user-info">
 
-<button
-class="close"
-onclick="closePostModal()"
->
-×
-</button>
+            <strong>Nia Thompson</strong>
+            <span>@niathompson • Fashion & Beauty</span>
 
-</div>
+          </div>
 
-<textarea
-id="modalPostInput"
-placeholder="What's on your mind?"
-></textarea>
+          <button class="btn primary" onclick="toggleFollow(this)">
+            Follow
+          </button>
 
-<div class="modal-footer">
+        </div>
 
-<button
-class="btn primary"
-onclick="createModalPost()"
->
-Post
-</button>
+      </section>
 
-</div>
 
-</div>
+      <!-- COMMUNITIES -->
+      <section class="page" id="communities">
 
-</div>
+        <h1 class="page-title">
+          Communities
+        </h1>
 
+        <p class="page-subtitle">
+          Find your people around the things you care about.
+        </p>
 
-<!-- PROFILE MODAL -->
 
-<div
-class="modal"
-id="profileModal"
->
+        <div class="community-grid">
 
-<div class="modal-box">
+          <div class="community">
 
-<div class="modal-header">
+            <div class="community-icon">🎵</div>
 
-<h2>
-Edit Profile
-</h2>
+            <h3>Black Music</h3>
 
-<button
-class="close"
-onclick="closeProfileModal()"
->
-×
-</button>
+            <p>
+              Artists, producers, DJs and music lovers sharing culture and discovering new sounds.
+            </p>
 
-</div>
+            <button class="btn primary" onclick="joinCommunity(this)">
+              Join
+            </button>
 
-<input
-id="editName"
-style="width:100%;margin-bottom:10px;background:#0e0e0e;color:white;border:1px solid #292929;padding:13px;border-radius:10px;"
-placeholder="Display name"
->
+          </div>
 
-<input
-id="editUsername"
-style="width:100%;margin-bottom:10px;background:#0e0e0e;color:white;border:1px solid #292929;padding:13px;border-radius:10px;"
-placeholder="Username"
->
 
-<textarea
-id="editBio"
-placeholder="Tell people about yourself..."
-></textarea>
+          <div class="community">
 
-<div class="modal-footer">
+            <div class="community-icon">💼</div>
 
-<button
-class="btn primary"
-onclick="saveProfile()"
->
-Save Profile
-</button>
+            <h3>Black Entrepreneurs</h3>
 
-</div>
+            <p>
+              Business owners, founders, creatives and people building something of their own.
+            </p>
 
-</div>
+            <button class="btn primary" onclick="joinCommunity(this)">
+              Join
+            </button>
 
-</div>
+          </div>
 
 
-<div
-class="toast"
-id="toast"
->
-Saved
-</div>
+          <div class="community">
+
+            <div class="community-icon">🎨</div>
+
+            <h3>Creators</h3>
+
+            <p>
+              Content creators, photographers, filmmakers, designers and storytellers.
+            </p>
+
+            <button class="btn primary" onclick="joinCommunity(this)">
+              Join
+            </button>
+
+          </div>
+
+
+          <div class="community">
+
+            <div class="community-icon">🏀</div>
+
+            <h3>Sports</h3>
+
+            <p>
+              Talk sports, follow local athletes and connect with fans.
+            </p>
+
+            <button class="btn primary" onclick="joinCommunity(this)">
+              Join
+            </button>
+
+          </div>
+
+
+          <div class="community">
+
+            <div class="community-icon">👗</div>
+
+            <h3>Fashion & Beauty</h3>
+
+            <p>
+              Style, beauty, designers, trends and the latest looks.
+            </p>
+
+            <button class="btn primary" onclick="joinCommunity(this)">
+              Join
+            </button>
+
+          </div>
+
+
+          <div class="community">
+
+            <div class="community-icon">🌍</div>
+
+            <h3>Culture & Community</h3>
+
+            <p>
+              Conversations about culture, history, identity and community.
+            </p>
+
+            <button class="btn primary" onclick="joinCommunity(this)">
+              Join
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- PROFILE -->
+      <section class="page" id="profile">
+
+        <h1 class="page-title">
+          Profile
+        </h1>
+
+        <p class="page-subtitle">
+          Your Soulaani identity.
+        </p>
+
+
+        <div class="profile-card">
+
+          <div class="cover"></div>
+
+          <div class="profile-main">
+
+            <div class="profile-top">
+
+              <div class="avatar">
+                S
+              </div>
+
+              <div class="profile-actions">
+
+                <button class="btn" onclick="editProfile()">
+                  Edit Profile
+                </button>
+
+                <button class="btn" onclick="shareProfile()">
+                  Share
+                </button>
+
+              </div>
+
+            </div>
+
+
+            <h2 class="profile-name">
+              Soulaani User
+            </h2>
+
+            <div class="username">
+              @soulaaniuser
+            </div>
+
+            <div class="bio">
+              Building connections, discovering culture and finding community on Soulaani.
+            </div>
+
+            <div class="profile-location">
+              📍 Harrisburg, Pennsylvania
+            </div>
+
+
+            <div class="stats">
+
+              <div class="stat">
+                <strong id="followerCount">128</strong>
+                <span>Followers</span>
+              </div>
+
+              <div class="stat">
+                <strong>214</strong>
+                <span>Following</span>
+              </div>
+
+              <div class="stat">
+                <strong>37</strong>
+                <span>Posts</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+
+    <!-- RIGHT SIDEBAR -->
+    <aside class="rightbar">
+
+      <div class="side-box">
+
+        <h3>Trending on Soulaani</h3>
+
+        <div class="trending-item">
+          <span>Trending</span>
+          Black-owned businesses
+        </div>
+
+        <div class="trending-item">
+          <span>Music</span>
+          New artists to watch
+        </div>
+
+        <div class="trending-item">
+          <span>Community</span>
+          Local events this weekend
+        </div>
+
+        <div class="trending-item">
+          <span>Culture</span>
+          What's happening in your city
+        </div>
+
+      </div>
+
+
+      <div class="side-box">
+
+        <h3>Who to follow</h3>
+
+        <div class="trending-item">
+          <strong>Marcus Reed</strong>
+          <span>@marcusreed</span>
+        </div>
+
+        <div class="trending-item">
+          <strong>Jasmine B.</strong>
+          <span>@jasmineb</span>
+        </div>
+
+        <div class="trending-item">
+          <strong>Chris Miles</strong>
+          <span>@chrismiles</span>
+        </div>
+
+      </div>
+
+
+      <div class="side-box">
+
+        <h3>Soulaani</h3>
+
+        <p style="color:#999; line-height:1.5;">
+          A digital home for community, culture, connection and opportunity.
+        </p>
+
+      </div>
+
+    </aside>
+
+  </div>
+
+
+  <!-- MOBILE NAV -->
+  <nav class="mobile-nav">
+
+    <button class="active" onclick="openPage('home', this)">
+      ⌂
+    </button>
+
+    <button onclick="openPage('discover', this)">
+      ◉
+    </button>
+
+    <button onclick="openPage('connect', this)">
+      ♧
+    </button>
+
+    <button onclick="openPage('communities', this)">
+      ♟
+    </button>
+
+    <button onclick="openPage('profile', this)">
+      ◎
+    </button>
+
+  </nav>
+
+
+  <!-- CREATE POST MODAL -->
+  <div class="modal" id="postModal">
+
+    <div class="modal-box">
+
+      <div class="modal-header">
+
+        <h2>Create Post</h2>
+
+        <button class="close" onclick="closePostModal()">
+          ×
+        </button>
+
+      </div>
+
+      <textarea
+        id="modalPostInput"
+        placeholder="What's on your mind?"
+      ></textarea>
+
+      <div class="modal-footer">
+
+        <button class="btn primary" onclick="createModalPost()">
+          Post
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
 
 </div>
 
 
 <script>
 
-/* =====================================
-DATA
-===================================== */
-
-const defaultData={
-
-profile:{
-name:"Soulaani User",
-username:"soulaaniuser",
-bio:"Building connections, discovering culture and finding community on Soulaani.",
-location:"Harrisburg, Pennsylvania"
-},
-
-posts:[],
-
-following:[],
-
-communities:[],
-
-location:"Harrisburg, PA",
-
-followers:128,
-
-messages:{
-jordan:[
-{
-from:"jordan",
-text:"Yo! Welcome to Soulaani 👋",
-sent:false
-},
-{
-from:"me",
-text:"Appreciate you!",
-sent:true
-}
-],
-maya:[
-{
-from:"maya",
-text:"Have you checked out Discover yet?",
-sent:false
-}
-],
-marcus:[
-{
-from:"marcus",
-text:"We should connect sometime.",
-sent:false
-}
-]
-},
-
-notifications:[
-
-{
-id:1,
-text:"Jordan Williams liked your post.",
-time:"2 hours ago",
-read:false
-},
-
-{
-id:2,
-text:"Maya Carter started following you.",
-time:"5 hours ago",
-read:false
-},
-
-{
-id:3,
-text:"Your profile was viewed 12 times.",
-time:"Yesterday",
-read:true
-}
-
-]
-
-};
-
-
-let data=loadData();
-
-let currentConversation="jordan";
-
-
-/* =====================================
-STORAGE
-===================================== */
-
-function loadData(){
-
-const saved=
-localStorage.getItem("soulaaniData");
-
-if(saved){
-
-try{
-
-const parsed=JSON.parse(saved);
-
-return mergeData(defaultData,parsed);
-
-}catch(error){
-
-return JSON.parse(JSON.stringify(defaultData));
-
-}
-
-}
-
-return JSON.parse(JSON.stringify(defaultData));
-
-}
-
-
-function mergeData(base,saved){
-
-return{
-
-...base,
-...saved,
-
-profile:{
-...base.profile,
-...(saved.profile||{})
-},
-
-messages:{
-...base.messages,
-...(saved.messages||{})
-}
-
-};
-
-}
-
-
-function saveData(){
-
-localStorage.setItem(
-"soulaaniData",
-JSON.stringify(data)
-);
-
-}
-
-
-/* =====================================
-TOAST
-===================================== */
-
-function toast(message){
-
-const element=
-document.getElementById("toast");
-
-element.textContent=message;
-
-element.classList.add("show");
-
-setTimeout(()=>{
-element.classList.remove("show");
-},2200);
-
-}
-
-
-/* =====================================
-NAVIGATION
-===================================== */
-
-function openPage(pageId,clickedButton){
-
-document.querySelectorAll(".page")
-.forEach(page=>{
-page.classList.remove("active");
-});
-
-const page=
-document.getElementById(pageId);
-
-if(page){
-
-page.classList.add("active");
-
-}
-
-document.querySelectorAll(".nav-item")
-.forEach(item=>{
-item.classList.remove("active");
-});
-
-if(clickedButton){
-
-clickedButton.classList.add("active");
-
-}
-
-if(pageId==="messages"){
-
-renderConversations();
-
-renderChat();
-
-clearMessageNotifications();
-
-}
-
-if(pageId==="notifications"){
-
-renderNotifications();
-
-markNotificationsRead();
-
-}
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-}
-
-
-/* =====================================
-POSTS
-===================================== */
-
-function createPost(){
-
-const input=
-document.getElementById("homePostInput");
-
-const text=
-input.value.trim();
-
-if(!text){
-
-toast("Write something first.");
-
-return;
-
-}
-
-addPost(text);
-
-input.value="";
-
-toast("Post published.");
-
-}
-
-
-function createModalPost(){
-
-const input=
-document.getElementById("modalPostInput");
-
-const text=
-input.value.trim();
-
-if(!text){
-
-toast("Write something first.");
-
-return;
-
-}
-
-addPost(text);
-
-input.value="";
-
-closePostModal();
-
-openPage("home");
-
-toast("Post published.");
-
-}
-
-
-function addPost(text){
-
-data.posts.unshift({
-
-id:Date.now(),
-
-text:text,
-
-liked:false,
-
-createdAt:new Date().toISOString()
-
-});
-
-saveData();
-
-renderPosts();
-
-updateStats();
-
-}
-
-
-function renderPosts(){
-
-const feed=
-document.getElementById("feed");
-
-feed.innerHTML="";
-
-
-const demoPosts=[
-
-{
-name:"Jordan Williams",
-username:"jordanw",
-time:"2h",
-text:"Nothing like discovering another Black-owned spot in the city. The food, the music, the atmosphere... this is exactly why community matters. 🔥"
-},
-
-{
-name:"Maya Carter",
-username:"mayacarter",
-time:"5h",
-text:"What cities should Soulaani highlight next? I want to see local culture, events, businesses and people from everywhere. 🌎"
-},
-
-{
-name:"DeAndre R.",
-username:"dreonthebeat",
-time:"8h",
-text:"New music dropping soon. Tap in if you're into independent artists and producers. 🎧"
-}
-
-];
-
-
-demoPosts.forEach((post,index)=>{
-
-feed.innerHTML+=createPostHTML(
-post.text,
-post.name,
-post.username,
-post.time,
-"demo"+index
-);
-
-});
-
-
-data.posts.forEach(post=>{
-
-feed.innerHTML+=createPostHTML(
-post.text,
-data.profile.name,
-data.profile.username,
-"just now",
-post.id
-);
-
-});
-
-}
-
-
-function createPostHTML(
-text,
-name,
-username,
-time,
-id
-){
-
-return`
-
-<article class="post">
-
-<div class="post-header">
-
-<div class="mini-avatar">
-${escapeHTML(
-(name||"S").charAt(0).toUpperCase()
-)}
-</div>
-
-<div class="post-user">
-
-<strong>
-${escapeHTML(name)}
-</strong>
-
-<span>
-@${escapeHTML(username)} • ${escapeHTML(time)}
-</span>
-
-</div>
-
-</div>
-
-<div class="post-text">
-${escapeHTML(text)}
-</div>
-
-<div class="post-actions">
-
-<button
-class="post-action"
-onclick="likePost(this,'${id}')"
->
-♡ Like
-</button>
-
-<button
-class="post-action"
-onclick="toast('Comments are coming next.')"
->
-💬 Comment
-</button>
-
-<button
-class="post-action"
-onclick="toast('Sharing is coming next.')"
->
-↗ Share
-</button>
-
-</div>
-
-</article>
-
-`;
-
-}
-
-
-function likePost(button,id){
-
-button.classList.toggle("liked");
-
-if(button.classList.contains("liked")){
-
-button.innerHTML="♥ Liked";
-
-addNotification(
-"Someone liked your post."
-);
-
-}else{
-
-button.innerHTML="♡ Like";
-
-}
-
-}
-
-
-/* =====================================
-PEOPLE
-===================================== */
-
-const people=[
-
-{
-id:"alex",
-name:"Alex Johnson",
-username:"alexj",
-detail:"Music & Culture"
-},
-
-{
-id:"taylor",
-name:"Taylor Brown",
-username:"tayb",
-detail:"Philadelphia"
-},
-
-{
-id:"kam",
-name:"Kam Williams",
-username:"kamw",
-detail:"Entrepreneur"
-},
-
-{
-id:"nia",
-name:"Nia Thompson",
-username:"niathompson",
-detail:"Fashion & Beauty"
-}
-
-];
-
-
-function renderPeople(){
-
-const container=
-document.getElementById("peopleList");
-
-container.innerHTML="";
-
-people.forEach(person=>{
-
-const following=
-data.following.includes(person.id);
-
-container.innerHTML+=`
-
-<div class="user-card">
-
-<div class="mini-avatar">
-${person.name.charAt(0)}
-</div>
-
-<div class="user-info">
-
-<strong>
-${person.name}
-</strong>
-
-<span>
-@${person.username} • ${person.detail}
-</span>
-
-</div>
-
-<button
-class="btn ${following?"":"primary"}"
-onclick="toggleFollow('${person.id}',this)"
->
-
-${following?"Following":"Follow"}
-
-</button>
-
-</div>
-
-`;
-
-});
-
-}
-
-
-function toggleFollow(id,button){
-
-if(data.following.includes(id)){
-
-data.following=
-data.following.filter(
-item=>item!==id
-);
-
-button.innerText="Follow";
-
-button.classList.add("primary");
+/* =========================
+   NAVIGATION
+========================= */
 
-data.followers--;
+function openPage(pageId, clickedButton) {
 
-}else{
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.remove("active");
+  });
 
-data.following.push(id);
+  const page = document.getElementById(pageId);
 
-button.innerText="Following";
+  if (page) {
+    page.classList.add("active");
+  }
 
-button.classList.remove("primary");
+  document.querySelectorAll(".nav-item").forEach(item => {
+    item.classList.remove("active");
+  });
 
-data.followers++;
+  if (clickedButton) {
+    clickedButton.classList.add("active");
+  }
 
-addNotification(
-"You started following someone new."
-);
-
-}
-
-saveData();
-
-updateStats();
-
-toast(
-data.following.includes(id)
-?"Following"
-:"Unfollowed"
-);
-
-}
-
-
-/* =====================================
-COMMUNITIES
-===================================== */
-
-const communities=[
-
-{
-id:"music",
-icon:"🎵",
-name:"Black Music",
-description:"Artists, producers, DJs and music lovers sharing culture and discovering new sounds."
-},
-
-{
-id:"business",
-icon:"💼",
-name:"Black Entrepreneurs",
-description:"Business owners, founders, creatives and people building something of their own."
-},
-
-{
-id:"creators",
-icon:"🎨",
-name:"Creators",
-description:"Content creators, photographers, filmmakers, designers and storytellers."
-},
-
-{
-id:"sports",
-icon:"🏀",
-name:"Sports",
-description:"Talk sports, follow local athletes and connect with fans."
-},
-
-{
-id:"fashion",
-icon:"👗",
-name:"Fashion & Beauty",
-description:"Style, beauty, designers, trends and the latest looks."
-},
-
-{
-id:"culture",
-icon:"🌍",
-name:"Culture & Community",
-description:"Conversations about culture, history and community."
-}
-
-];
-
-
-function renderCommunities(){
-
-const container=
-document.getElementById("communityList");
-
-container.innerHTML="";
-
-communities.forEach(community=>{
-
-const joined=
-data.communities.includes(community.id);
-
-container.innerHTML+=`
-
-<div class="community">
-
-<div class="community-icon">
-${community.icon}
-</div>
-
-<h3>
-${community.name}
-</h3>
-
-<p>
-${community.description}
-</p>
-
-<button
-class="btn ${joined?"":"primary"}"
-onclick="toggleCommunity('${community.id}',this)"
->
-
-${joined?"Joined":"Join"}
-
-</button>
-
-</div>
-
-`;
-
-});
-
-}
-
-
-function toggleCommunity(id,button){
-
-if(data.communities.includes(id)){
-
-data.communities=
-data.communities.filter(
-item=>item!==id
-);
-
-button.innerText="Join";
-
-button.classList.add("primary");
-
-toast("Left community.");
-
-}else{
-
-data.communities.push(id);
-
-button.innerText="Joined";
-
-button.classList.remove("primary");
-
-addNotification(
-"You joined a new community."
-);
-
-toast("Joined community.");
-
-}
-
-saveData();
-
-}
-
-
-/* =====================================
-MESSAGES
-===================================== */
-
-const conversationPeople={
-
-jordan:{
-name:"Jordan Williams",
-username:"jordanw"
-},
-
-maya:{
-name:"Maya Carter",
-username:"mayacarter"
-},
-
-marcus:{
-name:"Marcus Reed",
-username:"marcusreed"
-}
-
-};
-
-
-function renderConversations(){
-
-const container=
-document.getElementById("conversationList");
-
-container.innerHTML="";
-
-Object.keys(conversationPeople)
-.forEach(id=>{
-
-const person=
-conversationPeople[id];
-
-const messages=
-data.messages[id]||[];
-
-const last=
-messages.length
-?messages[messages.length-1].text
-:"Start a conversation";
-
-container.innerHTML+=`
-
-<div
-class="conversation ${currentConversation===id?"active":""}"
-onclick="selectConversation('${id}')"
->
-
-<div class="mini-avatar">
-${person.name.charAt(0)}
-</div>
-
-<div class="conversation-info">
-
-<strong>
-${person.name}
-</strong>
-
-<span>
-${escapeHTML(last)}
-</span>
-
-</div>
-
-</div>
-
-`;
-
-});
-
-}
-
-
-function selectConversation(id){
-
-currentConversation=id;
-
-renderConversations();
-
-renderChat();
-
-clearMessageNotifications();
-
-}
-
-
-function renderChat(){
-
-const person=
-conversationPeople[currentConversation];
-
-if(!person){
-return;
-}
-
-document.getElementById("chatName")
-.textContent=person.name;
-
-document.getElementById("chatAvatar")
-.textContent=
-person.name.charAt(0);
-
-const container=
-document.getElementById("chatMessages");
-
-container.innerHTML="";
-
-const messages=
-data.messages[currentConversation]||[];
-
-if(!messages.length){
-
-container.innerHTML=`
-
-<div class="empty">
-
-<div class="empty-icon">
-💬
-</div>
-
-No messages yet.
-
-</div>
-
-`;
-
-return;
-
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 }
 
-messages.forEach(message=>{
 
-const div=
-document.createElement("div");
+/* =========================
+   LIKE
+========================= */
 
-div.className=
-"message "+
-(message.sent?"sent":"received");
+function toggleLike(button) {
 
-div.innerHTML=`
+  button.classList.toggle("liked");
 
-<div>
-${escapeHTML(message.text)}
-</div>
+  if (button.classList.contains("liked")) {
+    button.innerHTML = "♥ Liked";
+  } else {
+    button.innerHTML = "♡ Like";
+  }
 
-<div class="message-time">
-${message.sent?"You":"Them"} • just now
-</div>
-
-`;
-
-container.appendChild(div);
-
-});
-
-container.scrollTop=
-container.scrollHeight;
-
-}
-
-
-function sendMessage(){
-
-const input=
-document.getElementById("messageInput");
-
-const text=
-input.value.trim();
-
-if(!text){
-
-return;
-
-}
-
-if(!data.messages[currentConversation]){
-
-data.messages[currentConversation]=[];
-
-}
-
-data.messages[currentConversation].push({
-
-from:"me",
-
-text:text,
-
-sent:true
-
-});
-
-saveData();
-
-input.value="";
-
-renderChat();
-
-renderConversations();
-
-}
-
-
-function handleMessageKey(event){
-
-if(event.key==="Enter"){
-
-event.preventDefault();
-
-sendMessage();
-
 }
-
-}
-
-
-/* =====================================
-NOTIFICATIONS
-===================================== */
 
-function addNotification(text){
 
-data.notifications.unshift({
+/* =========================
+   FOLLOW
+========================= */
 
-id:Date.now(),
+function toggleFollow(button) {
 
-text:text,
+  if (button.innerText === "Follow") {
 
-time:"just now",
+    button.innerText = "Following";
+    button.style.background = "#242424";
 
-read:false
+  } else {
 
-});
+    button.innerText = "Follow";
+    button.style.background = "";
 
-if(data.notifications.length>30){
+  }
 
-data.notifications=
-data.notifications.slice(0,30);
-
-}
-
-saveData();
-
-updateBadges();
-
 }
-
 
-function renderNotifications(){
 
-const container=
-document.getElementById("notificationList");
+/* =========================
+   COMMUNITY
+========================= */
 
-container.innerHTML="";
+function joinCommunity(button) {
 
-if(!data.notifications.length){
+  if (button.innerText === "Join") {
 
-container.innerHTML=`
+    button.innerText = "Joined";
+    button.style.background = "#242424";
 
-<div class="empty">
+  } else {
 
-<div class="empty-icon">
-🔔
-</div>
+    button.innerText = "Join";
+    button.style.background = "";
 
-No notifications yet.
+  }
 
-</div>
-
-`;
-
-return;
-
 }
-
-data.notifications.forEach(notification=>{
-
-container.innerHTML+=`
-
-<div
-class="notification ${notification.read?"":"unread"}"
->
-
-<div class="mini-avatar">
-♡
-</div>
 
-<div class="notification-text">
 
-<strong>
-${escapeHTML(notification.text)}
-</strong>
+/* =========================
+   POST CREATION
+========================= */
 
-<span>
-${escapeHTML(notification.time)}
-</span>
+function createPost() {
 
-</div>
+  const input = document.getElementById("homePostInput");
+  const text = input.value.trim();
 
-${notification.read?"":"<div class='notification-dot-large'></div>"}
+  if (!text) {
+    alert("Write something first.");
+    return;
+  }
 
-</div>
+  addPost(text);
 
-`;
+  input.value = "";
 
-});
-
 }
 
 
-function markNotificationsRead(){
+function addPost(text) {
 
-data.notifications.forEach(
-notification=>{
-notification.read=true;
-}
-);
+  const feed = document.getElementById("feed");
 
-saveData();
+  const article = document.createElement("article");
 
-updateBadges();
+  article.className = "post";
 
-}
+  article.innerHTML = `
 
+    <div class="post-header">
 
-function clearMessageNotifications(){
+      <div class="mini-avatar">
+        S
+      </div>
 
-/*
-Message notifications will become
-server-driven when the real backend
-is connected.
-*/
+      <div class="post-user">
+        <strong>Soulaani User</strong>
+        <span>@soulaaniuser • just now</span>
+      </div>
 
-updateBadges();
+    </div>
 
-}
+    <div class="post-text">
+      ${escapeHTML(text)}
+    </div>
 
+    <div class="post-actions">
 
-/* =====================================
-BADGES
-===================================== */
+      <button class="post-action" onclick="toggleLike(this)">
+        ♡ Like
+      </button>
 
-function updateBadges(){
+      <button class="post-action">
+        💬 Comment
+      </button>
 
-const unreadNotifications=
-data.notifications.filter(
-item=>!item.read
-).length;
+      <button class="post-action">
+        ↗ Share
+      </button>
 
-const notificationBadge=
-document.getElementById(
-"notificationBadge"
-);
+    </div>
 
-notificationBadge.textContent=
-unreadNotifications;
+  `;
 
-notificationBadge.style.display=
-unreadNotifications
-?"flex"
-:"none";
+  feed.prepend(article);
 
 }
-
-
-/* =====================================
-PROFILE
-===================================== */
 
-function renderProfile(){
 
-document.getElementById("profileName")
-.textContent=data.profile.name;
+/* =========================
+   MODAL
+========================= */
 
-document.getElementById("profileUsername")
-.textContent="@"+data.profile.username;
+function openPostModal() {
 
-document.getElementById("profileBio")
-.textContent=data.profile.bio;
+  document.getElementById("postModal")
+    .classList.add("show");
 
-document.getElementById("profileLocation")
-.textContent="📍 "+data.profile.location;
+  document.getElementById("modalPostInput")
+    .focus();
 
-document.getElementById("profileAvatar")
-.textContent=
-data.profile.name
-.charAt(0)
-.toUpperCase();
-
-document.getElementById("composerAvatar")
-.textContent=
-data.profile.name
-.charAt(0)
-.toUpperCase();
-
-document.getElementById("settingsName")
-.value=data.profile.name;
-
-document.getElementById("settingsUsername")
-.value=data.profile.username;
-
 }
-
-
-function editProfile(){
-
-document.getElementById("editName")
-.value=data.profile.name;
 
-document.getElementById("editUsername")
-.value=data.profile.username;
 
-document.getElementById("editBio")
-.value=data.profile.bio;
+function closePostModal() {
 
-document.getElementById("profileModal")
-.classList.add("show");
+  document.getElementById("postModal")
+    .classList.remove("show");
 
 }
 
 
-function saveProfile(){
+function createModalPost() {
 
-const name=
-document.getElementById("editName")
-.value.trim();
+  const input = document.getElementById("modalPostInput");
 
-const username=
-document.getElementById("editUsername")
-.value.trim();
+  const text = input.value.trim();
 
-const bio=
-document.getElementById("editBio")
-.value.trim();
+  if (!text) {
+    alert("Write something first.");
+    return;
+  }
 
-if(!name||!username){
+  addPost(text);
 
-toast("Name and username are required.");
+  input.value = "";
 
-return;
+  closePostModal();
 
-}
-
-data.profile.name=name;
-
-data.profile.username=
-username.replace("@","");
-
-data.profile.bio=
-bio||
-"Welcome to my Soulaani profile.";
-
-saveData();
-
-renderProfile();
+  openPage("home");
 
-closeProfileModal();
-
-toast("Profile updated.");
-
 }
-
-
-function saveProfileSetting(){
-
-const name=
-document.getElementById("settingsName")
-.value.trim();
-
-const username=
-document.getElementById("settingsUsername")
-.value.trim();
-
-const location=
-document.getElementById("settingsLocation")
-.value;
 
-if(name){
 
-data.profile.name=name;
+/* =========================
+   LOCATION
+========================= */
 
-}
+function changeLocation(location) {
 
-if(username){
+  alert(
+    "Your Discover location is now set to " +
+    location +
+    "."
+  );
 
-data.profile.username=
-username.replace("@","");
-
 }
-
-if(location){
 
-data.profile.location=location;
 
-}
+/* =========================
+   PROFILE
+========================= */
 
-saveData();
+function editProfile() {
 
-renderProfile();
+  alert(
+    "Profile editing is coming next. We'll connect this to real profile data."
+  );
 
-toast("Settings saved.");
-
 }
-
 
-/* =====================================
-STATS
-===================================== */
 
-function updateStats(){
+function shareProfile() {
 
-document.getElementById("followerCount")
-.textContent=data.followers;
+  if (navigator.clipboard) {
 
-document.getElementById("followingCount")
-.textContent=data.following.length;
+    navigator.clipboard.writeText(
+      window.location.href + "#profile"
+    );
 
-document.getElementById("postCount")
-.textContent=data.posts.length;
+    alert("Profile link copied!");
 
-updateBadges();
+  } else {
 
-}
-
-
-/* =====================================
-LOCATION
-===================================== */
+    alert("Your profile link is ready to share.");
 
-function changeLocation(location){
+  }
 
-data.location=location;
-
-saveData();
-
-toast(
-"Discover location changed to "+location
-);
-
 }
-
 
-/* =====================================
-MODALS
-===================================== */
 
-function openPostModal(){
+/* =========================
+   NOTIFICATIONS
+========================= */
 
-document.getElementById("postModal")
-.classList.add("show");
+function showNotification() {
 
-document.getElementById("modalPostInput")
-.focus();
+  alert(
+    "Notifications will appear here as we connect the real social system."
+  );
 
 }
 
 
-function closePostModal(){
+function showMessage() {
 
-document.getElementById("postModal")
-.classList.remove("show");
+  alert(
+    "Messaging is coming next."
+  );
 
 }
 
 
-function closeProfileModal(){
+function showComingSoon(feature) {
 
-document.getElementById("profileModal")
-.classList.remove("show");
-
-}
-
-
-/* =====================================
-SHARING
-===================================== */
-
-function shareProfile(){
-
-const profileLink=
-window.location.href.split("#")[0]
-+"#profile";
-
-if(navigator.clipboard){
-
-navigator.clipboard.writeText(
-profileLink
-);
-
-toast("Profile link copied.");
-
-}else{
-
-toast("Profile link ready to share.");
-
-}
+  alert(
+    feature + " is part of the next Soulaani development phase."
+  );
 
 }
 
 
-/* =====================================
-SEARCH
-===================================== */
+/* =========================
+   SEARCH
+========================= */
 
 document.getElementById("searchInput")
-.addEventListener(
-"keydown",
-function(event){
+  .addEventListener("keydown", function(event) {
 
-if(event.key!=="Enter"){
-return;
-}
+    if (event.key === "Enter") {
 
-const query=
-this.value.trim().toLowerCase();
+      const query = this.value.trim();
 
-if(!query){
-return;
-}
+      if (!query) {
+        return;
+      }
 
-if(
-query.includes("message")||
-query.includes("chat")
-){
+      alert(
+        'Search for "' +
+        query +
+        '" will connect to the full Soulaani search system next.'
+      );
 
-openPage("messages");
+    }
 
-this.value="";
-
-return;
-
-}
-
-if(
-query.includes("profile")||
-query.includes("account")
-){
-
-openPage("profile");
-
-this.value="";
-
-return;
-
-}
-
-if(
-query.includes("community")||
-query.includes("communities")
-){
-
-openPage("communities");
-
-this.value="";
-
-return;
-
-}
-
-if(
-query.includes("discover")||
-query.includes("local")
-){
-
-openPage("discover");
-
-this.value="";
-
-return;
-
-}
-
-toast(
-'Searching Soulaani for "'+
-query+
-'"'
-);
-
-}
-);
+  });
 
 
-/* =====================================
-OTHER
-===================================== */
+/* =========================
+   ESCAPE HTML
+========================= */
 
-function showComingSoon(feature){
+function escapeHTML(value) {
 
-toast(
-feature+" is coming in the next build."
-);
+  const div = document.createElement("div");
+
+  div.textContent = value;
+
+  return div.innerHTML;
 
 }
 
 
-/* =====================================
-ESCAPE HTML
-===================================== */
-
-function escapeHTML(value){
-
-const div=
-document.createElement("div");
-
-div.textContent=value;
-
-return div.innerHTML;
-
-}
-
-
-/* =====================================
-MODAL OUTSIDE CLICK
-===================================== */
+/* =========================
+   CLOSE MODAL OUTSIDE
+========================= */
 
 document.getElementById("postModal")
-.addEventListener(
-"click",
-function(event){
+  .addEventListener("click", function(event) {
 
-if(event.target===this){
+    if (event.target === this) {
+      closePostModal();
+    }
 
-closePostModal();
-
-}
-
-}
-);
-
-
-document.getElementById("profileModal")
-.addEventListener(
-"click",
-function(event){
-
-if(event.target===this){
-
-closeProfileModal();
-
-}
-
-}
-);
-
-
-/* =====================================
-INITIALIZE
-===================================== */
-
-function initialize(){
-
-renderProfile();
-
-renderPosts();
-
-renderPeople();
-
-renderCommunities();
-
-renderConversations();
-
-renderChat();
-
-renderNotifications();
-
-updateStats();
-
-const savedLocation=
-data.location;
-
-if(savedLocation){
-
-document.getElementById(
-"locationSelect"
-).value=savedLocation;
-
-}
-
-}
-
-initialize();
+  });
 
 </script>
 
