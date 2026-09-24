@@ -13,14 +13,17 @@
 }
 
 :root {
-  --bg: #0b0b0b;
-  --card: #151515;
-  --card2: #1c1c1c;
-  --gold: #d99a4e;
-  --gold-light: #f0bd75;
-  --text: #f5f5f5;
-  --muted: #999;
+  --bg: #090909;
+  --card: #141414;
+  --card2: #1b1b1b;
   --border: #292929;
+  --text: #ffffff;
+  --muted: #999999;
+  --soft: #707070;
+  --accent: #9b5cff;
+  --accent2: #c78cff;
+  --green: #35d07f;
+  --danger: #ff5c70;
 }
 
 body {
@@ -31,7 +34,6 @@ body {
 }
 
 button,
-select,
 input,
 textarea {
   font: inherit;
@@ -42,1136 +44,686 @@ button {
 }
 
 .app {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding-bottom: 100px;
+  min-height: 100vh;
 }
 
-header {
+/* =========================
+   HEADER
+========================= */
+
+.header {
+  height: 68px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(9,9,9,.96);
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 22px 20px;
+  justify-content: space-between;
+  padding: 0 28px;
   position: sticky;
   top: 0;
-  z-index: 20;
-  background: rgba(11,11,11,.94);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
+  z-index: 100;
+  backdrop-filter: blur(15px);
 }
 
 .logo {
-  font-size: 27px;
+  font-size: 25px;
   font-weight: 800;
-  letter-spacing: -.5px;
+  letter-spacing: -1px;
 }
 
 .logo span {
-  color: var(--gold);
+  color: var(--accent);
 }
 
-.header-icons {
+.header-search {
+  width: 340px;
+  background: #151515;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 11px 17px;
+  color: white;
+  outline: none;
+}
+
+.header-search:focus {
+  border-color: var(--accent);
+}
+
+.header-actions {
   display: flex;
+  align-items: center;
   gap: 10px;
 }
 
 .icon-btn {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
+  width: 40px;
+  height: 40px;
   border: 1px solid var(--border);
-  background: var(--card);
+  background: #151515;
   color: white;
-  font-size: 18px;
+  border-radius: 50%;
+}
+
+.icon-btn:hover {
+  border-color: var(--accent);
+}
+
+/* =========================
+   LAYOUT
+========================= */
+
+.main {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr) 280px;
+  max-width: 1450px;
+  margin: auto;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+  border-right: 1px solid var(--border);
+  min-height: calc(100vh - 68px);
+  padding: 24px 14px;
+  position: sticky;
+  top: 68px;
+  height: calc(100vh - 68px);
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #aaa;
+  padding: 13px 15px;
+  border-radius: 12px;
+  margin-bottom: 4px;
+  text-align: left;
+  font-weight: 600;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  background: #1a1a1a;
+  color: white;
+}
+
+.nav-item.active {
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.nav-icon {
+  width: 22px;
+  text-align: center;
+}
+
+.create-btn {
+  margin-top: 18px;
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent), #7138d4);
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.content {
+  padding: 28px;
+  min-width: 0;
 }
 
 .page {
   display: none;
-  padding: 20px;
 }
 
 .page.active {
   display: block;
 }
 
-.hero {
-  padding: 28px 0 20px;
+.page-title {
+  font-size: 28px;
+  margin-bottom: 7px;
 }
 
-.hero h1 {
-  font-size: clamp(30px, 6vw, 52px);
-  line-height: 1;
-  margin-bottom: 12px;
-}
-
-.hero h1 span {
-  color: var(--gold);
-}
-
-.hero p {
+.page-subtitle {
   color: var(--muted);
-  line-height: 1.6;
-  max-width: 650px;
+  margin-bottom: 25px;
 }
+
+/* =========================
+   PROFILE
+========================= */
 
 .profile-card {
-  background: linear-gradient(135deg, #191919, #101010);
+  background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 22px;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  margin-bottom: 24px;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.cover {
+  height: 180px;
+  background:
+    radial-gradient(circle at 20% 30%, #8d48ff, transparent 28%),
+    radial-gradient(circle at 80% 20%, #4d247d, transparent 30%),
+    linear-gradient(135deg, #171717, #2b183e);
+}
+
+.profile-main {
+  padding: 0 25px 25px;
+  position: relative;
 }
 
 .avatar {
-  width: 70px;
-  height: 70px;
+  width: 105px;
+  height: 105px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #d99a4e, #70451f);
-  display: grid;
-  place-items: center;
-  font-size: 25px;
+  background: linear-gradient(135deg, #a961ff, #5424a2);
+  border: 5px solid var(--card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 38px;
   font-weight: 800;
-  flex-shrink: 0;
+  position: relative;
+  margin-top: -53px;
 }
 
-.profile-info h2 {
-  margin-bottom: 6px;
+.profile-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
-.profile-info p {
+.profile-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  border: 1px solid var(--border);
+  background: #1b1b1b;
+  color: white;
+  padding: 10px 17px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.btn:hover {
+  border-color: var(--accent);
+}
+
+.btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.profile-name {
+  margin-top: 14px;
+  font-size: 26px;
+}
+
+.username {
   color: var(--muted);
-  font-size: 14px;
+  margin-top: 4px;
+}
+
+.bio {
+  margin-top: 14px;
+  line-height: 1.5;
+  color: #ddd;
+}
+
+.profile-location {
+  color: var(--muted);
+  margin-top: 10px;
 }
 
 .stats {
   display: flex;
-  gap: 20px;
-  margin-top: 10px;
+  gap: 28px;
+  margin-top: 20px;
 }
 
 .stat strong {
   display: block;
+  font-size: 18px;
 }
 
 .stat span {
   color: var(--muted);
-  font-size: 12px;
-}
-
-.section-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 25px 0 14px;
-}
-
-.section-title h2 {
-  font-size: 20px;
-}
-
-.section-title span {
-  color: var(--gold);
   font-size: 13px;
 }
 
-.stories {
-  display: flex;
-  gap: 14px;
-  overflow-x: auto;
-  padding-bottom: 6px;
-}
+/* =========================
+   FEED
+========================= */
 
-.story {
-  min-width: 75px;
-  text-align: center;
-}
-
-.story-ring {
-  width: 62px;
-  height: 62px;
-  margin: auto auto 7px;
-  border-radius: 50%;
-  padding: 3px;
-  background: linear-gradient(135deg, var(--gold), #6b3915);
-}
-
-.story-inner {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: #252525;
-  display: grid;
-  place-items: center;
-  font-size: 22px;
-}
-
-.story small {
-  color: #bbb;
-  font-size: 11px;
-}
-
-.composer,
-.post,
-.feature-card,
-.local-card {
+.composer {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 18px;
-  margin-bottom: 16px;
+  padding: 17px;
+  border-radius: 16px;
+  margin-bottom: 20px;
 }
 
-.composer-top {
+.composer-row {
   display: flex;
   gap: 12px;
-  align-items: center;
 }
 
 .mini-avatar {
-  width: 42px;
-  height: 42px;
+  width: 43px;
+  height: 43px;
   border-radius: 50%;
-  background: #7a4d28;
-  display: grid;
-  place-items: center;
-  font-weight: bold;
+  background: linear-gradient(135deg, #a961ff, #5424a2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
   flex-shrink: 0;
 }
 
-.clickable-profile {
-  cursor: pointer;
-}
-
-.clickable-profile:hover {
-  opacity: .85;
-}
-
-.composer input {
-  width: 100%;
-  background: var(--card2);
+.post-input {
+  flex: 1;
+  background: #1a1a1a;
   border: 1px solid var(--border);
+  border-radius: 12px;
   color: white;
-  border-radius: 25px;
-  padding: 13px 16px;
+  padding: 13px;
+  outline: none;
+  resize: none;
+}
+
+.post-input:focus {
+  border-color: var(--accent);
+}
+
+.composer-bottom {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+
+.post {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 16px;
 }
 
 .post-header {
   display: flex;
   align-items: center;
   gap: 11px;
-  margin-bottom: 14px;
 }
 
-.post-user {
-  font-weight: bold;
-  cursor: pointer;
+.post-user strong {
+  display: block;
 }
 
-.post-meta {
+.post-user span {
   color: var(--muted);
-  font-size: 12px;
-  margin-top: 3px;
-}
-
-.post p {
-  line-height: 1.55;
-  color: #ddd;
-}
-
-.post-location {
-  color: var(--gold);
   font-size: 13px;
-  margin-bottom: 10px;
+}
+
+.post-text {
+  margin: 17px 0;
+  line-height: 1.55;
+  color: #e4e4e4;
 }
 
 .post-actions {
-  display: flex;
-  gap: 8px;
-  margin-top: 16px;
-  flex-wrap: wrap;
-}
-
-.action-btn {
-  border: 1px solid var(--border);
-  background: #1d1d1d;
-  color: #ddd;
-  padding: 9px 13px;
-  border-radius: 20px;
-}
-
-.action-btn:hover {
-  border-color: var(--gold);
-}
-
-.comments {
-  display: none;
-  margin-top: 14px;
   border-top: 1px solid var(--border);
-  padding-top: 14px;
-}
-
-.comment-list {
-  margin-bottom: 10px;
-}
-
-.comment {
-  background: #1d1d1d;
-  padding: 10px 12px;
-  border-radius: 12px;
-  margin-bottom: 8px;
-  font-size: 14px;
-}
-
-.comment-input {
+  padding-top: 12px;
   display: flex;
   gap: 8px;
 }
 
-.comment-input input {
-  flex: 1;
-  background: #1d1d1d;
-  border: 1px solid var(--border);
-  color: white;
-  border-radius: 20px;
-  padding: 10px 13px;
-}
-
-.gold-btn {
-  background: var(--gold);
-  color: #111;
-  border: none;
-  border-radius: 20px;
-  padding: 10px 16px;
-  font-weight: 700;
-}
-
-.bottom-nav {
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 14px;
-  width: min(680px, calc(100% - 24px));
-  background: rgba(22,22,22,.96);
-  border: 1px solid #333;
-  border-radius: 24px;
-  padding: 8px;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  z-index: 50;
-  backdrop-filter: blur(15px);
-}
-
-.nav-btn {
+.post-action {
   background: transparent;
   border: none;
-  color: #888;
-  padding: 9px 4px;
-  border-radius: 17px;
-  font-size: 11px;
-}
-
-.nav-btn span {
-  display: block;
-  font-size: 19px;
-  margin-bottom: 3px;
-}
-
-.nav-btn.active {
-  color: var(--gold);
-  background: #211a13;
-}
-
-/* =========================
-   PROFILE PAGE
-========================= */
-
-.profile-page-top {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 22px;
-}
-
-.back-btn {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: var(--card);
-  border: 1px solid var(--border);
-  color: white;
-  font-size: 20px;
-}
-
-.profile-page-top h2 {
-  font-size: 21px;
-}
-
-.full-profile {
-  text-align: center;
-}
-
-.profile-cover {
-  height: 170px;
-  border-radius: 24px 24px 0 0;
-  background:
-    radial-gradient(circle at 20% 30%, rgba(240,189,117,.25), transparent 30%),
-    radial-gradient(circle at 80% 20%, rgba(217,154,78,.18), transparent 35%),
-    linear-gradient(135deg, #2a1d12, #111);
-  border: 1px solid var(--border);
-  position: relative;
-  overflow: hidden;
-  margin-bottom: -55px;
-}
-
-.profile-cover::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(
-      120deg,
-      transparent 0%,
-      rgba(255,255,255,.03) 45%,
-      transparent 70%
-    );
-}
-
-.profile-cover-edit {
-  position: absolute;
-  right: 14px;
-  top: 14px;
-  z-index: 2;
-  background: rgba(0,0,0,.55);
-  color: white;
-  border: 1px solid rgba(255,255,255,.15);
-  border-radius: 18px;
-  padding: 8px 12px;
-  font-size: 12px;
-}
-
-.profile-cover-edit:hover {
-  border-color: var(--gold);
-  color: var(--gold);
-}
-
-.profile-avatar-wrap {
-  position: relative;
-  width: 120px;
-  margin: 0 auto 15px;
-  z-index: 3;
-}
-
-.profile-large-avatar {
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #d99a4e, #70451f);
-  display: grid;
-  place-items: center;
-  font-size: 38px;
-  font-weight: 800;
-  margin: 0 auto;
-  border: 4px solid #272016;
-  box-shadow: 0 0 0 2px var(--gold);
-}
-
-.profile-avatar-edit {
-  position: absolute;
-  right: -2px;
-  bottom: 5px;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 2px solid var(--bg);
-  background: var(--gold);
-  color: #111;
-  font-size: 14px;
-}
-
-.full-profile h1 {
-  font-size: 29px;
-  margin-bottom: 5px;
-}
-
-.profile-name-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-}
-
-.profile-verified {
-  color: var(--gold);
-  font-size: 16px;
-}
-
-.username {
-  color: var(--gold);
-  font-size: 14px;
-  margin-bottom: 12px;
-}
-
-.profile-bio {
-  color: #ccc;
-  line-height: 1.5;
-  max-width: 500px;
-  margin: 0 auto 10px;
-}
-
-.profile-location {
-  color: var(--muted);
-  font-size: 13px;
-  margin-bottom: 20px;
-}
-
-.profile-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 9px;
-  margin-bottom: 25px;
-  flex-wrap: wrap;
-}
-
-.profile-btn,
-.share-profile-btn {
-  border: 1px solid var(--border);
-  background: var(--card);
-  color: white;
-  border-radius: 20px;
-  padding: 10px 19px;
-}
-
-.profile-btn.primary {
-  background: var(--gold);
-  color: #111;
-  border-color: var(--gold);
-  font-weight: bold;
-}
-
-.profile-btn:hover,
-.share-profile-btn:hover {
-  border-color: var(--gold);
-  color: var(--gold);
-}
-
-.profile-btn.primary:hover {
-  color: #111;
-  background: var(--gold-light);
-}
-
-.profile-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 18px;
-  margin-bottom: 24px;
-}
-
-.profile-stat {
-  border-right: 1px solid var(--border);
-  text-align: center;
-}
-
-.profile-stat:last-child {
-  border-right: none;
-}
-
-.profile-stat strong {
-  display: block;
-  font-size: 20px;
-}
-
-.profile-stat span {
-  color: var(--muted);
-  font-size: 12px;
-}
-
-/* =========================
-   PROFILE EDITOR
-========================= */
-
-.profile-editor-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.75);
-  backdrop-filter: blur(8px);
-  z-index: 100;
-  padding: 20px;
-  overflow-y: auto;
-}
-
-.profile-editor-overlay.active {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.profile-editor {
-  width: min(560px, 100%);
-  background: #151515;
-  border: 1px solid #333;
-  border-radius: 24px;
-  padding: 22px;
-  box-shadow: 0 25px 80px rgba(0,0,0,.55);
-}
-
-.editor-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.editor-header h2 {
-  font-size: 22px;
-}
-
-.editor-close {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  background: var(--card2);
-  color: white;
-  font-size: 20px;
-}
-
-.editor-close:hover {
-  border-color: var(--gold);
-}
-
-.editor-group {
-  margin-bottom: 17px;
-}
-
-.editor-group label {
-  display: block;
-  color: #aaa;
-  font-size: 12px;
-  margin-bottom: 7px;
-}
-
-.editor-group input,
-.editor-group textarea {
-  width: 100%;
-  background: #0f0f0f;
-  border: 1px solid #333;
-  color: white;
-  border-radius: 13px;
-  padding: 12px 13px;
-  outline: none;
-}
-
-.editor-group textarea {
-  min-height: 100px;
-  resize: vertical;
-  line-height: 1.5;
-}
-
-.editor-group input:focus,
-.editor-group textarea:focus {
-  border-color: var(--gold);
-}
-
-.editor-interests {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.editor-interest {
-  border: 1px solid #3b2b1b;
-  background: #211a13;
-  color: #bbb;
-  border-radius: 18px;
-  padding: 8px 12px;
-  font-size: 12px;
-  cursor: pointer;
-}
-
-.editor-interest.selected {
-  color: #111;
-  background: var(--gold);
-  border-color: var(--gold);
-}
-
-.editor-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 22px;
-}
-
-.editor-actions button {
-  flex: 1;
-  padding: 12px;
-  border-radius: 20px;
-}
-
-.editor-cancel {
-  background: #202020;
-  border: 1px solid var(--border);
-  color: white;
-}
-
-.editor-save {
-  background: var(--gold);
-  border: none;
-  color: #111;
-  font-weight: 800;
-}
-
-/* =========================
-   PROFILE MUSIC
-========================= */
-
-.profile-music {
-  margin-bottom: 24px;
-}
-
-.music-card {
-  background: linear-gradient(135deg, #1d1813, #111);
-  border: 1px solid #3b2b1b;
-  border-radius: 20px;
-  padding: 15px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  position: relative;
-  overflow: hidden;
-}
-
-.music-card::before {
-  content: "";
-  position: absolute;
-  width: 140px;
-  height: 140px;
-  background: var(--gold);
-  opacity: .05;
-  border-radius: 50%;
-  right: -45px;
-  top: -55px;
-}
-
-.music-art {
-  width: 72px;
-  height: 72px;
-  border-radius: 15px;
-  flex-shrink: 0;
-  background:
-    radial-gradient(circle at 30% 25%, #f0bd75 0 7%, transparent 8%),
-    radial-gradient(circle at 70% 65%, #d99a4e 0 10%, transparent 11%),
-    linear-gradient(135deg, #3a2818, #0e0e0e);
-  border: 1px solid #5a3d20;
-  display: grid;
-  place-items: center;
-  font-size: 28px;
-  box-shadow: 0 8px 20px rgba(0,0,0,.3);
-}
-
-.music-info {
-  flex: 1;
-  min-width: 0;
-  text-align: left;
-}
-
-.music-label {
-  color: var(--gold);
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  margin-bottom: 5px;
-}
-
-.music-title {
-  font-size: 16px;
-  font-weight: 800;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin-bottom: 4px;
-}
-
-.music-artist {
-  color: var(--muted);
-  font-size: 12px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.music-play {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: none;
-  background: var(--gold);
-  color: #111;
-  display: grid;
-  place-items: center;
-  font-size: 16px;
-  flex-shrink: 0;
-  transition: transform .15s ease, background .15s ease;
-}
-
-.music-play:hover {
-  transform: scale(1.06);
-  background: var(--gold-light);
-}
-
-.music-card.playing {
-  border-color: var(--gold);
-  box-shadow: 0 0 25px rgba(217,154,78,.08);
-}
-
-.music-card.playing .music-art {
-  animation: musicPulse 1.5s ease-in-out infinite;
-}
-
-@keyframes musicPulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.04);
-  }
-}
-
-.music-edit {
-  background: transparent;
-  border: none;
-  color: #888;
-  font-size: 12px;
-  padding: 4px 0;
-}
-
-.music-edit:hover {
-  color: var(--gold);
-}
-
-@media (max-width: 430px) {
-
-  .music-card {
-    padding: 13px;
-  }
-
-  .music-art {
-    width: 64px;
-    height: 64px;
-  }
-
-  .music-title {
-    font-size: 14px;
-  }
-
-  .music-play {
-    width: 40px;
-    height: 40px;
-  }
-
-}
-
-.interest-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.interest {
-  background: #211a13;
-  border: 1px solid #4a3622;
-  color: var(--gold-light);
-  border-radius: 18px;
-  padding: 8px 12px;
-  font-size: 12px;
-}
-
-.profile-tabs {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin: 25px 0 15px;
-}
-
-.profile-tab {
-  background: var(--card);
-  border: 1px solid var(--border);
   color: #999;
-  padding: 12px;
-  border-radius: 12px;
+  padding: 8px 12px;
+  border-radius: 9px;
 }
 
-.profile-tab.active {
-  color: var(--gold);
-  border-color: #61421f;
-  background: #211a13;
+.post-action:hover {
+  background: #202020;
+  color: white;
 }
 
-.community-card {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 14px;
-  margin-bottom: 10px;
-}
-
-.community-icon {
-  width: 46px;
-  height: 46px;
-  border-radius: 13px;
-  background: #211a13;
-  display: grid;
-  place-items: center;
-  font-size: 22px;
-}
-
-.community-card h3 {
-  font-size: 15px;
-}
-
-.community-card p {
-  color: var(--muted);
-  font-size: 12px;
-  margin-top: 3px;
+.post-action.liked {
+  color: var(--danger);
 }
 
 /* =========================
    DISCOVER
 ========================= */
 
-.location-panel {
-  background: linear-gradient(135deg, #1d1813, #111);
-  border: 1px solid #3b2b1b;
-  border-radius: 24px;
-  padding: 20px;
+.location-banner {
+  background:
+    linear-gradient(120deg, rgba(155,92,255,.25), rgba(0,0,0,.2)),
+    var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 23px;
   margin-bottom: 20px;
 }
 
-.location-label {
-  color: var(--gold);
-  text-transform: uppercase;
-  font-size: 11px;
-  letter-spacing: 1.5px;
+.location-banner h2 {
   margin-bottom: 8px;
 }
 
-.location-panel h2 {
-  font-size: 30px;
-  margin-bottom: 8px;
-}
-
-.location-panel p {
+.location-banner p {
   color: var(--muted);
-  line-height: 1.5;
 }
 
-.region-scroll {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  margin-bottom: 18px;
-}
-
-.region-btn {
-  white-space: nowrap;
-  background: var(--card);
-  color: #aaa;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 9px 14px;
-}
-
-.region-btn.active {
-  background: var(--gold);
-  color: #111;
-  border-color: var(--gold);
-  font-weight: bold;
-}
-
-.location-selectors {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-bottom: 18px;
-}
-
-.selector-wrap label {
-  display: block;
-  color: #888;
-  font-size: 11px;
-  margin: 0 0 6px 4px;
-  text-transform: uppercase;
-}
-
-.selector-wrap select {
-  width: 100%;
-  background: #171717;
-  border: 1px solid #333;
+.location-select {
+  margin-top: 17px;
+  background: #101010;
   color: white;
-  border-radius: 13px;
-  padding: 12px 10px;
+  border: 1px solid var(--border);
+  padding: 11px;
+  border-radius: 10px;
+  width: 100%;
   outline: none;
 }
 
-.selector-wrap select:focus {
-  border-color: var(--gold);
-}
-
-.local-fyp-header {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  align-items: flex-end;
-  margin: 28px 0 15px;
-}
-
-.local-fyp-header h2 {
-  font-size: 25px;
-}
-
-.local-fyp-header p {
-  color: var(--muted);
-  font-size: 13px;
-  margin-top: 5px;
-}
-
-.live-pill {
-  color: #111;
-  background: #79c879;
-  border-radius: 20px;
-  padding: 5px 9px;
-  font-size: 10px;
-  font-weight: bold;
-  white-space: nowrap;
-}
-
-.local-grid {
+.discovery-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
 }
 
-.local-card {
-  margin: 0;
-  min-height: 125px;
+.discovery-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 19px;
 }
 
-.local-card .card-icon {
-  font-size: 25px;
-  margin-bottom: 9px;
+.discovery-card .emoji {
+  font-size: 28px;
+  margin-bottom: 12px;
 }
 
-.local-card h3 {
-  font-size: 15px;
-  margin-bottom: 5px;
+.discovery-card h3 {
+  margin-bottom: 7px;
 }
 
-.local-card p {
+.discovery-card p {
   color: var(--muted);
-  font-size: 12px;
   line-height: 1.4;
 }
 
-.local-post {
-  border-left: 3px solid var(--gold);
+/* =========================
+   CONNECT
+========================= */
+
+.user-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 17px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 12px;
 }
 
-.hashtag {
-  color: var(--gold);
+.user-info {
+  flex: 1;
+}
+
+.user-info strong {
+  display: block;
+}
+
+.user-info span {
+  color: var(--muted);
   font-size: 13px;
-  margin-top: 10px;
 }
 
-.empty-note {
-  color: #777;
-  text-align: center;
-  padding: 20px;
+.user-card .btn {
+  padding: 8px 13px;
   font-size: 13px;
 }
 
 /* =========================
-   OTHER PAGES
+   COMMUNITIES
 ========================= */
 
-.feature-grid {
+.community-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
+  gap: 15px;
 }
 
-.feature-card {
-  min-height: 150px;
+.community {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
 }
 
-.feature-card .emoji {
-  font-size: 30px;
+.community-icon {
+  font-size: 31px;
   margin-bottom: 12px;
 }
 
-.feature-card h3 {
-  margin-bottom: 7px;
+.community p {
+  color: var(--muted);
+  margin: 8px 0 16px;
+  line-height: 1.4;
 }
 
-.feature-card p {
+/* =========================
+   RIGHT SIDEBAR
+========================= */
+
+.rightbar {
+  border-left: 1px solid var(--border);
+  min-height: calc(100vh - 68px);
+  padding: 25px 18px;
+}
+
+.side-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 17px;
+  margin-bottom: 15px;
+}
+
+.side-box h3 {
+  margin-bottom: 15px;
+}
+
+.trending-item {
+  padding: 11px 0;
+  border-bottom: 1px solid #252525;
+}
+
+.trending-item:last-child {
+  border-bottom: none;
+}
+
+.trending-item span {
   color: var(--muted);
-  font-size: 13px;
-  line-height: 1.5;
+  display: block;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.72);
+  z-index: 500;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-box {
+  width: 100%;
+  max-width: 500px;
+  background: #151515;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 23px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.close {
+  border: none;
+  background: transparent;
+  color: #aaa;
+  font-size: 24px;
+}
+
+.modal textarea {
+  width: 100%;
+  min-height: 130px;
+  background: #0e0e0e;
+  color: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 13px;
+  outline: none;
+  resize: vertical;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 13px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+.mobile-nav {
+  display: none;
+}
+
+@media (max-width: 1000px) {
+  .main {
+    grid-template-columns: 190px minmax(0,1fr);
+  }
+
+  .rightbar {
+    display: none;
+  }
 }
 
 @media (max-width: 700px) {
 
-  .location-selectors {
+  .header {
+    padding: 0 15px;
+    height: 62px;
+  }
+
+  .header-search {
+    display: none;
+  }
+
+  .header-actions .icon-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .main {
+    display: block;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .content {
+    padding: 18px 14px 85px;
+  }
+
+  .mobile-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 66px;
+    background: rgba(15,15,15,.97);
+    border-top: 1px solid var(--border);
+    z-index: 200;
+    justify-content: space-around;
+    align-items: center;
+    backdrop-filter: blur(15px);
+  }
+
+  .mobile-nav button {
+    border: none;
+    background: transparent;
+    color: #777;
+    font-size: 20px;
+  }
+
+  .mobile-nav button.active {
+    color: var(--accent2);
+  }
+
+  .profile-top {
+    align-items: center;
+  }
+
+  .profile-actions {
+    flex-direction: column;
+  }
+
+  .avatar {
+    width: 90px;
+    height: 90px;
+  }
+
+  .discovery-grid,
+  .community-grid {
     grid-template-columns: 1fr;
   }
 
-  .local-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .stats {
+    gap: 18px;
   }
 
-}
-
-@media (max-width: 430px) {
-
-  .page {
-    padding: 15px;
+  .page-title {
+    font-size: 24px;
   }
-
-  header {
-    padding: 17px 15px;
-  }
-
-  .local-grid,
-  .feature-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .hero h1 {
-    font-size: 34px;
-  }
-
-  .profile-cover {
-    height: 145px;
-  }
-
-  .profile-buttons {
-    gap: 7px;
-  }
-
-  .profile-btn,
-  .share-profile-btn {
-    padding: 9px 13px;
-    font-size: 12px;
-  }
-
 }
 </style>
 </head>
@@ -1180,270 +732,780 @@ header {
 
 <div class="app">
 
-<header>
+  <!-- HEADER -->
+  <header class="header">
 
-  <div class="logo">
-    Soulaani<span>.</span>
-  </div>
-
-  <div class="header-icons">
-
-    <button class="icon-btn">
-      ⌕
-    </button>
-
-    <button class="icon-btn">
-      ♡
-    </button>
-
-  </div>
-
-</header>
-
-
-<!-- =========================
-     HOME
-========================= -->
-
-<section id="home" class="page active">
-
-  <div class="hero">
-
-    <h1>
-      Welcome back, <span>Soulaani.</span>
-    </h1>
-
-    <p>
-      Your community. Your culture. Your people.
-    </p>
-
-  </div>
-
-
-  <div
-    class="profile-card clickable-profile"
-    onclick="openProfile()"
-  >
-
-    <div
-      class="avatar"
-      id="homeAvatar"
-    >
-      LT
+    <div class="logo">
+      Soulaani<span>.</span>
     </div>
 
-    <div class="profile-info">
-
-      <h2 id="homeProfileName">
-        LuhhTrilly
-      </h2>
-
-      <p id="homeProfileBio">
-        Building the future of Black digital community.
-      </p>
-
-      <div class="stats">
-
-        <div class="stat">
-          <strong>428</strong>
-          <span>Followers</span>
-        </div>
-
-        <div class="stat">
-          <strong>187</strong>
-          <span>Following</span>
-        </div>
-
-        <div class="stat">
-          <strong>32</strong>
-          <span>Posts</span>
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="section-title">
-    <h2>Stories</h2>
-    <span>See all</span>
-  </div>
-
-
-  <div class="stories">
-
-    <div class="story">
-
-      <div class="story-ring">
-        <div class="story-inner">+</div>
-      </div>
-
-      <small>Your Story</small>
-
-    </div>
-
-
-    <div class="story">
-
-      <div class="story-ring">
-        <div class="story-inner">🎵</div>
-      </div>
-
-      <small>Music</small>
-
-    </div>
-
-
-    <div class="story">
-
-      <div class="story-ring">
-        <div class="story-inner">🔥</div>
-      </div>
-
-      <small>Trending</small>
-
-    </div>
-
-
-    <div class="story">
-
-      <div class="story-ring">
-        <div class="story-inner">🍽️</div>
-      </div>
-
-      <small>Food</small>
-
-    </div>
-
-
-    <div class="story">
-
-      <div class="story-ring">
-        <div class="story-inner">💼</div>
-      </div>
-
-      <small>Build</small>
-
-    </div>
-
-  </div>
-
-
-  <div class="section-title">
-    <h2>What's on your mind?</h2>
-  </div>
-
-
-  <div class="composer">
-
-    <div class="composer-top">
-
-      <div
-        class="mini-avatar"
-        id="homeComposerAvatar"
-      >
-        LT
-      </div>
-
-      <input
-        id="homePostInput"
-        type="text"
-        placeholder="Share something with Soulaani..."
-      >
-
-    </div>
-
-  </div>
-
-
-  <div class="section-title">
-
-    <h2>
-      Trending on Soulaani
-    </h2>
-
-    <span>
-      Explore
-    </span>
-
-  </div>
-
-
-  <div class="post">
-
-    <div class="post-header">
-
-      <div class="mini-avatar">
-        S
-      </div>
-
-      <div>
-
-        <div class="post-user">
-          Soulaani Community
-        </div>
-
-        <div class="post-meta">
-          Trending now
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <p>
-      What part of Black culture do you want to see represented more on Soulaani?
-      Drop it below. 👇🏾
-    </p>
-
-
-    <div class="post-actions">
-
-      <button
-        class="action-btn"
-        onclick="react(this,'❤️')"
-      >
-        ♡ Like
-      </button>
-
-      <button
-        class="action-btn"
-        onclick="toggleComments('homeComments')"
-      >
-        💬 Comments
-      </button>
-
-    </div>
-
-
-    <div
-      id="homeComments"
-      class="comments"
+    <input
+      class="header-search"
+      type="text"
+      placeholder="Search Soulaani..."
+      id="searchInput"
     >
 
-      <div class="comment-list">
+    <div class="header-actions">
+      <button class="icon-btn" onclick="showNotification()">♡</button>
+      <button class="icon-btn" onclick="showMessage()">✉</button>
+      <button class="icon-btn" onclick="openPage('profile')">S</button>
+    </div>
 
-        <div class="comment">
-          Welcome to Soulaani! ❤️
+  </header>
+
+
+  <div class="main">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+
+      <button class="nav-item active" onclick="openPage('home', this)">
+        <span class="nav-icon">⌂</span>
+        Home
+      </button>
+
+      <button class="nav-item" onclick="openPage('discover', this)">
+        <span class="nav-icon">◉</span>
+        Discover
+      </button>
+
+      <button class="nav-item" onclick="openPage('connect', this)">
+        <span class="nav-icon">♧</span>
+        Connect
+      </button>
+
+      <button class="nav-item" onclick="openPage('communities', this)">
+        <span class="nav-icon">♟</span>
+        Communities
+      </button>
+
+      <button class="nav-item" onclick="openPage('profile', this)">
+        <span class="nav-icon">◎</span>
+        Profile
+      </button>
+
+      <button class="nav-item" onclick="showComingSoon('Date')">
+        <span class="nav-icon">♡</span>
+        Date
+      </button>
+
+      <button class="nav-item" onclick="showComingSoon('Build')">
+        <span class="nav-icon">✦</span>
+        Build
+      </button>
+
+      <button class="create-btn" onclick="openPostModal()">
+        + Create
+      </button>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="content">
+
+      <!-- HOME -->
+      <section class="page active" id="home">
+
+        <h1 class="page-title">Home</h1>
+        <p class="page-subtitle">
+          Your community. Your culture. Your world.
+        </p>
+
+        <div class="composer">
+
+          <div class="composer-row">
+
+            <div class="mini-avatar">
+              S
+            </div>
+
+            <textarea
+              id="homePostInput"
+              class="post-input"
+              rows="2"
+              placeholder="What's happening in your world?"
+            ></textarea>
+
+          </div>
+
+          <div class="composer-bottom">
+
+            <button class="btn primary" onclick="createPost()">
+              Post
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div id="feed">
+
+          <article class="post">
+
+            <div class="post-header">
+
+              <div class="mini-avatar">
+                J
+              </div>
+
+              <div class="post-user">
+                <strong>Jordan Williams</strong>
+                <span>@jordanw • 2h</span>
+              </div>
+
+            </div>
+
+            <div class="post-text">
+              Nothing like discovering another Black-owned spot in the city. The food, the music, the atmosphere... this is exactly why community matters. 🔥
+            </div>
+
+            <div class="post-actions">
+
+              <button class="post-action" onclick="toggleLike(this)">
+                ♡ Like
+              </button>
+
+              <button class="post-action">
+                💬 Comment
+              </button>
+
+              <button class="post-action">
+                ↗ Share
+              </button>
+
+            </div>
+
+          </article>
+
+
+          <article class="post">
+
+            <div class="post-header">
+
+              <div class="mini-avatar">
+                M
+              </div>
+
+              <div class="post-user">
+                <strong>Maya Carter</strong>
+                <span>@mayacarter • 5h</span>
+              </div>
+
+            </div>
+
+            <div class="post-text">
+              What cities should Soulaani highlight next? I want to see local culture, events, businesses and people from everywhere. 🌎
+            </div>
+
+            <div class="post-actions">
+
+              <button class="post-action" onclick="toggleLike(this)">
+                ♡ Like
+              </button>
+
+              <button class="post-action">
+                💬 Comment
+              </button>
+
+              <button class="post-action">
+                ↗ Share
+              </button>
+
+            </div>
+
+          </article>
+
+
+          <article class="post">
+
+            <div class="post-header">
+
+              <div class="mini-avatar">
+                D
+              </div>
+
+              <div class="post-user">
+                <strong>DeAndre R.</strong>
+                <span>@dreonthebeat • 8h</span>
+              </div>
+
+            </div>
+
+            <div class="post-text">
+              New music dropping soon. Tap in if you're into independent artists and producers. 🎧
+            </div>
+
+            <div class="post-actions">
+
+              <button class="post-action" onclick="toggleLike(this)">
+                ♡ Like
+              </button>
+
+              <button class="post-action">
+                💬 Comment
+              </button>
+
+              <button class="post-action">
+                ↗ Share
+              </button>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- DISCOVER -->
+      <section class="page" id="discover">
+
+        <h1 class="page-title">
+          Discover
+        </h1>
+
+        <p class="page-subtitle">
+          Explore what's happening around you and across the culture.
+        </p>
+
+
+        <div class="location-banner">
+
+          <h2>📍 Explore your area</h2>
+
+          <p>
+            Find people, businesses, food, music, events and culture around you.
+          </p>
+
+          <select class="location-select" onchange="changeLocation(this.value)">
+
+            <option value="Harrisburg, PA">
+              Harrisburg, Pennsylvania
+            </option>
+
+            <option value="Philadelphia, PA">
+              Philadelphia, Pennsylvania
+            </option>
+
+            <option value="Baltimore, MD">
+              Baltimore, Maryland
+            </option>
+
+            <option value="New York, NY">
+              New York, New York
+            </option>
+
+            <option value="Atlanta, GA">
+              Atlanta, Georgia
+            </option>
+
+            <option value="Detroit, MI">
+              Detroit, Michigan
+            </option>
+
+            <option value="Los Angeles, CA">
+              Los Angeles, California
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="discovery-grid">
+
+          <div class="discovery-card">
+
+            <div class="emoji">👥</div>
+
+            <h3>People</h3>
+
+            <p>
+              Discover people in your area and connect with new members of the community.
+            </p>
+
+          </div>
+
+
+          <div class="discovery-card">
+
+            <div class="emoji">🏪</div>
+
+            <h3>Black-Owned Businesses</h3>
+
+            <p>
+              Explore restaurants, shops, services and businesses in your local area.
+            </p>
+
+          </div>
+
+
+          <div class="discovery-card">
+
+            <div class="emoji">🎵</div>
+
+            <h3>Music</h3>
+
+            <p>
+              Discover local artists, DJs, producers and the sounds coming from your city.
+            </p>
+
+          </div>
+
+
+          <div class="discovery-card">
+
+            <div class="emoji">🎉</div>
+
+            <h3>Events</h3>
+
+            <p>
+              Find community events, nightlife, festivals, meetups and more.
+            </p>
+
+          </div>
+
+
+          <div class="discovery-card">
+
+            <div class="emoji">🍽️</div>
+
+            <h3>Food</h3>
+
+            <p>
+              Find local food spots and cultural food experiences.
+            </p>
+
+          </div>
+
+
+          <div class="discovery-card">
+
+            <div class="emoji">🔥</div>
+
+            <h3>Trending</h3>
+
+            <p>
+              See what people around the community are talking about right now.
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- CONNECT -->
+      <section class="page" id="connect">
+
+        <h1 class="page-title">
+          Connect
+        </h1>
+
+        <p class="page-subtitle">
+          Find people and build your network.
+        </p>
+
+
+        <div class="user-card">
+
+          <div class="mini-avatar">A</div>
+
+          <div class="user-info">
+
+            <strong>Alex Johnson</strong>
+            <span>@alexj • Music & Culture</span>
+
+          </div>
+
+          <button class="btn primary" onclick="toggleFollow(this)">
+            Follow
+          </button>
+
+        </div>
+
+
+        <div class="user-card">
+
+          <div class="mini-avatar">T</div>
+
+          <div class="user-info">
+
+            <strong>Taylor Brown</strong>
+            <span>@tayb • Philadelphia</span>
+
+          </div>
+
+          <button class="btn primary" onclick="toggleFollow(this)">
+            Follow
+          </button>
+
+        </div>
+
+
+        <div class="user-card">
+
+          <div class="mini-avatar">K</div>
+
+          <div class="user-info">
+
+            <strong>Kam Williams</strong>
+            <span>@kamw • Entrepreneur</span>
+
+          </div>
+
+          <button class="btn primary" onclick="toggleFollow(this)">
+            Follow
+          </button>
+
+        </div>
+
+
+        <div class="user-card">
+
+          <div class="mini-avatar">N</div>
+
+          <div class="user-info">
+
+            <strong>Nia Thompson</strong>
+            <span>@niathompson • Fashion & Beauty</span>
+
+          </div>
+
+          <button class="btn primary" onclick="toggleFollow(this)">
+            Follow
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- COMMUNITIES -->
+      <section class="page" id="communities">
+
+        <h1 class="page-title">
+          Communities
+        </h1>
+
+        <p class="page-subtitle">
+          Find your people around the things you care about.
+        </p>
+
+
+        <div class="community-grid">
+
+          <div class="community">
+
+            <div class="community-icon">🎵</div>
+
+            <h3>Black Music</h3>
+
+            <p>
+              Artists, producers, DJs and music lovers sharing culture and discovering new sounds.
+            </p>
+
+            <button class="btn primary" onclick="joinCommunity(this)">
+              Join
+            </button>
+
+          </div>
+
+
+          <div class="community">
+
+            <div class="community-icon">💼</div>
+
+            <h3>Black Entrepreneurs</h3>
+
+            <p>
+              Business owners, founders, creatives and people building something of their own.
+            </p>
+
+            <button class="btn primary" onclick="joinCommunity(this)">
+              Join
+            </button>
+
+          </div>
+
+
+          <div class="community">
+
+            <div class="community-icon">🎨</div>
+
+            <h3>Creators</h3>
+
+            <p>
+              Content creators, photographers, filmmakers, designers and storytellers.
+            </p>
+
+            <button class="btn primary" onclick="joinCommunity(this)">
+              Join
+            </button>
+
+          </div>
+
+
+          <div class="community">
+
+            <div class="community-icon">🏀</div>
+
+            <h3>Sports</h3>
+
+            <p>
+              Talk sports, follow local athletes and connect with fans.
+            </p>
+
+            <button class="btn primary" onclick="joinCommunity(this)">
+              Join
+            </button>
+
+          </div>
+
+
+          <div class="community">
+
+            <div class="community-icon">👗</div>
+
+            <h3>Fashion & Beauty</h3>
+
+            <p>
+              Style, beauty, designers, trends and the latest looks.
+            </p>
+
+            <button class="btn primary" onclick="joinCommunity(this)">
+              Join
+            </button>
+
+          </div>
+
+
+          <div class="community">
+
+            <div class="community-icon">🌍</div>
+
+            <h3>Culture & Community</h3>
+
+            <p>
+              Conversations about culture, history, identity and community.
+            </p>
+
+            <button class="btn primary" onclick="joinCommunity(this)">
+              Join
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- PROFILE -->
+      <section class="page" id="profile">
+
+        <h1 class="page-title">
+          Profile
+        </h1>
+
+        <p class="page-subtitle">
+          Your Soulaani identity.
+        </p>
+
+
+        <div class="profile-card">
+
+          <div class="cover"></div>
+
+          <div class="profile-main">
+
+            <div class="profile-top">
+
+              <div class="avatar">
+                S
+              </div>
+
+              <div class="profile-actions">
+
+                <button class="btn" onclick="editProfile()">
+                  Edit Profile
+                </button>
+
+                <button class="btn" onclick="shareProfile()">
+                  Share
+                </button>
+
+              </div>
+
+            </div>
+
+
+            <h2 class="profile-name">
+              Soulaani User
+            </h2>
+
+            <div class="username">
+              @soulaaniuser
+            </div>
+
+            <div class="bio">
+              Building connections, discovering culture and finding community on Soulaani.
+            </div>
+
+            <div class="profile-location">
+              📍 Harrisburg, Pennsylvania
+            </div>
+
+
+            <div class="stats">
+
+              <div class="stat">
+                <strong id="followerCount">128</strong>
+                <span>Followers</span>
+              </div>
+
+              <div class="stat">
+                <strong>214</strong>
+                <span>Following</span>
+              </div>
+
+              <div class="stat">
+                <strong>37</strong>
+                <span>Posts</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+
+    <!-- RIGHT SIDEBAR -->
+    <aside class="rightbar">
+
+      <div class="side-box">
+
+        <h3>Trending on Soulaani</h3>
+
+        <div class="trending-item">
+          <span>Trending</span>
+          Black-owned businesses
+        </div>
+
+        <div class="trending-item">
+          <span>Music</span>
+          New artists to watch
+        </div>
+
+        <div class="trending-item">
+          <span>Community</span>
+          Local events this weekend
+        </div>
+
+        <div class="trending-item">
+          <span>Culture</span>
+          What's happening in your city
         </div>
 
       </div>
 
 
-      <div class="comment-input">
+      <div class="side-box">
 
-        <input
-          id="homeCommentInput"
-          placeholder="Write a comment..."
-        >
+        <h3>Who to follow</h3>
 
-        <button
-          class="gold-btn"
-          onclick="addComment('homeCommentInput','homeComments')"
-        >
+        <div class="trending-item">
+          <strong>Marcus Reed</strong>
+          <span>@marcusreed</span>
+        </div>
+
+        <div class="trending-item">
+          <strong>Jasmine B.</strong>
+          <span>@jasmineb</span>
+        </div>
+
+        <div class="trending-item">
+          <strong>Chris Miles</strong>
+          <span>@chrismiles</span>
+        </div>
+
+      </div>
+
+
+      <div class="side-box">
+
+        <h3>Soulaani</h3>
+
+        <p style="color:#999; line-height:1.5;">
+          A digital home for community, culture, connection and opportunity.
+        </p>
+
+      </div>
+
+    </aside>
+
+  </div>
+
+
+  <!-- MOBILE NAV -->
+  <nav class="mobile-nav">
+
+    <button class="active" onclick="openPage('home', this)">
+      ⌂
+    </button>
+
+    <button onclick="openPage('discover', this)">
+      ◉
+    </button>
+
+    <button onclick="openPage('connect', this)">
+      ♧
+    </button>
+
+    <button onclick="openPage('communities', this)">
+      ♟
+    </button>
+
+    <button onclick="openPage('profile', this)">
+      ◎
+    </button>
+
+  </nav>
+
+
+  <!-- CREATE POST MODAL -->
+  <div class="modal" id="postModal">
+
+    <div class="modal-box">
+
+      <div class="modal-header">
+
+        <h2>Create Post</h2>
+
+        <button class="close" onclick="closePostModal()">
+          ×
+        </button>
+
+      </div>
+
+      <textarea
+        id="modalPostInput"
+        placeholder="What's on your mind?"
+      ></textarea>
+
+      <div class="modal-footer">
+
+        <button class="btn primary" onclick="createModalPost()">
           Post
         </button>
 
@@ -1453,1230 +1515,6 @@ header {
 
   </div>
 
-</section>
-
-
-<!-- =========================
-     CONNECT
-========================= -->
-
-<section id="connect" class="page">
-
-  <div class="hero">
-
-    <h1>
-      <span>Connect.</span>
-    </h1>
-
-    <p>
-      Meet people, communities and creators who share your interests.
-    </p>
-
-  </div>
-
-
-  <div class="feature-grid">
-
-    <div class="feature-card">
-      <div class="emoji">👥</div>
-      <h3>People</h3>
-      <p>Discover people and creators within the Soulaani community.</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="emoji">🌐</div>
-      <h3>Communities</h3>
-      <p>Find communities centered around culture, interests and location.</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="emoji">💬</div>
-      <h3>Conversations</h3>
-      <p>Join conversations happening around you.</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="emoji">🤝🏾</div>
-      <h3>Network</h3>
-      <p>Build meaningful personal and professional connections.</p>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     DATE
-========================= -->
-
-<section id="date" class="page">
-
-  <div class="hero">
-
-    <h1>
-      <span>Date.</span>
-    </h1>
-
-    <p>
-      Meet people within your community and discover connections nearby.
-    </p>
-
-  </div>
-
-
-  <div class="feature-grid">
-
-    <div class="feature-card">
-      <div class="emoji">❤️</div>
-      <h3>Nearby</h3>
-      <p>Discover people based on your selected local area.</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="emoji">✨</div>
-      <h3>Discover</h3>
-      <p>Explore profiles and interests that match your vibe.</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="emoji">📍</div>
-      <h3>Local Dating</h3>
-      <p>Connect with people in your city and neighborhood.</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="emoji">🖤</div>
-      <h3>Your Community</h3>
-      <p>Dating designed with Black community and culture in mind.</p>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     BUILD
-========================= -->
-
-<section id="build" class="page">
-
-  <div class="hero">
-
-    <h1>
-      <span>Build.</span>
-    </h1>
-
-    <p>
-      Turn ideas, skills and connections into opportunities.
-    </p>
-
-  </div>
-
-
-  <div class="feature-grid">
-
-    <div class="feature-card">
-      <div class="emoji">💼</div>
-      <h3>Jobs</h3>
-      <p>Discover employment and career opportunities.</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="emoji">🚀</div>
-      <h3>Businesses</h3>
-      <p>Promote your business and connect with customers.</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="emoji">🎨</div>
-      <h3>Creators</h3>
-      <p>Showcase your work, talent and creative projects.</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="emoji">🤝🏾</div>
-      <h3>Networking</h3>
-      <p>Find people who can help you build what comes next.</p>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     DISCOVER
-========================= -->
-
-<section id="discover" class="page">
-
-  <div class="hero">
-
-    <h1>
-      Discover <span>Your World.</span>
-    </h1>
-
-    <p>
-      Choose a region, state, city and local area to shape the Soulaani experience around you.
-    </p>
-
-  </div>
-
-
-  <div class="location-panel">
-
-    <div class="location-label">
-      Your current Soulaani area
-    </div>
-
-    <h2 id="locationHero">
-      Philadelphia, Pennsylvania
-    </h2>
-
-    <p id="locationDescription">
-      Explore people, culture, businesses, events, food, music and opportunities around you.
-    </p>
-
-  </div>
-
-
-  <div class="section-title">
-    <h2>Explore the U.S.</h2>
-  </div>
-
-
-  <div class="region-scroll">
-
-    <button class="region-btn active" onclick="selectRegion('Northeast', this)">
-      Northeast
-    </button>
-
-    <button class="region-btn" onclick="selectRegion('South', this)">
-      South
-    </button>
-
-    <button class="region-btn" onclick="selectRegion('Midwest', this)">
-      Midwest
-    </button>
-
-    <button class="region-btn" onclick="selectRegion('West', this)">
-      West
-    </button>
-
-    <button class="region-btn" onclick="selectRegion('Territories', this)">
-      Territories
-    </button>
-
-  </div>
-
-
-  <div class="location-selectors">
-
-    <div class="selector-wrap">
-
-      <label>State</label>
-
-      <select
-        id="stateSelect"
-        onchange="changeState(this.value)"
-      ></select>
-
-    </div>
-
-
-    <div class="selector-wrap">
-
-      <label>City</label>
-
-      <select
-        id="citySelect"
-        onchange="changeCity(this.value)"
-      ></select>
-
-    </div>
-
-
-    <div class="selector-wrap">
-
-      <label>Local Area</label>
-
-      <select
-        id="neighborhoodSelect"
-        onchange="changeNeighborhood(this.value)"
-      ></select>
-
-    </div>
-
-  </div>
-
-
-  <div class="local-fyp-header">
-
-    <div>
-
-      <h2 id="localFypTitle">
-        Philadelphia Local FYP
-      </h2>
-
-      <p id="localFypDescription">
-        Your local feed for people, culture and opportunities.
-      </p>
-
-    </div>
-
-    <div class="live-pill">
-      LOCAL
-    </div>
-
-  </div>
-
-
-  <div class="local-grid">
-
-    <div class="local-card">
-      <div class="card-icon">👥</div>
-      <h3>People</h3>
-      <p id="peopleText">Discover people around Philadelphia.</p>
-    </div>
-
-    <div class="local-card">
-      <div class="card-icon">🏪</div>
-      <h3>Businesses</h3>
-      <p id="businessText">Discover Black-owned businesses in the area.</p>
-    </div>
-
-    <div class="local-card">
-      <div class="card-icon">📅</div>
-      <h3>Events</h3>
-      <p id="eventText">See what's happening nearby.</p>
-    </div>
-
-    <div class="local-card">
-      <div class="card-icon">🍽️</div>
-      <h3>Food</h3>
-      <p id="foodText">Find local food and dining conversations.</p>
-    </div>
-
-    <div class="local-card">
-      <div class="card-icon">🎵</div>
-      <h3>Music</h3>
-      <p id="musicText">Discover artists and sounds from the area.</p>
-    </div>
-
-    <div class="local-card">
-      <div class="card-icon">💼</div>
-      <h3>Opportunities</h3>
-      <p id="opportunityText">Jobs, networking and opportunities nearby.</p>
-    </div>
-
-  </div>
-
-
-  <div class="section-title">
-
-    <h2 id="exploreTitle">
-      What's happening in Philadelphia
-    </h2>
-
-    <span>Local</span>
-
-  </div>
-
-
-  <div id="localFeed">
-
-    <div class="post local-post">
-
-      <div class="post-header">
-
-        <div class="mini-avatar">
-          W
-        </div>
-
-        <div>
-
-          <div
-            class="post-user"
-            onclick="openProfile('West Philly Community')"
-          >
-            West Philly Community
-          </div>
-
-          <div
-            class="post-meta"
-            id="postMeta1"
-          >
-            Philadelphia • Local FYP
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div
-        class="post-location"
-        id="postLocation1"
-      >
-        📍 Philadelphia
-      </div>
-
-
-      <p id="postText1">
-        What are y'all doing this weekend? Drop your favorite local spots,
-        events and things to do around Philadelphia. 👇🏾
-      </p>
-
-
-      <div
-        class="hashtag"
-        id="hashtag1"
-      >
-        #Philadelphia #Soulaani
-      </div>
-
-
-      <div class="post-actions">
-
-        <button
-          class="action-btn"
-          onclick="react(this,'❤️')"
-        >
-          ♡ Like
-        </button>
-
-        <button
-          class="action-btn"
-          onclick="toggleComments('localComments1')"
-        >
-          💬 Comments
-        </button>
-
-      </div>
-
-
-      <div
-        id="localComments1"
-        class="comments"
-      >
-
-        <div class="comment-list">
-
-          <div class="comment">
-            Soulaani is bringing the community together. ❤️
-          </div>
-
-        </div>
-
-
-        <div class="comment-input">
-
-          <input
-            id="localCommentInput1"
-            placeholder="Join the conversation..."
-          >
-
-          <button
-            class="gold-btn"
-            onclick="addComment('localCommentInput1','localComments1')"
-          >
-            Post
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div class="post local-post">
-
-      <div class="post-header">
-
-        <div class="mini-avatar">
-          L
-        </div>
-
-        <div>
-
-          <div
-            class="post-user"
-            onclick="openProfile('Local Soulaani Creator')"
-          >
-            Local Soulaani Creator
-          </div>
-
-          <div
-            class="post-meta"
-            id="postMeta2"
-          >
-            Philadelphia • Today
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div
-        class="post-location"
-        id="postLocation2"
-      >
-        🔥 Trending locally
-      </div>
-
-
-      <p id="postText2">
-        Building something for the neighborhood and looking to connect with
-        other local creators, entrepreneurs and artists.
-      </p>
-
-
-      <div
-        class="hashtag"
-        id="hashtag2"
-      >
-        #BlackCreators #Philadelphia
-      </div>
-
-
-      <div class="post-actions">
-
-        <button
-          class="action-btn"
-          onclick="react(this,'🔥')"
-        >
-          🔥 Like
-        </button>
-
-        <button
-          class="action-btn"
-          onclick="toggleComments('localComments2')"
-        >
-          💬 Comments
-        </button>
-
-      </div>
-
-
-      <div
-        id="localComments2"
-        class="comments"
-      >
-
-        <div class="comment-list"></div>
-
-
-        <div class="comment-input">
-
-          <input
-            id="localCommentInput2"
-            placeholder="Join the conversation..."
-          >
-
-          <button
-            class="gold-btn"
-            onclick="addComment('localCommentInput2','localComments2')"
-          >
-            Post
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="empty-note">
-    Soulaani will eventually personalize this feed using location,
-    interests, communities, connections and activity.
-  </div>
-
-</section>
-
-
-<!-- =========================
-     PROFILE
-========================= -->
-
-<section id="profile" class="page">
-
-  <div class="profile-page-top">
-
-    <button
-      class="back-btn"
-      onclick="showPage('home', document.querySelector('.nav-btn'))"
-    >
-      ‹
-    </button>
-
-    <h2>
-      Profile
-    </h2>
-
-  </div>
-
-
-  <div class="profile-cover">
-
-    <button
-      class="profile-cover-edit"
-      onclick="editProfile()"
-    >
-      ✎ Edit Cover
-    </button>
-
-  </div>
-
-
-  <div class="full-profile">
-
-    <div class="profile-avatar-wrap">
-
-      <div
-        class="profile-large-avatar"
-        id="profileAvatar"
-      >
-        LT
-      </div>
-
-      <button
-        class="profile-avatar-edit"
-        onclick="editProfile()"
-        aria-label="Edit profile photo"
-      >
-        ✎
-      </button>
-
-    </div>
-
-
-    <div class="profile-name-row">
-
-      <h1 id="profileDisplayName">
-        LuhhTrilly
-      </h1>
-
-      <span
-        class="profile-verified"
-        title="Verified"
-      >
-        ✓
-      </span>
-
-    </div>
-
-
-    <div
-      class="username"
-      id="profileUsername"
-    >
-      @luhhtrilly
-    </div>
-
-
-    <p
-      class="profile-bio"
-      id="profileBio"
-    >
-      Building the future of Black digital community.
-      Connecting culture, people, creativity and opportunity.
-    </p>
-
-
-    <div
-      class="profile-location"
-      id="profileLocation"
-    >
-      📍 Philadelphia, Pennsylvania
-    </div>
-
-
-    <div class="profile-buttons">
-
-      <button
-        class="profile-btn primary"
-        onclick="editProfile()"
-      >
-        Edit Profile
-      </button>
-
-      <button
-        class="share-profile-btn"
-        onclick="shareProfile()"
-      >
-        Share
-      </button>
-
-      <button
-        class="profile-btn"
-        onclick="showPage('discover', document.querySelectorAll('.nav-btn')[4])"
-      >
-        My Area
-      </button>
-
-    </div>
-
-  </div>
-
-
-  <div class="profile-stats">
-
-    <div class="profile-stat">
-      <strong>428</strong>
-      <span>Followers</span>
-    </div>
-
-    <div class="profile-stat">
-      <strong>187</strong>
-      <span>Following</span>
-    </div>
-
-    <div class="profile-stat">
-      <strong>32</strong>
-      <span>Posts</span>
-    </div>
-
-  </div>
-
-
-  <!-- PROFILE MUSIC -->
-
-  <div class="profile-music">
-
-    <div class="section-title">
-
-      <h2>
-        Music
-      </h2>
-
-      <button
-        class="music-edit"
-        onclick="editMusic()"
-      >
-        Edit
-      </button>
-
-    </div>
-
-
-    <div
-      class="music-card"
-      id="profileMusicCard"
-    >
-
-      <div
-        class="music-art"
-        id="profileMusicArt"
-      >
-        🎵
-      </div>
-
-
-      <div class="music-info">
-
-        <div class="music-label">
-          FEATURED MUSIC
-        </div>
-
-        <div
-          class="music-title"
-          id="profileMusicTitle"
-        >
-          My Featured Song
-        </div>
-
-        <div
-          class="music-artist"
-          id="profileMusicArtist"
-        >
-          Select your favorite artist
-        </div>
-
-      </div>
-
-
-      <button
-        class="music-play"
-        id="profileMusicPlay"
-        onclick="toggleProfileMusic()"
-        aria-label="Play featured music"
-      >
-        ▶
-      </button>
-
-    </div>
-
-  </div>
-
-
-  <div class="section-title">
-
-    <h2>
-      Interests
-    </h2>
-
-  </div>
-
-
-  <div
-    class="interest-list"
-    id="profileInterests"
-  ></div>
-
-
-  <div class="profile-tabs">
-
-    <button
-      class="profile-tab active"
-      onclick="showProfileTab('posts', this)"
-    >
-      My Posts
-    </button>
-
-    <button
-      class="profile-tab"
-      onclick="showProfileTab('communities', this)"
-    >
-      My Communities
-    </button>
-
-  </div>
-
-
-  <div id="profilePosts">
-
-    <div class="post">
-
-      <div class="post-header">
-
-        <div
-          class="mini-avatar"
-          id="profilePostAvatar"
-        >
-          LT
-        </div>
-
-        <div>
-
-          <div
-            class="post-user"
-            id="profilePostName"
-          >
-            LuhhTrilly
-          </div>
-
-          <div class="post-meta">
-            Philadelphia • Recently
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <p>
-        Building Soulaani one piece at a time. The goal is simple:
-        create a digital home where Black people can connect, build,
-        date, discover and express themselves.
-      </p>
-
-
-      <div class="hashtag">
-        #Soulaani #Build #Community
-      </div>
-
-
-      <div class="post-actions">
-
-        <button
-          class="action-btn"
-          onclick="react(this,'❤️')"
-        >
-          ♡ Like
-        </button>
-
-        <button
-          class="action-btn"
-          onclick="toggleComments('profileComment1')"
-        >
-          💬 Comments
-        </button>
-
-      </div>
-
-
-      <div
-        id="profileComment1"
-        class="comments"
-      >
-
-        <div class="comment-list"></div>
-
-
-        <div class="comment-input">
-
-          <input
-            id="profileCommentInput1"
-            placeholder="Write a comment..."
-          >
-
-          <button
-            class="gold-btn"
-            onclick="addComment('profileCommentInput1','profileComment1')"
-          >
-            Post
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div
-    id="profileCommunities"
-    style="display:none;"
-  >
-
-    <div class="community-card">
-
-      <div class="community-icon">
-        🎵
-      </div>
-
-      <div>
-
-        <h3>
-          Black Music & Culture
-        </h3>
-
-        <p>
-          18.4K members
-        </p>
-
-      </div>
-
-    </div>
-
-
-    <div class="community-card">
-
-      <div class="community-icon">
-        🚀
-      </div>
-
-      <div>
-
-        <h3>
-          Black Entrepreneurs
-        </h3>
-
-        <p>
-          12.8K members
-        </p>
-
-      </div>
-
-    </div>
-
-
-    <div class="community-card">
-
-      <div class="community-icon">
-        📍
-      </div>
-
-      <div>
-
-        <h3>
-          Philadelphia Community
-        </h3>
-
-        <p>
-          9.7K members
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     PROFILE EDITOR
-========================= -->
-
-<div
-  id="profileEditorOverlay"
-  class="profile-editor-overlay"
->
-
-  <div class="profile-editor">
-
-    <div class="editor-header">
-
-      <h2>
-        Edit Profile
-      </h2>
-
-      <button
-        class="editor-close"
-        onclick="closeProfileEditor()"
-      >
-        ×
-      </button>
-
-    </div>
-
-
-    <div class="editor-group">
-
-      <label>
-        Display Name
-      </label>
-
-      <input
-        id="editDisplayName"
-        type="text"
-        maxlength="40"
-      >
-
-    </div>
-
-
-    <div class="editor-group">
-
-      <label>
-        Username
-      </label>
-
-      <input
-        id="editUsername"
-        type="text"
-        maxlength="30"
-      >
-
-    </div>
-
-
-    <div class="editor-group">
-
-      <label>
-        Bio
-      </label>
-
-      <textarea
-        id="editBio"
-        maxlength="180"
-      ></textarea>
-
-    </div>
-
-
-    <div class="editor-group">
-
-      <label>
-        Location
-      </label>
-
-      <input
-        id="editLocation"
-        type="text"
-        maxlength="60"
-      >
-
-    </div>
-
-
-    <div class="editor-group">
-
-      <label>
-        Interests
-      </label>
-
-      <div
-        class="editor-interests"
-        id="editorInterests"
-      >
-
-        <button
-          type="button"
-          class="editor-interest"
-          data-interest="Music"
-          onclick="toggleInterest(this)"
-        >
-          Music
-        </button>
-
-        <button
-          type="button"
-          class="editor-interest"
-          data-interest="Entrepreneurship"
-          onclick="toggleInterest(this)"
-        >
-          Entrepreneurship
-        </button>
-
-        <button
-          type="button"
-          class="editor-interest"
-          data-interest="Culture"
-          onclick="toggleInterest(this)"
-        >
-          Culture
-        </button>
-
-        <button
-          type="button"
-          class="editor-interest"
-          data-interest="Technology"
-          onclick="toggleInterest(this)"
-        >
-          Technology
-        </button>
-
-        <button
-          type="button"
-          class="editor-interest"
-          data-interest="Fashion"
-          onclick="toggleInterest(this)"
-        >
-          Fashion
-        </button>
-
-        <button
-          type="button"
-          class="editor-interest"
-          data-interest="Community"
-          onclick="toggleInterest(this)"
-        >
-          Community
-        </button>
-
-        <button
-          type="button"
-          class="editor-interest"
-          data-interest="Sports"
-          onclick="toggleInterest(this)"
-        >
-          Sports
-        </button>
-
-        <button
-          type="button"
-          class="editor-interest"
-          data-interest="Gaming"
-          onclick="toggleInterest(this)"
-        >
-          Gaming
-        </button>
-
-        <button
-          type="button"
-          class="editor-interest"
-          data-interest="Beauty"
-          onclick="toggleInterest(this)"
-        >
-          Beauty
-        </button>
-
-        <button
-          type="button"
-          class="editor-interest"
-          data-interest="Food"
-          onclick="toggleInterest(this)"
-        >
-          Food
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <div class="editor-actions">
-
-      <button
-        class="editor-cancel"
-        onclick="closeProfileEditor()"
-      >
-        Cancel
-      </button>
-
-      <button
-        class="editor-save"
-        onclick="saveProfile()"
-      >
-        Save Changes
-      </button>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- =========================
-     BOTTOM NAV
-========================= -->
-
-<nav class="bottom-nav">
-
-  <button
-    class="nav-btn active"
-    onclick="showPage('home', this)"
-  >
-    <span>⌂</span>
-    Home
-  </button>
-
-  <button
-    class="nav-btn"
-    onclick="showPage('connect', this)"
-  >
-    <span>♧</span>
-    Connect
-  </button>
-
-  <button
-    class="nav-btn"
-    onclick="showPage('date', this)"
-  >
-    <span>♡</span>
-    Date
-  </button>
-
-  <button
-    class="nav-btn"
-    onclick="showPage('build', this)"
-  >
-    <span>◈</span>
-    Build
-  </button>
-
-  <button
-    class="nav-btn"
-    onclick="showPage('discover', this)"
-  >
-    <span>⌖</span>
-    Discover
-  </button>
-
-</nav>
 
 </div>
 
@@ -2687,81 +1525,219 @@ header {
    NAVIGATION
 ========================= */
 
-function showPage(pageId, navItem) {
+function openPage(pageId, clickedButton) {
 
-  document.querySelectorAll('.page').forEach(page => {
-    page.classList.remove('active');
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.remove("active");
   });
 
-  const page =
-    document.getElementById(pageId);
+  const page = document.getElementById(pageId);
 
   if (page) {
-    page.classList.add('active');
+    page.classList.add("active");
   }
 
-  if (navItem) {
+  document.querySelectorAll(".nav-item").forEach(item => {
+    item.classList.remove("active");
+  });
 
-    document.querySelectorAll('.nav-btn').forEach(btn => {
-      btn.classList.remove('active');
-    });
-
-    navItem.classList.add('active');
-
+  if (clickedButton) {
+    clickedButton.classList.add("active");
   }
 
   window.scrollTo({
     top: 0,
-    behavior: 'smooth'
+    behavior: "smooth"
   });
+}
+
+
+/* =========================
+   LIKE
+========================= */
+
+function toggleLike(button) {
+
+  button.classList.toggle("liked");
+
+  if (button.classList.contains("liked")) {
+    button.innerHTML = "♥ Liked";
+  } else {
+    button.innerHTML = "♡ Like";
+  }
 
 }
 
 
 /* =========================
-   PROFILE DATA
+   FOLLOW
 ========================= */
 
-const defaultProfile = {
+function toggleFollow(button) {
 
-  displayName: "LuhhTrilly",
+  if (button.innerText === "Follow") {
 
-  username: "luhhtrilly",
+    button.innerText = "Following";
+    button.style.background = "#242424";
 
-  bio:
-    "Building the future of Black digital community. Connecting culture, people, creativity and opportunity.",
+  } else {
 
-  location:
-    "Philadelphia, Pennsylvania",
+    button.innerText = "Follow";
+    button.style.background = "";
 
-  initials:
-    "LT",
+  }
 
-  interests: [
-    "Music",
-    "Entrepreneurship",
-    "Culture",
-    "Technology",
-    "Fashion",
-    "Community"
-  ]
-
-};
+}
 
 
-let userProfile;
+/* =========================
+   COMMUNITY
+========================= */
 
-try {
+function joinCommunity(button) {
 
-  userProfile =
-    JSON.parse(
-      localStorage.getItem("soulaaniProfile")
-    ) || defaultProfile;
+  if (button.innerText === "Join") {
 
-} catch (error) {
+    button.innerText = "Joined";
+    button.style.background = "#242424";
 
-  userProfile =
-    defaultProfile;
+  } else {
+
+    button.innerText = "Join";
+    button.style.background = "";
+
+  }
+
+}
+
+
+/* =========================
+   POST CREATION
+========================= */
+
+function createPost() {
+
+  const input = document.getElementById("homePostInput");
+  const text = input.value.trim();
+
+  if (!text) {
+    alert("Write something first.");
+    return;
+  }
+
+  addPost(text);
+
+  input.value = "";
+
+}
+
+
+function addPost(text) {
+
+  const feed = document.getElementById("feed");
+
+  const article = document.createElement("article");
+
+  article.className = "post";
+
+  article.innerHTML = `
+
+    <div class="post-header">
+
+      <div class="mini-avatar">
+        S
+      </div>
+
+      <div class="post-user">
+        <strong>Soulaani User</strong>
+        <span>@soulaaniuser • just now</span>
+      </div>
+
+    </div>
+
+    <div class="post-text">
+      ${escapeHTML(text)}
+    </div>
+
+    <div class="post-actions">
+
+      <button class="post-action" onclick="toggleLike(this)">
+        ♡ Like
+      </button>
+
+      <button class="post-action">
+        💬 Comment
+      </button>
+
+      <button class="post-action">
+        ↗ Share
+      </button>
+
+    </div>
+
+  `;
+
+  feed.prepend(article);
+
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+function openPostModal() {
+
+  document.getElementById("postModal")
+    .classList.add("show");
+
+  document.getElementById("modalPostInput")
+    .focus();
+
+}
+
+
+function closePostModal() {
+
+  document.getElementById("postModal")
+    .classList.remove("show");
+
+}
+
+
+function createModalPost() {
+
+  const input = document.getElementById("modalPostInput");
+
+  const text = input.value.trim();
+
+  if (!text) {
+    alert("Write something first.");
+    return;
+  }
+
+  addPost(text);
+
+  input.value = "";
+
+  closePostModal();
+
+  openPage("home");
+
+}
+
+
+/* =========================
+   LOCATION
+========================= */
+
+function changeLocation(location) {
+
+  alert(
+    "Your Discover location is now set to " +
+    location +
+    "."
+  );
 
 }
 
@@ -2770,508 +1746,28 @@ try {
    PROFILE
 ========================= */
 
-function openProfile(profileId = "luhhtrilly") {
-
-  document.querySelectorAll('.page').forEach(page => {
-    page.classList.remove('active');
-  });
-
-  document.getElementById('profile').classList.add('active');
-
-  document.querySelectorAll('.nav-btn').forEach(btn => {
-    btn.classList.remove('active');
-  });
-
-  renderProfileMusic(profileId);
-
-  renderUserProfile();
-
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
-
-}
-
-
-/* =========================
-   PROFILE RENDERING
-========================= */
-
-function renderUserProfile() {
-
-  const name =
-    document.getElementById("profileDisplayName");
-
-  const username =
-    document.getElementById("profileUsername");
-
-  const bio =
-    document.getElementById("profileBio");
-
-  const location =
-    document.getElementById("profileLocation");
-
-  const avatar =
-    document.getElementById("profileAvatar");
-
-  const homeName =
-    document.getElementById("homeProfileName");
-
-  const homeBio =
-    document.getElementById("homeProfileBio");
-
-  const homeAvatar =
-    document.getElementById("homeAvatar");
-
-  const composerAvatar =
-    document.getElementById("homeComposerAvatar");
-
-  const postAvatar =
-    document.getElementById("profilePostAvatar");
-
-  const postName =
-    document.getElementById("profilePostName");
-
-
-  if (name) {
-    name.textContent =
-      userProfile.displayName;
-  }
-
-
-  if (username) {
-    username.textContent =
-      "@" + userProfile.username;
-  }
-
-
-  if (bio) {
-    bio.textContent =
-      userProfile.bio;
-  }
-
-
-  if (location) {
-    location.textContent =
-      "📍 " + userProfile.location;
-  }
-
-
-  if (avatar) {
-    avatar.textContent =
-      userProfile.initials;
-  }
-
-
-  if (homeName) {
-    homeName.textContent =
-      userProfile.displayName;
-  }
-
-
-  if (homeBio) {
-    homeBio.textContent =
-      userProfile.bio;
-  }
-
-
-  if (homeAvatar) {
-    homeAvatar.textContent =
-      userProfile.initials;
-  }
-
-
-  if (composerAvatar) {
-    composerAvatar.textContent =
-      userProfile.initials;
-  }
-
-
-  if (postAvatar) {
-    postAvatar.textContent =
-      userProfile.initials;
-  }
-
-
-  if (postName) {
-    postName.textContent =
-      userProfile.displayName;
-  }
-
-
-  renderInterests();
-
-}
-
-
-/* =========================
-   EDIT PROFILE
-========================= */
-
 function editProfile() {
 
-  const nameInput =
-    document.getElementById(
-      "editDisplayName"
-    );
-
-  const usernameInput =
-    document.getElementById(
-      "editUsername"
-    );
-
-  const bioInput =
-    document.getElementById(
-      "editBio"
-    );
-
-  const locationInput =
-    document.getElementById(
-      "editLocation"
-    );
-
-
-  if (nameInput) {
-    nameInput.value =
-      userProfile.displayName;
-  }
-
-
-  if (usernameInput) {
-    usernameInput.value =
-      userProfile.username;
-  }
-
-
-  if (bioInput) {
-    bioInput.value =
-      userProfile.bio;
-  }
-
-
-  if (locationInput) {
-    locationInput.value =
-      userProfile.location;
-  }
-
-
-  document.querySelectorAll(
-    ".editor-interest"
-  ).forEach(button => {
-
-    const interest =
-      button.dataset.interest;
-
-    button.classList.toggle(
-      "selected",
-      userProfile.interests.includes(interest)
-    );
-
-  });
-
-
-  document.getElementById(
-    "profileEditorOverlay"
-  ).classList.add("active");
-
-}
-
-
-/* =========================
-   CLOSE PROFILE EDITOR
-========================= */
-
-function closeProfileEditor() {
-
-  document.getElementById(
-    "profileEditorOverlay"
-  ).classList.remove("active");
-
-}
-
-
-/* =========================
-   INTEREST TOGGLE
-========================= */
-
-function toggleInterest(button) {
-
-  button.classList.toggle(
-    "selected"
+  alert(
+    "Profile editing is coming next. We'll connect this to real profile data."
   );
 
 }
 
 
-/* =========================
-   SAVE PROFILE
-========================= */
+function shareProfile() {
 
-function saveProfile() {
+  if (navigator.clipboard) {
 
-  const displayName =
-    document.getElementById(
-      "editDisplayName"
-    ).value.trim();
-
-
-  const username =
-    document.getElementById(
-      "editUsername"
-    ).value
-      .trim()
-      .replace(/^@/, "")
-      .replace(/\s+/g, "")
-      .toLowerCase();
-
-
-  const bio =
-    document.getElementById(
-      "editBio"
-    ).value.trim();
-
-
-  const location =
-    document.getElementById(
-      "editLocation"
-    ).value.trim();
-
-
-  if (!displayName) {
-
-    alert(
-      "Please enter a display name."
+    navigator.clipboard.writeText(
+      window.location.href + "#profile"
     );
 
-    return;
-
-  }
-
-
-  if (!username) {
-
-    alert(
-      "Please enter a username."
-    );
-
-    return;
-
-  }
-
-
-  const initials =
-    displayName
-      .split(/\s+/)
-      .map(word => word.charAt(0))
-      .join("")
-      .slice(0, 2)
-      .toUpperCase();
-
-
-  const interests = [];
-
-
-  document.querySelectorAll(
-    ".editor-interest.selected"
-  ).forEach(button => {
-
-    interests.push(
-      button.dataset.interest
-    );
-
-  });
-
-
-  userProfile = {
-
-    displayName,
-
-    username,
-
-    bio:
-      bio ||
-      "Welcome to my Soulaani profile.",
-
-    location:
-      location ||
-      "United States",
-
-    initials,
-
-    interests
-
-  };
-
-
-  localStorage.setItem(
-    "soulaaniProfile",
-    JSON.stringify(userProfile)
-  );
-
-
-  renderUserProfile();
-
-  closeProfileEditor();
-
-}
-
-
-/* =========================
-   RENDER INTERESTS
-========================= */
-
-function renderInterests() {
-
-  const container =
-    document.getElementById(
-      "profileInterests"
-    );
-
-
-  if (!container) return;
-
-
-  container.innerHTML = "";
-
-
-  if (
-    !userProfile.interests ||
-    userProfile.interests.length === 0
-  ) {
-
-    const empty =
-      document.createElement("div");
-
-    empty.className =
-      "empty-note";
-
-    empty.textContent =
-      "No interests added yet.";
-
-    container.appendChild(empty);
-
-    return;
-
-  }
-
-
-  userProfile.interests.forEach(
-    interest => {
-
-      const tag =
-        document.createElement("div");
-
-      tag.className =
-        "interest";
-
-      tag.textContent =
-        interest;
-
-      container.appendChild(tag);
-
-    }
-  );
-
-}
-
-
-/* =========================
-   SHARE PROFILE
-========================= */
-
-async function shareProfile() {
-
-  const profileUrl =
-    window.location.href.split("#")[0]
-    + "#profile/"
-    + encodeURIComponent(
-      userProfile.username
-    );
-
-
-  if (
-    navigator.share
-  ) {
-
-    try {
-
-      await navigator.share({
-
-        title:
-          `${userProfile.displayName} on Soulaani`,
-
-        text:
-          `Check out ${userProfile.displayName}'s profile on Soulaani.`,
-
-        url:
-          profileUrl
-
-      });
-
-    } catch (error) {
-
-      console.log(
-        "Share cancelled."
-      );
-
-    }
-
-    return;
-
-  }
-
-
-  try {
-
-    await navigator.clipboard.writeText(
-      profileUrl
-    );
-
-    alert(
-      "Soulaani profile link copied!"
-    );
-
-  } catch (error) {
-
-    alert(
-      profileUrl
-    );
-
-  }
-
-}
-
-
-/* =========================
-   PROFILE TABS
-========================= */
-
-function showProfileTab(tab, button) {
-
-  const posts =
-    document.getElementById('profilePosts');
-
-  const communities =
-    document.getElementById('profileCommunities');
-
-
-  document.querySelectorAll('.profile-tab').forEach(btn => {
-    btn.classList.remove('active');
-  });
-
-  button.classList.add('active');
-
-
-  if (tab === 'posts') {
-
-    posts.style.display = 'block';
-    communities.style.display = 'none';
+    alert("Profile link copied!");
 
   } else {
 
-    posts.style.display = 'none';
-    communities.style.display = 'block';
+    alert("Your profile link is ready to share.");
 
   }
 
@@ -3279,1491 +1775,89 @@ function showProfileTab(tab, button) {
 
 
 /* =========================
-   PROFILE MUSIC
+   NOTIFICATIONS
 ========================= */
 
-const profileMusic = {
-
-  luhhtrilly: {
-    title: "My Featured Song",
-    artist: "Select your favorite artist",
-    artwork: "🎵"
-  }
-
-};
-
-
-let profileMusicPlaying = false;
-
-
-function renderProfileMusic(profileId = "luhhtrilly") {
-
-  const music =
-    profileMusic[profileId];
-
-  if (!music) return;
-
-
-  const title =
-    document.getElementById('profileMusicTitle');
-
-  const artist =
-    document.getElementById('profileMusicArtist');
-
-  const artwork =
-    document.getElementById('profileMusicArt');
-
-
-  if (title) {
-    title.textContent =
-      music.title;
-  }
-
-  if (artist) {
-    artist.textContent =
-      music.artist;
-  }
-
-  if (artwork) {
-    artwork.textContent =
-      music.artwork;
-  }
-
-}
-
-
-function toggleProfileMusic() {
-
-  const card =
-    document.getElementById('profileMusicCard');
-
-  const button =
-    document.getElementById('profileMusicPlay');
-
-
-  if (!card || !button) return;
-
-
-  profileMusicPlaying =
-    !profileMusicPlaying;
-
-
-  if (profileMusicPlaying) {
-
-    card.classList.add('playing');
-
-    button.textContent =
-      "❚❚";
-
-    button.setAttribute(
-      'aria-label',
-      'Pause featured music'
-    );
-
-  } else {
-
-    card.classList.remove('playing');
-
-    button.textContent =
-      "▶";
-
-    button.setAttribute(
-      'aria-label',
-      'Play featured music'
-    );
-
-  }
-
-}
-
-
-function editMusic() {
+function showNotification() {
 
   alert(
-    "Music selection will connect to your music library next. Each Soulaani user will be able to choose the music displayed on their profile."
+    "Notifications will appear here as we connect the real social system."
+  );
+
+}
+
+
+function showMessage() {
+
+  alert(
+    "Messaging is coming next."
+  );
+
+}
+
+
+function showComingSoon(feature) {
+
+  alert(
+    feature + " is part of the next Soulaani development phase."
   );
 
 }
 
 
 /* =========================
-   REGIONS
+   SEARCH
 ========================= */
 
-const regions = {
+document.getElementById("searchInput")
+  .addEventListener("keydown", function(event) {
 
-  Northeast: [
-    "Connecticut",
-    "Delaware",
-    "Maine",
-    "Maryland",
-    "Massachusetts",
-    "New Hampshire",
-    "New Jersey",
-    "New York",
-    "Pennsylvania",
-    "Rhode Island",
-    "Vermont"
-  ],
+    if (event.key === "Enter") {
 
-  South: [
-    "Alabama",
-    "Arkansas",
-    "Florida",
-    "Georgia",
-    "Kentucky",
-    "Louisiana",
-    "Mississippi",
-    "North Carolina",
-    "Oklahoma",
-    "South Carolina",
-    "Tennessee",
-    "Texas",
-    "Virginia",
-    "West Virginia"
-  ],
+      const query = this.value.trim();
 
-  Midwest: [
-    "Illinois",
-    "Indiana",
-    "Iowa",
-    "Kansas",
-    "Michigan",
-    "Minnesota",
-    "Missouri",
-    "Nebraska",
-    "North Dakota",
-    "Ohio",
-    "South Dakota",
-    "Wisconsin"
-  ],
+      if (!query) {
+        return;
+      }
 
-  West: [
-    "Alaska",
-    "Arizona",
-    "California",
-    "Colorado",
-    "Hawaii",
-    "Idaho",
-    "Montana",
-    "Nevada",
-    "New Mexico",
-    "Oregon",
-    "Utah",
-    "Washington",
-    "Wyoming"
-  ],
-
-  Territories: [
-    "Puerto Rico",
-    "U.S. Virgin Islands",
-    "Guam",
-    "American Samoa",
-    "Northern Mariana Islands"
-  ]
-
-};
-
-
-/* =========================
-   CITIES
-========================= */
-
-const cityData = {
-
-  "Pennsylvania": [
-    "Philadelphia",
-    "Pittsburgh",
-    "Harrisburg",
-    "Allentown",
-    "Lancaster",
-    "Reading",
-    "Erie",
-    "Scranton"
-  ],
-
-  "New York": [
-    "New York City",
-    "Buffalo",
-    "Rochester",
-    "Syracuse",
-    "Albany",
-    "Yonkers"
-  ],
-
-  "New Jersey": [
-    "Newark",
-    "Jersey City",
-    "Paterson",
-    "Trenton",
-    "Elizabeth"
-  ],
-
-  "Maryland": [
-    "Baltimore",
-    "Frederick",
-    "Rockville",
-    "Silver Spring"
-  ],
-
-  "Georgia": [
-    "Atlanta",
-    "Savannah",
-    "Augusta",
-    "Columbus",
-    "Macon",
-    "Athens"
-  ],
-
-  "Florida": [
-    "Miami",
-    "Orlando",
-    "Tampa",
-    "Jacksonville",
-    "Fort Lauderdale",
-    "Tallahassee"
-  ],
-
-  "Texas": [
-    "Houston",
-    "Dallas",
-    "Austin",
-    "San Antonio",
-    "Fort Worth",
-    "Arlington"
-  ],
-
-  "Illinois": [
-    "Chicago",
-    "Springfield",
-    "Rockford",
-    "Peoria"
-  ],
-
-  "Michigan": [
-    "Detroit",
-    "Grand Rapids",
-    "Flint",
-    "Lansing"
-  ],
-
-  "Ohio": [
-    "Columbus",
-    "Cleveland",
-    "Cincinnati",
-    "Dayton",
-    "Toledo"
-  ],
-
-  "Tennessee": [
-    "Memphis",
-    "Nashville",
-    "Knoxville",
-    "Chattanooga"
-  ],
-
-  "Louisiana": [
-    "New Orleans",
-    "Baton Rouge",
-    "Shreveport",
-    "Lafayette"
-  ],
-
-  "North Carolina": [
-    "Charlotte",
-    "Raleigh",
-    "Durham",
-    "Greensboro",
-    "Fayetteville"
-  ],
-
-  "Virginia": [
-    "Richmond",
-    "Virginia Beach",
-    "Norfolk",
-    "Alexandria",
-    "Arlington"
-  ],
-
-  "Missouri": [
-    "St. Louis",
-    "Kansas City",
-    "Springfield",
-    "Columbia"
-  ],
-
-  "Minnesota": [
-    "Minneapolis",
-    "Saint Paul",
-    "Rochester",
-    "Duluth"
-  ],
-
-  "Wisconsin": [
-    "Milwaukee",
-    "Madison",
-    "Green Bay",
-    "Kenosha"
-  ],
-
-  "California": [
-    "Los Angeles",
-    "San Francisco",
-    "Oakland",
-    "San Diego",
-    "Sacramento",
-    "San Jose",
-    "Long Beach"
-  ],
-
-  "Washington": [
-    "Seattle",
-    "Tacoma",
-    "Spokane",
-    "Vancouver"
-  ],
-
-  "Arizona": [
-    "Phoenix",
-    "Tucson",
-    "Mesa",
-    "Scottsdale"
-  ],
-
-  "Colorado": [
-    "Denver",
-    "Colorado Springs",
-    "Aurora",
-    "Fort Collins"
-  ],
-
-  "Nevada": [
-    "Las Vegas",
-    "Reno",
-    "Henderson"
-  ],
-
-  "Oregon": [
-    "Portland",
-    "Eugene",
-    "Salem"
-  ],
-
-  "Connecticut": [
-    "Bridgeport",
-    "New Haven",
-    "Hartford",
-    "Stamford"
-  ],
-
-  "Massachusetts": [
-    "Boston",
-    "Worcester",
-    "Springfield",
-    "Cambridge"
-  ],
-
-  "Alabama": [
-    "Birmingham",
-    "Montgomery",
-    "Mobile",
-    "Huntsville"
-  ],
-
-  "Mississippi": [
-    "Jackson",
-    "Gulfport",
-    "Southaven"
-  ],
-
-  "South Carolina": [
-    "Columbia",
-    "Charleston",
-    "Greenville",
-    "Myrtle Beach"
-  ],
-
-  "Kentucky": [
-    "Louisville",
-    "Lexington",
-    "Bowling Green"
-  ],
-
-  "Arkansas": [
-    "Little Rock",
-    "Fort Smith",
-    "Fayetteville"
-  ],
-
-  "Oklahoma": [
-    "Oklahoma City",
-    "Tulsa",
-    "Norman"
-  ],
-
-  "Nebraska": [
-    "Omaha",
-    "Lincoln"
-  ],
-
-  "Indiana": [
-    "Indianapolis",
-    "Fort Wayne",
-    "Gary",
-    "Evansville"
-  ],
-
-  "Iowa": [
-    "Des Moines",
-    "Cedar Rapids",
-    "Davenport"
-  ],
-
-  "Kansas": [
-    "Wichita",
-    "Topeka",
-    "Overland Park"
-  ],
-
-  "New Mexico": [
-    "Albuquerque",
-    "Santa Fe",
-    "Las Cruces"
-  ],
-
-  "Utah": [
-    "Salt Lake City",
-    "West Valley City",
-    "Provo"
-  ],
-
-  "Hawaii": [
-    "Honolulu",
-    "Hilo",
-    "Kailua"
-  ],
-
-  "Puerto Rico": [
-    "San Juan",
-    "Ponce",
-    "Mayagüez",
-    "Bayamón",
-    "Carolina"
-  ],
-
-  "Delaware": [
-    "Wilmington",
-    "Dover",
-    "Newark"
-  ],
-
-  "Rhode Island": [
-    "Providence",
-    "Warwick",
-    "Cranston"
-  ],
-
-  "New Hampshire": [
-    "Manchester",
-    "Nashua",
-    "Concord"
-  ],
-
-  "Vermont": [
-    "Burlington",
-    "South Burlington",
-    "Montpelier"
-  ],
-
-  "Maine": [
-    "Portland",
-    "Lewiston",
-    "Bangor"
-  ],
-
-  "West Virginia": [
-    "Charleston",
-    "Huntington",
-    "Morgantown"
-  ],
-
-  "U.S. Virgin Islands": [
-    "Charlotte Amalie",
-    "Christiansted",
-    "Cruz Bay"
-  ],
-
-  "Guam": [
-    "Hagåtña",
-    "Dededo",
-    "Tamuning"
-  ],
-
-  "American Samoa": [
-    "Pago Pago",
-    "Tafuna"
-  ],
-
-  "Northern Mariana Islands": [
-    "Saipan",
-    "Tinian"
-  ]
-
-};
-
-
-/* =========================
-   NEIGHBORHOODS
-========================= */
-
-const neighborhoodData = {
-
-  "Philadelphia": [
-    "All of Philadelphia",
-    "West Philadelphia",
-    "North Philadelphia",
-    "South Philadelphia",
-    "Southwest Philadelphia",
-    "Northwest Philadelphia",
-    "Center City",
-    "Germantown",
-    "University City",
-    "Chestnut Hill"
-  ],
-
-  "Pittsburgh": [
-    "All of Pittsburgh",
-    "Downtown",
-    "Hill District",
-    "Homewood",
-    "East Liberty",
-    "North Side",
-    "South Side"
-  ],
-
-  "Harrisburg": [
-    "All of Harrisburg",
-    "Downtown",
-    "Uptown",
-    "Midtown",
-    "South Harrisburg",
-    "West Harrisburg"
-  ],
-
-  "New York City": [
-    "All of NYC",
-    "Harlem",
-    "Brooklyn",
-    "Bronx",
-    "Queens",
-    "Manhattan",
-    "Staten Island",
-    "Washington Heights",
-    "Bedford-Stuyvesant"
-  ],
-
-  "Buffalo": [
-    "All of Buffalo",
-    "Downtown",
-    "East Side",
-    "West Side",
-    "North Buffalo",
-    "South Buffalo"
-  ],
-
-  "Newark": [
-    "All of Newark",
-    "Downtown",
-    "North Ward",
-    "Central Ward",
-    "East Ward",
-    "South Ward",
-    "West Ward"
-  ],
-
-  "Jersey City": [
-    "All of Jersey City",
-    "Downtown",
-    "Journal Square",
-    "Bergen-Lafayette",
-    "The Heights",
-    "West Side"
-  ],
-
-  "Baltimore": [
-    "All of Baltimore",
-    "West Baltimore",
-    "East Baltimore",
-    "North Baltimore",
-    "South Baltimore",
-    "Downtown",
-    "Upton",
-    "Sandtown-Winchester"
-  ],
-
-  "Atlanta": [
-    "All of Atlanta",
-    "West Midtown",
-    "East Atlanta",
-    "South Atlanta",
-    "Downtown",
-    "Midtown",
-    "Old Fourth Ward",
-    "Bankhead"
-  ],
-
-  "Savannah": [
-    "All of Savannah",
-    "Downtown",
-    "Midtown",
-    "Southside",
-    "Eastside",
-    "Westside"
-  ],
-
-  "Miami": [
-    "All of Miami",
-    "Little Haiti",
-    "Overtown",
-    "Liberty City",
-    "Little Havana",
-    "Wynwood",
-    "Downtown"
-  ],
-
-  "Orlando": [
-    "All of Orlando",
-    "Downtown",
-    "Parramore",
-    "West Orlando",
-    "East Orlando",
-    "South Orlando"
-  ],
-
-  "Tampa": [
-    "All of Tampa",
-    "Downtown",
-    "Ybor City",
-    "West Tampa",
-    "East Tampa",
-    "South Tampa"
-  ],
-
-  "Houston": [
-    "All of Houston",
-    "Third Ward",
-    "Fifth Ward",
-    "Fourth Ward",
-    "Southwest Houston",
-    "North Houston",
-    "Downtown"
-  ],
-
-  "Dallas": [
-    "All of Dallas",
-    "Oak Cliff",
-    "South Dallas",
-    "Deep Ellum",
-    "Downtown",
-    "Pleasant Grove",
-    "East Dallas"
-  ],
-
-  "Austin": [
-    "All of Austin",
-    "East Austin",
-    "Downtown",
-    "South Austin",
-    "North Austin",
-    "Riverside"
-  ],
-
-  "Chicago": [
-    "All of Chicago",
-    "South Side",
-    "West Side",
-    "North Side",
-    "Bronzeville",
-    "Englewood",
-    "Hyde Park",
-    "Chatham"
-  ],
-
-  "Detroit": [
-    "All of Detroit",
-    "Downtown",
-    "Midtown",
-    "East Side",
-    "West Side",
-    "Southwest Detroit",
-    "North End"
-  ],
-
-  "Cleveland": [
-    "All of Cleveland",
-    "Downtown",
-    "East Side",
-    "West Side",
-    "Central",
-    "Hough",
-    "Glenville"
-  ],
-
-  "Columbus": [
-    "All of Columbus",
-    "Downtown",
-    "East Side",
-    "West Side",
-    "South Side",
-    "North Side"
-  ],
-
-  "Memphis": [
-    "All of Memphis",
-    "Downtown",
-    "North Memphis",
-    "South Memphis",
-    "East Memphis",
-    "Orange Mound"
-  ],
-
-  "Nashville": [
-    "All of Nashville",
-    "North Nashville",
-    "East Nashville",
-    "South Nashville",
-    "Downtown",
-    "West Nashville"
-  ],
-
-  "New Orleans": [
-    "All of New Orleans",
-    "Tremé",
-    "Central City",
-    "Bywater",
-    "Gentilly",
-    "Uptown",
-    "New Orleans East"
-  ],
-
-  "Los Angeles": [
-    "All of Los Angeles",
-    "South Central",
-    "West LA",
-    "East LA",
-    "Inglewood",
-    "Crenshaw",
-    "Compton",
-    "Hollywood"
-  ],
-
-  "San Francisco": [
-    "All of San Francisco",
-    "Bayview-Hunters Point",
-    "Fillmore",
-    "Mission",
-    "Western Addition",
-    "Downtown",
-    "SoMa"
-  ],
-
-  "Oakland": [
-    "All of Oakland",
-    "West Oakland",
-    "East Oakland",
-    "Downtown",
-    "Fruitvale",
-    "Temescal",
-    "Lake Merritt"
-  ],
-
-  "San Juan": [
-    "All of San Juan",
-    "Santurce",
-    "Río Piedras",
-    "Hato Rey",
-    "Condado",
-    "Old San Juan"
-  ]
-
-};
-
-
-/* =========================
-   LOCAL CONTENT
-========================= */
-
-const localContent = {
-
-  "West Philadelphia": {
-    people: "Meet people, creators and community members around West Philadelphia.",
-    businesses: "Discover Black-owned businesses serving West Philly.",
-    events: "See events, gatherings and community activities around West Philly.",
-    food: "Find local food spots and neighborhood recommendations.",
-    music: "Discover artists, DJs and sounds coming out of West Philly.",
-    opportunities: "Find jobs, networking and business opportunities nearby.",
-    post1User: "West Philly Community",
-    post1Text: "What are y'all doing this weekend? Drop your favorite local spots, events and things to do around West Philly. 👇🏾",
-    post2User: "West Philly Creator",
-    post2Text: "I'm looking to connect with other local creators, entrepreneurs and artists. Who else is building something in West Philly?",
-    hashtag: "#WestPhilly #Soulaani"
-  },
-
-  "North Philadelphia": {
-    people: "Connect with people, creators and communities across North Philadelphia.",
-    businesses: "Discover Black-owned businesses throughout North Philly.",
-    events: "Find local events and community gatherings happening nearby.",
-    food: "Share your favorite North Philly restaurants and food spots.",
-    music: "Discover local artists and music coming from North Philly.",
-    opportunities: "Explore jobs, networking and business opportunities in North Philly.",
-    post1User: "North Philly Community",
-    post1Text: "North Philly, what is happening in the neighborhood this week? Put everybody on to something local. 👇🏾",
-    post2User: "North Philly Creator",
-    post2Text: "Looking to connect with local artists, entrepreneurs and creatives from North Philly.",
-    hashtag: "#NorthPhilly #Soulaani"
-  },
-
-  "South Philadelphia": {
-    people: "Discover people and creators throughout South Philadelphia.",
-    businesses: "Find Black-owned businesses around South Philly.",
-    events: "Explore events and gatherings happening across South Philly.",
-    food: "Find local food, restaurants and neighborhood favorites.",
-    music: "Discover local musicians and sounds from South Philly.",
-    opportunities: "Explore local jobs, networking and entrepreneurship.",
-    post1User: "South Philly Community",
-    post1Text: "South Philly, what are the spots everybody needs to know about? Drop your recommendations.",
-    post2User: "South Philly Creator",
-    post2Text: "Who are the local artists, entrepreneurs and creators we should know about?",
-    hashtag: "#SouthPhilly #Soulaani"
-  },
-
-  "Center City": {
-    people: "Meet people working, creating and living around Center City.",
-    businesses: "Explore Black-owned businesses in and around Center City.",
-    events: "Discover events happening throughout Center City.",
-    food: "Find restaurants, cafes and local food conversations.",
-    music: "Discover artists and live music around Center City.",
-    opportunities: "Explore jobs, networking events and professional opportunities.",
-    post1User: "Center City Community",
-    post1Text: "What's happening around Center City this week? Share the events and spots everyone should know.",
-    post2User: "Center City Creator",
-    post2Text: "Looking to connect with local professionals and creatives around Center City.",
-    hashtag: "#CenterCity #Soulaani"
-  },
-
-  "All of Philadelphia": {
-    people: "Discover people and communities across Philadelphia.",
-    businesses: "Discover Black-owned businesses throughout Philadelphia.",
-    events: "See events happening across Philadelphia.",
-    food: "Find local food and neighborhood recommendations.",
-    music: "Discover music and artists throughout Philadelphia.",
-    opportunities: "Explore jobs, networking and business opportunities.",
-    post1User: "Philadelphia Community",
-    post1Text: "Philadelphia, what is happening around the city? Drop your favorite local spots, events and things to do.",
-    post2User: "Philly Creator",
-    post2Text: "Who are the Philadelphia creators, entrepreneurs and artists that everyone should know?",
-    hashtag: "#Philadelphia #Soulaani"
-  }
-
-};
-
-
-/* =========================
-   CURRENT LOCATION
-========================= */
-
-let currentRegion = "Northeast";
-let currentState = "Pennsylvania";
-let currentCity = "Philadelphia";
-let currentNeighborhood = "All of Philadelphia";
-
-
-/* =========================
-   REGION
-========================= */
-
-function selectRegion(region, button) {
-
-  currentRegion = region;
-
-  document.querySelectorAll('.region-btn').forEach(btn => {
-    btn.classList.remove('active');
-  });
-
-  if (button) {
-    button.classList.add('active');
-  }
-
-  const states =
-    regions[region] || [];
-
-  const stateSelect =
-    document.getElementById('stateSelect');
-
-  stateSelect.innerHTML = "";
-
-  states.forEach(state => {
-
-    const option =
-      document.createElement('option');
-
-    option.value = state;
-    option.textContent = state;
-
-    stateSelect.appendChild(option);
-
-  });
-
-  if (states.includes(currentState)) {
-
-    stateSelect.value =
-      currentState;
-
-  } else if (states.length > 0) {
-
-    currentState =
-      states[0];
-
-    stateSelect.value =
-      currentState;
-
-  }
-
-  loadCities(currentState);
-
-}
-
-
-/* =========================
-   STATE
-========================= */
-
-function changeState(state) {
-
-  currentState =
-    state;
-
-  loadCities(state);
-
-  updateLocalFYP();
-
-}
-
-
-/* =========================
-   CITIES
-========================= */
-
-function loadCities(state) {
-
-  const citySelect =
-    document.getElementById('citySelect');
-
-  citySelect.innerHTML = "";
-
-  const cities =
-    cityData[state] || [];
-
-  cities.forEach(city => {
-
-    const option =
-      document.createElement('option');
-
-    option.value =
-      city;
-
-    option.textContent =
-      city;
-
-    citySelect.appendChild(option);
-
-  });
-
-  if (cities.includes(currentCity)) {
-
-    citySelect.value =
-      currentCity;
-
-  } else if (cities.length > 0) {
-
-    currentCity =
-      cities[0];
-
-    citySelect.value =
-      currentCity;
-
-  }
-
-  loadNeighborhoods(currentCity);
-
-}
-
-
-/* =========================
-   NEIGHBORHOODS
-========================= */
-
-function loadNeighborhoods(city) {
-
-  const neighborhoodSelect =
-    document.getElementById('neighborhoodSelect');
-
-  neighborhoodSelect.innerHTML = "";
-
-  let neighborhoods =
-    neighborhoodData[city];
-
-  if (!neighborhoods || neighborhoods.length === 0) {
-
-    neighborhoods = [
-      `All of ${city}`
-    ];
-
-  }
-
-  neighborhoods.forEach(neighborhood => {
-
-    const option =
-      document.createElement('option');
-
-    option.value =
-      neighborhood;
-
-    option.textContent =
-      neighborhood;
-
-    neighborhoodSelect.appendChild(option);
-
-  });
-
-  if (neighborhoods.includes(currentNeighborhood)) {
-
-    neighborhoodSelect.value =
-      currentNeighborhood;
-
-  } else {
-
-    currentNeighborhood =
-      neighborhoods[0];
-
-    neighborhoodSelect.value =
-      currentNeighborhood;
-
-  }
-
-  updateLocalFYP();
-
-}
-
-
-/* =========================
-   CITY
-========================= */
-
-function changeCity(city) {
-
-  currentCity =
-    city;
-
-  const neighborhoods =
-    neighborhoodData[city];
-
-  if (neighborhoods && neighborhoods.length > 0) {
-
-    currentNeighborhood =
-      neighborhoods[0];
-
-  } else {
-
-    currentNeighborhood =
-      `All of ${city}`;
-
-  }
-
-  loadNeighborhoods(city);
-
-  updateLocalFYP();
-
-}
-
-
-/* =========================
-   LOCAL AREA
-========================= */
-
-function changeNeighborhood(neighborhood) {
-
-  currentNeighborhood =
-    neighborhood;
-
-  updateLocalFYP();
-
-}
-
-
-/* =========================
-   LOCAL FYP
-========================= */
-
-function updateLocalFYP() {
-
-  const area =
-    currentNeighborhood;
-
-  const city =
-    currentCity;
-
-  const state =
-    currentState;
-
-
-  const data =
-    localContent[area] || {
-
-      people:
-        `Discover people, creators and communities around ${area}.`,
-
-      businesses:
-        `Discover Black-owned businesses around ${area}.`,
-
-      events:
-        `Find events and gatherings happening around ${area}.`,
-
-      food:
-        `Discover food spots and local recommendations around ${area}.`,
-
-      music:
-        `Discover artists and music from ${area}.`,
-
-      opportunities:
-        `Find jobs, networking and business opportunities around ${area}.`,
-
-      post1User:
-        `${area} Community`,
-
-      post1Text:
-        `What's happening around ${area}? Share local events, spots, conversations and recommendations with the community. 👇🏾`,
-
-      post2User:
-        `${area} Creator`,
-
-      post2Text:
-        `Looking to connect with people, creators, entrepreneurs and artists around ${area}.`,
-
-      hashtag:
-        `#${area.replace(/[^a-zA-Z0-9]/g, '')} #Soulaani`
-
-    };
-
-
-  const displayArea =
-    area.startsWith("All of ")
-      ? city
-      : area;
-
-
-  document.getElementById('locationHero').textContent =
-    `${displayArea}, ${state}`;
-
-
-  document.getElementById('locationDescription').textContent =
-    `Your Soulaani experience for ${displayArea}. Discover people, culture, businesses, events, food, music and opportunities around you.`;
-
-
-  document.getElementById('localFypTitle').textContent =
-    `${displayArea} Local FYP`;
-
-
-  document.getElementById('localFypDescription').textContent =
-    `Your local feed for ${displayArea}, ${state}.`;
-
-
-  document.getElementById('peopleText').textContent =
-    data.people;
-
-
-  document.getElementById('businessText').textContent =
-    data.businesses;
-
-
-  document.getElementById('eventText').textContent =
-    data.events;
-
-
-  document.getElementById('foodText').textContent =
-    data.food;
-
-
-  document.getElementById('musicText').textContent =
-    data.music;
-
-
-  document.getElementById('opportunityText').textContent =
-    data.opportunities;
-
-
-  document.getElementById('exploreTitle').textContent =
-    `What's happening in ${displayArea}`;
-
-
-  document.getElementById('postMeta1').textContent =
-    `${displayArea} • Local FYP`;
-
-
-  document.getElementById('postLocation1').textContent =
-    `📍 ${displayArea}`;
-
-
-  document.getElementById('postText1').textContent =
-    data.post1Text;
-
-
-  document.getElementById('hashtag1').textContent =
-    data.hashtag;
-
-
-  document.getElementById('postMeta2').textContent =
-    `${displayArea} • Today`;
-
-
-  document.getElementById('postLocation2').textContent =
-    `🔥 Trending in ${displayArea}`;
-
-
-  document.getElementById('postText2').textContent =
-    data.post2Text;
-
-
-  document.getElementById('hashtag2').textContent =
-    data.hashtag;
-
-}
-
-
-/* =========================
-   REACTIONS
-========================= */
-
-function react(button, emoji) {
-
-  const current =
-    button.getAttribute('data-reacted');
-
-  if (current === 'true') {
-
-    button.textContent =
-      `${emoji} Like`;
-
-    button.setAttribute(
-      'data-reacted',
-      'false'
-    );
-
-  } else {
-
-    button.textContent =
-      `${emoji} Liked`;
-
-    button.setAttribute(
-      'data-reacted',
-      'true'
-    );
-
-  }
-
-}
-
-
-/* =========================
-   COMMENTS
-========================= */
-
-function toggleComments(id) {
-
-  const box =
-    document.getElementById(id);
-
-  if (!box) return;
-
-  if (box.style.display === 'block') {
-
-    box.style.display =
-      'none';
-
-  } else {
-
-    box.style.display =
-      'block';
-
-  }
-
-}
-
-
-/* =========================
-   ADD COMMENT
-========================= */
-
-function addComment(inputId, commentsId) {
-
-  const input =
-    document.getElementById(inputId);
-
-  const comments =
-    document.getElementById(commentsId);
-
-  if (!input || !comments) return;
-
-  const text =
-    input.value.trim();
-
-  if (!text) return;
-
-  const list =
-    comments.querySelector('.comment-list');
-
-  const comment =
-    document.createElement('div');
-
-  comment.className =
-    'comment';
-
-  comment.textContent =
-    text;
-
-  list.appendChild(comment);
-
-  input.value =
-    '';
-
-}
-
-
-/* =========================
-   CLOSE MODAL WHEN CLICKING
-   OUTSIDE EDITOR
-========================= */
-
-document.addEventListener(
-  'click',
-  function(event) {
-
-    const overlay =
-      document.getElementById(
-        'profileEditorOverlay'
+      alert(
+        'Search for "' +
+        query +
+        '" will connect to the full Soulaani search system next.'
       );
-
-    const editor =
-      document.querySelector(
-        '.profile-editor'
-      );
-
-    if (
-      overlay &&
-      overlay.classList.contains('active') &&
-      event.target === overlay &&
-      !editor.contains(event.target)
-    ) {
-
-      closeProfileEditor();
 
     }
 
-  }
-);
+  });
 
 
 /* =========================
-   ESCAPE KEY
+   ESCAPE HTML
 ========================= */
 
-document.addEventListener(
-  'keydown',
-  function(event) {
+function escapeHTML(value) {
 
-    if (event.key !== 'Escape') {
-      return;
-    }
+  const div = document.createElement("div");
 
-    const overlay =
-      document.getElementById(
-        'profileEditorOverlay'
-      );
+  div.textContent = value;
 
-    if (
-      overlay &&
-      overlay.classList.contains('active')
-    ) {
+  return div.innerHTML;
 
-      closeProfileEditor();
-
-    }
-
-  }
-);
+}
 
 
 /* =========================
-   INITIALIZE
+   CLOSE MODAL OUTSIDE
 ========================= */
 
-document.addEventListener(
-  'DOMContentLoaded',
-  function() {
+document.getElementById("postModal")
+  .addEventListener("click", function(event) {
 
-    const northeastButton =
-      document.querySelector('.region-btn');
+    if (event.target === this) {
+      closePostModal();
+    }
 
-    selectRegion(
-      'Northeast',
-      northeastButton
-    );
-
-
-    const stateSelect =
-      document.getElementById('stateSelect');
-
-    stateSelect.value =
-      'Pennsylvania';
-
-    currentState =
-      'Pennsylvania';
-
-
-    loadCities('Pennsylvania');
-
-
-    const citySelect =
-      document.getElementById('citySelect');
-
-    citySelect.value =
-      'Philadelphia';
-
-    currentCity =
-      'Philadelphia';
-
-
-    loadNeighborhoods('Philadelphia');
-
-
-    const neighborhoodSelect =
-      document.getElementById('neighborhoodSelect');
-
-    neighborhoodSelect.value =
-      'All of Philadelphia';
-
-    currentNeighborhood =
-      'All of Philadelphia';
-
-
-    updateLocalFYP();
-
-    renderProfileMusic('luhhtrilly');
-
-    renderUserProfile();
-
-  }
-);
+  });
 
 </script>
 
