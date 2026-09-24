@@ -6,1562 +6,1708 @@
 
 <title>Soulaani | The Culture. The People. The Platform.</title>
 
+<meta name="description" content="Soulaani is a digital platform built to connect people, culture, community, business, opportunity and discovery.">
+
 <style>
-
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap');
-
-:root {
-  --black:#080808;
-  --black2:#0d0d0d;
-  --black3:#121212;
-  --card:#151515;
-  --gold:#d4af37;
-  --gold2:#f1cb58;
-  --white:#f7f7f5;
-  --muted:#999;
-  --border:rgba(255,255,255,.09);
-  --radius:18px;
-}
-
-* {
+*{
   box-sizing:border-box;
   margin:0;
   padding:0;
 }
 
-html {
+html{
   scroll-behavior:smooth;
 }
 
-body {
-  background:var(--black);
-  color:var(--white);
-  font-family:"DM Sans",sans-serif;
+body{
+  background:#080808;
+  color:#f7f7f5;
+  font-family:Arial,Helvetica,sans-serif;
   min-height:100vh;
+  overflow-x:hidden;
 }
 
 button,
 input,
 textarea,
-select {
+select{
   font:inherit;
 }
 
-button {
+button{
   cursor:pointer;
 }
 
-a {
+:root{
+  --black:#080808;
+  --black2:#0d0d0d;
+  --black3:#121212;
+  --card:#151515;
+  --card2:#191919;
+  --gold:#d4af37;
+  --gold2:#f1cb58;
+  --gold3:#9f7c20;
+  --white:#f7f7f5;
+  --muted:#999;
+  --border:rgba(255,255,255,.09);
+  --radius:18px;
+  --shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+a{
   color:inherit;
   text-decoration:none;
 }
 
-.container {
-  width:min(1250px,calc(100% - 40px));
-  margin:auto;
+.hidden{
+  display:none!important;
 }
 
-.gold {
-  color:var(--gold);
-}
+/* =========================
+   HEADER
+========================= */
 
-.logo,
-.nav-logo,
-.side-logo,
-.footer-logo,
-.hero h1,
-.section-title,
-.platform-card h3,
-.event-info h3 {
-  font-family:"Playfair Display",serif;
-}
-
-.btn {
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:12px 20px;
-  background:transparent;
-  color:white;
-  font-weight:600;
-  transition:.2s;
-}
-
-.btn:hover {
-  transform:translateY(-2px);
-  border-color:var(--gold);
-}
-
-.gold-btn {
-  background:linear-gradient(135deg,var(--gold2),var(--gold));
-  color:#080808;
-  border:none;
-}
-
-.eyebrow {
-  color:var(--gold);
-  font-size:12px;
-  letter-spacing:4px;
-  text-transform:uppercase;
-  margin-bottom:20px;
-}
-
-.section-title {
-  font-size:clamp(32px,4vw,54px);
-  margin-bottom:12px;
-}
-
-.section-subtitle {
-  color:var(--muted);
-  max-width:650px;
-  line-height:1.7;
-}
-
-/* HEADER */
-
-header {
+header{
   position:fixed;
   top:0;
   left:0;
-  width:100%;
-  height:72px;
-  z-index:1000;
-  background:rgba(8,8,8,.9);
+  right:0;
+  height:76px;
+  background:rgba(8,8,8,.92);
   backdrop-filter:blur(18px);
   border-bottom:1px solid var(--border);
+  z-index:1000;
 }
 
-.nav {
-  height:72px;
+.header-inner{
+  max-width:1400px;
+  height:100%;
+  margin:auto;
+  padding:0 28px;
   display:flex;
   align-items:center;
-  gap:28px;
+  justify-content:space-between;
+  gap:25px;
 }
 
-.nav-logo {
-  color:var(--gold);
-  font-size:30px;
+.logo{
+  font-size:27px;
   font-weight:800;
+  letter-spacing:2px;
+  color:var(--gold);
   white-space:nowrap;
+  border:0;
+  background:transparent;
 }
 
-.nav-links {
+.logo span{
+  color:#fff;
+}
+
+.desktop-nav{
   display:flex;
-  gap:22px;
   align-items:center;
-  flex:1;
+  gap:7px;
 }
 
-.nav-links a {
-  color:#bbb;
-  font-size:14px;
+.nav-link{
+  border:0;
+  background:transparent;
+  color:#aaa;
+  padding:10px 13px;
+  border-radius:10px;
   transition:.2s;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
-  color:white;
+.nav-link:hover,
+.nav-link.active{
+  color:#fff;
+  background:#171717;
 }
 
-.search {
-  width:220px;
-  height:40px;
+.nav-link.active{
+  color:var(--gold2);
+}
+
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:9px;
+}
+
+.icon-button{
+  width:42px;
+  height:42px;
   border:1px solid var(--border);
-  background:#141414;
-  border-radius:22px;
+  border-radius:50%;
+  background:#111;
+  color:#fff;
   display:flex;
   align-items:center;
-  padding:0 14px;
-  gap:8px;
+  justify-content:center;
 }
 
-.search input {
-  width:100%;
-  border:0;
-  outline:0;
-  background:transparent;
-  color:white;
+.icon-button:hover{
+  border-color:rgba(212,175,55,.5);
+  color:var(--gold2);
 }
 
-.nav-actions {
-  display:flex;
-  gap:8px;
+.auth-button{
+  border:1px solid var(--gold3);
+  background:var(--gold);
+  color:#080808;
+  padding:11px 17px;
+  border-radius:10px;
+  font-weight:800;
 }
 
-.mobile-menu {
-  display:none;
-  background:none;
-  border:0;
-  color:white;
-  font-size:25px;
+.auth-button:hover{
+  background:var(--gold2);
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
-.hero {
-  min-height:670px;
-  padding-top:72px;
-  display:flex;
-  align-items:center;
+.hero{
+  min-height:750px;
+  padding:150px 25px 80px;
   position:relative;
+  display:flex;
+  align-items:center;
   overflow:hidden;
-  background:
-    radial-gradient(circle at 70% 45%,rgba(212,175,55,.13),transparent 28%),
-    linear-gradient(90deg,#070707 0%,#090909 43%,rgba(9,9,9,.65) 68%,#080808 100%);
 }
 
-.hero::after {
+.hero:before{
   content:"";
   position:absolute;
-  inset:72px 0 0 48%;
-  background:
-    linear-gradient(90deg,#080808 0%,transparent 35%),
-    url("https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=1200&q=85")
-    center/cover;
-  opacity:.72;
+  width:650px;
+  height:650px;
+  background:rgba(212,175,55,.08);
+  filter:blur(100px);
+  border-radius:50%;
+  top:30px;
+  left:-220px;
 }
 
-.hero-content {
+.hero:after{
+  content:"";
+  position:absolute;
+  width:500px;
+  height:500px;
+  background:rgba(212,175,55,.05);
+  filter:blur(110px);
+  border-radius:50%;
+  right:-200px;
+  bottom:-100px;
+}
+
+.hero-inner{
+  max-width:1400px;
+  width:100%;
+  margin:auto;
   position:relative;
   z-index:2;
-  width:min(1250px,calc(100% - 40px));
-  margin:auto;
 }
 
-.hero h1 {
-  font-size:clamp(70px,10vw,145px);
-  line-height:.83;
-  color:var(--gold);
-  letter-spacing:-7px;
-  max-width:680px;
-}
-
-.hero h2 {
-  font-size:clamp(28px,4vw,48px);
-  line-height:1.05;
-  margin:25px 0 18px;
-  max-width:600px;
-}
-
-.hero p {
-  max-width:540px;
-  color:#c8c8c8;
-  line-height:1.7;
-  margin-bottom:28px;
-}
-
-.hero-buttons {
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-}
-
-/* FEATURE STRIP */
-
-.feature-strip {
-  background:#0c0c0c;
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-}
-
-.feature-grid {
-  display:grid;
-  grid-template-columns:repeat(6,1fr);
-}
-
-.feature {
-  min-height:125px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
+.hero-label{
+  display:inline-flex;
   align-items:center;
-  text-align:center;
-  padding:20px 10px;
-  border-right:1px solid var(--border);
-}
-
-.feature-icon {
-  color:var(--gold);
-  font-size:27px;
-  margin-bottom:10px;
-}
-
-.feature strong {
-  font-size:14px;
-}
-
-.feature span {
-  font-size:10px;
-  color:var(--muted);
-  margin-top:6px;
-}
-
-/* SECTIONS */
-
-.preview-section,
-.platform,
-.discover,
-.events {
-  padding:100px 0;
-}
-
-.preview-section {
-  background:
-    radial-gradient(circle at center,rgba(212,175,55,.06),transparent 45%),
-    var(--black);
-}
-
-.platform {
-  background:#0d0d0d;
-}
-
-.discover {
-  background:#080808;
-}
-
-.events {
-  background:#101010;
-}
-
-.preview-header {
-  text-align:center;
-  margin-bottom:45px;
-}
-
-.preview-header .section-subtitle {
-  margin:auto;
-}
-
-/* DASHBOARD */
-
-.dashboard {
-  display:grid;
-  grid-template-columns:210px 1fr 270px;
-  min-height:610px;
-  background:#0e0e0e;
-  border:1px solid #292929;
-  border-radius:24px;
-  overflow:hidden;
-  box-shadow:0 20px 60px rgba(0,0,0,.35);
-}
-
-.dashboard-sidebar {
-  background:#090909;
-  border-right:1px solid var(--border);
-  padding:25px 15px;
-}
-
-.side-logo {
-  color:var(--gold);
-  font-size:23px;
-  margin-bottom:28px;
-  padding-left:12px;
-}
-
-.side-item {
-  display:flex;
-  gap:12px;
-  align-items:center;
-  padding:12px;
-  border-radius:9px;
-  color:#aaa;
-  margin-bottom:5px;
-  font-size:13px;
-  cursor:pointer;
-}
-
-.side-item:hover,
-.side-item.active {
-  color:white;
-  background:rgba(212,175,55,.13);
-}
-
-.dashboard-feed {
-  padding:22px;
-  background:#111;
-}
-
-.feed-top {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:18px;
-}
-
-.feed-search {
-  background:#181818;
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:9px 14px;
-  color:#888;
-  font-size:11px;
-}
-
-.composer,
-.feed-post {
-  background:#181818;
-  border:1px solid var(--border);
-  border-radius:14px;
-  overflow:hidden;
-  margin-bottom:18px;
-}
-
-.composer {
-  padding:15px;
-}
-
-.composer-row {
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.avatar {
-  width:38px;
-  height:38px;
-  border-radius:50%;
-  background:
-    url("https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=100&q=80")
-    center/cover;
-  flex-shrink:0;
-}
-
-.composer-input {
-  background:#222;
-  border-radius:20px;
-  color:#888;
-  padding:11px 15px;
-  flex:1;
+  gap:9px;
+  padding:8px 13px;
+  border:1px solid rgba(212,175,55,.28);
+  background:rgba(212,175,55,.06);
+  color:var(--gold2);
+  border-radius:100px;
   font-size:12px;
-  cursor:pointer;
-}
-
-.composer-actions {
-  display:flex;
-  gap:20px;
-  margin-top:13px;
-  color:#aaa;
-  font-size:11px;
-  padding-left:48px;
-}
-
-.post-head {
-  display:flex;
-  gap:10px;
-  align-items:center;
-  padding:14px;
-}
-
-.post-name {
-  font-weight:600;
-  font-size:12px;
-}
-
-.post-time {
-  color:#777;
-  font-size:9px;
-}
-
-.post-text {
-  padding:0 14px 12px;
-  color:#ddd;
-  font-size:12px;
-  line-height:1.5;
-}
-
-.post-image {
-  width:100%;
-  height:190px;
-  object-fit:cover;
-}
-
-.post-actions {
-  display:flex;
-  justify-content:space-between;
-  padding:11px 14px;
-  color:#999;
-  font-size:11px;
-}
-
-.post-actions span {
-  cursor:pointer;
-}
-
-.post-actions span:hover {
-  color:var(--gold);
-}
-
-.dashboard-right {
-  background:#0c0c0c;
-  border-left:1px solid var(--border);
-  padding:20px;
-}
-
-.right-card {
-  border-bottom:1px solid var(--border);
-  padding-bottom:20px;
-  margin-bottom:20px;
-}
-
-.right-title {
-  display:flex;
-  justify-content:space-between;
-  font-size:12px;
-  margin-bottom:15px;
-}
-
-.right-title span {
-  color:var(--gold);
-  font-size:9px;
-}
-
-.trend {
-  display:flex;
-  gap:10px;
-  margin-bottom:13px;
-}
-
-.trend-number {
-  color:var(--gold);
-  font-size:10px;
-}
-
-.trend-text {
-  font-size:11px;
-  color:#bbb;
-}
-
-/* PLATFORM */
-
-.platform-grid {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-  margin-top:45px;
-}
-
-.platform-card {
-  min-height:270px;
-  background:linear-gradient(145deg,#181818,#0d0d0d);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  padding:28px;
-  transition:.25s;
-}
-
-.platform-card:hover {
-  transform:translateY(-5px);
-  border-color:rgba(212,175,55,.45);
-}
-
-.card-icon {
-  color:var(--gold);
-  font-size:32px;
-  margin-bottom:22px;
-}
-
-.platform-card h3 {
-  font-size:26px;
-  margin-bottom:10px;
-}
-
-.platform-card p {
-  color:#999;
-  font-size:13px;
-  line-height:1.7;
-}
-
-/* DISCOVER */
-
-.location-bar {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  background:#131313;
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:18px 20px;
-  margin:35px 0;
-}
-
-.location-bar span {
-  color:#999;
-  font-size:13px;
-}
-
-.location-select {
-  background:#1d1d1d;
-  color:white;
-  border:1px solid #333;
-  border-radius:8px;
-  padding:8px 14px;
-}
-
-.discover-grid {
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
-}
-
-.discover-card {
-  height:300px;
-  border-radius:16px;
-  overflow:hidden;
-  position:relative;
-  background:#151515;
-}
-
-.discover-card img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition:.4s;
-}
-
-.discover-card:hover img {
-  transform:scale(1.06);
-}
-
-.discover-overlay {
-  position:absolute;
-  inset:45% 0 0;
-  background:linear-gradient(transparent,rgba(0,0,0,.95));
-  padding:80px 18px 18px;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-}
-
-.discover-overlay h3 {
-  font-family:"Playfair Display",serif;
-  font-size:23px;
-}
-
-.discover-overlay p {
-  color:#bbb;
-  font-size:11px;
-  margin-top:5px;
-}
-
-/* EVENTS */
-
-.event-grid {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-  margin-top:45px;
-}
-
-.event-card {
-  background:#171717;
-  border:1px solid var(--border);
-  border-radius:16px;
-  overflow:hidden;
-}
-
-.event-image {
-  height:190px;
-  background-size:cover;
-  background-position:center;
-}
-
-.event-info {
-  padding:18px;
-}
-
-.event-date {
-  color:var(--gold);
-  font-size:10px;
-  text-transform:uppercase;
+  font-weight:700;
   letter-spacing:1px;
-}
-
-.event-info h3 {
-  font-size:22px;
-  margin:8px 0;
-}
-
-.event-info p {
-  color:#888;
-  font-size:11px;
-}
-
-/* FOOTER */
-
-footer {
-  background:#060606;
-  border-top:1px solid var(--border);
-  padding:70px 0 30px;
-}
-
-.footer-grid {
-  display:grid;
-  grid-template-columns:2fr repeat(4,1fr);
-  gap:40px;
-}
-
-.footer-logo {
-  color:var(--gold);
-  font-size:42px;
-}
-
-.footer-about {
-  color:#777;
-  max-width:280px;
-  line-height:1.7;
-  font-size:12px;
-  margin-top:15px;
-}
-
-.footer-col h4 {
-  font-size:12px;
-  margin-bottom:18px;
-}
-
-.footer-col a {
-  display:block;
-  color:#777;
-  font-size:12px;
-  margin-bottom:10px;
-}
-
-.footer-col a:hover {
-  color:var(--gold);
-}
-
-.footer-bottom {
-  border-top:1px solid var(--border);
-  margin-top:50px;
-  padding-top:22px;
-  color:#555;
-  font-size:10px;
-  display:flex;
-  justify-content:space-between;
-}
-
-/* MODAL */
-
-.modal {
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.78);
-  backdrop-filter:blur(8px);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:2000;
-  padding:20px;
-}
-
-.modal.active {
-  display:flex;
-}
-
-.modal-box {
-  width:min(450px,100%);
-  background:#111;
-  border:1px solid #333;
-  border-radius:20px;
-  padding:30px;
-}
-
-.modal-head {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+  text-transform:uppercase;
   margin-bottom:25px;
 }
 
-.modal-head h2 {
-  font-family:"Playfair Display",serif;
-  font-size:28px;
+.hero-label-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--gold);
 }
 
-.close {
-  background:none;
-  border:0;
-  color:#888;
-  font-size:25px;
+.hero h1{
+  max-width:950px;
+  font-size:clamp(52px,8vw,112px);
+  line-height:.91;
+  letter-spacing:-5px;
+  margin-bottom:30px;
 }
 
-.form-group {
-  margin-bottom:15px;
+.hero h1 span{
+  color:var(--gold);
 }
 
-.form-group label {
-  display:block;
+.hero-description{
+  max-width:680px;
   color:#aaa;
-  font-size:11px;
-  margin-bottom:7px;
+  font-size:19px;
+  line-height:1.7;
+  margin-bottom:34px;
 }
 
-.form-group input,
-.form-group textarea {
-  width:100%;
-  background:#1a1a1a;
-  color:white;
-  border:1px solid #2c2c2c;
-  border-radius:9px;
-  padding:13px;
-  outline:none;
+.hero-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
 }
 
-.form-group input:focus,
-.form-group textarea:focus {
+.primary-button,
+.secondary-button{
+  padding:14px 22px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  font-weight:800;
+}
+
+.primary-button{
+  background:var(--gold);
+  color:#080808;
   border-color:var(--gold);
 }
 
-.modal-submit {
-  width:100%;
-  margin-top:8px;
+.primary-button:hover{
+  background:var(--gold2);
 }
 
-/* APP OVERLAY */
-
-.app-panel {
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.9);
-  backdrop-filter:blur(12px);
-  z-index:1900;
-  display:none;
-  overflow:auto;
-  padding:90px 20px 40px;
+.secondary-button{
+  background:#151515;
+  color:#fff;
 }
 
-.app-panel.active {
+.secondary-button:hover{
+  border-color:rgba(212,175,55,.4);
+}
+
+.hero-stat-row{
+  margin-top:60px;
+  display:flex;
+  gap:45px;
+  flex-wrap:wrap;
+}
+
+.hero-stat strong{
   display:block;
+  font-size:25px;
+  margin-bottom:5px;
 }
 
-.app-inner {
-  width:min(1000px,100%);
+.hero-stat span{
+  color:#777;
+  font-size:13px;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+main{
+  position:relative;
+  z-index:2;
+}
+
+.section{
+  max-width:1400px;
   margin:auto;
-  background:#111;
-  border:1px solid #292929;
-  border-radius:24px;
-  padding:30px;
+  padding:90px 28px;
 }
 
-.app-top {
+.section-heading{
   display:flex;
   justify-content:space-between;
+  align-items:end;
+  gap:20px;
+  margin-bottom:30px;
+}
+
+.eyebrow{
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:11px;
+  font-weight:800;
+  margin-bottom:10px;
+}
+
+.section-heading h2{
+  font-size:clamp(30px,4vw,48px);
+  letter-spacing:-1.5px;
+}
+
+.section-heading p{
+  color:#888;
+  max-width:520px;
+  line-height:1.6;
+}
+
+/* =========================
+   PLATFORM CARDS
+========================= */
+
+.platform-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.platform-card{
+  background:linear-gradient(145deg,#171717,#101010);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:28px;
+  min-height:230px;
+  transition:.25s;
+  position:relative;
+  overflow:hidden;
+}
+
+.platform-card:after{
+  content:"";
+  position:absolute;
+  width:180px;
+  height:180px;
+  right:-90px;
+  bottom:-90px;
+  border-radius:50%;
+  background:rgba(212,175,55,.06);
+}
+
+.platform-card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(212,175,55,.3);
+}
+
+.platform-icon{
+  width:47px;
+  height:47px;
+  border-radius:13px;
+  display:flex;
   align-items:center;
+  justify-content:center;
+  background:rgba(212,175,55,.1);
+  color:var(--gold2);
+  font-size:21px;
   margin-bottom:25px;
 }
 
-.app-top h2 {
-  font-family:"Playfair Display",serif;
-  font-size:34px;
+.platform-card h3{
+  font-size:23px;
+  margin-bottom:10px;
 }
 
-.close-panel {
-  background:#191919;
-  color:#aaa;
-  border:1px solid #333;
-  border-radius:10px;
-  padding:9px 13px;
+.platform-card p{
+  color:#888;
+  line-height:1.6;
+  font-size:14px;
 }
 
-.profile-header {
-  background:linear-gradient(135deg,#191919,#0c0c0c);
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard{
   border:1px solid var(--border);
-  border-radius:18px;
-  padding:30px;
+  background:#0f0f0f;
+  border-radius:25px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
 }
 
-.profile-avatar {
-  width:85px;
-  height:85px;
-  border-radius:50%;
-  object-fit:cover;
-  border:3px solid var(--gold);
-}
-
-.profile-header h1 {
-  font-family:"Playfair Display",serif;
-  margin-top:15px;
-}
-
-.profile-header p {
-  color:#999;
-  margin-top:7px;
-}
-
-.profile-stats {
+.dashboard-top{
+  height:48px;
   display:flex;
-  gap:30px;
-  margin-top:20px;
+  align-items:center;
+  gap:7px;
+  padding:0 18px;
+  border-bottom:1px solid var(--border);
 }
 
-.profile-stat strong {
-  display:block;
+.window-dot{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:#333;
+}
+
+.dashboard-body{
+  display:grid;
+  grid-template-columns:210px 1fr 270px;
+  min-height:520px;
+}
+
+.dashboard-sidebar{
+  border-right:1px solid var(--border);
+  padding:20px;
+}
+
+.side-logo{
   color:var(--gold);
-  font-size:20px;
+  font-weight:900;
+  letter-spacing:1.5px;
+  margin-bottom:25px;
 }
 
-.profile-stat span {
+.side-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:11px;
+  border-radius:9px;
+  color:#888;
+  font-size:13px;
+  margin-bottom:4px;
+}
+
+.side-item.active{
+  background:#191919;
+  color:var(--gold2);
+}
+
+.dashboard-feed{
+  padding:22px;
+}
+
+.feed-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.feed-title h3{
+  font-size:21px;
+}
+
+.feed-title span{
   color:#777;
+  font-size:12px;
+}
+
+.mini-post{
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:17px;
+  background:#141414;
+  margin-bottom:13px;
+}
+
+.mini-post-header{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.avatar{
+  width:39px;
+  height:39px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#d4af37,#705c1f);
+  color:#080808;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+}
+
+.mini-post-header strong{
+  font-size:13px;
+}
+
+.mini-post-header span{
+  display:block;
+  color:#666;
+  font-size:11px;
+  margin-top:3px;
+}
+
+.mini-post p{
+  color:#aaa;
+  font-size:13px;
+  line-height:1.6;
+}
+
+.mini-post-actions{
+  margin-top:14px;
+  display:flex;
+  gap:20px;
+  color:#666;
+  font-size:12px;
+}
+
+.dashboard-right{
+  border-left:1px solid var(--border);
+  padding:22px;
+}
+
+.right-box{
+  background:#151515;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:17px;
+  margin-bottom:13px;
+}
+
+.right-box h4{
+  margin-bottom:13px;
+}
+
+.trend{
+  padding:9px 0;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.trend:last-child{
+  border-bottom:0;
+}
+
+.trend span{
+  color:#666;
   font-size:11px;
 }
 
-/* MOBILE */
-
-.mobile-nav {
-  display:none;
+.trend strong{
+  display:block;
+  margin-top:3px;
+  font-size:13px;
 }
 
-@media(max-width:1050px) {
+/* =========================
+   DISCOVER
+========================= */
 
-  .nav-links {
-    gap:12px;
+.discover-section{
+  background:#0b0b0b;
+}
+
+.location-bar{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  padding-bottom:12px;
+  margin-bottom:25px;
+}
+
+.location-bar::-webkit-scrollbar{
+  height:3px;
+}
+
+.location-chip{
+  flex:0 0 auto;
+  padding:10px 15px;
+  border:1px solid var(--border);
+  background:#131313;
+  color:#888;
+  border-radius:100px;
+}
+
+.location-chip.active{
+  background:rgba(212,175,55,.12);
+  border-color:rgba(212,175,55,.35);
+  color:var(--gold2);
+}
+
+.discover-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:16px;
+}
+
+.discover-main{
+  border:1px solid var(--border);
+  border-radius:20px;
+  min-height:400px;
+  padding:27px;
+  background:
+    radial-gradient(circle at 80% 10%,rgba(212,175,55,.1),transparent 35%),
+    #131313;
+}
+
+.discover-main h3{
+  font-size:31px;
+  margin-bottom:10px;
+}
+
+.discover-main p{
+  color:#888;
+  max-width:550px;
+  line-height:1.6;
+}
+
+.local-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:11px;
+  margin-top:30px;
+}
+
+.local-card{
+  border:1px solid var(--border);
+  background:#171717;
+  border-radius:13px;
+  padding:16px;
+}
+
+.local-card strong{
+  display:block;
+  margin-bottom:5px;
+}
+
+.local-card span{
+  color:#777;
+  font-size:12px;
+}
+
+.discover-side{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+.discover-side-card{
+  flex:1;
+  border:1px solid var(--border);
+  background:#151515;
+  border-radius:20px;
+  padding:25px;
+}
+
+.discover-side-card h3{
+  margin-bottom:9px;
+}
+
+.discover-side-card p{
+  color:#888;
+  line-height:1.6;
+  font-size:14px;
+}
+
+/* =========================
+   EVENTS
+========================= */
+
+.events-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.event-card{
+  border:1px solid var(--border);
+  background:#141414;
+  border-radius:18px;
+  overflow:hidden;
+}
+
+.event-image{
+  height:170px;
+  background:
+    linear-gradient(135deg,rgba(212,175,55,.25),rgba(0,0,0,.9)),
+    radial-gradient(circle at 40% 30%,#444,#111 70%);
+  display:flex;
+  align-items:flex-end;
+  padding:18px;
+}
+
+.event-date{
+  background:#080808;
+  border:1px solid rgba(255,255,255,.1);
+  padding:8px 11px;
+  border-radius:10px;
+}
+
+.event-date strong{
+  display:block;
+  color:var(--gold2);
+}
+
+.event-date span{
+  font-size:10px;
+  color:#777;
+}
+
+.event-content{
+  padding:19px;
+}
+
+.event-content h3{
+  margin-bottom:7px;
+}
+
+.event-content p{
+  color:#777;
+  font-size:13px;
+}
+
+/* =========================
+   CTA
+========================= */
+
+.cta{
+  margin:0 28px 90px;
+  border:1px solid rgba(212,175,55,.22);
+  border-radius:25px;
+  padding:65px 35px;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(212,175,55,.12),transparent 45%),
+    #111;
+  text-align:center;
+}
+
+.cta h2{
+  font-size:clamp(32px,5vw,60px);
+  letter-spacing:-2px;
+  margin-bottom:16px;
+}
+
+.cta p{
+  color:#888;
+  max-width:600px;
+  margin:0 auto 25px;
+  line-height:1.7;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  border-top:1px solid var(--border);
+  padding:45px 28px 100px;
+}
+
+.footer-inner{
+  max-width:1400px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  gap:30px;
+}
+
+.footer-brand{
+  color:var(--gold);
+  font-size:22px;
+  font-weight:900;
+}
+
+.footer-brand p{
+  color:#666;
+  font-size:12px;
+  margin-top:9px;
+  max-width:300px;
+  line-height:1.6;
+}
+
+.footer-links{
+  display:flex;
+  gap:28px;
+  flex-wrap:wrap;
+  color:#777;
+  font-size:13px;
+}
+
+/* =========================
+   MOBILE NAV
+========================= */
+
+.mobile-nav{
+  display:none;
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:68px;
+  background:rgba(10,10,10,.97);
+  border-top:1px solid var(--border);
+  z-index:1500;
+  padding:7px 8px;
+}
+
+.mobile-nav-item{
+  flex:1;
+  border:0;
+  background:transparent;
+  color:#666;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:4px;
+  font-size:10px;
+}
+
+.mobile-nav-item.active{
+  color:var(--gold2);
+}
+
+.mobile-nav-icon{
+  font-size:18px;
+}
+
+/* =========================
+   MODALS
+========================= */
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(8px);
+  z-index:3000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.overlay.open{
+  display:flex;
+}
+
+.modal{
+  width:min(500px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:#151515;
+  border:1px solid var(--border);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+}
+
+.modal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:22px 22px 16px;
+  border-bottom:1px solid var(--border);
+}
+
+.modal-header h2{
+  font-size:21px;
+}
+
+.close-button{
+  border:0;
+  background:#222;
+  color:#aaa;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+}
+
+.modal-body{
+  padding:22px;
+}
+
+.form-group{
+  margin-bottom:15px;
+}
+
+.form-group label{
+  display:block;
+  font-size:12px;
+  color:#888;
+  margin-bottom:7px;
+}
+
+.form-input,
+.form-textarea,
+.form-select{
+  width:100%;
+  background:#0d0d0d;
+  border:1px solid var(--border);
+  border-radius:11px;
+  padding:13px;
+  color:#fff;
+  outline:none;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus{
+  border-color:rgba(212,175,55,.5);
+}
+
+.form-textarea{
+  min-height:120px;
+  resize:vertical;
+}
+
+.full-button{
+  width:100%;
+  padding:14px;
+  border:0;
+  border-radius:11px;
+  background:var(--gold);
+  color:#080808;
+  font-weight:900;
+}
+
+.modal-switch{
+  text-align:center;
+  color:#777;
+  font-size:13px;
+  margin-top:17px;
+}
+
+.text-gold{
+  color:var(--gold2);
+  cursor:pointer;
+}
+
+/* =========================
+   APP PANELS
+========================= */
+
+.app-panel{
+  width:min(850px,100%);
+}
+
+.profile-card{
+  display:grid;
+  grid-template-columns:100px 1fr;
+  gap:20px;
+  align-items:center;
+  background:#101010;
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:20px;
+  margin-bottom:17px;
+}
+
+.profile-avatar{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#d4af37,#604e1c);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#080808;
+  font-size:31px;
+  font-weight:900;
+}
+
+.profile-card h3{
+  font-size:23px;
+  margin-bottom:5px;
+}
+
+.profile-card p{
+  color:#777;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.profile-stats{
+  display:flex;
+  gap:25px;
+  margin-top:13px;
+}
+
+.profile-stat strong{
+  display:block;
+}
+
+.profile-stat span{
+  color:#666;
+  font-size:11px;
+}
+
+/* Search */
+
+.search-result{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:13px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.search-result:last-child{
+  border-bottom:0;
+}
+
+.search-avatar{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:#29230f;
+  color:var(--gold2);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+}
+
+.search-result small{
+  display:block;
+  color:#666;
+  margin-top:3px;
+}
+
+/* Feed */
+
+.composer{
+  border:1px solid var(--border);
+  background:#111;
+  border-radius:17px;
+  padding:18px;
+  margin-bottom:17px;
+}
+
+.composer-top{
+  display:flex;
+  gap:11px;
+  align-items:center;
+}
+
+.composer textarea{
+  flex:1;
+  background:#181818;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:12px;
+  color:#fff;
+  resize:none;
+  min-height:60px;
+}
+
+.composer-bottom{
+  display:flex;
+  justify-content:flex-end;
+  margin-top:10px;
+}
+
+.feed-post{
+  border:1px solid var(--border);
+  background:#111;
+  border-radius:17px;
+  padding:19px;
+  margin-bottom:14px;
+}
+
+.feed-post-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.feed-user{
+  display:flex;
+  gap:11px;
+  align-items:center;
+}
+
+.feed-user strong{
+  font-size:14px;
+}
+
+.feed-user span{
+  display:block;
+  color:#666;
+  font-size:11px;
+  margin-top:3px;
+}
+
+.feed-post-content{
+  color:#bbb;
+  line-height:1.7;
+  font-size:14px;
+  margin:15px 0;
+}
+
+.post-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.post-action{
+  border:1px solid var(--border);
+  background:#171717;
+  color:#888;
+  border-radius:9px;
+  padding:8px 11px;
+  font-size:12px;
+}
+
+.post-action.liked{
+  color:var(--gold2);
+  border-color:rgba(212,175,55,.3);
+}
+
+/* Notifications */
+
+.notification{
+  display:flex;
+  gap:13px;
+  padding:15px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.notification:last-child{
+  border-bottom:0;
+}
+
+.notification-dot{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:var(--gold);
+  margin-top:6px;
+}
+
+.notification p{
+  color:#aaa;
+  font-size:13px;
+  line-height:1.5;
+}
+
+/* Messages */
+
+.message-list{
+  display:flex;
+  flex-direction:column;
+}
+
+.message{
+  display:flex;
+  gap:12px;
+  padding:15px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.message-content{
+  flex:1;
+}
+
+.message-content strong{
+  font-size:13px;
+}
+
+.message-content p{
+  color:#777;
+  font-size:12px;
+  margin-top:4px;
+}
+
+/* Toast */
+
+.toast-container{
+  position:fixed;
+  right:20px;
+  bottom:90px;
+  z-index:5000;
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+}
+
+.toast{
+  min-width:240px;
+  max-width:350px;
+  background:#191919;
+  border:1px solid rgba(212,175,55,.25);
+  color:#ddd;
+  border-radius:12px;
+  padding:13px 15px;
+  box-shadow:var(--shadow);
+  font-size:13px;
+  animation:toastIn .25s ease;
+}
+
+@keyframes toastIn{
+  from{
+    opacity:0;
+    transform:translateY(10px);
   }
 
-  .search {
-    width:150px;
+  to{
+    opacity:1;
+    transform:translateY(0);
   }
+}
 
-  .dashboard {
-    grid-template-columns:175px 1fr;
-  }
+/* =========================
+   RESPONSIVE
+========================= */
 
-  .dashboard-right {
+@media(max-width:1100px){
+
+  .desktop-nav{
     display:none;
   }
 
-  .discover-grid {
+  .dashboard-body{
+    grid-template-columns:180px 1fr;
+  }
+
+  .dashboard-right{
+    display:none;
+  }
+
+  .platform-grid{
     grid-template-columns:repeat(2,1fr);
   }
 
-  .footer-grid {
-    grid-template-columns:2fr repeat(2,1fr);
+  .events-grid{
+    grid-template-columns:repeat(2,1fr);
   }
 
 }
 
-@media(max-width:760px) {
+@media(max-width:760px){
 
-  body {
-    padding-bottom:68px;
-  }
-
-  .container {
-    width:min(100% - 28px,600px);
-  }
-
-  header,
-  .nav {
+  header{
     height:64px;
   }
 
-  .nav {
-    justify-content:space-between;
+  .header-inner{
+    padding:0 16px;
   }
 
-  .nav-logo {
-    font-size:25px;
+  .logo{
+    font-size:21px;
   }
 
-  .nav-links,
-  .search,
-  .nav-actions {
+  .header-actions .icon-button:nth-child(2){
     display:none;
   }
 
-  .mobile-menu {
-    display:block;
-  }
-
-  .hero {
-    min-height:720px;
-    padding-top:64px;
-  }
-
-  .hero::after {
-    inset:64px 0 0;
-    opacity:.32;
-  }
-
-  .hero-content {
-    width:calc(100% - 30px);
-  }
-
-  .hero h1 {
-    font-size:75px;
-    letter-spacing:-4px;
-  }
-
-  .hero h2 {
-    font-size:30px;
-  }
-
-  .feature-grid {
-    grid-template-columns:repeat(3,1fr);
-  }
-
-  .feature {
-    min-height:105px;
-  }
-
-  .preview-section,
-  .platform,
-  .discover,
-  .events {
-    padding:65px 0;
-  }
-
-  .dashboard {
-    display:block;
+  .hero{
     min-height:auto;
-    border-radius:16px;
+    padding:125px 18px 65px;
   }
 
-  .dashboard-sidebar {
+  .hero h1{
+    letter-spacing:-3px;
+  }
+
+  .hero-description{
+    font-size:16px;
+  }
+
+  .hero-stat-row{
+    margin-top:40px;
+    gap:25px;
+  }
+
+  .section{
+    padding:65px 17px;
+  }
+
+  .section-heading{
+    display:block;
+  }
+
+  .section-heading p{
+    margin-top:10px;
+  }
+
+  .platform-grid,
+  .events-grid{
+    grid-template-columns:1fr;
+  }
+
+  .dashboard-body{
+    display:block;
+  }
+
+  .dashboard-sidebar{
     display:none;
   }
 
-  .dashboard-feed {
-    padding:14px;
+  .dashboard-feed{
+    padding:15px;
   }
 
-  .platform-grid {
+  .discover-grid{
     grid-template-columns:1fr;
   }
 
-  .discover-grid {
-    grid-template-columns:1fr 1fr;
-  }
-
-  .event-grid {
+  .local-grid{
     grid-template-columns:1fr;
   }
 
-  .location-bar {
-    flex-direction:column;
-    align-items:flex-start;
-    gap:12px;
+  .cta{
+    margin:0 17px 65px;
+    padding:45px 20px;
   }
 
-  .footer-grid {
-    grid-template-columns:1fr 1fr;
+  footer{
+    padding-bottom:100px;
   }
 
-  .footer-grid > div:first-child {
-    grid-column:1/-1;
-  }
-
-  .footer-bottom {
-    flex-direction:column;
-    gap:8px;
-  }
-
-  .mobile-nav {
-    display:flex;
-    position:fixed;
-    bottom:0;
-    left:0;
-    right:0;
-    height:67px;
-    background:rgba(10,10,10,.97);
-    backdrop-filter:blur(20px);
-    border-top:1px solid #292929;
-    z-index:1500;
-    justify-content:space-around;
-    align-items:center;
-  }
-
-  .mobile-nav-item {
-    color:#777;
-    font-size:9px;
-    text-align:center;
-  }
-
-  .mobile-nav-item span {
+  .footer-inner{
     display:block;
-    font-size:20px;
-    margin-bottom:3px;
   }
 
-  .mobile-nav-item.active {
-    color:var(--gold);
+  .footer-links{
+    margin-top:25px;
+    gap:16px;
   }
 
-}
-
-@media(max-width:430px) {
-
-  .hero h1 {
-    font-size:63px;
-  }
-
-  .hero h2 {
-    font-size:27px;
-  }
-
-  .discover-grid {
-    grid-template-columns:1fr;
-  }
-
-  .discover-card {
-    height:330px;
-  }
-
-  .footer-grid {
-    grid-template-columns:1fr;
+  .mobile-nav{
+    display:flex;
   }
 
 }
 
+@media(max-width:450px){
+
+  .auth-button{
+    padding:9px 11px;
+    font-size:12px;
+  }
+
+  .profile-card{
+    grid-template-columns:70px 1fr;
+  }
+
+  .profile-avatar{
+    width:65px;
+    height:65px;
+    font-size:23px;
+  }
+
+}
 </style>
 </head>
 
 <body>
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
 <header>
 
-  <div class="container nav">
+  <div class="header-inner">
 
-    <a href="#home" class="nav-logo">Soulaani</a>
+    <button class="logo" onclick="Soulaani.goHome()">
+      SOUL<span>AANI</span>
+    </button>
 
-    <nav class="nav-links">
+    <nav class="desktop-nav">
 
-      <a href="#home" class="active">Home</a>
-      <a href="#connect">Connect</a>
-      <a href="#date">Date</a>
-      <a href="#build">Build</a>
-      <a href="#market">Market</a>
-      <a href="#explore">Explore</a>
-      <a href="#culture">Culture</a>
+      <button class="nav-link active" data-section="home" onclick="Soulaani.goHome()">
+        Home
+      </button>
+
+      <button class="nav-link" data-section="connect" onclick="Soulaani.openFeed()">
+        Connect
+      </button>
+
+      <button class="nav-link" data-section="date" onclick="Soulaani.openDate()">
+        Date
+      </button>
+
+      <button class="nav-link" data-section="build" onclick="Soulaani.openFeature('Build')">
+        Build
+      </button>
+
+      <button class="nav-link" data-section="market" onclick="Soulaani.openFeature('Market')">
+        Market
+      </button>
+
+      <button class="nav-link" data-section="explore" onclick="Soulaani.openDiscover()">
+        Explore
+      </button>
+
+      <button class="nav-link" data-section="culture" onclick="Soulaani.openFeature('Culture')">
+        Culture
+      </button>
 
     </nav>
 
-    <div class="search">
+    <div class="header-actions">
 
-      <span>⌕</span>
+      <button class="icon-button" onclick="Soulaani.openSearch()" title="Search">
+        🔎
+      </button>
 
-      <input
-        id="searchInput"
-        type="text"
-        placeholder="Search Soulaani..."
-      >
+      <button class="icon-button" onclick="Soulaani.openNotifications()" title="Notifications">
+        🔔
+      </button>
+
+      <button class="auth-button" id="authButton" onclick="Soulaani.openAuth()">
+        Join Soulaani
+      </button>
 
     </div>
-
-    <div class="nav-actions"></div>
-
-    <button
-      class="mobile-menu"
-      onclick="openAppMenu()">
-      ☰
-    </button>
 
   </div>
 
 </header>
 
 
-<!-- =====================================================
-     HERO
-===================================================== -->
-
 <section class="hero" id="home">
 
-  <div class="hero-content">
+  <div class="hero-inner">
 
-    <div class="eyebrow">
-      The Culture. The People. The Platform.
+    <div class="hero-label">
+      <span class="hero-label-dot"></span>
+      A new digital home for culture
     </div>
 
-    <h1>Soulaani</h1>
+    <h1>
+      The Culture.<br>
+      The People.<br>
+      <span>The Platform.</span>
+    </h1>
 
-    <h2>
-      Connect. Socialize. Date. Build.
-      <br>
-      Shop. Explore. Be You.
-    </h2>
-
-    <p>
-      Soulaani is the all-in-one platform for Black people
-      to build community, grow their dreams, discover
-      culture, and create real connections.
+    <p class="hero-description">
+      Soulaani brings community, connection, dating, business,
+      opportunity, culture and local discovery into one powerful
+      digital ecosystem.
     </p>
 
     <div class="hero-buttons">
 
-      <button
-        class="btn gold-btn"
-        onclick="openModal('signup')">
-        Join Now →
+      <button class="primary-button" onclick="Soulaani.openAuth('signup')">
+        Join Soulaani
       </button>
 
-      <button
-        class="btn"
-        onclick="scrollToPreview()">
-        Explore Platform
+      <button class="secondary-button" onclick="Soulaani.openDiscover()">
+        Explore Your City
       </button>
 
     </div>
 
-  </div>
+    <div class="hero-stat-row">
 
-</section>
-
-
-<!-- =====================================================
-     FEATURES
-===================================================== -->
-
-<section class="feature-strip">
-
-  <div class="container feature-grid">
-
-    <div class="feature">
-      <div class="feature-icon">♧</div>
-      <strong>Connect</strong>
-      <span>People & communities</span>
-    </div>
-
-    <div class="feature">
-      <div class="feature-icon">♡</div>
-      <strong>Date</strong>
-      <span>Real connections</span>
-    </div>
-
-    <div class="feature">
-      <div class="feature-icon">▣</div>
-      <strong>Build</strong>
-      <span>Jobs & opportunity</span>
-    </div>
-
-    <div class="feature">
-      <div class="feature-icon">♧</div>
-      <strong>Market</strong>
-      <span>Black businesses</span>
-    </div>
-
-    <div class="feature">
-      <div class="feature-icon">⌖</div>
-      <strong>Explore</strong>
-      <span>Places & events</span>
-    </div>
-
-    <div class="feature">
-      <div class="feature-icon">♫</div>
-      <strong>Culture</strong>
-      <span>Music & culture</span>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     PLATFORM PREVIEW
-===================================================== -->
-
-<section
-  class="preview-section"
-  id="connect">
-
-  <div class="container">
-
-    <div class="preview-header">
-
-      <div class="eyebrow">
-        Inside Soulaani
+      <div class="hero-stat">
+        <strong>Connect</strong>
+        <span>People & communities</span>
       </div>
 
-      <h2 class="section-title">
-        Your world.
-        <span class="gold">
-          One platform.
-        </span>
-      </h2>
+      <div class="hero-stat">
+        <strong>Build</strong>
+        <span>Careers & businesses</span>
+      </div>
 
-      <p class="section-subtitle">
-        A social experience built around connection,
-        culture, opportunity, discovery and community.
-      </p>
+      <div class="hero-stat">
+        <strong>Discover</strong>
+        <span>Culture in your area</span>
+      </div>
 
     </div>
 
+  </div>
 
-    <div class="dashboard">
+</section>
+
+
+<main>
+
+<section class="section">
+
+  <div class="section-heading">
+
+    <div>
+      <div class="eyebrow">One ecosystem</div>
+      <h2>Everything in one place.</h2>
+    </div>
+
+    <p>
+      Soulaani is designed as a connected platform instead of
+      another collection of disconnected apps.
+    </p>
+
+  </div>
+
+  <div class="platform-grid">
+
+    <div class="platform-card">
+      <div class="platform-icon">◉</div>
+      <h3>Connect</h3>
+      <p>
+        Find people, build communities, share ideas and create
+        meaningful connections.
+      </p>
+    </div>
+
+    <div class="platform-card">
+      <div class="platform-icon">♡</div>
+      <h3>Date</h3>
+      <p>
+        Meet people through a dating experience built into the
+        wider Soulaani community.
+      </p>
+    </div>
+
+    <div class="platform-card">
+      <div class="platform-icon">↗</div>
+      <h3>Build</h3>
+      <p>
+        Discover careers, mentorship, entrepreneurship,
+        opportunities and professional connections.
+      </p>
+    </div>
+
+    <div class="platform-card">
+      <div class="platform-icon">◇</div>
+      <h3>Market</h3>
+      <p>
+        Discover businesses, products, services and creators.
+      </p>
+    </div>
+
+    <div class="platform-card">
+      <div class="platform-icon">⌖</div>
+      <h3>Explore</h3>
+      <p>
+        Explore your city and discover people, places, events,
+        businesses and local culture.
+      </p>
+    </div>
+
+    <div class="platform-card">
+      <div class="platform-icon">✦</div>
+      <h3>Culture</h3>
+      <p>
+        Music, art, fashion, food, history, entertainment and
+        the stories that shape culture.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="section">
+
+  <div class="section-heading">
+
+    <div>
+      <div class="eyebrow">Inside Soulaani</div>
+      <h2>Your digital home.</h2>
+    </div>
+
+  </div>
+
+  <div class="dashboard">
+
+    <div class="dashboard-top">
+      <span class="window-dot"></span>
+      <span class="window-dot"></span>
+      <span class="window-dot"></span>
+    </div>
+
+    <div class="dashboard-body">
 
       <aside class="dashboard-sidebar">
 
-        <div class="side-logo">
-          Soulaani
-        </div>
+        <div class="side-logo">SOULAANI</div>
 
-        <div class="side-item active">
-          ⌂ Home
-        </div>
-
-        <div
-          class="side-item"
-          onclick="openProfilePanel()">
-          ♙ Profile
-        </div>
-
-        <div class="side-item">
-          ♧ Connect
-        </div>
-
-        <div class="side-item">
-          ♡ Date
-        </div>
-
-        <div class="side-item">
-          ▣ Build
-        </div>
-
-        <div class="side-item">
-          ♧ Market
-        </div>
-
-        <div class="side-item">
-          ⌖ Explore
-        </div>
-
-        <div class="side-item">
-          ♫ Culture
-        </div>
-
-        <div
-          class="side-item"
-          onclick="openMessagesPanel()">
-          ✉ Messages
-        </div>
-
-        <div
-          class="side-item"
-          onclick="openNotificationsPanel()">
-          🔔 Notifications
-        </div>
+        <div class="side-item active">⌂ Home</div>
+        <div class="side-item">◉ Connect</div>
+        <div class="side-item">♡ Date</div>
+        <div class="side-item">↗ Build</div>
+        <div class="side-item">◇ Market</div>
+        <div class="side-item">⌖ Explore</div>
+        <div class="side-item">✦ Culture</div>
 
       </aside>
 
+      <div class="dashboard-feed">
 
-      <main class="dashboard-feed">
+        <div class="feed-title">
+          <h3>Trending on Soulaani</h3>
+          <span>For You</span>
+        </div>
 
-        <div class="feed-top">
+        <div class="mini-post">
 
-          <strong>Home</strong>
+          <div class="mini-post-header">
 
-          <div class="feed-search">
-            ⌕ Discover
+            <div class="avatar">S</div>
+
+            <div>
+              <strong>Soulaani Community</strong>
+              <span>2h · Harrisburg</span>
+            </div>
+
+          </div>
+
+          <p>
+            What local businesses, artists and creators should
+            everyone in the area know about?
+          </p>
+
+          <div class="mini-post-actions">
+            <span>♡ 184</span>
+            <span>💬 32</span>
+            <span>↗ Share</span>
           </div>
 
         </div>
 
 
-        <div class="composer">
+        <div class="mini-post">
 
-          <div class="composer-row">
+          <div class="mini-post-header">
 
-            <div class="avatar"></div>
+            <div class="avatar">J</div>
 
-            <div
-              class="composer-input"
-              onclick="openPostComposer()">
-              What's on your mind?
+            <div>
+              <strong>Jordan Williams</strong>
+              <span>4h · Philadelphia</span>
             </div>
 
           </div>
 
-          <div class="composer-actions">
+          <p>
+            Building something new for local entrepreneurs.
+            Looking to connect with other founders.
+          </p>
 
-            <span onclick="openPostComposer()">
-              ⌑ Post
-            </span>
-
-            <span>
-              ▧ Photo
-            </span>
-
-            <span>
-              ▣ Video
-            </span>
-
-            <span>
-              ✦ Feeling
-            </span>
-
+          <div class="mini-post-actions">
+            <span>♡ 92</span>
+            <span>💬 18</span>
+            <span>↗ Share</span>
           </div>
 
         </div>
 
-
-        <div id="feedContainer">
-
-          <article class="feed-post">
-
-            <div class="post-head">
-
-              <div class="avatar"></div>
-
-              <div>
-
-                <div class="post-name">
-                  Niaa
-                </div>
-
-                <div class="post-time">
-                  2h ago · 🌎
-                </div>
-
-              </div>
-
-            </div>
-
-            <div class="post-text">
-              Good energy, real ones, and big dreams.
-              That's the only way. ❤️
-            </div>
-
-            <img
-              class="post-image"
-              src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=900&q=80"
-              alt="City skyline">
-
-            <div class="post-actions">
-
-              <span>♡ 423</span>
-              <span>◯ 56</span>
-              <span>↗ 12</span>
-
-            </div>
-
-          </article>
-
-
-          <article class="feed-post">
-
-            <div class="post-head">
-
-              <div class="avatar"></div>
-
-              <div>
-
-                <div class="post-name">
-                  Jaylon
-                </div>
-
-                <div class="post-time">
-                  4h ago
-                </div>
-
-              </div>
-
-            </div>
-
-            <div class="post-text">
-              Black excellence looks good on us.
-              Let's keep building. 💪🏾
-            </div>
-
-            <div class="post-actions">
-
-              <span>♡ 218</span>
-              <span>◯ 31</span>
-              <span>↗ 9</span>
-
-            </div>
-
-          </article>
-
-        </div>
-
-      </main>
+      </div>
 
 
       <aside class="dashboard-right">
 
-        <div class="right-card">
+        <div class="right-box">
 
-          <div class="right-title">
-            <strong>Trending</strong>
-            <span>View all</span>
+          <h4>Trending</h4>
+
+          <div class="trend">
+            <span>Culture</span>
+            <strong>Black creative economy</strong>
           </div>
 
           <div class="trend">
-
-            <div class="trend-number">
-              #1
-            </div>
-
-            <div class="trend-text">
-              #BlackBusiness
-              <br>
-              82K posts
-            </div>
-
+            <span>Local</span>
+            <strong>Harrisburg events</strong>
           </div>
 
           <div class="trend">
-
-            <div class="trend-number">
-              #2
-            </div>
-
-            <div class="trend-text">
-              #BlackCulture
-              <br>
-              71K posts
-            </div>
-
-          </div>
-
-          <div class="trend">
-
-            <div class="trend-number">
-              #3
-            </div>
-
-            <div class="trend-text">
-              #BlackCreators
-              <br>
-              54K posts
-            </div>
-
+            <span>Build</span>
+            <strong>Entrepreneurship</strong>
           </div>
 
         </div>
 
+        <div class="right-box">
 
-        <div class="right-card">
-
-          <div class="right-title">
-            <strong>Upcoming Events</strong>
-            <span>View all</span>
-          </div>
+          <h4>Your Area</h4>
 
           <div class="trend">
-
-            <div>🎵</div>
-
-            <div class="trend-text">
-              Summer Vibes Festival
-              <br>
-              Harrisburg, PA
-            </div>
-
-          </div>
-
-          <div class="trend">
-
-            <div>🎨</div>
-
-            <div class="trend-text">
-              Black Art Exhibit
-              <br>
-              Philadelphia, PA
-            </div>
-
+            <span>Explore</span>
+            <strong>Harrisburg, PA</strong>
           </div>
 
         </div>
@@ -1575,122 +1721,139 @@ footer {
 </section>
 
 
-<!-- =====================================================
-     PLATFORM
-===================================================== -->
+<section class="section discover-section" id="discover">
 
-<section
-  class="platform"
-  id="build">
+  <div class="section-heading">
 
-  <div class="container">
-
-    <div class="eyebrow">
-      Built For Us
+    <div>
+      <div class="eyebrow">Explore locally</div>
+      <h2>Your city. Your culture.</h2>
     </div>
 
-    <h2 class="section-title">
-      More than a
-      <span class="gold">
-        social network.
-      </span>
-    </h2>
-
-    <p class="section-subtitle">
-      Soulaani brings the pieces of everyday digital life
-      together in one place.
+    <p>
+      Select a location and eventually receive a localized
+      Soulaani experience built around the people and culture
+      around you.
     </p>
 
+  </div>
 
-    <div class="platform-grid">
 
-      <div class="platform-card">
+  <div class="location-bar">
 
-        <div class="card-icon">♧</div>
+    <button class="location-chip active" onclick="Soulaani.selectLocation('Harrisburg, PA',this)">
+      Harrisburg
+    </button>
 
-        <h3>Connect</h3>
+    <button class="location-chip" onclick="Soulaani.selectLocation('Philadelphia, PA',this)">
+      Philadelphia
+    </button>
+
+    <button class="location-chip" onclick="Soulaani.selectLocation('New York, NY',this)">
+      New York
+    </button>
+
+    <button class="location-chip" onclick="Soulaani.selectLocation('Atlanta, GA',this)">
+      Atlanta
+    </button>
+
+    <button class="location-chip" onclick="Soulaani.selectLocation('Charlotte, NC',this)">
+      Charlotte
+    </button>
+
+    <button class="location-chip" onclick="Soulaani.selectLocation('Washington, DC',this)">
+      D.C.
+    </button>
+
+    <button class="location-chip" onclick="Soulaani.selectLocation('Detroit, MI',this)">
+      Detroit
+    </button>
+
+    <button class="location-chip" onclick="Soulaani.selectLocation('Houston, TX',this)">
+      Houston
+    </button>
+
+    <button class="location-chip" onclick="Soulaani.selectLocation('Los Angeles, CA',this)">
+      Los Angeles
+    </button>
+
+    <button class="location-chip" onclick="Soulaani.selectLocation('Chicago, IL',this)">
+      Chicago
+    </button>
+
+  </div>
+
+
+  <div class="discover-grid">
+
+    <div class="discover-main">
+
+      <div class="eyebrow" id="discoverEyebrow">
+        Harrisburg, Pennsylvania
+      </div>
+
+      <h3 id="discoverTitle">
+        What's happening in Harrisburg?
+      </h3>
+
+      <p id="discoverDescription">
+        Discover people, businesses, events, food, music,
+        creators and community conversations happening around you.
+      </p>
+
+
+      <div class="local-grid">
+
+        <div class="local-card">
+          <strong>People</strong>
+          <span>Meet people nearby</span>
+        </div>
+
+        <div class="local-card">
+          <strong>Businesses</strong>
+          <span>Discover local businesses</span>
+        </div>
+
+        <div class="local-card">
+          <strong>Events</strong>
+          <span>Find things happening</span>
+        </div>
+
+        <div class="local-card">
+          <strong>Culture</strong>
+          <span>See what's trending locally</span>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="discover-side">
+
+      <div class="discover-side-card">
+
+        <div class="eyebrow">Local FYP</div>
+
+        <h3>For your area.</h3>
 
         <p>
-          Discover people, communities and conversations
-          that match your interests.
+          A future personalized feed will combine local people,
+          conversations, businesses, creators and events.
         </p>
 
       </div>
 
 
-      <div
-        class="platform-card"
-        id="date">
+      <div class="discover-side-card">
 
-        <div class="card-icon">♡</div>
+        <div class="eyebrow">Coming together</div>
 
-        <h3>Date</h3>
+        <h3>Community lives here.</h3>
 
         <p>
-          A dating experience centered around genuine
-          connection and compatibility.
-        </p>
-
-      </div>
-
-
-      <div class="platform-card">
-
-        <div class="card-icon">▣</div>
-
-        <h3>Build</h3>
-
-        <p>
-          Find jobs, mentors, entrepreneurs, creators,
-          networking opportunities and resources.
-        </p>
-
-      </div>
-
-
-      <div
-        class="platform-card"
-        id="market">
-
-        <div class="card-icon">♧</div>
-
-        <h3>Market</h3>
-
-        <p>
-          Discover Black-owned products, services,
-          businesses and creators.
-        </p>
-
-      </div>
-
-
-      <div
-        class="platform-card"
-        id="explore">
-
-        <div class="card-icon">⌖</div>
-
-        <h3>Explore</h3>
-
-        <p>
-          Find events, places, businesses and experiences
-          around you.
-        </p>
-
-      </div>
-
-
-      <div
-        class="platform-card"
-        id="culture">
-
-        <div class="card-icon">♫</div>
-
-        <h3>Culture</h3>
-
-        <p>
-          Music, fashion, food, art, history,
-          entertainment and culture.
+          The goal is to make discovering your own community
+          feel effortless.
         </p>
 
       </div>
@@ -1702,161 +1865,77 @@ footer {
 </section>
 
 
-<!-- =====================================================
-     DISCOVER
-===================================================== -->
+<section class="section">
 
-<section class="discover">
+  <div class="section-heading">
 
-  <div class="container">
-
-    <div class="eyebrow">
-      Explore Your World
+    <div>
+      <div class="eyebrow">What's happening</div>
+      <h2>Events & experiences.</h2>
     </div>
 
-    <h2 class="section-title">
-      Discover what's
-      <span class="gold">
-        around you.
-      </span>
-    </h2>
-
-    <p class="section-subtitle">
-      Choose a city, state or local area and eventually
-      experience a localized Soulaani feed.
+    <p>
+      A future Soulaani event layer for discovering things
+      happening in your city.
     </p>
 
+  </div>
 
-    <div class="location-bar">
 
-      <span>
-        📍 Your Soulaani location
-      </span>
+  <div class="events-grid">
 
-      <select
-        class="location-select"
-        id="locationSelect">
+    <div class="event-card">
 
-        <option>
-          Harrisburg, Pennsylvania
-        </option>
+      <div class="event-image">
 
-        <option>
-          Philadelphia, Pennsylvania
-        </option>
+        <div class="event-date">
+          <strong>OCT 12</strong>
+          <span>2026</span>
+        </div>
 
-        <option>
-          New York, New York
-        </option>
+      </div>
 
-        <option>
-          Atlanta, Georgia
-        </option>
-
-        <option>
-          Charlotte, North Carolina
-        </option>
-
-        <option>
-          Washington, D.C.
-        </option>
-
-        <option>
-          Detroit, Michigan
-        </option>
-
-        <option>
-          Houston, Texas
-        </option>
-
-        <option>
-          Los Angeles, California
-        </option>
-
-        <option>
-          Chicago, Illinois
-        </option>
-
-      </select>
+      <div class="event-content">
+        <h3>Community Night</h3>
+        <p>Harrisburg · Community</p>
+      </div>
 
     </div>
 
 
-    <div class="discover-grid">
+    <div class="event-card">
 
-      <div class="discover-card">
+      <div class="event-image">
 
-        <img
-          src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=700&q=80"
-          alt="Events">
-
-        <div class="discover-overlay">
-
-          <h3>Events</h3>
-
-          <p>
-            What's happening near you
-          </p>
-
+        <div class="event-date">
+          <strong>OCT 18</strong>
+          <span>2026</span>
         </div>
 
       </div>
 
+      <div class="event-content">
+        <h3>Creative Exchange</h3>
+        <p>Philadelphia · Culture</p>
+      </div>
 
-      <div class="discover-card">
+    </div>
 
-        <img
-          src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=700&q=80"
-          alt="People">
 
-        <div class="discover-overlay">
+    <div class="event-card">
 
-          <h3>People</h3>
+      <div class="event-image">
 
-          <p>
-            Meet your local community
-          </p>
-
+        <div class="event-date">
+          <strong>NOV 02</strong>
+          <span>2026</span>
         </div>
 
       </div>
 
-
-      <div class="discover-card">
-
-        <img
-          src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=700&q=80"
-          alt="Business">
-
-        <div class="discover-overlay">
-
-          <h3>Businesses</h3>
-
-          <p>
-            Support Black-owned businesses
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="discover-card">
-
-        <img
-          src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=700&q=80"
-          alt="Culture">
-
-        <div class="discover-overlay">
-
-          <h3>Culture</h3>
-
-          <p>
-            Music, food, art & more
-          </p>
-
-        </div>
-
+      <div class="event-content">
+        <h3>Black Business Summit</h3>
+        <p>Atlanta · Build</p>
       </div>
 
     </div>
@@ -1866,200 +1945,56 @@ footer {
 </section>
 
 
-<!-- =====================================================
-     EVENTS
-===================================================== -->
+<section class="cta">
 
-<section class="events">
+  <div class="eyebrow">The beginning</div>
 
-  <div class="container">
+  <h2>Build the future with us.</h2>
 
-    <div class="eyebrow">
-      What's Happening
-    </div>
+  <p>
+    Soulaani is being built to become more than a social network.
+    It is a connected digital ecosystem for people, community,
+    opportunity and culture.
+  </p>
 
-    <h2 class="section-title">
-      Find your
-      <span class="gold">
-        people.
-      </span>
-    </h2>
-
-    <p class="section-subtitle">
-      Events and experiences designed to bring people
-      together online and offline.
-    </p>
-
-
-    <div class="event-grid">
-
-      <div class="event-card">
-
-        <div
-          class="event-image"
-          style="background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=80')">
-        </div>
-
-        <div class="event-info">
-
-          <div class="event-date">
-            Jun 25 · Harrisburg, PA
-          </div>
-
-          <h3>
-            Summer Vibes Festival
-          </h3>
-
-          <p>
-            Music · Food · Community · Culture
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="event-card">
-
-        <div
-          class="event-image"
-          style="background-image:url('https://images.unsplash.com/photo-1561214115-f2f134cc4912?auto=format&fit=crop&w=900&q=80')">
-        </div>
-
-        <div class="event-info">
-
-          <div class="event-date">
-            Jul 5 · Philadelphia, PA
-          </div>
-
-          <h3>
-            Black Art Exhibit
-          </h3>
-
-          <p>
-            Art · Creators · Culture
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="event-card">
-
-        <div
-          class="event-image"
-          style="background-image:url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=900&q=80')">
-        </div>
-
-        <div class="event-info">
-
-          <div class="event-date">
-            Jul 12 · Atlanta, GA
-          </div>
-
-          <h3>
-            Black Entrepreneurs Meetup
-          </h3>
-
-          <p>
-            Business · Networking · Growth
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
+  <button class="primary-button" onclick="Soulaani.openAuth('signup')">
+    Create Your Account
+  </button>
 
 </section>
 
+</main>
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
 
 <footer>
 
-  <div class="container">
+  <div class="footer-inner">
 
-    <div class="footer-grid">
+    <div>
 
-      <div>
-
-        <div class="footer-logo">
-          Soulaani
-        </div>
-
-        <p class="footer-about">
-          The culture. The people. The platform.
-          A stronger Black tomorrow starts with us.
-        </p>
-
+      <div class="footer-brand">
+        SOULAANI
       </div>
 
-
-      <div class="footer-col">
-
-        <h4>Platform</h4>
-
-        <a href="#home">Home</a>
-        <a href="#connect">Connect</a>
-        <a href="#date">Date</a>
-        <a href="#build">Build</a>
-
-      </div>
-
-
-      <div class="footer-col">
-
-        <h4>Discover</h4>
-
-        <a href="#market">Market</a>
-        <a href="#explore">Explore</a>
-        <a href="#culture">Culture</a>
-        <a href="#events">Events</a>
-
-      </div>
-
-
-      <div class="footer-col">
-
-        <h4>Community</h4>
-
-        <a href="#connect">Communities</a>
-        <a href="#connect">Creators</a>
-        <a href="#market">Businesses</a>
-        <a href="#build">Resources</a>
-
-      </div>
-
-
-      <div class="footer-col">
-
-        <h4>Soulaani</h4>
-
-        <a href="#home">About</a>
-        <a href="#build">Careers</a>
-        <a href="#home">Privacy</a>
-        <a href="#home">Terms</a>
-
-      </div>
+      <p>
+        The Culture. The People. The Platform.
+      </p>
 
     </div>
 
+    <div class="footer-links">
 
-    <div class="footer-bottom">
+      <a href="#home">Home</a>
 
-      <span>
-        © 2026 Soulaani. All rights reserved.
-      </span>
+      <a href="#discover">Explore</a>
 
-      <span>
-        A stronger Black tomorrow starts with us.
-      </span>
+      <a href="#" onclick="Soulaani.openFeature('About');return false;">
+        About
+      </a>
+
+      <a href="#" onclick="Soulaani.openFeature('Contact');return false;">
+        Contact
+      </a>
 
     </div>
 
@@ -2068,2159 +2003,1970 @@ footer {
 </footer>
 
 
-<!-- =====================================================
-     MOBILE NAV
-===================================================== -->
-
 <nav class="mobile-nav">
 
-  <a
-    class="mobile-nav-item active"
-    href="#home">
-
-    <span>⌂</span>
+  <button class="mobile-nav-item active" onclick="Soulaani.goHome()">
+    <span class="mobile-nav-icon">⌂</span>
     Home
+  </button>
 
-  </a>
-
-  <a
-    class="mobile-nav-item"
-    href="#connect">
-
-    <span>♧</span>
+  <button class="mobile-nav-item" onclick="Soulaani.openFeed()">
+    <span class="mobile-nav-icon">◉</span>
     Connect
+  </button>
 
-  </a>
-
-  <a
-    class="mobile-nav-item"
-    href="#date">
-
-    <span>♡</span>
-    Date
-
-  </a>
-
-  <a
-    class="mobile-nav-item"
-    href="#market">
-
-    <span>♧</span>
-    Market
-
-  </a>
-
-  <a
-    class="mobile-nav-item"
-    href="#explore">
-
-    <span>⌖</span>
+  <button class="mobile-nav-item" onclick="Soulaani.openDiscover()">
+    <span class="mobile-nav-icon">⌖</span>
     Explore
+  </button>
 
-  </a>
+  <button class="mobile-nav-item" onclick="Soulaani.openMessages()">
+    <span class="mobile-nav-icon">💬</span>
+    Messages
+  </button>
+
+  <button class="mobile-nav-item" onclick="Soulaani.openProfile()">
+    <span class="mobile-nav-icon">●</span>
+    Profile
+  </button>
 
 </nav>
 
 
-<!-- =====================================================
-     AUTH MODAL
-===================================================== -->
+<div class="overlay" id="authOverlay">
 
-<div
-  class="modal"
-  id="authModal">
+  <div class="modal">
 
-  <div class="modal-box">
+    <div class="modal-header">
 
-    <div class="modal-head">
-
-      <h2 id="modalTitle">
-        Welcome to
-        <span class="gold">
-          Soulaani
-        </span>
+      <h2 id="authTitle">
+        Join Soulaani
       </h2>
 
-      <button
-        class="close"
-        onclick="closeModal()">
+      <button class="close-button" onclick="Soulaani.closeAll()">
         ×
       </button>
 
     </div>
 
 
-    <form id="authForm">
+    <div class="modal-body">
 
-      <div
-        class="form-group"
-        id="nameGroup">
+      <form id="authForm">
 
-        <label>
-          Full Name
-        </label>
+        <div class="form-group" id="nameGroup">
 
-        <input
-          type="text"
-          id="nameInput"
-          placeholder="Your name">
+          <label>Full name</label>
+
+          <input
+            id="authName"
+            class="form-input"
+            type="text"
+            placeholder="Your name"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>Email</label>
+
+          <input
+            id="authEmail"
+            class="form-input"
+            type="email"
+            placeholder="you@example.com"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>Password</label>
+
+          <input
+            id="authPassword"
+            class="form-input"
+            type="password"
+            placeholder="Create a password"
+            required
+          >
+
+        </div>
+
+
+        <button class="full-button" type="submit" id="authSubmit">
+          Create Account
+        </button>
+
+      </form>
+
+
+      <div class="modal-switch">
+
+        <span id="authSwitchText">
+          Already have an account?
+        </span>
+
+        <span class="text-gold" onclick="Soulaani.toggleAuth()">
+          Log in
+        </span>
 
       </div>
 
-
-      <div class="form-group">
-
-        <label>
-          Email
-        </label>
-
-        <input
-          type="email"
-          id="emailInput"
-          placeholder="you@example.com"
-          required>
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label>
-          Password
-        </label>
-
-        <input
-          type="password"
-          id="passwordInput"
-          placeholder="••••••••"
-          required>
-
-      </div>
-
-
-      <button
-        type="submit"
-        class="btn gold-btn modal-submit">
-
-        Continue →
-
-      </button>
-
-    </form>
+    </div>
 
   </div>
 
 </div>
 
 
-<!-- =====================================================
-     APP PANEL
-===================================================== -->
+<div class="overlay" id="searchOverlay">
 
-<div
-  class="app-panel"
-  id="appPanel">
+  <div class="modal app-panel">
 
-  <div class="app-inner">
+    <div class="modal-header">
 
-    <div class="app-top">
+      <h2>Search Soulaani</h2>
 
-      <h2 id="panelTitle">
-        Soulaani
-      </h2>
-
-      <button
-        class="close-panel"
-        onclick="closeAppPanel()">
-        Close ×
+      <button class="close-button" onclick="Soulaani.closeAll()">
+        ×
       </button>
 
     </div>
 
-    <div id="panelContent"></div>
+    <div class="modal-body">
+
+      <input
+        id="searchInput"
+        class="form-input"
+        placeholder="Search people, culture, businesses..."
+        oninput="Soulaani.search(this.value)"
+      >
+
+      <div id="searchResults" style="margin-top:18px;"></div>
+
+    </div>
 
   </div>
 
 </div>
 
 
+<div class="overlay" id="profileOverlay">
+
+  <div class="modal app-panel">
+
+    <div class="modal-header">
+
+      <h2>Your Profile</h2>
+
+      <button class="close-button" onclick="Soulaani.closeAll()">
+        ×
+      </button>
+
+    </div>
+
+    <div class="modal-body">
+
+      <div id="profileContent"></div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="overlay" id="editProfileOverlay">
+
+  <div class="modal">
+
+    <div class="modal-header">
+
+      <h2>Edit Profile</h2>
+
+      <button class="close-button" onclick="Soulaani.closeAll()">
+        ×
+      </button>
+
+    </div>
+
+    <div class="modal-body">
+
+      <form id="profileForm">
+
+        <div class="form-group">
+
+          <label>Name</label>
+
+          <input id="profileName" class="form-input" required>
+
+        </div>
+
+        <div class="form-group">
+
+          <label>Username</label>
+
+          <input id="profileUsername" class="form-input" required>
+
+        </div>
+
+        <div class="form-group">
+
+          <label>Bio</label>
+
+          <textarea id="profileBio" class="form-textarea"></textarea>
+
+        </div>
+
+        <div class="form-group">
+
+          <label>Location</label>
+
+          <input
+            id="profileLocation"
+            class="form-input"
+            placeholder="Harrisburg, PA"
+          >
+
+        </div>
+
+        <button class="full-button" type="submit">
+          Save Profile
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="overlay" id="feedOverlay">
+
+  <div class="modal app-panel">
+
+    <div class="modal-header">
+
+      <h2>Connect</h2>
+
+      <button class="close-button" onclick="Soulaani.closeAll()">
+        ×
+      </button>
+
+    </div>
+
+    <div class="modal-body">
+
+      <div class="composer">
+
+        <div class="composer-top">
+
+          <div class="avatar" id="composerAvatar">
+            S
+          </div>
+
+          <textarea
+            id="postText"
+            placeholder="What's happening?"
+          ></textarea>
+
+        </div>
+
+        <div class="composer-bottom">
+
+          <button class="primary-button" onclick="Soulaani.createPost()">
+            Post
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div id="feedPosts"></div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="overlay" id="notificationsOverlay">
+
+  <div class="modal">
+
+    <div class="modal-header">
+
+      <h2>Notifications</h2>
+
+      <button class="close-button" onclick="Soulaani.closeAll()">
+        ×
+      </button>
+
+    </div>
+
+    <div class="modal-body">
+
+      <div class="notification">
+
+        <div class="notification-dot"></div>
+
+        <p>
+          Welcome to the Soulaani notification center.
+        </p>
+
+      </div>
+
+      <div class="notification">
+
+        <div class="notification-dot"></div>
+
+        <p>
+          Future activity from people you follow will appear here.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="overlay" id="messagesOverlay">
+
+  <div class="modal app-panel">
+
+    <div class="modal-header">
+
+      <h2>Messages</h2>
+
+      <button class="close-button" onclick="Soulaani.closeAll()">
+        ×
+      </button>
+
+    </div>
+
+    <div class="modal-body">
+
+      <div class="message-list">
+
+        <div class="message">
+
+          <div class="search-avatar">
+            S
+          </div>
+
+          <div class="message-content">
+
+            <strong>Soulaani Community</strong>
+
+            <p>
+              Your future conversations will appear here.
+            </p>
+
+          </div>
+
+        </div>
+
+        <div class="message">
+
+          <div class="search-avatar">
+            C
+          </div>
+
+          <div class="message-content">
+
+            <strong>Community</strong>
+
+            <p>
+              Connect with people and communities.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="overlay" id="featureOverlay">
+
+  <div class="modal">
+
+    <div class="modal-header">
+
+      <h2 id="featureTitle">
+        Soulaani
+      </h2>
+
+      <button class="close-button" onclick="Soulaani.closeAll()">
+        ×
+      </button>
+
+    </div>
+
+    <div class="modal-body">
+
+      <p
+        id="featureText"
+        style="color:#999;line-height:1.7;"
+      ></p>
+
+      <br>
+
+      <button class="full-button" onclick="Soulaani.closeAll()">
+        Continue Exploring
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="toast-container" id="toastContainer"></div>
+
+
 <script>
 
-/* =========================================================
-   SOULAANI MASTER APPLICATION
-========================================================= */
+(function(){
 
+  const DB_KEY = "soulaani_database_v3";
 
-const DB_KEY =
-  "soulaani_database_v2";
-
-
-let authMode =
-  "login";
-
-
-/* =========================================================
-   DATABASE
-========================================================= */
-
-
-function defaultDatabase() {
-
-  return {
-
-    users: [],
-
-    posts: [],
-
-    likes: [],
-
-    follows: [],
-
-    comments: [],
-
-    messages: [],
-
-    notifications: [],
-
-    businesses: [],
-
-    events: [],
-
-    communities: [],
-
-    currentUserId: null,
-
-    settings: {
-
-      location:
-        "Harrisburg, Pennsylvania"
-
-    }
-
+  const defaultDatabase = {
+    users:[],
+    posts:[],
+    follows:[],
+    likes:[],
+    notifications:[],
+    messages:[],
+    settings:{
+      location:"Harrisburg, PA"
+    },
+    currentUserId:null
   };
 
-}
 
+  function loadDatabase(){
 
-function getDB() {
+    try{
 
-  try {
+      const saved =
+        localStorage.getItem(DB_KEY);
 
-    const saved =
-      localStorage.getItem(DB_KEY);
+      if(!saved){
 
-    if (!saved) {
+        localStorage.setItem(
+          DB_KEY,
+          JSON.stringify(defaultDatabase)
+        );
 
-      const fresh =
-        defaultDatabase();
+        return JSON.parse(
+          JSON.stringify(defaultDatabase)
+        );
 
-      saveDB(fresh);
+      }
 
-      return fresh;
+      const db =
+        JSON.parse(saved);
+
+      return {
+        ...defaultDatabase,
+        ...db
+      };
+
+    }catch(error){
+
+      console.error(error);
+
+      return JSON.parse(
+        JSON.stringify(defaultDatabase)
+      );
 
     }
 
-    return JSON.parse(saved);
-
-  } catch(error) {
-
-    console.error(
-      "Soulaani database error:",
-      error
-    );
-
-    const fresh =
-      defaultDatabase();
-
-    saveDB(fresh);
-
-    return fresh;
-
   }
 
-}
+
+  let db =
+    loadDatabase();
 
 
-function saveDB(db) {
+  function saveDatabase(){
 
-  localStorage.setItem(
-    DB_KEY,
-    JSON.stringify(db)
-  );
-
-}
-
-
-function id(prefix) {
-
-  return (
-    prefix +
-    "_" +
-    Date.now().toString(36) +
-    "_" +
-    Math.random()
-      .toString(36)
-      .slice(2,8)
-  );
-
-}
-
-
-/* =========================================================
-   CURRENT USER
-========================================================= */
-
-
-function currentUser() {
-
-  const db =
-    getDB();
-
-  if (!db.currentUserId) {
-    return null;
-  }
-
-  return db.users.find(
-    user =>
-      user.id === db.currentUserId
-  ) || null;
-
-}
-
-
-/* =========================================================
-   AUTH
-========================================================= */
-
-
-function openModal(mode) {
-
-  authMode =
-    mode;
-
-  const modal =
-    document.getElementById(
-      "authModal"
+    localStorage.setItem(
+      DB_KEY,
+      JSON.stringify(db)
     );
-
-  const title =
-    document.getElementById(
-      "modalTitle"
-    );
-
-  const nameGroup =
-    document.getElementById(
-      "nameGroup"
-    );
-
-
-  modal.classList.add(
-    "active"
-  );
-
-
-  if (mode === "signup") {
-
-    title.innerHTML =
-      'Join <span class="gold">Soulaani</span>';
-
-    nameGroup.style.display =
-      "block";
-
-  } else {
-
-    title.innerHTML =
-      'Welcome to <span class="gold">Soulaani</span>';
-
-    nameGroup.style.display =
-      "none";
-
-  }
-
-}
-
-
-function closeModal() {
-
-  document
-    .getElementById(
-      "authModal"
-    )
-    .classList.remove(
-      "active"
-    );
-
-}
-
-
-function signup(
-  name,
-  email,
-  password
-) {
-
-  const db =
-    getDB();
-
-
-  name =
-    name.trim();
-
-  email =
-    email.trim().toLowerCase();
-
-
-  if (
-    !name ||
-    !email ||
-    !password
-  ) {
-
-    alert(
-      "Please complete all fields."
-    );
-
-    return null;
 
   }
 
 
-  if (
-    password.length < 6
-  ) {
+  function uid(prefix){
 
-    alert(
-      "Password must be at least 6 characters."
-    );
-
-    return null;
+    return prefix +
+      "_" +
+      Date.now().toString(36) +
+      Math.random()
+        .toString(36)
+        .slice(2,8);
 
   }
 
 
-  if (
-    db.users.some(
+  function escapeHTML(value){
+
+    return String(value ?? "")
+      .replace(/&/g,"&amp;")
+      .replace(/</g,"&lt;")
+      .replace(/>/g,"&gt;")
+      .replace(/"/g,"&quot;")
+      .replace(/'/g,"&#039;");
+
+  }
+
+
+  function currentUser(){
+
+    if(!db.currentUserId){
+      return null;
+    }
+
+    return db.users.find(
       user =>
-        user.email === email
-    )
-  ) {
-
-    alert(
-      "An account with this email already exists."
-    );
-
-    return null;
+        user.id === db.currentUserId
+    ) || null;
 
   }
 
 
-  const username =
-    name
-      .toLowerCase()
-      .replace(/[^a-z0-9]/g,"")
-      .slice(0,20)
-      || "soulaaniuser";
+  function initials(name){
+
+    if(!name){
+      return "S";
+    }
+
+    return name
+      .split(" ")
+      .map(word => word[0])
+      .join("")
+      .slice(0,2)
+      .toUpperCase();
+
+  }
 
 
-  const user = {
+  function toast(message){
 
-    id:
-      id("user"),
+    const container =
+      document.getElementById(
+        "toastContainer"
+      );
 
-    name:
+    const element =
+      document.createElement("div");
 
-      name,
+    element.className =
+      "toast";
 
-    username:
+    element.textContent =
+      message;
 
-      username +
+    container.appendChild(
+      element
+    );
 
-      Math.floor(
-        Math.random() * 999
-      ),
+    setTimeout(function(){
 
-    email:
+      element.style.opacity =
+        "0";
 
-      email,
+      element.style.transform =
+        "translateY(8px)";
 
-    password:
+      setTimeout(function(){
+
+        element.remove();
+
+      },250);
+
+    },3000);
+
+  }
+
+
+  function open(id){
+
+    closeAll();
+
+    const element =
+      document.getElementById(id);
+
+    if(element){
+      element.classList.add("open");
+    }
+
+  }
+
+
+  function closeAll(){
+
+    document
+      .querySelectorAll(".overlay")
+      .forEach(element => {
+
+        element.classList.remove(
+          "open"
+        );
+
+      });
+
+  }
+
+
+  function updateAuthButton(){
+
+    const button =
+      document.getElementById(
+        "authButton"
+      );
+
+    const user =
+      currentUser();
+
+    if(user){
+
+      button.textContent =
+        user.name.split(" ")[0];
+
+      button.onclick =
+        () => openProfile();
+
+    }else{
+
+      button.textContent =
+        "Join Soulaani";
+
+      button.onclick =
+        () => openAuth();
+
+    }
+
+  }
+
+
+  function setActiveSection(section){
+
+    document
+      .querySelectorAll(".nav-link")
+      .forEach(link => {
+
+        link.classList.toggle(
+          "active",
+          link.dataset.section === section
+        );
+
+      });
+
+  }
+
+
+  function goHome(){
+
+    closeAll();
+
+    setActiveSection("home");
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
+
+  }
+
+
+  function openAuth(mode){
+
+    const title =
+      document.getElementById(
+        "authTitle"
+      );
+
+    const submit =
+      document.getElementById(
+        "authSubmit"
+      );
+
+    const nameGroup =
+      document.getElementById(
+        "nameGroup"
+      );
+
+    const switchText =
+      document.getElementById(
+        "authSwitchText"
+      );
+
+    const switchLink =
+      document.querySelector(
+        ".modal-switch .text-gold"
+      );
+
+
+    if(mode === "login"){
+
+      title.textContent =
+        "Welcome Back";
+
+      submit.textContent =
+        "Log In";
+
+      nameGroup.style.display =
+        "none";
+
+      switchText.textContent =
+        "Need an account?";
+
+      switchLink.textContent =
+        "Sign up";
+
+    }else{
+
+      title.textContent =
+        "Join Soulaani";
+
+      submit.textContent =
+        "Create Account";
+
+      nameGroup.style.display =
+        "block";
+
+      switchText.textContent =
+        "Already have an account?";
+
+      switchLink.textContent =
+        "Log in";
+
+    }
+
+
+    document
+      .getElementById("authForm")
+      .dataset.mode =
+      mode === "login"
+        ? "login"
+        : "signup";
+
+
+    open("authOverlay");
+
+  }
+
+
+  function toggleAuth(){
+
+    const form =
+      document.getElementById(
+        "authForm"
+      );
+
+    const mode =
+      form.dataset.mode;
+
+    openAuth(
+      mode === "login"
+        ? "signup"
+        : "login"
+    );
+
+  }
+
+
+  function signup(
+    name,
+    email,
+    password
+  ){
+
+    if(
+      !name ||
+      !email ||
+      !password
+    ){
+
+      toast(
+        "Please complete every field."
+      );
+
+      return;
+
+    }
+
+
+    const existing =
+      db.users.find(
+        user =>
+          user.email.toLowerCase() ===
+          email.toLowerCase()
+      );
+
+
+    if(existing){
+
+      toast(
+        "An account with that email already exists."
+      );
+
+      return;
+
+    }
+
+
+    const user = {
+
+      id:uid("user"),
+
+      name:name.trim(),
+
+      username:
+        name
+          .trim()
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g,"")
+          .slice(0,20) ||
+        "soulaaniuser",
+
+      email:
+        email.trim().toLowerCase(),
 
       password,
 
-    bio:
+      bio:
+        "Building my Soulaani community.",
 
-      "Welcome to my Soulaani profile.",
+      location:
+        db.settings.location,
 
-    location:
+      followers:0,
 
-      db.settings.location,
+      following:0,
 
-    avatar:
+      createdAt:
+        new Date().toISOString()
 
-      "",
-
-    createdAt:
-
-      new Date().toISOString(),
-
-    followers:
-
-      0,
-
-    following:
-
-      0
-
-  };
+    };
 
 
-  db.users.push(
-    user
-  );
+    db.users.push(user);
 
+    db.currentUserId =
+      user.id;
 
-  db.currentUserId =
-    user.id;
+    saveDatabase();
 
+    createWelcomePost(user);
 
-  db.posts.unshift({
+    updateAuthButton();
 
-    id:
-      id("post"),
+    closeAll();
 
-    userId:
-      user.id,
-
-    text:
-      "I'm officially on Soulaani. ✊🏾",
-
-    image:
-      "",
-
-    createdAt:
-      new Date().toISOString(),
-
-    likes:
-      0,
-
-    comments:
-      0,
-
-    shares:
-      0
-
-  });
-
-
-  saveDB(db);
-
-
-  return user;
-
-}
-
-
-function login(
-  email,
-  password
-) {
-
-  const db =
-    getDB();
-
-
-  email =
-    email.trim().toLowerCase();
-
-
-  const user =
-    db.users.find(
-      item =>
-        item.email === email &&
-        item.password === password
+    toast(
+      "Welcome to Soulaani, " +
+      user.name.split(" ")[0] +
+      "!"
     );
-
-
-  if (!user) {
-
-    alert(
-      "Incorrect email or password."
-    );
-
-    return null;
 
   }
 
 
-  db.currentUserId =
-    user.id;
+  function login(
+    email,
+    password
+  ){
+
+    const user =
+      db.users.find(
+        item =>
+          item.email.toLowerCase() ===
+            email.trim().toLowerCase() &&
+          item.password === password
+      );
 
 
-  saveDB(db);
+    if(!user){
+
+      toast(
+        "We couldn't find an account with those details."
+      );
+
+      return;
+
+    }
 
 
-  return user;
+    db.currentUserId =
+      user.id;
 
-}
+    saveDatabase();
 
+    updateAuthButton();
 
-function logout() {
+    closeAll();
 
-  const db =
-    getDB();
+    toast(
+      "Welcome back, " +
+      user.name.split(" ")[0] +
+      "!"
+    );
 
-
-  db.currentUserId =
-    null;
-
-
-  saveDB(db);
-
-
-  closeAppPanel();
-
-  updateUI();
+  }
 
 
-  alert(
-    "You have been logged out of Soulaani."
-  );
+  function logout(){
 
-}
+    db.currentUserId =
+      null;
 
+    saveDatabase();
 
-/* AUTH FORM */
+    updateAuthButton();
 
-document
-  .getElementById(
-    "authForm"
-  )
-  .addEventListener(
-    "submit",
-    function(event) {
+    closeAll();
 
-      event.preventDefault();
+    toast(
+      "You have been logged out."
+    );
+
+  }
 
 
-      const name =
+  function createWelcomePost(user){
+
+    db.posts.unshift({
+
+      id:uid("post"),
+
+      userId:user.id,
+
+      content:
+        "Just joined Soulaani. 🌍",
+
+      createdAt:
+        new Date().toISOString(),
+
+      likes:0
+
+    });
+
+    saveDatabase();
+
+  }
+
+
+  function createPost(){
+
+    const user =
+      currentUser();
+
+
+    if(!user){
+
+      closeAll();
+
+      openAuth("signup");
+
+      toast(
+        "Create an account to post."
+      );
+
+      return;
+
+    }
+
+
+    const input =
+      document.getElementById(
+        "postText"
+      );
+
+    const content =
+      input.value.trim();
+
+
+    if(!content){
+
+      toast(
+        "Write something first."
+      );
+
+      return;
+
+    }
+
+
+    db.posts.unshift({
+
+      id:uid("post"),
+
+      userId:user.id,
+
+      content:content,
+
+      createdAt:
+        new Date().toISOString(),
+
+      likes:0
+
+    });
+
+
+    input.value = "";
+
+    saveDatabase();
+
+    renderFeed();
+
+    toast(
+      "Posted to Soulaani."
+    );
+
+  }
+
+
+  function toggleLike(postId){
+
+    const user =
+      currentUser();
+
+
+    if(!user){
+
+      toast(
+        "Log in to like posts."
+      );
+
+      return;
+
+    }
+
+
+    const existing =
+      db.likes.find(
+        like =>
+          like.postId === postId &&
+          like.userId === user.id
+      );
+
+
+    const post =
+      db.posts.find(
+        item =>
+          item.id === postId
+      );
+
+
+    if(!post){
+      return;
+    }
+
+
+    if(existing){
+
+      db.likes =
+        db.likes.filter(
+          like =>
+            like !== existing
+        );
+
+      post.likes =
+        Math.max(
+          0,
+          (post.likes || 0) - 1
+        );
+
+    }else{
+
+      db.likes.push({
+
+        id:uid("like"),
+
+        postId,
+
+        userId:user.id
+
+      });
+
+      post.likes =
+        (post.likes || 0) + 1;
+
+    }
+
+
+    saveDatabase();
+
+    renderFeed();
+
+  }
+
+
+  function renderFeed(){
+
+    const container =
+      document.getElementById(
+        "feedPosts"
+      );
+
+
+    if(!container){
+      return;
+    }
+
+
+    if(!db.posts.length){
+
+      container.innerHTML =
+        '<div style="color:#777;text-align:center;padding:30px;">No posts yet. Start the conversation.</div>';
+
+      return;
+
+    }
+
+
+    const user =
+      currentUser();
+
+
+    container.innerHTML =
+      db.posts
+        .map(post => {
+
+          const author =
+            db.users.find(
+              item =>
+                item.id ===
+                post.userId
+            );
+
+
+          const liked =
+            user &&
+            db.likes.some(
+              like =>
+                like.postId ===
+                  post.id &&
+                like.userId ===
+                  user.id
+            );
+
+
+          const location =
+            author?.location ||
+            "Soulaani";
+
+
+          return `
+
+            <article class="feed-post">
+
+              <div class="feed-post-header">
+
+                <div class="feed-user">
+
+                  <div class="avatar">
+                    ${escapeHTML(
+                      initials(author?.name)
+                    )}
+                  </div>
+
+                  <div>
+
+                    <strong>
+                      ${escapeHTML(
+                        author?.name ||
+                        "Soulaani User"
+                      )}
+                    </strong>
+
+                    <span>
+                      @${escapeHTML(
+                        author?.username ||
+                        "soulaani"
+                      )}
+                      ·
+                      ${escapeHTML(
+                        location
+                      )}
+                    </span>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <div class="feed-post-content">
+                ${escapeHTML(
+                  post.content
+                )}
+              </div>
+
+
+              <div class="post-actions">
+
+                <button
+                  class="post-action ${liked ? "liked" : ""}"
+                  onclick="Soulaani.likePost('${post.id}')"
+                >
+                  ${liked ? "♥" : "♡"}
+                  ${post.likes || 0}
+                </button>
+
+                <button
+                  class="post-action"
+                  onclick="Soulaani.toast('Comments are coming next.')"
+                >
+                  💬 Comment
+                </button>
+
+                <button
+                  class="post-action"
+                  onclick="Soulaani.toast('Sharing will be connected to the backend.')"
+                >
+                  ↗ Share
+                </button>
+
+              </div>
+
+            </article>
+
+          `;
+
+        })
+        .join("");
+
+  }
+
+
+  function openFeed(){
+
+    setActiveSection(
+      "connect"
+    );
+
+    open("feedOverlay");
+
+    renderFeed();
+
+
+    const user =
+      currentUser();
+
+
+    const avatar =
+      document.getElementById(
+        "composerAvatar"
+      );
+
+
+    avatar.textContent =
+      initials(user?.name);
+
+  }
+
+
+  function openProfile(){
+
+    const user =
+      currentUser();
+
+
+    if(!user){
+
+      openAuth("login");
+
+      return;
+
+    }
+
+
+    const posts =
+      db.posts.filter(
+        post =>
+          post.userId ===
+          user.id
+      ).length;
+
+
+    const followers =
+      db.follows.filter(
+        follow =>
+          follow.followingId ===
+          user.id
+      ).length;
+
+
+    const following =
+      db.follows.filter(
+        follow =>
+          follow.followerId ===
+          user.id
+      ).length;
+
+
+    document
+      .getElementById(
+        "profileContent"
+      )
+      .innerHTML = `
+
+        <div class="profile-card">
+
+          <div class="profile-avatar">
+            ${escapeHTML(
+              initials(user.name)
+            )}
+          </div>
+
+          <div>
+
+            <h3>
+              ${escapeHTML(
+                user.name
+              )}
+            </h3>
+
+            <p>
+              @${escapeHTML(
+                user.username
+              )}
+            </p>
+
+            <p style="margin-top:7px;">
+              ${escapeHTML(
+                user.bio || ""
+              )}
+            </p>
+
+            <div class="profile-stats">
+
+              <div class="profile-stat">
+                <strong>${posts}</strong>
+                <span>Posts</span>
+              </div>
+
+              <div class="profile-stat">
+                <strong>${followers}</strong>
+                <span>Followers</span>
+              </div>
+
+              <div class="profile-stat">
+                <strong>${following}</strong>
+                <span>Following</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <button
+          class="full-button"
+          onclick="Soulaani.editProfile()"
+        >
+          Edit Profile
+        </button>
+
+
+        <button
+          class="full-button"
+          style="margin-top:10px;background:#222;color:#fff;"
+          onclick="Soulaani.logout()"
+        >
+          Log Out
+        </button>
+
+      `;
+
+
+    open(
+      "profileOverlay"
+    );
+
+  }
+
+
+  function editProfile(){
+
+    const user =
+      currentUser();
+
+
+    if(!user){
+      return;
+    }
+
+
+    document.getElementById(
+      "profileName"
+    ).value =
+      user.name || "";
+
+
+    document.getElementById(
+      "profileUsername"
+    ).value =
+      user.username || "";
+
+
+    document.getElementById(
+      "profileBio"
+    ).value =
+      user.bio || "";
+
+
+    document.getElementById(
+      "profileLocation"
+    ).value =
+      user.location || "";
+
+
+    open(
+      "editProfileOverlay"
+    );
+
+  }
+
+
+  function saveProfile(event){
+
+    event.preventDefault();
+
+
+    const user =
+      currentUser();
+
+
+    if(!user){
+      return;
+    }
+
+
+    user.name =
+      document
+        .getElementById(
+          "profileName"
+        )
+        .value
+        .trim();
+
+
+    user.username =
+      document
+        .getElementById(
+          "profileUsername"
+        )
+        .value
+        .trim()
+        .replace(
+          /^@/,
+          ""
+        )
+        .toLowerCase();
+
+
+    user.bio =
+      document
+        .getElementById(
+          "profileBio"
+        )
+        .value
+        .trim();
+
+
+    user.location =
+      document
+        .getElementById(
+          "profileLocation"
+        )
+        .value
+        .trim();
+
+
+    saveDatabase();
+
+    updateAuthButton();
+
+    closeAll();
+
+    toast(
+      "Profile updated."
+    );
+
+  }
+
+
+  function openSearch(){
+
+    open(
+      "searchOverlay"
+    );
+
+
+    setTimeout(
+      function(){
+
         document
           .getElementById(
-            "nameInput"
+            "searchInput"
           )
-          .value;
+          .focus();
+
+      },
+      100
+    );
 
 
-      const email =
-        document
-          .getElementById(
-            "emailInput"
+    renderSearch("");
+
+  }
+
+
+  function search(value){
+
+    const container =
+      document.getElementById(
+        "searchResults"
+      );
+
+
+    const query =
+      value
+        .trim()
+        .toLowerCase();
+
+
+    if(!query){
+
+      container.innerHTML = `
+
+        <div style="color:#666;font-size:13px;line-height:1.6;">
+          Search people and future Soulaani content here.
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    const users =
+      db.users.filter(
+        user =>
+
+          user.name
+            .toLowerCase()
+            .includes(query) ||
+
+          user.username
+            .toLowerCase()
+            .includes(query) ||
+
+          (
+            user.location || ""
           )
-          .value;
+            .toLowerCase()
+            .includes(query)
+
+      );
 
 
-      const password =
-        document
-          .getElementById(
-            "passwordInput"
-          )
-          .value;
+    if(!users.length){
+
+      container.innerHTML = `
+
+        <div style="color:#666;text-align:center;padding:25px;">
+          No users found.
+        </div>
+
+      `;
+
+      return;
+
+    }
 
 
-      let user;
+    container.innerHTML =
+      users
+        .map(
+          user => `
+
+            <div class="search-result">
+
+              <div class="search-avatar">
+                ${escapeHTML(
+                  initials(user.name)
+                )}
+              </div>
+
+              <div>
+
+                <strong>
+                  ${escapeHTML(
+                    user.name
+                  )}
+                </strong>
+
+                <small>
+                  @${escapeHTML(
+                    user.username
+                  )}
+                  ·
+                  ${escapeHTML(
+                    user.location ||
+                    "Soulaani"
+                  )}
+                </small>
+
+              </div>
+
+            </div>
+
+          `
+        )
+        .join("");
+
+  }
 
 
-      if (
-        authMode ===
-        "signup"
-      ) {
+  function renderSearch(value){
 
-        user =
+    search(value);
+
+  }
+
+
+  function openNotifications(){
+
+    open(
+      "notificationsOverlay"
+    );
+
+  }
+
+
+  function openMessages(){
+
+    open(
+      "messagesOverlay"
+    );
+
+  }
+
+
+  function openDiscover(){
+
+    setActiveSection(
+      "explore"
+    );
+
+    closeAll();
+
+
+    document
+      .getElementById(
+        "discover"
+      )
+      .scrollIntoView({
+        behavior:"smooth"
+      });
+
+  }
+
+
+  function selectLocation(
+    location,
+    button
+  ){
+
+    db.settings.location =
+      location;
+
+    saveDatabase();
+
+
+    document
+      .querySelectorAll(
+        ".location-chip"
+      )
+      .forEach(chip => {
+
+        chip.classList.remove(
+          "active"
+        );
+
+      });
+
+
+    if(button){
+
+      button.classList.add(
+        "active"
+      );
+
+    }
+
+
+    const city =
+      location.split(",")[0];
+
+
+    document
+      .getElementById(
+        "discoverEyebrow"
+      )
+      .textContent =
+      location;
+
+
+    document
+      .getElementById(
+        "discoverTitle"
+      )
+      .textContent =
+      "What's happening in " +
+      city +
+      "?";
+
+
+    document
+      .getElementById(
+        "discoverDescription"
+      )
+      .textContent =
+      "Discover people, businesses, events, food, music, creators and community conversations happening around " +
+      city +
+      ".";
+
+
+    toast(
+      "Location set to " +
+      location
+    );
+
+  }
+
+
+  function openFeature(
+    feature
+  ){
+
+    const descriptions = {
+
+      Build:
+        "Build will connect people with careers, mentorship, entrepreneurship, professional communities and opportunities.",
+
+      Market:
+        "Market will become a discovery layer for businesses, products, services, creators and commerce.",
+
+      Culture:
+        "Culture will bring together music, art, fashion, food, history, entertainment and cultural storytelling.",
+
+      Date:
+        "Date will be Soulaani's dating experience, connected to the wider community platform.",
+
+      About:
+        "Soulaani is being designed as an all-in-one digital ecosystem centered around people, community, opportunity and culture.",
+
+      Contact:
+        "The Soulaani contact and support system will be connected as the platform expands."
+
+    };
+
+
+    document
+      .getElementById(
+        "featureTitle"
+      )
+      .textContent =
+      feature;
+
+
+    document
+      .getElementById(
+        "featureText"
+      )
+      .textContent =
+      descriptions[feature] ||
+      "This part of Soulaani is being built.";
+
+
+    open(
+      "featureOverlay"
+    );
+
+  }
+
+
+  function openDate(){
+
+    setActiveSection(
+      "date"
+    );
+
+    openFeature(
+      "Date"
+    );
+
+  }
+
+
+  /* =========================
+     AUTH FORM
+  ========================= */
+
+  document
+    .getElementById(
+      "authForm"
+    )
+    .addEventListener(
+      "submit",
+      function(event){
+
+        event.preventDefault();
+
+
+        const mode =
+          this.dataset.mode ||
+          "signup";
+
+
+        const name =
+          document
+            .getElementById(
+              "authName"
+            )
+            .value
+            .trim();
+
+
+        const email =
+          document
+            .getElementById(
+              "authEmail"
+            )
+            .value
+            .trim();
+
+
+        const password =
+          document
+            .getElementById(
+              "authPassword"
+            )
+            .value;
+
+
+        if(mode === "login"){
+
+          login(
+            email,
+            password
+          );
+
+        }else{
+
           signup(
             name,
             email,
             password
           );
 
-      } else {
-
-        user =
-          login(
-            email,
-            password
-          );
+        }
 
       }
-
-
-      if (!user) {
-        return;
-      }
-
-
-      closeModal();
-
-      updateUI();
-
-      openProfilePanel();
-
-
-    }
-  );
-
-
-/* =========================================================
-   UI
-========================================================= */
-
-
-function updateUI() {
-
-  const actions =
-    document.querySelector(
-      ".nav-actions"
     );
 
 
-  const user =
-    currentUser();
-
-
-  if (!user) {
-
-    actions.innerHTML = `
-
-      <button
-        class="btn"
-        onclick="openModal('login')">
-
-        Log In
-
-      </button>
-
-      <button
-        class="btn gold-btn"
-        onclick="openModal('signup')">
-
-        Sign Up
-
-      </button>
-
-    `;
-
-    return;
-
-  }
-
-
-  actions.innerHTML = `
-
-    <button
-      class="btn"
-      onclick="openProfilePanel()">
-
-      ${escapeHTML(user.name)}
-
-    </button>
-
-    <button
-      class="btn gold-btn"
-      onclick="logout()">
-
-      Log Out
-
-    </button>
-
-  `;
-
-}
-
-
-/* =========================================================
-   PROFILE
-========================================================= */
-
-
-function updateProfile() {
-
-  const user =
-    currentUser();
-
-
-  if (!user) {
-
-    openModal("login");
-
-    return;
-
-  }
-
-
-  const name =
-    prompt(
-      "Display name:",
-      user.name
-    );
-
-
-  if (name === null) {
-    return;
-  }
-
-
-  const username =
-    prompt(
-      "Username:",
-      user.username
-    );
-
-
-  if (username === null) {
-    return;
-  }
-
-
-  const bio =
-    prompt(
-      "Bio:",
-      user.bio
-    );
-
-
-  if (bio === null) {
-    return;
-  }
-
-
-  const db =
-    getDB();
-
-
-  user.name =
-    name.trim();
-
-
-  user.username =
-    username
-      .trim()
-      .replace(/^@/,"")
-      .replace(/[^a-zA-Z0-9_]/g,"");
-
-
-  user.bio =
-    bio.trim();
-
-
-  saveDB(db);
-
-  updateUI();
-
-  openProfilePanel();
-
-}
-
-
-function openProfilePanel() {
-
-  const user =
-    currentUser();
-
-
-  if (!user) {
-
-    openModal("login");
-
-    return;
-
-  }
-
-
-  const db =
-    getDB();
-
-
-  const posts =
-    db.posts.filter(
-      post =>
-        post.userId === user.id
-    );
-
+  /* =========================
+     PROFILE FORM
+  ========================= */
 
   document
     .getElementById(
-      "panelTitle"
+      "profileForm"
     )
-    .textContent =
-      "Your Profile";
+    .addEventListener(
+      "submit",
+      saveProfile
+    );
 
+
+  /* =========================
+     OVERLAY CLICK
+  ========================= */
 
   document
-    .getElementById(
-      "panelContent"
+    .querySelectorAll(
+      ".overlay"
     )
-    .innerHTML = `
-
-      <div class="profile-header">
-
-        <img
-          class="profile-avatar"
-          src="${
-            user.avatar ||
-            "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=200&q=80"
-          }"
-          alt="Profile">
-
-        <h1>
-          ${escapeHTML(user.name)}
-        </h1>
-
-        <p>
-          @${escapeHTML(user.username)}
-        </p>
-
-        <p>
-          ${escapeHTML(user.bio)}
-        </p>
-
-        <p>
-          📍 ${escapeHTML(user.location)}
-        </p>
-
-        <div class="profile-stats">
-
-          <div class="profile-stat">
-            <strong>
-              ${posts.length}
-            </strong>
-            <span>Posts</span>
-          </div>
-
-          <div class="profile-stat">
-            <strong>
-              ${user.followers}
-            </strong>
-            <span>Followers</span>
-          </div>
-
-          <div class="profile-stat">
-            <strong>
-              ${user.following}
-            </strong>
-            <span>Following</span>
-          </div>
-
-        </div>
-
-        <br>
-
-        <button
-          class="btn gold-btn"
-          onclick="updateProfile()">
-
-          Edit Profile
-
-        </button>
-
-      </div>
-
-    `;
-
-
-  openAppPanel();
-
-}
-
-
-/* =========================================================
-   POSTS
-========================================================= */
-
-
-function openPostComposer() {
-
-  const user =
-    currentUser();
-
-
-  if (!user) {
-
-    openModal("login");
-
-    return;
-
-  }
-
-
-  const text =
-    prompt(
-      "What's on your mind?"
-    );
-
-
-  if (
-    !text ||
-    !text.trim()
-  ) {
-
-    return;
-
-  }
-
-
-  const db =
-    getDB();
-
-
-  db.posts.unshift({
-
-    id:
-      id("post"),
-
-    userId:
-      user.id,
-
-    text:
-      text.trim(),
-
-    image:
-      "",
-
-    createdAt:
-      new Date().toISOString(),
-
-    likes:
-      0,
-
-    comments:
-      0,
-
-    shares:
-      0
-
-  });
-
-
-  saveDB(db);
-
-
-  renderUserPosts();
-
-
-  alert(
-    "Your post is now on Soulaani. ✊🏾"
-  );
-
-}
-
-
-function renderUserPosts() {
-
-  const user =
-    currentUser();
-
-
-  if (!user) {
-    return;
-  }
-
-
-  const db =
-    getDB();
-
-
-  const posts =
-    db.posts.filter(
-      post =>
-        post.userId === user.id
-    );
-
-
-  if (!posts.length) {
-    return;
-  }
-
-
-  const container =
-    document.getElementById(
-      "feedContainer"
-    );
-
-
-  posts.forEach(
-    post => {
-
-      if (
-        document.querySelector(
-          `[data-post-id="${post.id}"]`
-        )
-      ) {
-        return;
-      }
-
-
-      const article =
-        document.createElement(
-          "article"
-        );
-
-
-      article.className =
-        "feed-post";
-
-
-      article.dataset.postId =
-        post.id;
-
-
-      article.innerHTML = `
-
-        <div class="post-head">
-
-          <div class="avatar"></div>
-
-          <div>
-
-            <div class="post-name">
-              ${escapeHTML(user.name)}
-            </div>
-
-            <div class="post-time">
-              Just now
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="post-text">
-          ${escapeHTML(post.text)}
-        </div>
-
-        <div class="post-actions">
-
-          <span
-            onclick="likePost('${post.id}')">
-            ♡ ${post.likes}
-          </span>
-
-          <span>
-            ◯ ${post.comments}
-          </span>
-
-          <span>
-            ↗ ${post.shares}
-          </span>
-
-        </div>
-
-      `;
-
-
-      container.prepend(
-        article
-      );
-
-    }
-  );
-
-}
-
-
-function likePost(
-  postId
-) {
-
-  const user =
-    currentUser();
-
-
-  if (!user) {
-
-    openModal("login");
-
-    return;
-
-  }
-
-
-  const db =
-    getDB();
-
-
-  const post =
-    db.posts.find(
-      item =>
-        item.id === postId
-    );
-
-
-  if (!post) {
-    return;
-  }
-
-
-  const existing =
-    db.likes.find(
-      like =>
-        like.postId === postId &&
-        like.userId === user.id
-    );
-
-
-  if (existing) {
-
-    db.likes =
-      db.likes.filter(
-        like =>
-          !(
-            like.postId === postId &&
-            like.userId === user.id
-          )
-      );
-
-
-    post.likes =
-      Math.max(
-        0,
-        post.likes - 1
-      );
-
-  } else {
-
-    db.likes.push({
-
-      id:
-        id("like"),
-
-      postId:
-        postId,
-
-      userId:
-        user.id
-
-    });
-
-
-    post.likes++;
-
-  }
-
-
-  saveDB(db);
-
-}
-
-
-/* =========================================================
-   FOLLOW SYSTEM
-========================================================= */
-
-
-function followUser(
-  targetId
-) {
-
-  const user =
-    currentUser();
-
-
-  if (!user) {
-
-    openModal("login");
-
-    return;
-
-  }
-
-
-  const db =
-    getDB();
-
-
-  const target =
-    db.users.find(
-      item =>
-        item.id === targetId
-    );
-
-
-  if (!target) {
-    return;
-  }
-
-
-  if (
-    target.id === user.id
-  ) {
-
-    alert(
-      "You cannot follow yourself."
-    );
-
-    return;
-
-  }
-
-
-  const existing =
-    db.follows.find(
-      follow =>
-        follow.followerId === user.id &&
-        follow.followingId === target.id
-    );
-
-
-  if (existing) {
-
-    db.follows =
-      db.follows.filter(
-        follow =>
-          !(
-            follow.followerId === user.id &&
-            follow.followingId === target.id
-          )
-      );
-
-
-    target.followers =
-      Math.max(
-        0,
-        target.followers - 1
-      );
-
-
-    user.following =
-      Math.max(
-        0,
-        user.following - 1
-      );
-
-  } else {
-
-    db.follows.push({
-
-      id:
-        id("follow"),
-
-      followerId:
-        user.id,
-
-      followingId:
-        target.id
-
-    });
-
-
-    target.followers++;
-
-    user.following++;
-
-
-    db.notifications.push({
-
-      id:
-        id("notification"),
-
-      userId:
-        target.id,
-
-      type:
-        "follow",
-
-      message:
-        `${user.name} followed you.`,
-
-      read:
-        false,
-
-      createdAt:
-        new Date().toISOString()
-
-    });
-
-  }
-
-
-  saveDB(db);
-
-}
-
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-
-function searchSoulaani(
-  query
-) {
-
-  const db =
-    getDB();
-
-
-  query =
-    query
-      .trim()
-      .toLowerCase();
-
-
-  if (!query) {
-    return;
-  }
-
-
-  const users =
-    db.users.filter(
-      user =>
-        user.name
-          .toLowerCase()
-          .includes(query)
-
-        ||
-
-        user.username
-          .toLowerCase()
-          .includes(query)
-
-        ||
-
-        user.location
-          .toLowerCase()
-          .includes(query)
-    );
-
-
-  const posts =
-    db.posts.filter(
-      post =>
-        post.text
-          .toLowerCase()
-          .includes(query)
-    );
-
-
-  openAppPanel();
-
-
-  document
-    .getElementById(
-      "panelTitle"
-    )
-    .textContent =
-      `Search: ${query}`;
-
-
-  document
-    .getElementById(
-      "panelContent"
-    )
-    .innerHTML = `
-
-      <div style="
-        color:#aaa;
-        margin-bottom:20px;
-      ">
-
-        ${users.length}
-        users found ·
-        ${posts.length}
-        posts found
-
-      </div>
-
-      ${
-        users.length
-
-        ?
-
-        users.map(
-          user => `
-
-            <div style="
-              background:#181818;
-              border:1px solid #292929;
-              border-radius:14px;
-              padding:18px;
-              margin-bottom:12px;
-            ">
-
-              <strong>
-                ${escapeHTML(user.name)}
-              </strong>
-
-              <div style="
-                color:#888;
-                font-size:12px;
-                margin-top:5px;
-              ">
-                @${escapeHTML(user.username)}
-              </div>
-
-              <div style="
-                color:#888;
-                font-size:11px;
-                margin-top:5px;
-              ">
-                📍 ${escapeHTML(user.location)}
-              </div>
-
-              <br>
-
-              <button
-                class="btn gold-btn"
-                onclick="followUser('${user.id}')">
-
-                Follow
-
-              </button>
-
-            </div>
-
-          `
-        ).join("")
-
-        :
-
-        `<p style="color:#777">
-          No users found yet.
-        </p>`
-      }
-
-    `;
-
-}
-
-
-/* SEARCH BAR */
-
-document
-  .getElementById(
-    "searchInput"
-  )
-  .addEventListener(
-    "keydown",
-    function(event) {
-
-      if (
-        event.key ===
-        "Enter"
-      ) {
-
-        searchSoulaani(
-          this.value
-        );
-
-      }
-
-    }
-  );
-
-
-/* =========================================================
-   LOCATION
-========================================================= */
-
-
-document
-  .getElementById(
-    "locationSelect"
-  )
-  .addEventListener(
-    "change",
-    function() {
-
-      const db =
-        getDB();
-
-
-      db.settings.location =
-        this.value;
-
-
-      const user =
-        currentUser();
-
-
-      if (user) {
-
-        user.location =
-          this.value;
-
-      }
-
-
-      saveDB(db);
-
-
-      alert(
-        `Soulaani location changed to ${this.value}.`
-      );
-
-    }
-  );
-
-
-/* =========================================================
-   MESSAGES
-========================================================= */
-
-
-function sendMessage(
-  recipientId,
-  text
-) {
-
-  const user =
-    currentUser();
-
-
-  if (!user) {
-
-    openModal("login");
-
-    return;
-
-  }
-
-
-  const db =
-    getDB();
-
-
-  const recipient =
-    db.users.find(
-      item =>
-        item.id === recipientId
-    );
-
-
-  if (!recipient) {
-    return;
-  }
-
-
-  db.messages.push({
-
-    id:
-      id("message"),
-
-    senderId:
-      user.id,
-
-    recipientId:
-      recipient.id,
-
-    text:
-      text.trim(),
-
-    read:
-      false,
-
-    createdAt:
-      new Date().toISOString()
-
-  });
-
-
-  db.notifications.push({
-
-    id:
-      id("notification"),
-
-    userId:
-      recipient.id,
-
-    type:
-      "message",
-
-    message:
-      `${user.name} sent you a message.`,
-
-    read:
-      false,
-
-    createdAt:
-      new Date().toISOString()
-
-  });
-
-
-  saveDB(db);
-
-}
-
-
-function openMessagesPanel() {
-
-  const user =
-    currentUser();
-
-
-  if (!user) {
-
-    openModal("login");
-
-    return;
-
-  }
-
-
-  const db =
-    getDB();
-
-
-  const conversations = {};
-
-
-  db.messages.forEach(
-    message => {
-
-      if (
-        message.senderId !== user.id &&
-        message.recipientId !== user.id
-      ) {
-
-        return;
-
-      }
-
-
-      const otherId =
-        message.senderId === user.id
-          ? message.recipientId
-          : message.senderId;
-
-
-      conversations[otherId] =
-        true;
-
-    }
-  );
-
-
-  const ids =
-    Object.keys(
-      conversations
-    );
-
-
-  document
-    .getElementById(
-      "panelTitle"
-    )
-    .textContent =
-      "Messages";
-
-
-  document
-    .getElementById(
-      "panelContent"
-    )
-    .innerHTML = `
-
-      <div style="
-        color:#999;
-        line-height:1.7;
-      ">
-
-        ${
-          ids.length
-
-          ?
-
-          ids.map(
-            otherId => {
-
-              const other =
-                db.users.find(
-                  item =>
-                    item.id === otherId
-                );
-
-
-              return other
-
-                ?
-
-                `
-
-                  <div style="
-                    background:#181818;
-                    border:1px solid #292929;
-                    border-radius:14px;
-                    padding:18px;
-                    margin-bottom:12px;
-                  ">
-
-                    <strong>
-                      ${escapeHTML(other.name)}
-                    </strong>
-
-                    <p style="
-                      color:#777;
-                      font-size:12px;
-                      margin-top:5px;
-                    ">
-                      @${escapeHTML(other.username)}
-                    </p>
-
-                  </div>
-
-                `
-
-                :
-
-                "";
+    .forEach(
+      overlay => {
+
+        overlay.addEventListener(
+          "click",
+          function(event){
+
+            if(
+              event.target ===
+              overlay
+            ){
+
+              closeAll();
 
             }
-          ).join("")
 
-          :
-
-          "Your conversations will appear here."
-
-        }
-
-      </div>
-
-    `;
-
-
-  openAppPanel();
-
-}
-
-
-/* =========================================================
-   NOTIFICATIONS
-========================================================= */
-
-
-function openNotificationsPanel() {
-
-  const user =
-    currentUser();
-
-
-  if (!user) {
-
-    openModal("login");
-
-    return;
-
-  }
-
-
-  const db =
-    getDB();
-
-
-  const notifications =
-    db.notifications
-      .filter(
-        notification =>
-          notification.userId === user.id
-      )
-      .sort(
-        (a,b) =>
-          new Date(b.createdAt) -
-          new Date(a.createdAt)
-      );
-
-
-  notifications.forEach(
-    notification =>
-      notification.read = true
-  );
-
-
-  saveDB(db);
-
-
-  document
-    .getElementById(
-      "panelTitle"
-    )
-    .textContent =
-      "Notifications";
-
-
-  document
-    .getElementById(
-      "panelContent"
-    )
-    .innerHTML = `
-
-      ${
-        notifications.length
-
-        ?
-
-        notifications.map(
-          notification => `
-
-            <div style="
-              background:#181818;
-              border:1px solid #292929;
-              border-radius:14px;
-              padding:18px;
-              margin-bottom:12px;
-            ">
-
-              ${escapeHTML(
-                notification.message
-              )}
-
-            </div>
-
-          `
-        ).join("")
-
-        :
-
-        `<p style="color:#777">
-          No notifications yet.
-        </p>`
+          }
+        );
 
       }
-
-    `;
-
-
-  openAppPanel();
-
-}
-
-
-/* =========================================================
-   APP PANELS
-========================================================= */
-
-
-function openAppPanel() {
-
-  document
-    .getElementById(
-      "appPanel"
-    )
-    .classList.add(
-      "active"
     );
 
-}
 
+  /* =========================
+     ESCAPE KEY
+  ========================= */
 
-function closeAppPanel() {
-
-  document
-    .getElementById(
-      "appPanel"
-    )
-    .classList.remove(
-      "active"
-    );
-
-}
-
-
-function openAppMenu() {
-
-  openAppPanel();
-
-
-  document
-    .getElementById(
-      "panelTitle"
-    )
-    .textContent =
-      "Soulaani";
-
-
-  document
-    .getElementById(
-      "panelContent"
-    )
-    .innerHTML = `
-
-      <div style="
-        display:grid;
-        gap:10px;
-      ">
-
-        <button
-          class="btn"
-          onclick="location.href='#home';closeAppPanel()">
-          ⌂ Home
-        </button>
-
-        <button
-          class="btn"
-          onclick="openProfilePanel()">
-          ♙ Profile
-        </button>
-
-        <button
-          class="btn"
-          onclick="location.href='#connect';closeAppPanel()">
-          ♧ Connect
-        </button>
-
-        <button
-          class="btn"
-          onclick="location.href='#date';closeAppPanel()">
-          ♡ Date
-        </button>
-
-        <button
-          class="btn"
-          onclick="location.href='#build';closeAppPanel()">
-          ▣ Build
-        </button>
-
-        <button
-          class="btn"
-          onclick="location.href='#market';closeAppPanel()">
-          ♧ Market
-        </button>
-
-        <button
-          class="btn"
-          onclick="location.href='#explore';closeAppPanel()">
-          ⌖ Explore
-        </button>
-
-        <button
-          class="btn"
-          onclick="location.href='#culture';closeAppPanel()">
-          ♫ Culture
-        </button>
-
-        <button
-          class="btn"
-          onclick="openMessagesPanel()">
-          ✉ Messages
-        </button>
-
-        <button
-          class="btn"
-          onclick="openNotificationsPanel()">
-          🔔 Notifications
-        </button>
-
-      </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   HELPERS
-========================================================= */
-
-
-function scrollToPreview() {
-
-  document
-    .querySelector(
-      ".preview-section"
-    )
-    .scrollIntoView({
-      behavior:"smooth"
-    });
-
-}
-
-
-function escapeHTML(
-  value
-) {
-
-  return String(value)
-    .replace(
-      /&/g,
-      "&amp;"
-    )
-    .replace(
-      /</g,
-      "&lt;"
-    )
-    .replace(
-      />/g,
-      "&gt;"
-    )
-    .replace(
-      /"/g,
-      "&quot;"
-    )
-    .replace(
-      /'/g,
-      "&#039;"
-    );
-
-}
-
-
-/* =========================================================
-   MODAL EVENTS
-========================================================= */
-
-
-document
-  .getElementById(
-    "authModal"
-  )
-  .addEventListener(
-    "click",
-    function(event) {
-
-      if (
-        event.target ===
-        this
-      ) {
-
-        closeModal();
-
-      }
-
-    }
-  );
-
-
-document
-  .getElementById(
-    "appPanel"
-  )
-  .addEventListener(
-    "click",
-    function(event) {
-
-      if (
-        event.target ===
-        this
-      ) {
-
-        closeAppPanel();
-
-      }
-
-    }
-  );
-
-
-document
-  .addEventListener(
+  document.addEventListener(
     "keydown",
-    function(event) {
+    function(event){
 
-      if (
+      if(
         event.key ===
         "Escape"
-      ) {
+      ){
 
-        closeModal();
-
-        closeAppPanel();
+        closeAll();
 
       }
 
@@ -4228,190 +3974,56 @@ document
   );
 
 
-/* =========================================================
-   MOBILE NAV
-========================================================= */
+  /* =========================
+     START APPLICATION
+  ========================= */
+
+  updateAuthButton();
 
 
-document
-  .querySelectorAll(
-    ".mobile-nav-item"
-  )
-  .forEach(
-    item => {
+  window.Soulaani = {
 
-      item.addEventListener(
-        "click",
-        function() {
+    goHome,
 
-          document
-            .querySelectorAll(
-              ".mobile-nav-item"
-            )
-            .forEach(
-              x =>
-                x.classList.remove(
-                  "active"
-                )
-            );
+    openAuth,
 
+    toggleAuth,
 
-          this.classList.add(
-            "active"
-          );
+    logout,
 
-        }
-      );
+    openFeed,
 
-    }
-  );
+    openProfile,
 
+    editProfile,
 
-/* =========================================================
-   NAV ACTIVE STATE
-========================================================= */
+    createPost,
 
+    likePost:toggleLike,
 
-document
-  .querySelectorAll(
-    ".nav-links a"
-  )
-  .forEach(
-    link => {
+    openSearch,
 
-      link.addEventListener(
-        "click",
-        function() {
+    search,
 
-          document
-            .querySelectorAll(
-              ".nav-links a"
-            )
-            .forEach(
-              x =>
-                x.classList.remove(
-                  "active"
-                )
-            );
+    openNotifications,
 
+    openMessages,
 
-          this.classList.add(
-            "active"
-          );
+    openDiscover,
 
-        }
-      );
+    selectLocation,
 
-    }
-  );
+    openFeature,
 
+    openDate,
 
-/* =========================================================
-   GLOBAL SOULAANI API
-========================================================= */
+    closeAll,
 
+    toast
 
-window.Soulaani = {
+  };
 
-  database:
-    getDB,
-
-  currentUser:
-    currentUser,
-
-  auth: {
-
-    signup:
-      signup,
-
-    login:
-      login,
-
-    logout:
-      logout
-
-  },
-
-  profile: {
-
-    update:
-      updateProfile,
-
-    open:
-      openProfilePanel
-
-  },
-
-  posts: {
-
-    create:
-      openPostComposer,
-
-    like:
-      likePost
-
-  },
-
-  social: {
-
-    follow:
-      followUser
-
-  },
-
-  messages: {
-
-    send:
-      sendMessage,
-
-    open:
-      openMessagesPanel
-
-  },
-
-  notifications: {
-
-    open:
-      openNotificationsPanel
-
-  },
-
-  search:
-    searchSoulaani
-
-};
-
-
-/* =========================================================
-   START SOULAANI
-========================================================= */
-
-
-updateUI();
-
-
-console.log(
-  "======================================"
-);
-
-console.log(
-  "SOULAANI PLATFORM INITIALIZED"
-);
-
-console.log(
-  "======================================"
-);
-
-console.log(
-  "Local database:",
-  getDB()
-);
-
-console.log(
-  "Current user:",
-  currentUser()
-);
-
+})();
 </script>
 
 </body>
