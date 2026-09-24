@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Soulaani</title>
 
 <style>
+
 *{
 box-sizing:border-box;
 margin:0;
@@ -19,11 +21,10 @@ padding:0;
 --border:#292929;
 --text:#fff;
 --muted:#999;
---soft:#707070;
 --accent:#9b5cff;
 --accent2:#c78cff;
---green:#35d07f;
 --danger:#ff5c70;
+--green:#35d07f;
 }
 
 body{
@@ -33,7 +34,10 @@ font-family:Arial,Helvetica,sans-serif;
 min-height:100vh;
 }
 
-button,input,textarea,select{
+button,
+input,
+textarea,
+select{
 font:inherit;
 }
 
@@ -45,7 +49,9 @@ cursor:pointer;
 min-height:100vh;
 }
 
-/* HEADER */
+/* =========================
+HEADER
+========================= */
 
 .header{
 height:68px;
@@ -97,13 +103,26 @@ border:1px solid var(--border);
 background:#151515;
 color:white;
 border-radius:50%;
+position:relative;
 }
 
 .icon-btn:hover{
 border-color:var(--accent);
 }
 
-/* LAYOUT */
+.notification-dot{
+position:absolute;
+right:1px;
+top:1px;
+width:9px;
+height:9px;
+border-radius:50%;
+background:var(--danger);
+}
+
+/* =========================
+LAYOUT
+========================= */
 
 .main{
 display:grid;
@@ -112,7 +131,9 @@ max-width:1450px;
 margin:auto;
 }
 
-/* SIDEBAR */
+/* =========================
+SIDEBAR
+========================= */
 
 .sidebar{
 border-right:1px solid var(--border);
@@ -153,6 +174,19 @@ width:22px;
 text-align:center;
 }
 
+.nav-badge{
+margin-left:auto;
+background:var(--accent);
+color:white;
+font-size:11px;
+min-width:20px;
+height:20px;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
 .create-btn{
 margin-top:18px;
 width:100%;
@@ -164,7 +198,9 @@ font-weight:700;
 background:linear-gradient(135deg,var(--accent),#7138d4);
 }
 
-/* CONTENT */
+/* =========================
+CONTENT
+========================= */
 
 .content{
 padding:28px;
@@ -189,7 +225,31 @@ color:var(--muted);
 margin-bottom:25px;
 }
 
-/* PROFILE */
+/* =========================
+BUTTONS
+========================= */
+
+.btn{
+border:1px solid var(--border);
+background:#1b1b1b;
+color:white;
+padding:10px 17px;
+border-radius:10px;
+font-weight:700;
+}
+
+.btn:hover{
+border-color:var(--accent);
+}
+
+.btn.primary{
+background:var(--accent);
+border-color:var(--accent);
+}
+
+/* =========================
+PROFILE
+========================= */
 
 .profile-card{
 background:var(--card);
@@ -208,7 +268,6 @@ linear-gradient(135deg,#171717,#2b183e);
 
 .profile-main{
 padding:0 25px 25px;
-position:relative;
 }
 
 .avatar{
@@ -222,7 +281,6 @@ align-items:center;
 justify-content:center;
 font-size:38px;
 font-weight:800;
-position:relative;
 margin-top:-53px;
 }
 
@@ -235,24 +293,6 @@ align-items:flex-end;
 .profile-actions{
 display:flex;
 gap:8px;
-}
-
-.btn{
-border:1px solid var(--border);
-background:#1b1b1b;
-color:white;
-padding:10px 17px;
-border-radius:10px;
-font-weight:700;
-}
-
-.btn:hover{
-border-color:var(--accent);
-}
-
-.btn.primary{
-background:var(--accent);
-border-color:var(--accent);
 }
 
 .profile-name{
@@ -292,7 +332,9 @@ color:var(--muted);
 font-size:13px;
 }
 
-/* COMPOSER */
+/* =========================
+COMPOSER
+========================= */
 
 .composer{
 background:var(--card);
@@ -340,7 +382,9 @@ justify-content:flex-end;
 margin-top:12px;
 }
 
-/* POSTS */
+/* =========================
+POSTS
+========================= */
 
 .post{
 background:var(--card);
@@ -396,7 +440,9 @@ color:white;
 color:var(--danger);
 }
 
-/* DISCOVER */
+/* =========================
+DISCOVER
+========================= */
 
 .location-banner{
 background:
@@ -454,7 +500,9 @@ color:var(--muted);
 line-height:1.4;
 }
 
-/* CONNECT */
+/* =========================
+CONNECT
+========================= */
 
 .user-card{
 background:var(--card);
@@ -485,7 +533,9 @@ padding:8px 13px;
 font-size:13px;
 }
 
-/* COMMUNITIES */
+/* =========================
+COMMUNITIES
+========================= */
 
 .community-grid{
 display:grid;
@@ -511,43 +561,205 @@ margin:8px 0 16px;
 line-height:1.4;
 }
 
-/* RIGHT */
+/* =========================
+MESSAGES
+========================= */
 
-.rightbar{
-border-left:1px solid var(--border);
-min-height:calc(100vh - 68px);
-padding:25px 18px;
+.messages-layout{
+display:grid;
+grid-template-columns:280px minmax(0,1fr);
+height:650px;
+background:var(--card);
+border:1px solid var(--border);
+border-radius:18px;
+overflow:hidden;
 }
 
-.side-box{
+.conversations{
+border-right:1px solid var(--border);
+overflow-y:auto;
+}
+
+.conversations-header{
+padding:18px;
+border-bottom:1px solid var(--border);
+}
+
+.conversation{
+display:flex;
+align-items:center;
+gap:11px;
+padding:14px;
+border-bottom:1px solid #202020;
+cursor:pointer;
+}
+
+.conversation:hover,
+.conversation.active{
+background:#1c1c1c;
+}
+
+.conversation-info{
+flex:1;
+min-width:0;
+}
+
+.conversation-info strong{
+display:block;
+}
+
+.conversation-info span{
+display:block;
+color:var(--muted);
+font-size:12px;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+margin-top:4px;
+}
+
+.unread-count{
+background:var(--accent);
+border-radius:50%;
+width:19px;
+height:19px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:10px;
+}
+
+.chat{
+display:flex;
+flex-direction:column;
+min-width:0;
+}
+
+.chat-header{
+padding:15px 18px;
+border-bottom:1px solid var(--border);
+display:flex;
+align-items:center;
+gap:11px;
+}
+
+.chat-header-info strong{
+display:block;
+}
+
+.chat-header-info span{
+font-size:12px;
+color:var(--green);
+}
+
+.chat-messages{
+flex:1;
+padding:20px;
+overflow-y:auto;
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.message{
+max-width:70%;
+padding:11px 14px;
+border-radius:16px;
+line-height:1.4;
+}
+
+.message.received{
+background:#242424;
+align-self:flex-start;
+border-bottom-left-radius:5px;
+}
+
+.message.sent{
+background:var(--accent);
+align-self:flex-end;
+border-bottom-right-radius:5px;
+}
+
+.message-time{
+font-size:10px;
+opacity:.55;
+margin-top:5px;
+}
+
+.chat-input{
+border-top:1px solid var(--border);
+padding:12px;
+display:flex;
+gap:8px;
+}
+
+.chat-input input{
+flex:1;
+background:#0e0e0e;
+border:1px solid var(--border);
+border-radius:12px;
+color:white;
+padding:12px;
+outline:none;
+}
+
+.chat-input button{
+width:45px;
+border:none;
+border-radius:12px;
+background:var(--accent);
+color:white;
+}
+
+/* =========================
+NOTIFICATIONS
+========================= */
+
+.notification-list{
 background:var(--card);
 border:1px solid var(--border);
 border-radius:16px;
-padding:17px;
-margin-bottom:15px;
+overflow:hidden;
 }
 
-.side-box h3{
-margin-bottom:15px;
+.notification{
+display:flex;
+align-items:center;
+gap:13px;
+padding:16px;
+border-bottom:1px solid var(--border);
 }
 
-.trending-item{
-padding:11px 0;
-border-bottom:1px solid #252525;
-}
-
-.trending-item:last-child{
+.notification:last-child{
 border-bottom:none;
 }
 
-.trending-item span{
+.notification.unread{
+background:#18121f;
+}
+
+.notification-text{
+flex:1;
+line-height:1.4;
+}
+
+.notification-text span{
 color:var(--muted);
 display:block;
 font-size:12px;
-margin-bottom:4px;
+margin-top:4px;
 }
 
-/* SETTINGS */
+.notification-dot-large{
+width:9px;
+height:9px;
+background:var(--accent);
+border-radius:50%;
+}
+
+/* =========================
+SETTINGS
+========================= */
 
 .settings-card{
 background:var(--card);
@@ -593,7 +805,9 @@ border-radius:9px;
 padding:9px;
 }
 
-/* MODAL */
+/* =========================
+MODALS
+========================= */
 
 .modal{
 display:none;
@@ -651,7 +865,9 @@ justify-content:flex-end;
 margin-top:13px;
 }
 
-/* TOAST */
+/* =========================
+TOAST
+========================= */
 
 .toast{
 position:fixed;
@@ -674,7 +890,9 @@ opacity:1;
 transform:translateX(-50%) translateY(0);
 }
 
-/* MOBILE */
+/* =========================
+MOBILE
+========================= */
 
 .mobile-nav{
 display:none;
@@ -772,18 +990,53 @@ gap:18px;
 font-size:24px;
 }
 
+.messages-layout{
+grid-template-columns:1fr;
+height:650px;
+}
+
+.conversations{
+display:none;
+}
+
+.chat{
+display:flex;
+}
+
 .setting{
 align-items:flex-start;
 flex-direction:column;
 }
 
+.message{
+max-width:85%;
 }
+
+}
+
+/* =========================
+EMPTY STATE
+========================= */
+
+.empty{
+padding:50px 20px;
+text-align:center;
+color:var(--muted);
+}
+
+.empty-icon{
+font-size:40px;
+margin-bottom:12px;
+}
+
 </style>
 </head>
 
 <body>
 
 <div class="app">
+
+<!-- HEADER -->
 
 <header class="header">
 
@@ -799,11 +1052,26 @@ placeholder="Search Soulaani..."
 
 <div class="header-actions">
 
-<button class="icon-btn" onclick="showNotification()">♡</button>
+<button
+class="icon-btn"
+onclick="openPage('notifications')"
+id="notificationButton"
+>
+♡
+</button>
 
-<button class="icon-btn" onclick="showMessage()">✉</button>
+<button
+class="icon-btn"
+onclick="openPage('messages')"
+id="messageButton"
+>
+✉
+</button>
 
-<button class="icon-btn" onclick="openPage('profile')">
+<button
+class="icon-btn"
+onclick="openPage('profile')"
+>
 S
 </button>
 
@@ -814,60 +1082,125 @@ S
 
 <div class="main">
 
+<!-- SIDEBAR -->
+
 <aside class="sidebar">
 
-<button class="nav-item active" onclick="openPage('home',this)">
+<button
+class="nav-item active"
+onclick="openPage('home',this)"
+>
 <span class="nav-icon">⌂</span>
 Home
 </button>
 
-<button class="nav-item" onclick="openPage('discover',this)">
+<button
+class="nav-item"
+onclick="openPage('discover',this)"
+>
 <span class="nav-icon">◉</span>
 Discover
 </button>
 
-<button class="nav-item" onclick="openPage('connect',this)">
+<button
+class="nav-item"
+onclick="openPage('connect',this)"
+>
 <span class="nav-icon">♧</span>
 Connect
 </button>
 
-<button class="nav-item" onclick="openPage('communities',this)">
+<button
+class="nav-item"
+onclick="openPage('communities',this)"
+>
 <span class="nav-icon">♟</span>
 Communities
 </button>
 
-<button class="nav-item" onclick="openPage('profile',this)">
+<button
+class="nav-item"
+onclick="openPage('messages',this)"
+>
+<span class="nav-icon">✉</span>
+Messages
+<span
+class="nav-badge"
+id="messageBadge"
+style="display:none;"
+>
+0
+</span>
+</button>
+
+<button
+class="nav-item"
+onclick="openPage('notifications',this)"
+>
+<span class="nav-icon">♡</span>
+Notifications
+<span
+class="nav-badge"
+id="notificationBadge"
+style="display:none;"
+>
+0
+</span>
+</button>
+
+<button
+class="nav-item"
+onclick="openPage('profile',this)"
+>
 <span class="nav-icon">◎</span>
 Profile
 </button>
 
-<button class="nav-item" onclick="showComingSoon('Date')">
+<button
+class="nav-item"
+onclick="showComingSoon('Date')"
+>
 <span class="nav-icon">♡</span>
 Date
 </button>
 
-<button class="nav-item" onclick="showComingSoon('Build')">
+<button
+class="nav-item"
+onclick="showComingSoon('Build')"
+>
 <span class="nav-icon">✦</span>
 Build
 </button>
 
-<button class="nav-item" onclick="openPage('settings',this)">
+<button
+class="nav-item"
+onclick="openPage('settings',this)"
+>
 <span class="nav-icon">⚙</span>
 Settings
 </button>
 
-<button class="create-btn" onclick="openPostModal()">
+<button
+class="create-btn"
+onclick="openPostModal()"
+>
 + Create
 </button>
 
 </aside>
 
 
+<!-- CONTENT -->
+
 <main class="content">
+
 
 <!-- HOME -->
 
-<section class="page active" id="home">
+<section
+class="page active"
+id="home"
+>
 
 <h1 class="page-title">
 Home
@@ -881,7 +1214,10 @@ Your community. Your culture. Your world.
 
 <div class="composer-row">
 
-<div class="mini-avatar" id="composerAvatar">
+<div
+class="mini-avatar"
+id="composerAvatar"
+>
 S
 </div>
 
@@ -896,7 +1232,10 @@ placeholder="What's happening in your world?"
 
 <div class="composer-bottom">
 
-<button class="btn primary" onclick="createPost()">
+<button
+class="btn primary"
+onclick="createPost()"
+>
 Post
 </button>
 
@@ -911,7 +1250,10 @@ Post
 
 <!-- DISCOVER -->
 
-<section class="page" id="discover">
+<section
+class="page"
+id="discover"
+>
 
 <h1 class="page-title">
 Discover
@@ -947,43 +1289,54 @@ onchange="changeLocation(this.value)"
 
 </div>
 
-
 <div class="discovery-grid">
 
 <div class="discovery-card">
 <div class="emoji">👥</div>
 <h3>People</h3>
-<p>Discover people in your area and connect with new members of the community.</p>
+<p>
+Discover people in your area and connect with new members of the community.
+</p>
 </div>
 
 <div class="discovery-card">
 <div class="emoji">🏪</div>
 <h3>Black-Owned Businesses</h3>
-<p>Explore restaurants, shops, services and businesses in your local area.</p>
+<p>
+Explore restaurants, shops, services and businesses in your local area.
+</p>
 </div>
 
 <div class="discovery-card">
 <div class="emoji">🎵</div>
 <h3>Music</h3>
-<p>Discover local artists, DJs, producers and the sounds coming from your city.</p>
+<p>
+Discover local artists, DJs, producers and the sounds coming from your city.
+</p>
 </div>
 
 <div class="discovery-card">
 <div class="emoji">🎉</div>
 <h3>Events</h3>
-<p>Find community events, nightlife, festivals, meetups and more.</p>
+<p>
+Find community events, nightlife, festivals, meetups and more.
+</p>
 </div>
 
 <div class="discovery-card">
 <div class="emoji">🍽️</div>
 <h3>Food</h3>
-<p>Find local food spots and cultural food experiences.</p>
+<p>
+Find local food spots and cultural food experiences.
+</p>
 </div>
 
 <div class="discovery-card">
 <div class="emoji">🔥</div>
 <h3>Trending</h3>
-<p>See what people around the community are talking about right now.</p>
+<p>
+See what people around the community are talking about right now.
+</p>
 </div>
 
 </div>
@@ -993,7 +1346,10 @@ onchange="changeLocation(this.value)"
 
 <!-- CONNECT -->
 
-<section class="page" id="connect">
+<section
+class="page"
+id="connect"
+>
 
 <h1 class="page-title">
 Connect
@@ -1010,7 +1366,10 @@ Find people and build your network.
 
 <!-- COMMUNITIES -->
 
-<section class="page" id="communities">
+<section
+class="page"
+id="communities"
+>
 
 <h1 class="page-title">
 Communities
@@ -1020,14 +1379,131 @@ Communities
 Find your people around the things you care about.
 </p>
 
-<div class="community-grid" id="communityList"></div>
+<div
+class="community-grid"
+id="communityList"
+></div>
+
+</section>
+
+
+<!-- MESSAGES -->
+
+<section
+class="page"
+id="messages"
+>
+
+<h1 class="page-title">
+Messages
+</h1>
+
+<p class="page-subtitle">
+Talk to your people.
+</p>
+
+<div class="messages-layout">
+
+<div class="conversations">
+
+<div class="conversations-header">
+
+<strong>
+Messages
+</strong>
+
+</div>
+
+<div id="conversationList"></div>
+
+</div>
+
+
+<div class="chat">
+
+<div class="chat-header">
+
+<div
+class="mini-avatar"
+id="chatAvatar"
+>
+J
+</div>
+
+<div class="chat-header-info">
+
+<strong id="chatName">
+Jordan Williams
+</strong>
+
+<span>
+● Online
+</span>
+
+</div>
+
+</div>
+
+
+<div
+class="chat-messages"
+id="chatMessages"
+>
+</div>
+
+
+<div class="chat-input">
+
+<input
+id="messageInput"
+placeholder="Write a message..."
+onkeydown="handleMessageKey(event)"
+>
+
+<button
+onclick="sendMessage()"
+>
+➤
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- NOTIFICATIONS -->
+
+<section
+class="page"
+id="notifications"
+>
+
+<h1 class="page-title">
+Notifications
+</h1>
+
+<p class="page-subtitle">
+Stay up to date with what's happening around you.
+</p>
+
+<div
+class="notification-list"
+id="notificationList"
+></div>
 
 </section>
 
 
 <!-- PROFILE -->
 
-<section class="page" id="profile">
+<section
+class="page"
+id="profile"
+>
 
 <h1 class="page-title">
 Profile
@@ -1045,17 +1521,26 @@ Your Soulaani identity.
 
 <div class="profile-top">
 
-<div class="avatar" id="profileAvatar">
+<div
+class="avatar"
+id="profileAvatar"
+>
 S
 </div>
 
 <div class="profile-actions">
 
-<button class="btn" onclick="editProfile()">
+<button
+class="btn"
+onclick="editProfile()"
+>
 Edit Profile
 </button>
 
-<button class="btn" onclick="shareProfile()">
+<button
+class="btn"
+onclick="shareProfile()"
+>
 Share
 </button>
 
@@ -1063,36 +1548,54 @@ Share
 
 </div>
 
-<h2 class="profile-name" id="profileName">
+<h2
+class="profile-name"
+id="profileName"
+>
 Soulaani User
 </h2>
 
-<div class="username" id="profileUsername">
+<div
+class="username"
+id="profileUsername"
+>
 @soulaaniuser
 </div>
 
-<div class="bio" id="profileBio">
+<div
+class="bio"
+id="profileBio"
+>
 Building connections, discovering culture and finding community on Soulaani.
 </div>
 
-<div class="profile-location" id="profileLocation">
+<div
+class="profile-location"
+id="profileLocation"
+>
 📍 Harrisburg, Pennsylvania
 </div>
 
 <div class="stats">
 
 <div class="stat">
-<strong id="followerCount">128</strong>
+<strong id="followerCount">
+128
+</strong>
 <span>Followers</span>
 </div>
 
 <div class="stat">
-<strong id="followingCount">214</strong>
+<strong id="followingCount">
+0
+</strong>
 <span>Following</span>
 </div>
 
 <div class="stat">
-<strong id="postCount">0</strong>
+<strong id="postCount">
+0
+</strong>
 <span>Posts</span>
 </div>
 
@@ -1107,7 +1610,10 @@ Building connections, discovering culture and finding community on Soulaani.
 
 <!-- SETTINGS -->
 
-<section class="page" id="settings">
+<section
+class="page"
+id="settings"
+>
 
 <h1 class="page-title">
 Settings
@@ -1123,7 +1629,9 @@ Control your Soulaani experience.
 
 <div class="setting-info">
 
-<strong>Display Name</strong>
+<strong>
+Display Name
+</strong>
 
 <span>
 The name people see on your profile.
@@ -1144,7 +1652,9 @@ onchange="saveProfileSetting()"
 
 <div class="setting-info">
 
-<strong>Username</strong>
+<strong>
+Username
+</strong>
 
 <span>
 Your unique Soulaani username.
@@ -1165,7 +1675,9 @@ onchange="saveProfileSetting()"
 
 <div class="setting-info">
 
-<strong>Location</strong>
+<strong>
+Location
+</strong>
 
 <span>
 Used to personalize Discover.
@@ -1190,23 +1702,6 @@ onchange="saveProfileSetting()"
 
 </div>
 
-
-<div class="setting">
-
-<div class="setting-info">
-
-<strong>Dark Mode</strong>
-
-<span>
-Soulaani currently uses the dark experience.
-</span>
-
-</div>
-
-<input type="checkbox" checked disabled>
-
-</div>
-
 </div>
 
 </section>
@@ -1214,11 +1709,15 @@ Soulaani currently uses the dark experience.
 </main>
 
 
+<!-- RIGHT SIDEBAR -->
+
 <aside class="rightbar">
 
 <div class="side-box">
 
-<h3>Trending on Soulaani</h3>
+<h3>
+Trending on Soulaani
+</h3>
 
 <div class="trending-item">
 <span>Trending</span>
@@ -1245,7 +1744,9 @@ What's happening in your city
 
 <div class="side-box">
 
-<h3>Who to follow</h3>
+<h3>
+Who to follow
+</h3>
 
 <div class="trending-item">
 <strong>Marcus Reed</strong>
@@ -1267,7 +1768,9 @@ What's happening in your city
 
 <div class="side-box">
 
-<h3>Soulaani</h3>
+<h3>
+Soulaani
+</h3>
 
 <p style="color:#999;line-height:1.5;">
 A digital home for community, culture, connection and opportunity.
@@ -1280,25 +1783,38 @@ A digital home for community, culture, connection and opportunity.
 </div>
 
 
+<!-- MOBILE NAV -->
+
 <nav class="mobile-nav">
 
-<button class="active" onclick="openPage('home',this)">
+<button
+class="active"
+onclick="openPage('home',this)"
+>
 ⌂
 </button>
 
-<button onclick="openPage('discover',this)">
+<button
+onclick="openPage('discover',this)"
+>
 ◉
 </button>
 
-<button onclick="openPage('connect',this)">
+<button
+onclick="openPage('connect',this)"
+>
 ♧
 </button>
 
-<button onclick="openPage('communities',this)">
-♟
+<button
+onclick="openPage('messages',this)"
+>
+✉
 </button>
 
-<button onclick="openPage('profile',this)">
+<button
+onclick="openPage('profile',this)"
+>
 ◎
 </button>
 
@@ -1307,15 +1823,23 @@ A digital home for community, culture, connection and opportunity.
 
 <!-- POST MODAL -->
 
-<div class="modal" id="postModal">
+<div
+class="modal"
+id="postModal"
+>
 
 <div class="modal-box">
 
 <div class="modal-header">
 
-<h2>Create Post</h2>
+<h2>
+Create Post
+</h2>
 
-<button class="close" onclick="closePostModal()">
+<button
+class="close"
+onclick="closePostModal()"
+>
 ×
 </button>
 
@@ -1328,7 +1852,10 @@ placeholder="What's on your mind?"
 
 <div class="modal-footer">
 
-<button class="btn primary" onclick="createModalPost()">
+<button
+class="btn primary"
+onclick="createModalPost()"
+>
 Post
 </button>
 
@@ -1341,15 +1868,23 @@ Post
 
 <!-- PROFILE MODAL -->
 
-<div class="modal" id="profileModal">
+<div
+class="modal"
+id="profileModal"
+>
 
 <div class="modal-box">
 
 <div class="modal-header">
 
-<h2>Edit Profile</h2>
+<h2>
+Edit Profile
+</h2>
 
-<button class="close" onclick="closeProfileModal()">
+<button
+class="close"
+onclick="closeProfileModal()"
+>
 ×
 </button>
 
@@ -1374,7 +1909,10 @@ placeholder="Tell people about yourself..."
 
 <div class="modal-footer">
 
-<button class="btn primary" onclick="saveProfile()">
+<button
+class="btn primary"
+onclick="saveProfile()"
+>
 Save Profile
 </button>
 
@@ -1385,7 +1923,10 @@ Save Profile
 </div>
 
 
-<div class="toast" id="toast">
+<div
+class="toast"
+id="toast"
+>
 Saved
 </div>
 
@@ -1395,10 +1936,10 @@ Saved
 <script>
 
 /* =====================================
-   DATA
+DATA
 ===================================== */
 
-const defaultData = {
+const defaultData={
 
 profile:{
 name:"Soulaani User",
@@ -1415,36 +1956,118 @@ communities:[],
 
 location:"Harrisburg, PA",
 
-followers:128
+followers:128,
+
+messages:{
+jordan:[
+{
+from:"jordan",
+text:"Yo! Welcome to Soulaani 👋",
+sent:false
+},
+{
+from:"me",
+text:"Appreciate you!",
+sent:true
+}
+],
+maya:[
+{
+from:"maya",
+text:"Have you checked out Discover yet?",
+sent:false
+}
+],
+marcus:[
+{
+from:"marcus",
+text:"We should connect sometime.",
+sent:false
+}
+]
+},
+
+notifications:[
+
+{
+id:1,
+text:"Jordan Williams liked your post.",
+time:"2 hours ago",
+read:false
+},
+
+{
+id:2,
+text:"Maya Carter started following you.",
+time:"5 hours ago",
+read:false
+},
+
+{
+id:3,
+text:"Your profile was viewed 12 times.",
+time:"Yesterday",
+read:true
+}
+
+]
 
 };
 
 
-let data = loadData();
+let data=loadData();
 
+let currentConversation="jordan";
+
+
+/* =====================================
+STORAGE
+===================================== */
 
 function loadData(){
 
-const saved = localStorage.getItem("soulaaniData");
+const saved=
+localStorage.getItem("soulaaniData");
 
 if(saved){
 
 try{
 
-return {
-...defaultData,
-...JSON.parse(saved)
-};
+const parsed=JSON.parse(saved);
+
+return mergeData(defaultData,parsed);
 
 }catch(error){
 
-return defaultData;
+return JSON.parse(JSON.stringify(defaultData));
 
 }
 
 }
 
-return defaultData;
+return JSON.parse(JSON.stringify(defaultData));
+
+}
+
+
+function mergeData(base,saved){
+
+return{
+
+...base,
+...saved,
+
+profile:{
+...base.profile,
+...(saved.profile||{})
+},
+
+messages:{
+...base.messages,
+...(saved.messages||{})
+}
+
+};
 
 }
 
@@ -1460,15 +2083,15 @@ JSON.stringify(data)
 
 
 /* =====================================
-   TOAST
+TOAST
 ===================================== */
 
 function toast(message){
 
-const element =
+const element=
 document.getElementById("toast");
 
-element.textContent = message;
+element.textContent=message;
 
 element.classList.add("show");
 
@@ -1480,7 +2103,7 @@ element.classList.remove("show");
 
 
 /* =====================================
-   NAVIGATION
+NAVIGATION
 ===================================== */
 
 function openPage(pageId,clickedButton){
@@ -1490,11 +2113,13 @@ document.querySelectorAll(".page")
 page.classList.remove("active");
 });
 
-const page =
+const page=
 document.getElementById(pageId);
 
 if(page){
+
 page.classList.add("active");
+
 }
 
 document.querySelectorAll(".nav-item")
@@ -1503,7 +2128,27 @@ item.classList.remove("active");
 });
 
 if(clickedButton){
+
 clickedButton.classList.add("active");
+
+}
+
+if(pageId==="messages"){
+
+renderConversations();
+
+renderChat();
+
+clearMessageNotifications();
+
+}
+
+if(pageId==="notifications"){
+
+renderNotifications();
+
+markNotificationsRead();
+
 }
 
 window.scrollTo({
@@ -1515,20 +2160,23 @@ behavior:"smooth"
 
 
 /* =====================================
-   POSTS
+POSTS
 ===================================== */
 
 function createPost(){
 
-const input =
+const input=
 document.getElementById("homePostInput");
 
-const text =
+const text=
 input.value.trim();
 
 if(!text){
+
 toast("Write something first.");
+
 return;
+
 }
 
 addPost(text);
@@ -1542,15 +2190,18 @@ toast("Post published.");
 
 function createModalPost(){
 
-const input =
+const input=
 document.getElementById("modalPostInput");
 
-const text =
+const text=
 input.value.trim();
 
 if(!text){
+
 toast("Write something first.");
+
 return;
+
 }
 
 addPost(text);
@@ -1568,7 +2219,7 @@ toast("Post published.");
 
 function addPost(text){
 
-const post = {
+data.posts.unshift({
 
 id:Date.now(),
 
@@ -1578,9 +2229,7 @@ liked:false,
 
 createdAt:new Date().toISOString()
 
-};
-
-data.posts.unshift(post);
+});
 
 saveData();
 
@@ -1593,13 +2242,13 @@ updateStats();
 
 function renderPosts(){
 
-const feed =
+const feed=
 document.getElementById("feed");
 
 feed.innerHTML="";
 
 
-const demoPosts = [
+const demoPosts=[
 
 {
 name:"Jordan Williams",
@@ -1627,7 +2276,7 @@ text:"New music dropping soon. Tap in if you're into independent artists and pro
 
 demoPosts.forEach((post,index)=>{
 
-feed.innerHTML += createPostHTML(
+feed.innerHTML+=createPostHTML(
 post.text,
 post.name,
 post.username,
@@ -1640,7 +2289,7 @@ post.time,
 
 data.posts.forEach(post=>{
 
-feed.innerHTML += createPostHTML(
+feed.innerHTML+=createPostHTML(
 post.text,
 data.profile.name,
 data.profile.username,
@@ -1661,7 +2310,7 @@ time,
 id
 ){
 
-return `
+return`
 
 <article class="post">
 
@@ -1669,7 +2318,7 @@ return `
 
 <div class="mini-avatar">
 ${escapeHTML(
-(name || "S").charAt(0).toUpperCase()
+(name||"S").charAt(0).toUpperCase()
 )}
 </div>
 
@@ -1731,6 +2380,10 @@ if(button.classList.contains("liked")){
 
 button.innerHTML="♥ Liked";
 
+addNotification(
+"Someone liked your post."
+);
+
 }else{
 
 button.innerHTML="♡ Like";
@@ -1741,10 +2394,10 @@ button.innerHTML="♡ Like";
 
 
 /* =====================================
-   FOLLOWING
+PEOPLE
 ===================================== */
 
-const people = [
+const people=[
 
 {
 id:"alex",
@@ -1779,18 +2432,17 @@ detail:"Fashion & Beauty"
 
 function renderPeople(){
 
-const container =
+const container=
 document.getElementById("peopleList");
 
 container.innerHTML="";
 
-
 people.forEach(person=>{
 
-const following =
+const following=
 data.following.includes(person.id);
 
-container.innerHTML += `
+container.innerHTML+=`
 
 <div class="user-card">
 
@@ -1811,11 +2463,11 @@ ${person.name}
 </div>
 
 <button
-class="btn ${following ? "" : "primary"}"
+class="btn ${following?"":"primary"}"
 onclick="toggleFollow('${person.id}',this)"
 >
 
-${following ? "Following" : "Follow"}
+${following?"Following":"Follow"}
 
 </button>
 
@@ -1832,10 +2484,13 @@ function toggleFollow(id,button){
 
 if(data.following.includes(id)){
 
-data.following =
-data.following.filter(item=>item!==id);
+data.following=
+data.following.filter(
+item=>item!==id
+);
 
 button.innerText="Follow";
+
 button.classList.add("primary");
 
 data.followers--;
@@ -1845,9 +2500,14 @@ data.followers--;
 data.following.push(id);
 
 button.innerText="Following";
+
 button.classList.remove("primary");
 
 data.followers++;
+
+addNotification(
+"You started following someone new."
+);
 
 }
 
@@ -1865,10 +2525,10 @@ data.following.includes(id)
 
 
 /* =====================================
-   COMMUNITIES
+COMMUNITIES
 ===================================== */
 
-const communities = [
+const communities=[
 
 {
 id:"music",
@@ -1917,18 +2577,17 @@ description:"Conversations about culture, history and community."
 
 function renderCommunities(){
 
-const container =
+const container=
 document.getElementById("communityList");
 
 container.innerHTML="";
 
-
 communities.forEach(community=>{
 
-const joined =
+const joined=
 data.communities.includes(community.id);
 
-container.innerHTML += `
+container.innerHTML+=`
 
 <div class="community">
 
@@ -1945,11 +2604,11 @@ ${community.description}
 </p>
 
 <button
-class="btn ${joined ? "" : "primary"}"
+class="btn ${joined?"":"primary"}"
 onclick="toggleCommunity('${community.id}',this)"
 >
 
-${joined ? "Joined" : "Join"}
+${joined?"Joined":"Join"}
 
 </button>
 
@@ -1966,10 +2625,13 @@ function toggleCommunity(id,button){
 
 if(data.communities.includes(id)){
 
-data.communities =
-data.communities.filter(item=>item!==id);
+data.communities=
+data.communities.filter(
+item=>item!==id
+);
 
 button.innerText="Join";
+
 button.classList.add("primary");
 
 toast("Left community.");
@@ -1979,7 +2641,12 @@ toast("Left community.");
 data.communities.push(id);
 
 button.innerText="Joined";
+
 button.classList.remove("primary");
+
+addNotification(
+"You joined a new community."
+);
 
 toast("Joined community.");
 
@@ -1991,7 +2658,375 @@ saveData();
 
 
 /* =====================================
-   PROFILE
+MESSAGES
+===================================== */
+
+const conversationPeople={
+
+jordan:{
+name:"Jordan Williams",
+username:"jordanw"
+},
+
+maya:{
+name:"Maya Carter",
+username:"mayacarter"
+},
+
+marcus:{
+name:"Marcus Reed",
+username:"marcusreed"
+}
+
+};
+
+
+function renderConversations(){
+
+const container=
+document.getElementById("conversationList");
+
+container.innerHTML="";
+
+Object.keys(conversationPeople)
+.forEach(id=>{
+
+const person=
+conversationPeople[id];
+
+const messages=
+data.messages[id]||[];
+
+const last=
+messages.length
+?messages[messages.length-1].text
+:"Start a conversation";
+
+container.innerHTML+=`
+
+<div
+class="conversation ${currentConversation===id?"active":""}"
+onclick="selectConversation('${id}')"
+>
+
+<div class="mini-avatar">
+${person.name.charAt(0)}
+</div>
+
+<div class="conversation-info">
+
+<strong>
+${person.name}
+</strong>
+
+<span>
+${escapeHTML(last)}
+</span>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+function selectConversation(id){
+
+currentConversation=id;
+
+renderConversations();
+
+renderChat();
+
+clearMessageNotifications();
+
+}
+
+
+function renderChat(){
+
+const person=
+conversationPeople[currentConversation];
+
+if(!person){
+return;
+}
+
+document.getElementById("chatName")
+.textContent=person.name;
+
+document.getElementById("chatAvatar")
+.textContent=
+person.name.charAt(0);
+
+const container=
+document.getElementById("chatMessages");
+
+container.innerHTML="";
+
+const messages=
+data.messages[currentConversation]||[];
+
+if(!messages.length){
+
+container.innerHTML=`
+
+<div class="empty">
+
+<div class="empty-icon">
+💬
+</div>
+
+No messages yet.
+
+</div>
+
+`;
+
+return;
+
+}
+
+messages.forEach(message=>{
+
+const div=
+document.createElement("div");
+
+div.className=
+"message "+
+(message.sent?"sent":"received");
+
+div.innerHTML=`
+
+<div>
+${escapeHTML(message.text)}
+</div>
+
+<div class="message-time">
+${message.sent?"You":"Them"} • just now
+</div>
+
+`;
+
+container.appendChild(div);
+
+});
+
+container.scrollTop=
+container.scrollHeight;
+
+}
+
+
+function sendMessage(){
+
+const input=
+document.getElementById("messageInput");
+
+const text=
+input.value.trim();
+
+if(!text){
+
+return;
+
+}
+
+if(!data.messages[currentConversation]){
+
+data.messages[currentConversation]=[];
+
+}
+
+data.messages[currentConversation].push({
+
+from:"me",
+
+text:text,
+
+sent:true
+
+});
+
+saveData();
+
+input.value="";
+
+renderChat();
+
+renderConversations();
+
+}
+
+
+function handleMessageKey(event){
+
+if(event.key==="Enter"){
+
+event.preventDefault();
+
+sendMessage();
+
+}
+
+}
+
+
+/* =====================================
+NOTIFICATIONS
+===================================== */
+
+function addNotification(text){
+
+data.notifications.unshift({
+
+id:Date.now(),
+
+text:text,
+
+time:"just now",
+
+read:false
+
+});
+
+if(data.notifications.length>30){
+
+data.notifications=
+data.notifications.slice(0,30);
+
+}
+
+saveData();
+
+updateBadges();
+
+}
+
+
+function renderNotifications(){
+
+const container=
+document.getElementById("notificationList");
+
+container.innerHTML="";
+
+if(!data.notifications.length){
+
+container.innerHTML=`
+
+<div class="empty">
+
+<div class="empty-icon">
+🔔
+</div>
+
+No notifications yet.
+
+</div>
+
+`;
+
+return;
+
+}
+
+data.notifications.forEach(notification=>{
+
+container.innerHTML+=`
+
+<div
+class="notification ${notification.read?"":"unread"}"
+>
+
+<div class="mini-avatar">
+♡
+</div>
+
+<div class="notification-text">
+
+<strong>
+${escapeHTML(notification.text)}
+</strong>
+
+<span>
+${escapeHTML(notification.time)}
+</span>
+
+</div>
+
+${notification.read?"":"<div class='notification-dot-large'></div>"}
+
+</div>
+
+`;
+
+});
+
+}
+
+
+function markNotificationsRead(){
+
+data.notifications.forEach(
+notification=>{
+notification.read=true;
+}
+);
+
+saveData();
+
+updateBadges();
+
+}
+
+
+function clearMessageNotifications(){
+
+/*
+Message notifications will become
+server-driven when the real backend
+is connected.
+*/
+
+updateBadges();
+
+}
+
+
+/* =====================================
+BADGES
+===================================== */
+
+function updateBadges(){
+
+const unreadNotifications=
+data.notifications.filter(
+item=>!item.read
+).length;
+
+const notificationBadge=
+document.getElementById(
+"notificationBadge"
+);
+
+notificationBadge.textContent=
+unreadNotifications;
+
+notificationBadge.style.display=
+unreadNotifications
+?"flex"
+:"none";
+
+}
+
+
+/* =====================================
+PROFILE
 ===================================== */
 
 function renderProfile(){
@@ -2010,11 +3045,15 @@ document.getElementById("profileLocation")
 
 document.getElementById("profileAvatar")
 .textContent=
-data.profile.name.charAt(0).toUpperCase();
+data.profile.name
+.charAt(0)
+.toUpperCase();
 
 document.getElementById("composerAvatar")
 .textContent=
-data.profile.name.charAt(0).toUpperCase();
+data.profile.name
+.charAt(0)
+.toUpperCase();
 
 document.getElementById("settingsName")
 .value=data.profile.name;
@@ -2044,16 +3083,19 @@ document.getElementById("profileModal")
 
 function saveProfile(){
 
-const name =
-document.getElementById("editName").value.trim();
+const name=
+document.getElementById("editName")
+.value.trim();
 
-const username =
-document.getElementById("editUsername").value.trim();
+const username=
+document.getElementById("editUsername")
+.value.trim();
 
-const bio =
-document.getElementById("editBio").value.trim();
+const bio=
+document.getElementById("editBio")
+.value.trim();
 
-if(!name || !username){
+if(!name||!username){
 
 toast("Name and username are required.");
 
@@ -2067,7 +3109,8 @@ data.profile.username=
 username.replace("@","");
 
 data.profile.bio=
-bio || "Welcome to my Soulaani profile.";
+bio||
+"Welcome to my Soulaani profile.";
 
 saveData();
 
@@ -2082,14 +3125,17 @@ toast("Profile updated.");
 
 function saveProfileSetting(){
 
-const name =
-document.getElementById("settingsName").value.trim();
+const name=
+document.getElementById("settingsName")
+.value.trim();
 
-const username =
-document.getElementById("settingsUsername").value.trim();
+const username=
+document.getElementById("settingsUsername")
+.value.trim();
 
-const location =
-document.getElementById("settingsLocation").value;
+const location=
+document.getElementById("settingsLocation")
+.value;
 
 if(name){
 
@@ -2120,7 +3166,7 @@ toast("Settings saved.");
 
 
 /* =====================================
-   STATS
+STATS
 ===================================== */
 
 function updateStats(){
@@ -2134,11 +3180,13 @@ document.getElementById("followingCount")
 document.getElementById("postCount")
 .textContent=data.posts.length;
 
+updateBadges();
+
 }
 
 
 /* =====================================
-   LOCATION
+LOCATION
 ===================================== */
 
 function changeLocation(location){
@@ -2147,13 +3195,15 @@ data.location=location;
 
 saveData();
 
-toast("Discover location changed to "+location);
+toast(
+"Discover location changed to "+location
+);
 
 }
 
 
 /* =====================================
-   MODALS
+MODALS
 ===================================== */
 
 function openPostModal(){
@@ -2183,14 +3233,21 @@ document.getElementById("profileModal")
 }
 
 
+/* =====================================
+SHARING
+===================================== */
+
 function shareProfile(){
 
 const profileLink=
-window.location.href.split("#")[0]+"#profile";
+window.location.href.split("#")[0]
++"#profile";
 
 if(navigator.clipboard){
 
-navigator.clipboard.writeText(profileLink);
+navigator.clipboard.writeText(
+profileLink
+);
 
 toast("Profile link copied.");
 
@@ -2204,42 +3261,72 @@ toast("Profile link ready to share.");
 
 
 /* =====================================
-   NOTIFICATIONS
-===================================== */
-
-function showNotification(){
-
-toast("No new notifications.");
-
-}
-
-
-function showMessage(){
-
-toast("Messaging will be connected next.");
-
-}
-
-
-function showComingSoon(feature){
-
-toast(feature+" is coming in the next build.");
-
-}
-
-
-/* =====================================
-   SEARCH
+SEARCH
 ===================================== */
 
 document.getElementById("searchInput")
-.addEventListener("keydown",function(event){
+.addEventListener(
+"keydown",
+function(event){
 
-if(event.key==="Enter"){
+if(event.key!=="Enter"){
+return;
+}
 
-const query=this.value.trim();
+const query=
+this.value.trim().toLowerCase();
 
 if(!query){
+return;
+}
+
+if(
+query.includes("message")||
+query.includes("chat")
+){
+
+openPage("messages");
+
+this.value="";
+
+return;
+
+}
+
+if(
+query.includes("profile")||
+query.includes("account")
+){
+
+openPage("profile");
+
+this.value="";
+
+return;
+
+}
+
+if(
+query.includes("community")||
+query.includes("communities")
+){
+
+openPage("communities");
+
+this.value="";
+
+return;
+
+}
+
+if(
+query.includes("discover")||
+query.includes("local")
+){
+
+openPage("discover");
+
+this.value="";
 
 return;
 
@@ -2252,17 +3339,30 @@ query+
 );
 
 }
-
-});
+);
 
 
 /* =====================================
-   ESCAPE
+OTHER
+===================================== */
+
+function showComingSoon(feature){
+
+toast(
+feature+" is coming in the next build."
+);
+
+}
+
+
+/* =====================================
+ESCAPE HTML
 ===================================== */
 
 function escapeHTML(value){
 
-const div=document.createElement("div");
+const div=
+document.createElement("div");
 
 div.textContent=value;
 
@@ -2272,11 +3372,13 @@ return div.innerHTML;
 
 
 /* =====================================
-   MODAL OUTSIDE CLICK
+MODAL OUTSIDE CLICK
 ===================================== */
 
 document.getElementById("postModal")
-.addEventListener("click",function(event){
+.addEventListener(
+"click",
+function(event){
 
 if(event.target===this){
 
@@ -2284,11 +3386,14 @@ closePostModal();
 
 }
 
-});
+}
+);
 
 
 document.getElementById("profileModal")
-.addEventListener("click",function(event){
+.addEventListener(
+"click",
+function(event){
 
 if(event.target===this){
 
@@ -2296,11 +3401,12 @@ closeProfileModal();
 
 }
 
-});
+}
+);
 
 
 /* =====================================
-   INITIALIZE
+INITIALIZE
 ===================================== */
 
 function initialize(){
@@ -2313,6 +3419,12 @@ renderPeople();
 
 renderCommunities();
 
+renderConversations();
+
+renderChat();
+
+renderNotifications();
+
 updateStats();
 
 const savedLocation=
@@ -2320,13 +3432,13 @@ data.location;
 
 if(savedLocation){
 
-document.getElementById("locationSelect")
-.value=savedLocation;
+document.getElementById(
+"locationSelect"
+).value=savedLocation;
 
 }
 
 }
-
 
 initialize();
 
