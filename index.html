@@ -417,6 +417,7 @@ main{
   display:flex;
   gap:8px;
   padding:0 18px 18px;
+  flex-wrap:wrap;
 }
 
 .post-action{
@@ -572,6 +573,12 @@ main{
   border-radius:10px;
   padding:10px;
   font-weight:700;
+}
+
+.follow-btn.following{
+  background:var(--gold);
+  color:#080808;
+  border-color:var(--gold);
 }
 
 /* =========================
@@ -756,8 +763,7 @@ main{
   display:grid;
   place-items:center;
   font-size:48px;
-  background:
-    linear-gradient(145deg,#222,#0b0b0b);
+  background:linear-gradient(145deg,#222,#0b0b0b);
 }
 
 .skate-card-info{
@@ -811,6 +817,12 @@ main{
   background:#191919;
   color:#aaa;
   border:1px solid #2d2d2d;
+}
+
+.date-filter.active{
+  background:var(--gold);
+  color:#080808;
+  border-color:var(--gold);
 }
 
 /* =========================
@@ -868,6 +880,245 @@ main{
 }
 
 /* =========================
+   CONNECT
+========================= */
+
+.community-card{
+  padding:24px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  margin-bottom:18px;
+}
+
+.community-card h3{
+  margin-bottom:8px;
+}
+
+.community-card p{
+  color:#888;
+  line-height:1.5;
+  margin-bottom:16px;
+}
+
+.community-meta{
+  display:flex;
+  gap:15px;
+  color:#666;
+  font-size:12px;
+}
+
+/* =========================
+   EXPLORE
+========================= */
+
+.explore-results{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:17px;
+}
+
+.explore-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:20px;
+}
+
+.explore-icon{
+  font-size:30px;
+  margin-bottom:14px;
+}
+
+.explore-card h3{
+  margin-bottom:7px;
+}
+
+.explore-card p{
+  color:#888;
+  font-size:13px;
+  line-height:1.5;
+}
+
+/* =========================
+   PROFILE
+========================= */
+
+.profile-panel{
+  max-width:900px;
+  margin:auto;
+}
+
+.profile-cover{
+  height:220px;
+  border-radius:22px 22px 0 0;
+  background:
+    radial-gradient(circle at 70% 25%,rgba(214,168,79,.25),transparent 30%),
+    linear-gradient(135deg,#252525,#090909);
+  border:1px solid var(--border);
+}
+
+.profile-main{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-top:0;
+  border-radius:0 0 22px 22px;
+  padding:0 25px 30px;
+}
+
+.profile-avatar{
+  width:105px;
+  height:105px;
+  margin-top:-52px;
+  border-radius:50%;
+  border:4px solid var(--card);
+  background:linear-gradient(135deg,#444,#111);
+  display:grid;
+  place-items:center;
+  color:var(--gold2);
+  font-size:34px;
+  font-weight:900;
+  position:relative;
+}
+
+.profile-name{
+  font-size:28px;
+  margin-top:14px;
+}
+
+.profile-handle{
+  color:#777;
+  margin-top:4px;
+}
+
+.profile-bio{
+  color:#999;
+  line-height:1.6;
+  margin-top:15px;
+}
+
+.profile-stats{
+  display:flex;
+  gap:30px;
+  margin-top:20px;
+}
+
+.profile-stat strong{
+  display:block;
+}
+
+.profile-stat span{
+  color:#777;
+  font-size:12px;
+}
+
+/* =========================
+   NOTIFICATION PANEL
+========================= */
+
+.notification-panel{
+  position:fixed;
+  top:82px;
+  right:25px;
+  width:330px;
+  background:#141414;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:18px;
+  z-index:2500;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+  display:none;
+}
+
+.notification-panel.show{
+  display:block;
+}
+
+.notification-panel h3{
+  margin-bottom:15px;
+}
+
+.notification{
+  padding:13px 0;
+  border-bottom:1px solid #222;
+  color:#aaa;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.notification:last-child{
+  border-bottom:0;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:4000;
+  background:rgba(0,0,0,.78);
+  backdrop-filter:blur(8px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:min(560px,100%);
+  background:#151515;
+  border:1px solid #303030;
+  border-radius:20px;
+  padding:25px;
+  box-shadow:0 25px 80px rgba(0,0,0,.65);
+}
+
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.modal-close{
+  width:35px;
+  height:35px;
+  border-radius:50%;
+  border:1px solid #333;
+  background:#1c1c1c;
+  color:#aaa;
+}
+
+.modal-textarea{
+  width:100%;
+  min-height:140px;
+  resize:vertical;
+  background:#0c0c0c;
+  border:1px solid #292929;
+  border-radius:13px;
+  color:#fff;
+  padding:15px;
+  outline:none;
+}
+
+.modal-textarea:focus{
+  border-color:var(--gold);
+}
+
+.modal-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  margin-top:15px;
+}
+
+/* =========================
    FOOTER
 ========================= */
 
@@ -902,7 +1153,7 @@ main{
   opacity:0;
   pointer-events:none;
   transition:.25s;
-  z-index:3000;
+  z-index:5000;
 }
 
 .toast.show{
@@ -912,4 +1163,2320 @@ main{
 
 /* =========================
    RESPONSIVE
-================
+========================= */
+
+@media(max-width:1100px){
+
+  .desktop-nav{
+    gap:0;
+  }
+
+  .nav-btn{
+    padding:10px 9px;
+    font-size:13px;
+  }
+
+  .feed-layout{
+    grid-template-columns:1fr;
+  }
+
+  .feed{
+    max-width:none;
+  }
+
+  .people-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .feature-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .product-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+}
+
+@media(max-width:800px){
+
+  .header-inner{
+    min-height:65px;
+    padding:0 16px;
+    gap:12px;
+  }
+
+  .desktop-nav{
+    display:none;
+  }
+
+  .header-actions{
+    margin-left:auto;
+  }
+
+  .mobile-nav{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:2000;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    background:rgba(10,10,10,.96);
+    backdrop-filter:blur(18px);
+    border-top:1px solid var(--border);
+    padding:8px 6px calc(8px + env(safe-area-inset-bottom));
+  }
+
+  .mobile-nav button{
+    border:0;
+    background:transparent;
+    color:#777;
+    padding:7px 3px;
+    font-size:10px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:4px;
+  }
+
+  .mobile-nav button span{
+    font-size:18px;
+  }
+
+  .mobile-nav button.active{
+    color:var(--gold2);
+  }
+
+  main{
+    padding:20px 15px 110px;
+  }
+
+  .hero{
+    min-height:430px;
+    border-radius:20px;
+  }
+
+  .hero-content{
+    padding:30px 24px;
+  }
+
+  .hero h1{
+    letter-spacing:-2px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .people-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .feature-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .product-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .skate-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .build-grid{
+    grid-template-columns:1fr;
+  }
+
+  .explore-results{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .post-image{
+    height:300px;
+  }
+
+  .skate-hero{
+    min-height:270px;
+    padding:25px;
+  }
+
+  .skate-hero h1{
+    font-size:39px;
+  }
+
+}
+
+@media(max-width:520px){
+
+  .logo{
+    font-size:22px;
+  }
+
+  .header-actions .icon-btn{
+    width:38px;
+    height:38px;
+  }
+
+  .profile-mini{
+    width:38px;
+    height:38px;
+  }
+
+  .hero{
+    min-height:480px;
+  }
+
+  .hero-content{
+    padding:25px 20px;
+  }
+
+  .hero h1{
+    font-size:43px;
+  }
+
+  .hero p{
+    font-size:15px;
+  }
+
+  .hero-buttons{
+    flex-direction:column;
+  }
+
+  .hero-buttons button{
+    width:100%;
+  }
+
+  .people-grid{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+
+  .person-card{
+    padding:16px 10px;
+  }
+
+  .person-avatar{
+    width:64px;
+    height:64px;
+    font-size:20px;
+  }
+
+  .feature-grid{
+    grid-template-columns:1fr;
+  }
+
+  .product-grid{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+
+  .product-image{
+    height:150px;
+  }
+
+  .skate-grid{
+    grid-template-columns:1fr;
+  }
+
+  .skate-card-image{
+    height:190px;
+  }
+
+  .explore-results{
+    grid-template-columns:1fr;
+  }
+
+  .date-panel{
+    padding:23px 20px;
+  }
+
+  .date-panel h1{
+    font-size:32px;
+  }
+
+  .create-row{
+    align-items:stretch;
+  }
+
+  .avatar{
+    width:40px;
+    height:40px;
+    flex-shrink:0;
+  }
+
+  .post-content{
+    padding:15px;
+  }
+
+  .profile-stats{
+    gap:18px;
+  }
+
+}
+
+/* =========================
+   PAGE TITLE
+========================= */
+
+.page-title{
+  font-size:42px;
+  letter-spacing:-2px;
+  margin-bottom:8px;
+}
+
+.page-subtitle{
+  color:#888;
+  line-height:1.6;
+  margin-bottom:25px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+  <div class="header-inner">
+
+    <button class="logo" onclick="showPage('home')">
+      Soulaani<span>.</span>
+    </button>
+
+    <nav class="desktop-nav">
+
+      <button class="nav-btn active" data-page="home">
+        Home
+      </button>
+
+      <button class="nav-btn" data-page="connect">
+        Connect
+      </button>
+
+      <button class="nav-btn" data-page="date">
+        Date
+      </button>
+
+      <button class="nav-btn" data-page="build">
+        Build
+      </button>
+
+      <button class="nav-btn" data-page="market">
+        Market
+      </button>
+
+      <button class="nav-btn" data-page="explore">
+        Explore
+      </button>
+
+      <button class="nav-btn" data-page="culture">
+        Culture
+      </button>
+
+      <button class="nav-btn" data-page="skate">
+        Skate
+      </button>
+
+    </nav>
+
+    <div class="header-actions">
+
+      <button
+        class="icon-btn"
+        onclick="toggleNotifications()"
+        aria-label="Notifications"
+      >
+        🔔
+      </button>
+
+      <button
+        class="profile-mini"
+        onclick="showPage('profile')"
+        aria-label="Profile"
+      >
+        S
+      </button>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- =========================
+     NOTIFICATIONS
+========================= -->
+
+<div class="notification-panel" id="notificationPanel">
+
+  <h3>Notifications</h3>
+
+  <div class="notification">
+    <strong>Welcome to Soulaani.</strong><br>
+    Your community is taking shape.
+  </div>
+
+  <div class="notification">
+    Someone new joined a community you're following.
+  </div>
+
+  <div class="notification">
+    New culture conversations are trending.
+  </div>
+
+</div>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main>
+
+<!-- =========================
+     HOME
+========================= -->
+
+<section class="page active" id="home">
+
+  <div class="hero">
+
+    <div class="hero-content">
+
+      <div class="eyebrow">
+        The Culture. The People. The Platform.
+      </div>
+
+      <h1>
+        Built for <span>us.</span>
+      </h1>
+
+      <p>
+        Soulaani is a digital home for connection, culture,
+        creativity, business, community and the everyday stories
+        that make Black life impossible to reduce to one box.
+      </p>
+
+      <div class="hero-buttons">
+
+        <button
+          class="primary-btn"
+          onclick="showPage('connect')"
+        >
+          Explore the Community
+        </button>
+
+        <button
+          class="secondary-btn"
+          onclick="openCreatePost()"
+        >
+          Create a Post
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="section-head">
+
+    <h2>Trending on Soulaani</h2>
+
+    <span>Explore</span>
+
+  </div>
+
+
+  <div class="feed-layout">
+
+    <div class="feed">
+
+      <!-- CREATE POST -->
+
+      <div class="create-box">
+
+        <div class="create-row">
+
+          <div class="avatar">
+            S
+          </div>
+
+          <textarea
+            class="create-input"
+            id="quickPost"
+            placeholder="What's happening in your world?"
+          ></textarea>
+
+        </div>
+
+        <div class="create-bottom">
+
+          <div class="create-tools">
+
+            <button
+              class="tool"
+              onclick="showToast('Photo upload coming next 📸')"
+            >
+              📷
+            </button>
+
+            <button
+              class="tool"
+              onclick="showToast('Video upload coming next 🎥')"
+            >
+              🎥
+            </button>
+
+            <button
+              class="tool"
+              onclick="showToast('Location feature coming next 📍')"
+            >
+              📍
+            </button>
+
+          </div>
+
+          <button
+            class="primary-btn"
+            onclick="publishQuickPost()"
+          >
+            Post
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- POST 1 -->
+
+      <article class="post">
+
+        <div class="post-header">
+
+          <div class="avatar">
+            J
+          </div>
+
+          <div class="user-info">
+
+            <strong>Jordan Miles</strong>
+
+            <small>
+              Atlanta, GA · 18m
+            </small>
+
+          </div>
+
+          <button class="more">
+            •••
+          </button>
+
+        </div>
+
+        <div class="post-image">
+          ✦
+        </div>
+
+        <div class="post-content">
+
+          <p>
+            Building something that belongs to the community.
+            The energy around Black creators right now is different.
+          </p>
+
+        </div>
+
+        <div class="post-actions">
+
+          <button
+            class="post-action"
+            onclick="likePost(this)"
+          >
+            ♡ Like <span>24</span>
+          </button>
+
+          <button
+            class="post-action"
+            onclick="showToast('Comments opened 💬')"
+          >
+            💬 8
+          </button>
+
+          <button
+            class="post-action"
+            onclick="showToast('Post shared 🔗')"
+          >
+            ↗ Share
+          </button>
+
+        </div>
+
+      </article>
+
+
+      <!-- POST 2 -->
+
+      <article class="post">
+
+        <div class="post-header">
+
+          <div class="avatar">
+            A
+          </div>
+
+          <div class="user-info">
+
+            <strong>Aaliyah Carter</strong>
+
+            <small>
+              Philadelphia, PA · 42m
+            </small>
+
+          </div>
+
+          <button class="more">
+            •••
+          </button>
+
+        </div>
+
+        <div class="post-image">
+          ✨
+        </div>
+
+        <div class="post-content">
+
+          <p>
+            There should be a place where culture, local businesses,
+            artists, events and everyday people can all exist together.
+          </p>
+
+        </div>
+
+        <div class="post-actions">
+
+          <button
+            class="post-action"
+            onclick="likePost(this)"
+          >
+            ♡ Like <span>41</span>
+          </button>
+
+          <button
+            class="post-action"
+            onclick="showToast('Comments opened 💬')"
+          >
+            💬 12
+          </button>
+
+          <button
+            class="post-action"
+            onclick="showToast('Post shared 🔗')"
+          >
+            ↗ Share
+          </button>
+
+        </div>
+
+      </article>
+
+    </div>
+
+
+    <!-- SIDEBAR -->
+
+    <aside>
+
+      <div class="sidebar-card">
+
+        <h3>What's Trending</h3>
+
+        <div class="trend">
+          <strong>#BlackCreators</strong>
+          <span>12.4K</span>
+        </div>
+
+        <div class="trend">
+          <strong>#BlackBusiness</strong>
+          <span>8.7K</span>
+        </div>
+
+        <div class="trend">
+          <strong>#SkateCulture</strong>
+          <span>6.2K</span>
+        </div>
+
+        <div class="trend">
+          <strong>#BlackFood</strong>
+          <span>5.8K</span>
+        </div>
+
+      </div>
+
+
+      <div class="sidebar-card">
+
+        <h3>Quick Explore</h3>
+
+        <button
+          class="location"
+          onclick="showPage('culture')"
+        >
+          📍 Local Culture
+        </button>
+
+        <br><br>
+
+        <button
+          class="location"
+          onclick="showPage('market')"
+        >
+          🛍️ Marketplace
+        </button>
+
+        <br><br>
+
+        <button
+          class="location"
+          onclick="showPage('skate')"
+        >
+          🛹 Skate
+        </button>
+
+      </div>
+
+    </aside>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     CONNECT
+========================= -->
+
+<section class="page" id="connect">
+
+  <h1 class="page-title">
+    Connect
+  </h1>
+
+  <p class="page-subtitle">
+    Find people, communities and conversations that connect
+    with where you are and where you're going.
+  </p>
+
+
+  <div class="people-grid">
+
+    <div class="person-card">
+
+      <div class="person-avatar">M</div>
+
+      <strong>Maya Johnson</strong>
+
+      <span>Creative · New York</span>
+
+      <button
+        class="follow-btn"
+        onclick="toggleFollow(this)"
+      >
+        Follow
+      </button>
+
+    </div>
+
+
+    <div class="person-card">
+
+      <div class="person-avatar">D</div>
+
+      <strong>DeAndre Brooks</strong>
+
+      <span>Entrepreneur · Atlanta</span>
+
+      <button
+        class="follow-btn"
+        onclick="toggleFollow(this)"
+      >
+        Follow
+      </button>
+
+    </div>
+
+
+    <div class="person-card">
+
+      <div class="person-avatar">K</div>
+
+      <strong>Keisha Brown</strong>
+
+      <span>Artist · Chicago</span>
+
+      <button
+        class="follow-btn"
+        onclick="toggleFollow(this)"
+      >
+        Follow
+      </button>
+
+    </div>
+
+
+    <div class="person-card">
+
+      <div class="person-avatar">T</div>
+
+      <strong>Terrence Davis</strong>
+
+      <span>Skater · Philly</span>
+
+      <button
+        class="follow-btn"
+        onclick="toggleFollow(this)"
+      >
+        Follow
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="section-head">
+
+    <h2>Communities</h2>
+
+    <span>Discover</span>
+
+  </div>
+
+
+  <div class="grid">
+
+    <div class="community-card">
+
+      <h3>Black Creatives</h3>
+
+      <p>
+        Artists, designers, photographers, filmmakers and
+        creators building the next wave.
+      </p>
+
+      <div class="community-meta">
+        <span>12.8K members</span>
+        <span>Active today</span>
+      </div>
+
+    </div>
+
+
+    <div class="community-card">
+
+      <h3>Black Founders</h3>
+
+      <p>
+        Entrepreneurs sharing ideas, opportunities and
+        resources.
+      </p>
+
+      <div class="community-meta">
+        <span>8.4K members</span>
+        <span>Active today</span>
+      </div>
+
+    </div>
+
+
+    <div class="community-card">
+
+      <h3>Skate Soulaani</h3>
+
+      <p>
+        Riders, skate spots, clips, events and local skate culture.
+      </p>
+
+      <div class="community-meta">
+        <span>5.9K members</span>
+        <span>Active now</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     DATE
+========================= -->
+
+<section class="page" id="date">
+
+  <div class="date-panel">
+
+    <h1>Date</h1>
+
+    <p>
+      Meet people intentionally. Discover connections based on
+      interests, personality, location and community.
+    </p>
+
+    <div class="date-filters">
+
+      <button class="date-filter active">
+        Everyone
+      </button>
+
+      <button class="date-filter">
+        Nearby
+      </button>
+
+      <button class="date-filter">
+        Creative
+      </button>
+
+      <button class="date-filter">
+        Entrepreneurs
+      </button>
+
+      <button class="date-filter">
+        25+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="people-grid">
+
+    <div class="person-card">
+
+      <div class="person-avatar">A</div>
+
+      <strong>Amari</strong>
+
+      <span>Philadelphia · Creative</span>
+
+      <button
+        class="follow-btn"
+        onclick="showToast('Connection request sent ❤️')"
+      >
+        Connect
+      </button>
+
+    </div>
+
+
+    <div class="person-card">
+
+      <div class="person-avatar">N</div>
+
+      <strong>Nia</strong>
+
+      <span>Baltimore · Entrepreneur</span>
+
+      <button
+        class="follow-btn"
+        onclick="showToast('Connection request sent ❤️')"
+      >
+        Connect
+      </button>
+
+    </div>
+
+
+    <div class="person-card">
+
+      <div class="person-avatar">J</div>
+
+      <strong>Jalen</strong>
+
+      <span>Washington DC · Music</span>
+
+      <button
+        class="follow-btn"
+        onclick="showToast('Connection request sent ❤️')"
+      >
+        Connect
+      </button>
+
+    </div>
+
+
+    <div class="person-card">
+
+      <div class="person-avatar">Z</div>
+
+      <strong>Zaria</strong>
+
+      <span>New York · Fashion</span>
+
+      <button
+        class="follow-btn"
+        onclick="showToast('Connection request sent ❤️')"
+      >
+        Connect
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     BUILD
+========================= -->
+
+<section class="page" id="build">
+
+  <h1 class="page-title">
+    Build
+  </h1>
+
+  <p class="page-subtitle">
+    Build businesses, projects, careers, communities and ideas.
+  </p>
+
+
+  <div class="build-grid">
+
+    <div class="build-card">
+
+      <div class="build-number">
+        01
+      </div>
+
+      <h3>Start a Business</h3>
+
+      <p>
+        Connect with entrepreneurs, customers and people who
+        understand the vision.
+      </p>
+
+      <br>
+
+      <button
+        class="secondary-btn"
+        onclick="showToast('Business tools coming soon 🚀')"
+      >
+        Explore
+      </button>
+
+    </div>
+
+
+    <div class="build-card">
+
+      <div class="build-number">
+        02
+      </div>
+
+      <h3>Find Opportunities</h3>
+
+      <p>
+        Discover jobs, collaborations, funding opportunities,
+        events and professional connections.
+      </p>
+
+      <br>
+
+      <button
+        class="secondary-btn"
+        onclick="showToast('Opportunity marketplace coming soon')"
+      >
+        Explore
+      </button>
+
+    </div>
+
+
+    <div class="build-card">
+
+      <div class="build-number">
+        03
+      </div>
+
+      <h3>Build Community</h3>
+
+      <p>
+        Create spaces around interests, neighborhoods, culture
+        and shared goals.
+      </p>
+
+      <br>
+
+      <button
+        class="secondary-btn"
+        onclick="showToast('Community creation coming soon')"
+      >
+        Create
+      </button>
+
+    </div>
+
+
+    <div class="build-card">
+
+      <div class="build-number">
+        04
+      </div>
+
+      <h3>Creator Hub</h3>
+
+      <p>
+        Share your work and build an audience around your ideas.
+      </p>
+
+      <br>
+
+      <button
+        class="secondary-btn"
+        onclick="showToast('Creator tools coming soon')"
+      >
+        Create
+      </button>
+
+    </div>
+
+
+    <div class="build-card">
+
+      <div class="build-number">
+        05
+      </div>
+
+      <h3>Local Projects</h3>
+
+      <p>
+        Find people around you who are building things for
+        your city and neighborhood.
+      </p>
+
+      <br>
+
+      <button
+        class="secondary-btn"
+        onclick="showPage('culture')"
+      >
+        Explore
+      </button>
+
+    </div>
+
+
+    <div class="build-card">
+
+      <div class="build-number">
+        06
+      </div>
+
+      <h3>Collaborate</h3>
+
+      <p>
+        Bring your skills together with other people to make
+        something bigger.
+      </p>
+
+      <br>
+
+      <button
+        class="secondary-btn"
+        onclick="showToast('Collaboration tools coming soon')"
+      >
+        Find People
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     MARKET
+========================= -->
+
+<section class="page" id="market">
+
+  <h1 class="page-title">
+    Market
+  </h1>
+
+  <p class="page-subtitle">
+    Discover products, brands and businesses from the community.
+  </p>
+
+
+  <div class="product-grid">
+
+    <div class="product">
+
+      <div class="product-image">
+        👕
+      </div>
+
+      <div class="product-info">
+
+        <strong>Soulaani Essentials</strong>
+
+        <span class="price">$38</span>
+
+        <br><br>
+
+        <button
+          class="secondary-btn"
+          onclick="showToast('Added to your market list 🛍️')"
+        >
+          View
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="product">
+
+      <div class="product-image">
+        🧢
+      </div>
+
+      <div class="product-info">
+
+        <strong>Culture Cap</strong>
+
+        <span class="price">$32</span>
+
+        <br><br>
+
+        <button
+          class="secondary-btn"
+          onclick="showToast('Added to your market list 🛍️')"
+        >
+          View
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="product">
+
+      <div class="product-image">
+        👟
+      </div>
+
+      <div class="product-info">
+
+        <strong>Community Kicks</strong>
+
+        <span class="price">$110</span>
+
+        <br><br>
+
+        <button
+          class="secondary-btn"
+          onclick="showToast('Added to your market list 🛍️')"
+        >
+          View
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="product">
+
+      <div class="product-image">
+        🎨
+      </div>
+
+      <div class="product-info">
+
+        <strong>Black Art Print</strong>
+
+        <span class="price">$45</span>
+
+        <br><br>
+
+        <button
+          class="secondary-btn"
+          onclick="showToast('Added to your market list 🛍️')"
+        >
+          View
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     EXPLORE
+========================= -->
+
+<section class="page" id="explore">
+
+  <h1 class="page-title">
+    Explore
+  </h1>
+
+  <p class="page-subtitle">
+    Search people, communities, businesses, culture, events and
+    places across Soulaani.
+  </p>
+
+
+  <input
+    class="search-box"
+    id="exploreSearch"
+    type="search"
+    placeholder="Search Soulaani..."
+    oninput="filterExplore()"
+  >
+
+
+  <div class="explore-results" id="exploreResults">
+
+    <div class="explore-card" data-search="music artists creators">
+
+      <div class="explore-icon">🎵</div>
+
+      <h3>Music</h3>
+
+      <p>
+        Discover artists, playlists, local shows and music culture.
+      </p>
+
+    </div>
+
+
+    <div class="explore-card" data-search="food restaurants chefs">
+
+      <div class="explore-icon">🍽️</div>
+
+      <h3>Food</h3>
+
+      <p>
+        Find Black-owned restaurants, chefs, food creators and
+        local food culture.
+      </p>
+
+    </div>
+
+
+    <div class="explore-card" data-search="business entrepreneurs">
+
+      <div class="explore-icon">💼</div>
+
+      <h3>Business</h3>
+
+      <p>
+        Discover businesses, founders, brands and opportunities.
+      </p>
+
+    </div>
+
+
+    <div class="explore-card" data-search="events local culture">
+
+      <div class="explore-icon">📅</div>
+
+      <h3>Events</h3>
+
+      <p>
+        Explore concerts, meetups, festivals and community events.
+      </p>
+
+    </div>
+
+
+    <div class="explore-card" data-search="fashion clothing style">
+
+      <div class="explore-icon">👟</div>
+
+      <h3>Fashion</h3>
+
+      <p>
+        Discover designers, stylists, brands and fashion culture.
+      </p>
+
+    </div>
+
+
+    <div class="explore-card" data-search="skate skateboarding riders">
+
+      <div class="explore-icon">🛹</div>
+
+      <h3>Skate</h3>
+
+      <p>
+        Find riders, clips, local spots, events and skate communities.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     CULTURE
+========================= -->
+
+<section class="page" id="culture">
+
+  <div class="culture-banner">
+
+    <h2>
+      Culture lives everywhere.
+    </h2>
+
+    <p>
+      Choose a location and explore people, businesses, food,
+      music, events, creators and conversations connected to
+      that place.
+    </p>
+
+  </div>
+
+
+  <div class="section-head">
+
+    <h2>Explore by Location</h2>
+
+    <span>Local FYP</span>
+
+  </div>
+
+
+  <div class="location-bar">
+
+    <button
+      class="location active"
+      onclick="selectLocation(this,'Philadelphia')"
+    >
+      Philadelphia
+    </button>
+
+    <button
+      class="location"
+      onclick="selectLocation(this,'New York')"
+    >
+      New York
+    </button>
+
+    <button
+      class="location"
+      onclick="selectLocation(this,'Atlanta')"
+    >
+      Atlanta
+    </button>
+
+    <button
+      class="location"
+      onclick="selectLocation(this,'Chicago')"
+    >
+      Chicago
+    </button>
+
+    <button
+      class="location"
+      onclick="selectLocation(this,'Baltimore')"
+    >
+      Baltimore
+    </button>
+
+    <button
+      class="location"
+      onclick="selectLocation(this,'Washington DC')"
+    >
+      Washington DC
+    </button>
+
+  </div>
+
+
+  <div class="grid">
+
+    <div class="card">
+
+      <div class="post-image">
+        🍽️
+      </div>
+
+      <div class="card-body">
+
+        <div class="card-title">
+          Local Food
+        </div>
+
+        <div class="card-text">
+          Discover restaurants, food creators and neighborhood
+          favorites.
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="post-image">
+        🎶
+      </div>
+
+      <div class="card-body">
+
+        <div class="card-title">
+          Music & Events
+        </div>
+
+        <div class="card-text">
+          Find concerts, DJs, artists and events happening nearby.
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="post-image">
+        🏪
+      </div>
+
+      <div class="card-body">
+
+        <div class="card-title">
+          Local Business
+        </div>
+
+        <div class="card-text">
+          Explore businesses and brands connected to your area.
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     SKATE
+========================= -->
+
+<section class="page" id="skate">
+
+  <div class="skate-hero">
+
+    <div>
+
+      <div class="eyebrow">
+        Soulaani Skate
+      </div>
+
+      <h1>
+        Ride. Create. Connect.
+      </h1>
+
+    </div>
+
+  </div>
+
+
+  <div class="section-head">
+
+    <h2>Skate Community</h2>
+
+    <span>Explore</span>
+
+  </div>
+
+
+  <div class="skate-grid">
+
+    <div class="skate-card">
+
+      <div class="skate-card-image">
+        🛹
+      </div>
+
+      <div class="skate-card-info">
+
+        <strong>Philly Street Session</strong>
+
+        <span>
+          Philadelphia · 2.4K views
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="skate-card">
+
+      <div class="skate-card-image">
+        🔥
+      </div>
+
+      <div class="skate-card-info">
+
+        <strong>Best Trick Challenge</strong>
+
+        <span>
+          Community clip · 1.8K views
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="skate-card">
+
+      <div class="skate-card-image">
+        📍
+      </div>
+
+      <div class="skate-card-info">
+
+        <strong>Local Skate Spots</strong>
+
+        <span>
+          Find spots near you
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="skate-card">
+
+      <div class="skate-card-image">
+        🎥
+      </div>
+
+      <div class="skate-card-info">
+
+        <strong>Rider Spotlight</strong>
+
+        <span>
+          Meet the community
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="skate-card">
+
+      <div class="skate-card-image">
+        🏆
+      </div>
+
+      <div class="skate-card-info">
+
+        <strong>Upcoming Events</strong>
+
+        <span>
+          Battles · jams · sessions
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="skate-card">
+
+      <div class="skate-card-image">
+        🎨
+      </div>
+
+      <div class="skate-card-info">
+
+        <strong>Skate Culture</strong>
+
+        <span>
+          Art · style · music · community
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     PROFILE
+========================= -->
+
+<section class="page" id="profile">
+
+  <div class="profile-panel">
+
+    <div class="profile-cover"></div>
+
+    <div class="profile-main">
+
+      <div class="profile-avatar">
+        S
+      </div>
+
+      <h1 class="profile-name">
+        Your Soulaani
+      </h1>
+
+      <div class="profile-handle">
+        @soulaaniuser
+      </div>
+
+      <p class="profile-bio">
+        Welcome to your Soulaani profile. This is where your
+        community, interests, posts and connections will live.
+      </p>
+
+      <div class="profile-stats">
+
+        <div class="profile-stat">
+          <strong>0</strong>
+          <span>Posts</span>
+        </div>
+
+        <div class="profile-stat">
+          <strong>0</strong>
+          <span>Followers</span>
+        </div>
+
+        <div class="profile-stat">
+          <strong>0</strong>
+          <span>Following</span>
+        </div>
+
+      </div>
+
+      <br>
+
+      <button
+        class="primary-btn"
+        onclick="openProfileEditor()"
+      >
+        Edit Profile
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+  <strong>Soulaani</strong>
+
+  <br><br>
+
+  The Culture. The People. The Platform.
+
+  <br><br>
+
+  © 2026 Soulaani. Building something bigger.
+
+</footer>
+
+</main>
+
+
+<!-- =========================
+     MOBILE NAV
+========================= -->
+
+<nav class="mobile-nav">
+
+  <button
+    class="active"
+    data-page="home"
+  >
+    <span>⌂</span>
+    Home
+  </button>
+
+  <button
+    data-page="connect"
+  >
+    <span>◎</span>
+    Connect
+  </button>
+
+  <button
+    data-page="date"
+  >
+    <span>♡</span>
+    Date
+  </button>
+
+  <button
+    data-page="explore"
+  >
+    <span>⌕</span>
+    Explore
+  </button>
+
+  <button
+    data-page="profile"
+  >
+    <span>◉</span>
+    Profile
+  </button>
+
+</nav>
+
+
+<!-- =========================
+     CREATE POST MODAL
+========================= -->
+
+<div class="modal" id="createModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <h2>Create a Post</h2>
+
+      <button
+        class="modal-close"
+        onclick="closeCreatePost()"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <textarea
+      class="modal-textarea"
+      id="modalPostText"
+      placeholder="Share something with the Soulaani community..."
+    ></textarea>
+
+    <div class="modal-actions">
+
+      <button
+        class="secondary-btn"
+        onclick="closeCreatePost()"
+      >
+        Cancel
+      </button>
+
+      <button
+        class="primary-btn"
+        onclick="publishModalPost()"
+      >
+        Publish
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     TOAST
+========================= -->
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+/* =========================
+   PAGE NAVIGATION
+========================= */
+
+const pages = document.querySelectorAll(".page");
+const navButtons = document.querySelectorAll(".nav-btn, .mobile-nav button");
+
+function showPage(pageId){
+
+  pages.forEach(page => {
+    page.classList.remove("active");
+  });
+
+  const target = document.getElementById(pageId);
+
+  if(target){
+    target.classList.add("active");
+  }
+
+  navButtons.forEach(button => {
+
+    if(button.dataset.page === pageId){
+      button.classList.add("active");
+    }else{
+      button.classList.remove("active");
+    }
+
+  });
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+  closeNotifications();
+}
+
+
+navButtons.forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    const page = button.dataset.page;
+
+    if(page){
+      showPage(page);
+    }
+
+  });
+
+});
+
+
+/* =========================
+   NOTIFICATIONS
+========================= */
+
+function toggleNotifications(){
+
+  const panel = document.getElementById("notificationPanel");
+
+  panel.classList.toggle("show");
+
+}
+
+function closeNotifications(){
+
+  const panel = document.getElementById("notificationPanel");
+
+  panel.classList.remove("show");
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+let toastTimer;
+
+function showToast(message){
+
+  const toast = document.getElementById("toast");
+
+  toast.textContent = message;
+
+  toast.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer = setTimeout(() => {
+
+    toast.classList.remove("show");
+
+  },2500);
+
+}
+
+
+/* =========================
+   LIKE
+========================= */
+
+function likePost(button){
+
+  const count = button.querySelector("span");
+
+  let number = parseInt(count.textContent);
+
+  if(button.classList.contains("liked")){
+
+    number--;
+
+    button.classList.remove("liked");
+
+    button.innerHTML = `♡ Like <span>${number}</span>`;
+
+  }else{
+
+    number++;
+
+    button.classList.add("liked");
+
+    button.innerHTML = `♥ Liked <span>${number}</span>`;
+
+    showToast("Post liked ❤️");
+
+  }
+
+}
+
+
+/* =========================
+   FOLLOW
+========================= */
+
+function toggleFollow(button){
+
+  if(button.classList.contains("following")){
+
+    button.classList.remove("following");
+
+    button.textContent = "Follow";
+
+    showToast("Unfollowed");
+
+  }else{
+
+    button.classList.add("following");
+
+    button.textContent = "Following";
+
+    showToast("Following ✨");
+
+  }
+
+}
+
+
+/* =========================
+   CREATE POST
+========================= */
+
+function openCreatePost(){
+
+  document.getElementById("createModal").classList.add("show");
+
+  setTimeout(() => {
+
+    document.getElementById("modalPostText").focus();
+
+  },100);
+
+}
+
+
+function closeCreatePost(){
+
+  document.getElementById("createModal").classList.remove("show");
+
+}
+
+
+function publishModalPost(){
+
+  const text =
+    document.getElementById("modalPostText").value.trim();
+
+  if(!text){
+
+    showToast("Write something first.");
+
+    return;
+
+  }
+
+  addPostToFeed(text);
+
+  document.getElementById("modalPostText").value = "";
+
+  closeCreatePost();
+
+  showToast("Your post is live ✨");
+
+}
+
+
+function publishQuickPost(){
+
+  const input =
+    document.getElementById("quickPost");
+
+  const text = input.value.trim();
+
+  if(!text){
+
+    showToast("Write something first.");
+
+    return;
+
+  }
+
+  addPostToFeed(text);
+
+  input.value = "";
+
+  showToast("Your post is live ✨");
+
+}
+
+
+/* =========================
+   ADD POST TO FEED
+========================= */
+
+function addPostToFeed(text){
+
+  const feed = document.querySelector("#home .feed");
+
+  const post = document.createElement("article");
+
+  post.className = "post";
+
+  post.innerHTML = `
+
+    <div class="post-header">
+
+      <div class="avatar">
+        S
+      </div>
+
+      <div class="user-info">
+
+        <strong>Your Soulaani</strong>
+
+        <small>
+          Just now
+        </small>
+
+      </div>
+
+      <button class="more">
+        •••
+      </button>
+
+    </div>
+
+    <div class="post-content">
+
+      <p>
+        ${escapeHTML(text)}
+      </p>
+
+    </div>
+
+    <div class="post-actions">
+
+      <button
+        class="post-action"
+        onclick="likePost(this)"
+      >
+        ♡ Like <span>0</span>
+      </button>
+
+      <button
+        class="post-action"
+        onclick="showToast('Comments opened 💬')"
+      >
+        💬 0
+      </button>
+
+      <button
+        class="post-action"
+        onclick="showToast('Post shared 🔗')"
+      >
+        ↗ Share
+      </button>
+
+    </div>
+
+  `;
+
+  feed.insertBefore(post,feed.children[1]);
+
+}
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHTML(value){
+
+  const div = document.createElement("div");
+
+  div.textContent = value;
+
+  return div.innerHTML;
+
+}
+
+
+/* =========================
+   EXPLORE SEARCH
+========================= */
+
+function filterExplore(){
+
+  const input =
+    document.getElementById("exploreSearch");
+
+  const query =
+    input.value.toLowerCase().trim();
+
+  const cards =
+    document.querySelectorAll(".explore-card");
+
+  cards.forEach(card => {
+
+    const text =
+      card.dataset.search.toLowerCase();
+
+    if(!query || text.includes(query)){
+
+      card.style.display = "";
+
+    }else{
+
+      card.style.display = "none";
+
+    }
+
+  });
+
+}
+
+
+/* =========================
+   LOCATION
+========================= */
+
+function selectLocation(button,location){
+
+  document.querySelectorAll(".location")
+    .forEach(item => {
+
+      item.classList.remove("active");
+
+    });
+
+  button.classList.add("active");
+
+  showToast(`${location} culture loaded 📍`);
+
+}
+
+
+/* =========================
+   DATE FILTERS
+========================= */
+
+document.querySelectorAll(".date-filter")
+  .forEach(button => {
+
+    button.addEventListener("click",() => {
+
+      document.querySelectorAll(".date-filter")
+        .forEach(item => {
+
+          item.classList.remove("active");
+
+        });
+
+      button.classList.add("active");
+
+      showToast(`${button.textContent.trim()} selected`);
+
+    });
+
+  });
+
+
+/* =========================
+   PROFILE EDITOR
+========================= */
+
+function openProfileEditor(){
+
+  showToast("Profile editor coming next 👤");
+
+}
+
+
+/* =========================
+   CLOSE MODAL ON BACKDROP
+========================= */
+
+document.getElementById("createModal")
+  .addEventListener("click",function(event){
+
+    if(event.target === this){
+
+      closeCreatePost();
+
+    }
+
+  });
+
+
+/* =========================
+   ESC KEY
+========================= */
+
+document.addEventListener("keydown",function(event){
+
+  if(event.key === "Escape"){
+
+    closeCreatePost();
+
+    closeNotifications();
+
+  }
+
+});
+
+</script>
+
+</body>
+</html>
