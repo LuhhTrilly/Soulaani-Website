@@ -2,34 +2,30 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#070707">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <title>Soulaani | The Culture. The People. The Platform.</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap');
-
-:root{
-  --black:#070707;
-  --black2:#0d0d0d;
-  --panel:#111;
-  --card:#151515;
-  --card2:#1b1b1b;
-  --gold:#d4af37;
-  --gold2:#f3d66b;
-  --white:#f5f5f5;
-  --muted:#929292;
-  --line:#292929;
-  --red:#e35c62;
-  --green:#67c98d;
-  --radius:18px;
-  --shadow:0 18px 55px rgba(0,0,0,.35);
-}
-
 *{
   box-sizing:border-box;
   margin:0;
   padding:0;
+}
+
+:root{
+  --black:#060606;
+  --black2:#0d0d0d;
+  --black3:#151515;
+  --gold:#d6ad4b;
+  --gold2:#f0d477;
+  --white:#f8f8f8;
+  --muted:#929292;
+  --line:#262626;
+  --card:#101010;
+  --green:#58c98a;
+  --red:#e65d64;
 }
 
 html{
@@ -37,14 +33,16 @@ html{
 }
 
 body{
-  min-height:100vh;
   background:var(--black);
   color:var(--white);
-  font-family:"DM Sans",Arial,sans-serif;
-  overflow-x:hidden;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  min-height:100vh;
+  padding-bottom:90px;
 }
 
-button,input,textarea,select{
+button,
+input,
+textarea{
   font:inherit;
 }
 
@@ -57,1021 +55,866 @@ a{
   text-decoration:none;
 }
 
-.hidden{
-  display:none!important;
-}
+/* =========================
+   APP SHELL
+========================= */
 
-.gold{
-  color:var(--gold);
-}
-
-.muted{
-  color:var(--muted);
-}
-
-.container{
-  width:min(1200px,calc(100% - 30px));
-  margin:auto;
-}
-
-/* =====================================================
-   LOGO
-===================================================== */
-
-.logo{
-  font-family:"Playfair Display",serif;
-  font-size:30px;
-  font-weight:800;
-  color:var(--gold);
-  letter-spacing:-1.5px;
-}
-
-.logo small{
-  display:block;
-  font-family:"DM Sans",sans-serif;
-  font-size:8px;
-  letter-spacing:3px;
-  color:#8c8c8c;
-  margin-top:-3px;
-}
-
-/* =====================================================
-   BUTTONS
-===================================================== */
-
-.btn{
-  border:1px solid var(--line);
-  background:#171717;
-  color:#eee;
-  border-radius:11px;
-  padding:10px 16px;
-  font-weight:700;
-  transition:.2s ease;
-}
-
-.btn:hover{
-  transform:translateY(-1px);
-  border-color:#555;
-}
-
-.btn.gold-btn{
-  background:var(--gold);
-  color:#050505;
-  border-color:var(--gold);
-}
-
-.btn.outline-gold{
-  background:transparent;
-  border-color:var(--gold);
-  color:var(--gold);
-}
-
-.btn.danger{
-  color:#ff9292;
-}
-
-/* =====================================================
-   LANDING
-===================================================== */
-
-#landing{
+.app{
+  width:100%;
   min-height:100vh;
-  background:
-    radial-gradient(circle at 80% 15%,rgba(212,175,55,.14),transparent 27%),
-    radial-gradient(circle at 10% 85%,rgba(212,175,55,.06),transparent 25%),
-    linear-gradient(135deg,#070707,#111 55%,#070707);
 }
 
-.landing-nav{
-  height:78px;
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  height:70px;
+  background:rgba(6,6,6,.94);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
   display:flex;
   align-items:center;
   justify-content:space-between;
-  border-bottom:1px solid #222;
+  padding:0 28px;
 }
 
-.nav-links{
-  display:flex;
-  gap:25px;
-  color:#aaa;
-  font-size:13px;
-}
-
-.nav-links a:hover{
+.logo{
+  font-size:26px;
+  font-weight:900;
+  letter-spacing:-1.2px;
   color:var(--gold);
 }
 
-.nav-actions{
-  display:flex;
-  gap:8px;
-}
-
-.hero{
-  min-height:calc(100vh - 78px);
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  align-items:center;
-  gap:55px;
-  padding:70px 0;
-}
-
-.eyebrow{
-  color:var(--gold);
-  font-size:10px;
-  letter-spacing:3px;
-  font-weight:800;
-  margin-bottom:18px;
-}
-
-.hero h1{
-  font-family:"Playfair Display",serif;
-  font-size:clamp(65px,9vw,110px);
-  line-height:.85;
-  letter-spacing:-6px;
-}
-
-.hero-tagline{
-  font-size:22px;
-  line-height:1.45;
-  margin:25px 0 15px;
-}
-
-.hero-copy{
-  color:#929292;
-  line-height:1.75;
-  max-width:570px;
-}
-
-.hero-actions{
-  display:flex;
-  gap:10px;
-  margin-top:27px;
-  flex-wrap:wrap;
-}
-
-.hero-art{
-  height:570px;
-  border-radius:32px;
-  border:1px solid #292929;
-  position:relative;
-  overflow:hidden;
-  background:
-    radial-gradient(circle at 68% 24%,rgba(212,175,55,.25),transparent 24%),
-    linear-gradient(145deg,#242424,#0a0a0a 70%);
-  box-shadow:var(--shadow);
-}
-
-.hero-art:before{
-  content:"";
-  position:absolute;
-  width:65%;
-  height:78%;
-  left:17%;
-  bottom:-7%;
-  border-radius:48% 48% 0 0;
-  background:
-    radial-gradient(circle at 38% 26%,#171717 0 8%,transparent 8.5%),
-    radial-gradient(circle at 65% 29%,#171717 0 8%,transparent 8.5%),
-    linear-gradient(145deg,#69432d,#221a15 45%,#080808 78%);
-}
-
-.hero-art:after{
-  content:"THE CULTURE.\A THE PEOPLE.\A THE PLATFORM.";
-  white-space:pre;
-  position:absolute;
-  top:42px;
-  right:28px;
-  color:var(--gold);
-  font-family:"Playfair Display",serif;
-  font-size:24px;
-  font-style:italic;
-  line-height:1.1;
-  transform:rotate(-7deg);
-}
-
-.feature-strip{
-  border-top:1px solid #242424;
-  border-bottom:1px solid #242424;
-  padding:22px 0;
-}
-
-.feature-grid{
-  display:grid;
-  grid-template-columns:repeat(7,1fr);
-  gap:8px;
-}
-
-.feature{
-  padding:10px;
-  border-right:1px solid #242424;
-}
-
-.feature:last-child{
-  border-right:0;
-}
-
-.feature b{
-  display:flex;
-  align-items:center;
-  gap:5px;
-  margin-bottom:6px;
-  font-size:12px;
-}
-
-.feature span{
-  color:#777;
-  font-size:10px;
-  line-height:1.4;
-}
-
-/* =====================================================
-   APP
-===================================================== */
-
-#app{
-  display:none;
-  min-height:100vh;
-}
-
-#app.active{
-  display:block;
-}
-
-.app-top{
-  position:sticky;
-  top:0;
-  z-index:100;
-  height:68px;
-  display:flex;
-  align-items:center;
-  gap:20px;
-  padding:0 22px;
-  background:rgba(7,7,7,.94);
-  backdrop-filter:blur(18px);
-  border-bottom:1px solid #242424;
-}
-
-.search{
-  flex:1;
-  max-width:520px;
-  background:#151515;
-  border:1px solid #292929;
+.logo span{
   color:white;
-  padding:11px 14px;
-  border-radius:11px;
-  outline:none;
 }
 
-.search:focus{
-  border-color:var(--gold);
-}
-
-.top-right{
-  margin-left:auto;
+.top-actions{
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:10px;
 }
 
-.icon-btn{
-  width:40px;
-  height:40px;
+.top-btn{
+  width:42px;
+  height:42px;
+  border:1px solid var(--line);
+  background:#101010;
+  color:white;
   border-radius:50%;
-  border:1px solid #292929;
-  background:#141414;
-  color:#ddd;
-}
-
-.icon-btn:hover{
-  color:var(--gold);
-  border-color:#5d4b1b;
-}
-
-.avatar{
-  width:40px;
-  height:40px;
-  flex:none;
   display:grid;
   place-items:center;
-  overflow:hidden;
-  border-radius:50%;
-  background:linear-gradient(145deg,#e5c35b,#6f5614);
-  color:#050505;
-  font-weight:800;
-}
-
-.avatar img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.layout{
-  width:min(1280px,100%);
-  margin:auto;
-  padding:25px 20px 35px;
-  display:grid;
-  grid-template-columns:220px minmax(0,720px) 285px;
-  gap:23px;
-}
-
-.sidebar{
-  position:sticky;
-  top:93px;
-  height:max-content;
-}
-
-.side-logo{
-  margin:3px 12px 22px;
-}
-
-.side-nav{
-  display:flex;
-  flex-direction:column;
-  gap:4px;
-}
-
-.side-nav button{
-  border:0;
-  background:transparent;
-  color:#999;
-  text-align:left;
-  padding:12px 13px;
-  border-radius:11px;
-  font-weight:700;
+  font-size:18px;
   transition:.2s;
 }
 
-.side-nav button:hover,
-.side-nav button.active{
+.top-btn:hover{
+  border-color:var(--gold);
   color:var(--gold);
-  background:#181818;
+  transform:translateY(-1px);
 }
 
-.side-nav button .nav-symbol{
-  width:27px;
-  display:inline-grid;
-  place-items:center;
-  vertical-align:middle;
+/* =========================
+   PAGE SYSTEM
+========================= */
+
+.page{
+  display:none;
+  width:100%;
+  max-width:1200px;
+  margin:0 auto;
+  padding:30px 24px 40px;
+  animation:fadeIn .22s ease;
 }
 
-.profile-mini{
+.page.active{
+  display:block;
+}
+
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    transform:translateY(6px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.page-title{
+  font-size:34px;
+  font-weight:900;
+  letter-spacing:-1.4px;
+  margin-bottom:7px;
+}
+
+.page-subtitle{
+  color:var(--muted);
+  margin-bottom:25px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  min-height:430px;
+  border:1px solid var(--line);
+  border-radius:28px;
+  overflow:hidden;
+  position:relative;
   display:flex;
-  gap:10px;
-  align-items:center;
-  border-top:1px solid #252525;
-  margin-top:18px;
-  padding:18px 10px;
+  align-items:flex-end;
+  padding:45px;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.92)),
+    radial-gradient(circle at 75% 20%,rgba(214,173,75,.28),transparent 32%),
+    linear-gradient(135deg,#161616,#050505);
+  margin-bottom:30px;
 }
 
-.main{
-  min-width:0;
+.hero-content{
+  max-width:650px;
 }
 
-.rightbar{
-  min-width:0;
+.hero-kicker{
+  color:var(--gold);
+  font-size:13px;
+  text-transform:uppercase;
+  letter-spacing:3px;
+  font-weight:800;
+  margin-bottom:12px;
 }
 
-.section-title{
-  font-family:"Playfair Display",serif;
-  font-size:30px;
-  margin-bottom:16px;
+.hero h1{
+  font-size:clamp(42px,7vw,78px);
+  line-height:.94;
+  letter-spacing:-4px;
+  margin-bottom:20px;
+}
+
+.hero p{
+  color:#c8c8c8;
+  max-width:560px;
+  line-height:1.65;
+  font-size:17px;
+}
+
+.hero-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:25px;
+}
+
+.btn{
+  border:none;
+  border-radius:13px;
+  padding:13px 19px;
+  font-weight:800;
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+.btn-gold{
+  background:var(--gold);
+  color:#080808;
+}
+
+.btn-dark{
+  background:#161616;
+  color:white;
+  border:1px solid var(--line);
+}
+
+/* =========================
+   GRID / CARDS
+========================= */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.two-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
 }
 
 .card{
   background:var(--card);
-  border:1px solid #272727;
-  border-radius:var(--radius);
-  padding:18px;
-  margin-bottom:15px;
-  box-shadow:0 7px 30px rgba(0,0,0,.14);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:20px;
 }
 
 .card h3{
-  font-size:16px;
-}
-
-.card p{
-  line-height:1.65;
-}
-
-.small{
-  font-size:11px;
-  color:#858585;
-}
-
-/* =====================================================
-   COMPOSER
-===================================================== */
-
-.composer{
-  display:flex;
-  gap:11px;
-  align-items:center;
-}
-
-.composer-input{
-  flex:1;
-  background:#1b1b1b;
-  border:1px solid #292929;
-  border-radius:11px;
-  color:#bbb;
-  padding:13px;
-  cursor:pointer;
-}
-
-.quick-actions{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-top:13px;
-}
-
-.quick-actions button{
-  flex:1;
-  min-width:100px;
-  background:#191919;
-  border:1px solid #282828;
-  color:#aaa;
-  border-radius:10px;
-  padding:10px;
-}
-
-.quick-actions button:hover{
-  color:var(--gold);
-  border-color:#65501c;
-}
-
-/* =====================================================
-   STORIES
-===================================================== */
-
-.stories{
-  display:flex;
-  gap:14px;
-  overflow-x:auto;
-  padding-bottom:3px;
-}
-
-.story{
-  min-width:66px;
-  text-align:center;
-  font-size:10px;
-  color:#aaa;
-}
-
-.story .avatar{
-  width:56px;
-  height:56px;
-  margin:auto auto 6px;
-  border:2px solid var(--gold);
-}
-
-/* =====================================================
-   POSTS
-===================================================== */
-
-.post-head{
-  display:flex;
-  gap:10px;
-  align-items:center;
-}
-
-.post-meta{
-  font-size:11px;
-  color:#777;
-  margin-top:2px;
-}
-
-.post-body{
-  margin:14px 0;
-  color:#ddd;
-  line-height:1.7;
-  white-space:pre-wrap;
-  overflow-wrap:anywhere;
-}
-
-.post-media{
-  height:300px;
-  border-radius:13px;
-  overflow:hidden;
-  background:
-    radial-gradient(circle at 65% 30%,rgba(212,175,55,.22),transparent 25%),
-    linear-gradient(135deg,#222,#0b0b0b);
-  display:grid;
-  place-items:center;
-  color:#777;
-  font-size:11px;
-  letter-spacing:2px;
-}
-
-.post-media img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.post-actions{
-  display:flex;
-  gap:7px;
-  margin-top:12px;
-  padding-top:11px;
-  border-top:1px solid #252525;
-}
-
-.post-actions button{
-  border:0;
-  background:transparent;
-  color:#999;
-  padding:7px 10px;
-  border-radius:8px;
-}
-
-.post-actions button:hover{
-  color:var(--gold);
-  background:#1c1c1c;
-}
-
-.post-actions button.liked{
-  color:#ef6672;
-}
-
-/* =====================================================
-   RIGHT BAR
-===================================================== */
-
-.side-heading{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
   margin-bottom:7px;
 }
 
-.side-heading h3{
-  font-size:14px;
+.card p{
+  color:var(--muted);
+  line-height:1.55;
 }
 
-.side-heading a{
-  color:var(--gold);
-  font-size:11px;
-  cursor:pointer;
-}
-
-.trend,
-.event,
-.community{
+.section-heading{
   display:flex;
+  align-items:center;
   justify-content:space-between;
-  gap:10px;
-  padding:12px 0;
-  border-bottom:1px solid #242424;
+  gap:15px;
+  margin:32px 0 15px;
 }
 
-.trend:last-child,
-.event:last-child,
-.community:last-child{
-  border-bottom:0;
+.section-heading h2{
+  font-size:22px;
 }
 
-.gold-dot{
-  color:var(--gold);
-}
+/* =========================
+   FEED
+========================= */
 
-/* =====================================================
-   GENERIC LISTS
-===================================================== */
-
-.tabs{
+.feed{
   display:flex;
-  gap:4px;
-  overflow-x:auto;
-  border-bottom:1px solid #272727;
-  margin-bottom:17px;
+  flex-direction:column;
+  gap:16px;
+  max-width:760px;
 }
 
-.tabs button{
-  white-space:nowrap;
-  background:transparent;
-  border:0;
+.post{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.post-head{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:17px;
+}
+
+.avatar{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 50% 30%,#8d623e 0 18%,transparent 19%),
+    linear-gradient(145deg,#5b3828,#17100d);
+  border:2px solid #333;
+  flex:none;
+}
+
+.avatar.gold{
+  background:
+    radial-gradient(circle at 50% 30%,#8d623e 0 18%,transparent 19%),
+    linear-gradient(145deg,#b68a37,#201707);
+}
+
+.user-info{
+  flex:1;
+}
+
+.user-info strong{
+  display:block;
+}
+
+.user-info span{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.post-body{
+  padding:0 17px 17px;
+  line-height:1.55;
+}
+
+.post-image{
+  height:280px;
+  background:
+    linear-gradient(135deg,rgba(214,173,75,.18),transparent),
+    linear-gradient(145deg,#252525,#080808);
+  display:grid;
+  place-items:center;
   color:#777;
-  padding:12px 15px;
-  border-bottom:2px solid transparent;
+  font-size:60px;
 }
 
-.tabs button.active{
+.post-actions{
+  border-top:1px solid var(--line);
+  display:flex;
+  padding:8px;
+  gap:4px;
+}
+
+.action{
+  flex:1;
+  border:none;
+  background:transparent;
+  color:#aaa;
+  padding:10px;
+  border-radius:10px;
+  transition:.2s;
+}
+
+.action:hover{
+  background:#191919;
+  color:white;
+}
+
+.action.liked{
+  color:var(--red);
+}
+
+.action.saved{
   color:var(--gold);
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-box{
+  display:flex;
+  gap:10px;
+  margin-bottom:25px;
+}
+
+.search-box input{
+  flex:1;
+  background:#111;
+  color:white;
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:14px 16px;
+  outline:none;
+}
+
+.search-box input:focus{
   border-color:var(--gold);
 }
 
-.person-row,
-.event-row,
-.community-row{
+/* =========================
+   PROFILE
+========================= */
+
+.profile-header{
+  background:
+    radial-gradient(circle at 80% 20%,rgba(214,173,75,.2),transparent 30%),
+    #101010;
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:30px;
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  gap:12px;
-  padding:13px 0;
-  border-bottom:1px solid #242424;
+  gap:22px;
+  margin-bottom:20px;
 }
 
-.person-row:last-child,
-.event-row:last-child,
-.community-row:last-child{
-  border-bottom:0;
+.profile-avatar{
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 50% 30%,#9b6a45 0 18%,transparent 19%),
+    linear-gradient(145deg,#583b2c,#130e0c);
+  border:3px solid var(--gold);
 }
+
+.profile-info{
+  flex:1;
+}
+
+.profile-info h1{
+  font-size:30px;
+}
+
+.profile-info p{
+  color:var(--muted);
+  margin-top:5px;
+}
+
+.stats{
+  display:flex;
+  gap:25px;
+  margin-top:15px;
+}
+
+.stat strong{
+  display:block;
+  font-size:20px;
+}
+
+.stat span{
+  color:var(--muted);
+  font-size:12px;
+}
+
+/* =========================
+   PEOPLE
+========================= */
 
 .person{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:13px;
+  padding:15px 0;
+  border-bottom:1px solid var(--line);
 }
 
-/* =====================================================
-   PROFILE
-===================================================== */
-
-.profile-cover{
-  height:220px;
-  border-radius:18px 18px 0 0;
-  background:
-    radial-gradient(circle at 72% 30%,rgba(212,175,55,.25),transparent 25%),
-    linear-gradient(135deg,#252525,#101010 60%,#3d3010);
+.person:last-child{
+  border-bottom:none;
 }
 
-.profile-info{
-  padding:0 22px 22px;
+.person-info{
+  flex:1;
 }
 
-.profile-info > .avatar{
-  width:96px;
-  height:96px;
-  margin-top:-48px;
-  border:4px solid var(--card);
+.person-info strong{
+  display:block;
+}
+
+.person-info span{
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* =========================
+   SKATE
+========================= */
+
+.skate-hero{
+  min-height:330px;
+  border-radius:25px;
+  border:1px solid var(--line);
+  padding:35px;
+  display:flex;
+  align-items:flex-end;
   position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(180deg,transparent,#050505),
+    radial-gradient(circle at 75% 30%,rgba(214,173,75,.24),transparent 30%),
+    linear-gradient(145deg,#292929,#080808);
 }
 
-.profile-info h1{
-  font-family:"Playfair Display",serif;
-  font-size:31px;
-  margin-top:10px;
+.skate-symbol{
+  position:absolute;
+  right:45px;
+  top:45px;
+  font-size:90px;
+  transform:rotate(-10deg);
+  opacity:.8;
 }
 
-.profile-actions{
+.skate-hero h1{
+  font-size:55px;
+  letter-spacing:-3px;
+}
+
+.skate-tabs{
   display:flex;
   gap:8px;
-  flex-wrap:wrap;
-  margin-top:12px;
+  overflow-x:auto;
+  margin:20px 0;
+  padding-bottom:5px;
 }
 
-.profile-stats{
-  display:flex;
-  gap:30px;
-  margin-top:18px;
+.skate-tab{
+  white-space:nowrap;
+  border:1px solid var(--line);
+  background:#101010;
+  color:#aaa;
+  padding:11px 15px;
+  border-radius:999px;
 }
 
-.profile-stat b{
-  display:block;
-  font-size:17px;
+.skate-tab.active,
+.skate-tab:hover{
+  background:var(--gold);
+  color:#080808;
+  border-color:var(--gold);
 }
 
-.profile-stat span{
-  display:block;
-  color:#777;
-  font-size:10px;
+.skate-card{
+  background:#101010;
+  border:1px solid var(--line);
+  border-radius:20px;
+  overflow:hidden;
 }
 
-/* =====================================================
-   REAL GRAPHIC ICONS
-   No emoji used for the fist or skateboard.
-===================================================== */
-
-.real-icon{
-  display:inline-grid;
+.skate-photo{
+  height:210px;
+  display:grid;
   place-items:center;
-  width:23px;
-  height:23px;
-  vertical-align:middle;
-  flex:none;
+  background:
+    linear-gradient(135deg,rgba(214,173,75,.15),transparent),
+    #191919;
+  font-size:65px;
 }
 
-.fist-icon svg{
-  width:21px;
-  height:21px;
-  display:block;
+.skate-card-content{
+  padding:16px;
 }
 
-.skateboard-icon{
-  width:25px;
-  height:22px;
-  position:relative;
-  transform:rotate(-8deg);
+.skate-card-content p{
+  color:var(--muted);
+  margin-top:5px;
 }
 
-.skateboard-icon .board{
-  position:absolute;
-  left:1px;
-  top:6px;
-  width:23px;
-  height:7px;
-  border:2px solid currentColor;
-  border-radius:7px 8px 7px 8px;
+/* =========================
+   MARKET
+========================= */
+
+.product{
+  overflow:hidden;
+  padding:0;
 }
 
-.skateboard-icon .wheel{
-  position:absolute;
-  bottom:1px;
-  width:5px;
-  height:5px;
-  border-radius:50%;
-  background:currentColor;
+.product-image{
+  height:210px;
+  display:grid;
+  place-items:center;
+  font-size:55px;
+  background:linear-gradient(135deg,#222,#0b0b0b);
 }
 
-.skateboard-icon .wheel.one{
-  left:4px;
+.product-content{
+  padding:18px;
 }
 
-.skateboard-icon .wheel.two{
-  right:4px;
+.price{
+  color:var(--gold2);
+  font-size:20px;
+  font-weight:900;
+  margin:10px 0;
 }
 
-/* =====================================================
-   EMPTY / TOAST
-===================================================== */
+/* =========================
+   CULTURE
+========================= */
 
-.empty{
-  padding:40px 15px;
-  text-align:center;
-  color:#777;
-  line-height:1.7;
+.culture-card{
+  min-height:210px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:24px;
+  background:
+    linear-gradient(180deg,transparent,#060606),
+    linear-gradient(145deg,#252525,#101010);
+  border:1px solid var(--line);
+  border-radius:20px;
 }
 
-.toast{
-  position:fixed;
-  z-index:1000;
-  left:50%;
-  bottom:92px;
-  transform:translate(-50%,20px);
-  opacity:0;
-  pointer-events:none;
-  background:#191919;
-  border:1px solid #3a3a3a;
-  color:#eee;
-  padding:12px 17px;
-  border-radius:11px;
-  box-shadow:var(--shadow);
-  transition:.25s ease;
+.culture-card .emoji{
+  font-size:38px;
+  margin-bottom:auto;
 }
 
-.toast.show{
-  opacity:1;
-  transform:translate(-50%,0);
+.culture-card h3{
+  font-size:22px;
 }
 
-/* =====================================================
-   MODALS
-===================================================== */
+/* =========================
+   MODAL
+========================= */
 
 .modal{
   position:fixed;
   inset:0;
-  z-index:500;
-  display:grid;
-  place-items:center;
-  padding:18px;
   background:rgba(0,0,0,.78);
   backdrop-filter:blur(8px);
+  z-index:3000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
 }
 
-.modal-card{
-  width:min(500px,100%);
-  background:#111;
-  border:1px solid #333;
-  border-radius:20px;
-  padding:23px;
-  box-shadow:var(--shadow);
+.modal.active{
+  display:flex;
 }
 
-.modal-header{
+.modal-box{
+  width:min(520px,100%);
+  background:#101010;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:25px;
+}
+
+.modal-head{
   display:flex;
   align-items:center;
-  gap:10px;
-}
-
-.modal-header h2{
-  font-family:"Playfair Display",serif;
+  justify-content:space-between;
+  margin-bottom:18px;
 }
 
 .close{
-  margin-left:auto;
-  border:0;
-  background:none;
-  color:#888;
-  font-size:25px;
-}
-
-.form{
-  display:grid;
-  gap:11px;
-  margin-top:18px;
-}
-
-.form input,
-.form textarea,
-.form select{
-  width:100%;
+  border:none;
   background:#191919;
-  border:1px solid #303030;
-  color:#eee;
-  border-radius:10px;
-  padding:12px;
+  color:white;
+  width:38px;
+  height:38px;
+  border-radius:50%;
+}
+
+.form-group{
+  margin-bottom:14px;
+}
+
+.form-group label{
+  display:block;
+  font-size:13px;
+  color:#aaa;
+  margin-bottom:6px;
+}
+
+.form-group input,
+.form-group textarea{
+  width:100%;
+  background:#080808;
+  border:1px solid var(--line);
+  color:white;
+  border-radius:12px;
+  padding:13px;
   outline:none;
 }
 
-.form textarea{
-  min-height:120px;
+.form-group textarea{
+  min-height:130px;
   resize:vertical;
 }
 
-.form input:focus,
-.form textarea:focus,
-.form select:focus{
-  border-color:var(--gold);
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:100px;
+  transform:translateX(-50%) translateY(20px);
+  background:#f4f4f4;
+  color:#050505;
+  padding:12px 18px;
+  border-radius:999px;
+  font-weight:700;
+  z-index:5000;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
 }
 
-/* =====================================================
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+/* =========================
    BOTTOM NAV
-   Every item has its own page.
-   Profile stays on the far right.
-===================================================== */
+========================= */
 
 .bottom-nav{
-  display:none;
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:2000;
+  height:82px;
+  background:rgba(7,7,7,.96);
+  backdrop-filter:blur(20px);
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:center;
+  overflow-x:auto;
 }
 
-/* =====================================================
-   MOBILE
-===================================================== */
+.nav-inner{
+  width:100%;
+  max-width:1150px;
+  min-width:760px;
+  display:flex;
+  align-items:stretch;
+}
 
-@media(max-width:1050px){
+.nav-item{
+  flex:1;
+  min-width:82px;
+  border:none;
+  background:transparent;
+  color:#777;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  transition:.2s;
+  position:relative;
+}
 
-  .layout{
-    grid-template-columns:190px minmax(0,1fr);
+.nav-icon{
+  font-size:21px;
+  line-height:1;
+}
+
+.nav-name{
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.2px;
+}
+
+.nav-item:hover{
+  color:white;
+}
+
+.nav-item.active{
+  color:var(--gold);
+}
+
+.nav-item.active::before{
+  content:"";
+  position:absolute;
+  top:0;
+  width:35px;
+  height:2px;
+  background:var(--gold);
+  border-radius:0 0 5px 5px;
+}
+
+/* =========================
+   DESKTOP SPECIAL
+========================= */
+
+.desktop-layout{
+  display:grid;
+  grid-template-columns:minmax(0,760px) 320px;
+  gap:22px;
+}
+
+.sidebar{
+  position:sticky;
+  top:90px;
+  align-self:start;
+}
+
+.side-card{
+  background:#101010;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:18px;
+  margin-bottom:15px;
+}
+
+.side-card h3{
+  margin-bottom:12px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+  .desktop-layout{
+    grid-template-columns:1fr;
   }
 
-  .rightbar{
-    display:none;
+  .sidebar{
+    position:static;
   }
 
-  .feature-grid{
-    grid-template-columns:repeat(4,1fr);
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .topbar{
+    padding:0 16px;
   }
 }
 
-@media(max-width:760px){
+@media(max-width:650px){
 
-  .container{
-    width:calc(100% - 24px);
+  body{
+    padding-bottom:82px;
   }
 
-  .landing-nav{
-    height:65px;
+  .page{
+    padding:20px 14px 35px;
   }
 
-  .nav-links{
-    display:none;
+  .topbar{
+    height:62px;
   }
 
-  .nav-actions .btn:first-child{
+  .logo{
+    font-size:23px;
+  }
+
+  .top-actions .top-btn:nth-child(2){
     display:none;
   }
 
   .hero{
-    grid-template-columns:1fr;
-    min-height:auto;
-    padding:50px 0;
+    min-height:440px;
+    padding:27px;
+    border-radius:22px;
   }
 
   .hero h1{
-    font-size:68px;
+    letter-spacing:-2.5px;
   }
 
-  .hero-art{
-    height:390px;
+  .grid,
+  .two-grid{
+    grid-template-columns:1fr;
   }
 
-  .feature-grid{
-    grid-template-columns:repeat(2,1fr);
+  .profile-header{
+    align-items:flex-start;
+    flex-direction:column;
   }
 
-  .feature{
-    border-right:0;
-    border-bottom:1px solid #252525;
+  .skate-hero{
+    min-height:350px;
+    padding:25px;
   }
 
-  .app-top{
-    height:60px;
-    padding:0 10px;
-    gap:8px;
+  .skate-hero h1{
+    font-size:44px;
   }
 
-  .app-top .logo{
-    font-size:23px;
+  .skate-symbol{
+    right:25px;
+    top:25px;
+    font-size:65px;
   }
 
-  .search{
-    display:none;
+  .nav-inner{
+    min-width:100%;
   }
 
-  .layout{
-    display:block;
-    padding:15px 12px 92px;
+  .nav-item{
+    min-width:68px;
   }
 
-  .sidebar{
-    display:none;
-  }
-
-  .card{
-    border-radius:15px;
-    padding:15px;
-  }
-
-  .post-media{
-    height:250px;
-  }
-
-  .profile-cover{
-    height:160px;
-  }
-
-  .profile-info{
-    padding:0 15px 18px;
-  }
-
-  .profile-info h1{
-    font-size:27px;
-  }
-
-  /* Nine navigation items scroll horizontally.
-     Profile is the final item and remains visually pinned. */
-
-  .bottom-nav{
-    display:flex;
-    position:fixed;
-    left:0;
-    right:0;
-    bottom:0;
-    height:74px;
-    z-index:200;
-    background:rgba(9,9,9,.98);
-    border-top:1px solid #292929;
-    backdrop-filter:blur(18px);
-    overflow-x:auto;
-    overflow-y:hidden;
-    scrollbar-width:none;
-    padding:5px 2px;
-  }
-
-  .bottom-nav::-webkit-scrollbar{
-    display:none;
-  }
-
-  .bottom-nav button{
-    flex:0 0 76px;
-    min-width:76px;
-    height:63px;
-    border:0;
-    background:transparent;
-    color:#777;
-    font-size:9px;
-    font-weight:600;
-    padding:4px 2px;
-  }
-
-  .bottom-nav button.active{
-    color:var(--gold);
-  }
-
-  .bottom-nav button > span{
-    display:grid;
-    place-items:center;
-    height:30px;
-    margin-bottom:2px;
+  .nav-icon{
     font-size:19px;
   }
 
-  .bottom-nav button:last-child{
-    position:sticky;
-    right:0;
-    z-index:5;
-    background:linear-gradient(90deg,rgba(9,9,9,.2),rgba(9,9,9,1) 25%);
-    padding-left:10px;
+  .nav-name{
+    font-size:9px;
   }
 
-  .toast{
-    bottom:85px;
-    max-width:90%;
-    text-align:center;
+  .bottom-nav{
+    height:78px;
   }
 }
 </style>
@@ -1079,339 +922,161 @@ a{
 
 <body>
 
-<!-- =====================================================
-     LANDING PAGE
-===================================================== -->
+<div class="app">
 
-<section id="landing">
+<!-- =========================
+     TOP BAR
+========================= -->
 
-  <nav class="landing-nav container">
+<header class="topbar">
 
-    <a href="#" class="logo">
-      ♛ Soulaani
-      <small>THE CULTURE • THE PEOPLE • THE PLATFORM</small>
-    </a>
+  <button class="logo" onclick="navigate('home')">
+    Soulaani<span>.</span>
+  </button>
 
-    <div class="nav-links">
-      <a href="#features">Connect</a>
-      <a href="#features">Date</a>
-      <a href="#features">Build</a>
-      <a href="#features">Market</a>
-      <a href="#features">Explore</a>
-      <a href="#features">Culture</a>
-      <a href="#features">Skate</a>
-    </div>
+  <div class="top-actions">
 
-    <div class="nav-actions">
-      <button class="btn" onclick="openApp('login')">Log In</button>
-      <button class="btn gold-btn" onclick="openApp('signup')">Join Soulaani</button>
-    </div>
+    <button class="top-btn" onclick="openSearch()" aria-label="Search">
+      🔎
+    </button>
 
-  </nav>
+    <button class="top-btn" onclick="openCreate()" aria-label="Create">
+      ＋
+    </button>
 
-  <section class="hero container">
+  </div>
 
-    <div>
+</header>
 
-      <div class="eyebrow">
-        THE CULTURE. THE PEOPLE. THE PLATFORM.
+
+<!-- =========================
+     HOME
+========================= -->
+
+<section id="home" class="page active">
+
+  <div class="hero">
+
+    <div class="hero-content">
+
+      <div class="hero-kicker">
+        The Culture. The People. The Platform.
       </div>
 
-      <h1>Soulaani</h1>
+      <h1>
+        Built for us.
+      </h1>
 
-      <div class="hero-tagline">
-        Connect. Socialize. Date. Build.
-        <br>
-        <span class="gold">Shop. Explore. Be You.</span>
-      </div>
-
-      <p class="hero-copy">
-        A social platform built around community, culture,
-        creativity, relationships, business, local discovery
-        and everyday life.
+      <p>
+        Soulaani is a digital home for community, culture,
+        connection, creativity, business, dating, food,
+        fashion, music, skateboarding and everything in between.
       </p>
 
-      <div class="hero-actions">
-        <button class="btn gold-btn" onclick="openApp('signup')">
-          Join Soulaani →
+      <div class="hero-buttons">
+
+        <button class="btn btn-gold"
+                onclick="navigate('connect')">
+          Find Your People
         </button>
 
-        <button class="btn outline-gold" onclick="showToast('Welcome to Soulaani.')">
-          Explore the platform
+        <button class="btn btn-dark"
+                onclick="openCreate()">
+          Create a Post
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="desktop-layout">
+
+    <main>
+
+      <div class="section-heading">
+        <h2>For You</h2>
+
+        <button class="btn btn-dark"
+                onclick="refreshFeed()">
+          Refresh
         </button>
       </div>
 
-    </div>
+      <div id="homeFeed" class="feed"></div>
 
-    <div class="hero-art"></div>
+    </main>
 
-  </section>
-
-  <section id="features" class="feature-strip">
-
-    <div class="container feature-grid">
-
-      <div class="feature">
-        <b class="gold">♟ Connect</b>
-        <span>People, friends and communities.</span>
-      </div>
-
-      <div class="feature">
-        <b class="gold">♡ Date</b>
-        <span>Meet people and build connections.</span>
-      </div>
-
-      <div class="feature">
-        <b class="gold">▣ Build</b>
-        <span>Jobs, business and mentorship.</span>
-      </div>
-
-      <div class="feature">
-        <b class="gold">◇ Market</b>
-        <span>Discover Black-owned businesses.</span>
-      </div>
-
-      <div class="feature">
-        <b class="gold">◷ Explore</b>
-        <span>Events and local discovery.</span>
-      </div>
-
-      <div class="feature">
-        <b class="gold">
-          <span class="real-icon fist-icon">
-            <svg viewBox="0 0 64 64" aria-hidden="true">
-              <path fill="#050505" d="M18 58c-5-2-8-7-8-13V27c0-3 2-6 5-6s5 2 5 5V13c0-3 2-5 5-5s5 2 5 5v9-16c0-3 2-5 5-5s5 2 5 5v16-12c0-3 2-5 5-5s5 2 5 5v18l3-5c2-3 5-4 8-2 2 2 2 5 1 8l-7 17c-3 8-10 13-19 13H18Z"/>
-            </svg>
-          </span>
-          Culture
-        </b>
-        <span>Music, art, food, fashion and stories.</span>
-      </div>
-
-      <div class="feature">
-        <b class="gold">
-          <span class="real-icon skateboard-icon">
-            <i class="board"></i>
-            <i class="wheel one"></i>
-            <i class="wheel two"></i>
-          </span>
-          Skate
-        </b>
-        <span>Riders, clips, spots and events.</span>
-      </div>
-
-    </div>
-
-  </section>
-
-</section>
-
-
-<!-- =====================================================
-     APPLICATION
-===================================================== -->
-
-<section id="app">
-
-  <header class="app-top">
-
-    <a href="#" class="logo" onclick="goHome();return false;">
-      ♛ Soulaani
-    </a>
-
-    <input
-      id="search"
-      class="search"
-      placeholder="Search Soulaani..."
-      onkeydown="searchPosts(event)"
-    >
-
-    <div class="top-right">
-
-      <button class="icon-btn" onclick="showNotifications()">♧</button>
-
-      <button class="icon-btn" onclick="showPage('messages')">✉</button>
-
-      <button class="avatar" id="topAvatar" onclick="showPage('profile')">
-        S
-      </button>
-
-    </div>
-
-  </header>
-
-
-  <div class="layout">
-
-    <!-- SIDEBAR -->
 
     <aside class="sidebar">
 
-      <div class="side-logo logo">
-        ♛ Soulaani
-      </div>
+      <div class="side-card">
 
-      <nav class="side-nav">
+        <h3>Trending on Soulaani</h3>
 
-        <button data-page="home" onclick="showPage('home')" class="active">
-          <span class="nav-symbol">⌂</span> Home
-        </button>
-
-        <button data-page="connect" onclick="showPage('connect')">
-          <span class="nav-symbol">♟</span> Connect
-        </button>
-
-        <button data-page="date" onclick="showPage('date')">
-          <span class="nav-symbol">♡</span> Date
-        </button>
-
-        <button data-page="build" onclick="showPage('build')">
-          <span class="nav-symbol">▣</span> Build
-        </button>
-
-        <button data-page="market" onclick="showPage('market')">
-          <span class="nav-symbol">◇</span> Market
-        </button>
-
-        <button data-page="explore" onclick="showPage('explore')">
-          <span class="nav-symbol">◷</span> Explore
-        </button>
-
-        <button data-page="skate" onclick="showPage('skate')">
-          <span class="nav-symbol">
-            <span class="real-icon skateboard-icon">
-              <i class="board"></i>
-              <i class="wheel one"></i>
-              <i class="wheel two"></i>
-            </span>
-          </span>
-          Skate
-        </button>
-
-        <button data-page="culture" onclick="showPage('culture')">
-          <span class="nav-symbol">
-            <span class="real-icon fist-icon">
-              <svg viewBox="0 0 64 64" aria-hidden="true">
-                <path fill="currentColor" d="M18 58c-5-2-8-7-8-13V27c0-3 2-6 5-6s5 2 5 5V13c0-3 2-5 5-5s5 2 5 5v9-16c0-3 2-5 5-5s5 2 5 5v16-12c0-3 2-5 5-5s5 2 5 5v18l3-5c2-3 5-4 8-2 2 2 2 5 1 8l-7 17c-3 8-10 13-19 13H18Z"/>
-              </svg>
-            </span>
-          </span>
-          Culture
-        </button>
-
-        <button data-page="messages" onclick="showPage('messages')">
-          <span class="nav-symbol">✉</span> Messages
-        </button>
-
-        <button data-page="profile" onclick="showPage('profile')">
-          <span class="nav-symbol">◎</span> Profile
-        </button>
-
-        <button onclick="logout()">
-          <span class="nav-symbol">↪</span> Log Out
-        </button>
-
-      </nav>
-
-
-      <div class="profile-mini">
-
-        <div class="avatar" id="sideAvatar">S</div>
-
-        <div>
-          <b id="sideName">Soulaani Member</b>
-          <div class="small" id="sideHandle">@member</div>
-        </div>
-
-      </div>
-
-    </aside>
-
-
-    <!-- MAIN PAGE CONTENT -->
-
-    <main id="main" class="main"></main>
-
-
-    <!-- RIGHT SIDEBAR -->
-
-    <aside class="rightbar">
-
-      <div class="card">
-
-        <div class="side-heading">
-          <h3>Trending</h3>
-          <a onclick="showPage('explore')">Explore</a>
-        </div>
-
-        <div id="trending"></div>
-
-      </div>
-
-
-      <div class="card">
-
-        <div class="side-heading">
-          <h3>Communities</h3>
-          <a onclick="showPage('connect')">View all</a>
-        </div>
-
-        <div class="community">
-          <div>
-            <b>Black Entrepreneurs</b>
-            <div class="small">12.4K members</div>
+        <div class="person">
+          <div class="avatar"></div>
+          <div class="person-info">
+            <strong>#BlackOwned</strong>
+            <span>12.4K conversations</span>
           </div>
-          <span class="gold">→</span>
         </div>
 
-        <div class="community">
-          <div>
-            <b>Creative Souls</b>
-            <div class="small">6.2K members</div>
+        <div class="person">
+          <div class="avatar gold"></div>
+          <div class="person-info">
+            <strong>#SkateCulture</strong>
+            <span>8.9K conversations</span>
           </div>
-          <span class="gold">→</span>
         </div>
 
-        <div class="community">
-          <div>
-            <b>Skate Fam</b>
-            <div class="small">4.8K members</div>
+        <div class="person">
+          <div class="avatar"></div>
+          <div class="person-info">
+            <strong>#SoulaaniFood</strong>
+            <span>7.2K conversations</span>
           </div>
-          <span class="gold">→</span>
         </div>
 
       </div>
 
 
-      <div class="card">
+      <div class="side-card">
 
-        <div class="side-heading">
-          <h3>Upcoming</h3>
-          <a onclick="showPage('explore')">View all</a>
+        <h3>People You May Know</h3>
+
+        <div class="person">
+
+          <div class="avatar"></div>
+
+          <div class="person-info">
+            <strong>Jalen Carter</strong>
+            <span>Atlanta, GA</span>
+          </div>
+
+          <button class="btn btn-dark"
+                  onclick="followUser(this)">
+            Follow
+          </button>
+
         </div>
 
-        <div class="event">
-          <div>
-            <b>Summer Vibes Festival</b>
-            <div class="small">Music • Food • Vendors</div>
-          </div>
-          <span class="small">Detroit</span>
-        </div>
+        <div class="person">
 
-        <div class="event">
-          <div>
-            <b>Community Cookout</b>
-            <div class="small">Food • Family • Culture</div>
-          </div>
-          <span class="small">Harrisburg</span>
-        </div>
+          <div class="avatar gold"></div>
 
-        <div class="event">
-          <div>
-            <b>Black Art Exhibit</b>
-            <div class="small">Art • Culture</div>
+          <div class="person-info">
+            <strong>Imani Brooks</strong>
+            <span>Philadelphia, PA</span>
           </div>
-          <span class="small">Philly</span>
+
+          <button class="btn btn-dark"
+                  onclick="followUser(this)">
+            Follow
+          </button>
+
         </div>
 
       </div>
@@ -1420,180 +1085,1012 @@ a{
 
   </div>
 
+</section>
 
-  <!-- ===================================================
-       MOBILE BOTTOM NAV
-       PROFILE IS THE FAR-RIGHT BUTTON
-  ==================================================== -->
 
-  <nav class="bottom-nav">
+<!-- =========================
+     CONNECT
+========================= -->
 
-    <button data-page="home" class="active" onclick="showPage('home')">
-      <span>⌂</span>
-      Home
+<section id="connect" class="page">
+
+  <h1 class="page-title">Connect</h1>
+
+  <p class="page-subtitle">
+    Find people, communities and conversations.
+  </p>
+
+  <div class="search-box">
+
+    <input
+      id="peopleSearch"
+      type="text"
+      placeholder="Search people or communities..."
+      oninput="filterPeople()"
+    >
+
+    <button class="btn btn-gold"
+            onclick="showToast('Searching Soulaani...')">
+      Search
     </button>
 
-    <button data-page="connect" onclick="showPage('connect')">
-      <span>♟</span>
-      Connect
-    </button>
+  </div>
 
-    <button data-page="date" onclick="showPage('date')">
-      <span>♡</span>
-      Date
-    </button>
 
-    <button data-page="build" onclick="showPage('build')">
-      <span>▣</span>
-      Build
-    </button>
+  <div class="section-heading">
+    <h2>People</h2>
+  </div>
 
-    <button data-page="market" onclick="showPage('market')">
-      <span>◇</span>
-      Market
-    </button>
+  <div id="peopleGrid" class="grid">
 
-    <button data-page="explore" onclick="showPage('explore')">
-      <span>◷</span>
-      Explore
-    </button>
+    <div class="card person-search"
+         data-name="Marcus Johnson">
 
-    <button data-page="skate" onclick="showPage('skate')">
-      <span>
-        <span class="real-icon skateboard-icon">
-          <i class="board"></i>
-          <i class="wheel one"></i>
-          <i class="wheel two"></i>
-        </span>
-      </span>
-      Skate
-    </button>
+      <div class="person">
+        <div class="avatar"></div>
 
-    <button data-page="culture" onclick="showPage('culture')">
-      <span>
-        <span class="real-icon fist-icon">
-          <svg viewBox="0 0 64 64" aria-hidden="true">
-            <path fill="currentColor" d="M18 58c-5-2-8-7-8-13V27c0-3 2-6 5-6s5 2 5 5V13c0-3 2-5 5-5s5 2 5 5v9-16c0-3 2-5 5-5s5 2 5 5v16-12c0-3 2-5 5-5s5 2 5 5v18l3-5c2-3 5-4 8-2 2 2 2 5 1 8l-7 17c-3 8-10 13-19 13H18Z"/>
-          </svg>
-        </span>
-      </span>
-      Culture
-    </button>
+        <div class="person-info">
+          <strong>Marcus Johnson</strong>
+          <span>Detroit, MI · Creator</span>
+        </div>
 
-    <button data-page="profile" onclick="showPage('profile')">
-      <span>◎</span>
-      Profile
-    </button>
+        <button class="btn btn-dark"
+                onclick="followUser(this)">
+          Follow
+        </button>
+      </div>
 
-  </nav>
+    </div>
+
+
+    <div class="card person-search"
+         data-name="Aaliyah Williams">
+
+      <div class="person">
+        <div class="avatar gold"></div>
+
+        <div class="person-info">
+          <strong>Aaliyah Williams</strong>
+          <span>Brooklyn, NY · Fashion</span>
+        </div>
+
+        <button class="btn btn-dark"
+                onclick="followUser(this)">
+          Follow
+        </button>
+      </div>
+
+    </div>
+
+
+    <div class="card person-search"
+         data-name="Darius Green">
+
+      <div class="person">
+        <div class="avatar"></div>
+
+        <div class="person-info">
+          <strong>Darius Green</strong>
+          <span>Houston, TX · Skate</span>
+        </div>
+
+        <button class="btn btn-dark"
+                onclick="followUser(this)">
+          Follow
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="section-heading">
+    <h2>Communities</h2>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>Black Creators</h3>
+      <p>Creators building businesses, art and culture.</p>
+      <button class="btn btn-dark"
+              onclick="joinCommunity(this)">
+        Join
+      </button>
+    </div>
+
+    <div class="card">
+      <h3>Black Skate Community</h3>
+      <p>Riders, clips, spots and skate conversations.</p>
+      <button class="btn btn-dark"
+              onclick="joinCommunity(this)">
+        Join
+      </button>
+    </div>
+
+    <div class="card">
+      <h3>Food & Family</h3>
+      <p>Recipes, restaurants, traditions and food culture.</p>
+      <button class="btn btn-dark"
+              onclick="joinCommunity(this)">
+        Join
+      </button>
+    </div>
+
+  </div>
 
 </section>
 
 
-<!-- =====================================================
-     CREATE POST MODAL
-===================================================== -->
+<!-- =========================
+     DATE
+========================= -->
 
-<div id="postModal" class="modal hidden">
+<section id="date" class="page">
 
-  <div class="modal-card">
+  <h1 class="page-title">Date</h1>
 
-    <div class="modal-header">
-      <h2>Create a post</h2>
-      <button class="close" onclick="closeModal('postModal')">×</button>
+  <p class="page-subtitle">
+    Meet people looking for meaningful connections.
+  </p>
+
+  <div class="grid">
+
+    <div class="card">
+
+      <div class="avatar gold"
+           style="width:80px;height:80px;margin-bottom:15px;"></div>
+
+      <h3>Jasmine</h3>
+      <p>Chicago, IL</p>
+
+      <br>
+
+      <p>
+        Music, food, travel and good conversations.
+      </p>
+
+      <br>
+
+      <button class="btn btn-gold"
+              onclick="dateAction('Jasmine')">
+        Connect
+      </button>
+
     </div>
 
-    <form class="form" onsubmit="createPost(event)">
+
+    <div class="card">
+
+      <div class="avatar"
+           style="width:80px;height:80px;margin-bottom:15px;"></div>
+
+      <h3>Malcolm</h3>
+      <p>Atlanta, GA</p>
+
+      <br>
+
+      <p>
+        Entrepreneur, sneaker collector and foodie.
+      </p>
+
+      <br>
+
+      <button class="btn btn-gold"
+              onclick="dateAction('Malcolm')">
+        Connect
+      </button>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="avatar gold"
+           style="width:80px;height:80px;margin-bottom:15px;"></div>
+
+      <h3>Keisha</h3>
+      <p>Los Angeles, CA</p>
+
+      <br>
+
+      <p>
+        Art, skating, fashion and discovering new places.
+      </p>
+
+      <br>
+
+      <button class="btn btn-gold"
+              onclick="dateAction('Keisha')">
+        Connect
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     BUILD
+========================= -->
+
+<section id="build" class="page">
+
+  <h1 class="page-title">Build</h1>
+
+  <p class="page-subtitle">
+    Build your business, brand, project or next big idea.
+  </p>
+
+  <div class="grid">
+
+    <div class="card">
+      <div style="font-size:40px;margin-bottom:15px;">💼</div>
+      <h3>Business</h3>
+      <p>Discover and connect with Black-owned businesses.</p>
+      <br>
+      <button class="btn btn-gold"
+              onclick="showToast('Business tools coming into your workspace.')">
+        Start Building
+      </button>
+    </div>
+
+    <div class="card">
+      <div style="font-size:40px;margin-bottom:15px;">🎨</div>
+      <h3>Creator</h3>
+      <p>Grow an audience around your creativity and ideas.</p>
+      <br>
+      <button class="btn btn-gold"
+              onclick="showToast('Creator workspace opened.')">
+        Create
+      </button>
+    </div>
+
+    <div class="card">
+      <div style="font-size:40px;margin-bottom:15px;">🤝</div>
+      <h3>Community</h3>
+      <p>Bring people together around something meaningful.</p>
+      <br>
+      <button class="btn btn-gold"
+              onclick="showToast('Community builder opened.')">
+        Build Community
+      </button>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     MARKET
+========================= -->
+
+<section id="market" class="page">
+
+  <h1 class="page-title">Market</h1>
+
+  <p class="page-subtitle">
+    Discover products and businesses from the community.
+  </p>
+
+  <div class="grid">
+
+    <div class="card product">
+
+      <div class="product-image">👟</div>
+
+      <div class="product-content">
+        <h3>Community Sneakers</h3>
+        <p>Independent Black-owned footwear brand.</p>
+
+        <div class="price">$120</div>
+
+        <button class="btn btn-gold"
+                onclick="buyProduct('Community Sneakers')">
+          View Product
+        </button>
+      </div>
+
+    </div>
+
+
+    <div class="card product">
+
+      <div class="product-image">👕</div>
+
+      <div class="product-content">
+        <h3>Soulaani Apparel</h3>
+        <p>Culture-forward everyday essentials.</p>
+
+        <div class="price">$48</div>
+
+        <button class="btn btn-gold"
+                onclick="buyProduct('Soulaani Apparel')">
+          View Product
+        </button>
+      </div>
+
+    </div>
+
+
+    <div class="card product">
+
+      <div class="product-image">💎</div>
+
+      <div class="product-content">
+        <h3>Gold Standard</h3>
+        <p>Independent jewelry and accessories.</p>
+
+        <div class="price">$85</div>
+
+        <button class="btn btn-gold"
+                onclick="buyProduct('Gold Standard')">
+          View Product
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     EXPLORE
+========================= -->
+
+<section id="explore" class="page">
+
+  <h1 class="page-title">Explore</h1>
+
+  <p class="page-subtitle">
+    Discover what's happening around Soulaani.
+  </p>
+
+  <div class="search-box">
+
+    <input
+      id="exploreSearch"
+      placeholder="Search places, events, creators..."
+    >
+
+    <button class="btn btn-gold"
+            onclick="exploreSearch()">
+      Explore
+    </button>
+
+  </div>
+
+
+  <div class="grid">
+
+    <div class="card">
+      <div style="font-size:40px;">📍</div>
+      <h3>Local Culture</h3>
+      <p>Explore what's happening in cities and communities.</p>
+      <br>
+      <button class="btn btn-dark"
+              onclick="showToast('Local discovery opened.')">
+        Explore Nearby
+      </button>
+    </div>
+
+    <div class="card">
+      <div style="font-size:40px;">🎵</div>
+      <h3>Music</h3>
+      <p>Artists, playlists, events and conversations.</p>
+      <br>
+      <button class="btn btn-dark"
+              onclick="showToast('Music discovery opened.')">
+        Discover Music
+      </button>
+    </div>
+
+    <div class="card">
+      <div style="font-size:40px;">🎉</div>
+      <h3>Events</h3>
+      <p>Find events happening across the community.</p>
+      <br>
+      <button class="btn btn-dark"
+              onclick="showToast('Events discovery opened.')">
+        Find Events
+      </button>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     CULTURE
+========================= -->
+
+<section id="culture" class="page">
+
+  <h1 class="page-title">Culture</h1>
+
+  <p class="page-subtitle">
+    Food, music, fashion, history, businesses, creators and
+    the culture that connects us.
+  </p>
+
+  <div class="grid">
+
+    <div class="culture-card">
+
+      <div class="emoji">🍗</div>
+
+      <h3>Food</h3>
+
+      <p>
+        Soul food, restaurants, recipes and food traditions.
+      </p>
+
+    </div>
+
+
+    <div class="culture-card">
+
+      <div class="emoji">🎤</div>
+
+      <h3>Music</h3>
+
+      <p>
+        Artists, sounds, scenes and music culture.
+      </p>
+
+    </div>
+
+
+    <div class="culture-card">
+
+      <div class="emoji">👟</div>
+
+      <h3>Fashion</h3>
+
+      <p>
+        Style, designers, sneakers and streetwear.
+      </p>
+
+    </div>
+
+
+    <div class="culture-card">
+
+      <div class="emoji">🏪</div>
+
+      <h3>Black-Owned</h3>
+
+      <p>
+        Businesses, founders and community builders.
+      </p>
+
+    </div>
+
+
+    <div class="culture-card">
+
+      <div class="emoji">📚</div>
+
+      <h3>History</h3>
+
+      <p>
+        Stories, people and history worth remembering.
+      </p>
+
+    </div>
+
+
+    <div class="culture-card">
+
+      <div class="emoji">🎬</div>
+
+      <h3>Creators</h3>
+
+      <p>
+        Film, photography, comedy, art and digital creators.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     SKATE
+========================= -->
+
+<section id="skate" class="page">
+
+  <div class="skate-hero">
+
+    <div class="skate-symbol">
+      🛹
+    </div>
+
+    <div>
+
+      <div class="hero-kicker">
+        Soulaani Skate
+      </div>
+
+      <h1>
+        Skate.
+      </h1>
+
+      <p style="max-width:600px;color:#bbb;margin-top:15px;line-height:1.6;">
+        Riders, clips, local skate spots, events and the
+        people pushing skate culture forward.
+      </p>
+
+      <div class="hero-buttons">
+
+        <button class="btn btn-gold"
+                onclick="openCreate('skate')">
+          Post a Clip
+        </button>
+
+        <button class="btn btn-dark"
+                onclick="showToast('Skate spots opened.')">
+          Find a Spot
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="skate-tabs">
+
+    <button class="skate-tab active"
+            onclick="skateTab(this,'clips')">
+      Clips
+    </button>
+
+    <button class="skate-tab"
+            onclick="skateTab(this,'riders')">
+      Riders
+    </button>
+
+    <button class="skate-tab"
+            onclick="skateTab(this,'spots')">
+      Spots
+    </button>
+
+    <button class="skate-tab"
+            onclick="skateTab(this,'events')">
+      Events
+    </button>
+
+  </div>
+
+
+  <div id="skateContent" class="grid">
+
+    <div class="skate-card">
+
+      <div class="skate-photo">
+        🛹
+      </div>
+
+      <div class="skate-card-content">
+        <h3>Downtown Session</h3>
+        <p>Philadelphia · 2 hours ago</p>
+
+        <br>
+
+        <button class="btn btn-dark"
+                onclick="playClip('Downtown Session')">
+          ▶ Watch Clip
+        </button>
+      </div>
+
+    </div>
+
+
+    <div class="skate-card">
+
+      <div class="skate-photo">
+        🛹
+      </div>
+
+      <div class="skate-card-content">
+        <h3>Street Lines</h3>
+        <p>Atlanta · Today</p>
+
+        <br>
+
+        <button class="btn btn-dark"
+                onclick="playClip('Street Lines')">
+          ▶ Watch Clip
+        </button>
+      </div>
+
+    </div>
+
+
+    <div class="skate-card">
+
+      <div class="skate-photo">
+        🛹
+      </div>
+
+      <div class="skate-card-content">
+        <h3>Late Night Push</h3>
+        <p>Los Angeles · Yesterday</p>
+
+        <br>
+
+        <button class="btn btn-dark"
+                onclick="playClip('Late Night Push')">
+          ▶ Watch Clip
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     PROFILE
+========================= -->
+
+<section id="profile" class="page">
+
+  <div class="profile-header">
+
+    <div class="profile-avatar"></div>
+
+    <div class="profile-info">
+
+      <h1>Your Profile</h1>
+
+      <p>@soulaaniuser</p>
+
+      <p>
+        Building culture. Building community.
+      </p>
+
+      <div class="stats">
+
+        <div class="stat">
+          <strong id="postCount">12</strong>
+          <span>Posts</span>
+        </div>
+
+        <div class="stat">
+          <strong>428</strong>
+          <span>Followers</span>
+        </div>
+
+        <div class="stat">
+          <strong>301</strong>
+          <span>Following</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <button class="btn btn-dark"
+            onclick="openEditProfile()">
+      Edit Profile
+    </button>
+
+  </div>
+
+
+  <div class="section-heading">
+
+    <h2>Your Posts</h2>
+
+    <button class="btn btn-dark"
+            onclick="openCreate()">
+      + Post
+    </button>
+
+  </div>
+
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>Welcome to Soulaani</h3>
+      <p>Your profile is your home on the platform.</p>
+    </div>
+
+    <div class="card">
+      <h3>Community</h3>
+      <p>Connect with people and communities.</p>
+    </div>
+
+    <div class="card">
+      <h3>Your Culture</h3>
+      <p>Share what matters to you.</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     BOTTOM NAVIGATION
+========================= -->
+
+<nav class="bottom-nav">
+
+  <div class="nav-inner">
+
+    <button class="nav-item active"
+            data-page="home"
+            onclick="navigate('home')">
+
+      <span class="nav-icon">⌂</span>
+      <span class="nav-name">Home</span>
+
+    </button>
+
+
+    <button class="nav-item"
+            data-page="connect"
+            onclick="navigate('connect')">
+
+      <span class="nav-icon">♧</span>
+      <span class="nav-name">Connect</span>
+
+    </button>
+
+
+    <button class="nav-item"
+            data-page="date"
+            onclick="navigate('date')">
+
+      <span class="nav-icon">♡</span>
+      <span class="nav-name">Date</span>
+
+    </button>
+
+
+    <button class="nav-item"
+            data-page="build"
+            onclick="navigate('build')">
+
+      <span class="nav-icon">✦</span>
+      <span class="nav-name">Build</span>
+
+    </button>
+
+
+    <button class="nav-item"
+            data-page="market"
+            onclick="navigate('market')">
+
+      <span class="nav-icon">▣</span>
+      <span class="nav-name">Market</span>
+
+    </button>
+
+
+    <button class="nav-item"
+            data-page="explore"
+            onclick="navigate('explore')">
+
+      <span class="nav-icon">⌕</span>
+      <span class="nav-name">Explore</span>
+
+    </button>
+
+
+    <button class="nav-item"
+            data-page="culture"
+            onclick="navigate('culture')">
+
+      <span class="nav-icon">✺</span>
+      <span class="nav-name">Culture</span>
+
+    </button>
+
+
+    <!-- SKATE IS ITS OWN PERMANENT SECTION -->
+
+    <button class="nav-item"
+            data-page="skate"
+            onclick="navigate('skate')">
+
+      <span class="nav-icon">🛹</span>
+      <span class="nav-name">Skate</span>
+
+    </button>
+
+
+    <!-- PROFILE IS THE FAR-RIGHT BUTTON -->
+
+    <button class="nav-item"
+            data-page="profile"
+            onclick="navigate('profile')">
+
+      <span class="nav-icon">♙</span>
+      <span class="nav-name">Profile</span>
+
+    </button>
+
+  </div>
+
+</nav>
+
+
+<!-- =========================
+     CREATE MODAL
+========================= -->
+
+<div id="createModal" class="modal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <h2>Create Post</h2>
+
+      <button class="close"
+              onclick="closeModal('createModal')">
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>What's happening?</label>
 
       <textarea
         id="postText"
-        maxlength="3000"
-        placeholder="What's happening in your world?"
-        required
-      ></textarea>
+        placeholder="Share something with Soulaani...">
+      </textarea>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>Location</label>
 
       <input
-        id="postImage"
-        type="url"
-        placeholder="Optional image URL"
+        id="postLocation"
+        placeholder="City, State"
       >
 
-      <select id="postSection">
+    </div>
 
-        <option value="home">
-          Home
-        </option>
 
-        <option value="skate">
-          Skate
-        </option>
-
-        <option value="culture">
-          Culture
-        </option>
-
-      </select>
-
-      <button class="btn gold-btn">
-        Publish Post
-      </button>
-
-    </form>
+    <button class="btn btn-gold"
+            style="width:100%;"
+            onclick="createPost()">
+      Publish Post
+    </button>
 
   </div>
 
 </div>
 
 
-<!-- =====================================================
-     PROFILE MODAL
-===================================================== -->
+<!-- =========================
+     SEARCH MODAL
+========================= -->
 
-<div id="profileModal" class="modal hidden">
+<div id="searchModal" class="modal">
 
-  <div class="modal-card">
+  <div class="modal-box">
 
-    <div class="modal-header">
-      <h2>Edit profile</h2>
-      <button class="close" onclick="closeModal('profileModal')">×</button>
+    <div class="modal-head">
+
+      <h2>Search Soulaani</h2>
+
+      <button class="close"
+              onclick="closeModal('searchModal')">
+        ×
+      </button>
+
     </div>
 
-    <form class="form" onsubmit="saveProfile(event)">
+
+    <div class="search-box">
+
+      <input
+        id="globalSearch"
+        placeholder="Search Soulaani..."
+      >
+
+      <button class="btn btn-gold"
+              onclick="globalSearch()">
+        Search
+      </button>
+
+    </div>
+
+    <p id="searchResult"
+       style="color:#888;">
+      Search people, posts, communities, businesses and culture.
+    </p>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     EDIT PROFILE MODAL
+========================= -->
+
+<div id="profileModal" class="modal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <h2>Edit Profile</h2>
+
+      <button class="close"
+              onclick="closeModal('profileModal')">
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>Name</label>
 
       <input
         id="profileName"
-        placeholder="Your name"
-        required
+        value="Your Profile"
       >
 
-      <input
-        id="profileHandle"
-        placeholder="@username"
-        required
-      >
+    </div>
+
+
+    <div class="form-group">
+
+      <label>Username</label>
 
       <input
-        id="profileLocation"
-        placeholder="City or area"
+        id="profileUsername"
+        value="@soulaaniuser"
       >
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>Bio</label>
 
       <textarea
-        id="profileBio"
-        maxlength="300"
-        placeholder="Tell people about yourself"
-      ></textarea>
+        id="profileBio">Building culture. Building community.</textarea>
 
-      <input
-        id="profileAvatar"
-        type="url"
-        placeholder="Profile image URL"
-      >
+    </div>
 
-      <button class="btn gold-btn">
-        Save Profile
-      </button>
 
-    </form>
+    <button class="btn btn-gold"
+            style="width:100%;"
+            onclick="saveProfile()">
+      Save Changes
+    </button>
 
   </div>
 
@@ -1604,426 +2101,437 @@ a{
 
 
 <script>
-/* =====================================================
-   SOULAANI LOCAL SOCIAL ENGINE
-===================================================== */
 
-const STORAGE_KEY = "soulaani_platform_v2";
-
-const defaultState = {
-  loggedIn:false,
-
-  profile:{
-    name:"Soulaani Member",
-    handle:"member",
-    location:"",
-    bio:"Your identity. Your people. Your world.",
-    avatar:""
-  },
-
-  posts:[],
-
-  likes:[],
-
-  follows:[],
-
-  comments:{},
-
-  saved:[],
-
-  page:"home"
-};
-
-let state = loadState();
-
-
-function loadState(){
-
-  try{
-
-    const saved = localStorage.getItem(STORAGE_KEY);
-
-    if(!saved){
-      return structuredClone(defaultState);
-    }
-
-    const parsed = JSON.parse(saved);
-
-    return {
-      ...structuredClone(defaultState),
-      ...parsed,
-      profile:{
-        ...defaultState.profile,
-        ...(parsed.profile || {})
-      }
-    };
-
-  }catch(error){
-
-    return structuredClone(defaultState);
-
-  }
-
-}
-
-
-function saveState(){
-
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(state)
-  );
-
-}
-
-
-function makeId(){
-
-  return Date.now().toString(36) +
-    Math.random().toString(36).slice(2);
-
-}
-
-
-function escapeHTML(value){
-
-  return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-
-}
-
-
-function initials(){
-
-  return state.profile.name
-    .split(" ")
-    .map(x=>x[0])
-    .slice(0,2)
-    .join("")
-    .toUpperCase();
-
-}
-
-
-/* =====================================================
-   LOGIN / DEMO ACCOUNT
-===================================================== */
-
-function openApp(mode){
-
-  state.loggedIn = true;
-
-  if(mode === "signup"){
-
-    state.profile.name = "Soulaani Member";
-    state.profile.handle = "member";
-
-  }
-
-  saveState();
-
-  document.getElementById("landing").style.display = "none";
-  document.getElementById("app").classList.add("active");
-
-  renderChrome();
-  showPage("home");
-
-}
-
-
-function logout(){
-
-  state.loggedIn = false;
-
-  saveState();
-
-  document.getElementById("app").classList.remove("active");
-  document.getElementById("landing").style.display = "block";
-
-  showToast("You have been logged out.");
-
-}
-
-
-function goHome(){
-
-  showPage("home");
-
-}
-
-
-/* =====================================================
-   PAGE NAVIGATION
-===================================================== */
-
-function showPage(page){
-
-  const allowed = [
-    "home",
-    "connect",
-    "date",
-    "build",
-    "market",
-    "explore",
-    "skate",
-    "culture",
-    "messages",
-    "profile"
-  ];
-
-  if(!allowed.includes(page)){
+/* ==========================================================
+   SOULAANI APP ENGINE
+========================================================== */
+
+const pages = [
+  "home",
+  "connect",
+  "date",
+  "build",
+  "market",
+  "explore",
+  "culture",
+  "skate",
+  "profile"
+];
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function navigate(page){
+
+  if(!pages.includes(page)){
     page = "home";
   }
 
-  state.page = page;
+  document.querySelectorAll(".page").forEach(section=>{
+    section.classList.remove("active");
+  });
 
-  saveState();
+  const target = document.getElementById(page);
 
-  document.querySelectorAll("[data-page]")
-    .forEach(button=>{
+  if(target){
+    target.classList.add("active");
+  }
 
-      button.classList.toggle(
-        "active",
-        button.dataset.page === page
-      );
+  document.querySelectorAll(".nav-item").forEach(item=>{
+    item.classList.remove("active");
 
-    });
-
-  renderPage();
+    if(item.dataset.page === page){
+      item.classList.add("active");
+    }
+  });
 
   window.scrollTo({
     top:0,
     behavior:"smooth"
   });
 
+  localStorage.setItem("soulaani_current_page",page);
 }
 
 
-function renderPage(){
+/* =========================
+   INITIAL PAGE
+========================= */
 
-  const main = document.getElementById("main");
+const savedPage =
+  localStorage.getItem("soulaani_current_page");
 
-  const pages = {
+if(savedPage && pages.includes(savedPage)){
+  navigate(savedPage);
+}
 
-    home:renderHome,
 
-    connect:renderConnect,
+/* =========================
+   POSTS
+========================= */
 
-    date:renderDate,
+let posts = [
 
-    build:renderBuild,
+  {
+    name:"Marcus Johnson",
+    location:"Detroit, MI",
+    text:"Community isn't just where you live. It's what you build with the people around you.",
+    icon:"✊🏿",
+    likes:124,
+    comments:18
+  },
 
-    market:renderMarket,
+  {
+    name:"Aaliyah Brooks",
+    location:"Brooklyn, NY",
+    text:"New day. New ideas. New ways to support Black-owned businesses.",
+    icon:"✨",
+    likes:87,
+    comments:11
+  },
 
-    explore:renderExplore,
+  {
+    name:"Darius Green",
+    location:"Atlanta, GA",
+    text:"Found a new skate spot today. The city is full of places waiting to be discovered.",
+    icon:"🛹",
+    likes:64,
+    comments:9
+  }
 
-    skate:renderSkate,
+];
 
-    culture:renderCulture,
 
-    messages:renderMessages,
+function renderFeed(){
 
-    profile:renderProfile
+  const feed = document.getElementById("homeFeed");
 
-  };
+  if(!feed) return;
 
-  main.innerHTML =
-    (pages[state.page] || renderHome)();
+  feed.innerHTML = "";
 
-  renderTrending();
+  posts.forEach((post,index)=>{
+
+    const article = document.createElement("article");
+
+    article.className = "post";
+
+    article.innerHTML = `
+
+      <div class="post-head">
+
+        <div class="avatar"></div>
+
+        <div class="user-info">
+
+          <strong>${escapeHTML(post.name)}</strong>
+
+          <span>${escapeHTML(post.location)}</span>
+
+        </div>
+
+        <button class="top-btn"
+                onclick="showToast('More options')">
+          ···
+        </button>
+
+      </div>
+
+      <div class="post-body">
+
+        <p>${escapeHTML(post.text)}</p>
+
+      </div>
+
+      <div class="post-image">
+        ${post.icon}
+      </div>
+
+      <div class="post-actions">
+
+        <button class="action"
+                onclick="likePost(this,${index})">
+          ♡ <span>${post.likes}</span>
+        </button>
+
+        <button class="action"
+                onclick="commentPost(${index})">
+          ◯ <span>${post.comments}</span>
+        </button>
+
+        <button class="action"
+                onclick="sharePost(${index})">
+          ↗ Share
+        </button>
+
+        <button class="action"
+                onclick="savePost(this)">
+          ♧ Save
+        </button>
+
+      </div>
+
+    `;
+
+    feed.appendChild(article);
+
+  });
 
 }
 
 
-/* =====================================================
-   CHROME
-===================================================== */
+renderFeed();
 
-function renderChrome(){
 
-  const initialsText = initials();
+/* =========================
+   LIKE
+========================= */
 
-  const topAvatar =
-    document.getElementById("topAvatar");
+function likePost(button,index){
 
-  const sideAvatar =
-    document.getElementById("sideAvatar");
+  const liked = button.classList.toggle("liked");
 
-  if(state.profile.avatar){
+  if(liked){
+    posts[index].likes++;
+  }else{
+    posts[index].likes--;
+  }
 
-    topAvatar.innerHTML =
-      `<img src="${escapeHTML(state.profile.avatar)}">`;
+  button.querySelector("span").textContent =
+    posts[index].likes;
 
-    sideAvatar.innerHTML =
-      `<img src="${escapeHTML(state.profile.avatar)}">`;
+}
+
+
+/* =========================
+   COMMENT
+========================= */
+
+function commentPost(index){
+
+  const comment =
+    prompt("Write a comment:");
+
+  if(!comment) return;
+
+  posts[index].comments++;
+
+  renderFeed();
+
+  showToast("Comment added.");
+
+}
+
+
+/* =========================
+   SHARE
+========================= */
+
+function sharePost(index){
+
+  const post = posts[index];
+
+  if(navigator.share){
+
+    navigator.share({
+      title:"Soulaani",
+      text:post.text
+    });
 
   }else{
 
-    topAvatar.textContent = initialsText;
-    sideAvatar.textContent = initialsText;
+    showToast("Post ready to share.");
 
   }
 
-  document.getElementById("sideName").textContent =
-    state.profile.name;
+}
 
-  document.getElementById("sideHandle").textContent =
-    "@" + state.profile.handle;
+
+/* =========================
+   SAVE
+========================= */
+
+function savePost(button){
+
+  const saved =
+    button.classList.toggle("saved");
+
+  button.innerHTML =
+    saved ? "✓ Saved" : "♧ Save";
+
+  showToast(
+    saved ? "Post saved." : "Post removed from saved."
+  );
 
 }
 
 
-/* =====================================================
-   HOME
-===================================================== */
+/* =========================
+   FOLLOW
+========================= */
 
-function renderHome(){
+function followUser(button){
 
-  const firstName =
-    state.profile.name.split(" ")[0];
+  if(button.dataset.following === "true"){
 
-  return `
+    button.textContent = "Follow";
+    button.dataset.following = "false";
 
-    <div class="section-title">
-      Good to see you, ${escapeHTML(firstName)}.
-    </div>
+  }else{
 
-    <div class="card">
+    button.textContent = "Following";
+    button.dataset.following = "true";
 
-      <div class="composer">
-
-        <div class="avatar">
-          ${state.profile.avatar
-            ? `<img src="${escapeHTML(state.profile.avatar)}">`
-            : escapeHTML(initials())
-          }
-        </div>
-
-        <div
-          class="composer-input"
-          onclick="openModal('postModal')"
-        >
-          What's happening in your world?
-        </div>
-
-      </div>
-
-      <div class="quick-actions">
-
-        <button onclick="openModal('postModal')">
-          ＋ Post
-        </button>
-
-        <button onclick="openModal('postModal')">
-          ▧ Photo
-        </button>
-
-        <button onclick="openModal('postModal')">
-          ◉ Video
-        </button>
-
-        <button onclick="openModal('postModal')">
-          ☻ Feeling
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <div class="card">
-
-      <div class="stories">
-
-        ${renderStory("Your Story",true)}
-        ${renderStory("Jada")}
-        ${renderStory("Tee")}
-        ${renderStory("Melanin")}
-        ${renderStory("KJ")}
-        ${renderStory("Rico")}
-
-      </div>
-
-    </div>
-
-
-    <div id="homeFeed">
-      ${renderFeed("home")}
-    </div>
-
-  `;
+  }
 
 }
 
 
-function renderStory(name,own=false){
+/* =========================
+   COMMUNITY
+========================= */
 
-  return `
+function joinCommunity(button){
 
-    <div
-      class="story"
-      onclick="${own
-        ? "openModal('postModal')"
-        : "showToast('Story viewer coming soon.')"
-      }"
-    >
+  button.textContent = "Joined";
+  button.dataset.joined = "true";
 
-      <div class="avatar">
-        ${name[0]}
-      </div>
-
-      ${escapeHTML(name)}
-
-    </div>
-
-  `;
+  showToast("Community joined.");
 
 }
 
 
-/* =====================================================
-   FEED
-===================================================== */
+/* =========================
+   DATE
+========================= */
 
-function renderFeed(section){
+function dateAction(name){
 
-  let posts =
-    state.posts.filter(post=>{
+  showToast("Connection request sent to " + name + ".");
 
-      if(section === "home"){
-        return true;
-      }
+}
 
-      return post.section === section;
+
+/* =========================
+   MARKET
+========================= */
+
+function buyProduct(name){
+
+  showToast(name + " opened.");
+
+}
+
+
+/* =========================
+   EXPLORE
+========================= */
+
+function exploreSearch(){
+
+  const value =
+    document.getElementById("exploreSearch").value.trim();
+
+  if(!value){
+
+    showToast("Enter something to explore.");
+
+    return;
+
+  }
+
+  showToast("Exploring " + value + "...");
+
+}
+
+
+/* =========================
+   PEOPLE SEARCH
+========================= */
+
+function filterPeople(){
+
+  const value =
+    document.getElementById("peopleSearch")
+      .value
+      .toLowerCase()
+      .trim();
+
+  document.querySelectorAll(".person-search")
+    .forEach(card=>{
+
+      const name =
+        card.dataset.name.toLowerCase();
+
+      card.style.display =
+        !value || name.includes(value)
+          ? ""
+          : "none";
 
     });
 
+}
 
-  if(posts.length === 0){
 
-    return `
+/* =========================
+   SKATE TABS
+========================= */
 
-      <div class="card empty">
+function skateTab(button,type){
 
-        No posts here yet.
+  document.querySelectorAll(".skate-tab")
+    .forEach(tab=>{
+      tab.classList.remove("active");
+    });
 
-        <br><br>
+  button.classList.add("active");
 
-        Be the first person to share something.
+  const content =
+    document.getElementById("skateContent");
 
-        <br><br>
+  if(type === "clips"){
 
-        <button
-          class="btn outline-gold"
-          onclick="openModal('postModal')"
-        >
-          Create a post
-        </button>
+    content.innerHTML = `
 
+      <div class="skate-card">
+        <div class="skate-photo">🛹</div>
+        <div class="skate-card-content">
+          <h3>Downtown Session</h3>
+          <p>Philadelphia · Today</p>
+          <br>
+          <button class="btn btn-dark"
+                  onclick="playClip('Downtown Session')">
+            ▶ Watch Clip
+          </button>
+        </div>
+      </div>
+
+      <div class="skate-card">
+        <div class="skate-photo">🛹</div>
+        <div class="skate-card-content">
+          <h3>Street Lines</h3>
+          <p>Atlanta · Today</p>
+          <br>
+          <button class="btn btn-dark"
+                  onclick="playClip('Street Lines')">
+            ▶ Watch Clip
+          </button>
+        </div>
+      </div>
+
+      <div class="skate-card">
+        <div class="skate-photo">🛹</div>
+        <div class="skate-card-content">
+          <h3>Late Night Push</h3>
+          <p>Los Angeles · Yesterday</p>
+          <br>
+          <button class="btn btn-dark"
+                  onclick="playClip('Late Night Push')">
+            ▶ Watch Clip
+          </button>
+        </div>
       </div>
 
     `;
@@ -2031,171 +2539,162 @@ function renderFeed(section){
   }
 
 
-  return posts
-    .map(renderPost)
-    .join("");
+  if(type === "riders"){
+
+    content.innerHTML = `
+
+      <div class="card">
+        <div class="avatar gold"
+             style="width:75px;height:75px;margin-bottom:15px;">
+        </div>
+        <h3>Jay Carter</h3>
+        <p>Philadelphia · Street</p>
+        <br>
+        <button class="btn btn-dark"
+                onclick="showToast('Rider profile opened.')">
+          View Rider
+        </button>
+      </div>
+
+      <div class="card">
+        <div class="avatar"
+             style="width:75px;height:75px;margin-bottom:15px;">
+        </div>
+        <h3>Nia Williams</h3>
+        <p>Atlanta · Park</p>
+        <br>
+        <button class="btn btn-dark"
+                onclick="showToast('Rider profile opened.')">
+          View Rider
+        </button>
+      </div>
+
+      <div class="card">
+        <div class="avatar gold"
+             style="width:75px;height:75px;margin-bottom:15px;">
+        </div>
+        <h3>Malik Davis</h3>
+        <p>Los Angeles · Street</p>
+        <br>
+        <button class="btn btn-dark"
+                onclick="showToast('Rider profile opened.')">
+          View Rider
+        </button>
+      </div>
+
+    `;
+
+  }
+
+
+  if(type === "spots"){
+
+    content.innerHTML = `
+
+      <div class="card">
+        <h3>Downtown Plaza</h3>
+        <p>Philadelphia, PA</p>
+        <br>
+        <button class="btn btn-gold"
+                onclick="showToast('Map location opened.')">
+          View Spot
+        </button>
+      </div>
+
+      <div class="card">
+        <h3>Westside Banks</h3>
+        <p>Atlanta, GA</p>
+        <br>
+        <button class="btn btn-gold"
+                onclick="showToast('Map location opened.')">
+          View Spot
+        </button>
+      </div>
+
+      <div class="card">
+        <h3>Downtown Ledges</h3>
+        <p>Los Angeles, CA</p>
+        <br>
+        <button class="btn btn-gold"
+                onclick="showToast('Map location opened.')">
+          View Spot
+        </button>
+      </div>
+
+    `;
+
+  }
+
+
+  if(type === "events"){
+
+    content.innerHTML = `
+
+      <div class="card">
+        <h3>Soulaani Skate Jam</h3>
+        <p>Philadelphia · Saturday</p>
+        <br>
+        <button class="btn btn-gold"
+                onclick="showToast('Event details opened.')">
+          View Event
+        </button>
+      </div>
+
+      <div class="card">
+        <h3>Atlanta Street Session</h3>
+        <p>Atlanta · Next Sunday</p>
+        <br>
+        <button class="btn btn-gold"
+                onclick="showToast('Event details opened.')">
+          View Event
+        </button>
+      </div>
+
+      <div class="card">
+        <h3>Community Skate Night</h3>
+        <p>Los Angeles · Friday</p>
+        <br>
+        <button class="btn btn-gold"
+                onclick="showToast('Event details opened.')">
+          View Event
+        </button>
+      </div>
+
+    `;
+
+  }
 
 }
 
 
-function renderPost(post){
+function playClip(name){
 
-  const liked =
-    state.likes.includes(post.id);
-
-  const comments =
-    state.comments[post.id] || [];
-
-  return `
-
-    <article class="card">
-
-      <div class="post-head">
-
-        <div class="avatar">
-          ${post.avatar
-            ? `<img src="${escapeHTML(post.avatar)}">`
-            : escapeHTML(post.author[0] || "S")
-          }
-        </div>
-
-        <div>
-
-          <b>
-            ${escapeHTML(post.author)}
-          </b>
-
-          <div class="post-meta">
-            @${escapeHTML(post.handle)}
-            ·
-            ${escapeHTML(post.time)}
-            ${post.location
-              ? " · " + escapeHTML(post.location)
-              : ""
-            }
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="post-body">
-        ${escapeHTML(post.body)}
-      </div>
-
-
-      ${
-        post.image
-        ?
-        `
-        <div class="post-media">
-          <img
-            src="${escapeHTML(post.image)}"
-            alt="Soulaani post"
-          >
-        </div>
-        `
-        :
-        ""
-      }
-
-
-      <div class="post-actions">
-
-        <button
-          class="${liked ? "liked":""}"
-          onclick="toggleLike('${post.id}')"
-        >
-          ${liked ? "♥" : "♡"}
-          ${post.likes || 0}
-        </button>
-
-        <button
-          onclick="addComment('${post.id}')"
-        >
-          ◌
-          ${comments.length}
-        </button>
-
-        <button
-          onclick="sharePost('${post.id}')"
-        >
-          ↗
-          Share
-        </button>
-
-        <button
-          onclick="toggleSave('${post.id}')"
-        >
-          ${state.saved.includes(post.id)
-            ? "Saved"
-            : "Save"
-          }
-        </button>
-
-      </div>
-
-
-      ${
-        comments.length
-        ?
-        `
-        <div style="margin-top:12px;border-top:1px solid #252525">
-
-          ${comments.map(comment=>`
-
-            <div style="
-              padding:10px 0;
-              border-bottom:1px solid #202020;
-              font-size:11px;
-              line-height:1.5;
-            ">
-
-              <b class="gold">
-                ${escapeHTML(comment.author)}
-              </b>
-
-              ${escapeHTML(comment.text)}
-
-            </div>
-
-          `).join("")}
-
-        </div>
-        `
-        :
-        ""
-      }
-
-    </article>
-
-  `;
+  showToast(name + " clip opened.");
 
 }
 
 
-/* =====================================================
+/* =========================
    CREATE POST
-===================================================== */
+========================= */
 
-function createPost(event){
+function openCreate(){
 
-  event.preventDefault();
+  document.getElementById("createModal")
+    .classList.add("active");
 
-  const body =
-    document.getElementById("postText")
-      .value.trim();
+}
 
-  const image =
-    document.getElementById("postImage")
-      .value.trim();
 
-  const section =
-    document.getElementById("postSection")
-      .value;
+function createPost(){
 
-  if(!body){
+  const text =
+    document.getElementById("postText").value.trim();
+
+  const location =
+    document.getElementById("postLocation").value.trim();
+
+  if(!text){
 
     showToast("Write something first.");
 
@@ -2203,1532 +2702,179 @@ function createPost(event){
 
   }
 
+  posts.unshift({
 
-  const post = {
+    name:"Your Profile",
 
-    id:makeId(),
+    location:
+      location || "Soulaani",
 
-    author:state.profile.name,
+    text:text,
 
-    handle:state.profile.handle,
+    icon:"✊🏿",
 
-    avatar:state.profile.avatar,
+    likes:0,
 
-    body,
-
-    image,
-
-    section,
-
-    location:state.profile.location,
-
-    time:"just now",
-
-    likes:0
-
-  };
-
-
-  state.posts.unshift(post);
-
-  saveState();
-
-  event.target.reset();
-
-  closeModal("postModal");
-
-  showPage(section === "skate"
-    ? "skate"
-    : section === "culture"
-      ? "culture"
-      : "home"
-  );
-
-  showToast("Your post is live.");
-
-}
-
-
-/* =====================================================
-   POST INTERACTIONS
-===================================================== */
-
-function toggleLike(id){
-
-  const index =
-    state.likes.indexOf(id);
-
-  const post =
-    state.posts.find(x=>x.id === id);
-
-  if(!post){
-    return;
-  }
-
-
-  if(index === -1){
-
-    state.likes.push(id);
-
-    post.likes =
-      (post.likes || 0) + 1;
-
-  }else{
-
-    state.likes.splice(index,1);
-
-    post.likes =
-      Math.max(0,(post.likes || 0) - 1);
-
-  }
-
-  saveState();
-
-  renderPage();
-
-}
-
-
-function addComment(id){
-
-  const text =
-    prompt("Write a comment:");
-
-  if(!text || !text.trim()){
-    return;
-  }
-
-
-  if(!state.comments[id]){
-    state.comments[id] = [];
-  }
-
-
-  state.comments[id].push({
-
-    author:state.profile.name,
-
-    text:text.trim(),
-
-    time:"just now"
+    comments:0
 
   });
 
+  renderFeed();
 
-  saveState();
+  closeModal("createModal");
 
-  renderPage();
+  document.getElementById("postText").value = "";
 
-  showToast("Comment added.");
+  document.getElementById("postLocation").value = "";
 
-}
+  const counter =
+    document.getElementById("postCount");
 
+  counter.textContent =
+    Number(counter.textContent) + 1;
 
-function sharePost(id){
+  navigate("home");
 
-  const post =
-    state.posts.find(x=>x.id === id);
-
-  if(!post){
-    return;
-  }
-
-
-  const text =
-    `${post.author} on Soulaani: ${post.body}`;
-
-
-  if(navigator.share){
-
-    navigator.share({
-      title:"Soulaani",
-      text
-    }).catch(()=>{});
-
-  }else if(navigator.clipboard){
-
-    navigator.clipboard
-      .writeText(text)
-      .then(()=>{
-        showToast("Post copied.");
-      });
-
-  }else{
-
-    showToast("Post shared.");
-
-  }
+  showToast("Post published.");
 
 }
 
 
-function toggleSave(id){
+/* =========================
+   SEARCH
+========================= */
 
-  const index =
-    state.saved.indexOf(id);
+function openSearch(){
 
-  if(index === -1){
-
-    state.saved.push(id);
-
-    showToast("Post saved.");
-
-  }else{
-
-    state.saved.splice(index,1);
-
-    showToast("Post removed from saved.");
-
-  }
-
-  saveState();
-
-  renderPage();
+  document.getElementById("searchModal")
+    .classList.add("active");
 
 }
 
 
-/* =====================================================
-   CONNECT
-===================================================== */
+function globalSearch(){
 
-function renderConnect(){
-
-  const people = [
-    ["JadaLuvs","Music • Fashion","Philadelphia"],
-    ["TeeTheCreator","Art • Design","Atlanta"],
-    ["MelaninMagic","Beauty • Culture","Baltimore"],
-    ["Rico","Business • Fitness","Detroit"]
-  ];
-
-
-  return `
-
-    <div class="section-title">
-      Connect
-    </div>
-
-    <div class="card">
-
-      <h3>
-        Find your people.
-      </h3>
-
-      <p class="muted">
-        Discover people, creators, entrepreneurs,
-        communities and conversations.
-      </p>
-
-    </div>
-
-
-    <div class="card">
-
-      <div class="side-heading">
-
-        <h3>
-          People you may know
-        </h3>
-
-        <a onclick="showToast('More people coming soon.')">
-          View all
-        </a>
-
-      </div>
-
-
-      ${people.map(person=>`
-
-        <div class="person-row">
-
-          <div class="person">
-
-            <div class="avatar">
-              ${person[0][0]}
-            </div>
-
-            <div>
-
-              <b>
-                ${person[0]}
-              </b>
-
-              <div class="small">
-                ${person[1]} · ${person[2]}
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <button
-            class="btn outline-gold"
-            onclick="toggleFollow(this,'${person[0]}')"
-          >
-            ${state.follows.includes(person[0])
-              ? "Following"
-              : "Follow"
-            }
-          </button>
-
-        </div>
-
-      `).join("")}
-
-    </div>
-
-
-    <div class="card">
-
-      <h3>
-        Communities
-      </h3>
-
-      ${[
-        ["Black Entrepreneurs","12.4K members"],
-        ["Creative Souls","6.2K members"],
-        ["Skate Fam","4.8K members"],
-        ["Music Lovers","8.9K members"]
-      ].map(c=>`
-
-        <div class="community-row">
-
-          <div>
-            <b>${c[0]}</b>
-            <div class="small">${c[1]}</div>
-          </div>
-
-          <button
-            class="btn"
-            onclick="joinCommunity(this,'${c[0]}')"
-          >
-            Join
-          </button>
-
-        </div>
-
-      `).join("")}
-
-    </div>
-
-  `;
-
-}
-
-
-function toggleFollow(button,name){
-
-  const index =
-    state.follows.indexOf(name);
-
-  if(index === -1){
-
-    state.follows.push(name);
-
-    button.textContent = "Following";
-
-    showToast("Following " + name);
-
-  }else{
-
-    state.follows.splice(index,1);
-
-    button.textContent = "Follow";
-
-    showToast("Unfollowed " + name);
-
-  }
-
-  saveState();
-
-}
-
-
-function joinCommunity(button,name){
-
-  const key = "community:" + name;
-
-  if(!state.follows.includes(key)){
-
-    state.follows.push(key);
-
-    button.textContent = "Joined";
-
-    showToast("You joined " + name);
-
-  }else{
-
-    state.follows =
-      state.follows.filter(x=>x !== key);
-
-    button.textContent = "Join";
-
-    showToast("You left " + name);
-
-  }
-
-  saveState();
-
-}
-
-
-/* =====================================================
-   DATE
-===================================================== */
-
-function renderDate(){
-
-  return `
-
-    <div class="section-title">
-      Date
-    </div>
-
-    <div class="tabs">
-
-      <button class="active">
-        Discover
-      </button>
-
-      <button onclick="showToast('Your matches will appear here.')">
-        Matches
-      </button>
-
-      <button onclick="showPage('messages')">
-        Messages
-      </button>
-
-    </div>
-
-
-    <div class="card" style="padding:0;overflow:hidden">
-
-      <div class="post-media" style="height:410px">
-        Dating Profile
-      </div>
-
-      <div style="padding:18px">
-
-        <h2 style="font-family:'Playfair Display'">
-          Aaliyah, 26
-        </h2>
-
-        <div class="small">
-          Harrisburg, PA · Creative
-        </div>
-
-        <p style="margin-top:12px">
-          Creative, ambitious and always
-          looking for the next great experience.
-        </p>
-
-        <div style="
-          display:flex;
-          justify-content:center;
-          gap:15px;
-          margin-top:18px;
-        ">
-
-          <button
-            class="icon-btn"
-            onclick="showToast('Profile passed.')"
-          >
-            ×
-          </button>
-
-          <button
-            class="icon-btn"
-            onclick="showToast('Super like sent.')"
-          >
-            ★
-          </button>
-
-          <button
-            class="icon-btn"
-            onclick="showToast('Like sent.')"
-          >
-            ♥
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  `;
-
-}
-
-
-/* =====================================================
-   BUILD
-===================================================== */
-
-function renderBuild(){
-
-  const jobs = [
-    ["Community Manager","Remote","Full-time"],
-    ["Frontend Developer","Philadelphia","Contract"],
-    ["Marketing Coordinator","Atlanta","Full-time"],
-    ["Business Mentor","Remote","Mentorship"]
-  ];
-
-
-  return `
-
-    <div class="section-title">
-      Build
-    </div>
-
-    <div class="card">
-
-      <h3>
-        Build your future.
-      </h3>
-
-      <p class="muted">
-        Jobs, entrepreneurship, mentorship,
-        professional networking and business growth.
-      </p>
-
-    </div>
-
-
-    <div class="card">
-
-      ${jobs.map(job=>`
-
-        <div class="event-row">
-
-          <div>
-
-            <b>${job[0]}</b>
-
-            <div class="small">
-              ${job[1]} · ${job[2]}
-            </div>
-
-          </div>
-
-          <button
-            class="btn outline-gold"
-            onclick="showToast('Opportunity saved.')"
-          >
-            Save
-          </button>
-
-        </div>
-
-      `).join("")}
-
-    </div>
-
-  `;
-
-}
-
-
-/* =====================================================
-   MARKET
-===================================================== */
-
-function renderMarket(){
-
-  const categories = [
-    "Fashion & Apparel",
-    "Beauty & Hair",
-    "Food & Restaurants",
-    "Art & Home",
-    "Professional Services",
-    "Local Businesses"
-  ];
-
-
-  return `
-
-    <div class="section-title">
-      Market
-    </div>
-
-    <div class="card">
-
-      <h3>
-        Shop Black. Support Black. Build Black.
-      </h3>
-
-      <p class="muted">
-        A marketplace designed to connect
-        the community with businesses,
-        brands, services and creators.
-      </p>
-
-    </div>
-
-
-    <div class="card">
-
-      ${categories.map(category=>`
-
-        <div
-          class="community-row"
-          onclick="showToast('${category} selected.')"
-          style="cursor:pointer"
-        >
-
-          <b>
-            ${category}
-          </b>
-
-          <span class="gold">
-            →
-          </span>
-
-        </div>
-
-      `).join("")}
-
-    </div>
-
-  `;
-
-}
-
-
-/* =====================================================
-   EXPLORE
-===================================================== */
-
-function renderExplore(){
-
-  const events = [
-    ["Summer Vibes Festival","Music • Food • Vendors","Detroit"],
-    ["Black Art Exhibit","Art • Culture","Philadelphia"],
-    ["Community Cookout","Food • Family","Harrisburg"],
-    ["Networking Mixer","Business • Networking","Atlanta"]
-  ];
-
-
-  return `
-
-    <div class="section-title">
-      Explore
-    </div>
-
-    <div class="card">
-
-      <h3>
-        Explore your city.
-      </h3>
-
-      <p class="muted">
-        Discover local people, culture,
-        businesses, events, food, music
-        and community activity.
-      </p>
-
-      <div class="quick-actions">
-
-        <button onclick="showToast('Harrisburg selected.')">
-          Harrisburg
-        </button>
-
-        <button onclick="showToast('Philadelphia selected.')">
-          Philadelphia
-        </button>
-
-        <button onclick="showToast('Atlanta selected.')">
-          Atlanta
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <div class="card">
-
-      <div class="side-heading">
-        <h3>Events</h3>
-        <a>View all</a>
-      </div>
-
-
-      ${events.map(event=>`
-
-        <div class="event-row">
-
-          <div>
-
-            <b>${event[0]}</b>
-
-            <div class="small">
-              ${event[1]}
-              ·
-              ${event[2]}
-            </div>
-
-          </div>
-
-          <button
-            class="btn"
-            onclick="showToast('Event saved.')"
-          >
-            Interested
-          </button>
-
-        </div>
-
-      `).join("")}
-
-    </div>
-
-  `;
-
-}
-
-
-/* =====================================================
-   SKATE
-===================================================== */
-
-function renderSkate(){
-
-  const riders = [
-    ["KJ Wheels","Philadelphia","8.4K"],
-    ["Jae Banks","Atlanta","6.7K"],
-    ["Trey Rollins","Baltimore","4.9K"],
-    ["Nia Skates","Detroit","3.8K"]
-  ];
-
-
-  return `
-
-    <div class="section-title">
-      Skate
-    </div>
-
-
-    <div class="card">
-
-      <div style="
-        display:flex;
-        gap:12px;
-        align-items:center;
-      ">
-
-        <span class="real-icon skateboard-icon" style="
-          width:50px;
-          height:40px;
-          color:var(--gold);
-        ">
-          <i class="board"></i>
-          <i class="wheel one"></i>
-          <i class="wheel two"></i>
-        </span>
-
-        <div>
-
-          <h3>
-            Black skate culture, on the move.
-          </h3>
-
-          <p class="muted">
-            Riders, clips, local spots,
-            events and community.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="quick-actions">
-
-        <button onclick="openSkatePost()">
-          ＋ Post Clip
-        </button>
-
-        <button onclick="showToast('Rider discovery opened.')">
-          ♟ Find Riders
-        </button>
-
-        <button onclick="showToast('Local skate map coming soon.')">
-          Map
-        </button>
-
-        <button onclick="showToast('Skate events opened.')">
-          Events
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <div class="tabs">
-
-      <button class="active">
-        For You
-      </button>
-
-      <button onclick="showToast('Rider feed selected.')">
-        Riders
-      </button>
-
-      <button onclick="showToast('Clip feed selected.')">
-        Clips
-      </button>
-
-      <button onclick="showToast('Spot feed selected.')">
-        Spots
-      </button>
-
-      <button onclick="showToast('Event feed selected.')">
-        Events
-      </button>
-
-    </div>
-
-
-    <div class="card">
-
-      <div class="post-head">
-
-        <div class="avatar">
-          K
-        </div>
-
-        <div>
-
-          <b>KJ Wheels</b>
-
-          <div class="post-meta">
-            @kjwheels · 18m ago · Philadelphia
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="post-body">
-        New spot. New line. Philly always
-        has another ledge waiting.
-      </div>
-
-
-      <div class="post-media">
-        SKATE CLIP
-      </div>
-
-
-      <div class="post-actions">
-
-        <button onclick="showToast('Liked.')">
-          ♡ 428
-        </button>
-
-        <button onclick="showToast('Comments opened.')">
-          ◌ 61
-        </button>
-
-        <button onclick="showToast('Post shared.')">
-          ↗ 29
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <div class="card">
-
-      <div class="side-heading">
-
-        <h3>
-          Riders to watch
-        </h3>
-
-        <a>
-          View all
-        </a>
-
-      </div>
-
-
-      ${riders.map(rider=>`
-
-        <div class="person-row">
-
-          <div class="person">
-
-            <div class="avatar">
-              ${rider[0][0]}
-            </div>
-
-            <div>
-
-              <b>
-                ${rider[0]}
-              </b>
-
-              <div class="small">
-                ${rider[1]} · ${rider[2]} followers
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <button
-            class="btn outline-gold"
-            onclick="toggleFollow(this,'${rider[0]}')"
-          >
-            ${state.follows.includes(rider[0])
-              ? "Following"
-              : "Follow"
-            }
-          </button>
-
-        </div>
-
-      `).join("")}
-
-    </div>
-
-
-    <div class="card">
-
-      <div class="side-heading">
-
-        <h3>
-          Local skate spots
-        </h3>
-
-        <a onclick="showToast('Map coming soon.')">
-          Map
-        </a>
-
-      </div>
-
-
-      ${[
-        ["Love Park","Philadelphia, PA"],
-        ["FDR Skatepark","Philadelphia, PA"],
-        ["Black Diamond Plaza","Baltimore, MD"],
-        ["The Berrics","Los Angeles, CA"]
-      ].map(spot=>`
-
-        <div class="event-row">
-
-          <div>
-
-            <b>${spot[0]}</b>
-
-            <div class="small">
-              ${spot[1]}
-            </div>
-
-          </div>
-
-          <span class="real-icon skateboard-icon gold">
-            <i class="board"></i>
-            <i class="wheel one"></i>
-            <i class="wheel two"></i>
-          </span>
-
-        </div>
-
-      `).join("")}
-
-    </div>
-
-  `;
-
-}
-
-
-function openSkatePost(){
-
-  document.getElementById("postSection").value = "skate";
-
-  openModal("postModal");
-
-}
-
-
-/* =====================================================
-   CULTURE
-===================================================== */
-
-function renderCulture(){
-
-  const topics = [
-    ["Music","New releases, artists and sounds."],
-    ["Black Film & TV","Movies, shows and creators."],
-    ["Fashion","Style, designers and trends."],
-    ["Food & Recipes","Food, restaurants and traditions."],
-    ["Art & Photography","Creative work from the community."],
-    ["History & Stories","Stories, people and heritage."]
-  ];
-
-
-  return `
-
-    <div class="section-title">
-      Culture
-    </div>
-
-
-    <div class="card">
-
-      <div style="
-        display:flex;
-        gap:14px;
-        align-items:center;
-      ">
-
-        <span class="real-icon fist-icon" style="
-          width:48px;
-          height:48px;
-          color:var(--gold);
-        ">
-
-          <svg viewBox="0 0 64 64">
-            <path fill="currentColor" d="M18 58c-5-2-8-7-8-13V27c0-3 2-6 5-6s5 2 5 5V13c0-3 2-5 5-5s5 2 5 5v9-16c0-3 2-5 5-5s5 2 5 5v16-12c0-3 2-5 5-5s5 2 5 5v18l3-5c2-3 5-4 8-2 2 2 2 5 1 8l-7 17c-3 8-10 13-19 13H18Z"/>
-          </svg>
-
-        </span>
-
-        <div>
-
-          <h3>
-            Culture lives here.
-          </h3>
-
-          <p class="muted">
-            Music. Art. Fashion. Food.
-            Stories. Community.
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div class="card">
-
-      ${topics.map(topic=>`
-
-        <div
-          class="community-row"
-          style="cursor:pointer"
-          onclick="showToast('${topic[0]} selected.')"
-        >
-
-          <div>
-
-            <b>
-              ${topic[0]}
-            </b>
-
-            <div class="small">
-              ${topic[1]}
-            </div>
-
-          </div>
-
-          <span class="gold">
-            →
-          </span>
-
-        </div>
-
-      `).join("")}
-
-    </div>
-
-
-    <div>
-
-      ${renderFeed("culture")}
-
-    </div>
-
-  `;
-
-}
-
-
-/* =====================================================
-   MESSAGES
-===================================================== */
-
-function renderMessages(){
-
-  return `
-
-    <div class="section-title">
-      Messages
-    </div>
-
-    <div class="card">
-
-      <div class="empty">
-
-        <h3 style="color:#ddd">
-          Your conversations
-        </h3>
-
-        <p>
-          Real conversations between
-          Soulaani members will live here.
-        </p>
-
-        <br>
-
-        <button
-          class="btn outline-gold"
-          onclick="showToast('Messaging system ready for backend connection.')"
-        >
-          Start a conversation
-        </button>
-
-      </div>
-
-    </div>
-
-  `;
-
-}
-
-
-/* =====================================================
-   PROFILE
-===================================================== */
-
-function renderProfile(){
-
-  const ownPosts =
-    state.posts.filter(
-      post=>post.handle === state.profile.handle
-    );
-
-
-  return `
-
-    <div class="card" style="padding:0;overflow:hidden">
-
-      <div class="profile-cover"></div>
-
-
-      <div class="profile-info">
-
-        <div class="avatar">
-
-          ${
-            state.profile.avatar
-            ?
-            `<img src="${escapeHTML(state.profile.avatar)}">`
-            :
-            escapeHTML(initials())
-          }
-
-        </div>
-
-
-        <h1>
-          ${escapeHTML(state.profile.name)}
-        </h1>
-
-
-        <div class="small">
-          @${escapeHTML(state.profile.handle)}
-          ${
-            state.profile.location
-            ?
-            " · " + escapeHTML(state.profile.location)
-            :
-            ""
-          }
-        </div>
-
-
-        <p style="margin-top:13px;color:#bbb">
-          ${escapeHTML(state.profile.bio)}
-        </p>
-
-
-        <div class="profile-actions">
-
-          <button
-            class="btn outline-gold"
-            onclick="openProfileEditor()"
-          >
-            Edit Profile
-          </button>
-
-          <button
-            class="btn"
-            onclick="shareProfile()"
-          >
-            Share
-          </button>
-
-        </div>
-
-
-        <div class="profile-stats">
-
-          <div class="profile-stat">
-            <b>${ownPosts.length}</b>
-            <span>Posts</span>
-          </div>
-
-          <div class="profile-stat">
-            <b>${state.follows.length}</b>
-            <span>Following</span>
-          </div>
-
-          <div class="profile-stat">
-            <b>0</b>
-            <span>Followers</span>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div class="tabs">
-
-      <button class="active">
-        Posts
-      </button>
-
-      <button onclick="showToast('About section selected.')">
-        About
-      </button>
-
-      <button onclick="showToast('Communities selected.')">
-        Communities
-      </button>
-
-    </div>
-
-
-    ${
-      ownPosts.length
-      ?
-      ownPosts.map(renderPost).join("")
-      :
-      `
-        <div class="card empty">
-
-          You haven't posted anything yet.
-
-          <br><br>
-
-          <button
-            class="btn gold-btn"
-            onclick="openModal('postModal')"
-          >
-            Create your first post
-          </button>
-
-        </div>
-      `
-    }
-
-  `;
-
-}
-
-
-function openProfileEditor(){
-
-  document.getElementById("profileName").value =
-    state.profile.name;
-
-  document.getElementById("profileHandle").value =
-    "@" + state.profile.handle;
-
-  document.getElementById("profileLocation").value =
-    state.profile.location;
-
-  document.getElementById("profileBio").value =
-    state.profile.bio;
-
-  document.getElementById("profileAvatar").value =
-    state.profile.avatar;
-
-  openModal("profileModal");
-
-}
-
-
-function saveProfile(event){
-
-  event.preventDefault();
-
-
-  state.profile.name =
-    document.getElementById("profileName")
-      .value.trim() ||
-    "Soulaani Member";
-
-
-  state.profile.handle =
-    document.getElementById("profileHandle")
+  const value =
+    document.getElementById("globalSearch")
       .value
-      .replace(/^@/,"")
-      .trim()
-      .toLowerCase()
-      .replace(/[^a-z0-9_]/g,"") ||
-    "member";
+      .trim();
+
+  const result =
+    document.getElementById("searchResult");
+
+  if(!value){
+
+    result.textContent =
+      "Enter something to search.";
+
+    return;
+
+  }
+
+  result.textContent =
+    "Showing Soulaani results for: " + value;
+
+}
 
 
-  state.profile.location =
-    document.getElementById("profileLocation")
-      .value.trim();
+/* =========================
+   PROFILE EDIT
+========================= */
+
+function openEditProfile(){
+
+  document.getElementById("profileModal")
+    .classList.add("active");
+
+}
 
 
-  state.profile.bio =
-    document.getElementById("profileBio")
-      .value.trim();
+function saveProfile(){
 
+  const name =
+    document.getElementById("profileName").value.trim();
 
-  state.profile.avatar =
-    document.getElementById("profileAvatar")
-      .value.trim();
+  const username =
+    document.getElementById("profileUsername").value.trim();
 
+  const bio =
+    document.getElementById("profileBio").value.trim();
 
-  /* Update author information on this device's posts. */
+  if(name){
 
-  state.posts.forEach(post=>{
+    document.querySelector(".profile-info h1")
+      .textContent = name;
 
-    if(post.handle === state.profile.handle ||
-       post.author === state.profile.name){
+  }
 
-      post.author = state.profile.name;
-      post.handle = state.profile.handle;
-      post.avatar = state.profile.avatar;
+  const profileText =
+    document.querySelectorAll(".profile-info p");
 
-    }
+  if(profileText[0]){
+    profileText[0].textContent =
+      username || "@soulaaniuser";
+  }
 
-  });
-
-
-  saveState();
+  if(profileText[1]){
+    profileText[1].textContent =
+      bio || "Building culture. Building community.";
+  }
 
   closeModal("profileModal");
-
-  renderChrome();
-
-  renderPage();
 
   showToast("Profile updated.");
 
 }
 
 
-function shareProfile(){
-
-  const text =
-    `${state.profile.name} is on Soulaani. @${state.profile.handle}`;
-
-  if(navigator.share){
-
-    navigator.share({
-      title:"Soulaani Profile",
-      text
-    }).catch(()=>{});
-
-  }else if(navigator.clipboard){
-
-    navigator.clipboard
-      .writeText(text)
-      .then(()=>{
-        showToast("Profile copied.");
-      });
-
-  }else{
-
-    showToast("Profile ready to share.");
-
-  }
-
-}
-
-
-/* =====================================================
-   SEARCH
-===================================================== */
-
-function searchPosts(event){
-
-  if(event.key !== "Enter"){
-    return;
-  }
-
-  const query =
-    event.target.value.trim().toLowerCase();
-
-  if(!query){
-    showPage("home");
-    return;
-  }
-
-
-  const results =
-    state.posts.filter(post=>{
-
-      return (
-        post.body.toLowerCase().includes(query) ||
-        post.author.toLowerCase().includes(query) ||
-        post.handle.toLowerCase().includes(query) ||
-        post.section.toLowerCase().includes(query)
-      );
-
-    });
-
-
-  document.getElementById("main").innerHTML = `
-
-    <div class="section-title">
-      Search
-    </div>
-
-    <div class="card">
-
-      <b>
-        Results for "${escapeHTML(query)}"
-      </b>
-
-      <div class="small" style="margin-top:5px">
-        ${results.length} result(s)
-      </div>
-
-    </div>
-
-
-    ${
-      results.length
-      ?
-      results.map(renderPost).join("")
-      :
-      `
-        <div class="card empty">
-          No matching posts yet.
-        </div>
-      `
-    }
-
-  `;
-
-}
-
-
-/* =====================================================
-   TRENDING
-===================================================== */
-
-function renderTrending(){
-
-  const el =
-    document.getElementById("trending");
-
-  if(!el){
-    return;
-  }
-
-
-  const trends = [
-    ["#BlackBusiness","12.4K posts"],
-    ["#NewMusic","8.7K posts"],
-    ["#BlackLove","6.1K posts"],
-    ["#SelfGrowth","5.3K posts"],
-    ["#SkateCulture","4.8K posts"]
-  ];
-
-
-  el.innerHTML =
-    trends.map(t=>`
-
-      <div class="trend">
-
-        <div>
-          <b>${t[0]}</b>
-          <div class="small">${t[1]}</div>
-        </div>
-
-        <span class="gold-dot">
-          #
-        </span>
-
-      </div>
-
-    `).join("");
-
-}
-
-
-/* =====================================================
-   NOTIFICATIONS
-===================================================== */
-
-function showNotifications(){
-
-  showToast(
-    "You're all caught up."
-  );
-
-}
-
-
-/* =====================================================
+/* =========================
    MODALS
-===================================================== */
-
-function openModal(id){
-
-  document
-    .getElementById(id)
-    .classList.remove("hidden");
-
-}
-
+========================= */
 
 function closeModal(id){
 
-  document
-    .getElementById(id)
-    .classList.add("hidden");
+  const modal =
+    document.getElementById(id);
+
+  if(modal){
+    modal.classList.remove("active");
+  }
 
 }
 
 
-document.addEventListener("click",event=>{
+document.querySelectorAll(".modal")
+  .forEach(modal=>{
 
-  if(event.target.classList.contains("modal")){
+    modal.addEventListener("click",event=>{
 
-    event.target.classList.add("hidden");
+      if(event.target === modal){
 
-  }
+        modal.classList.remove("active");
 
-});
+      }
+
+    });
+
+  });
 
 
-/* =====================================================
+/* =========================
+   REFRESH
+========================= */
+
+function refreshFeed(){
+
+  renderFeed();
+
+  showToast("Feed refreshed.");
+
+}
+
+
+/* =========================
    TOAST
-===================================================== */
+========================= */
 
 let toastTimer;
 
@@ -3745,94 +2891,85 @@ function showToast(message){
 
   toastTimer =
     setTimeout(()=>{
+
       toast.classList.remove("show");
-    },2500);
+
+    },2200);
 
 }
 
 
-/* =====================================================
-   FIRST-RUN DEMO POSTS
-===================================================== */
+/* =========================
+   ESCAPE HTML
+========================= */
 
-function seedDemoPosts(){
+function escapeHTML(value){
 
-  if(state.posts.length){
-    return;
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   KEYBOARD
+========================= */
+
+document.addEventListener("keydown",event=>{
+
+  if(event.key === "Escape"){
+
+    document.querySelectorAll(".modal")
+      .forEach(modal=>{
+        modal.classList.remove("active");
+      });
+
   }
 
+});
 
-  state.posts = [
 
-    {
-      id:makeId(),
-      author:"TeeTheCreator",
-      handle:"teethecreator",
-      avatar:"",
-      body:"Building something beautiful today. Keep creating even when nobody is watching.",
-      image:"",
-      section:"home",
-      location:"Atlanta",
-      time:"24m ago",
-      likes:42
-    },
+/* =========================
+   PERSISTENT LOCAL STATE
+========================= */
 
-    {
-      id:makeId(),
-      author:"KJ Wheels",
-      handle:"kjwheels",
-      avatar:"",
-      body:"New spot. New line. Philly always has another ledge waiting.",
-      image:"",
-      section:"skate",
-      location:"Philadelphia",
-      time:"38m ago",
-      likes:128
-    },
+window.addEventListener("beforeunload",()=>{
 
-    {
-      id:makeId(),
-      author:"MelaninMagic",
-      handle:"melaninmagic",
-      avatar:"",
-      body:"Black creativity is everywhere. Music, fashion, food, art and the stories we carry.",
-      image:"",
-      section:"culture",
-      location:"Baltimore",
-      time:"1h ago",
-      likes:91
+  localStorage.setItem(
+    "soulaani_posts",
+    JSON.stringify(posts)
+  );
+
+});
+
+
+const savedPosts =
+  localStorage.getItem("soulaani_posts");
+
+if(savedPosts){
+
+  try{
+
+    const parsed =
+      JSON.parse(savedPosts);
+
+    if(Array.isArray(parsed)){
+
+      posts = parsed;
+
+      renderFeed();
+
     }
 
-  ];
+  }catch(error){
 
+    console.log("Soulaani local data reset.");
 
-  saveState();
-
-}
-
-
-/* =====================================================
-   INITIALIZE
-===================================================== */
-
-seedDemoPosts();
-
-renderChrome();
-
-
-if(state.loggedIn){
-
-  document.getElementById("landing").style.display =
-    "none";
-
-  document.getElementById("app").classList.add("active");
-
-  showPage(state.page || "home");
-
-}else{
-
-  document.getElementById("landing").style.display =
-    "block";
+  }
 
 }
 
