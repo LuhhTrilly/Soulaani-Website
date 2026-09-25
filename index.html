@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#070707">
+<meta name="theme-color" content="#050505">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
@@ -18,18 +18,16 @@
 
 :root{
   --black:#050505;
-  --black2:#0a0a0a;
-  --card:#111111;
+  --black2:#090909;
+  --card:#111;
   --card2:#151515;
   --gold:#d7aa3d;
   --gold2:#f0c75e;
-  --gold3:#9c7621;
+  --gold3:#96701f;
   --white:#f7f5ef;
-  --muted:#999999;
+  --muted:#858585;
   --line:rgba(255,255,255,.09);
-  --green:#31c36b;
   --red:#e94d5f;
-  --radius:18px;
 }
 
 html{
@@ -37,11 +35,11 @@ html{
 }
 
 body{
-  font-family:Inter,Arial,Helvetica,sans-serif;
   background:
-    radial-gradient(circle at 50% -10%,rgba(215,170,61,.12),transparent 32%),
+    radial-gradient(circle at 50% -10%,rgba(215,170,61,.10),transparent 32%),
     var(--black);
   color:var(--white);
+  font-family:Inter,Arial,Helvetica,sans-serif;
   min-height:100vh;
 }
 
@@ -54,19 +52,17 @@ button{
   cursor:pointer;
 }
 
-a{
-  color:inherit;
-  text-decoration:none;
+svg{
+  display:block;
 }
 
-/* =========================
-   ICON SYSTEM
-========================= */
+/* =====================================================
+   ICONS
+===================================================== */
 
 .icon{
   width:21px;
   height:21px;
-  display:block;
   flex:none;
 }
 
@@ -76,384 +72,366 @@ a{
 }
 
 .icon-lg{
-  width:27px;
-  height:27px;
+  width:28px;
+  height:28px;
 }
 
-.icon-gold{
-  color:var(--gold);
-}
-
-svg{
-  overflow:visible;
-}
-
-/* =========================
-   APP
-========================= */
-
-.app{
-  min-height:100vh;
-}
-
-/* =========================
-   TOP NAVIGATION
-========================= */
+/* =====================================================
+   TOP BAR
+===================================================== */
 
 .topbar{
   position:sticky;
   top:0;
   z-index:1000;
   height:76px;
-  border-bottom:1px solid var(--line);
-  background:rgba(5,5,5,.94);
-  backdrop-filter:blur(18px);
+  padding:0 28px;
   display:flex;
   align-items:center;
-  padding:0 30px;
+  border-bottom:1px solid var(--line);
+  background:rgba(5,5,5,.95);
+  backdrop-filter:blur(18px);
 }
 
 .brand{
-  width:235px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
+  width:225px;
   flex:none;
 }
 
 .brand-name{
-  color:var(--gold2);
   font-family:Georgia,"Times New Roman",serif;
-  font-size:31px;
+  color:var(--gold2);
   font-weight:700;
+  font-size:30px;
   letter-spacing:-1.5px;
   line-height:.9;
 }
 
 .brand-tagline{
-  color:#9e8035;
+  color:#987b35;
   font-size:7px;
-  letter-spacing:1.5px;
-  margin-top:6px;
+  letter-spacing:1.6px;
   font-weight:700;
+  margin-top:6px;
 }
 
 .top-nav{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:5px;
   flex:1;
   height:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:2px;
 }
 
-.nav-item{
+.top-nav button{
   position:relative;
   height:100%;
-  padding:0 13px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#bdbdbd;
-  font-size:13px;
+  padding:0 11px;
+  border:0;
+  background:none;
+  color:#999;
+  font-size:12px;
   font-weight:600;
-  transition:.2s ease;
 }
 
-.nav-item:hover{
-  color:var(--white);
+.top-nav button:hover{
+  color:white;
 }
 
-.nav-item.active{
+.top-nav button.active{
   color:var(--gold2);
 }
 
-.nav-item.active:after{
+.top-nav button.active:after{
   content:"";
   position:absolute;
   bottom:0;
-  left:15px;
-  right:15px;
+  left:12px;
+  right:12px;
   height:2px;
   background:var(--gold2);
-  box-shadow:0 0 12px rgba(215,170,61,.35);
-}
-
-.nav-icon{
-  margin-right:6px;
-  display:none;
 }
 
 .top-actions{
-  width:235px;
+  width:225px;
   display:flex;
-  align-items:center;
   justify-content:flex-end;
-  gap:17px;
-  flex:none;
+  align-items:center;
+  gap:15px;
 }
 
-.action-btn{
+.action{
   border:0;
-  background:transparent;
-  color:#d0d0d0;
-  padding:5px;
-  transition:.2s;
+  background:none;
+  color:#aaa;
 }
 
-.action-btn:hover{
+.action:hover{
   color:var(--gold2);
 }
 
-.avatar{
-  width:37px;
-  height:37px;
-  border-radius:50%;
-  border:2px solid var(--gold3);
-  object-fit:cover;
-  background:#222;
-}
+/* =====================================================
+   MAIN APP
+===================================================== */
 
-/* =========================
-   PAGE LAYOUT
-========================= */
-
-.layout{
-  max-width:1500px;
-  margin:0 auto;
+.app-layout{
+  max-width:1450px;
+  margin:auto;
   display:grid;
-  grid-template-columns:230px minmax(0,1fr) 285px;
+  grid-template-columns:215px minmax(0,1fr) 275px;
   gap:18px;
   padding:20px;
 }
 
-/* =========================
-   SIDEBAR
-========================= */
+/* =====================================================
+   LEFT SIDEBAR
+===================================================== */
 
 .sidebar{
   position:sticky;
   top:96px;
-  height:calc(100vh - 116px);
-  overflow:auto;
-  padding:4px;
+  height:calc(100vh - 115px);
 }
 
-.side-section{
-  margin-bottom:24px;
-}
-
-.side-title{
-  color:#777;
-  text-transform:uppercase;
-  font-size:10px;
-  letter-spacing:1.5px;
-  font-weight:700;
-  padding:0 13px 9px;
-}
-
-.side-link{
+.sidebar-button{
   width:100%;
-  border:0;
-  background:transparent;
-  color:#bcbcbc;
   display:flex;
   align-items:center;
   gap:12px;
-  padding:11px 13px;
+  padding:12px;
+  margin-bottom:4px;
+  border:0;
   border-radius:12px;
-  text-align:left;
-  margin-bottom:3px;
-  transition:.2s;
-}
-
-.side-link:hover{
-  background:#101010;
-  color:var(--white);
-}
-
-.side-link.active{
-  background:linear-gradient(90deg,rgba(215,170,61,.17),rgba(215,170,61,.04));
-  color:var(--gold2);
-}
-
-.side-link .icon{
-  color:#8d8d8d;
-}
-
-.side-link.active .icon{
-  color:var(--gold2);
-}
-
-.side-divider{
-  height:1px;
-  background:var(--line);
-  margin:16px 11px;
-}
-
-.community{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:8px 11px;
+  background:transparent;
   color:#aaa;
+  text-align:left;
   font-size:12px;
 }
 
-.community img{
-  width:29px;
-  height:29px;
-  border-radius:50%;
-  object-fit:cover;
+.sidebar-button:hover{
+  background:#111;
+  color:white;
 }
 
-.community-add{
-  margin-left:auto;
-  border:0;
-  background:transparent;
+.sidebar-button.active{
   color:var(--gold2);
-  font-size:21px;
+  background:linear-gradient(
+    90deg,
+    rgba(215,170,61,.17),
+    rgba(215,170,61,.03)
+  );
 }
 
-/* =========================
-   MAIN
-========================= */
+.sidebar-divider{
+  height:1px;
+  background:var(--line);
+  margin:18px 10px;
+}
 
-.main{
+.sidebar-label{
+  padding:0 12px 8px;
+  color:#666;
+  font-size:9px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+
+/* =====================================================
+   CONTENT AREA
+===================================================== */
+
+.content{
   min-width:0;
 }
 
-.hero{
-  position:relative;
-  min-height:285px;
-  overflow:hidden;
+/*
+  IMPORTANT:
+  Every app page is completely separate.
+  Only the active page is displayed.
+*/
+
+.app-page{
+  display:none;
+  animation:pageIn .25s ease;
+}
+
+.app-page.active{
+  display:block;
+}
+
+@keyframes pageIn{
+  from{
+    opacity:0;
+    transform:translateY(5px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* =====================================================
+   GENERIC PAGE HEADER
+===================================================== */
+
+.page-header{
+  padding:28px;
+  min-height:190px;
   border:1px solid var(--line);
   border-radius:20px;
   background:
-    linear-gradient(90deg,rgba(0,0,0,.85),rgba(0,0,0,.25),rgba(0,0,0,.78)),
-    linear-gradient(135deg,#1d1710,#070707 50%,#181207);
-  display:flex;
-  align-items:center;
-  padding:35px;
-  margin-bottom:16px;
+    radial-gradient(
+      circle at 85% 15%,
+      rgba(215,170,61,.15),
+      transparent 32%
+    ),
+    linear-gradient(145deg,#151515,#080808);
+  margin-bottom:18px;
 }
 
-.hero:before{
-  content:"";
-  position:absolute;
-  width:400px;
-  height:400px;
-  border-radius:50%;
-  right:-100px;
-  top:-170px;
-  background:radial-gradient(circle,rgba(215,170,61,.18),transparent 65%);
-}
-
-.hero-content{
-  position:relative;
-  z-index:2;
-  max-width:650px;
-}
-
-.hero-kicker{
+.page-kicker{
   color:var(--gold2);
   text-transform:uppercase;
-  letter-spacing:3px;
-  font-size:10px;
+  letter-spacing:2.5px;
+  font-size:9px;
   font-weight:700;
-  margin-bottom:11px;
 }
 
-.hero-title{
+.page-header h1{
   font-family:Georgia,"Times New Roman",serif;
-  font-size:clamp(40px,5vw,70px);
-  line-height:.88;
+  font-size:46px;
+  line-height:.95;
+  margin-top:9px;
+}
+
+.page-header h1 span{
   color:var(--gold2);
+}
+
+.page-header p{
+  max-width:600px;
+  color:#929292;
+  font-size:12px;
+  line-height:1.65;
+  margin-top:12px;
+}
+
+/* =====================================================
+   HOME PAGE
+===================================================== */
+
+.home-hero{
+  min-height:310px;
+  padding:38px;
+  border-radius:20px;
+  border:1px solid var(--line);
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,.92),
+      rgba(0,0,0,.40),
+      rgba(0,0,0,.88)
+    ),
+    linear-gradient(135deg,#21190c,#080808);
+  margin-bottom:16px;
+  display:flex;
+  align-items:center;
+}
+
+.home-title{
+  font-family:Georgia,serif;
+  color:var(--gold2);
+  font-size:65px;
+  line-height:.82;
   letter-spacing:-3px;
 }
 
-.hero-title span{
+.home-title span{
   color:white;
 }
 
-.hero-sub{
-  color:#c7c7c7;
+.home-description{
+  max-width:600px;
+  color:#bbb;
+  font-size:13px;
+  line-height:1.65;
   margin-top:18px;
-  max-width:560px;
-  line-height:1.6;
-  font-size:14px;
 }
 
-.hero-actions{
+.button-row{
   display:flex;
-  gap:10px;
-  margin-top:22px;
+  gap:9px;
+  margin-top:20px;
+  flex-wrap:wrap;
 }
 
-.btn{
-  border:1px solid rgba(215,170,61,.5);
+.gold-button,
+.dark-button{
   border-radius:10px;
   padding:11px 17px;
-  font-size:12px;
+  font-size:11px;
   font-weight:700;
-  transition:.2s;
 }
 
-.btn-primary{
-  color:#171207;
-  background:linear-gradient(135deg,#f1c95c,#bd8d27);
+.gold-button{
+  border:1px solid var(--gold);
+  color:#120e05;
+  background:linear-gradient(135deg,#f1ca5c,#b98422);
 }
 
-.btn-primary:hover{
-  transform:translateY(-1px);
-  box-shadow:0 8px 25px rgba(215,170,61,.15);
-}
-
-.btn-secondary{
+.dark-button{
+  border:1px solid rgba(215,170,61,.4);
   color:var(--gold2);
-  background:rgba(255,255,255,.03);
+  background:#111;
 }
 
-.btn-secondary:hover{
-  background:rgba(215,170,61,.08);
-}
-
-/* =========================
-   COMPOSER
-========================= */
+/* =====================================================
+   CARDS
+===================================================== */
 
 .card{
-  background:linear-gradient(145deg,#111,#0c0c0c);
+  background:linear-gradient(145deg,#111,#0b0b0b);
   border:1px solid var(--line);
-  border-radius:var(--radius);
+  border-radius:17px;
 }
+
+.card-padding{
+  padding:17px;
+}
+
+/* =====================================================
+   HOME COMPOSER
+===================================================== */
 
 .composer{
-  padding:14px;
-  margin-bottom:15px;
+  padding:15px;
+  margin-bottom:16px;
 }
 
-.composer-top{
+.composer-row{
   display:flex;
-  gap:11px;
   align-items:center;
+  gap:10px;
 }
 
-.composer-avatar{
+.fake-avatar{
   width:42px;
   height:42px;
   border-radius:50%;
-  border:1px solid var(--gold3);
+  background:
+    radial-gradient(circle at 50% 30%,#9b7651 0 15%,transparent 16%),
+    linear-gradient(135deg,#513b2a,#111);
 }
 
 .composer-input{
-  height:43px;
-  border:1px solid var(--line);
-  border-radius:12px;
-  background:#0b0b0b;
-  color:white;
-  padding:0 15px;
   flex:1;
+  height:42px;
+  border:1px solid var(--line);
+  border-radius:11px;
+  background:#090909;
+  color:white;
+  padding:0 14px;
   outline:none;
 }
 
@@ -461,38 +439,34 @@ svg{
   border-color:rgba(215,170,61,.45);
 }
 
-.composer-tools{
+.composer-options{
   display:flex;
   justify-content:space-around;
+  border-top:1px solid var(--line);
   margin-top:12px;
   padding-top:11px;
-  border-top:1px solid var(--line);
 }
 
-.composer-tool{
-  background:transparent;
+.composer-options button{
   border:0;
-  color:#999;
+  background:none;
+  color:#888;
   display:flex;
   align-items:center;
   gap:6px;
-  font-size:11px;
+  font-size:10px;
 }
 
-.composer-tool:hover{
-  color:var(--gold2);
-}
-
-/* =========================
-   POSTS
-========================= */
+/* =====================================================
+   POST
+===================================================== */
 
 .post{
   padding:16px;
-  margin-bottom:15px;
+  margin-bottom:16px;
 }
 
-.post-header{
+.post-head{
   display:flex;
   align-items:center;
   gap:10px;
@@ -502,7 +476,7 @@ svg{
   width:43px;
   height:43px;
   border-radius:50%;
-  object-fit:cover;
+  background:linear-gradient(135deg,#785738,#111);
 }
 
 .post-user{
@@ -510,339 +484,367 @@ svg{
 }
 
 .post-name{
-  color:white;
   font-size:13px;
   font-weight:700;
-}
-
-.verified{
-  color:var(--gold2);
-  font-size:11px;
 }
 
 .post-meta{
-  color:#777;
-  font-size:10px;
-  margin-top:3px;
-}
-
-.more{
-  border:0;
-  background:transparent;
-  color:#777;
-  font-size:20px;
-}
-
-.post-text{
-  color:#ddd;
-  font-size:13px;
-  line-height:1.55;
-  margin:13px 0;
-}
-
-.post-media{
-  border-radius:14px;
-  overflow:hidden;
-  background:#171717;
-  min-height:240px;
-  position:relative;
-}
-
-.media-placeholder{
-  min-height:260px;
-  display:flex;
-  align-items:flex-end;
-  padding:18px;
-  background:
-    radial-gradient(circle at 20% 30%,rgba(215,170,61,.25),transparent 30%),
-    linear-gradient(145deg,#29200f,#121212 45%,#050505);
-}
-
-.media-label{
-  font-family:Georgia,serif;
-  font-size:28px;
-  color:var(--gold2);
-}
-
-.post-actions{
-  display:flex;
-  gap:20px;
-  padding-top:12px;
-  color:#888;
-}
-
-.post-action{
-  border:0;
-  background:transparent;
-  color:#999;
-  display:flex;
-  align-items:center;
-  gap:6px;
-  font-size:11px;
-}
-
-.post-action:hover{
-  color:var(--gold2);
-}
-
-/* =========================
-   FEATURE STRIP
-========================= */
-
-.section-heading{
-  display:flex;
-  align-items:end;
-  justify-content:space-between;
-  margin:25px 0 12px;
-}
-
-.section-heading h2{
-  font-family:Georgia,serif;
-  font-size:23px;
-}
-
-.section-heading p{
-  color:#777;
-  font-size:11px;
-  margin-top:4px;
-}
-
-.see-all{
-  color:var(--gold2);
-  border:0;
-  background:transparent;
-  font-size:11px;
-}
-
-/* =========================
-   FEATURE CARDS
-========================= */
-
-.feature-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-}
-
-.feature-card{
-  position:relative;
-  min-height:170px;
-  padding:17px;
-  border-radius:16px;
-  overflow:hidden;
-  border:1px solid var(--line);
-  background:#111;
-}
-
-.feature-card:before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(135deg,rgba(215,170,61,.14),transparent 50%);
-  pointer-events:none;
-}
-
-.feature-card h3{
-  position:relative;
-  font-family:Georgia,serif;
-  font-size:22px;
-  margin-top:12px;
-}
-
-.feature-card p{
-  position:relative;
-  color:#8f8f8f;
-  font-size:11px;
-  line-height:1.5;
-  margin-top:7px;
-}
-
-.feature-icon{
-  position:relative;
-  width:44px;
-  height:44px;
-  border-radius:12px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:var(--gold2);
-  background:rgba(215,170,61,.08);
-  border:1px solid rgba(215,170,61,.16);
-}
-
-/* =========================
-   RIGHT COLUMN
-========================= */
-
-.rightbar{
-  position:sticky;
-  top:96px;
-  height:calc(100vh - 116px);
-  overflow:auto;
-}
-
-.right-card{
-  padding:15px;
-  margin-bottom:15px;
-}
-
-.right-title{
-  font-size:13px;
-  font-weight:700;
-  margin-bottom:13px;
-}
-
-.trending{
-  display:flex;
-  gap:10px;
-  align-items:center;
-  padding:8px 0;
-}
-
-.trend-img{
-  width:52px;
-  height:52px;
-  border-radius:10px;
-  background:linear-gradient(135deg,#31240f,#151515);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:var(--gold2);
-}
-
-.trend-text{
-  min-width:0;
-  flex:1;
-}
-
-.trend-name{
-  font-size:11px;
-  font-weight:700;
-}
-
-.trend-meta{
-  color:#6f6f6f;
+  color:#6e6e6e;
   font-size:9px;
   margin-top:3px;
 }
 
-.join-card{
-  padding:20px;
-  background:
-    radial-gradient(circle at 90% 0,rgba(215,170,61,.18),transparent 40%),
-    #111;
+.post-text{
+  color:#ccc;
+  font-size:12px;
+  line-height:1.6;
+  margin:13px 0;
 }
 
-.join-card h3{
+.post-image{
+  min-height:260px;
+  border-radius:14px;
+  background:
+    radial-gradient(circle at 30% 30%,rgba(215,170,61,.20),transparent 30%),
+    linear-gradient(145deg,#282010,#0a0a0a);
+  display:flex;
+  align-items:flex-end;
+  padding:18px;
+}
+
+.post-image-text{
   font-family:Georgia,serif;
   color:var(--gold2);
-  font-size:24px;
+  font-size:28px;
 }
 
-.join-card p{
-  color:#999;
-  font-size:11px;
-  line-height:1.6;
-  margin:8px 0 15px;
+.post-actions{
+  display:flex;
+  gap:22px;
+  margin-top:12px;
 }
 
-/* =========================
-   SKATE SECTION
-========================= */
-
-.skate-page{
-  display:none;
-}
-
-.skate-page.active{
-  display:block;
-}
-
-.skate-hero{
-  position:relative;
-  min-height:270px;
-  border-radius:20px;
-  overflow:hidden;
-  border:1px solid rgba(215,170,61,.16);
-  background:
-    linear-gradient(100deg,rgba(0,0,0,.94),rgba(0,0,0,.42),rgba(0,0,0,.8)),
-    linear-gradient(135deg,#171717,#0a0a0a);
-  padding:34px;
+.post-actions button{
+  border:0;
+  background:none;
+  color:#888;
   display:flex;
   align-items:center;
-  margin-bottom:18px;
-}
-
-.skate-hero-art{
-  position:absolute;
-  right:35px;
-  bottom:-15px;
-  width:310px;
-  height:190px;
-  opacity:.85;
-  transform:rotate(-7deg);
-}
-
-.skate-kicker{
-  color:var(--gold2);
-  text-transform:uppercase;
+  gap:5px;
   font-size:10px;
-  letter-spacing:2.5px;
-  font-weight:700;
 }
 
-.skate-title{
+/* =====================================================
+   SECTION CARDS
+===================================================== */
+
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  margin:24px 0 12px;
+}
+
+.section-title h2{
   font-family:Georgia,serif;
-  font-size:55px;
-  line-height:.9;
+  font-size:23px;
+}
+
+.section-title p{
+  color:#666;
+  font-size:10px;
+  margin-top:4px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:13px;
+}
+
+.feature{
+  min-height:175px;
+  padding:17px;
+  border-radius:16px;
+  border:1px solid var(--line);
+  background:
+    linear-gradient(145deg,rgba(215,170,61,.08),transparent 45%),
+    #101010;
+}
+
+.feature-icon{
+  width:45px;
+  height:45px;
+  border-radius:12px;
+  border:1px solid rgba(215,170,61,.15);
+  background:rgba(215,170,61,.06);
+  color:var(--gold2);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.feature h3{
+  font-family:Georgia,serif;
+  font-size:20px;
+  margin-top:22px;
+}
+
+.feature p{
+  color:#777;
+  font-size:10px;
+  line-height:1.55;
+  margin-top:5px;
+}
+
+/* =====================================================
+   CONNECT
+===================================================== */
+
+.people-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:13px;
+}
+
+.person-card{
+  text-align:center;
+  padding:20px 12px;
+}
+
+.person-avatar{
+  width:72px;
+  height:72px;
+  border-radius:50%;
+  margin:auto;
+  background:linear-gradient(135deg,#795538,#171717);
+  border:2px solid var(--gold3);
+}
+
+.person-card h3{
+  margin-top:10px;
+  font-size:13px;
+}
+
+.person-card p{
+  color:#666;
+  font-size:9px;
+  margin-top:4px;
+}
+
+.person-card button{
+  margin-top:11px;
+  border:1px solid rgba(215,170,61,.4);
+  color:var(--gold2);
+  background:#111;
+  border-radius:8px;
+  padding:7px 14px;
+  font-size:9px;
+}
+
+/* =====================================================
+   DATE
+===================================================== */
+
+.date-box{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.date-card{
+  min-height:220px;
+  padding:22px;
+}
+
+.date-card h2{
+  font-family:Georgia,serif;
+  font-size:27px;
+}
+
+.date-card p{
+  color:#888;
+  font-size:11px;
+  line-height:1.6;
   margin-top:10px;
 }
 
-.skate-title span{
+/* =====================================================
+   BUILD
+===================================================== */
+
+.opportunity{
+  padding:18px;
+  margin-bottom:12px;
+}
+
+.opportunity-head{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.opportunity-icon{
+  width:44px;
+  height:44px;
+  border-radius:12px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:var(--gold2);
+  background:rgba(215,170,61,.07);
+}
+
+.opportunity h3{
+  font-size:14px;
+}
+
+.opportunity p{
+  color:#777;
+  font-size:10px;
+  line-height:1.6;
+  margin-top:8px;
+}
+
+/* =====================================================
+   MARKET
+===================================================== */
+
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:13px;
+}
+
+.product-card{
+  overflow:hidden;
+}
+
+.product-image{
+  height:180px;
+  background:
+    radial-gradient(circle,rgba(215,170,61,.17),transparent 35%),
+    linear-gradient(145deg,#262016,#090909);
+  display:flex;
+  justify-content:center;
+  align-items:center;
   color:var(--gold2);
 }
 
-.skate-copy{
-  color:#aaa;
-  max-width:500px;
-  font-size:13px;
+.product-body{
+  padding:14px;
+}
+
+.product-body h3{
+  font-family:Georgia,serif;
+  font-size:17px;
+}
+
+.product-body p{
+  color:#777;
+  font-size:9px;
+  margin-top:5px;
+}
+
+/* =====================================================
+   EXPLORE
+===================================================== */
+
+.explore-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+.explore-card{
+  min-height:220px;
+  padding:22px;
+  position:relative;
+  overflow:hidden;
+}
+
+.explore-card h2{
+  font-family:Georgia,serif;
+  font-size:29px;
+  margin-top:35px;
+}
+
+.explore-card p{
+  color:#777;
+  font-size:11px;
+  line-height:1.6;
+  margin-top:7px;
+}
+
+/* =====================================================
+   SKATE
+===================================================== */
+
+.skate-hero{
+  position:relative;
+  min-height:280px;
+  padding:35px;
+  border-radius:20px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.94),rgba(0,0,0,.35),rgba(0,0,0,.9)),
+    linear-gradient(135deg,#1a1a1a,#090909);
+}
+
+.skate-hero h1{
+  font-family:Georgia,serif;
+  font-size:57px;
+  line-height:.88;
+  margin-top:10px;
+}
+
+.skate-hero h1 span{
+  color:var(--gold2);
+}
+
+.skate-hero p{
+  max-width:530px;
+  color:#999;
+  font-size:12px;
   line-height:1.6;
   margin-top:15px;
 }
 
+.skate-art{
+  position:absolute;
+  right:35px;
+  bottom:25px;
+  width:300px;
+  color:var(--gold2);
+  transform:rotate(-7deg);
+}
+
 .skate-tabs{
   display:flex;
-  gap:7px;
+  gap:5px;
   border-bottom:1px solid var(--line);
-  margin-bottom:18px;
+  margin:17px 0;
+  overflow-x:auto;
 }
 
-.skate-tab{
+.skate-tabs button{
+  white-space:nowrap;
   border:0;
-  background:transparent;
+  background:none;
   color:#777;
-  padding:12px 15px;
-  font-size:12px;
-  position:relative;
+  padding:12px 14px;
+  font-size:10px;
 }
 
-.skate-tab.active{
+.skate-tabs button.active{
   color:var(--gold2);
-}
-
-.skate-tab.active:after{
-  content:"";
-  position:absolute;
-  left:10px;
-  right:10px;
-  bottom:-1px;
-  height:2px;
-  background:var(--gold2);
+  border-bottom:2px solid var(--gold2);
 }
 
 .skate-grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:1fr 1fr;
   gap:14px;
 }
 
@@ -850,184 +852,144 @@ svg{
   overflow:hidden;
 }
 
-.skate-image{
+.skate-visual{
   height:220px;
-  background:
-    linear-gradient(135deg,rgba(215,170,61,.2),transparent),
-    linear-gradient(145deg,#252525,#0c0c0c);
   display:flex;
   align-items:center;
   justify-content:center;
-  position:relative;
+  background:
+    radial-gradient(circle,rgba(215,170,61,.15),transparent 32%),
+    #111;
 }
 
-.skate-board-large{
-  width:210px;
-  transform:rotate(-12deg);
+.board{
+  width:230px;
+  color:var(--gold2);
+  transform:rotate(-10deg);
 }
 
-.skate-info{
-  padding:14px;
+.skate-card-body{
+  padding:15px;
 }
 
-.skate-info h3{
+.skate-card-body h3{
   font-family:Georgia,serif;
   font-size:20px;
 }
 
-.skate-info p{
+.skate-card-body p{
   color:#777;
   font-size:10px;
-  line-height:1.5;
+  line-height:1.6;
   margin-top:5px;
 }
 
-.skate-stat-row{
-  display:flex;
-  gap:12px;
-  margin-top:11px;
-  color:#888;
-  font-size:10px;
-}
-
-/* =========================
-   CULTURE SECTION
-========================= */
-
-.culture-page{
-  display:none;
-}
-
-.culture-page.active{
-  display:block;
-}
+/* =====================================================
+   CULTURE
+===================================================== */
 
 .culture-hero{
   position:relative;
-  min-height:270px;
-  overflow:hidden;
-  border:1px solid var(--line);
-  border-radius:20px;
-  background:
-    linear-gradient(90deg,rgba(0,0,0,.95),rgba(0,0,0,.38),rgba(0,0,0,.8)),
-    #121212;
+  min-height:285px;
   padding:35px;
-  display:flex;
-  align-items:center;
-  margin-bottom:18px;
+  overflow:hidden;
+  border-radius:20px;
+  border:1px solid var(--line);
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.95),rgba(0,0,0,.35),rgba(0,0,0,.9)),
+    linear-gradient(135deg,#1b150c,#080808);
 }
 
-.fist-art{
-  position:absolute;
-  right:50px;
-  bottom:-25px;
-  width:190px;
-  height:220px;
-  color:#080808;
-  filter:drop-shadow(0 0 15px rgba(215,170,61,.08));
-}
-
-.culture-kicker{
-  color:var(--gold2);
-  font-size:10px;
-  letter-spacing:3px;
-  font-weight:700;
-  text-transform:uppercase;
-}
-
-.culture-title{
+.culture-hero h1{
   font-family:Georgia,serif;
   font-size:55px;
-  line-height:.92;
-  margin-top:9px;
+  line-height:.9;
+  margin-top:10px;
 }
 
-.culture-title span{
+.culture-hero h1 span{
   color:var(--gold2);
 }
 
-.culture-copy{
-  color:#aaa;
-  max-width:530px;
-  font-size:13px;
+.culture-hero p{
+  max-width:540px;
+  color:#999;
+  font-size:12px;
   line-height:1.6;
-  margin-top:14px;
+  margin-top:15px;
+}
+
+.fist-large{
+  position:absolute;
+  right:70px;
+  bottom:-25px;
+  width:180px;
+  height:220px;
+  color:#030303;
+  filter:drop-shadow(0 0 20px rgba(215,170,61,.10));
 }
 
 .culture-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:14px;
+  gap:13px;
+  margin-top:17px;
 }
 
 .culture-card{
-  min-height:210px;
-  position:relative;
-  overflow:hidden;
-  border:1px solid var(--line);
-  border-radius:17px;
-  background:#111;
+  min-height:205px;
   padding:18px;
 }
 
 .culture-card-icon{
-  width:50px;
-  height:50px;
-  border-radius:13px;
-  background:rgba(215,170,61,.08);
-  border:1px solid rgba(215,170,61,.17);
-  color:var(--gold2);
+  width:48px;
+  height:48px;
   display:flex;
   align-items:center;
   justify-content:center;
+  border-radius:13px;
+  color:var(--gold2);
+  background:rgba(215,170,61,.07);
+  border:1px solid rgba(215,170,61,.13);
 }
 
 .culture-card h3{
   font-family:Georgia,serif;
-  font-size:22px;
-  margin-top:35px;
+  font-size:21px;
+  margin-top:27px;
 }
 
 .culture-card p{
-  color:#888;
-  font-size:11px;
-  line-height:1.5;
-  margin-top:7px;
+  color:#777;
+  font-size:10px;
+  line-height:1.55;
+  margin-top:5px;
 }
 
-/* =========================
+/* =====================================================
    PROFILE
-========================= */
-
-.profile-page{
-  display:none;
-}
-
-.profile-page.active{
-  display:block;
-}
+===================================================== */
 
 .profile-cover{
-  height:220px;
+  height:230px;
+  border:1px solid var(--line);
   border-radius:20px 20px 0 0;
   background:
-    radial-gradient(circle at 75% 20%,rgba(215,170,61,.24),transparent 30%),
-    linear-gradient(135deg,#1b160d,#070707);
-  border:1px solid var(--line);
-  position:relative;
+    radial-gradient(circle at 75% 20%,rgba(215,170,61,.22),transparent 30%),
+    linear-gradient(135deg,#1a150d,#070707);
 }
 
 .profile-body{
-  background:#101010;
   border:1px solid var(--line);
   border-top:0;
   border-radius:0 0 20px 20px;
   padding:0 25px 25px;
+  background:#101010;
 }
 
-.profile-main{
+.profile-top{
   display:flex;
-  align-items:end;
+  align-items:flex-end;
   gap:15px;
   transform:translateY(-45px);
 }
@@ -1037,66 +999,127 @@ svg{
   height:100px;
   border-radius:50%;
   border:4px solid #101010;
-  background:#222;
+  background:
+    radial-gradient(circle at 50% 32%,#9a7651 0 16%,transparent 17%),
+    linear-gradient(135deg,#5c402b,#151515);
 }
 
-.profile-info{
-  padding-bottom:9px;
+.profile-name{
+  padding-bottom:8px;
 }
 
-.profile-info h1{
+.profile-name h1{
   font-family:Georgia,serif;
   font-size:28px;
 }
 
-.profile-info p{
+.profile-name p{
   color:#777;
-  font-size:11px;
+  font-size:10px;
   margin-top:4px;
 }
 
-.profile-actions{
+.profile-buttons{
   margin-left:auto;
+  padding-bottom:8px;
   display:flex;
   gap:8px;
-  padding-bottom:9px;
 }
 
 .profile-stats{
   display:flex;
   gap:30px;
-  margin-top:-25px;
-  padding-top:18px;
   border-top:1px solid var(--line);
+  padding-top:17px;
+  margin-top:-25px;
 }
 
-.stat strong{
+.profile-stat strong{
   font-size:17px;
 }
 
-.stat span{
+.profile-stat span{
   display:block;
-  color:#777;
-  font-size:10px;
+  color:#666;
+  font-size:9px;
   margin-top:3px;
 }
 
-/* =========================
-   MOBILE NAV
-========================= */
+/* =====================================================
+   RIGHT SIDEBAR
+===================================================== */
+
+.rightbar{
+  position:sticky;
+  top:96px;
+  height:calc(100vh - 115px);
+}
+
+.right-card{
+  padding:15px;
+  margin-bottom:15px;
+}
+
+.right-title{
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:12px;
+}
+
+.trend{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 0;
+}
+
+.trend-icon{
+  width:45px;
+  height:45px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--gold2);
+  background:#18140d;
+}
+
+.trend-info{
+  flex:1;
+}
+
+.trend-info strong{
+  display:block;
+  font-size:10px;
+}
+
+.trend-info span{
+  color:#666;
+  font-size:8px;
+}
+
+/* =====================================================
+   MOBILE BOTTOM NAV
+===================================================== */
+
+/*
+  The bottom bar is horizontally scrollable so every
+  individual destination can exist without cramming
+  the icons together.
+*/
 
 .mobile-nav{
   display:none;
 }
 
-/* =========================
+/* =====================================================
    RESPONSIVE
-========================= */
+===================================================== */
 
 @media(max-width:1150px){
 
-  .layout{
-    grid-template-columns:205px minmax(0,1fr);
+  .app-layout{
+    grid-template-columns:200px minmax(0,1fr);
   }
 
   .rightbar{
@@ -1104,32 +1127,32 @@ svg{
   }
 
   .brand{
-    width:190px;
+    width:185px;
   }
 
   .top-actions{
     width:150px;
   }
 
-  .top-nav{
-    gap:0;
-  }
-
-  .nav-item{
-    padding:0 8px;
+  .top-nav button{
+    padding:0 7px;
   }
 }
 
 @media(max-width:850px){
 
+  body{
+    padding-bottom:78px;
+  }
+
   .topbar{
     height:65px;
-    padding:0 15px;
+    padding:0 14px;
   }
 
   .brand{
-    width:auto;
     flex:1;
+    width:auto;
   }
 
   .brand-name{
@@ -1148,101 +1171,141 @@ svg{
     width:auto;
   }
 
-  .layout{
-    display:block;
-    padding:12px;
-    padding-bottom:82px;
-  }
-
   .sidebar{
     display:none;
   }
 
-  .hero{
-    min-height:250px;
-    padding:25px;
+  .app-layout{
+    display:block;
+    padding:12px;
   }
 
-  .hero-title{
-    font-size:48px;
-  }
-
-  .feature-grid{
-    grid-template-columns:1fr;
-  }
-
-  .skate-grid,
-  .culture-grid{
-    grid-template-columns:1fr;
-  }
-
-  .skate-hero,
-  .culture-hero{
-    min-height:250px;
-    padding:25px;
-  }
-
-  .skate-title,
-  .culture-title{
-    font-size:44px;
-  }
-
-  .skate-hero-art{
-    width:220px;
-    right:-15px;
-    opacity:.4;
-  }
-
-  .fist-art{
-    right:-10px;
-    width:150px;
-    opacity:.32;
+  .content{
+    width:100%;
   }
 
   .mobile-nav{
     position:fixed;
-    z-index:2000;
     display:flex;
-    left:8px;
-    right:8px;
-    bottom:8px;
-    height:65px;
-    border:1px solid rgba(255,255,255,.1);
+    z-index:2000;
+    left:7px;
+    right:7px;
+    bottom:7px;
+    height:67px;
+    border:1px solid rgba(255,255,255,.10);
     border-radius:18px;
-    background:rgba(10,10,10,.94);
-    backdrop-filter:blur(18px);
-    justify-content:space-around;
-    align-items:center;
-    box-shadow:0 10px 40px rgba(0,0,0,.55);
+    background:rgba(9,9,9,.96);
+    backdrop-filter:blur(20px);
+    box-shadow:0 12px 40px rgba(0,0,0,.7);
+    overflow-x:auto;
+    overflow-y:hidden;
+    justify-content:flex-start;
+    scrollbar-width:none;
   }
 
-  .mobile-link{
+  .mobile-nav::-webkit-scrollbar{
+    display:none;
+  }
+
+  .mobile-button{
+    min-width:68px;
+    height:100%;
+    padding:5px 7px;
     border:0;
-    background:transparent;
-    color:#777;
+    background:none;
+    color:#666;
     display:flex;
     flex-direction:column;
     align-items:center;
+    justify-content:center;
     gap:4px;
     font-size:8px;
-    min-width:43px;
+    flex-shrink:0;
   }
 
-  .mobile-link.active{
+  .mobile-button.active{
     color:var(--gold2);
   }
 
-  .mobile-link .icon{
-    width:19px;
-    height:19px;
+  /*
+    PROFILE IS ALWAYS THE LAST BUTTON,
+    ON THE FAR RIGHT.
+  */
+
+  .mobile-profile{
+    margin-left:auto;
+    border-left:1px solid var(--line);
+    padding-left:12px;
+    padding-right:12px;
+    min-width:78px;
+    background:rgba(215,170,61,.025);
   }
 
-  .profile-main{
-    align-items:center;
+  .mobile-profile .profile-mini{
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    border:1px solid var(--gold3);
+    background:
+      radial-gradient(circle at 50% 32%,#9a7651 0 16%,transparent 17%),
+      #18110a;
+  }
+
+  .page-header{
+    min-height:175px;
+    padding:25px;
+  }
+
+  .page-header h1{
+    font-size:40px;
+  }
+
+  .home-hero{
+    min-height:270px;
+    padding:27px;
+  }
+
+  .home-title{
+    font-size:48px;
+  }
+
+  .grid,
+  .culture-grid,
+  .people-grid,
+  .product-grid{
+    grid-template-columns:1fr;
+  }
+
+  .date-box,
+  .explore-grid,
+  .skate-grid{
+    grid-template-columns:1fr;
+  }
+
+  .skate-hero h1{
+    font-size:45px;
+  }
+
+  .skate-art{
+    width:190px;
+    right:-20px;
+    opacity:.3;
+  }
+
+  .culture-hero h1{
+    font-size:44px;
+  }
+
+  .fist-large{
+    right:-10px;
+    opacity:.25;
+  }
+
+  .profile-top{
     flex-wrap:wrap;
   }
 
-  .profile-actions{
+  .profile-buttons{
     width:100%;
     margin-left:0;
   }
@@ -1250,37 +1313,35 @@ svg{
 
 @media(max-width:480px){
 
-  .hero{
-    min-height:230px;
+  .app-layout{
+    padding:9px;
   }
 
-  .hero-title{
+  .home-hero{
+    min-height:245px;
+  }
+
+  .home-title{
     font-size:41px;
   }
 
-  .hero-sub{
-    font-size:12px;
+  .page-header h1{
+    font-size:36px;
   }
 
-  .hero-actions{
-    flex-wrap:wrap;
+  .skate-hero,
+  .culture-hero{
+    padding:25px;
   }
 
-  .post{
-    padding:13px;
-  }
-
-  .skate-title,
-  .culture-title{
+  .skate-hero h1,
+  .culture-hero h1{
     font-size:39px;
   }
 
-  .skate-tabs{
-    overflow-x:auto;
-  }
-
-  .skate-tab{
-    white-space:nowrap;
+  .profile-avatar{
+    width:82px;
+    height:82px;
   }
 }
 </style>
@@ -1288,284 +1349,244 @@ svg{
 
 <body>
 
-<div class="app">
-
 <!-- =====================================================
-     SVG ICON DEFINITIONS
-====================================================== -->
+     SVG ICON LIBRARY
+===================================================== -->
 
 <svg width="0" height="0" style="position:absolute">
 
-  <!-- HOME -->
-  <symbol id="i-home" viewBox="0 0 24 24">
-    <path d="M3 10.5 12 3l9 7.5v9a1.5 1.5 0 0 1-1.5 1.5h-5v-6h-5v6h-5A1.5 1.5 0 0 1 3 19.5z"
-      fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-  </symbol>
+<symbol id="home" viewBox="0 0 24 24">
+  <path d="M3 10.5 12 3l9 7.5v9a1.5 1.5 0 0 1-1.5 1.5h-5v-6h-5v6h-5A1.5 1.5 0 0 1 3 19.5z"
+    fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+</symbol>
 
-  <!-- PEOPLE -->
-  <symbol id="i-people" viewBox="0 0 24 24">
-    <circle cx="9" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/>
-    <circle cx="17" cy="9" r="2.4" fill="none" stroke="currentColor" stroke-width="1.7"/>
-    <path d="M3.5 20c.6-3.6 2.4-5.4 5.5-5.4s4.9 1.8 5.5 5.4M14 14.8c2.8-.2 4.8 1.5 5.5 4.5"
-      fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-  </symbol>
+<symbol id="people" viewBox="0 0 24 24">
+  <circle cx="9" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/>
+  <circle cx="17" cy="9" r="2.4" fill="none" stroke="currentColor" stroke-width="1.7"/>
+  <path d="M3.5 20c.6-3.6 2.4-5.4 5.5-5.4s4.9 1.8 5.5 5.4M14 14.8c2.8-.2 4.8 1.5 5.5 4.5"
+    fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+</symbol>
 
-  <!-- HEART -->
-  <symbol id="i-heart" viewBox="0 0 24 24">
-    <path d="M20.5 8.7c0 5-8.5 10-8.5 10S3.5 13.7 3.5 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.5 2.6z"
-      fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-  </symbol>
+<symbol id="heart" viewBox="0 0 24 24">
+  <path d="M20.5 8.7c0 5-8.5 10-8.5 10S3.5 13.7 3.5 8.7A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.5 2.6z"
+    fill="none" stroke="currentColor" stroke-width="1.7"/>
+</symbol>
 
-  <!-- BUILD -->
-  <symbol id="i-build" viewBox="0 0 24 24">
-    <path d="m14.5 5.5 4 4M4 20l5.2-1.2L19.8 8.2a2.8 2.8 0 0 0-4-4L5.2 15.8z"
-      fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-  </symbol>
+<symbol id="build" viewBox="0 0 24 24">
+  <path d="m14.5 5.5 4 4M4 20l5.2-1.2L19.8 8.2a2.8 2.8 0 0 0-4-4L5.2 15.8z"
+    fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+</symbol>
 
-  <!-- MARKET -->
-  <symbol id="i-market" viewBox="0 0 24 24">
-    <path d="M4 9h16l-1 11H5zM6 9l1-5h10l1 5M9 13v3M15 13v3"
-      fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-  </symbol>
+<symbol id="market" viewBox="0 0 24 24">
+  <path d="M4 9h16l-1 11H5zM6 9l1-5h10l1 5M9 13v3M15 13v3"
+    fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+</symbol>
 
-  <!-- SEARCH -->
-  <symbol id="i-search" viewBox="0 0 24 24">
-    <circle cx="10.8" cy="10.8" r="6.3" fill="none" stroke="currentColor" stroke-width="1.7"/>
-    <path d="m16 16 5 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-  </symbol>
+<symbol id="search" viewBox="0 0 24 24">
+  <circle cx="10.8" cy="10.8" r="6.3" fill="none" stroke="currentColor" stroke-width="1.7"/>
+  <path d="m16 16 5 5" fill="none" stroke="currentColor" stroke-width="1.7"/>
+</symbol>
 
-  <!-- BELL -->
-  <symbol id="i-bell" viewBox="0 0 24 24">
-    <path d="M5 17h14l-1.5-2.5V10a5.5 5.5 0 0 0-11 0v4.5zM10 20h4"
-      fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-  </symbol>
+<symbol id="bell" viewBox="0 0 24 24">
+  <path d="M5 17h14l-1.5-2.5V10a5.5 5.5 0 0 0-11 0v4.5zM10 20h4"
+    fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+</symbol>
 
-  <!-- IMAGE -->
-  <symbol id="i-image" viewBox="0 0 24 24">
-    <rect x="3" y="4" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/>
-    <circle cx="8.5" cy="9" r="1.5" fill="currentColor"/>
-    <path d="m4.5 18 5-5 3.5 3 2.5-2.5 4 4"
-      fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-  </symbol>
+<symbol id="explore" viewBox="0 0 24 24">
+  <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/>
+  <path d="m15.5 8.5-2.3 4.7-4.7 2.3 2.3-4.7z"
+    fill="none" stroke="currentColor" stroke-width="1.7"/>
+</symbol>
 
-  <!-- VIDEO -->
-  <symbol id="i-video" viewBox="0 0 24 24">
-    <rect x="3" y="6" width="13" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/>
-    <path d="m16 10 5-3v10l-5-3z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-  </symbol>
+<symbol id="location" viewBox="0 0 24 24">
+  <path d="M19 10c0 5-7 10-7 10S5 15 5 10a7 7 0 1 1 14 0z"
+    fill="none" stroke="currentColor" stroke-width="1.7"/>
+  <circle cx="12" cy="10" r="2.2"
+    fill="none" stroke="currentColor" stroke-width="1.7"/>
+</symbol>
 
-  <!-- LOCATION -->
-  <symbol id="i-location" viewBox="0 0 24 24">
-    <path d="M19 10c0 5-7 10-7 10S5 15 5 10a7 7 0 1 1 14 0z"
-      fill="none" stroke="currentColor" stroke-width="1.7"/>
-    <circle cx="12" cy="10" r="2.2" fill="none" stroke="currentColor" stroke-width="1.7"/>
-  </symbol>
+<symbol id="comment" viewBox="0 0 24 24">
+  <path d="M4 5h16v11H9l-5 4z"
+    fill="none" stroke="currentColor" stroke-width="1.7"/>
+</symbol>
 
-  <!-- COMMENTS -->
-  <symbol id="i-comment" viewBox="0 0 24 24">
-    <path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-  </symbol>
+<symbol id="image" viewBox="0 0 24 24">
+  <rect x="3" y="4" width="18" height="16" rx="2"
+    fill="none" stroke="currentColor" stroke-width="1.7"/>
+  <circle cx="8.5" cy="9" r="1.5" fill="currentColor"/>
+  <path d="m4.5 18 5-5 3.5 3 2.5-2.5 4 4"
+    fill="none" stroke="currentColor" stroke-width="1.7"/>
+</symbol>
 
-  <!-- SHARE -->
-  <symbol id="i-share" viewBox="0 0 24 24">
-    <path d="m13 5 6 6-6 6M19 11H8a5 5 0 0 0-5 5v2"
-      fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-  </symbol>
+<symbol id="video" viewBox="0 0 24 24">
+  <rect x="3" y="6" width="13" height="12" rx="2"
+    fill="none" stroke="currentColor" stroke-width="1.7"/>
+  <path d="m16 10 5-3v10l-5-3z"
+    fill="none" stroke="currentColor" stroke-width="1.7"/>
+</symbol>
 
-  <!-- EXPLORE -->
-  <symbol id="i-explore" viewBox="0 0 24 24">
-    <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/>
-    <path d="m15.5 8.5-2.3 4.7-4.7 2.3 2.3-4.7z"
-      fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-  </symbol>
+<symbol id="user" viewBox="0 0 24 24">
+  <circle cx="12" cy="8" r="3.5"
+    fill="none" stroke="currentColor" stroke-width="1.7"/>
+  <path d="M5 21c.7-4.2 3-6.2 7-6.2s6.3 2 7 6.2"
+    fill="none" stroke="currentColor" stroke-width="1.7"/>
+</symbol>
 
-  <!-- SKATEBOARD -->
-  <symbol id="i-skate" viewBox="0 0 100 50">
+<!-- REAL VECTOR SKATEBOARD -->
+<symbol id="skate" viewBox="0 0 100 50">
 
-    <g transform="rotate(-8 50 25)">
+  <g transform="rotate(-8 50 25)">
 
-      <!-- deck -->
-      <path
-        d="M10 19
-           C16 14 24 13 32 14
-           L70 14
-           C78 14 86 16 91 21
-           C86 27 78 29 70 29
-           L30 29
-           C22 29 15 27 10 23
-           C9 22 9 20 10 19Z"
-        fill="currentColor"/>
-
-      <!-- deck highlight -->
-      <path
-        d="M17 20
-           C25 17 34 18 42 18
-           H75"
-        fill="none"
-        stroke="#f0c75e"
-        stroke-width="2"
-        opacity=".8"
-        stroke-linecap="round"/>
-
-      <!-- trucks -->
-      <path d="M25 29v6M75 29v6"
-        stroke="currentColor"
-        stroke-width="3"
-        stroke-linecap="round"/>
-
-      <!-- wheels -->
-      <circle cx="23" cy="38" r="5" fill="#090909" stroke="currentColor" stroke-width="2"/>
-      <circle cx="30" cy="38" r="5" fill="#090909" stroke="currentColor" stroke-width="2"/>
-      <circle cx="70" cy="38" r="5" fill="#090909" stroke="currentColor" stroke-width="2"/>
-      <circle cx="77" cy="38" r="5" fill="#090909" stroke="currentColor" stroke-width="2"/>
-
-      <!-- wheel centers -->
-      <circle cx="23" cy="38" r="1.4" fill="#d7aa3d"/>
-      <circle cx="30" cy="38" r="1.4" fill="#d7aa3d"/>
-      <circle cx="70" cy="38" r="1.4" fill="#d7aa3d"/>
-      <circle cx="77" cy="38" r="1.4" fill="#d7aa3d"/>
-
-    </g>
-  </symbol>
-
-  <!-- RAISED BLACK FIST -->
-  <symbol id="i-fist" viewBox="0 0 160 190">
-
-    <!-- wrist -->
     <path
-      d="M49 177
-       L49 146
-       C49 137 45 128 43 119
-       L36 89
-       C34 81 38 74 45 72
-       C50 71 55 73 58 77
-       L59 47
-       C59 40 64 35 70 35
-       C76 35 81 39 82 45
-       L83 30
-       C83 23 88 18 94 18
-       C100 18 105 22 106 28
-       L107 43
-       L108 24
-       C108 17 113 12 119 12
-       C125 12 130 17 130 23
-       L130 50
-       C131 43 136 39 142 40
-       C148 41 152 46 151 53
-       L149 86
-       C149 104 143 119 135 130
-       C129 138 126 147 126 157
-       L126 177
-       Z"
+      d="M10 19
+      C16 14 24 13 32 14
+      L70 14
+      C78 14 86 16 91 21
+      C86 27 78 29 70 29
+      L30 29
+      C22 29 15 27 10 23
+      C9 22 9 20 10 19Z"
       fill="currentColor"/>
 
-    <!-- thumb -->
     <path
-      d="M59 77
-       C54 67 48 62 42 64
-       C36 66 33 72 36 78
-       L49 103
-       C53 110 59 112 64 108
-       C69 104 69 98 65 92
-       Z"
-      fill="currentColor"/>
-
-    <!-- finger separation -->
-    <path
-      d="M82 46v38M106 44v39M130 51v35"
+      d="M17 20C25 17 34 18 42 18H75"
       fill="none"
-      stroke="#1b1b1b"
-      stroke-width="5"
-      stroke-linecap="round"
-      opacity=".65"/>
-
-    <!-- knuckle detail -->
-    <path
-      d="M66 60c4-4 9-4 14-1M89 51c4-3 10-3 14 1M112 53c4-3 9-2 13 2"
-      fill="none"
-      stroke="#292929"
-      stroke-width="4"
+      stroke="#f0c75e"
+      stroke-width="2"
       stroke-linecap="round"/>
 
-  </symbol>
+    <path d="M25 29v6M75 29v6"
+      stroke="currentColor"
+      stroke-width="3"
+      stroke-linecap="round"/>
 
-  <!-- CULTURE -->
-  <symbol id="i-culture" viewBox="0 0 24 24">
-    <path d="M4 7h16M6 7v13M18 7v13M3 20h18M8 4h8v3H8z"
-      fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-    <path d="M10 11h4M10 15h4"
-      fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-  </symbol>
+    <circle cx="23" cy="38" r="5"
+      fill="#090909" stroke="currentColor" stroke-width="2"/>
 
-  <!-- USER -->
-  <symbol id="i-user" viewBox="0 0 24 24">
-    <circle cx="12" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="1.7"/>
-    <path d="M5 21c.7-4.2 3-6.2 7-6.2s6.3 2 7 6.2"
-      fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-  </symbol>
+    <circle cx="30" cy="38" r="5"
+      fill="#090909" stroke="currentColor" stroke-width="2"/>
 
-  <!-- SHOP -->
-  <symbol id="i-shop" viewBox="0 0 24 24">
-    <path d="M4 10h16v10H4zM3 10l2-6h14l2 6M8 14h8"
-      fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-  </symbol>
+    <circle cx="70" cy="38" r="5"
+      fill="#090909" stroke="currentColor" stroke-width="2"/>
 
-  <!-- MUSIC -->
-  <symbol id="i-music" viewBox="0 0 24 24">
-    <path d="M9 18V6l10-2v12M9 18c0 1.7-1.8 3-4 3s-4-1.3-4-3 1.8-3 4-3 4 1.3 4 3zM19 16c0 1.7-1.8 3-4 3s-4-1.3-4-3 1.8-3 4-3 4 1.3 4 3z"
-      fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-  </symbol>
+    <circle cx="77" cy="38" r="5"
+      fill="#090909" stroke="currentColor" stroke-width="2"/>
+
+    <circle cx="23" cy="38" r="1.4" fill="#d7aa3d"/>
+    <circle cx="30" cy="38" r="1.4" fill="#d7aa3d"/>
+    <circle cx="70" cy="38" r="1.4" fill="#d7aa3d"/>
+    <circle cx="77" cy="38" r="1.4" fill="#d7aa3d"/>
+
+  </g>
+
+</symbol>
+
+<!-- REAL VECTOR RAISED BLACK FIST -->
+<symbol id="fist" viewBox="0 0 160 190">
+
+  <path
+    d="M49 177
+    L49 146
+    C49 137 45 128 43 119
+    L36 89
+    C34 81 38 74 45 72
+    C50 71 55 73 58 77
+    L59 47
+    C59 40 64 35 70 35
+    C76 35 81 39 82 45
+    L83 30
+    C83 23 88 18 94 18
+    C100 18 105 22 106 28
+    L107 43
+    L108 24
+    C108 17 113 12 119 12
+    C125 12 130 17 130 23
+    L130 50
+    C131 43 136 39 142 40
+    C148 41 152 46 151 53
+    L149 86
+    C149 104 143 119 135 130
+    C129 138 126 147 126 157
+    L126 177Z"
+    fill="currentColor"/>
+
+  <path
+    d="M59 77
+    C54 67 48 62 42 64
+    C36 66 33 72 36 78
+    L49 103
+    C53 110 59 112 64 108
+    C69 104 69 98 65 92Z"
+    fill="currentColor"/>
+
+  <path
+    d="M82 46v38M106 44v39M130 51v35"
+    fill="none"
+    stroke="#292929"
+    stroke-width="5"
+    stroke-linecap="round"/>
+
+  <path
+    d="M66 60c4-4 9-4 14-1M89 51c4-3 10-3 14 1M112 53c4-3 9-2 13 2"
+    fill="none"
+    stroke="#292929"
+    stroke-width="4"
+    stroke-linecap="round"/>
+
+</symbol>
+
+<symbol id="music" viewBox="0 0 24 24">
+  <path d="M9 18V6l10-2v12M9 18c0 1.7-1.8 3-4 3s-4-1.3-4-3 1.8-3 4-3 4 1.3 4 3zM19 16c0 1.7-1.8 3-4 3s-4-1.3-4-3 1.8-3 4-3 4 1.3 4 3z"
+    fill="none" stroke="currentColor" stroke-width="1.7"/>
+</symbol>
 
 </svg>
 
 
 <!-- =====================================================
-     TOP BAR
-====================================================== -->
+     TOP NAV
+===================================================== -->
 
 <header class="topbar">
 
   <div class="brand">
     <div class="brand-name">SOULAANI</div>
-    <div class="brand-tagline">THE CULTURE. THE PEOPLE. THE PLATFORM.</div>
+    <div class="brand-tagline">
+      THE CULTURE. THE PEOPLE. THE PLATFORM.
+    </div>
   </div>
 
   <nav class="top-nav">
 
-    <button class="nav-item active" data-page="home">
+    <button data-page="home" class="active">
       Home
     </button>
 
-    <button class="nav-item" data-page="connect">
+    <button data-page="connect">
       Connect
     </button>
 
-    <button class="nav-item" data-page="date">
+    <button data-page="date">
       Date
     </button>
 
-    <button class="nav-item" data-page="build">
+    <button data-page="build">
       Build
     </button>
 
-    <button class="nav-item" data-page="market">
+    <button data-page="market">
       Market
     </button>
 
-    <button class="nav-item" data-page="explore">
+    <button data-page="explore">
       Explore
     </button>
 
-    <!-- DEDICATED SKATE -->
-    <button class="nav-item" data-page="skate">
-      <svg class="icon icon-sm">
-        <use href="#i-skate"></use>
-      </svg>
+    <button data-page="skate">
       Skate
     </button>
 
-    <!-- CULTURE -->
-    <button class="nav-item" data-page="culture">
+    <button data-page="culture">
       Culture
     </button>
 
@@ -1573,23 +1594,21 @@ svg{
 
   <div class="top-actions">
 
-    <button class="action-btn" aria-label="Search">
+    <button class="action">
       <svg class="icon">
-        <use href="#i-search"></use>
+        <use href="#search"></use>
       </svg>
     </button>
 
-    <button class="action-btn" aria-label="Notifications">
+    <button class="action">
       <svg class="icon">
-        <use href="#i-bell"></use>
+        <use href="#bell"></use>
       </svg>
     </button>
 
-    <button class="action-btn" data-page="profile" aria-label="Profile">
-      <svg class="avatar" viewBox="0 0 40 40">
-        <circle cx="20" cy="20" r="19" fill="#161616"/>
-        <circle cx="20" cy="15" r="6" fill="#9b7651"/>
-        <path d="M9 35c1.5-8 5-12 11-12s9.5 4 11 12" fill="#69472f"/>
+    <button class="action" data-page="profile">
+      <svg class="icon">
+        <use href="#user"></use>
       </svg>
     </button>
 
@@ -1598,1021 +1617,1229 @@ svg{
 </header>
 
 
+<div class="app-layout">
+
+
 <!-- =====================================================
-     MAIN LAYOUT
-====================================================== -->
+     LEFT SIDEBAR
+===================================================== -->
 
-<div class="layout">
+<aside class="sidebar">
 
-  <!-- ================= SIDEBAR ================= -->
+  <button class="sidebar-button active" data-page="home">
+    <svg class="icon"><use href="#home"></use></svg>
+    Home
+  </button>
 
-  <aside class="sidebar">
+  <button class="sidebar-button" data-page="connect">
+    <svg class="icon"><use href="#people"></use></svg>
+    Connect
+  </button>
 
-    <div class="side-section">
+  <button class="sidebar-button" data-page="date">
+    <svg class="icon"><use href="#heart"></use></svg>
+    Date
+  </button>
 
-      <button class="side-link active" data-page="home">
-        <svg class="icon"><use href="#i-home"></use></svg>
-        Home
-      </button>
+  <button class="sidebar-button" data-page="build">
+    <svg class="icon"><use href="#build"></use></svg>
+    Build
+  </button>
 
-      <button class="side-link" data-page="connect">
-        <svg class="icon"><use href="#i-people"></use></svg>
-        Connect
-      </button>
+  <button class="sidebar-button" data-page="market">
+    <svg class="icon"><use href="#market"></use></svg>
+    Market
+  </button>
 
-      <button class="side-link" data-page="date">
-        <svg class="icon"><use href="#i-heart"></use></svg>
-        Date
-      </button>
+  <button class="sidebar-button" data-page="explore">
+    <svg class="icon"><use href="#explore"></use></svg>
+    Explore
+  </button>
 
-      <button class="side-link" data-page="build">
-        <svg class="icon"><use href="#i-build"></use></svg>
-        Build
-      </button>
+  <button class="sidebar-button" data-page="skate">
+    <svg class="icon"><use href="#skate"></use></svg>
+    Skate
+  </button>
 
-      <button class="side-link" data-page="market">
-        <svg class="icon"><use href="#i-market"></use></svg>
-        Market
-      </button>
+  <button class="sidebar-button" data-page="culture">
+    <svg class="icon"><use href="#fist"></use></svg>
+    Culture
+  </button>
 
-      <button class="side-link" data-page="explore">
-        <svg class="icon"><use href="#i-explore"></use></svg>
-        Explore
-      </button>
+  <div class="sidebar-divider"></div>
 
-      <!-- SKATE IS ITS OWN SECTION -->
-      <button class="side-link" data-page="skate">
-        <svg class="icon icon-gold">
-          <use href="#i-skate"></use>
-        </svg>
-        Skate
-      </button>
+  <div class="sidebar-label">
+    Communities
+  </div>
 
-      <!-- CULTURE -->
-      <button class="side-link" data-page="culture">
-        <svg class="icon">
-          <use href="#i-fist"></use>
-        </svg>
-        Culture
-      </button>
+  <button class="sidebar-button">
+    <svg class="icon"><use href="#people"></use></svg>
+    Black Creators
+  </button>
 
-      <div class="side-divider"></div>
+  <button class="sidebar-button">
+    <svg class="icon"><use href="#skate"></use></svg>
+    Skate Fam
+  </button>
 
-      <div class="side-title">
-        Your Communities
-        <button class="community-add">+</button>
+  <button class="sidebar-button">
+    <svg class="icon"><use href="#music"></use></svg>
+    Music & Vibes
+  </button>
+
+</aside>
+
+
+<!-- =====================================================
+     CONTENT
+===================================================== -->
+
+<main class="content">
+
+
+<!-- =====================================================
+     1. HOME
+===================================================== -->
+
+<section id="home" class="app-page active">
+
+  <div class="home-hero">
+
+    <div>
+
+      <div class="page-kicker">
+        Welcome to Soulaani
       </div>
 
-      <div class="community">
-        <div class="trend-img" style="width:29px;height:29px;border-radius:50%;">
-          <svg class="icon-sm"><use href="#i-people"></use></svg>
-        </div>
-        Black Creators
-      </div>
-
-      <div class="community">
-        <div class="trend-img" style="width:29px;height:29px;border-radius:50%;">
-          <svg class="icon-sm"><use href="#i-skate"></use></svg>
-        </div>
-        Skate Fam
-      </div>
-
-      <div class="community">
-        <div class="trend-img" style="width:29px;height:29px;border-radius:50%;">
-          <svg class="icon-sm"><use href="#i-market"></use></svg>
-        </div>
-        Black Business
-      </div>
-
-      <div class="community">
-        <div class="trend-img" style="width:29px;height:29px;border-radius:50%;">
-          <svg class="icon-sm"><use href="#i-music"></use></svg>
-        </div>
-        Music & Vibes
-      </div>
-
-      <div class="community">
-        <div class="trend-img" style="width:29px;height:29px;border-radius:50%;">
-          <svg class="icon-sm"><use href="#i-location"></use></svg>
-        </div>
-        Local Philly
-      </div>
-
-    </div>
-
-  </aside>
-
-
-  <!-- ================= CENTER ================= -->
-
-  <main class="main">
-
-
-    <!-- ================================================
-         HOME
-    ================================================= -->
-
-    <section class="page active" id="home">
-
-      <div class="hero">
-
-        <div class="hero-content">
-
-          <div class="hero-kicker">
-            The Black community, connected
-          </div>
-
-          <div class="hero-title">
-            SOUL<span>AANI</span>
-          </div>
-
-          <p class="hero-sub">
-            A place to connect, create, build, date, discover,
-            support Black-owned businesses, celebrate culture,
-            and find your people.
-          </p>
-
-          <div class="hero-actions">
-
-            <button class="btn btn-primary" data-page="explore">
-              Explore Soulaani
-            </button>
-
-            <button class="btn btn-secondary" data-page="connect">
-              Find Your People
-            </button>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- COMPOSER -->
-
-      <div class="card composer">
-
-        <div class="composer-top">
-
-          <div class="composer-avatar"
-               style="background:linear-gradient(135deg,#6f4c32,#171717);">
-          </div>
-
-          <input
-            class="composer-input"
-            placeholder="What's on your mind?"
-          >
-
-        </div>
-
-        <div class="composer-tools">
-
-          <button class="composer-tool">
-            <svg class="icon-sm"><use href="#i-image"></use></svg>
-            Photo
-          </button>
-
-          <button class="composer-tool">
-            <svg class="icon-sm"><use href="#i-video"></use></svg>
-            Video
-          </button>
-
-          <button class="composer-tool">
-            <svg class="icon-sm"><use href="#i-location"></use></svg>
-            Check In
-          </button>
-
-          <button class="composer-tool">
-            More
-          </button>
-
-        </div>
-
-      </div>
-
-
-      <!-- POST -->
-
-      <article class="card post">
-
-        <div class="post-header">
-
-          <div class="post-avatar"
-               style="background:linear-gradient(135deg,#815e40,#171717);">
-          </div>
-
-          <div class="post-user">
-
-            <div class="post-name">
-              KingTae
-              <span class="verified">●</span>
-            </div>
-
-            <div class="post-meta">
-              1h ago · Philadelphia, PA
-            </div>
-
-          </div>
-
-          <button class="more">•••</button>
-
-        </div>
-
-        <p class="post-text">
-          Good food, good people, good energy.
-          Nothing hits like Black excellence.
-        </p>
-
-        <div class="post-media">
-
-          <div class="media-placeholder">
-
-            <div class="media-label">
-              REAL PEOPLE.<br>
-              REAL CULTURE.
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="post-actions">
-
-          <button class="post-action">
-            <svg class="icon-sm"><use href="#i-heart"></use></svg>
-            248
-          </button>
-
-          <button class="post-action">
-            <svg class="icon-sm"><use href="#i-comment"></use></svg>
-            32
-          </button>
-
-          <button class="post-action">
-            <svg class="icon-sm"><use href="#i-share"></use></svg>
-            12
-          </button>
-
-        </div>
-
-      </article>
-
-
-      <!-- FEATURED AREAS -->
-
-      <div class="section-heading">
-
-        <div>
-          <h2>Explore Soulaani</h2>
-          <p>Everything that makes the platform move.</p>
-        </div>
-
-        <button class="see-all">
-          See all
-        </button>
-
-      </div>
-
-
-      <div class="feature-grid">
-
-        <div class="feature-card">
-
-          <div class="feature-icon">
-            <svg class="icon-lg">
-              <use href="#i-people"></use>
-            </svg>
-          </div>
-
-          <h3>Connect</h3>
-
-          <p>
-            Meet people, communities, creators and
-            conversations that matter.
-          </p>
-
-        </div>
-
-
-        <div class="feature-card">
-
-          <div class="feature-icon">
-            <svg class="icon-lg">
-              <use href="#i-skate"></use>
-            </svg>
-          </div>
-
-          <h3>Skate</h3>
-
-          <p>
-            Riders, skate spots, clips, events and
-            the culture around skating.
-          </p>
-
-        </div>
-
-
-        <div class="feature-card">
-
-          <div class="feature-icon">
-            <svg class="icon-lg">
-              <use href="#i-fist"></use>
-            </svg>
-          </div>
-
-          <h3>Culture</h3>
-
-          <p>
-            Food, music, history, art, style,
-            stories and community.
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ================================================
-         SKATE
-    ================================================= -->
-
-    <section class="skate-page" id="skate">
-
-      <div class="skate-hero">
-
-        <div>
-
-          <div class="skate-kicker">
-            Soulaani Skate
-          </div>
-
-          <h1 class="skate-title">
-            Skate.<br>
-            <span>Move.</span> Create.
-          </h1>
-
-          <p class="skate-copy">
-            A dedicated home for Black skateboarders,
-            riders, crews, skate spots, clips, events,
-            brands and the communities built around them.
-          </p>
-
-          <div class="hero-actions">
-
-            <button class="btn btn-primary">
-              Find Skate Spots
-            </button>
-
-            <button class="btn btn-secondary">
-              Join Skate Community
-            </button>
-
-          </div>
-
-        </div>
-
-
-        <!-- REAL SVG SKATEBOARD -->
-        <svg class="skate-hero-art"
-             viewBox="0 0 100 50"
-             aria-label="Skateboard illustration">
-
-          <use href="#i-skate"></use>
-
-        </svg>
-
-      </div>
-
-
-      <div class="skate-tabs">
-
-        <button class="skate-tab active">
-          Posts
-        </button>
-
-        <button class="skate-tab">
-          Riders
-        </button>
-
-        <button class="skate-tab">
-          Spots
-        </button>
-
-        <button class="skate-tab">
-          Events
-        </button>
-
-        <button class="skate-tab">
-          Crews
-        </button>
-
-      </div>
-
-
-      <div class="skate-grid">
-
-        <article class="card skate-card">
-
-          <div class="skate-image">
-
-            <svg class="skate-board-large"
-                 viewBox="0 0 100 50">
-
-              <use href="#i-skate"></use>
-
-            </svg>
-
-          </div>
-
-          <div class="skate-info">
-
-            <h3>Black Skate Culture</h3>
-
-            <p>
-              Clips, riders and conversations from
-              the community.
-            </p>
-
-            <div class="skate-stat-row">
-              <span>128 likes</span>
-              <span>21 comments</span>
-              <span>8 shares</span>
-            </div>
-
-          </div>
-
-        </article>
-
-
-        <article class="card skate-card">
-
-          <div class="skate-image"
-               style="background:
-               radial-gradient(circle at 50% 30%,rgba(215,170,61,.22),transparent 25%),
-               linear-gradient(145deg,#222,#080808);">
-
-            <svg
-              viewBox="0 0 160 190"
-              style="width:115px;height:140px;color:#050505;filter:drop-shadow(0 0 14px rgba(215,170,61,.12));">
-
-              <use href="#i-fist"></use>
-
-            </svg>
-
-          </div>
-
-          <div class="skate-info">
-
-            <h3>Skate Fam</h3>
-
-            <p>
-              Find your local riders and connect
-              with crews around you.
-            </p>
-
-            <div class="skate-stat-row">
-              <span>89K members</span>
-              <span>420 crews</span>
-            </div>
-
-          </div>
-
-        </article>
-
-
-        <article class="card skate-card">
-
-          <div class="skate-image">
-
-            <svg
-              viewBox="0 0 100 50"
-              style="width:250px;color:#d7aa3d;">
-
-              <use href="#i-skate"></use>
-
-            </svg>
-
-          </div>
-
-          <div class="skate-info">
-
-            <h3>Local Skate Spots</h3>
-
-            <p>
-              Discover parks, street spots and
-              skate-friendly places near you.
-            </p>
-
-          </div>
-
-        </article>
-
-
-        <article class="card skate-card">
-
-          <div class="skate-image">
-
-            <svg
-              viewBox="0 0 100 50"
-              style="width:245px;color:#f0c75e;">
-
-              <use href="#i-skate"></use>
-
-            </svg>
-
-          </div>
-
-          <div class="skate-info">
-
-            <h3>Upcoming Skate Events</h3>
-
-            <p>
-              Meetups, competitions, skate days,
-              launches and community events.
-            </p>
-
-          </div>
-
-        </article>
-
-      </div>
-
-    </section>
-
-
-    <!-- ================================================
-         CULTURE
-    ================================================= -->
-
-    <section class="culture-page" id="culture">
-
-      <div class="culture-hero">
-
-        <div>
-
-          <div class="culture-kicker">
-            Black Culture
-          </div>
-
-          <h1 class="culture-title">
-            Our History.<br>
-            <span>Our Voice.</span>
-          </h1>
-
-          <p class="culture-copy">
-            Food, music, art, fashion, history, creativity,
-            traditions and the stories that connect generations.
-          </p>
-
-          <div class="hero-actions">
-
-            <button class="btn btn-primary">
-              Explore Culture
-            </button>
-
-            <button class="btn btn-secondary">
-              Share Your Story
-            </button>
-
-          </div>
-
-        </div>
-
-
-        <!-- REAL VECTOR FIST, NOT EMOJI -->
-
-        <svg class="fist-art"
-             viewBox="0 0 160 190"
-             aria-label="Raised Black fist">
-
-          <use href="#i-fist"></use>
-
-        </svg>
-
-      </div>
-
-
-      <div class="culture-grid">
-
-        <article class="culture-card">
-
-          <div class="culture-card-icon">
-
-            <svg class="icon-lg">
-              <use href="#i-fist"></use>
-            </svg>
-
-          </div>
-
-          <h3>Black History</h3>
-
-          <p>
-            Stories, people, movements and moments
-            that shaped generations.
-          </p>
-
-        </article>
-
-
-        <article class="culture-card">
-
-          <div class="culture-card-icon">
-
-            <svg class="icon-lg">
-              <use href="#i-market"></use>
-            </svg>
-
-          </div>
-
-          <h3>Food & Flavor</h3>
-
-          <p>
-            Recipes, restaurants, chefs, food traditions
-            and local favorites.
-          </p>
-
-        </article>
-
-
-        <article class="culture-card">
-
-          <div class="culture-card-icon">
-
-            <svg class="icon-lg">
-              <use href="#i-music"></use>
-            </svg>
-
-          </div>
-
-          <h3>Music & Sound</h3>
-
-          <p>
-            Artists, sounds, scenes, playlists and
-            conversations shaping culture.
-          </p>
-
-        </article>
-
-
-        <article class="culture-card">
-
-          <div class="culture-card-icon">
-
-            <svg class="icon-lg">
-              <use href="#i-build"></use>
-            </svg>
-
-          </div>
-
-          <h3>Art & Creativity</h3>
-
-          <p>
-            Visual artists, designers, photographers,
-            writers and creators.
-          </p>
-
-        </article>
-
-
-        <article class="culture-card">
-
-          <div class="culture-card-icon">
-
-            <svg class="icon-lg">
-              <use href="#i-people"></use>
-            </svg>
-
-          </div>
-
-          <h3>Community</h3>
-
-          <p>
-            Local stories and people making an impact
-            in their communities.
-          </p>
-
-        </article>
-
-
-        <article class="culture-card">
-
-          <div class="culture-card-icon">
-
-            <svg class="icon-lg">
-              <use href="#i-explore"></use>
-            </svg>
-
-          </div>
-
-          <h3>Explore Local</h3>
-
-          <p>
-            Discover Black culture in cities,
-            neighborhoods and communities.
-          </p>
-
-        </article>
-
-      </div>
-
-    </section>
-
-
-    <!-- ================================================
-         PROFILE
-    ================================================= -->
-
-    <section class="profile-page" id="profile">
-
-      <div class="profile-cover"></div>
-
-      <div class="profile-body">
-
-        <div class="profile-main">
-
-          <div class="profile-avatar"></div>
-
-          <div class="profile-info">
-
-            <h1>Your Soulaani Profile</h1>
-
-            <p>
-              Build your identity. Share your world.
-            </p>
-
-          </div>
-
-          <div class="profile-actions">
-
-            <button class="btn btn-secondary">
-              Edit Profile
-            </button>
-
-            <button class="btn btn-primary">
-              Share
-            </button>
-
-          </div>
-
-        </div>
-
-        <div class="profile-stats">
-
-          <div class="stat">
-            <strong>0</strong>
-            <span>Posts</span>
-          </div>
-
-          <div class="stat">
-            <strong>0</strong>
-            <span>Followers</span>
-          </div>
-
-          <div class="stat">
-            <strong>0</strong>
-            <span>Following</span>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =================================================
-         PLACEHOLDER PAGES
-    ================================================== -->
-
-    <section class="page" id="connect"></section>
-    <section class="page" id="date"></section>
-    <section class="page" id="build"></section>
-    <section class="page" id="market"></section>
-    <section class="page" id="explore"></section>
-
-  </main>
-
-
-  <!-- ================= RIGHT SIDEBAR ================= -->
-
-  <aside class="rightbar">
-
-    <div class="card right-card">
-
-      <div class="right-title">
-        Trending Now
-      </div>
-
-      <div class="trending">
-
-        <div class="trend-img">
-          <svg class="icon-lg">
-            <use href="#i-market"></use>
-          </svg>
-        </div>
-
-        <div class="trend-text">
-          <div class="trend-name">
-            Black Food Spots
-          </div>
-          <div class="trend-meta">
-            Trending in Culture
-          </div>
-        </div>
-
-      </div>
-
-
-      <div class="trending">
-
-        <div class="trend-img">
-          <svg class="icon-lg">
-            <use href="#i-skate"></use>
-          </svg>
-        </div>
-
-        <div class="trend-text">
-          <div class="trend-name">
-            Skate Spots
-          </div>
-          <div class="trend-meta">
-            Trending in Skate
-          </div>
-        </div>
-
-      </div>
-
-
-      <div class="trending">
-
-        <div class="trend-img">
-          <svg class="icon-lg">
-            <use href="#i-location"></use>
-          </svg>
-        </div>
-
-        <div class="trend-text">
-          <div class="trend-name">
-            Local Events
-          </div>
-          <div class="trend-meta">
-            Near your community
-          </div>
-        </div>
-
-      </div>
-
-
-      <div class="trending">
-
-        <div class="trend-img">
-          <svg class="icon-lg">
-            <use href="#i-build"></use>
-          </svg>
-        </div>
-
-        <div class="trend-text">
-          <div class="trend-name">
-            Black-Owned Businesses
-          </div>
-          <div class="trend-meta">
-            Trending in Market
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div class="card join-card">
-
-      <h3>
-        Build With Us.
-      </h3>
-
-      <p>
-        Soulaani is being built around community,
-        culture, opportunity and connection.
+      <h1 class="home-title">
+        SOUL<span>AANI</span>
+      </h1>
+
+      <p class="home-description">
+        The culture. The people. The platform.
+        Connect with your community, discover opportunities,
+        support Black-owned businesses, celebrate culture,
+        and find your people.
       </p>
 
-      <button class="btn btn-primary">
-        Join the Movement
+      <div class="button-row">
+
+        <button class="gold-button" data-page="explore">
+          Explore
+        </button>
+
+        <button class="dark-button" data-page="connect">
+          Find Your People
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="card composer">
+
+    <div class="composer-row">
+
+      <div class="fake-avatar"></div>
+
+      <input
+        class="composer-input"
+        placeholder="What's on your mind?"
+      >
+
+    </div>
+
+    <div class="composer-options">
+
+      <button>
+        <svg class="icon-sm">
+          <use href="#image"></use>
+        </svg>
+        Photo
+      </button>
+
+      <button>
+        <svg class="icon-sm">
+          <use href="#video"></use>
+        </svg>
+        Video
+      </button>
+
+      <button>
+        <svg class="icon-sm">
+          <use href="#location"></use>
+        </svg>
+        Check In
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <article class="card post">
+
+    <div class="post-head">
+
+      <div class="post-avatar"></div>
+
+      <div class="post-user">
+
+        <div class="post-name">
+          KingTae
+        </div>
+
+        <div class="post-meta">
+          1h ago · Philadelphia, PA
+        </div>
+
+      </div>
+
+    </div>
+
+    <p class="post-text">
+      Good food, good people, good energy.
+      Nothing hits like Black excellence.
+    </p>
+
+    <div class="post-image">
+
+      <div class="post-image-text">
+        REAL PEOPLE.<br>
+        REAL CULTURE.
+      </div>
+
+    </div>
+
+    <div class="post-actions">
+
+      <button>
+        <svg class="icon-sm"><use href="#heart"></use></svg>
+        248
+      </button>
+
+      <button>
+        <svg class="icon-sm"><use href="#comment"></use></svg>
+        32
+      </button>
+
+    </div>
+
+  </article>
+
+</section>
+
+
+<!-- =====================================================
+     2. CONNECT
+===================================================== -->
+
+<section id="connect" class="app-page">
+
+  <div class="page-header">
+
+    <div class="page-kicker">
+      Community
+    </div>
+
+    <h1>
+      <span>Connect.</span><br>
+      Find Your People.
+    </h1>
+
+    <p>
+      Meet people, follow creators, join communities,
+      build relationships and discover conversations.
+    </p>
+
+  </div>
+
+
+  <div class="people-grid">
+
+    <article class="card person-card">
+      <div class="person-avatar"></div>
+      <h3>Jada M.</h3>
+      <p>Atlanta · Creator</p>
+      <button>Connect</button>
+    </article>
+
+    <article class="card person-card">
+      <div class="person-avatar"></div>
+      <h3>SkateKing</h3>
+      <p>Los Angeles · Rider</p>
+      <button>Connect</button>
+    </article>
+
+    <article class="card person-card">
+      <div class="person-avatar"></div>
+      <h3>Lani Dior</h3>
+      <p>New York · Artist</p>
+      <button>Connect</button>
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     3. DATE
+===================================================== -->
+
+<section id="date" class="app-page">
+
+  <div class="page-header">
+
+    <div class="page-kicker">
+      Relationships
+    </div>
+
+    <h1>
+      <span>Date.</span><br>
+      Real Connections.
+    </h1>
+
+    <p>
+      A dedicated space for meeting people,
+      discovering compatible connections and
+      building relationships.
+    </p>
+
+  </div>
+
+
+  <div class="date-box">
+
+    <article class="card date-card">
+
+      <svg class="icon-lg">
+        <use href="#heart"></use>
+      </svg>
+
+      <h2>Discover</h2>
+
+      <p>
+        Find people based on interests,
+        location and what you're looking for.
+      </p>
+
+      <button class="gold-button">
+        Start Discovering
+      </button>
+
+    </article>
+
+
+    <article class="card date-card">
+
+      <svg class="icon-lg">
+        <use href="#people"></use>
+      </svg>
+
+      <h2>Connections</h2>
+
+      <p>
+        View your matches and conversations
+        in one dedicated place.
+      </p>
+
+      <button class="dark-button">
+        View Connections
+      </button>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     4. BUILD
+===================================================== -->
+
+<section id="build" class="app-page">
+
+  <div class="page-header">
+
+    <div class="page-kicker">
+      Opportunity
+    </div>
+
+    <h1>
+      <span>Build.</span><br>
+      Create Your Future.
+    </h1>
+
+    <p>
+      Jobs, careers, networking, entrepreneurship,
+      mentorship, ideas and opportunities.
+    </p>
+
+  </div>
+
+
+  <article class="card opportunity">
+
+    <div class="opportunity-head">
+
+      <div class="opportunity-icon">
+        <svg class="icon-lg">
+          <use href="#build"></use>
+        </svg>
+      </div>
+
+      <h3>
+        Entrepreneurship
+      </h3>
+
+    </div>
+
+    <p>
+      Discover resources and people helping build
+      businesses and new ideas.
+    </p>
+
+  </article>
+
+
+  <article class="card opportunity">
+
+    <div class="opportunity-head">
+
+      <div class="opportunity-icon">
+        <svg class="icon-lg">
+          <use href="#people"></use>
+        </svg>
+      </div>
+
+      <h3>
+        Networking
+      </h3>
+
+    </div>
+
+    <p>
+      Meet professionals, founders, creatives,
+      mentors and collaborators.
+    </p>
+
+  </article>
+
+
+  <article class="card opportunity">
+
+    <div class="opportunity-head">
+
+      <div class="opportunity-icon">
+        <svg class="icon-lg">
+          <use href="#explore"></use>
+        </svg>
+      </div>
+
+      <h3>
+        Opportunities
+      </h3>
+
+    </div>
+
+    <p>
+      Discover careers, events, projects and
+      opportunities inside the community.
+    </p>
+
+  </article>
+
+</section>
+
+
+<!-- =====================================================
+     5. MARKET
+===================================================== -->
+
+<section id="market" class="app-page">
+
+  <div class="page-header">
+
+    <div class="page-kicker">
+      Marketplace
+    </div>
+
+    <h1>
+      <span>Market.</span><br>
+      Buy Black. Build Black.
+    </h1>
+
+    <p>
+      Discover products, services and businesses
+      from entrepreneurs and brands.
+    </p>
+
+  </div>
+
+
+  <div class="product-grid">
+
+    <article class="card product-card">
+
+      <div class="product-image">
+        <svg class="icon-lg">
+          <use href="#market"></use>
+        </svg>
+      </div>
+
+      <div class="product-body">
+        <h3>Black-Owned Brand</h3>
+        <p>Featured product</p>
+      </div>
+
+    </article>
+
+
+    <article class="card product-card">
+
+      <div class="product-image">
+        <svg class="icon-lg">
+          <use href="#build"></use>
+        </svg>
+      </div>
+
+      <div class="product-body">
+        <h3>Independent Creator</h3>
+        <p>Shop the community</p>
+      </div>
+
+    </article>
+
+
+    <article class="card product-card">
+
+      <div class="product-image">
+        <svg class="icon-lg">
+          <use href="#people"></use>
+        </svg>
+      </div>
+
+      <div class="product-body">
+        <h3>Local Business</h3>
+        <p>Discover businesses near you</p>
+      </div>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     6. EXPLORE
+===================================================== -->
+
+<section id="explore" class="app-page">
+
+  <div class="page-header">
+
+    <div class="page-kicker">
+      Discover
+    </div>
+
+    <h1>
+      <span>Explore.</span><br>
+      Discover Your World.
+    </h1>
+
+    <p>
+      Explore people, places, culture, events,
+      businesses, food, music and communities.
+    </p>
+
+  </div>
+
+
+  <div class="explore-grid">
+
+    <article class="card explore-card">
+
+      <svg class="icon-lg">
+        <use href="#location"></use>
+      </svg>
+
+      <h2>Local</h2>
+
+      <p>
+        Discover what's happening around your city
+        and neighborhood.
+      </p>
+
+    </article>
+
+
+    <article class="card explore-card">
+
+      <svg class="icon-lg">
+        <use href="#people"></use>
+      </svg>
+
+      <h2>People</h2>
+
+      <p>
+        Discover creators, artists, entrepreneurs
+        and community members.
+      </p>
+
+    </article>
+
+
+    <article class="card explore-card">
+
+      <svg class="icon-lg">
+        <use href="#market"></use>
+      </svg>
+
+      <h2>Businesses</h2>
+
+      <p>
+        Find Black-owned businesses and local
+        places to support.
+      </p>
+
+    </article>
+
+
+    <article class="card explore-card">
+
+      <svg class="icon-lg">
+        <use href="#heart"></use>
+      </svg>
+
+      <h2>Events</h2>
+
+      <p>
+        Find events, meetups, cultural experiences
+        and community gatherings.
+      </p>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     7. SKATE
+===================================================== -->
+
+<section id="skate" class="app-page">
+
+  <div class="skate-hero">
+
+    <div class="page-kicker">
+      Soulaani Skate
+    </div>
+
+    <h1>
+      Skate.<br>
+      <span>Move.</span> Create.
+    </h1>
+
+    <p>
+      A dedicated home for Black skateboarders,
+      riders, crews, skate spots, clips, events
+      and skate culture.
+    </p>
+
+    <div class="button-row">
+
+      <button class="gold-button">
+        Find Skate Spots
+      </button>
+
+      <button class="dark-button">
+        Join Skate Fam
+      </button>
+
+    </div>
+
+    <svg class="skate-art"
+         viewBox="0 0 100 50">
+      <use href="#skate"></use>
+    </svg>
+
+  </div>
+
+
+  <div class="skate-tabs">
+
+    <button class="active">Posts</button>
+    <button>Riders</button>
+    <button>Spots</button>
+    <button>Events</button>
+    <button>Crews</button>
+
+  </div>
+
+
+  <div class="skate-grid">
+
+    <article class="card skate-card">
+
+      <div class="skate-visual">
+
+        <svg class="board" viewBox="0 0 100 50">
+          <use href="#skate"></use>
+        </svg>
+
+      </div>
+
+      <div class="skate-card-body">
+
+        <h3>Skate Clips</h3>
+
+        <p>
+          Share clips, tricks and sessions with
+          the Soulaani skate community.
+        </p>
+
+      </div>
+
+    </article>
+
+
+    <article class="card skate-card">
+
+      <div class="skate-visual">
+
+        <svg style="width:110px;height:140px;color:#050505"
+             viewBox="0 0 160 190">
+          <use href="#fist"></use>
+        </svg>
+
+      </div>
+
+      <div class="skate-card-body">
+
+        <h3>Skate Fam</h3>
+
+        <p>
+          Connect with riders and skate crews
+          around the country.
+        </p>
+
+      </div>
+
+    </article>
+
+
+    <article class="card skate-card">
+
+      <div class="skate-visual">
+
+        <svg class="board" viewBox="0 0 100 50">
+          <use href="#skate"></use>
+        </svg>
+
+      </div>
+
+      <div class="skate-card-body">
+
+        <h3>Skate Spots</h3>
+
+        <p>
+          Find parks, street spots and places
+          where the community rides.
+        </p>
+
+      </div>
+
+    </article>
+
+
+    <article class="card skate-card">
+
+      <div class="skate-visual">
+
+        <svg class="board" viewBox="0 0 100 50">
+          <use href="#skate"></use>
+        </svg>
+
+      </div>
+
+      <div class="skate-card-body">
+
+        <h3>Skate Events</h3>
+
+        <p>
+          Discover skate days, competitions,
+          meetups and community events.
+        </p>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     8. CULTURE
+===================================================== -->
+
+<section id="culture" class="app-page">
+
+  <div class="culture-hero">
+
+    <div class="page-kicker">
+      Black Culture
+    </div>
+
+    <h1>
+      Our History.<br>
+      <span>Our Voice.</span>
+    </h1>
+
+    <p>
+      Food, music, art, history, fashion, creativity,
+      traditions and stories connecting generations.
+    </p>
+
+    <div class="button-row">
+
+      <button class="gold-button">
+        Explore Culture
+      </button>
+
+      <button class="dark-button">
+        Share Your Story
       </button>
 
     </div>
 
 
-    <div class="card right-card">
+    <!-- REAL BLACK FIST -->
+    <svg class="fist-large"
+         viewBox="0 0 160 190">
+      <use href="#fist"></use>
+    </svg>
 
-      <div class="right-title">
-        Your Communities
-      </div>
+  </div>
 
-      <div class="trending">
 
-        <div class="trend-img">
-          <svg class="icon">
-            <use href="#i-people"></use>
-          </svg>
-        </div>
+  <div class="culture-grid">
 
-        <div class="trend-text">
-          <div class="trend-name">
-            Black Creators
-          </div>
-          <div class="trend-meta">
-            Community
-          </div>
-        </div>
+    <article class="card culture-card">
+
+      <div class="culture-card-icon">
+
+        <svg class="icon-lg">
+          <use href="#fist"></use>
+        </svg>
 
       </div>
 
+      <h3>Black History</h3>
 
-      <div class="trending">
+      <p>
+        Stories, people, movements and moments
+        that shaped generations.
+      </p>
 
-        <div class="trend-img">
-          <svg class="icon">
-            <use href="#i-skate"></use>
-          </svg>
-        </div>
+    </article>
 
-        <div class="trend-text">
-          <div class="trend-name">
-            Skate Fam
-          </div>
-          <div class="trend-meta">
-            Community
-          </div>
-        </div>
+
+    <article class="card culture-card">
+
+      <div class="culture-card-icon">
+
+        <svg class="icon-lg">
+          <use href="#market"></use>
+        </svg>
+
+      </div>
+
+      <h3>Food & Flavor</h3>
+
+      <p>
+        Recipes, restaurants, chefs and food
+        traditions from the community.
+      </p>
+
+    </article>
+
+
+    <article class="card culture-card">
+
+      <div class="culture-card-icon">
+
+        <svg class="icon-lg">
+          <use href="#music"></use>
+        </svg>
+
+      </div>
+
+      <h3>Music</h3>
+
+      <p>
+        Artists, sounds, scenes and conversations
+        shaping culture.
+      </p>
+
+    </article>
+
+
+    <article class="card culture-card">
+
+      <div class="culture-card-icon">
+
+        <svg class="icon-lg">
+          <use href="#build"></use>
+        </svg>
+
+      </div>
+
+      <h3>Art & Creativity</h3>
+
+      <p>
+        Artists, designers, photographers,
+        writers and creators.
+      </p>
+
+    </article>
+
+
+    <article class="card culture-card">
+
+      <div class="culture-card-icon">
+
+        <svg class="icon-lg">
+          <use href="#people"></use>
+        </svg>
+
+      </div>
+
+      <h3>Community</h3>
+
+      <p>
+        People and stories making an impact
+        in their communities.
+      </p>
+
+    </article>
+
+
+    <article class="card culture-card">
+
+      <div class="culture-card-icon">
+
+        <svg class="icon-lg">
+          <use href="#explore"></use>
+        </svg>
+
+      </div>
+
+      <h3>Local Culture</h3>
+
+      <p>
+        Discover culture in cities,
+        neighborhoods and communities.
+      </p>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     9. PROFILE
+===================================================== -->
+
+<section id="profile" class="app-page">
+
+  <div class="profile-cover"></div>
+
+  <div class="profile-body">
+
+    <div class="profile-top">
+
+      <div class="profile-avatar"></div>
+
+      <div class="profile-name">
+
+        <h1>Your Profile</h1>
+
+        <p>
+          Your identity. Your people. Your world.
+        </p>
+
+      </div>
+
+      <div class="profile-buttons">
+
+        <button class="dark-button">
+          Edit Profile
+        </button>
+
+        <button class="gold-button">
+          Share
+        </button>
 
       </div>
 
     </div>
 
-  </aside>
+
+    <div class="profile-stats">
+
+      <div class="profile-stat">
+        <strong>0</strong>
+        <span>Posts</span>
+      </div>
+
+      <div class="profile-stat">
+        <strong>0</strong>
+        <span>Followers</span>
+      </div>
+
+      <div class="profile-stat">
+        <strong>0</strong>
+        <span>Following</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+     RIGHT SIDEBAR
+===================================================== -->
+
+<aside class="rightbar">
+
+  <div class="card right-card">
+
+    <div class="right-title">
+      Trending Now
+    </div>
+
+    <div class="trend">
+
+      <div class="trend-icon">
+        <svg class="icon">
+          <use href="#skate"></use>
+        </svg>
+      </div>
+
+      <div class="trend-info">
+        <strong>Skate Spots</strong>
+        <span>Trending in Skate</span>
+      </div>
+
+    </div>
+
+
+    <div class="trend">
+
+      <div class="trend-icon">
+        <svg class="icon">
+          <use href="#market"></use>
+        </svg>
+      </div>
+
+      <div class="trend-info">
+        <strong>Black-Owned Businesses</strong>
+        <span>Trending in Market</span>
+      </div>
+
+    </div>
+
+
+    <div class="trend">
+
+      <div class="trend-icon">
+        <svg class="icon">
+          <use href="#location"></use>
+        </svg>
+      </div>
+
+      <div class="trend-info">
+        <strong>Local Events</strong>
+        <span>Explore your area</span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="card right-card">
+
+    <div class="right-title">
+      Your Communities
+    </div>
+
+    <div class="trend">
+
+      <div class="trend-icon">
+        <svg class="icon">
+          <use href="#people"></use>
+        </svg>
+      </div>
+
+      <div class="trend-info">
+        <strong>Black Creators</strong>
+        <span>Community</span>
+      </div>
+
+    </div>
+
+
+    <div class="trend">
+
+      <div class="trend-icon">
+        <svg class="icon">
+          <use href="#skate"></use>
+        </svg>
+      </div>
+
+      <div class="trend-info">
+        <strong>Skate Fam</strong>
+        <span>Community</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</aside>
 
 </div>
 
 
 <!-- =====================================================
-     MOBILE BOTTOM NAVIGATION
-====================================================== -->
+     MOBILE BOTTOM NAV
+===================================================== -->
 
 <nav class="mobile-nav">
 
-  <button class="mobile-link active" data-page="home">
+  <button class="mobile-button active"
+          data-page="home">
+
     <svg class="icon">
-      <use href="#i-home"></use>
+      <use href="#home"></use>
     </svg>
-    Home
+
+    <span>Home</span>
+
   </button>
 
-  <button class="mobile-link" data-page="connect">
+
+  <button class="mobile-button"
+          data-page="connect">
+
     <svg class="icon">
-      <use href="#i-people"></use>
+      <use href="#people"></use>
     </svg>
-    Connect
+
+    <span>Connect</span>
+
   </button>
 
-  <button class="mobile-link" data-page="date">
+
+  <button class="mobile-button"
+          data-page="date">
+
     <svg class="icon">
-      <use href="#i-heart"></use>
+      <use href="#heart"></use>
     </svg>
-    Date
+
+    <span>Date</span>
+
   </button>
 
-  <button class="mobile-link" data-page="build">
+
+  <button class="mobile-button"
+          data-page="build">
+
     <svg class="icon">
-      <use href="#i-build"></use>
+      <use href="#build"></use>
     </svg>
-    Build
+
+    <span>Build</span>
+
   </button>
 
-  <button class="mobile-link" data-page="market">
+
+  <button class="mobile-button"
+          data-page="market">
+
     <svg class="icon">
-      <use href="#i-market"></use>
+      <use href="#market"></use>
     </svg>
-    Market
+
+    <span>Market</span>
+
   </button>
 
-  <!-- SKATE -->
-  <button class="mobile-link" data-page="skate">
+
+  <button class="mobile-button"
+          data-page="explore">
+
     <svg class="icon">
-      <use href="#i-skate"></use>
+      <use href="#explore"></use>
     </svg>
-    Skate
+
+    <span>Explore</span>
+
   </button>
 
-  <!-- PROFILE -->
-  <button class="mobile-link" data-page="profile">
+
+  <button class="mobile-button"
+          data-page="skate">
+
     <svg class="icon">
-      <use href="#i-user"></use>
+      <use href="#skate"></use>
     </svg>
-    Profile
+
+    <span>Skate</span>
+
+  </button>
+
+
+  <button class="mobile-button"
+          data-page="culture">
+
+    <svg class="icon">
+      <use href="#fist"></use>
+    </svg>
+
+    <span>Culture</span>
+
+  </button>
+
+
+  <!-- PROFILE IS FAR RIGHT -->
+
+  <button class="mobile-button mobile-profile"
+          data-page="profile">
+
+    <div class="profile-mini"></div>
+
+    <span>Profile</span>
+
   </button>
 
 </nav>
@@ -2621,104 +2848,103 @@ svg{
 <script>
 
 /* =====================================================
-   SOULAANI PAGE SYSTEM
+   SOULAANI NAVIGATION ENGINE
 ===================================================== */
 
-const allPages = document.querySelectorAll(
-  ".page, .skate-page, .culture-page, .profile-page"
-);
+/*
+  Every section is an independent page.
 
-const allNavigation = document.querySelectorAll(
-  "[data-page]"
-);
+  When a navigation button is pressed:
+  1. Every page is hidden.
+  2. Only the requested page is shown.
+  3. Every navigation control updates.
+  4. The screen returns to the top.
 
-function showPage(pageName){
+  This prevents Home from becoming one giant
+  scrolling page containing every feature.
+*/
 
-  allPages.forEach(page => {
+const pages =
+  document.querySelectorAll(".app-page");
+
+const navigationButtons =
+  document.querySelectorAll("[data-page]");
+
+
+function openPage(pageName){
+
+  /* Hide every page */
+  pages.forEach(page => {
     page.classList.remove("active");
   });
 
-  const selectedPage = document.getElementById(pageName);
 
-  if(selectedPage){
-    selectedPage.classList.add("active");
+  /* Show requested page */
+  const target =
+    document.getElementById(pageName);
+
+  if(target){
+    target.classList.add("active");
   }
 
-  allNavigation.forEach(button => {
 
-    button.classList.remove("active");
+  /* Update every navigation button */
+  navigationButtons.forEach(button => {
 
     if(button.dataset.page === pageName){
       button.classList.add("active");
+    }else{
+      button.classList.remove("active");
     }
 
   });
 
+
+  /* Always return to top */
   window.scrollTo({
     top:0,
     behavior:"smooth"
   });
+
 }
 
 
 /* =====================================================
-   NAVIGATION
+   ALL NAVIGATION BUTTONS
 ===================================================== */
 
-allNavigation.forEach(button => {
+navigationButtons.forEach(button => {
 
-  button.addEventListener("click", () => {
+  button.addEventListener("click", function(){
 
-    const page = button.dataset.page;
+    const pageName =
+      this.getAttribute("data-page");
 
-    if(page){
-      showPage(page);
+    if(pageName){
+      openPage(pageName);
     }
 
   });
 
 });
-
-
-/* =====================================================
-   COMPOSER INTERACTION
-===================================================== */
-
-const composerInput =
-  document.querySelector(".composer-input");
-
-if(composerInput){
-
-  composerInput.addEventListener("focus", () => {
-
-    composerInput.style.borderColor =
-      "rgba(215,170,61,.5)";
-
-  });
-
-  composerInput.addEventListener("blur", () => {
-
-    composerInput.style.borderColor =
-      "rgba(255,255,255,.09)";
-
-  });
-
-}
 
 
 /* =====================================================
    SKATE TABS
 ===================================================== */
 
-document.querySelectorAll(".skate-tab")
-.forEach(tab => {
+document.querySelectorAll(".skate-tabs button")
+.forEach(button => {
 
-  tab.addEventListener("click", () => {
+  button.addEventListener("click",function(){
 
-    document.querySelectorAll(".skate-tab")
-    .forEach(item => item.classList.remove("active"));
+    document
+      .querySelectorAll(".skate-tabs button")
+      .forEach(tab =>
+        tab.classList.remove("active")
+      );
 
-    tab.classList.add("active");
+    this.classList.add("active");
 
   });
 
@@ -2726,10 +2952,10 @@ document.querySelectorAll(".skate-tab")
 
 
 /* =====================================================
-   START
+   INITIAL PAGE
 ===================================================== */
 
-showPage("home");
+openPage("home");
 
 </script>
 
