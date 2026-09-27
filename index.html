@@ -17,17 +17,20 @@
 }
 
 :root{
-  --black:#060606;
-  --black2:#0b0b0b;
-  --card:#111111;
-  --card2:#151515;
+  --black:#070707;
+  --black2:#0d0d0d;
+  --black3:#141414;
+  --panel:#111111;
+  --panel2:#181818;
+  --line:rgba(255,255,255,.09);
   --gold:#d6a84f;
   --gold2:#f0c76a;
-  --text:#f5f2eb;
-  --muted:#9d9a92;
-  --border:rgba(255,255,255,.09);
-  --danger:#ff5d68;
-  --green:#52d273;
+  --white:#f5f5f5;
+  --muted:#9d9d9d;
+  --danger:#d95c5c;
+  --success:#6dcf8b;
+  --shadow:0 18px 60px rgba(0,0,0,.45);
+  --radius:20px;
 }
 
 html{
@@ -38,15 +41,16 @@ body{
   background:
     radial-gradient(circle at 50% -10%,rgba(214,168,79,.12),transparent 35%),
     var(--black);
-  color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  color:var(--white);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   min-height:100vh;
   overflow-x:hidden;
 }
 
 button,
 input,
-textarea{
+textarea,
+select{
   font:inherit;
 }
 
@@ -54,349 +58,276 @@ button{
   cursor:pointer;
 }
 
-img{
-  max-width:100%;
-  display:block;
-}
-
 a{
   color:inherit;
   text-decoration:none;
 }
 
-/* =========================
-   TOP HEADER
-========================= */
+.hidden{
+  display:none!important;
+}
 
+/* SVG SYSTEM */
+svg.icon{
+  width:21px;
+  height:21px;
+  display:block;
+  flex:none;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.icon-lg{
+  width:27px!important;
+  height:27px!important;
+}
+
+.icon-xl{
+  width:34px!important;
+  height:34px!important;
+}
+
+/* HEADER */
 .topbar{
-  height:68px;
-  position:sticky;
+  position:fixed;
   top:0;
+  left:0;
+  right:0;
+  height:72px;
   z-index:1000;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 20px;
-  background:rgba(6,6,6,.94);
-  backdrop-filter:blur(18px);
-  border-bottom:1px solid var(--border);
+  padding:0 22px;
+  background:rgba(7,7,7,.88);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--line);
 }
 
 .brand{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:11px;
   font-weight:900;
-  letter-spacing:.4px;
-  font-size:23px;
-  color:var(--gold2);
-}
-
-.brand-mark{
-  width:38px;
-  height:38px;
-  border:1px solid rgba(240,199,106,.65);
-  border-radius:12px;
-  display:grid;
-  place-items:center;
-  font-weight:900;
-  font-size:16px;
-  background:linear-gradient(145deg,#17130b,#090909);
-  box-shadow:0 0 25px rgba(214,168,79,.12);
-}
-
-.header-actions{
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-
-.icon-btn{
-  width:42px;
-  height:42px;
-  border:1px solid var(--border);
-  background:#101010;
-  color:#eee;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  font-size:19px;
-  transition:.2s;
-}
-
-.icon-btn:hover{
-  border-color:rgba(214,168,79,.5);
-  color:var(--gold2);
-  transform:translateY(-1px);
-}
-
-/* =========================
-   SIDE DRAWER
-========================= */
-
-.drawer-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.68);
-  z-index:1900;
-  opacity:0;
-  pointer-events:none;
-  transition:.25s;
-}
-
-.drawer-overlay.open{
-  opacity:1;
-  pointer-events:auto;
-}
-
-.drawer{
-  position:fixed;
-  z-index:2000;
-  top:0;
-  left:0;
-  bottom:0;
-  width:min(340px,88vw);
-  background:#090909;
-  border-right:1px solid var(--border);
-  transform:translateX(-105%);
-  transition:.28s ease;
-  overflow-y:auto;
-  padding-bottom:100px;
-}
-
-.drawer.open{
-  transform:translateX(0);
-}
-
-.drawer-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px;
-  border-bottom:1px solid var(--border);
-}
-
-.drawer-brand{
-  color:var(--gold2);
-  font-weight:900;
-  font-size:23px;
-}
-
-.close-btn{
-  border:0;
-  background:#151515;
-  color:white;
-  width:38px;
-  height:38px;
-  border-radius:50%;
+  letter-spacing:.08em;
   font-size:22px;
 }
 
-.drawer-profile{
-  padding:20px;
+.brand-mark{
+  width:36px;
+  height:36px;
+  border:1px solid rgba(214,168,79,.55);
+  border-radius:11px;
+  display:grid;
+  place-items:center;
+  color:var(--gold2);
+  background:linear-gradient(145deg,#17130b,#090909);
+  box-shadow:0 0 30px rgba(214,168,79,.08);
+}
+
+.brand-mark svg{
+  width:21px;
+  height:21px;
+}
+
+.top-actions{
   display:flex;
   align-items:center;
-  gap:13px;
-  border-bottom:1px solid var(--border);
+  gap:9px;
+}
+
+.icon-btn{
+  width:43px;
+  height:43px;
+  border-radius:13px;
+  border:1px solid var(--line);
+  background:#101010;
+  color:#ddd;
+  display:grid;
+  place-items:center;
+  transition:.2s ease;
+}
+
+.icon-btn:hover{
+  color:var(--gold2);
+  border-color:rgba(214,168,79,.4);
+  transform:translateY(-1px);
 }
 
 .avatar{
-  width:48px;
-  height:48px;
+  width:43px;
+  height:43px;
   border-radius:50%;
-  object-fit:cover;
-  background:#1a1a1a;
-  border:2px solid rgba(214,168,79,.35);
+  display:grid;
+  place-items:center;
+  color:#111;
+  background:linear-gradient(135deg,var(--gold2),var(--gold));
+  font-weight:900;
+  border:2px solid rgba(255,255,255,.1);
 }
 
-.drawer-profile strong{
-  display:block;
-}
-
-.drawer-profile span{
-  color:var(--muted);
-  font-size:13px;
-}
-
-.menu-title{
-  color:#777;
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:1.5px;
-  padding:22px 20px 8px;
-}
-
-.menu-item{
-  width:100%;
-  border:0;
-  background:transparent;
-  color:#eee;
-  padding:14px 20px;
-  display:flex;
-  align-items:center;
-  gap:14px;
-  text-align:left;
-  font-size:15px;
-}
-
-.menu-item:hover{
-  background:#151515;
-  color:var(--gold2);
-}
-
-.menu-icon{
-  width:30px;
-  text-align:center;
-  font-size:20px;
-}
-
-/* =========================
-   APP
-========================= */
-
+/* APP */
 .app{
-  width:min(1180px,100%);
-  margin:0 auto;
-  padding:22px 18px 110px;
+  padding-top:72px;
+  padding-bottom:95px;
+  min-height:100vh;
 }
 
 .view{
   display:none;
-  animation:fadeIn .2s ease;
+  width:100%;
 }
 
 .view.active{
   display:block;
 }
 
-@keyframes fadeIn{
-  from{
-    opacity:0;
-    transform:translateY(5px);
-  }
-  to{
-    opacity:1;
-    transform:none;
-  }
+.container{
+  width:min(1120px,calc(100% - 28px));
+  margin:auto;
 }
 
-.page-title{
-  font-size:30px;
-  line-height:1.1;
-  margin-bottom:6px;
+.page{
+  padding:30px 0 40px;
 }
 
-.page-subtitle{
-  color:var(--muted);
+.page-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:20px;
   margin-bottom:22px;
 }
 
-/* =========================
-   HOME
-========================= */
-
-.hero{
-  border:1px solid var(--border);
-  border-radius:24px;
-  overflow:hidden;
-  position:relative;
-  min-height:300px;
-  padding:34px;
-  display:flex;
-  align-items:flex-end;
-  background:
-    linear-gradient(90deg,rgba(0,0,0,.94),rgba(0,0,0,.55),rgba(0,0,0,.3)),
-    url("https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=1400&q=85")
-    center/cover;
+.eyebrow{
+  color:var(--gold2);
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  font-size:11px;
+  font-weight:800;
+  margin-bottom:8px;
 }
 
-.hero::after{
+h1{
+  font-size:clamp(31px,5vw,54px);
+  line-height:1;
+  letter-spacing:-.04em;
+}
+
+h2{
+  font-size:27px;
+  letter-spacing:-.025em;
+}
+
+h3{
+  font-size:18px;
+}
+
+.subtext{
+  color:var(--muted);
+  line-height:1.6;
+  margin-top:9px;
+}
+
+/* BUTTONS */
+.btn{
+  border:1px solid var(--line);
+  background:#141414;
+  color:#eee;
+  border-radius:13px;
+  padding:11px 16px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  transition:.2s ease;
+}
+
+.btn:hover{
+  border-color:rgba(214,168,79,.4);
+  transform:translateY(-1px);
+}
+
+.btn.gold{
+  background:linear-gradient(135deg,var(--gold2),var(--gold));
+  color:#111;
+  border:none;
+  font-weight:800;
+}
+
+.btn.ghost{
+  background:transparent;
+}
+
+.btn.full{
+  width:100%;
+}
+
+/* HOME HERO */
+.hero{
+  min-height:440px;
+  border:1px solid var(--line);
+  border-radius:28px;
+  overflow:hidden;
+  position:relative;
+  display:flex;
+  align-items:flex-end;
+  padding:36px;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.95),rgba(0,0,0,.52),rgba(0,0,0,.2)),
+    radial-gradient(circle at 80% 20%,rgba(214,168,79,.28),transparent 30%),
+    linear-gradient(135deg,#17130c,#090909 55%,#18120a);
+  box-shadow:var(--shadow);
+}
+
+.hero:before{
   content:"";
   position:absolute;
-  inset:0;
-  background:linear-gradient(0deg,rgba(0,0,0,.9),transparent 65%);
+  width:400px;
+  height:400px;
+  right:-100px;
+  top:-130px;
+  border:1px solid rgba(214,168,79,.2);
+  border-radius:50%;
+  box-shadow:
+    0 0 0 50px rgba(214,168,79,.025),
+    0 0 0 100px rgba(214,168,79,.018);
 }
 
 .hero-content{
   position:relative;
+  max-width:650px;
   z-index:2;
-  max-width:620px;
-}
-
-.hero-kicker{
-  color:var(--gold2);
-  font-size:12px;
-  text-transform:uppercase;
-  letter-spacing:2px;
-  font-weight:800;
-  margin-bottom:10px;
 }
 
 .hero h1{
-  font-size:clamp(34px,6vw,62px);
-  line-height:.95;
-  margin-bottom:13px;
+  max-width:680px;
 }
 
-.hero p{
-  color:#ddd;
-  max-width:580px;
-  line-height:1.55;
+.hero-copy{
+  max-width:570px;
+  font-size:16px;
+  color:#c2c2c2;
+  line-height:1.7;
+  margin:18px 0 24px;
 }
 
 .hero-actions{
   display:flex;
   gap:10px;
   flex-wrap:wrap;
-  margin-top:20px;
 }
 
-.gold-btn,
-.dark-btn{
-  border-radius:12px;
-  padding:11px 17px;
-  border:1px solid var(--border);
-  font-weight:800;
-}
-
-.gold-btn{
-  background:var(--gold);
-  color:#080808;
-  border-color:var(--gold);
-}
-
-.dark-btn{
-  background:#111;
-  color:#fff;
-}
-
-.section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-  margin:26px 0 13px;
-}
-
-.section-head h2{
-  font-size:20px;
-}
-
-.section-head button{
-  border:0;
-  background:transparent;
-  color:var(--gold2);
-}
-
-/* =========================
-   STORIES
-========================= */
-
+/* STORIES */
 .stories{
   display:flex;
-  gap:12px;
+  gap:13px;
   overflow-x:auto;
-  padding:4px 0 8px;
+  padding:21px 2px 8px;
   scrollbar-width:none;
 }
 
@@ -405,58 +336,102 @@ a{
 }
 
 .story{
-  min-width:92px;
-  text-align:center;
+  min-width:105px;
+  height:138px;
+  border-radius:19px;
+  border:1px solid var(--line);
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(145deg,#222,#0d0d0d);
+  display:flex;
+  align-items:flex-end;
+  padding:11px;
+}
+
+.story:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 50% 20%,rgba(214,168,79,.3),transparent 35%),
+    linear-gradient(180deg,transparent 25%,rgba(0,0,0,.9));
+}
+
+.story-content{
+  position:relative;
+  z-index:2;
 }
 
 .story-ring{
-  width:68px;
-  height:68px;
+  width:39px;
+  height:39px;
   border-radius:50%;
-  padding:3px;
-  margin:auto;
-  background:linear-gradient(135deg,var(--gold),#fff1b1,var(--gold));
-}
-
-.story-ring img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  border-radius:50%;
-  border:3px solid #080808;
+  border:2px solid var(--gold);
+  display:grid;
+  place-items:center;
+  margin-bottom:8px;
+  background:#16120a;
+  font-weight:900;
+  font-size:12px;
 }
 
 .story-name{
   font-size:12px;
-  margin-top:6px;
-  color:#ddd;
+  font-weight:700;
 }
 
-/* =========================
-   COMPOSER
-========================= */
-
-.composer{
-  margin-top:18px;
-  padding:15px;
-  border:1px solid var(--border);
-  background:var(--card);
-  border-radius:18px;
+/* CARDS */
+.card{
+  background:linear-gradient(145deg,rgba(24,24,24,.98),rgba(12,12,12,.98));
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:0 10px 35px rgba(0,0,0,.2);
 }
 
-.composer-row{
+.section-title{
   display:flex;
-  gap:11px;
+  justify-content:space-between;
   align-items:center;
+  margin:28px 0 15px;
+}
+
+.section-title span{
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* COMPOSER */
+.composer{
+  padding:18px;
+  margin-top:18px;
+}
+
+.composer-top{
+  display:flex;
+  gap:12px;
+}
+
+.mini-avatar{
+  width:43px;
+  height:43px;
+  flex:none;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--gold2),var(--gold));
+  color:#111;
+  display:grid;
+  place-items:center;
+  font-weight:900;
 }
 
 .composer-input{
   flex:1;
-  border:1px solid var(--border);
-  background:#090909;
+  min-height:45px;
+  border:1px solid var(--line);
+  border-radius:15px;
+  background:#0c0c0c;
   color:white;
-  padding:12px 14px;
-  border-radius:25px;
+  padding:13px 15px;
+  resize:none;
   outline:none;
 }
 
@@ -466,420 +441,541 @@ a{
 
 .composer-tools{
   display:flex;
-  gap:8px;
-  margin-top:12px;
-  padding-left:59px;
-  flex-wrap:wrap;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:15px;
+  padding-top:14px;
+  border-top:1px solid var(--line);
+}
+
+.tool-row{
+  display:flex;
+  gap:7px;
 }
 
 .tool-btn{
-  border:0;
-  background:#171717;
-  color:#ddd;
+  border:none;
+  background:transparent;
+  color:#aaa;
+  padding:8px 9px;
   border-radius:10px;
-  padding:8px 11px;
-  font-size:13px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-size:12px;
 }
 
-/* =========================
-   FEED
-========================= */
+.tool-btn:hover{
+  background:#1b1b1b;
+  color:var(--gold2);
+}
 
+/* FEED */
 .feed{
   display:grid;
   gap:15px;
-  margin-top:18px;
 }
 
 .post{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:18px;
-  overflow:hidden;
+  padding:18px;
 }
 
 .post-head{
-  padding:15px;
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  gap:11px;
 }
 
-.user-row{
-  display:flex;
-  gap:11px;
-  align-items:center;
+.post-user{
+  flex:1;
 }
 
 .post-user strong{
+  display:block;
   font-size:14px;
 }
 
-.post-user small{
-  display:block;
-  color:var(--muted);
-  margin-top:2px;
+.post-user span{
+  color:#777;
+  font-size:12px;
 }
 
-.more{
-  background:transparent;
-  color:#aaa;
+.post-more{
+  background:none;
   border:0;
-  font-size:20px;
+  color:#777;
 }
 
-.post-body{
-  padding:0 15px 15px;
-  line-height:1.55;
-  color:#e4e4e4;
+.post-text{
+  line-height:1.65;
+  color:#ddd;
+  margin:16px 0;
+  white-space:pre-wrap;
 }
 
 .post-media{
-  width:100%;
-  max-height:650px;
-  object-fit:cover;
-  background:#161616;
+  min-height:230px;
+  border-radius:16px;
+  overflow:hidden;
+  position:relative;
+  background:
+    radial-gradient(circle at 30% 25%,rgba(214,168,79,.35),transparent 25%),
+    radial-gradient(circle at 75% 65%,rgba(255,255,255,.08),transparent 30%),
+    linear-gradient(135deg,#201b12,#0c0c0c 65%);
+  border:1px solid rgba(255,255,255,.06);
+  display:flex;
+  align-items:flex-end;
+  padding:18px;
+}
+
+.post-media:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.8));
+}
+
+.media-label{
+  position:relative;
+  z-index:2;
+}
+
+.media-label small{
+  color:var(--gold2);
+  display:block;
+  margin-bottom:5px;
+  font-size:10px;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+}
+
+.media-label strong{
+  font-size:23px;
 }
 
 .post-stats{
-  padding:10px 15px;
-  color:#999;
-  font-size:13px;
   display:flex;
   justify-content:space-between;
-  border-bottom:1px solid var(--border);
+  color:#777;
+  font-size:12px;
+  padding:12px 2px;
 }
 
 .post-actions{
+  border-top:1px solid var(--line);
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  padding:5px;
+  grid-template-columns:repeat(3,1fr);
+  gap:5px;
+  padding-top:8px;
 }
 
 .post-action{
-  border:0;
+  border:none;
   background:transparent;
-  color:#bbb;
-  padding:10px 5px;
+  color:#999;
   border-radius:10px;
+  padding:10px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:7px;
   font-size:13px;
 }
 
 .post-action:hover{
-  background:#1a1a1a;
-  color:#fff;
-}
-
-.post-action.active{
+  background:#191919;
   color:var(--gold2);
 }
 
+.reaction-wrap{
+  position:relative;
+}
+
 .reaction-picker{
-  display:none;
   position:absolute;
-  bottom:46px;
+  bottom:47px;
   left:0;
-  background:#191919;
-  border:1px solid var(--border);
-  border-radius:30px;
+  display:none;
+  gap:5px;
+  background:#1b1b1b;
+  border:1px solid var(--line);
+  border-radius:17px;
   padding:7px;
-  gap:3px;
-  box-shadow:0 12px 35px rgba(0,0,0,.5);
+  box-shadow:var(--shadow);
+  z-index:20;
 }
 
 .reaction-picker.show{
   display:flex;
 }
 
-.action-wrap{
-  position:relative;
-}
-
 .reaction{
+  width:37px;
+  height:37px;
   border:0;
-  background:transparent;
-  font-size:22px;
-  padding:5px;
-  border-radius:50%;
+  background:#252525;
+  border-radius:11px;
+  font-size:18px;
 }
 
 .reaction:hover{
-  transform:scale(1.2);
+  transform:scale(1.12);
 }
 
-/* =========================
-   CARDS / GRIDS
-========================= */
+/* NEWSFEED */
+.feed-tabs{
+  display:flex;
+  gap:8px;
+  overflow:auto;
+  padding-bottom:4px;
+  margin-bottom:18px;
+}
 
+.feed-tab{
+  border:1px solid var(--line);
+  background:#101010;
+  color:#999;
+  padding:10px 15px;
+  border-radius:12px;
+  white-space:nowrap;
+}
+
+.feed-tab.active{
+  background:rgba(214,168,79,.13);
+  border-color:rgba(214,168,79,.45);
+  color:var(--gold2);
+}
+
+/* GRID */
 .grid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
   gap:15px;
 }
 
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:18px;
+.grid-2{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+}
+
+.grid-3{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+}
+
+/* SKATE */
+.skate-banner{
+  padding:30px;
+  border-radius:25px;
+  border:1px solid var(--line);
+  background:
+    linear-gradient(120deg,rgba(0,0,0,.95),rgba(0,0,0,.5)),
+    repeating-linear-gradient(135deg,#171717 0,#171717 10px,#121212 10px,#121212 20px);
+  position:relative;
   overflow:hidden;
 }
 
-.card-img{
-  width:100%;
-  aspect-ratio:16/10;
-  object-fit:cover;
+.skate-banner:after{
+  content:"";
+  position:absolute;
+  width:330px;
+  height:100px;
+  right:-70px;
+  bottom:35px;
+  border-bottom:7px solid var(--gold);
+  border-radius:50%;
+  transform:rotate(-9deg);
+  opacity:.55;
 }
 
-.card-content{
-  padding:15px;
-}
-
-.card-content h3{
-  font-size:16px;
-  margin-bottom:6px;
-}
-
-.card-content p{
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.45;
-}
-
-/* =========================
-   SKATE
-========================= */
-
-.skate-banner{
-  border-radius:22px;
-  min-height:280px;
-  padding:30px;
-  display:flex;
-  align-items:flex-end;
-  background:
-    linear-gradient(0deg,rgba(0,0,0,.9),transparent),
-    url("https://images.unsplash.com/photo-1520045892732-304bc3ac5d8e?auto=format&fit=crop&w=1400&q=85")
-    center/cover;
-  border:1px solid var(--border);
-}
-
-.skate-badge{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  background:rgba(0,0,0,.65);
-  border:1px solid rgba(255,255,255,.15);
-  padding:8px 12px;
-  border-radius:30px;
+.skate-icon-box{
+  width:62px;
+  height:62px;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
   color:var(--gold2);
-  font-weight:800;
-  margin-bottom:10px;
+  border:1px solid rgba(214,168,79,.35);
+  background:#0c0c0c;
+  margin-bottom:17px;
 }
 
-/* =========================
-   CULTURE
-========================= */
+.skate-grid-card{
+  padding:0;
+  overflow:hidden;
+}
 
-.culture-banner{
-  border-radius:22px;
-  padding:30px;
-  min-height:250px;
-  display:flex;
-  align-items:flex-end;
-  border:1px solid var(--border);
+.skate-art{
+  height:190px;
   background:
-    linear-gradient(0deg,rgba(0,0,0,.9),transparent),
-    url("https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1400&q=85")
-    center/cover;
+    linear-gradient(145deg,rgba(214,168,79,.18),transparent),
+    repeating-linear-gradient(145deg,#191919 0,#191919 8px,#101010 8px,#101010 16px);
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-.food-card .card-img{
-  aspect-ratio:4/3;
+.board{
+  width:180px;
+  height:15px;
+  border-radius:50%;
+  background:var(--gold);
+  transform:rotate(-8deg);
+  position:relative;
 }
 
-/* =========================
-   AI
-========================= */
+.board:before,
+.board:after{
+  content:"";
+  position:absolute;
+  width:17px;
+  height:17px;
+  background:#070707;
+  border:3px solid #aaa;
+  border-radius:50%;
+  bottom:-13px;
+}
 
+.board:before{
+  left:25px;
+}
+
+.board:after{
+  right:25px;
+}
+
+.skate-card-body{
+  padding:16px;
+}
+
+.skate-card-body p{
+  color:#888;
+  line-height:1.5;
+  font-size:13px;
+  margin-top:7px;
+}
+
+/* CULTURE */
+.culture-hero{
+  padding:34px;
+  border-radius:26px;
+  background:
+    radial-gradient(circle at 85% 20%,rgba(214,168,79,.23),transparent 25%),
+    linear-gradient(145deg,#19140b,#090909);
+  border:1px solid rgba(214,168,79,.18);
+}
+
+.fist-box{
+  width:65px;
+  height:65px;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
+  background:#0b0b0b;
+  color:var(--gold2);
+  border:1px solid rgba(214,168,79,.35);
+  margin-bottom:18px;
+}
+
+.food-card{
+  overflow:hidden;
+}
+
+.food-art{
+  height:210px;
+  background:
+    radial-gradient(ellipse at 50% 55%,#754b2b 0 18%,transparent 19%),
+    radial-gradient(ellipse at 28% 48%,#7d522f 0 12%,transparent 13%),
+    radial-gradient(ellipse at 73% 48%,#b87a42 0 12%,transparent 13%),
+    radial-gradient(ellipse at 48% 67%,#5b321c 0 13%,transparent 14%),
+    radial-gradient(ellipse at 50% 50%,#ddd 0 38%,#777 39%,#252525 43%,transparent 44%),
+    linear-gradient(135deg,#241a12,#0a0a0a);
+  position:relative;
+}
+
+.food-art:after{
+  content:"SOUL FOOD";
+  position:absolute;
+  bottom:14px;
+  left:15px;
+  color:white;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.18em;
+  text-shadow:0 2px 10px black;
+}
+
+.food-body{
+  padding:16px;
+}
+
+.food-body p{
+  color:#888;
+  font-size:13px;
+  line-height:1.5;
+  margin-top:7px;
+}
+
+/* AI */
 .ai-shell{
-  max-width:850px;
-  margin:auto;
-  border:1px solid var(--border);
-  border-radius:24px;
-  background:#0d0d0d;
+  min-height:620px;
+  display:flex;
+  flex-direction:column;
   overflow:hidden;
 }
 
 .ai-head{
-  padding:20px;
-  border-bottom:1px solid var(--border);
+  padding:23px;
+  border-bottom:1px solid var(--line);
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:13px;
 }
 
-.ai-orb{
-  width:45px;
-  height:45px;
-  border-radius:50%;
+.ai-logo{
+  width:47px;
+  height:47px;
+  border-radius:15px;
+  background:linear-gradient(135deg,var(--gold2),var(--gold));
+  color:#111;
   display:grid;
   place-items:center;
-  color:#080808;
-  font-weight:900;
-  background:radial-gradient(circle at 35% 30%,#fff0b5,var(--gold));
-  box-shadow:0 0 30px rgba(214,168,79,.25);
 }
 
 .ai-messages{
-  min-height:430px;
-  max-height:560px;
-  overflow-y:auto;
-  padding:20px;
+  flex:1;
+  padding:22px;
   display:flex;
   flex-direction:column;
-  gap:12px;
+  gap:14px;
+  max-height:470px;
+  overflow:auto;
 }
 
-.ai-message{
-  max-width:80%;
-  padding:12px 14px;
-  border-radius:16px;
-  line-height:1.5;
+.message{
+  max-width:78%;
+  padding:13px 15px;
+  border-radius:17px;
+  line-height:1.55;
   font-size:14px;
 }
 
-.ai-message.bot{
-  background:#181818;
+.message.ai{
+  background:#1a1a1a;
+  border:1px solid var(--line);
   align-self:flex-start;
 }
 
-.ai-message.user{
-  background:var(--gold);
-  color:#080808;
+.message.user{
+  background:linear-gradient(135deg,#8f6b2b,#d6a84f);
+  color:#111;
   align-self:flex-end;
+  font-weight:600;
 }
 
 .ai-input{
-  border-top:1px solid var(--border);
-  padding:12px;
+  border-top:1px solid var(--line);
+  padding:14px;
   display:flex;
   gap:8px;
 }
 
 .ai-input input{
   flex:1;
-  border:1px solid var(--border);
-  background:#080808;
+  min-width:0;
+  border:1px solid var(--line);
+  background:#090909;
   color:white;
-  border-radius:25px;
-  padding:12px 15px;
+  border-radius:14px;
+  padding:13px;
   outline:none;
 }
 
-.send-btn{
-  border:0;
+/* PROFILE */
+.profile-cover{
+  min-height:230px;
+  border-radius:25px 25px 0 0;
+  background:
+    radial-gradient(circle at 70% 20%,rgba(214,168,79,.35),transparent 28%),
+    linear-gradient(135deg,#211a0d,#080808 70%);
+  position:relative;
+}
+
+.profile-cover-edit{
+  position:absolute;
+  top:16px;
+  right:16px;
+}
+
+.profile-info{
+  padding:0 25px 25px;
+  margin-top:-42px;
+  position:relative;
+}
+
+.profile-big-avatar{
+  width:88px;
+  height:88px;
   border-radius:50%;
-  width:45px;
-  background:var(--gold);
-  color:#080808;
+  display:grid;
+  place-items:center;
+  border:4px solid var(--black);
+  background:linear-gradient(135deg,var(--gold2),var(--gold));
+  color:#111;
+  font-size:27px;
   font-weight:900;
 }
 
-/* =========================
-   PROFILE
-========================= */
-
-.profile-cover{
-  height:250px;
-  border-radius:22px;
-  background:
-    linear-gradient(0deg,#0b0b0b 0%,transparent 70%),
-    url("https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1400&q=85")
-    center/cover;
-  position:relative;
-  border:1px solid var(--border);
-}
-
-.profile-avatar{
-  position:absolute;
-  left:25px;
-  bottom:-55px;
-  width:115px;
-  height:115px;
-  border-radius:50%;
-  object-fit:cover;
-  border:5px solid #0b0b0b;
-  background:#111;
-}
-
-.profile-main{
-  padding:70px 20px 20px;
-}
-
-.profile-top{
+.profile-actions{
   display:flex;
-  justify-content:space-between;
-  gap:15px;
-  align-items:flex-start;
-}
-
-.profile-name{
-  font-size:28px;
-}
-
-.profile-handle{
-  color:var(--muted);
-  margin-top:3px;
+  gap:9px;
+  flex-wrap:wrap;
+  margin-top:16px;
 }
 
 .profile-bio{
-  margin-top:13px;
-  color:#ccc;
+  color:#999;
+  margin-top:8px;
   line-height:1.5;
 }
 
 .profile-stats{
   display:flex;
-  gap:28px;
-  margin-top:18px;
+  gap:25px;
+  margin-top:17px;
 }
 
 .profile-stat strong{
   display:block;
-  font-size:18px;
 }
 
 .profile-stat span{
-  color:var(--muted);
-  font-size:12px;
+  color:#777;
+  font-size:11px;
 }
 
 .playlist{
-  margin-top:20px;
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:16px;
-  background:#101010;
+  padding:19px;
 }
 
 .track{
   display:flex;
   align-items:center;
   gap:12px;
-  padding:10px 0;
-  border-bottom:1px solid var(--border);
+  padding:12px 0;
+  border-bottom:1px solid var(--line);
 }
 
 .track:last-child{
-  border-bottom:0;
+  border-bottom:none;
 }
 
-.track-cover{
-  width:45px;
-  height:45px;
-  border-radius:9px;
-  background:linear-gradient(135deg,#222,#080808);
+.track-art{
+  width:48px;
+  height:48px;
+  border-radius:11px;
+  background:linear-gradient(135deg,#4d391a,#151515);
   display:grid;
   place-items:center;
+  color:var(--gold2);
 }
 
 .track-info{
@@ -891,89 +987,237 @@ a{
   font-size:14px;
 }
 
-.track-info small{
-  color:var(--muted);
-}
-
-.play{
-  border:0;
-  width:36px;
-  height:36px;
-  border-radius:50%;
-  background:var(--gold);
-  color:#080808;
-}
-
-/* =========================
-   GENERAL SECTIONS
-========================= */
-
-.list{
-  display:grid;
-  gap:10px;
-}
-
-.list-item{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  padding:15px;
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:15px;
-}
-
-.list-item-content{
-  flex:1;
-}
-
-.list-item-content strong{
-  display:block;
-}
-
-.list-item-content small{
-  color:var(--muted);
-}
-
-.pill{
-  display:inline-flex;
-  padding:6px 10px;
-  border-radius:30px;
-  background:#191919;
-  border:1px solid var(--border);
-  color:#ccc;
+.track-info span{
+  color:#777;
   font-size:12px;
 }
 
+.play-btn{
+  border:1px solid var(--line);
+  width:38px;
+  height:38px;
+  border-radius:11px;
+  background:#111;
+  color:var(--gold2);
+  display:grid;
+  place-items:center;
+}
+
+/* GENERIC CARDS */
+.info-card{
+  padding:20px;
+  min-height:150px;
+}
+
+.info-icon{
+  width:45px;
+  height:45px;
+  display:grid;
+  place-items:center;
+  color:var(--gold2);
+  background:#17130b;
+  border:1px solid rgba(214,168,79,.2);
+  border-radius:13px;
+  margin-bottom:14px;
+}
+
+.info-card p{
+  color:#888;
+  line-height:1.5;
+  font-size:13px;
+  margin-top:7px;
+}
+
+/* LOCAL */
+.location-bar{
+  display:flex;
+  gap:10px;
+  margin:20px 0;
+}
+
+.location-bar input{
+  flex:1;
+  background:#101010;
+  color:#fff;
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:12px;
+  outline:none;
+}
+
+/* SEARCH */
 .search-box{
   display:flex;
-  gap:8px;
+  gap:9px;
   margin-bottom:20px;
 }
 
 .search-box input{
   flex:1;
   background:#111;
-  border:1px solid var(--border);
-  color:white;
-  padding:13px 15px;
-  border-radius:13px;
+  color:#fff;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px;
   outline:none;
 }
 
-/* =========================
-   MODALS
-========================= */
+/* SIDE DRAWER */
+.drawer-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  z-index:2000;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s ease;
+}
 
+.drawer-overlay.open{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.drawer{
+  position:fixed;
+  z-index:2100;
+  top:0;
+  bottom:0;
+  left:0;
+  width:min(350px,88vw);
+  background:#0c0c0c;
+  border-right:1px solid var(--line);
+  transform:translateX(-105%);
+  transition:.28s ease;
+  overflow-y:auto;
+  box-shadow:25px 0 70px rgba(0,0,0,.55);
+}
+
+.drawer.open{
+  transform:translateX(0);
+}
+
+.drawer-head{
+  height:80px;
+  padding:0 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--line);
+}
+
+.drawer-brand{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+
+.drawer-nav{
+  padding:15px 11px;
+}
+
+.drawer-section{
+  color:#666;
+  text-transform:uppercase;
+  letter-spacing:.13em;
+  font-size:10px;
+  font-weight:800;
+  padding:15px 12px 8px;
+}
+
+.drawer-item{
+  width:100%;
+  border:none;
+  background:transparent;
+  color:#bbb;
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:12px 13px;
+  border-radius:13px;
+  margin-bottom:2px;
+  text-align:left;
+}
+
+.drawer-item:hover,
+.drawer-item.active{
+  background:#181818;
+  color:var(--gold2);
+}
+
+.drawer-item svg{
+  width:21px;
+  height:21px;
+}
+
+/* BOTTOM NAV */
+.bottom-nav{
+  position:fixed;
+  z-index:1500;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:12px;
+  width:min(760px,calc(100% - 18px));
+  height:68px;
+  border:1px solid rgba(255,255,255,.1);
+  background:rgba(12,12,12,.94);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-radius:21px;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  box-shadow:0 15px 50px rgba(0,0,0,.55);
+}
+
+.bottom-item{
+  border:none;
+  background:transparent;
+  color:#777;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  position:relative;
+}
+
+.bottom-item svg{
+  width:22px;
+  height:22px;
+}
+
+.bottom-item span{
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.02em;
+}
+
+.bottom-item.active{
+  color:var(--gold2);
+}
+
+.bottom-item.active:before{
+  content:"";
+  position:absolute;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:var(--gold2);
+  top:7px;
+}
+
+/* MODALS */
 .modal-overlay{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.75);
   z-index:3000;
+  background:rgba(0,0,0,.72);
   display:none;
   align-items:center;
   justify-content:center;
-  padding:20px;
+  padding:18px;
 }
 
 .modal-overlay.open{
@@ -981,39 +1225,35 @@ a{
 }
 
 .modal{
-  width:min(600px,100%);
+  width:min(520px,100%);
   max-height:90vh;
   overflow:auto;
   background:#111;
-  border:1px solid var(--border);
-  border-radius:22px;
-  padding:20px;
+  border:1px solid var(--line);
+  border-radius:23px;
+  box-shadow:var(--shadow);
 }
 
 .modal-head{
+  padding:18px;
+  border-bottom:1px solid var(--line);
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:18px;
 }
 
-.modal-close{
-  border:0;
-  background:#1b1b1b;
-  color:white;
-  width:38px;
-  height:38px;
-  border-radius:50%;
+.modal-body{
+  padding:18px;
 }
 
 .form-group{
-  margin-bottom:14px;
+  margin-bottom:15px;
 }
 
 .form-group label{
   display:block;
-  color:#bbb;
-  font-size:13px;
+  color:#999;
+  font-size:12px;
   margin-bottom:7px;
 }
 
@@ -1021,86 +1261,36 @@ a{
 .form-group textarea,
 .form-group select{
   width:100%;
-  background:#080808;
-  border:1px solid var(--border);
-  color:white;
-  padding:12px;
+  border:1px solid var(--line);
+  background:#090909;
+  color:#fff;
   border-radius:12px;
+  padding:12px;
   outline:none;
 }
 
 .form-group textarea{
-  min-height:110px;
+  min-height:100px;
   resize:vertical;
 }
 
-/* =========================
-   BOTTOM NAV
-========================= */
-
-.bottom-nav{
-  position:fixed;
-  z-index:1500;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:min(760px,100%);
-  padding:8px 8px calc(8px + env(safe-area-inset-bottom));
-  background:rgba(8,8,8,.94);
-  backdrop-filter:blur(18px);
-  border:1px solid var(--border);
-  border-bottom:0;
-  border-radius:20px 20px 0 0;
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  box-shadow:0 -10px 35px rgba(0,0,0,.35);
-}
-
-.nav-btn{
-  border:0;
-  background:transparent;
-  color:#777;
-  min-height:55px;
-  border-radius:13px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:4px;
-  font-size:10px;
-  font-weight:700;
-  transition:.2s;
-}
-
-.nav-btn .nav-icon{
-  font-size:21px;
-  line-height:1;
-}
-
-.nav-btn.active{
-  color:var(--gold2);
-  background:rgba(214,168,79,.08);
-}
-
-/* =========================
-   TOAST
-========================= */
-
+/* TOAST */
 .toast{
   position:fixed;
   z-index:5000;
   left:50%;
-  bottom:90px;
+  bottom:95px;
   transform:translate(-50%,20px);
-  background:#eee;
-  color:#080808;
-  padding:11px 16px;
-  border-radius:30px;
-  font-weight:700;
-  font-size:13px;
+  background:#1b1b1b;
+  border:1px solid rgba(214,168,79,.25);
+  color:#eee;
+  padding:12px 16px;
+  border-radius:13px;
   opacity:0;
   pointer-events:none;
   transition:.25s;
+  box-shadow:var(--shadow);
+  font-size:13px;
 }
 
 .toast.show{
@@ -1108,92 +1298,113 @@ a{
   transform:translate(-50%,0);
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-width:800px){
-  .grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .hero{
-    min-height:340px;
-    padding:25px;
-  }
-
-  .profile-top{
-    flex-direction:column;
-  }
-}
-
-@media(max-width:560px){
+/* RESPONSIVE */
+@media(max-width:760px){
   .topbar{
-    padding:0 12px;
-  }
-
-  .brand{
-    font-size:20px;
-  }
-
-  .brand-mark{
-    width:34px;
-    height:34px;
-  }
-
-  .header-actions .icon-btn:nth-child(2){
-    display:none;
+    height:64px;
+    padding:0 13px;
   }
 
   .app{
-    padding:16px 12px 100px;
+    padding-top:64px;
   }
 
-  .page-title{
-    font-size:27px;
+  .brand{
+    font-size:18px;
+  }
+
+  .brand-mark{
+    width:33px;
+    height:33px;
+  }
+
+  .top-actions .search-top{
+    display:none;
+  }
+
+  .container{
+    width:min(100% - 18px,1120px);
+  }
+
+  .page{
+    padding-top:18px;
   }
 
   .hero{
-    min-height:370px;
-    border-radius:18px;
+    min-height:480px;
+    padding:24px;
+    border-radius:22px;
   }
 
-  .hero h1{
-    font-size:40px;
-  }
-
-  .grid{
+  .grid-2,
+  .grid-3{
     grid-template-columns:1fr;
   }
 
-  .post-actions{
-    grid-template-columns:repeat(4,1fr);
+  .page-header{
+    align-items:flex-start;
+    flex-direction:column;
   }
 
-  .post-action{
-    font-size:12px;
+  .page-header .btn{
+    width:100%;
   }
 
-  .profile-cover{
-    height:190px;
+  .composer-tools{
+    align-items:flex-start;
+    gap:10px;
   }
 
-  .profile-avatar{
-    width:95px;
-    height:95px;
-    left:18px;
+  .tool-row{
+    flex-wrap:wrap;
   }
 
-  .profile-main{
-    padding:60px 12px 15px;
+  .tool-btn span{
+    display:none;
   }
 
-  .ai-message{
-    max-width:90%;
+  .post-media{
+    min-height:210px;
+  }
+
+  .culture-hero,
+  .skate-banner{
+    padding:24px;
   }
 
   .bottom-nav{
-    border-radius:18px 18px 0 0;
+    height:65px;
+    bottom:8px;
+  }
+
+  .bottom-item span{
+    font-size:8px;
+  }
+
+  .profile-info{
+    padding:0 17px 20px;
+  }
+
+  .profile-cover{
+    min-height:180px;
+  }
+
+  .profile-stats{
+    gap:17px;
+  }
+}
+
+@media(min-width:900px){
+  .home-layout{
+    display:grid;
+    grid-template-columns:minmax(0,1.7fr) minmax(280px,.8fr);
+    gap:18px;
+  }
+
+  .home-side{
+    position:sticky;
+    top:92px;
+    align-self:start;
   }
 }
 </style>
@@ -1201,2157 +1412,1849 @@ a{
 
 <body>
 
-<!-- =========================
-     TOP BAR
-========================= -->
+<!-- SVG ICON DEFINITIONS -->
+<svg width="0" height="0" style="position:absolute">
+<defs>
+
+<symbol id="i-home" viewBox="0 0 24 24">
+  <path d="M3 10.5 12 3l9 7.5"/>
+  <path d="M5 9.5V21h14V9.5"/>
+  <path d="M9 21v-6h6v6"/>
+</symbol>
+
+<symbol id="i-menu" viewBox="0 0 24 24">
+  <path d="M4 6h16M4 12h16M4 18h16"/>
+</symbol>
+
+<symbol id="i-search" viewBox="0 0 24 24">
+  <circle cx="10.8" cy="10.8" r="6.8"/>
+  <path d="m16 16 5 5"/>
+</symbol>
+
+<symbol id="i-bell" viewBox="0 0 24 24">
+  <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+  <path d="M10 21h4"/>
+</symbol>
+
+<symbol id="i-user" viewBox="0 0 24 24">
+  <circle cx="12" cy="8" r="4"/>
+  <path d="M4 21a8 8 0 0 1 16 0"/>
+</symbol>
+
+<symbol id="i-users" viewBox="0 0 24 24">
+  <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/>
+  <circle cx="9.5" cy="7" r="4"/>
+  <path d="M17 11a4 4 0 1 0 0-8"/>
+  <path d="M21 21v-2a4 4 0 0 0-3-3.87"/>
+</symbol>
+
+<symbol id="i-heart" viewBox="0 0 24 24">
+  <path d="M20.8 8.7c0 5.5-8.8 10.3-8.8 10.3S3.2 14.2 3.2 8.7A4.7 4.7 0 0 1 12 6.3a4.7 4.7 0 0 1 8.8 2.4Z"/>
+</symbol>
+
+<symbol id="i-briefcase" viewBox="0 0 24 24">
+  <rect x="3" y="7" width="18" height="13" rx="2"/>
+  <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+  <path d="M3 12h18"/>
+  <path d="M10 12v2h4v-2"/>
+</symbol>
+
+<symbol id="i-store" viewBox="0 0 24 24">
+  <path d="M4 10v10h16V10"/>
+  <path d="M3 10 5 4h14l2 6"/>
+  <path d="M3 10a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/>
+  <path d="M9 20v-5h6v5"/>
+</symbol>
+
+<symbol id="i-compass" viewBox="0 0 24 24">
+  <circle cx="12" cy="12" r="9"/>
+  <path d="m15.5 8.5-2 5-5 2 2-5 5-2Z"/>
+</symbol>
+
+<symbol id="i-message" viewBox="0 0 24 24">
+  <path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H7l-4 3v-10a7.5 7.5 0 1 1 17 0Z"/>
+</symbol>
+
+<symbol id="i-calendar" viewBox="0 0 24 24">
+  <rect x="3" y="5" width="18" height="16" rx="2"/>
+  <path d="M7 3v4M17 3v4M3 10h18"/>
+</symbol>
+
+<symbol id="i-bookmark" viewBox="0 0 24 24">
+  <path d="M6 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18l-6-4-6 4V4Z"/>
+</symbol>
+
+<symbol id="i-newspaper" viewBox="0 0 24 24">
+  <path d="M4 4h16v17H4z"/>
+  <path d="M7 8h10M7 12h10M7 16h6"/>
+</symbol>
+
+<symbol id="i-settings" viewBox="0 0 24 24">
+  <circle cx="12" cy="12" r="3"/>
+  <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-1.42 1.42-.06-.06a1.7 1.7 0 0 0-1.88-.34 1.7 1.7 0 0 0-1.03 1.56V20h-2v-.48a1.7 1.7 0 0 0-1.03-1.56 1.7 1.7 0 0 0-1.88.34l-.06.06-1.42-1.42.06-.06A1.7 1.7 0 0 0 9.4 15a1.7 1.7 0 0 0-1.56-1.03H7v-2h.84A1.7 1.7 0 0 0 9.4 10.4a1.7 1.7 0 0 0-.34-1.88L9 8.46l1.42-1.42.06.06a1.7 1.7 0 0 0 1.88.34A1.7 1.7 0 0 0 13.39 5.9V5h2v.9a1.7 1.7 0 0 0 1.03 1.54 1.7 1.7 0 0 0 1.88-.34l.06-.06 1.42 1.42-.06.06a1.7 1.7 0 0 0-.34 1.88A1.7 1.7 0 0 0 20.94 12H21v2h-.06A1.7 1.7 0 0 0 19.4 15Z"/>
+</symbol>
+
+<symbol id="i-close" viewBox="0 0 24 24">
+  <path d="M5 5l14 14M19 5 5 19"/>
+</symbol>
+
+<symbol id="i-plus" viewBox="0 0 24 24">
+  <path d="M12 5v14M5 12h14"/>
+</symbol>
+
+<symbol id="i-image" viewBox="0 0 24 24">
+  <rect x="3" y="4" width="18" height="16" rx="2"/>
+  <circle cx="8" cy="9" r="1.5"/>
+  <path d="m4 17 5-5 4 4 2-2 5 5"/>
+</symbol>
+
+<symbol id="i-video" viewBox="0 0 24 24">
+  <rect x="3" y="5" width="13" height="14" rx="2"/>
+  <path d="m16 10 5-3v10l-5-3"/>
+</symbol>
+
+<symbol id="i-smile" viewBox="0 0 24 24">
+  <circle cx="12" cy="12" r="9"/>
+  <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+  <path d="M9 9h.01M15 9h.01"/>
+</symbol>
+
+<symbol id="i-comment" viewBox="0 0 24 24">
+  <path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H7l-4 3v-10a7.5 7.5 0 1 1 17 0Z"/>
+</symbol>
+
+<symbol id="i-share" viewBox="0 0 24 24">
+  <path d="m15 8 5-5"/>
+  <path d="M20 3v6"/>
+  <path d="M20 3h-6"/>
+  <path d="M20 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5"/>
+</symbol>
+
+<symbol id="i-edit" viewBox="0 0 24 24">
+  <path d="M12 20h9"/>
+  <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4Z"/>
+</symbol>
+
+<symbol id="i-pin" viewBox="0 0 24 24">
+  <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/>
+  <circle cx="12" cy="10" r="2.5"/>
+</symbol>
+
+<symbol id="i-play" viewBox="0 0 24 24">
+  <path d="m9 6 9 6-9 6V6Z"/>
+</symbol>
+
+<symbol id="i-pause" viewBox="0 0 24 24">
+  <path d="M8 5v14M16 5v14"/>
+</symbol>
+
+<symbol id="i-check" viewBox="0 0 24 24">
+  <path d="m5 12 4 4L19 6"/>
+</symbol>
+
+<symbol id="i-sparkle" viewBox="0 0 24 24">
+  <path d="m12 2 1.7 6.3L20 10l-6.3 1.7L12 18l-1.7-6.3L4 10l6.3-1.7L12 2Z"/>
+  <path d="m19 16 .8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8L19 16Z"/>
+</symbol>
+
+<symbol id="i-skateboard" viewBox="0 0 24 24">
+  <path d="M4 12.5c2 2.1 14 2.1 16 0"/>
+  <path d="M5 12.5h14"/>
+  <circle cx="7" cy="16.5" r="1.5"/>
+  <circle cx="17" cy="16.5" r="1.5"/>
+  <path d="M7 15v-2.5M17 15v-2.5"/>
+</symbol>
+
+<!-- stylized fist -->
+<symbol id="i-fist" viewBox="0 0 24 24">
+  <path d="M6.2 12.4V8.1a1.5 1.5 0 0 1 3 0v2.2"/>
+  <path d="M9.2 10V6.7a1.5 1.5 0 0 1 3 0v3"/>
+  <path d="M12.2 9.7V6.3a1.5 1.5 0 0 1 3 0v3.4"/>
+  <path d="M15.2 10.3V7.5a1.5 1.5 0 0 1 3 0v6.1c0 5.2-3.3 7.4-7 7.4-2.9 0-5.1-1.7-6.2-4.5L3.7 13a1.5 1.5 0 0 1 2.5-1.4Z"/>
+  <path d="M9 13h7"/>
+</symbol>
+
+</defs>
+</svg>
 
 <header class="topbar">
-
   <button class="icon-btn" onclick="openDrawer()" aria-label="Open menu">
-    ☰
+    <svg class="icon"><use href="#i-menu"></use></svg>
   </button>
 
   <div class="brand">
-    <div class="brand-mark">S</div>
-    <span>Soulaani</span>
-  </div>
-
-  <div class="header-actions">
-    <button class="icon-btn" onclick="showView('search')" aria-label="Search">⌕</button>
-    <button class="icon-btn" onclick="showToast('Notifications opened')" aria-label="Notifications">♡</button>
-  </div>
-
-</header>
-
-<!-- =========================
-     SIDE MENU
-========================= -->
-
-<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
-
-<aside class="drawer" id="drawer">
-
-  <div class="drawer-head">
-    <div class="drawer-brand">Soulaani</div>
-    <button class="close-btn" onclick="closeDrawer()">×</button>
-  </div>
-
-  <div class="drawer-profile">
-    <img
-      class="avatar"
-      src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=200&q=80"
-      alt="Profile"
-    >
-    <div>
-      <strong>My Profile</strong>
-      <span>@soulaaniuser</span>
+    <div class="brand-mark">
+      <svg class="icon"><use href="#i-sparkle"></use></svg>
     </div>
+    <span>SOULAANI</span>
   </div>
 
-  <div class="menu-title">Explore Soulaani</div>
+  <div class="top-actions">
+    <button class="icon-btn search-top" onclick="showView('search')" aria-label="Search">
+      <svg class="icon"><use href="#i-search"></use></svg>
+    </button>
 
-  <button class="menu-item" onclick="showView('connect');closeDrawer()">
-    <span class="menu-icon">👥</span>
-    Connect
-  </button>
+    <button class="icon-btn" onclick="showToast('Notifications opened')" aria-label="Notifications">
+      <svg class="icon"><use href="#i-bell"></use></svg>
+    </button>
 
-  <button class="menu-item" onclick="showView('date');closeDrawer()">
-    <span class="menu-icon">♥</span>
-    Date
-  </button>
-
-  <button class="menu-item" onclick="showView('build');closeDrawer()">
-    <span class="menu-icon">▣</span>
-    Build
-  </button>
-
-  <button class="menu-item" onclick="showView('market');closeDrawer()">
-    <span class="menu-icon">◆</span>
-    Market
-  </button>
-
-  <button class="menu-item" onclick="showView('explore');closeDrawer()">
-    <span class="menu-icon">◎</span>
-    Explore
-  </button>
-
-  <button class="menu-item" onclick="showView('messages');closeDrawer()">
-    <span class="menu-icon">✉</span>
-    Messages
-  </button>
-
-  <button class="menu-item" onclick="showView('communities');closeDrawer()">
-    <span class="menu-icon">♟</span>
-    Communities
-  </button>
-
-  <button class="menu-item" onclick="showView('events');closeDrawer()">
-    <span class="menu-icon">◷</span>
-    Events
-  </button>
-
-  <button class="menu-item" onclick="showView('saved');closeDrawer()">
-    <span class="menu-icon">☆</span>
-    Saved
-  </button>
-
-  <div class="menu-title">Your Account</div>
-
-  <button class="menu-item" onclick="showView('profile');closeDrawer()">
-    <span class="menu-icon">◉</span>
-    Profile
-  </button>
-
-  <button class="menu-item" onclick="openProfileEditor();closeDrawer()">
-    <span class="menu-icon">⚙</span>
-    Edit Profile
-  </button>
-
-  <button class="menu-item" onclick="showToast('Settings coming soon')">
-    <span class="menu-icon">⚙</span>
-    Settings
-  </button>
-
-</aside>
-
+    <button class="avatar" onclick="showView('profile')" id="topAvatar">LT</button>
+  </div>
+</header>
 
 <main class="app">
 
-<!-- =========================
-     HOME
-========================= -->
-
-<section class="view active" id="home">
+<!-- HOME -->
+<section id="home" class="view active">
+<div class="container page">
 
   <div class="hero">
-
     <div class="hero-content">
-
-      <div class="hero-kicker">
-        The Culture. The People. The Platform.
-      </div>
-
-      <h1>Welcome to Soulaani.</h1>
-
-      <p>
-        A place to connect, create, build, discover culture,
-        find community and share the things that make us who we are.
+      <div class="eyebrow">The Culture. The People. The Platform.</div>
+      <h1>A digital home for connection, culture and community.</h1>
+      <p class="hero-copy">
+        Soulaani brings people, creators, businesses, conversations, opportunities,
+        music, food, skating and culture together in one place.
       </p>
-
       <div class="hero-actions">
-        <button class="gold-btn" onclick="openComposer()">
-          Create Post
+        <button class="btn gold" onclick="showView('newsfeed')">
+          <svg class="icon"><use href="#i-newspaper"></use></svg>
+          Open Newsfeed
         </button>
-
-        <button class="dark-btn" onclick="openDrawer()">
-          Explore
+        <button class="btn" onclick="openDrawer()">
+          <svg class="icon"><use href="#i-menu"></use></svg>
+          Explore Soulaani
         </button>
       </div>
-
     </div>
-
-  </div>
-
-
-  <div class="section-head">
-    <h2>Stories</h2>
-    <button onclick="showToast('Stories are ready')">See all</button>
   </div>
 
   <div class="stories">
-
     <div class="story">
-      <div class="story-ring">
-        <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=200&q=80" alt="">
+      <div class="story-content">
+        <div class="story-ring">+</div>
+        <div class="story-name">Your Story</div>
       </div>
-      <div class="story-name">Your story</div>
     </div>
-
     <div class="story">
-      <div class="story-ring">
-        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80" alt="">
+      <div class="story-content">
+        <div class="story-ring">JS</div>
+        <div class="story-name">Jalen</div>
       </div>
-      <div class="story-name">Aaliyah</div>
     </div>
-
     <div class="story">
-      <div class="story-ring">
-        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80" alt="">
+      <div class="story-content">
+        <div class="story-ring">AM</div>
+        <div class="story-name">Amani</div>
       </div>
-      <div class="story-name">Marcus</div>
     </div>
-
     <div class="story">
-      <div class="story-ring">
-        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80" alt="">
+      <div class="story-content">
+        <div class="story-ring">KD</div>
+        <div class="story-name">Kendrick</div>
       </div>
-      <div class="story-name">Nia</div>
     </div>
-
     <div class="story">
-      <div class="story-ring">
-        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80" alt="">
+      <div class="story-content">
+        <div class="story-ring">RB</div>
+        <div class="story-name">Riley</div>
       </div>
-      <div class="story-name">Jay</div>
     </div>
-
   </div>
 
+  <div class="home-layout">
+    <div>
+      <div class="card composer">
+        <div class="composer-top">
+          <div class="mini-avatar" id="composerAvatar">LT</div>
+          <textarea id="composerText" class="composer-input" placeholder="What's happening in your world?"></textarea>
+        </div>
 
-  <div class="composer">
+        <div class="composer-tools">
+          <div class="tool-row">
+            <button class="tool-btn" onclick="showToast('Photo picker opened')">
+              <svg class="icon"><use href="#i-image"></use></svg>
+              <span>Photo</span>
+            </button>
 
-    <div class="composer-row">
+            <button class="tool-btn" onclick="showToast('Video picker opened')">
+              <svg class="icon"><use href="#i-video"></use></svg>
+              <span>Video</span>
+            </button>
 
-      <img
-        class="avatar"
-        src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=200&q=80"
-        alt=""
-      >
+            <button class="tool-btn" onclick="showToast('Feeling selector opened')">
+              <svg class="icon"><use href="#i-smile"></use></svg>
+              <span>Feeling</span>
+            </button>
+          </div>
 
-      <button class="composer-input" onclick="openComposer()" style="text-align:left;">
-        What's happening?
-      </button>
+          <button class="btn gold" onclick="createPost()">Post</button>
+        </div>
+      </div>
 
+      <div class="section-title">
+        <h2>Latest</h2>
+        <button class="btn ghost" onclick="showView('newsfeed')">View Newsfeed</button>
+      </div>
+
+      <div id="homeFeed" class="feed"></div>
     </div>
 
-    <div class="composer-tools">
-      <button class="tool-btn" onclick="openComposer()">▣ Photo</button>
-      <button class="tool-btn" onclick="openComposer()">◉ Video</button>
-      <button class="tool-btn" onclick="openComposer()">☺ Feeling</button>
-    </div>
+    <aside class="home-side">
+      <div class="section-title">
+        <h3>Discover</h3>
+      </div>
 
+      <div class="grid">
+        <div class="card info-card" onclick="showView('connect')">
+          <div class="info-icon">
+            <svg class="icon"><use href="#i-users"></use></svg>
+          </div>
+          <h3>Connect</h3>
+          <p>Find people, communities and conversations that fit your world.</p>
+        </div>
+
+        <div class="card info-card" onclick="showView('market')">
+          <div class="info-icon">
+            <svg class="icon"><use href="#i-store"></use></svg>
+          </div>
+          <h3>Market</h3>
+          <p>Discover Black-owned businesses, products and services.</p>
+        </div>
+
+        <div class="card info-card" onclick="showView('explore')">
+          <div class="info-icon">
+            <svg class="icon"><use href="#i-compass"></use></svg>
+          </div>
+          <h3>Explore</h3>
+          <p>Find events, local opportunities, culture and what's happening nearby.</p>
+        </div>
+      </div>
+    </aside>
   </div>
 
-
-  <div class="section-head">
-    <h2>For You</h2>
-    <button onclick="showToast('Feed refreshed')">Refresh</button>
-  </div>
-
-  <div class="feed" id="feed">
-
-    <!-- POST 1 -->
-
-    <article class="post">
-
-      <div class="post-head">
-
-        <div class="user-row">
-
-          <img
-            class="avatar"
-            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
-            alt=""
-          >
-
-          <div class="post-user">
-            <strong>Aaliyah Johnson</strong>
-            <small>Philadelphia, PA · 2h</small>
-          </div>
-
-        </div>
-
-        <button class="more">•••</button>
-
-      </div>
-
-      <div class="post-body">
-        Nothing like finding a good local spot and spending the afternoon with the people. ❤️
-      </div>
-
-      <img
-        class="post-media"
-        src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=85"
-        alt="Community"
-      >
-
-      <div class="post-stats">
-        <span id="reactionCount1">❤️ 24 reactions</span>
-        <span>7 comments · 3 shares</span>
-      </div>
-
-      <div class="post-actions">
-
-        <div class="action-wrap">
-
-          <div class="reaction-picker" id="picker1">
-
-            <button class="reaction" onclick="react(1,'❤️','Heart')">❤️</button>
-            <button class="reaction" onclick="react(1,'😂','Laugh')">😂</button>
-            <button class="reaction" onclick="react(1,'😮','Wow')">😮</button>
-            <button class="reaction" onclick="react(1,'😢','Sad')">😢</button>
-            <button class="reaction" onclick="react(1,'👎','Dislike')">👎</button>
-
-          </div>
-
-          <button class="post-action" onclick="toggleReactions(1)">
-            <span id="reactionButton1">♡</span> React
-          </button>
-
-        </div>
-
-        <button class="post-action" onclick="commentPost()">
-          ♧ Comment
-        </button>
-
-        <button class="post-action" onclick="sharePost()">
-          ↗ Share
-        </button>
-
-        <button class="post-action" onclick="savePost(this)">
-          ☆ Save
-        </button>
-
-      </div>
-
-    </article>
-
-
-    <!-- POST 2 -->
-
-    <article class="post">
-
-      <div class="post-head">
-
-        <div class="user-row">
-
-          <img
-            class="avatar"
-            src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80"
-            alt=""
-          >
-
-          <div class="post-user">
-            <strong>Marcus Williams</strong>
-            <small>Harrisburg, PA · 4h</small>
-          </div>
-
-        </div>
-
-        <button class="more">•••</button>
-
-      </div>
-
-      <div class="post-body">
-        Local skate session this weekend. Pull up if you're outside. 🛹
-      </div>
-
-      <img
-        class="post-media"
-        src="https://images.unsplash.com/photo-1520045892732-304bc3ac5d8e?auto=format&fit=crop&w=1200&q=85"
-        alt="Skateboarding"
-      >
-
-      <div class="post-stats">
-        <span>🔥 41 reactions</span>
-        <span>12 comments · 8 shares</span>
-      </div>
-
-      <div class="post-actions">
-
-        <div class="action-wrap">
-
-          <div class="reaction-picker" id="picker2">
-            <button class="reaction" onclick="react(2,'❤️','Heart')">❤️</button>
-            <button class="reaction" onclick="react(2,'😂','Laugh')">😂</button>
-            <button class="reaction" onclick="react(2,'😮','Wow')">😮</button>
-            <button class="reaction" onclick="react(2,'😢','Sad')">😢</button>
-            <button class="reaction" onclick="react(2,'👎','Dislike')">👎</button>
-          </div>
-
-          <button class="post-action" onclick="toggleReactions(2)">
-            <span id="reactionButton2">♡</span> React
-          </button>
-
-        </div>
-
-        <button class="post-action" onclick="commentPost()">
-          ♧ Comment
-        </button>
-
-        <button class="post-action" onclick="sharePost()">
-          ↗ Share
-        </button>
-
-        <button class="post-action" onclick="savePost(this)">
-          ☆ Save
-        </button>
-
-      </div>
-
-    </article>
-
-  </div>
-
+</div>
 </section>
 
+<!-- NEWSFEED -->
+<section id="newsfeed" class="view">
+<div class="container page">
 
-<!-- =========================
-     SKATE
-========================= -->
+  <div class="page-header">
+    <div>
+      <div class="eyebrow">Social</div>
+      <h1>Newsfeed</h1>
+      <p class="subtext">Your stream of people, culture, ideas and local moments.</p>
+    </div>
 
-<section class="view" id="skate">
+    <button class="btn gold" onclick="focusComposer()">
+      <svg class="icon"><use href="#i-plus"></use></svg>
+      Create Post
+    </button>
+  </div>
+
+  <div class="feed-tabs">
+    <button class="feed-tab active" onclick="switchFeedTab(this,'For You')">For You</button>
+    <button class="feed-tab" onclick="switchFeedTab(this,'Following')">Following</button>
+    <button class="feed-tab" onclick="switchFeedTab(this,'Local')">Local</button>
+    <button class="feed-tab" onclick="switchFeedTab(this,'Culture')">Culture</button>
+    <button class="feed-tab" onclick="switchFeedTab(this,'Skate')">Skate</button>
+  </div>
+
+  <div id="newsFeedList" class="feed"></div>
+
+</div>
+</section>
+
+<!-- SKATE -->
+<section id="skate" class="view">
+<div class="container page">
 
   <div class="skate-banner">
-
-    <div>
-      <div class="skate-badge">🛹 SKATE</div>
-
-      <h1 class="page-title">
-        Skate your city.
-      </h1>
-
-      <p class="page-subtitle">
-        Riders, clips, spots, sessions and events from the community.
-      </p>
-
-      <button class="gold-btn" onclick="showToast('Skate post creator opened')">
-        Post a Skate Clip
-      </button>
+    <div class="skate-icon-box">
+      <svg class="icon icon-xl"><use href="#i-skateboard"></use></svg>
     </div>
 
-  </div>
-
-  <div class="section-head">
-    <h2>Local Sessions</h2>
-    <button onclick="showToast('Showing local skate sessions')">See all</button>
-  </div>
-
-  <div class="grid">
-
-    <article class="card">
-      <img class="card-img"
-        src="https://images.unsplash.com/photo-1547447134-cd3f5c716030?auto=format&fit=crop&w=800&q=85"
-        alt="Skateboarding">
-      <div class="card-content">
-        <h3>City Streets</h3>
-        <p>Street skating, new spots and community clips.</p>
-      </div>
-    </article>
-
-    <article class="card">
-      <img class="card-img"
-        src="https://images.unsplash.com/photo-1520045892732-304bc3ac5d8e?auto=format&fit=crop&w=800&q=85"
-        alt="Skateboarder">
-      <div class="card-content">
-        <h3>Weekend Session</h3>
-        <p>Link up with riders around your area.</p>
-      </div>
-    </article>
-
-    <article class="card">
-      <img class="card-img"
-        src="https://images.unsplash.com/photo-1572776685600-aca0c4b4a0b4?auto=format&fit=crop&w=800&q=85"
-        alt="Skateboarding">
-      <div class="card-content">
-        <h3>Rider Clips</h3>
-        <p>Show your style and share your latest line.</p>
-      </div>
-    </article>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     CULTURE
-========================= -->
-
-<section class="view" id="culture">
-
-  <div class="culture-banner">
-
-    <div>
-      <div class="hero-kicker">Culture</div>
-
-      <h1 class="page-title">
-        Made by us. Shared with us.
-      </h1>
-
-      <p class="page-subtitle">
-        Food, music, art, fashion, creators, businesses and everyday culture.
-      </p>
-    </div>
-
-  </div>
-
-  <div class="section-head">
-    <h2>Soul Food</h2>
-    <button onclick="showToast('More food coming soon')">See all</button>
-  </div>
-
-  <div class="grid">
-
-    <article class="card food-card">
-
-      <img class="card-img"
-        src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=900&q=85"
-        alt="Soul food plate">
-
-      <div class="card-content">
-        <h3>Sunday Plate</h3>
-        <p>
-          A full soul-food plate with the comfort-food classics that belong together.
-        </p>
-      </div>
-
-    </article>
-
-    <article class="card food-card">
-
-      <img class="card-img"
-        src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85"
-        alt="Soul food">
-
-      <div class="card-content">
-        <h3>Home Cooking</h3>
-        <p>
-          Discover cooks, restaurants and local food spots.
-        </p>
-      </div>
-
-    </article>
-
-    <article class="card">
-
-      <img class="card-img"
-        src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=900&q=85"
-        alt="Music">
-
-      <div class="card-content">
-        <h3>Music & Creators</h3>
-        <p>
-          Artists, DJs, producers and independent creators.
-        </p>
-      </div>
-
-    </article>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     SOULAANI AI
-========================= -->
-
-<section class="view" id="ai">
-
-  <div style="max-width:850px;margin:0 auto 20px;">
-    <h1 class="page-title">Soulaani AI</h1>
-
-    <p class="page-subtitle">
-      Your built-in Soulaani assistant for ideas, discovery, planning and conversation.
+    <div class="eyebrow">Soulaani Skate</div>
+    <h1>Ride. Create. Connect.</h1>
+    <p class="subtext">
+      Skate clips, riders, local spots, events and community energy.
     </p>
   </div>
 
-  <div class="ai-shell">
+  <div class="section-title">
+    <h2>Skate Community</h2>
+    <span>Explore the scene</span>
+  </div>
+
+  <div class="grid grid-3">
+
+    <div class="card skate-grid-card">
+      <div class="skate-art">
+        <div class="board"></div>
+      </div>
+      <div class="skate-card-body">
+        <h3>Street Sessions</h3>
+        <p>Share clips from your latest session and discover new riders.</p>
+      </div>
+    </div>
+
+    <div class="card skate-grid-card">
+      <div class="skate-art">
+        <svg class="icon icon-xl" style="width:70px;height:70px;color:var(--gold2)">
+          <use href="#i-users"></use>
+        </svg>
+      </div>
+      <div class="skate-card-body">
+        <h3>Riders</h3>
+        <p>Connect with skaters and follow riders from your community.</p>
+      </div>
+    </div>
+
+    <div class="card skate-grid-card">
+      <div class="skate-art">
+        <svg class="icon icon-xl" style="width:70px;height:70px;color:var(--gold2)">
+          <use href="#i-pin"></use>
+        </svg>
+      </div>
+      <div class="skate-card-body">
+        <h3>Local Spots</h3>
+        <p>Find skate spots and build a local map of places to ride.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-title">
+    <h2>Skate Feed</h2>
+  </div>
+
+  <div class="feed">
+    <article class="card post">
+      <div class="post-head">
+        <div class="mini-avatar">MJ</div>
+        <div class="post-user">
+          <strong>Marcus J.</strong>
+          <span>Skate community · 24m</span>
+        </div>
+        <button class="post-more" onclick="showToast('Post options')">•••</button>
+      </div>
+
+      <div class="post-text">
+New line at the local spot today. Everybody brought their boards out.
+      </div>
+
+      <div class="post-media">
+        <div class="media-label">
+          <small>Skate Clip</small>
+          <strong>Street Session</strong>
+        </div>
+      </div>
+
+      <div class="post-stats">
+        <span>128 reactions</span>
+        <span>19 comments</span>
+      </div>
+
+      <div class="post-actions">
+        <button class="post-action" onclick="openReaction(this)">
+          <svg class="icon"><use href="#i-heart"></use></svg>
+          React
+        </button>
+        <button class="post-action" onclick="showToast('Comments opened')">
+          <svg class="icon"><use href="#i-comment"></use></svg>
+          Comment
+        </button>
+        <button class="post-action" onclick="showToast('Post shared')">
+          <svg class="icon"><use href="#i-share"></use></svg>
+          Share
+        </button>
+      </div>
+    </article>
+  </div>
+
+</div>
+</section>
+
+<!-- CULTURE -->
+<section id="culture" class="view">
+<div class="container page">
+
+  <div class="culture-hero">
+    <div class="fist-box">
+      <svg class="icon icon-xl"><use href="#i-fist"></use></svg>
+    </div>
+
+    <div class="eyebrow">Culture</div>
+    <h1>Our culture, our stories, our table.</h1>
+    <p class="subtext">
+      Discover Black American food, businesses, creators, music, art and traditions.
+    </p>
+  </div>
+
+  <div class="section-title">
+    <h2>Soul Food</h2>
+    <span>Culture on the table</span>
+  </div>
+
+  <div class="grid grid-3">
+
+    <div class="card food-card">
+      <div class="food-art"></div>
+      <div class="food-body">
+        <h3>Sunday Plate</h3>
+        <p>A full soul-food plate built around the kind of meal that brings people together.</p>
+      </div>
+    </div>
+
+    <div class="card food-card">
+      <div class="food-art"></div>
+      <div class="food-body">
+        <h3>Family Table</h3>
+        <p>Share recipes, restaurant finds and the food memories that shaped your family.</p>
+      </div>
+    </div>
+
+    <div class="card food-card">
+      <div class="food-art"></div>
+      <div class="food-body">
+        <h3>Local Favorites</h3>
+        <p>Discover soul-food restaurants and Black-owned food businesses in your area.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-title">
+    <h2>Culture Feed</h2>
+  </div>
+
+  <div class="feed">
+    <article class="card post">
+      <div class="post-head">
+        <div class="mini-avatar">TC</div>
+        <div class="post-user">
+          <strong>The Culture Collective</strong>
+          <span>Culture · 1h</span>
+        </div>
+      </div>
+
+      <div class="post-text">
+What food instantly takes you back home? Drop the plate, recipe or restaurant that means something to you.
+      </div>
+
+      <div class="post-stats">
+        <span>347 reactions</span>
+        <span>64 comments</span>
+      </div>
+
+      <div class="post-actions">
+        <button class="post-action" onclick="openReaction(this)">
+          <svg class="icon"><use href="#i-heart"></use></svg>
+          React
+        </button>
+        <button class="post-action" onclick="showToast('Comments opened')">
+          <svg class="icon"><use href="#i-comment"></use></svg>
+          Comment
+        </button>
+        <button class="post-action" onclick="showToast('Post shared')">
+          <svg class="icon"><use href="#i-share"></use></svg>
+          Share
+        </button>
+      </div>
+    </article>
+  </div>
+
+</div>
+</section>
+
+<!-- SOULAANI AI -->
+<section id="ai" class="view">
+<div class="container page">
+
+  <div class="page-header">
+    <div>
+      <div class="eyebrow">Assistant</div>
+      <h1>Soulaani AI</h1>
+      <p class="subtext">Your built-in Soulaani assistant.</p>
+    </div>
+  </div>
+
+  <div class="card ai-shell">
 
     <div class="ai-head">
-
-      <div class="ai-orb">S</div>
+      <div class="ai-logo">
+        <svg class="icon"><use href="#i-sparkle"></use></svg>
+      </div>
 
       <div>
-        <strong>Soulaani AI</strong>
-        <div style="color:var(--muted);font-size:12px;">
-          Online · Ready to help
-        </div>
+        <h3>Soulaani AI</h3>
+        <span style="color:#777;font-size:12px">Ready to help</span>
       </div>
-
     </div>
 
-    <div class="ai-messages" id="aiMessages">
-
-      <div class="ai-message bot">
-        What's good? I'm Soulaani AI. Ask me about culture, local events,
-        business ideas, skating, food, music, your profile, or anything else.
+    <div id="aiMessages" class="ai-messages">
+      <div class="message ai">
+        Welcome to Soulaani AI. Ask me about Soulaani, culture, ideas, planning, writing, business, skating, or anything you're working on.
       </div>
-
     </div>
 
-    <div class="ai-input">
-
-      <input
-        id="aiInput"
-        type="text"
-        placeholder="Ask Soulaani AI..."
-        onkeydown="if(event.key==='Enter') sendAI()"
-      >
-
-      <button class="send-btn" onclick="sendAI()">➤</button>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     PROFILE
-========================= -->
-
-<section class="view" id="profile">
-
-  <div class="profile-cover">
-
-    <img
-      class="profile-avatar"
-      src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=300&q=85"
-      alt="Profile"
-      id="profileAvatar"
-    >
-
-  </div>
-
-  <div class="profile-main">
-
-    <div class="profile-top">
-
-      <div>
-
-        <h1 class="profile-name" id="profileName">
-          Soulaani User
-        </h1>
-
-        <div class="profile-handle">
-          @soulaaniuser
-        </div>
-
-      </div>
-
-      <button class="gold-btn" onclick="openProfileEditor()">
-        Edit Profile
+    <form class="ai-input" onsubmit="sendAI(event)">
+      <input id="aiInput" placeholder="Ask Soulaani AI something...">
+      <button class="btn gold" type="submit">
+        <svg class="icon"><use href="#i-share"></use></svg>
       </button>
+    </form>
 
+  </div>
+</div>
+</section>
+
+<!-- PROFILE -->
+<section id="profile" class="view">
+<div class="container page">
+
+  <div class="card">
+    <div class="profile-cover">
+      <button class="btn profile-cover-edit" onclick="openProfileEditor()">
+        <svg class="icon"><use href="#i-edit"></use></svg>
+        Edit
+      </button>
     </div>
 
-    <p class="profile-bio" id="profileBio">
-      Building, creating and connecting through Soulaani.
-    </p>
+    <div class="profile-info">
+      <div class="profile-big-avatar" id="profileAvatar">LT</div>
 
-    <div class="profile-stats">
+      <h2 id="profileName">LuhhTrilly</h2>
 
-      <div class="profile-stat">
-        <strong>128</strong>
-        <span>Posts</span>
-      </div>
+      <p class="profile-bio" id="profileBio">
+        Building community, culture and the next chapter of Soulaani.
+      </p>
 
-      <div class="profile-stat">
-        <strong>842</strong>
-        <span>Followers</span>
-      </div>
-
-      <div class="profile-stat">
-        <strong>391</strong>
-        <span>Following</span>
-      </div>
-
-    </div>
-
-    <div class="playlist">
-
-      <div class="section-head" style="margin-top:0;">
-        <h2>My Playlist</h2>
-        <button onclick="showToast('Music player opened')">View all</button>
-      </div>
-
-      <div class="track">
-
-        <div class="track-cover">♫</div>
-
-        <div class="track-info">
-          <strong>Soulaani Vibes</strong>
-          <small>My Playlist</small>
+      <div class="profile-stats">
+        <div class="profile-stat">
+          <strong>248</strong>
+          <span>Friends</span>
         </div>
-
-        <button class="play" onclick="playTrack(this)">▶</button>
-
-      </div>
-
-      <div class="track">
-
-        <div class="track-cover">♫</div>
-
-        <div class="track-info">
-          <strong>Late Night Energy</strong>
-          <small>My Playlist</small>
+        <div class="profile-stat">
+          <strong>1.8K</strong>
+          <span>Followers</span>
         </div>
-
-        <button class="play" onclick="playTrack(this)">▶</button>
-
-      </div>
-
-      <div class="track">
-
-        <div class="track-cover">♫</div>
-
-        <div class="track-info">
-          <strong>City Sounds</strong>
-          <small>My Playlist</small>
+        <div class="profile-stat">
+          <strong>76</strong>
+          <span>Posts</span>
         </div>
-
-        <button class="play" onclick="playTrack(this)">▶</button>
-
       </div>
 
+      <div class="profile-actions">
+        <button class="btn gold" onclick="openProfileEditor()">
+          <svg class="icon"><use href="#i-edit"></use></svg>
+          Edit Profile
+        </button>
+
+        <button class="btn" onclick="showToast('Share profile link created')">
+          <svg class="icon"><use href="#i-share"></use></svg>
+          Share
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">
+    <h2>My Playlist</h2>
+    <button class="btn" onclick="showToast('Playlist editor opened')">
+      <svg class="icon"><use href="#i-plus"></use></svg>
+      Add Music
+    </button>
+  </div>
+
+  <div class="card playlist">
+
+    <div class="track">
+      <div class="track-art">
+        <svg class="icon"><use href="#i-play"></use></svg>
+      </div>
+      <div class="track-info">
+        <strong>Soulaani Sessions</strong>
+        <span>Personal playlist</span>
+      </div>
+      <button class="play-btn" onclick="toggleTrack(this)">
+        <svg class="icon"><use href="#i-play"></use></svg>
+      </button>
+    </div>
+
+    <div class="track">
+      <div class="track-art">
+        <svg class="icon"><use href="#i-play"></use></svg>
+      </div>
+      <div class="track-info">
+        <strong>Late Night Vibes</strong>
+        <span>Personal playlist</span>
+      </div>
+      <button class="play-btn" onclick="toggleTrack(this)">
+        <svg class="icon"><use href="#i-play"></use></svg>
+      </button>
+    </div>
+
+    <div class="track">
+      <div class="track-art">
+        <svg class="icon"><use href="#i-play"></use></svg>
+      </div>
+      <div class="track-info">
+        <strong>Culture &amp; Soul</strong>
+        <span>Personal playlist</span>
+      </div>
+      <button class="play-btn" onclick="toggleTrack(this)">
+        <svg class="icon"><use href="#i-play"></use></svg>
+      </button>
     </div>
 
   </div>
 
+  <div class="section-title">
+    <h2>My Posts</h2>
+  </div>
+
+  <div id="profilePosts" class="feed"></div>
+
+</div>
 </section>
 
+<!-- CONNECT -->
+<section id="connect" class="view">
+<div class="container page">
 
-<!-- =========================
-     CONNECT
-========================= -->
+  <div class="page-header">
+    <div>
+      <div class="eyebrow">People</div>
+      <h1>Connect</h1>
+      <p class="subtext">Meet people, creators and communities.</p>
+    </div>
+  </div>
 
-<section class="view" id="connect">
+  <div class="grid grid-3">
 
-  <h1 class="page-title">Connect</h1>
-
-  <p class="page-subtitle">
-    Find people, creators and communities.
-  </p>
-
-  <div class="list">
-
-    <div class="list-item">
-      <img class="avatar"
-        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
-        alt="">
-      <div class="list-item-content">
-        <strong>Aaliyah Johnson</strong>
-        <small>Creator · Philadelphia</small>
-      </div>
-      <button class="dark-btn" onclick="followUser(this)">Follow</button>
+    <div class="card info-card">
+      <div class="info-icon"><svg class="icon"><use href="#i-users"></use></svg></div>
+      <h3>People</h3>
+      <p>Discover profiles and connect with people who share your interests.</p>
+      <button class="btn gold" style="margin-top:15px" onclick="showToast('People discovery opened')">Discover</button>
     </div>
 
-    <div class="list-item">
-      <img class="avatar"
-        src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80"
-        alt="">
-      <div class="list-item-content">
-        <strong>Marcus Williams</strong>
-        <small>Skater · Harrisburg</small>
-      </div>
-      <button class="dark-btn" onclick="followUser(this)">Follow</button>
+    <div class="card info-card">
+      <div class="info-icon"><svg class="icon"><use href="#i-users"></use></svg></div>
+      <h3>Communities</h3>
+      <p>Join conversations around culture, hobbies, business and local life.</p>
+      <button class="btn gold" style="margin-top:15px" onclick="showView('communities')">Explore</button>
     </div>
 
-    <div class="list-item">
-      <img class="avatar"
-        src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80"
-        alt="">
-      <div class="list-item-content">
-        <strong>Nia Brown</strong>
-        <small>Artist · Baltimore</small>
-      </div>
-      <button class="dark-btn" onclick="followUser(this)">Follow</button>
+    <div class="card info-card">
+      <div class="info-icon"><svg class="icon"><use href="#i-message"></use></svg></div>
+      <h3>Messages</h3>
+      <p>Talk privately with friends, creators and people you meet.</p>
+      <button class="btn gold" style="margin-top:15px" onclick="showView('messages')">Messages</button>
     </div>
 
   </div>
 
+</div>
 </section>
 
+<!-- DATE -->
+<section id="date" class="view">
+<div class="container page">
 
-<!-- =========================
-     DATE
-========================= -->
+  <div class="page-header">
+    <div>
+      <div class="eyebrow">Connection</div>
+      <h1>Date</h1>
+      <p class="subtext">A dedicated space for meaningful connections.</p>
+    </div>
+  </div>
 
-<section class="view" id="date">
+  <div class="grid grid-3">
 
-  <h1 class="page-title">Date</h1>
+    <div class="card info-card">
+      <div class="info-icon"><svg class="icon"><use href="#i-heart"></use></svg></div>
+      <h3>Discover</h3>
+      <p>Explore profiles based on interests, personality and what you're looking for.</p>
+    </div>
 
-  <p class="page-subtitle">
-    Meet people and discover connections.
-  </p>
+    <div class="card info-card">
+      <div class="info-icon"><svg class="icon"><use href="#i-message"></use></svg></div>
+      <h3>Conversation</h3>
+      <p>Start conversations before deciding where things go.</p>
+    </div>
 
-  <div class="grid">
-
-    <article class="card">
-      <img class="card-img"
-        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=85"
-        alt="">
-      <div class="card-content">
-        <h3>Aaliyah</h3>
-        <p>Philadelphia · Music · Food · Travel</p>
-        <br>
-        <button class="gold-btn" onclick="showToast('Connection request sent')">Connect</button>
-      </div>
-    </article>
-
-    <article class="card">
-      <img class="card-img"
-        src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=85"
-        alt="">
-      <div class="card-content">
-        <h3>Marcus</h3>
-        <p>Harrisburg · Skate · Music · Sports</p>
-        <br>
-        <button class="gold-btn" onclick="showToast('Connection request sent')">Connect</button>
-      </div>
-    </article>
+    <div class="card info-card">
+      <div class="info-icon"><svg class="icon"><use href="#i-calendar"></use></svg></div>
+      <h3>Meetups</h3>
+      <p>Find events and local activities where people can meet naturally.</p>
+    </div>
 
   </div>
 
+</div>
 </section>
 
+<!-- BUILD -->
+<section id="build" class="view">
+<div class="container page">
 
-<!-- =========================
-     BUILD
-========================= -->
+  <div class="page-header">
+    <div>
+      <div class="eyebrow">Opportunity</div>
+      <h1>Build</h1>
+      <p class="subtext">Careers, entrepreneurship, networking and ideas.</p>
+    </div>
+  </div>
 
-<section class="view" id="build">
+  <div class="grid grid-3">
 
-  <h1 class="page-title">Build</h1>
+    <div class="card info-card">
+      <div class="info-icon"><svg class="icon"><use href="#i-briefcase"></use></svg></div>
+      <h3>Careers</h3>
+      <p>Discover jobs, career resources and professional opportunities.</p>
+    </div>
 
-  <p class="page-subtitle">
-    Careers, entrepreneurship, networking and opportunities.
-  </p>
+    <div class="card info-card">
+      <div class="info-icon"><svg class="icon"><use href="#i-users"></use></svg></div>
+      <h3>Networking</h3>
+      <p>Meet professionals, entrepreneurs and people building something.</p>
+    </div>
 
-  <div class="grid">
-
-    <article class="card">
-      <div class="card-content">
-        <span class="pill">Entrepreneurship</span>
-        <h3 style="margin-top:12px;">Build your idea</h3>
-        <p>Connect with people who are creating businesses and projects.</p>
-        <br>
-        <button class="gold-btn" onclick="showToast('Opportunity saved')">Explore</button>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="card-content">
-        <span class="pill">Careers</span>
-        <h3 style="margin-top:12px;">Find opportunities</h3>
-        <p>Discover jobs, networking opportunities and professional communities.</p>
-        <br>
-        <button class="gold-btn" onclick="showToast('Career section opened')">Explore</button>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="card-content">
-        <span class="pill">Networking</span>
-        <h3 style="margin-top:12px;">Meet your network</h3>
-        <p>Build relationships with creators, founders and professionals.</p>
-        <br>
-        <button class="gold-btn" onclick="showToast('Networking opened')">Explore</button>
-      </div>
-    </article>
+    <div class="card info-card">
+      <div class="info-icon"><svg class="icon"><use href="#i-sparkle"></use></svg></div>
+      <h3>Ideas</h3>
+      <p>Share projects and find people who can help bring them to life.</p>
+    </div>
 
   </div>
 
+</div>
 </section>
 
+<!-- MARKET -->
+<section id="market" class="view">
+<div class="container page">
 
-<!-- =========================
-     MARKET
-========================= -->
+  <div class="page-header">
+    <div>
+      <div class="eyebrow">Commerce</div>
+      <h1>Market</h1>
+      <p class="subtext">Discover Black-owned businesses and products.</p>
+    </div>
 
-<section class="view" id="market">
+    <button class="btn gold" onclick="showToast('Seller tools opened')">
+      <svg class="icon"><use href="#i-plus"></use></svg>
+      Sell
+    </button>
+  </div>
 
-  <h1 class="page-title">Market</h1>
+  <div class="grid grid-3">
 
-  <p class="page-subtitle">
-    Discover Black-owned businesses, products and services.
-  </p>
+    <div class="card info-card">
+      <div class="info-icon"><svg class="icon"><use href="#i-store"></use></svg></div>
+      <h3>Local Businesses</h3>
+      <p>Find businesses and services around your community.</p>
+    </div>
+
+    <div class="card info-card">
+      <div class="info-icon"><svg class="icon"><use href="#i-store"></use></svg></div>
+      <h3>Marketplace</h3>
+      <p>Explore products, clothing, art and other goods.</p>
+    </div>
+
+    <div class="card info-card">
+      <div class="info-icon"><svg class="icon"><use href="#i-bookmark"></use></svg></div>
+      <h3>Saved Shops</h3>
+      <p>Keep track of businesses and products you want to revisit.</p>
+    </div>
+
+  </div>
+
+</div>
+</section>
+
+<!-- EXPLORE -->
+<section id="explore" class="view">
+<div class="container page">
+
+  <div class="page-header">
+    <div>
+      <div class="eyebrow">Discover</div>
+      <h1>Explore</h1>
+      <p class="subtext">Events, local opportunities, food, music and culture.</p>
+    </div>
+  </div>
+
+  <div class="card location-bar">
+    <input id="locationInput" value="Choose your city or local area">
+    <button class="btn gold" onclick="saveLocation()">
+      <svg class="icon"><use href="#i-pin"></use></svg>
+      Save
+    </button>
+  </div>
+
+  <div class="grid grid-3">
+
+    <div class="card info-card">
+      <div class="info-icon"><svg class="icon"><use href="#i-calendar"></use></svg></div>
+      <h3>Events</h3>
+      <p>Find local events and things happening around you.</p>
+    </div>
+
+    <div class="card info-card">
+      <div class="info-icon"><svg class="icon"><use href="#i-compass"></use></svg></div>
+      <h3>Local FYP</h3>
+      <p>See content from people, culture and businesses in your selected area.</p>
+    </div>
+
+    <div class="card info-card">
+      <div class="info-icon"><svg class="icon"><use href="#i-pin"></use></svg></div>
+      <h3>Places</h3>
+      <p>Discover restaurants, shops, skate spots and community spaces.</p>
+    </div>
+
+  </div>
+
+</div>
+</section>
+
+<!-- MESSAGES -->
+<section id="messages" class="view">
+<div class="container page">
+
+  <div class="page-header">
+    <div>
+      <div class="eyebrow">Communication</div>
+      <h1>Messages</h1>
+      <p class="subtext">Your private conversations.</p>
+    </div>
+  </div>
+
+  <div class="grid grid-2">
+
+    <div class="card info-card" onclick="openChat('Jalen')">
+      <div class="info-icon"><svg class="icon"><use href="#i-message"></use></svg></div>
+      <h3>Jalen</h3>
+      <p>Let's connect about that event this weekend.</p>
+    </div>
+
+    <div class="card info-card" onclick="openChat('Amani')">
+      <div class="info-icon"><svg class="icon"><use href="#i-message"></use></svg></div>
+      <h3>Amani</h3>
+      <p>I sent you that playlist.</p>
+    </div>
+
+  </div>
+
+</div>
+</section>
+
+<!-- COMMUNITIES -->
+<section id="communities" class="view">
+<div class="container page">
+
+  <div class="page-header">
+    <div>
+      <div class="eyebrow">Groups</div>
+      <h1>Communities</h1>
+      <p class="subtext">Spaces built around shared interests.</p>
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+
+    <div class="card info-card">
+      <div class="info-icon"><svg class="icon"><use href="#i-users"></use></svg></div>
+      <h3>Black Creators</h3>
+      <p>A community for artists, designers, musicians and creators.</p>
+      <button class="btn gold" style="margin-top:15px" onclick="showToast('Joined Black Creators')">Join</button>
+    </div>
+
+    <div class="card info-card">
+      <div class="info-icon"><svg class="icon"><use href="#i-skateboard"></use></svg></div>
+      <h3>Skate Community</h3>
+      <p>Riders sharing clips, spots, events and skate culture.</p>
+      <button class="btn gold" style="margin-top:15px" onclick="showView('skate')">Open</button>
+    </div>
+
+    <div class="card info-card">
+      <div class="info-icon"><svg class="icon"><use href="#i-fist"></use></svg></div>
+      <h3>Culture Talk</h3>
+      <p>Conversations about culture, history, food, music and everyday life.</p>
+      <button class="btn gold" style="margin-top:15px" onclick="showView('culture')">Open</button>
+    </div>
+
+  </div>
+
+</div>
+</section>
+
+<!-- EVENTS -->
+<section id="events" class="view">
+<div class="container page">
+
+  <div class="page-header">
+    <div>
+      <div class="eyebrow">Local</div>
+      <h1>Events</h1>
+      <p class="subtext">Find what's happening around your community.</p>
+    </div>
+
+    <button class="btn gold" onclick="showToast('Event creator opened')">
+      <svg class="icon"><use href="#i-plus"></use></svg>
+      Create Event
+    </button>
+  </div>
+
+  <div class="feed">
+
+    <div class="card info-card">
+      <div class="info-icon"><svg class="icon"><use href="#i-calendar"></use></svg></div>
+      <h3>Community Meetup</h3>
+      <p>Connect with local people and creators.</p>
+      <button class="btn" style="margin-top:15px" onclick="showToast('Event saved')">
+        <svg class="icon"><use href="#i-bookmark"></use></svg>
+        Save Event
+      </button>
+    </div>
+
+    <div class="card info-card">
+      <div class="info-icon"><svg class="icon"><use href="#i-skateboard"></use></svg></div>
+      <h3>Local Skate Session</h3>
+      <p>Skaters meeting up for a community session.</p>
+      <button class="btn" style="margin-top:15px" onclick="showToast('Event saved')">
+        <svg class="icon"><use href="#i-bookmark"></use></svg>
+        Save Event
+      </button>
+    </div>
+
+  </div>
+
+</div>
+</section>
+
+<!-- SAVED -->
+<section id="saved" class="view">
+<div class="container page">
+
+  <div class="page-header">
+    <div>
+      <div class="eyebrow">Your Library</div>
+      <h1>Saved</h1>
+      <p class="subtext">Posts, places, events and businesses you've saved.</p>
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+
+    <div class="card info-card">
+      <div class="info-icon"><svg class="icon"><use href="#i-bookmark"></use></svg></div>
+      <h3>Saved Posts</h3>
+      <p>Your saved conversations and content.</p>
+    </div>
+
+    <div class="card info-card">
+      <div class="info-icon"><svg class="icon"><use href="#i-store"></use></svg></div>
+      <h3>Saved Businesses</h3>
+      <p>Businesses you want to revisit.</p>
+    </div>
+
+    <div class="card info-card">
+      <div class="info-icon"><svg class="icon"><use href="#i-calendar"></use></svg></div>
+      <h3>Saved Events</h3>
+      <p>Events you're keeping on your radar.</p>
+    </div>
+
+  </div>
+
+</div>
+</section>
+
+<!-- SEARCH -->
+<section id="search" class="view">
+<div class="container page">
+
+  <div class="page-header">
+    <div>
+      <div class="eyebrow">Discover</div>
+      <h1>Search</h1>
+      <p class="subtext">Search across Soulaani.</p>
+    </div>
+  </div>
 
   <div class="search-box">
-    <input id="marketSearch" placeholder="Search businesses, products or services...">
-    <button class="gold-btn" onclick="showToast('Market searched')">Search</button>
-  </div>
-
-  <div class="grid">
-
-    <article class="card">
-      <img class="card-img"
-        src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=85"
-        alt="">
-      <div class="card-content">
-        <h3>Local Fashion</h3>
-        <p>Independent brands and creators.</p>
-      </div>
-    </article>
-
-    <article class="card">
-      <img class="card-img"
-        src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=85"
-        alt="">
-      <div class="card-content">
-        <h3>Food & Restaurants</h3>
-        <p>Discover local food businesses.</p>
-      </div>
-    </article>
-
-    <article class="card">
-      <img class="card-img"
-        src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=85"
-        alt="">
-      <div class="card-content">
-        <h3>Services</h3>
-        <p>Find businesses and professionals near you.</p>
-      </div>
-    </article>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     EXPLORE
-========================= -->
-
-<section class="view" id="explore">
-
-  <h1 class="page-title">Explore</h1>
-
-  <p class="page-subtitle">
-    Discover what's happening around you.
-  </p>
-
-  <div class="card" style="padding:20px;margin-bottom:15px;">
-
-    <h2 style="margin-bottom:8px;">Your Local FYP</h2>
-
-    <p style="color:var(--muted);line-height:1.5;">
-      Choose an area and see people, culture, businesses, events,
-      food and music connected to that community.
-    </p>
-
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:15px;">
-
-      <button class="gold-btn" onclick="setLocation('Harrisburg, PA')">
-        Harrisburg, PA
-      </button>
-
-      <button class="dark-btn" onclick="setLocation('Philadelphia, PA')">
-        Philadelphia, PA
-      </button>
-
-      <button class="dark-btn" onclick="setLocation('Baltimore, MD')">
-        Baltimore, MD
-      </button>
-
-    </div>
-
-    <div id="localLocation"
-      style="margin-top:15px;color:var(--gold2);font-weight:800;">
-      📍 Harrisburg, PA
-    </div>
-
-  </div>
-
-  <div class="grid">
-
-    <article class="card">
-      <div class="card-content">
-        <span class="pill">Tonight</span>
-        <h3 style="margin-top:12px;">Local Events</h3>
-        <p>Find events and things happening in your community.</p>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="card-content">
-        <span class="pill">Nearby</span>
-        <h3 style="margin-top:12px;">People</h3>
-        <p>Discover people and creators around your selected area.</p>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="card-content">
-        <span class="pill">Culture</span>
-        <h3 style="margin-top:12px;">Local Culture</h3>
-        <p>Food, music, businesses, artists and community stories.</p>
-      </div>
-    </article>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     MESSAGES
-========================= -->
-
-<section class="view" id="messages">
-
-  <h1 class="page-title">Messages</h1>
-
-  <p class="page-subtitle">
-    Your conversations.
-  </p>
-
-  <div class="list">
-
-    <button class="list-item" onclick="openChat('Aaliyah')"
-      style="width:100%;text-align:left;color:white;">
-
-      <img class="avatar"
-        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
-        alt="">
-
-      <div class="list-item-content">
-        <strong>Aaliyah Johnson</strong>
-        <small>See you at the event 👀</small>
-      </div>
-
-      <span style="color:var(--gold2);">›</span>
-
-    </button>
-
-    <button class="list-item" onclick="openChat('Marcus')"
-      style="width:100%;text-align:left;color:white;">
-
-      <img class="avatar"
-        src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80"
-        alt="">
-
-      <div class="list-item-content">
-        <strong>Marcus Williams</strong>
-        <small>That skate spot is crazy 🔥</small>
-      </div>
-
-      <span style="color:var(--gold2);">›</span>
-
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     COMMUNITIES
-========================= -->
-
-<section class="view" id="communities">
-
-  <h1 class="page-title">Communities</h1>
-
-  <p class="page-subtitle">
-    Find your people.
-  </p>
-
-  <div class="grid">
-
-    <article class="card">
-      <div class="card-content">
-        <h3>Black Creators</h3>
-        <p>Artists, photographers, filmmakers and digital creators.</p>
-        <br>
-        <button class="gold-btn" onclick="joinCommunity(this)">Join</button>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="card-content">
-        <h3>Skate Community</h3>
-        <p>Riders, skaters and people building local skate culture.</p>
-        <br>
-        <button class="gold-btn" onclick="joinCommunity(this)">Join</button>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="card-content">
-        <h3>Entrepreneurs</h3>
-        <p>Founders and people building businesses.</p>
-        <br>
-        <button class="gold-btn" onclick="joinCommunity(this)">Join</button>
-      </div>
-    </article>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     EVENTS
-========================= -->
-
-<section class="view" id="events">
-
-  <h1 class="page-title">Events</h1>
-
-  <p class="page-subtitle">
-    Things happening around the community.
-  </p>
-
-  <div class="list">
-
-    <div class="list-item">
-
-      <div class="track-cover">◷</div>
-
-      <div class="list-item-content">
-        <strong>Community Meetup</strong>
-        <small>Harrisburg · This weekend</small>
-      </div>
-
-      <button class="gold-btn" onclick="showToast('Event saved')">
-        Save
-      </button>
-
-    </div>
-
-    <div class="list-item">
-
-      <div class="track-cover">🛹</div>
-
-      <div class="list-item-content">
-        <strong>Skate Session</strong>
-        <small>Local skate spot · Saturday</small>
-      </div>
-
-      <button class="gold-btn" onclick="showToast('Event saved')">
-        Save
-      </button>
-
-    </div>
-
-    <div class="list-item">
-
-      <div class="track-cover">♫</div>
-
-      <div class="list-item-content">
-        <strong>Music & Culture Night</strong>
-        <small>Philadelphia · Friday</small>
-      </div>
-
-      <button class="gold-btn" onclick="showToast('Event saved')">
-        Save
-      </button>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     SAVED
-========================= -->
-
-<section class="view" id="saved">
-
-  <h1 class="page-title">Saved</h1>
-
-  <p class="page-subtitle">
-    Posts, businesses, events and things you've saved.
-  </p>
-
-  <div id="savedItems" class="list">
-
-    <div class="card" style="padding:25px;text-align:center;color:var(--muted);">
-      Nothing saved yet. Tap ☆ Save on something you want to keep.
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     SEARCH
-========================= -->
-
-<section class="view" id="search">
-
-  <h1 class="page-title">Search</h1>
-
-  <p class="page-subtitle">
-    Search people, posts, communities, businesses and culture.
-  </p>
-
-  <div class="search-box">
-
-    <input
-      id="globalSearch"
-      placeholder="Search Soulaani..."
-      onkeydown="if(event.key==='Enter') performSearch()"
-    >
-
-    <button class="gold-btn" onclick="performSearch()">
+    <input id="globalSearch" placeholder="Search people, posts, businesses, events...">
+    <button class="btn gold" onclick="performSearch()">
+      <svg class="icon"><use href="#i-search"></use></svg>
       Search
     </button>
-
   </div>
 
-  <div id="searchResults">
+  <div id="searchResults" class="grid grid-2"></div>
 
-    <div class="card" style="padding:25px;text-align:center;color:var(--muted);">
-      Start searching to discover Soulaani.
-    </div>
-
-  </div>
-
+</div>
 </section>
 
 </main>
 
-
-<!-- =========================
-     BOTTOM NAV
-========================= -->
-
+<!-- BOTTOM NAV -->
 <nav class="bottom-nav">
 
-  <button class="nav-btn active" data-view="home" onclick="showView('home')">
-    <span class="nav-icon">⌂</span>
+  <button class="bottom-item active" data-view="home" onclick="showView('home')">
+    <svg class="icon"><use href="#i-home"></use></svg>
     <span>Home</span>
   </button>
 
-  <button class="nav-btn" data-view="skate" onclick="showView('skate')">
-    <span class="nav-icon">🛹</span>
+  <button class="bottom-item" data-view="skate" onclick="showView('skate')">
+    <svg class="icon"><use href="#i-skateboard"></use></svg>
     <span>Skate</span>
   </button>
 
-  <button class="nav-btn" data-view="culture" onclick="showView('culture')">
-    <span class="nav-icon">✊🏿</span>
+  <button class="bottom-item" data-view="culture" onclick="showView('culture')">
+    <svg class="icon"><use href="#i-fist"></use></svg>
     <span>Culture</span>
   </button>
 
-  <button class="nav-btn" data-view="ai" onclick="showView('ai')">
-    <span class="nav-icon">✦</span>
+  <button class="bottom-item" data-view="ai" onclick="showView('ai')">
+    <svg class="icon"><use href="#i-sparkle"></use></svg>
     <span>Soulaani AI</span>
   </button>
 
-  <button class="nav-btn" data-view="profile" onclick="showView('profile')">
-    <span class="nav-icon">◉</span>
+  <button class="bottom-item" data-view="profile" onclick="showView('profile')">
+    <svg class="icon"><use href="#i-user"></use></svg>
     <span>Profile</span>
   </button>
 
 </nav>
 
+<!-- DRAWER -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
 
-<!-- =========================
-     COMPOSER MODAL
-========================= -->
+<aside class="drawer" id="drawer">
 
-<div class="modal-overlay" id="composerModal">
-
-  <div class="modal">
-
-    <div class="modal-head">
-
-      <h2>Create Post</h2>
-
-      <button class="modal-close" onclick="closeModal('composerModal')">
-        ×
-      </button>
-
+  <div class="drawer-head">
+    <div class="drawer-brand">
+      <div class="brand-mark">
+        <svg class="icon"><use href="#i-sparkle"></use></svg>
+      </div>
+      SOULAANI
     </div>
 
-    <div class="form-group">
-
-      <label>What's on your mind?</label>
-
-      <textarea
-        id="postText"
-        placeholder="Share something with Soulaani..."
-      ></textarea>
-
-    </div>
-
-    <div style="display:flex;gap:8px;flex-wrap:wrap;">
-
-      <button class="dark-btn" onclick="showToast('Photo picker opened')">
-        ▣ Add Photo
-      </button>
-
-      <button class="dark-btn" onclick="showToast('Video picker opened')">
-        ◉ Add Video
-      </button>
-
-      <button class="dark-btn" onclick="showToast('Feeling picker opened')">
-        ☺ Feeling
-      </button>
-
-    </div>
-
-    <button class="gold-btn"
-      style="width:100%;margin-top:18px;"
-      onclick="publishPost()">
-      Post to Soulaani
+    <button class="icon-btn" onclick="closeDrawer()">
+      <svg class="icon"><use href="#i-close"></use></svg>
     </button>
-
   </div>
 
-</div>
+  <nav class="drawer-nav">
 
+    <div class="drawer-section">Main</div>
 
-<!-- =========================
-     PROFILE EDITOR
-========================= -->
+    <button class="drawer-item" data-drawer="home" onclick="drawerGo('home')">
+      <svg class="icon"><use href="#i-home"></use></svg>
+      Home
+    </button>
 
+    <button class="drawer-item" data-drawer="newsfeed" onclick="drawerGo('newsfeed')">
+      <svg class="icon"><use href="#i-newspaper"></use></svg>
+      Newsfeed
+    </button>
+
+    <button class="drawer-item" data-drawer="connect" onclick="drawerGo('connect')">
+      <svg class="icon"><use href="#i-users"></use></svg>
+      Connect
+    </button>
+
+    <button class="drawer-item" data-drawer="date" onclick="drawerGo('date')">
+      <svg class="icon"><use href="#i-heart"></use></svg>
+      Date
+    </button>
+
+    <button class="drawer-item" data-drawer="build" onclick="drawerGo('build')">
+      <svg class="icon"><use href="#i-briefcase"></use></svg>
+      Build
+    </button>
+
+    <button class="drawer-item" data-drawer="market" onclick="drawerGo('market')">
+      <svg class="icon"><use href="#i-store"></use></svg>
+      Market
+    </button>
+
+    <button class="drawer-item" data-drawer="explore" onclick="drawerGo('explore')">
+      <svg class="icon"><use href="#i-compass"></use></svg>
+      Explore
+    </button>
+
+    <div class="drawer-section">Community</div>
+
+    <button class="drawer-item" data-drawer="messages" onclick="drawerGo('messages')">
+      <svg class="icon"><use href="#i-message"></use></svg>
+      Messages
+    </button>
+
+    <button class="drawer-item" data-drawer="communities" onclick="drawerGo('communities')">
+      <svg class="icon"><use href="#i-users"></use></svg>
+      Communities
+    </button>
+
+    <button class="drawer-item" data-drawer="events" onclick="drawerGo('events')">
+      <svg class="icon"><use href="#i-calendar"></use></svg>
+      Events
+    </button>
+
+    <button class="drawer-item" data-drawer="saved" onclick="drawerGo('saved')">
+      <svg class="icon"><use href="#i-bookmark"></use></svg>
+      Saved
+    </button>
+
+    <div class="drawer-section">Tools</div>
+
+    <button class="drawer-item" data-drawer="search" onclick="drawerGo('search')">
+      <svg class="icon"><use href="#i-search"></use></svg>
+      Search
+    </button>
+
+    <button class="drawer-item" onclick="showToast('Settings coming next')">
+      <svg class="icon"><use href="#i-settings"></use></svg>
+      Settings
+    </button>
+
+  </nav>
+</aside>
+
+<!-- PROFILE MODAL -->
 <div class="modal-overlay" id="profileModal">
-
   <div class="modal">
 
     <div class="modal-head">
-
-      <h2>Edit Profile</h2>
-
-      <button class="modal-close" onclick="closeModal('profileModal')">
-        ×
+      <h3>Edit Profile</h3>
+      <button class="icon-btn" onclick="closeModal('profileModal')">
+        <svg class="icon"><use href="#i-close"></use></svg>
       </button>
-
     </div>
 
-    <div class="form-group">
+    <div class="modal-body">
 
-      <label>Name</label>
-
-      <input id="editName" value="Soulaani User">
-
-    </div>
-
-    <div class="form-group">
-
-      <label>Bio</label>
-
-      <textarea id="editBio">Building, creating and connecting through Soulaani.</textarea>
-
-    </div>
-
-    <div class="form-group">
-
-      <label>Profile Theme</label>
-
-      <select id="profileTheme">
-
-        <option value="gold">Soulaani Gold</option>
-        <option value="silver">Silver</option>
-        <option value="purple">Purple</option>
-        <option value="green">Emerald</option>
-
-      </select>
-
-    </div>
-
-    <button class="gold-btn"
-      style="width:100%;"
-      onclick="saveProfile()">
-      Save Changes
-    </button>
-
-  </div>
-
-</div>
-
-
-<!-- =========================
-     CHAT MODAL
-========================= -->
-
-<div class="modal-overlay" id="chatModal">
-
-  <div class="modal">
-
-    <div class="modal-head">
-
-      <h2 id="chatTitle">Messages</h2>
-
-      <button class="modal-close" onclick="closeModal('chatModal')">
-        ×
-      </button>
-
-    </div>
-
-    <div id="chatMessages"
-      style="min-height:230px;display:flex;flex-direction:column;gap:10px;margin-bottom:15px;">
-
-      <div class="ai-message bot">
-        What's good?
+      <div class="form-group">
+        <label>Name</label>
+        <input id="editName" value="LuhhTrilly">
       </div>
 
+      <div class="form-group">
+        <label>Bio</label>
+        <textarea id="editBio">Building community, culture and the next chapter of Soulaani.</textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Profile Theme</label>
+        <select id="themeSelect">
+          <option value="gold">Soulaani Gold</option>
+          <option value="warm">Warm Gold</option>
+          <option value="dark">Midnight</option>
+        </select>
+      </div>
+
+      <button class="btn gold full" onclick="saveProfile()">Save Profile</button>
+
     </div>
-
-    <div style="display:flex;gap:8px;">
-
-      <input
-        id="chatInput"
-        style="flex:1;background:#080808;border:1px solid var(--border);color:white;padding:12px;border-radius:20px;"
-        placeholder="Write a message..."
-        onkeydown="if(event.key==='Enter')sendChat()"
-      >
-
-      <button class="gold-btn" onclick="sendChat()">
-        Send
-      </button>
-
-    </div>
-
   </div>
-
 </div>
 
+<!-- CHAT MODAL -->
+<div class="modal-overlay" id="chatModal">
+  <div class="modal">
 
+    <div class="modal-head">
+      <h3 id="chatTitle">Chat</h3>
+      <button class="icon-btn" onclick="closeModal('chatModal')">
+        <svg class="icon"><use href="#i-close"></use></svg>
+      </button>
+    </div>
+
+    <div class="modal-body">
+
+      <div id="chatMessages" style="display:flex;flex-direction:column;gap:10px;margin-bottom:15px;">
+        <div class="message ai">What's good?</div>
+      </div>
+
+      <form class="ai-input" style="padding:0;border:0" onsubmit="sendChat(event)">
+        <input id="chatInput" placeholder="Write a message...">
+        <button class="btn gold" type="submit">
+          <svg class="icon"><use href="#i-share"></use></svg>
+        </button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-
 <script>
+const views = document.querySelectorAll(".view");
+const bottomItems = document.querySelectorAll(".bottom-item");
+const drawerItems = document.querySelectorAll(".drawer-item");
 
-/* =========================
-   NAVIGATION
-========================= */
-
-const views = [
-  "home",
-  "skate",
-  "culture",
-  "ai",
-  "profile",
-  "connect",
-  "date",
-  "build",
-  "market",
-  "explore",
-  "messages",
-  "communities",
-  "events",
-  "saved",
-  "search"
+let posts = [
+  {
+    name:"Jalen S.",
+    initials:"JS",
+    time:"18m",
+    text:"Just found a new spot to skate. The city has some hidden gems if you know where to look.",
+    reactions:"94",
+    comments:"16"
+  },
+  {
+    name:"Amani R.",
+    initials:"AR",
+    time:"42m",
+    text:"Building something for the community always feels different. What are y'all working on?",
+    reactions:"183",
+    comments:"31"
+  },
+  {
+    name:"Culture Collective",
+    initials:"CC",
+    time:"1h",
+    text:"What's one dish that immediately reminds you of home?",
+    reactions:"347",
+    comments:"64"
+  }
 ];
 
-function showView(view){
-
-  views.forEach(id => {
-
-    const element = document.getElementById(id);
-
-    if(element){
-      element.classList.toggle("active",id === view);
-    }
-
+function showView(id){
+  views.forEach(view=>{
+    view.classList.remove("active");
   });
 
-  document.querySelectorAll(".nav-btn").forEach(btn => {
+  const target=document.getElementById(id);
 
-    btn.classList.toggle(
-      "active",
-      btn.dataset.view === view
-    );
+  if(target){
+    target.classList.add("active");
+  }
 
+  bottomItems.forEach(item=>{
+    item.classList.toggle("active",item.dataset.view===id);
   });
+
+  drawerItems.forEach(item=>{
+    item.classList.toggle("active",item.dataset.drawer===id);
+  });
+
+  closeDrawer();
 
   window.scrollTo({
     top:0,
     behavior:"smooth"
   });
-
-  closeDrawer();
 }
 
-
-/* =========================
-   DRAWER
-========================= */
+function drawerGo(id){
+  showView(id);
+}
 
 function openDrawer(){
-
   document.getElementById("drawer").classList.add("open");
   document.getElementById("drawerOverlay").classList.add("open");
-
 }
 
 function closeDrawer(){
-
   document.getElementById("drawer").classList.remove("open");
   document.getElementById("drawerOverlay").classList.remove("open");
-
 }
-
-
-/* =========================
-   TOAST
-========================= */
-
-let toastTimer;
 
 function showToast(message){
-
-  const toast = document.getElementById("toast");
-
-  toast.textContent = message;
-
+  const toast=document.getElementById("toast");
+  toast.textContent=message;
   toast.classList.add("show");
 
-  clearTimeout(toastTimer);
+  clearTimeout(window.toastTimer);
 
-  toastTimer = setTimeout(() => {
+  window.toastTimer=setTimeout(()=>{
     toast.classList.remove("show");
   },2200);
-
 }
 
+function renderPost(post,container){
+  const article=document.createElement("article");
 
-/* =========================
-   COMPOSER
-========================= */
+  article.className="card post";
 
-function openComposer(){
-
-  document.getElementById("composerModal").classList.add("open");
-
-}
-
-function closeModal(id){
-
-  document.getElementById(id).classList.remove("open");
-
-}
-
-function publishPost(){
-
-  const text = document.getElementById("postText").value.trim();
-
-  if(!text){
-
-    showToast("Write something first");
-
-    return;
-  }
-
-  const feed = document.getElementById("feed");
-
-  const post = document.createElement("article");
-
-  post.className = "post";
-
-  post.innerHTML = `
-
+  article.innerHTML=`
     <div class="post-head">
+      <div class="mini-avatar">${escapeHTML(post.initials)}</div>
 
-      <div class="user-row">
-
-        <img
-          class="avatar"
-          src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=200&q=80"
-          alt=""
-        >
-
-        <div class="post-user">
-          <strong>Soulaani User</strong>
-          <small>Just now</small>
-        </div>
-
+      <div class="post-user">
+        <strong>${escapeHTML(post.name)}</strong>
+        <span>Soulaani · ${escapeHTML(post.time)}</span>
       </div>
 
-      <button class="more">•••</button>
-
+      <button class="post-more" onclick="showToast('Post options')">•••</button>
     </div>
 
-    <div class="post-body">
-      ${escapeHTML(text)}
-    </div>
+    <div class="post-text">${escapeHTML(post.text)}</div>
+
+    ${post.media ? `
+      <div class="post-media">
+        <div class="media-label">
+          <small>Soulaani</small>
+          <strong>${escapeHTML(post.media)}</strong>
+        </div>
+      </div>
+    ` : ""}
 
     <div class="post-stats">
-      <span>♡ 0 reactions</span>
-      <span>0 comments · 0 shares</span>
+      <span>${post.reactions} reactions</span>
+      <span>${post.comments} comments</span>
     </div>
 
     <div class="post-actions">
 
-      <button class="post-action"
-        onclick="showToast('Reaction menu opened')">
-        ♡ React
+      <div class="reaction-wrap">
+        <button class="post-action" onclick="openReaction(this)">
+          <svg class="icon"><use href="#i-heart"></use></svg>
+          <span>React</span>
+        </button>
+
+        <div class="reaction-picker">
+          <button class="reaction" onclick="chooseReaction(event,this,'Like')">👍</button>
+          <button class="reaction" onclick="chooseReaction(event,this,'Love')">❤️</button>
+          <button class="reaction" onclick="chooseReaction(event,this,'Laugh')">😂</button>
+          <button class="reaction" onclick="chooseReaction(event,this,'Wow')">😮</button>
+          <button class="reaction" onclick="chooseReaction(event,this,'Sad')">😢</button>
+          <button class="reaction" onclick="chooseReaction(event,this,'Dislike')">👎</button>
+        </div>
+      </div>
+
+      <button class="post-action" onclick="showToast('Comments opened')">
+        <svg class="icon"><use href="#i-comment"></use></svg>
+        Comment
       </button>
 
-      <button class="post-action"
-        onclick="commentPost()">
-        ♧ Comment
-      </button>
-
-      <button class="post-action"
-        onclick="sharePost()">
-        ↗ Share
-      </button>
-
-      <button class="post-action"
-        onclick="savePost(this)">
-        ☆ Save
+      <button class="post-action" onclick="showToast('Post shared')">
+        <svg class="icon"><use href="#i-share"></use></svg>
+        Share
       </button>
 
     </div>
-
   `;
 
-  feed.prepend(post);
-
-  document.getElementById("postText").value = "";
-
-  closeModal("composerModal");
-
-  showToast("Posted to Soulaani");
-
+  container.appendChild(article);
 }
 
+function renderFeeds(){
+  const home=document.getElementById("homeFeed");
+  const news=document.getElementById("newsFeedList");
+  const profile=document.getElementById("profilePosts");
 
-/* =========================
-   REACTIONS
-========================= */
+  home.innerHTML="";
+  news.innerHTML="";
+  profile.innerHTML="";
 
-function toggleReactions(id){
+  posts.forEach(post=>{
+    renderPost(post,home);
+    renderPost(post,news);
+  });
 
-  const picker = document.getElementById("picker" + id);
+  const myPosts=posts.filter(post=>post.mine);
 
-  document.querySelectorAll(".reaction-picker").forEach(p => {
+  if(myPosts.length){
+    myPosts.forEach(post=>renderPost(post,profile));
+  }else{
+    profile.innerHTML=`
+      <div class="card info-card">
+        <div class="info-icon">
+          <svg class="icon"><use href="#i-newspaper"></use></svg>
+        </div>
+        <h3>Your posts will appear here</h3>
+        <p>Share something from Home and your posts will show up on your profile.</p>
+      </div>
+    `;
+  }
+}
 
-    if(p !== picker){
-      p.classList.remove("show");
+function createPost(){
+  const input=document.getElementById("composerText");
+  const text=input.value.trim();
+
+  if(!text){
+    showToast("Write something first");
+    input.focus();
+    return;
+  }
+
+  const name=localStorage.getItem("soulaaniName") || "LuhhTrilly";
+
+  const initials=name
+    .split(" ")
+    .map(word=>word.charAt(0))
+    .join("")
+    .slice(0,2)
+    .toUpperCase();
+
+  posts.unshift({
+    name:name,
+    initials:initials || "LT",
+    time:"now",
+    text:text,
+    reactions:"0",
+    comments:"0",
+    mine:true
+  });
+
+  input.value="";
+  renderFeeds();
+
+  showToast("Your post was published");
+
+  setTimeout(()=>{
+    showView("newsfeed");
+  },350);
+}
+
+function focusComposer(){
+  showView("home");
+
+  setTimeout(()=>{
+    const input=document.getElementById("composerText");
+    input.focus();
+    input.scrollIntoView({
+      behavior:"smooth",
+      block:"center"
+    });
+  },300);
+}
+
+function openReaction(button){
+  const picker=button.parentElement.querySelector(".reaction-picker");
+
+  document.querySelectorAll(".reaction-picker").forEach(item=>{
+    if(item!==picker){
+      item.classList.remove("show");
     }
-
   });
 
   picker.classList.toggle("show");
-
 }
 
-function react(id,emoji,name){
+function chooseReaction(event,button,reaction){
+  event.stopPropagation();
 
-  const button = document.getElementById("reactionButton" + id);
+  const wrap=button.closest(".reaction-wrap");
+  const action=wrap.querySelector(".post-action");
 
-  button.textContent = emoji;
+  action.innerHTML=`
+    <span style="font-size:17px">${button.textContent}</span>
+    <span>${reaction}</span>
+  `;
 
-  document.getElementById("picker" + id).classList.remove("show");
+  wrap.querySelector(".reaction-picker").classList.remove("show");
 
-  showToast(name + " reaction added");
-
+  showToast(reaction+" reaction added");
 }
 
-
-/* =========================
-   POSTS
-========================= */
-
-function commentPost(){
-
-  const comment = prompt("Write a comment:");
-
-  if(comment && comment.trim()){
-
-    showToast("Comment added");
-
+document.addEventListener("click",event=>{
+  if(!event.target.closest(".reaction-wrap")){
+    document.querySelectorAll(".reaction-picker").forEach(picker=>{
+      picker.classList.remove("show");
+    });
   }
+});
 
+function switchFeedTab(button,type){
+  document.querySelectorAll(".feed-tab").forEach(tab=>{
+    tab.classList.remove("active");
+  });
+
+  button.classList.add("active");
+
+  showToast(type+" feed selected");
 }
 
-function sharePost(){
+function sendAI(event){
+  event.preventDefault();
 
-  if(navigator.share){
+  const input=document.getElementById("aiInput");
+  const text=input.value.trim();
 
-    navigator.share({
-      title:"Soulaani",
-      text:"Check this out on Soulaani."
-    }).catch(()=>{});
+  if(!text)return;
 
-  }else{
+  const messages=document.getElementById("aiMessages");
 
-    showToast("Post link copied");
+  const userMessage=document.createElement("div");
+  userMessage.className="message user";
+  userMessage.textContent=text;
 
-  }
+  messages.appendChild(userMessage);
 
-}
+  input.value="";
 
-function savePost(button){
+  setTimeout(()=>{
+    const aiMessage=document.createElement("div");
+    aiMessage.className="message ai";
 
-  button.classList.toggle("active");
+    aiMessage.textContent=getAIResponse(text);
 
-  if(button.classList.contains("active")){
+    messages.appendChild(aiMessage);
 
-    button.textContent = "★ Saved";
-
-    showToast("Saved to your collection");
-
-  }else{
-
-    button.textContent = "☆ Save";
-
-    showToast("Removed from saved");
-
-  }
-
-}
-
-
-/* =========================
-   AI
-========================= */
-
-function sendAI(){
-
-  const input = document.getElementById("aiInput");
-
-  const text = input.value.trim();
-
-  if(!text) return;
-
-  addAIMessage(text,"user");
-
-  input.value = "";
-
-  setTimeout(() => {
-
-    const lower = text.toLowerCase();
-
-    let reply =
-      "I'm here with you. Tell me a little more about what you're trying to do and I'll help you figure it out.";
-
-    if(lower.includes("soulaani")){
-      reply =
-        "Soulaani is built around community, culture, connection, creativity and opportunity. You can use me to help navigate the platform or brainstorm ideas.";
-    }
-    else if(lower.includes("skate")){
-      reply =
-        "The Skate section is for riders, clips, skate spots, sessions, events and local skate community content.";
-    }
-    else if(lower.includes("food") || lower.includes("soul")){
-      reply =
-        "Culture can help you discover soul food, local restaurants, cooks, creators and other parts of Black American culture.";
-    }
-    else if(lower.includes("business") || lower.includes("build")){
-      reply =
-        "The Build section is designed around entrepreneurship, careers, networking and opportunities.";
-    }
-    else if(lower.includes("profile")){
-      reply =
-        "Your Profile can show your bio, posts, followers and personal playlist. You can also customize your profile theme.";
-    }
-    else if(lower.includes("hello") || lower.includes("hi")){
-      reply =
-        "What's good 👋🏿 Welcome to Soulaani AI. What are we getting into today?";
-    }
-
-    addAIMessage(reply,"bot");
-
+    messages.scrollTop=messages.scrollHeight;
   },500);
 
+  messages.scrollTop=messages.scrollHeight;
 }
 
-function addAIMessage(text,type){
+function getAIResponse(text){
+  const lower=text.toLowerCase();
 
-  const box = document.getElementById("aiMessages");
+  if(lower.includes("soulaani")){
+    return "Soulaani is being designed as a social and cultural platform where people can connect, discover culture, build opportunities, explore local communities and communicate in one place.";
+  }
 
-  const message = document.createElement("div");
+  if(lower.includes("skate")){
+    return "The Soulaani Skate section is built around riders, clips, local spots, events and community content.";
+  }
 
-  message.className = "ai-message " + type;
+  if(lower.includes("culture")){
+    return "The Culture section brings together Black American food, businesses, creators, music, art and community stories.";
+  }
 
-  message.textContent = text;
+  if(lower.includes("business") || lower.includes("money")){
+    return "You can use Soulaani's Build and Market areas to organize business ideas, discover opportunities and connect with entrepreneurs.";
+  }
 
-  box.appendChild(message);
-
-  box.scrollTop = box.scrollHeight;
-
+  return "I'm Soulaani AI. I can help you think through ideas, write something, organize a plan, explore Soulaani features or answer questions. What are you working on?";
 }
-
-
-/* =========================
-   PROFILE
-========================= */
 
 function openProfileEditor(){
+  document.getElementById("editName").value=
+    localStorage.getItem("soulaaniName") || "LuhhTrilly";
 
-  document.getElementById("editName").value =
-    localStorage.getItem("soulaaniName") || "Soulaani User";
-
-  document.getElementById("editBio").value =
+  document.getElementById("editBio").value=
     localStorage.getItem("soulaaniBio") ||
-    "Building, creating and connecting through Soulaani.";
+    "Building community, culture and the next chapter of Soulaani.";
 
   document.getElementById("profileModal").classList.add("open");
+}
 
+function closeModal(id){
+  document.getElementById(id).classList.remove("open");
 }
 
 function saveProfile(){
-
-  const name =
-    document.getElementById("editName").value.trim() ||
-    "Soulaani User";
-
-  const bio =
-    document.getElementById("editBio").value.trim() ||
-    "Building, creating and connecting through Soulaani.";
-
-  const theme =
-    document.getElementById("profileTheme").value;
+  const name=document.getElementById("editName").value.trim() || "LuhhTrilly";
+  const bio=document.getElementById("editBio").value.trim();
 
   localStorage.setItem("soulaaniName",name);
   localStorage.setItem("soulaaniBio",bio);
-  localStorage.setItem("soulaaniTheme",theme);
 
-  document.getElementById("profileName").textContent = name;
-  document.getElementById("profileBio").textContent = bio;
-
-  applyTheme(theme);
+  updateProfile();
 
   closeModal("profileModal");
 
   showToast("Profile updated");
-
 }
 
-function applyTheme(theme){
+function updateProfile(){
+  const name=localStorage.getItem("soulaaniName") || "LuhhTrilly";
+  const bio=localStorage.getItem("soulaaniBio") ||
+    "Building community, culture and the next chapter of Soulaani.";
 
-  const root = document.documentElement;
+  const initials=name
+    .split(" ")
+    .map(word=>word.charAt(0))
+    .join("")
+    .slice(0,2)
+    .toUpperCase();
 
-  if(theme === "silver"){
-
-    root.style.setProperty("--gold","#c9c9c9");
-    root.style.setProperty("--gold2","#ffffff");
-
-  }
-  else if(theme === "purple"){
-
-    root.style.setProperty("--gold","#a97cff");
-    root.style.setProperty("--gold2","#d5baff");
-
-  }
-  else if(theme === "green"){
-
-    root.style.setProperty("--gold","#43b97c");
-    root.style.setProperty("--gold2","#76e6a8");
-
-  }
-  else{
-
-    root.style.setProperty("--gold","#d6a84f");
-    root.style.setProperty("--gold2","#f0c76a");
-
-  }
-
+  document.getElementById("profileName").textContent=name;
+  document.getElementById("profileBio").textContent=bio;
+  document.getElementById("profileAvatar").textContent=initials || "LT";
+  document.getElementById("topAvatar").textContent=initials || "LT";
+  document.getElementById("composerAvatar").textContent=initials || "LT";
 }
 
-function loadProfile(){
+function saveLocation(){
+  const input=document.getElementById("locationInput");
 
-  const name = localStorage.getItem("soulaaniName");
-  const bio = localStorage.getItem("soulaaniBio");
-  const theme = localStorage.getItem("soulaaniTheme");
-
-  if(name){
-    document.getElementById("profileName").textContent = name;
-  }
-
-  if(bio){
-    document.getElementById("profileBio").textContent = bio;
-  }
-
-  if(theme){
-    applyTheme(theme);
-  }
-
-}
-
-
-/* =========================
-   MUSIC
-========================= */
-
-function playTrack(button){
-
-  const playing =
-    button.textContent === "❚❚";
-
-  document.querySelectorAll(".play").forEach(btn => {
-    btn.textContent = "▶";
-  });
-
-  if(!playing){
-
-    button.textContent = "❚❚";
-
-    showToast("Playing playlist track");
-
-  }else{
-
-    showToast("Music paused");
-
-  }
-
-}
-
-
-/* =========================
-   LOCAL DISCOVER
-========================= */
-
-function setLocation(location){
-
-  document.getElementById("localLocation").textContent =
-    "📍 " + location;
-
-  localStorage.setItem("soulaaniLocation",location);
-
-  showToast("Local FYP changed to " + location);
-
-}
-
-
-/* =========================
-   SEARCH
-========================= */
-
-function performSearch(){
-
-  const input =
-    document.getElementById("globalSearch");
-
-  const query =
-    input.value.trim();
-
-  const results =
-    document.getElementById("searchResults");
-
-  if(!query){
-
-    results.innerHTML = `
-      <div class="card" style="padding:25px;text-align:center;color:var(--muted);">
-        Enter something to search.
-      </div>
-    `;
-
+  if(!input.value.trim()){
+    showToast("Enter a location first");
     return;
   }
 
-  results.innerHTML = `
+  localStorage.setItem("soulaaniLocation",input.value.trim());
+  showToast("Local area saved");
+}
 
-    <div class="list">
+function toggleTrack(button){
+  const playing=button.dataset.playing==="true";
 
-      <div class="list-item">
+  button.dataset.playing=String(!playing);
 
-        <div class="track-cover">◎</div>
-
-        <div class="list-item-content">
-          <strong>${escapeHTML(query)}</strong>
-          <small>Search result · Soulaani</small>
-        </div>
-
-        <span style="color:var(--gold2);">›</span>
-
-      </div>
-
-      <div class="list-item">
-
-        <div class="track-cover">✦</div>
-
-        <div class="list-item-content">
-          <strong>People & Creators</strong>
-          <small>Find people connected to your search</small>
-        </div>
-
-        <span style="color:var(--gold2);">›</span>
-
-      </div>
-
-      <div class="list-item">
-
-        <div class="track-cover">◆</div>
-
-        <div class="list-item-content">
-          <strong>Culture & Communities</strong>
-          <small>Discover related communities</small>
-        </div>
-
-        <span style="color:var(--gold2);">›</span>
-
-      </div>
-
-    </div>
-
+  button.innerHTML=`
+    <svg class="icon">
+      <use href="${playing ? "#i-play" : "#i-pause"}"></use>
+    </svg>
   `;
 
+  showToast(playing ? "Playback paused" : "Playing track");
 }
-
-
-/* =========================
-   MARKET
-========================= */
-
-document.getElementById("marketSearch")?.addEventListener(
-  "keydown",
-  function(event){
-
-    if(event.key === "Enter"){
-      showToast("Searching the Market");
-    }
-
-  }
-);
-
-
-/* =========================
-   CONNECTIONS
-========================= */
-
-function followUser(button){
-
-  if(button.textContent === "Following"){
-
-    button.textContent = "Follow";
-    showToast("Unfollowed");
-
-  }else{
-
-    button.textContent = "Following";
-    showToast("Following");
-
-  }
-
-}
-
-function joinCommunity(button){
-
-  if(button.textContent === "Joined"){
-
-    button.textContent = "Join";
-    showToast("Left community");
-
-  }else{
-
-    button.textContent = "Joined";
-    showToast("Joined community");
-
-  }
-
-}
-
-
-/* =========================
-   CHAT
-========================= */
 
 function openChat(name){
-
-  document.getElementById("chatTitle").textContent =
-    name;
+  document.getElementById("chatTitle").textContent=name;
+  document.getElementById("chatMessages").innerHTML=`
+    <div class="message ai">What's good?</div>
+  `;
 
   document.getElementById("chatModal").classList.add("open");
-
 }
 
-function sendChat(){
+function sendChat(event){
+  event.preventDefault();
 
-  const input =
-    document.getElementById("chatInput");
+  const input=document.getElementById("chatInput");
+  const text=input.value.trim();
 
-  const text =
-    input.value.trim();
+  if(!text)return;
 
-  if(!text) return;
+  const messages=document.getElementById("chatMessages");
 
-  const box =
-    document.getElementById("chatMessages");
+  const user=document.createElement("div");
+  user.className="message user";
+  user.textContent=text;
 
-  const message =
-    document.createElement("div");
+  messages.appendChild(user);
 
-  message.className = "ai-message user";
+  input.value="";
 
-  message.textContent = text;
-
-  box.appendChild(message);
-
-  input.value = "";
-
-  setTimeout(() => {
-
-    const reply =
-      document.createElement("div");
-
-    reply.className = "ai-message bot";
-
-    reply.textContent =
-      "Got you. 👊🏿";
-
-    box.appendChild(reply);
-
-    box.scrollTop = box.scrollHeight;
-
-  },400);
-
+  setTimeout(()=>{
+    const reply=document.createElement("div");
+    reply.className="message ai";
+    reply.textContent="Message received. This conversation system can be connected to a real messaging backend when Soulaani moves beyond the prototype.";
+    messages.appendChild(reply);
+  },450);
 }
 
+function performSearch(){
+  const query=document.getElementById("globalSearch").value.trim().toLowerCase();
+  const results=document.getElementById("searchResults");
 
-/* =========================
-   SECURITY
-========================= */
+  results.innerHTML="";
 
-function escapeHTML(text){
-
-  const div =
-    document.createElement("div");
-
-  div.textContent = text;
-
-  return div.innerHTML;
-
-}
-
-
-/* =========================
-   LOCAL DATA
-========================= */
-
-function loadLocalLocation(){
-
-  const location =
-    localStorage.getItem("soulaaniLocation");
-
-  if(location){
-
-    const element =
-      document.getElementById("localLocation");
-
-    if(element){
-      element.textContent = "📍 " + location;
-    }
-
+  if(!query){
+    showToast("Enter something to search");
+    return;
   }
 
+  const options=[
+    ["Connect","Find people and creators.","users","connect"],
+    ["Culture","Explore culture, food, music and stories.","fist","culture"],
+    ["Skate","Find riders, spots and skate content.","skateboard","skate"],
+    ["Market","Discover businesses and products.","store","market"],
+    ["Explore","Find local events and opportunities.","compass","explore"],
+    ["Newsfeed","Browse conversations and posts.","newspaper","newsfeed"]
+  ];
+
+  const found=options.filter(item=>
+    item[0].toLowerCase().includes(query) ||
+    item[1].toLowerCase().includes(query)
+  );
+
+  if(!found.length){
+    results.innerHTML=`
+      <div class="card info-card">
+        <div class="info-icon">
+          <svg class="icon"><use href="#i-search"></use></svg>
+        </div>
+        <h3>No results yet</h3>
+        <p>Try searching for people, culture, skate, market, explore or newsfeed.</p>
+      </div>
+    `;
+    return;
+  }
+
+  found.forEach(item=>{
+    const card=document.createElement("div");
+    card.className="card info-card";
+
+    card.innerHTML=`
+      <div class="info-icon">
+        <svg class="icon"><use href="#i-${item[2]}"></use></svg>
+      </div>
+
+      <h3>${item[0]}</h3>
+      <p>${item[1]}</p>
+
+      <button class="btn gold" style="margin-top:15px">
+        Open
+      </button>
+    `;
+
+    card.querySelector("button").onclick=()=>{
+      showView(item[3]);
+    };
+
+    results.appendChild(card);
+  });
 }
 
+function escapeHTML(value){
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
 
-/* =========================
-   CLOSE MODALS ON BACKDROP
-========================= */
+/* LOAD SAVED DATA */
+function loadSavedData(){
+  const savedLocation=localStorage.getItem("soulaaniLocation");
 
-document.querySelectorAll(".modal-overlay").forEach(overlay => {
+  if(savedLocation){
+    const locationInput=document.getElementById("locationInput");
 
-  overlay.addEventListener("click",function(event){
-
-    if(event.target === overlay){
-
-      overlay.classList.remove("open");
-
+    if(locationInput){
+      locationInput.value=savedLocation;
     }
+  }
 
-  });
+  updateProfile();
+  renderFeeds();
+}
 
+loadSavedData();
+
+/* ESCAPE KEY */
+document.addEventListener("keydown",event=>{
+  if(event.key==="Escape"){
+    closeDrawer();
+    document.querySelectorAll(".modal-overlay").forEach(modal=>{
+      modal.classList.remove("open");
+    });
+  }
 });
 
+/* SWIPE FROM LEFT TO OPEN DRAWER */
+let touchStartX=0;
 
-/* =========================
-   START APP
-========================= */
+document.addEventListener("touchstart",event=>{
+  touchStartX=event.touches[0].clientX;
+},{passive:true});
 
-document.addEventListener("DOMContentLoaded",function(){
+document.addEventListener("touchend",event=>{
+  const endX=event.changedTouches[0].clientX;
 
-  loadProfile();
+  if(touchStartX<35 && endX-touchStartX>75){
+    openDrawer();
+  }
 
-  loadLocalLocation();
-
-});
-
+  if(endX<touchStartX-100){
+    closeDrawer();
+  }
+},{passive:true});
 </script>
 
 </body>
