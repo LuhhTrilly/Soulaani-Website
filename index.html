@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <meta name="theme-color" content="#070707">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
 <title>Soulaani | The Culture. The People. The Platform.</title>
 
 <style>
@@ -18,21 +17,17 @@
 
 :root{
   --black:#070707;
-  --black2:#0b0b0b;
-  --card:#111111;
-  --card2:#171717;
-  --line:rgba(255,255,255,.09);
+  --black2:#0d0d0d;
+  --card:#141414;
+  --card2:#1a1a1a;
   --gold:#d6a84f;
   --gold2:#f0c76a;
-  --text:#f7f3ea;
-  --muted:#a8a39a;
-
-  --profile-accent:#d6a84f;
-  --profile-bg:#070707;
-  --profile-card:#111111;
-  --profile-text:#f7f3ea;
-  --profile-overlay:rgba(0,0,0,.28);
-  --avatar-radius:50%;
+  --white:#f7f7f7;
+  --muted:#a7a7a7;
+  --line:rgba(255,255,255,.09);
+  --danger:#ff5c6c;
+  --green:#55d98b;
+  --shadow:0 20px 60px rgba(0,0,0,.45);
 }
 
 html{
@@ -41,9 +36,11 @@ html{
 }
 
 body{
-  background:var(--black);
-  color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:
+    radial-gradient(circle at top right,rgba(214,168,79,.08),transparent 28%),
+    var(--black);
+  color:var(--white);
   min-height:100vh;
   overflow-x:hidden;
 }
@@ -56,6 +53,7 @@ select{
 }
 
 button{
+  border:0;
   cursor:pointer;
 }
 
@@ -64,54 +62,22 @@ video{
   max-width:100%;
 }
 
-.hidden{
-  display:none!important;
+a{
+  color:inherit;
+  text-decoration:none;
 }
 
-/* =========================================================
-   GLOBAL
-========================================================= */
+/* =========================
+   APP
+========================= */
 
 .app{
   min-height:100vh;
-  background:
-    radial-gradient(circle at 80% -10%,rgba(214,168,79,.10),transparent 28%),
-    var(--black);
+  padding-bottom:88px;
 }
 
-.container{
-  width:min(1180px,calc(100% - 30px));
-  margin:auto;
-}
-
-.section{
-  display:none;
-  min-height:100vh;
-  padding:92px 0 120px;
-}
-
-.section.active{
-  display:block;
-}
-
-.section-title{
-  font-size:clamp(28px,4vw,44px);
-  font-weight:900;
-  letter-spacing:-1.5px;
-}
-
-.section-subtitle{
-  color:var(--muted);
-  line-height:1.6;
-  margin-top:8px;
-  max-width:700px;
-}
-
-.card{
-  background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.018));
-  border:1px solid var(--line);
-  border-radius:22px;
-  overflow:hidden;
+.hidden{
+  display:none!important;
 }
 
 .gold{
@@ -122,251 +88,155 @@ video{
   color:var(--muted);
 }
 
-.btn{
-  border:1px solid var(--line);
-  background:#171717;
-  color:var(--text);
-  padding:11px 16px;
-  border-radius:12px;
-  font-weight:800;
-  transition:.2s ease;
+.container{
+  width:min(1180px,calc(100% - 30px));
+  margin:auto;
 }
 
-.btn:hover{
-  transform:translateY(-1px);
-  border-color:rgba(214,168,79,.5);
-}
-
-.gold-btn{
-  background:linear-gradient(135deg,var(--gold),var(--gold2));
-  color:#080808;
-  border:0;
-}
-
-.icon-btn{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  background:#111;
-  color:var(--text);
-  border:1px solid var(--line);
-  display:grid;
-  place-items:center;
-}
-
-svg{
-  display:block;
-}
-
-/* =========================================================
+/* =========================
    HEADER
-========================================================= */
+========================= */
 
 .topbar{
-  position:fixed;
-  z-index:1000;
+  position:sticky;
   top:0;
-  left:0;
-  right:0;
-  height:70px;
-  background:rgba(7,7,7,.9);
-  backdrop-filter:blur(22px);
-  border-bottom:1px solid var(--line);
-}
-
-.topbar-inner{
-  width:min(1180px,calc(100% - 24px));
-  height:100%;
-  margin:auto;
+  z-index:1000;
+  height:68px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:12px;
+  padding:0 18px;
+  background:rgba(7,7,7,.9);
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+  border-bottom:1px solid var(--line);
 }
 
 .brand{
   display:flex;
   align-items:center;
   gap:10px;
-  cursor:pointer;
+  font-weight:900;
+  letter-spacing:.8px;
+  font-size:20px;
 }
 
 .brand-mark{
-  width:39px;
-  height:39px;
-  border-radius:12px;
+  width:34px;
+  height:34px;
+  border-radius:11px;
   display:grid;
   place-items:center;
-  background:linear-gradient(145deg,#f1c86c,#a97625);
+  background:linear-gradient(135deg,var(--gold2),var(--gold));
   color:#080808;
-  font-weight:950;
+  font-weight:1000;
+  box-shadow:0 8px 30px rgba(214,168,79,.2);
 }
 
-.brand-name{
-  font-size:22px;
-  font-weight:950;
-}
-
-.top-actions{
+.header-actions{
   display:flex;
   align-items:center;
   gap:8px;
 }
 
-.search-box{
-  width:230px;
+.icon-btn{
+  width:42px;
   height:42px;
-  background:#111;
-  border:1px solid var(--line);
-  border-radius:14px;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  padding:0 12px;
-}
-
-.search-box input{
-  width:100%;
-  border:0;
-  outline:0;
-  background:transparent;
-  color:white;
-}
-
-.search-box svg{
-  width:18px;
-  color:#8d887f;
-}
-
-.profile-mini{
-  width:40px;
-  height:40px;
   border-radius:50%;
-  overflow:hidden;
-  border:2px solid var(--gold);
-  cursor:pointer;
-  background:#222;
+  background:rgba(255,255,255,.07);
+  color:white;
+  display:grid;
+  place-items:center;
+  transition:.2s ease;
 }
 
-.profile-mini img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+.icon-btn:hover{
+  background:rgba(214,168,79,.18);
+  color:var(--gold2);
 }
 
-/* =========================================================
-   DRAWER
-========================================================= */
+.icon{
+  width:21px;
+  height:21px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
 
-.drawer-backdrop{
-  position:fixed;
-  inset:0;
-  z-index:2000;
-  background:rgba(0,0,0,.7);
+/* =========================
+   SECTIONS
+========================= */
+
+.page{
   display:none;
+  animation:pageIn .25s ease;
 }
 
-.drawer-backdrop.open{
+.page.active{
   display:block;
 }
 
-.drawer{
-  position:fixed;
-  z-index:2001;
-  left:0;
-  top:0;
-  bottom:0;
-  width:min(360px,88vw);
-  padding:24px;
-  background:#0b0b0b;
-  border-right:1px solid var(--line);
-  transform:translateX(-105%);
-  transition:.3s ease;
-  overflow-y:auto;
+@keyframes pageIn{
+  from{
+    opacity:0;
+    transform:translateY(8px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
 }
 
-.drawer.open{
-  transform:translateX(0);
+.page-head{
+  padding:34px 0 22px;
 }
 
-.drawer-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:28px;
+.page-head h1{
+  font-size:clamp(28px,5vw,48px);
+  line-height:1;
+  letter-spacing:-1.5px;
 }
 
-.drawer-title{
-  font-size:25px;
-  font-weight:950;
+.page-head p{
+  margin-top:10px;
+  color:var(--muted);
 }
 
-.drawer-nav{
-  display:grid;
-  gap:7px;
-}
-
-.drawer-item{
-  width:100%;
-  border:1px solid transparent;
-  background:transparent;
-  color:white;
-  padding:14px;
-  border-radius:14px;
-  text-align:left;
-  display:flex;
-  align-items:center;
-  gap:13px;
-}
-
-.drawer-item:hover{
-  background:#151515;
-  border-color:var(--line);
-}
-
-.drawer-item svg{
-  width:21px;
-  color:var(--gold2);
-}
-
-/* =========================================================
+/* =========================
    HOME
-========================================================= */
+========================= */
 
 .hero{
-  min-height:430px;
-  border-radius:28px;
-  padding:38px;
+  min-height:440px;
   display:flex;
   align-items:flex-end;
-  border:1px solid var(--line);
+  padding:50px 0;
+  position:relative;
+  overflow:hidden;
   background:
-    linear-gradient(0deg,rgba(0,0,0,.9),rgba(0,0,0,.1)),
-    radial-gradient(circle at 80% 20%,rgba(214,168,79,.2),transparent 30%),
-    #111;
+    linear-gradient(180deg,transparent 20%,rgba(0,0,0,.9)),
+    radial-gradient(circle at 75% 25%,rgba(214,168,79,.18),transparent 28%);
 }
 
 .hero-content{
+  position:relative;
+  z-index:2;
   max-width:720px;
 }
 
-.hero-kicker{
-  color:var(--gold2);
-  text-transform:uppercase;
-  letter-spacing:2px;
-  font-size:12px;
-  font-weight:900;
-}
-
 .hero h1{
-  font-size:clamp(42px,7vw,78px);
-  line-height:.95;
+  font-size:clamp(44px,9vw,90px);
+  line-height:.9;
   letter-spacing:-4px;
-  margin:12px 0 18px;
 }
 
 .hero p{
-  color:#c4c0b7;
+  max-width:620px;
+  color:#c8c8c8;
+  margin:22px 0;
+  font-size:17px;
   line-height:1.65;
 }
 
@@ -374,179 +244,210 @@ svg{
   display:flex;
   flex-wrap:wrap;
   gap:10px;
-  margin-top:24px;
 }
 
-.story-row{
+.primary{
+  background:linear-gradient(135deg,var(--gold2),var(--gold));
+  color:#090909;
+  padding:13px 20px;
+  border-radius:14px;
+  font-weight:850;
+}
+
+.secondary{
+  background:rgba(255,255,255,.08);
+  color:white;
+  padding:13px 20px;
+  border-radius:14px;
+  font-weight:750;
+  border:1px solid var(--line);
+}
+
+.stories{
   display:flex;
   gap:14px;
-  padding:22px 2px;
   overflow-x:auto;
+  padding:20px 0;
   scrollbar-width:none;
 }
 
-.story-row::-webkit-scrollbar{
+.stories::-webkit-scrollbar{
   display:none;
 }
 
 .story{
-  flex:0 0 90px;
+  min-width:78px;
   text-align:center;
-}
-
-.story-ring{
-  width:70px;
-  height:70px;
-  padding:3px;
-  margin:auto auto 8px;
-  border-radius:50%;
-  background:linear-gradient(135deg,var(--gold2),#704714);
-}
-
-.story-inner{
-  width:100%;
-  height:100%;
-  border-radius:50%;
-  background:#181818;
-  display:grid;
-  place-items:center;
-  overflow:hidden;
-}
-
-.story-inner img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.story span{
-  color:#aaa59c;
+  color:#ddd;
   font-size:12px;
 }
 
-.composer{
-  padding:16px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin-bottom:20px;
-  cursor:pointer;
+.story-ring{
+  width:68px;
+  height:68px;
+  margin:auto auto 7px;
+  padding:2px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--gold2),#fff,var(--gold));
 }
 
-.composer-avatar{
-  width:45px;
-  height:45px;
+.story-ring-inner{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  background:#191919;
+  display:grid;
+  place-items:center;
+  font-size:22px;
+}
+
+.card{
+  background:linear-gradient(180deg,#161616,#101010);
+  border:1px solid var(--line);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+}
+
+.composer{
+  padding:18px;
+  display:flex;
+  gap:13px;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.avatar{
+  width:48px;
+  height:48px;
+  flex:0 0 48px;
   border-radius:50%;
   overflow:hidden;
-  background:#222;
-  flex:0 0 auto;
+  background:linear-gradient(135deg,#2b2b2b,#111);
+  display:grid;
+  place-items:center;
+  font-weight:900;
+  color:var(--gold2);
 }
 
-.composer-avatar img{
+.avatar img{
   width:100%;
   height:100%;
   object-fit:cover;
 }
 
-.composer-input{
+.composer-box{
   flex:1;
-  border:1px solid var(--line);
-  background:#191919;
-  color:#aaa59c;
-  padding:13px 16px;
-  border-radius:999px;
-  text-align:left;
-}
-
-.feed-grid{
-  display:grid;
-  grid-template-columns:1.7fr 1fr;
-  gap:20px;
-}
-
-.feed{
-  display:grid;
-  gap:18px;
+  min-height:46px;
+  border-radius:15px;
+  background:#202020;
+  display:flex;
+  align-items:center;
+  padding:0 16px;
+  color:#999;
+  cursor:pointer;
 }
 
 .post{
-  padding:18px;
+  padding:20px;
+  margin-bottom:18px;
 }
 
 .post-head{
   display:flex;
+  gap:12px;
   align-items:center;
-  gap:11px;
 }
 
-.post-avatar{
-  width:44px;
-  height:44px;
-  border-radius:50%;
-  overflow:hidden;
-  background:#222;
-  cursor:pointer;
-}
-
-.post-avatar img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.post-meta{
+.post-info{
   flex:1;
 }
 
-.post-name{
-  font-weight:850;
-  cursor:pointer;
+.post-info strong{
+  display:block;
 }
 
-.post-time{
+.post-info span{
+  color:#888;
   font-size:12px;
-  color:#858077;
-  margin-top:3px;
 }
 
-.post-body{
-  margin-top:15px;
-  color:#ddd8cf;
-  line-height:1.65;
+.post-text{
+  margin:16px 0;
+  color:#ddd;
+  line-height:1.6;
+}
+
+.post-media{
+  width:100%;
+  aspect-ratio:16/10;
+  object-fit:cover;
+  border-radius:17px;
+  background:#202020;
 }
 
 .post-actions{
   display:flex;
-  margin-top:12px;
-  padding-top:10px;
+  justify-content:space-between;
+  gap:8px;
+  margin-top:14px;
+  padding-top:12px;
   border-top:1px solid var(--line);
 }
 
 .post-action{
   flex:1;
-  border:0;
+  padding:10px;
   background:transparent;
-  color:#9b968e;
-  padding:10px 6px;
-  border-radius:10px;
-  font-weight:750;
+  color:#aaa;
+  border-radius:12px;
 }
 
 .post-action:hover{
+  background:rgba(255,255,255,.06);
   color:var(--gold2);
-  background:#191919;
 }
 
-/* =========================================================
+/* =========================
+   QUICK LINKS
+========================= */
+
+.quick-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  margin-bottom:25px;
+}
+
+.quick{
+  min-height:130px;
+  padding:18px;
+  border-radius:20px;
+  background:linear-gradient(145deg,#171717,#0d0d0d);
+  border:1px solid var(--line);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.quick-icon{
+  font-size:26px;
+  color:var(--gold2);
+}
+
+.quick strong{
+  font-size:15px;
+}
+
+/* =========================
    NEWSFEED
-========================================================= */
+========================= */
 
 .tabs{
   display:flex;
   gap:8px;
   overflow-x:auto;
-  padding:20px 0;
   scrollbar-width:none;
+  margin-bottom:20px;
 }
 
 .tabs::-webkit-scrollbar{
@@ -555,437 +456,480 @@ svg{
 
 .tab{
   white-space:nowrap;
+  background:#171717;
   border:1px solid var(--line);
-  background:#111;
-  color:#aaa59c;
-  border-radius:999px;
+  color:#aaa;
   padding:10px 15px;
+  border-radius:999px;
 }
 
 .tab.active{
-  color:#080808;
-  background:var(--gold);
-  border-color:var(--gold);
-  font-weight:850;
+  color:#090909;
+  background:var(--gold2);
+  border-color:var(--gold2);
+  font-weight:800;
 }
 
-.news-layout{
-  display:grid;
-  grid-template-columns:1fr 320px;
-  gap:20px;
-}
-
-/* =========================================================
+/* =========================
    SKATE
-========================================================= */
+========================= */
 
 .skate-hero{
-  min-height:290px;
-  padding:30px;
-  border-radius:24px;
-  border:1px solid var(--line);
+  padding:25px;
+  border-radius:25px;
+  min-height:270px;
   display:flex;
   align-items:flex-end;
   background:
-    linear-gradient(110deg,rgba(0,0,0,.9),rgba(0,0,0,.25)),
-    repeating-linear-gradient(135deg,#111 0,#111 8px,#161616 8px,#161616 16px);
+    linear-gradient(180deg,transparent,rgba(0,0,0,.9)),
+    radial-gradient(circle at 70% 20%,rgba(214,168,79,.22),transparent 35%),
+    #111;
+  border:1px solid var(--line);
+  margin-bottom:22px;
 }
 
-.skate-icon-large{
-  width:65px;
-  height:65px;
-  border-radius:18px;
-  display:grid;
-  place-items:center;
-  background:var(--gold);
-  color:#080808;
-  margin-bottom:18px;
+.skate-symbol{
+  font-size:58px;
+  margin-bottom:10px;
 }
 
-.skate-icon-large svg{
-  width:38px;
-  height:38px;
-}
-
-.content-grid{
+.skate-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:16px;
-  margin-top:20px;
-}
-
-.media-card{
-  min-height:240px;
-}
-
-.media-placeholder{
-  min-height:190px;
-  display:grid;
-  place-items:center;
-  background:
-    radial-gradient(circle at 50% 30%,rgba(214,168,79,.18),transparent 35%),
-    #151515;
-}
-
-.media-info{
-  padding:15px;
-}
-
-.media-info h3{
-  margin-bottom:5px;
-}
-
-.media-info p{
-  color:#99948b;
-  font-size:13px;
-}
-
-/* =========================================================
-   REELS
-========================================================= */
-
-.reels-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
   gap:15px;
 }
 
-.reel{
-  min-height:500px;
-  overflow:hidden;
+.skate-card{
+  min-height:210px;
   border-radius:20px;
+  overflow:hidden;
+  position:relative;
   border:1px solid var(--line);
-  background:#101010;
+  background:#161616;
 }
 
-.reel-visual{
-  height:380px;
+.skate-card-image{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg,transparent,rgba(0,0,0,.9)),
+    linear-gradient(135deg,#252525,#0c0c0c);
+}
+
+.skate-card-content{
+  position:absolute;
+  bottom:0;
+  padding:17px;
+}
+
+/* =========================
+   REELS TIKTOK STYLE
+========================= */
+
+#reelsPage{
+  position:fixed;
+  inset:0;
+  z-index:900;
+  background:#000;
+  padding-bottom:76px;
+}
+
+#reelsPage.active{
+  display:block;
+}
+
+.reels-shell{
+  height:100%;
+  position:relative;
+}
+
+.reels-top{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  z-index:20;
+  padding:18px 18px 30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  pointer-events:none;
+  background:linear-gradient(180deg,rgba(0,0,0,.65),transparent);
+}
+
+.reels-title{
+  font-size:20px;
+  font-weight:900;
+}
+
+.reels-filter{
+  pointer-events:auto;
+  padding:8px 13px;
+  border-radius:999px;
+  background:rgba(0,0,0,.5);
+  border:1px solid rgba(255,255,255,.15);
+  color:white;
+}
+
+.reels-feed{
+  height:100%;
+  overflow-y:auto;
+  scroll-snap-type:y mandatory;
+  overscroll-behavior-y:contain;
+  scrollbar-width:none;
+  background:#000;
+}
+
+.reels-feed::-webkit-scrollbar{
+  display:none;
+}
+
+.reel{
+  height:100%;
+  min-height:100%;
+  scroll-snap-align:start;
+  scroll-snap-stop:always;
+  position:relative;
+  background:#080808;
+  overflow:hidden;
+}
+
+.reel-video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  background:#111;
+}
+
+.reel-placeholder{
+  position:absolute;
+  inset:0;
   display:grid;
   place-items:center;
   background:
-    linear-gradient(180deg,transparent 55%,rgba(0,0,0,.9)),
-    radial-gradient(circle at 50% 30%,rgba(214,168,79,.25),transparent 35%),
-    #151515;
+    radial-gradient(circle at 50% 30%,rgba(214,168,79,.2),transparent 25%),
+    linear-gradient(145deg,#222,#050505);
+  color:#777;
+  font-size:70px;
 }
 
-.reel-play{
-  width:60px;
-  height:60px;
+.reel-shade{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.25),transparent 28%),
+    linear-gradient(0deg,rgba(0,0,0,.82),transparent 48%);
+}
+
+.reel-info{
+  position:absolute;
+  z-index:5;
+  left:18px;
+  right:85px;
+  bottom:25px;
+}
+
+.reel-user{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.reel-avatar{
+  width:42px;
+  height:42px;
   border-radius:50%;
-  display:grid;
-  place-items:center;
-  background:rgba(255,255,255,.12);
-  border:1px solid rgba(255,255,255,.18);
+  overflow:hidden;
+  background:#222;
+  border:1px solid rgba(255,255,255,.2);
 }
 
-.reel-play svg{
-  width:25px;
+.reel-avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.reel-user strong{
+  font-size:15px;
+}
+
+.follow-mini{
+  padding:6px 10px;
+  border:1px solid rgba(255,255,255,.35);
+  background:rgba(0,0,0,.35);
+  color:white;
+  border-radius:9px;
+  font-size:12px;
 }
 
 .reel-caption{
-  padding:15px;
+  line-height:1.45;
+  font-size:15px;
+  margin-bottom:10px;
 }
 
-.reel-caption p{
-  color:#99948b;
-  font-size:13px;
-  line-height:1.5;
-  margin-top:5px;
-}
-
-/* =========================================================
-   CULTURE
-========================================================= */
-
-.culture-feature{
-  display:grid;
-  grid-template-columns:1.4fr 1fr;
-  gap:18px;
-}
-
-.culture-big{
-  min-height:370px;
-  padding:28px;
-  border-radius:24px;
-  border:1px solid var(--line);
-  overflow:hidden;
+.reel-music{
   display:flex;
-  align-items:flex-end;
-  background:
-    linear-gradient(0deg,rgba(0,0,0,.92),transparent),
-    #151515;
+  align-items:center;
+  gap:7px;
+  font-size:13px;
+  color:#ddd;
 }
 
-.soul-plate{
-  width:min(430px,90%);
-  aspect-ratio:1.45;
-  margin:0 auto 20px;
+.reel-actions{
+  position:absolute;
+  z-index:8;
+  right:14px;
+  bottom:24px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:17px;
+}
+
+.reel-action{
+  color:white;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+  background:transparent;
+  text-shadow:0 2px 8px #000;
+}
+
+.reel-action .action-icon{
+  width:47px;
+  height:47px;
   border-radius:50%;
-  background:
-    radial-gradient(ellipse at center,#8c512a 0 11%,transparent 12%),
-    radial-gradient(ellipse at 35% 45%,#7b4b2a 0 13%,transparent 14%),
-    radial-gradient(ellipse at 68% 55%,#d7a85c 0 14%,transparent 15%),
-    radial-gradient(ellipse at 55% 35%,#507338 0 11%,transparent 12%),
-    radial-gradient(ellipse at 25% 65%,#b58a48 0 10%,transparent 11%),
-    #eee4c9;
-  border:15px solid #302d29;
-  box-shadow:0 20px 45px rgba(0,0,0,.4);
+  background:rgba(0,0,0,.38);
+  backdrop-filter:blur(8px);
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(255,255,255,.12);
 }
 
-.culture-side{
+.reel-action span{
+  font-size:11px;
+  font-weight:700;
+}
+
+.reel-like.active{
+  color:#ff6680;
+}
+
+.reel-mute{
+  position:absolute;
+  right:15px;
+  top:75px;
+  z-index:15;
+}
+
+.reel-progress{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:3px;
+  background:rgba(255,255,255,.12);
+  z-index:30;
+}
+
+.reel-progress span{
+  display:block;
+  height:100%;
+  width:0;
+  background:var(--gold2);
+}
+
+/* =========================
+   CULTURE
+========================= */
+
+.culture-grid{
   display:grid;
+  grid-template-columns:repeat(3,1fr);
   gap:15px;
 }
 
 .culture-card{
-  padding:22px;
+  min-height:260px;
+  border-radius:22px;
+  overflow:hidden;
+  position:relative;
+  background:#151515;
+  border:1px solid var(--line);
 }
 
-.culture-card-icon{
-  width:48px;
-  height:48px;
-  border-radius:14px;
-  background:rgba(214,168,79,.12);
-  color:var(--gold2);
-  display:grid;
-  place-items:center;
-  margin-bottom:15px;
+.culture-image{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg,transparent 30%,rgba(0,0,0,.95)),
+    radial-gradient(circle at 50% 30%,rgba(214,168,79,.18),transparent 35%),
+    #222;
 }
 
-.culture-card p{
-  color:#99948b;
-  line-height:1.55;
-  margin-top:7px;
+.culture-content{
+  position:absolute;
+  bottom:0;
+  padding:18px;
 }
 
-/* =========================================================
+.culture-tag{
+  display:inline-block;
+  color:#111;
+  background:var(--gold2);
+  padding:5px 9px;
+  border-radius:999px;
+  font-size:10px;
+  font-weight:900;
+  margin-bottom:8px;
+}
+
+/* =========================
    AI
-========================================================= */
+========================= */
 
-.ai-shell{
+.ai-wrap{
   max-width:850px;
   margin:auto;
 }
 
-.ai-header{
-  padding:25px;
-  border-radius:24px 24px 0 0;
-  border:1px solid rgba(214,168,79,.2);
-  background:linear-gradient(145deg,#17120a,#111);
-}
-
-.ai-badge{
-  width:50px;
-  height:50px;
-  border-radius:15px;
-  display:grid;
-  place-items:center;
-  background:var(--gold);
-  color:#080808;
-  margin-bottom:15px;
-}
-
-.ai-chat{
-  min-height:430px;
-  padding:20px;
+.ai-card{
+  min-height:650px;
   display:flex;
   flex-direction:column;
+  overflow:hidden;
+}
+
+.ai-head{
+  padding:18px;
+  display:flex;
+  align-items:center;
   gap:12px;
-  background:#0e0e0e;
-  border:1px solid var(--line);
-  border-top:0;
+  border-bottom:1px solid var(--line);
+}
+
+.ai-orb{
+  width:45px;
+  height:45px;
+  border-radius:15px;
+  background:linear-gradient(135deg,var(--gold2),#fff0bd,var(--gold));
+  display:grid;
+  place-items:center;
+  color:#090909;
+  font-weight:1000;
+}
+
+.ai-messages{
+  flex:1;
+  padding:20px;
+  overflow:auto;
 }
 
 .ai-message{
   max-width:78%;
   padding:13px 15px;
   border-radius:17px;
-  line-height:1.55;
+  margin-bottom:12px;
+  line-height:1.5;
 }
 
 .ai-message.bot{
-  align-self:flex-start;
-  background:#181818;
+  background:#1b1b1b;
+  border:1px solid var(--line);
 }
 
 .ai-message.user{
-  align-self:flex-end;
-  background:var(--gold);
-  color:#080808;
+  margin-left:auto;
+  background:var(--gold2);
+  color:#090909;
 }
 
 .ai-input{
+  padding:14px;
+  border-top:1px solid var(--line);
   display:flex;
   gap:8px;
-  margin-top:12px;
 }
 
 .ai-input input{
   flex:1;
-  background:#151515;
+  min-width:0;
+  border:0;
+  outline:0;
+  background:#202020;
   color:white;
-  border:1px solid var(--line);
   border-radius:14px;
   padding:13px;
-  outline:none;
 }
 
-/* =========================================================
-   CONNECT
-========================================================= */
+/* =========================
+   PROFILE SYSTEM
+========================= */
 
-.people-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
-  margin-top:25px;
+.profile-page{
+  padding-bottom:30px;
 }
 
-.person-card{
+.profile-cover{
+  height:310px;
+  border-radius:0 0 28px 28px;
   overflow:hidden;
-  cursor:pointer;
-  transition:.2s ease;
-}
-
-.person-card:hover{
-  transform:translateY(-3px);
-  border-color:rgba(214,168,79,.4);
-}
-
-.person-cover{
-  height:105px;
-  background:
-    radial-gradient(circle at 75% 20%,rgba(214,168,79,.4),transparent 35%),
-    #181818;
-}
-
-.person-body{
-  padding:0 17px 18px;
   position:relative;
+  background:
+    linear-gradient(180deg,transparent 30%,rgba(0,0,0,.8)),
+    radial-gradient(circle at 65% 25%,rgba(214,168,79,.28),transparent 32%),
+    #171717;
 }
 
-.person-avatar{
-  width:78px;
-  height:78px;
-  margin-top:-39px;
-  border:4px solid #111;
-  border-radius:50%;
-  overflow:hidden;
-  background:#222;
-}
-
-.person-avatar img{
+.profile-cover img,
+.profile-cover video{
   width:100%;
   height:100%;
   object-fit:cover;
 }
 
-.person-name{
-  margin-top:10px;
-  font-size:18px;
-  font-weight:900;
+.profile-cover-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.82));
 }
 
-.person-username{
-  color:var(--gold2);
-  font-size:13px;
-  margin-top:2px;
-}
-
-.person-bio{
-  color:#99948b;
-  font-size:13px;
-  line-height:1.5;
-  margin-top:8px;
-}
-
-.person-actions{
-  display:flex;
-  gap:7px;
-  margin-top:13px;
-}
-
-.person-actions .btn{
-  flex:1;
-  padding:9px;
-}
-
-/* =========================================================
-   PROFILE
-========================================================= */
-
-.profile-section{
-  background:var(--profile-bg);
-}
-
-.profile-shell{
-  max-width:1050px;
-  margin:auto;
-}
-
-.profile-cover{
-  height:350px;
-  position:relative;
-  overflow:hidden;
-  border:1px solid var(--line);
-  border-radius:26px 26px 0 0;
-  background:
-    linear-gradient(0deg,rgba(0,0,0,.35),transparent),
-    radial-gradient(circle at 75% 25%,rgba(214,168,79,.3),transparent 35%),
-    linear-gradient(135deg,#1c1c1c,#090909);
-  background-size:cover;
-  background-position:center;
-}
-
-.cover-live-badge{
+.profile-cover-actions{
   position:absolute;
   top:18px;
-  left:18px;
-  z-index:3;
-  padding:7px 10px;
-  border-radius:999px;
-  background:rgba(0,0,0,.55);
-  border:1px solid rgba(255,255,255,.16);
-  font-size:10px;
-  font-weight:900;
-  backdrop-filter:blur(10px);
-}
-
-.cover-actions{
-  position:absolute;
   right:18px;
-  bottom:18px;
-  z-index:3;
   display:flex;
   gap:8px;
 }
 
 .profile-main{
+  width:min(1050px,calc(100% - 30px));
+  margin:-65px auto 0;
   position:relative;
-  padding:0 28px 28px;
-  color:var(--profile-text);
-  background:var(--profile-card);
-  border:1px solid var(--line);
-  border-top:0;
-  border-radius:0 0 26px 26px;
-}
-
-.profile-avatar-wrap{
-  position:relative;
-  width:150px;
-  height:150px;
-  margin-top:-75px;
   z-index:5;
 }
 
+.profile-identity{
+  display:flex;
+  align-items:flex-end;
+  gap:18px;
+}
+
 .profile-avatar{
-  width:150px;
-  height:150px;
-  border-radius:var(--avatar-radius);
-  border:6px solid var(--profile-card);
-  background:#202020;
+  width:145px;
+  height:145px;
+  border-radius:50%;
+  border:5px solid var(--black);
+  background:#181818;
   overflow:hidden;
-  box-shadow:0 15px 35px rgba(0,0,0,.45);
+  flex:0 0 145px;
 }
 
 .profile-avatar img,
@@ -995,91 +939,53 @@ svg{
   object-fit:cover;
 }
 
-.live-indicator{
-  position:absolute;
-  right:4px;
-  bottom:5px;
-  width:31px;
-  height:31px;
-  border-radius:50%;
-  background:var(--profile-accent);
-  color:#080808;
-  border:4px solid var(--profile-card);
-  display:none;
-  place-items:center;
-  font-size:9px;
-  font-weight:950;
+.profile-details{
+  padding-bottom:12px;
+  flex:1;
 }
 
-.profile-top{
-  display:flex;
-  align-items:flex-end;
-  justify-content:space-between;
-  gap:20px;
-}
-
-.profile-info{
-  padding-top:12px;
-}
-
-.profile-name-row{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  flex-wrap:wrap;
-}
-
-.profile-name{
+.profile-details h1{
   font-size:32px;
-  font-weight:950;
-  letter-spacing:-1px;
+  line-height:1;
 }
 
-.verified{
-  width:20px;
-  height:20px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  background:var(--profile-accent);
-  color:#080808;
-  font-size:11px;
-  font-weight:950;
-}
-
-.profile-username{
-  color:var(--profile-accent);
-  font-weight:750;
-  margin-top:3px;
+.profile-details .handle{
+  color:#999;
+  margin-top:6px;
 }
 
 .profile-bio{
-  max-width:680px;
-  color:#c2bdb4;
-  line-height:1.6;
-  margin-top:12px;
+  color:#ccc;
+  margin-top:9px;
+  line-height:1.5;
 }
 
 .profile-location{
-  color:#969188;
-  font-size:14px;
-  margin-top:8px;
+  color:#999;
+  font-size:13px;
+  margin-top:7px;
 }
 
-.profile-actions{
+.profile-buttons{
   display:flex;
+  flex-wrap:wrap;
   gap:8px;
-  flex-wrap:wrap;
+  padding-bottom:12px;
 }
 
-.profile-stats{
-  display:flex;
-  flex-wrap:wrap;
-  gap:28px;
-  margin:25px 0;
-  padding:18px 0;
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
+.profile-stat-row{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin:22px 0;
+}
+
+.profile-stat{
+  padding:17px;
+  background:var(--profile-card,#141414);
+  border:1px solid var(--line);
+  border-radius:18px;
+  text-align:center;
 }
 
 .profile-stat strong{
@@ -1088,17 +994,16 @@ svg{
 }
 
 .profile-stat span{
-  color:#979289;
-  display:block;
-  font-size:13px;
-  margin-top:3px;
+  color:#999;
+  font-size:12px;
 }
 
 .profile-tabs{
   display:flex;
-  gap:4px;
   overflow-x:auto;
+  gap:4px;
   border-bottom:1px solid var(--line);
+  margin-bottom:20px;
   scrollbar-width:none;
 }
 
@@ -1107,22 +1012,16 @@ svg{
 }
 
 .profile-tab{
-  padding:15px 17px;
   white-space:nowrap;
+  padding:14px 18px;
+  color:#999;
   background:transparent;
-  border:0;
-  color:#969188;
   border-bottom:2px solid transparent;
-  font-weight:750;
 }
 
 .profile-tab.active{
-  color:var(--profile-accent);
-  border-bottom-color:var(--profile-accent);
-}
-
-.profile-tab-content{
-  padding-top:22px;
+  color:var(--gold2);
+  border-bottom-color:var(--gold2);
 }
 
 .profile-content-panel{
@@ -1135,31 +1034,33 @@ svg{
 
 .profile-post-grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:16px;
-}
-
-.profile-post-card{
-  padding:18px;
-}
-
-.profile-photo-grid{
-  display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:8px;
 }
 
-.profile-photo{
+.profile-tile{
   aspect-ratio:1;
-  border-radius:15px;
+  background:#171717;
+  border-radius:13px;
   overflow:hidden;
-  background:#181818;
+  position:relative;
 }
 
-.profile-photo img{
+.profile-tile img,
+.profile-tile video{
   width:100%;
   height:100%;
   object-fit:cover;
+}
+
+.profile-tile-label{
+  position:absolute;
+  left:9px;
+  bottom:9px;
+  padding:5px 8px;
+  background:rgba(0,0,0,.7);
+  border-radius:7px;
+  font-size:10px;
 }
 
 .about-grid{
@@ -1168,23 +1069,23 @@ svg{
   gap:15px;
 }
 
-.about-item{
-  padding:18px;
+.about-box{
+  padding:20px;
+  background:var(--profile-card,#141414);
   border:1px solid var(--line);
-  background:#151515;
-  border-radius:16px;
+  border-radius:19px;
 }
 
-.about-label{
-  color:#8e8981;
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:1px;
-  margin-bottom:7px;
+.about-box h3{
+  margin-bottom:10px;
 }
 
-.about-value{
-  line-height:1.5;
+.about-row{
+  display:flex;
+  justify-content:space-between;
+  padding:11px 0;
+  border-bottom:1px solid var(--line);
+  color:#bbb;
 }
 
 .playlist{
@@ -1192,87 +1093,259 @@ svg{
   gap:10px;
 }
 
-.track{
+.song{
   display:flex;
   align-items:center;
-  gap:13px;
+  gap:12px;
   padding:13px;
-  border:1px solid var(--line);
   border-radius:15px;
-  background:#151515;
+  background:var(--profile-card,#141414);
+  border:1px solid var(--line);
 }
 
-.track-number{
-  width:32px;
-  height:32px;
+.song-art{
+  width:48px;
+  height:48px;
   border-radius:10px;
+  background:linear-gradient(135deg,var(--gold),#292929);
   display:grid;
   place-items:center;
-  color:var(--profile-accent);
-  background:rgba(214,168,79,.12);
-  font-weight:900;
 }
 
-.track-info{
+.song-info{
   flex:1;
 }
 
-.track-info strong{
+.song-info strong{
   display:block;
 }
 
-.track-info span{
-  color:#8f8a82;
-  display:block;
+.song-info span{
+  color:#888;
   font-size:12px;
-  margin-top:3px;
 }
 
-.track-play{
-  width:38px;
-  height:38px;
-  border:0;
-  border-radius:50%;
+.song audio{
+  width:160px;
+}
+
+.featured{
   display:grid;
-  place-items:center;
-  background:var(--profile-accent);
-  color:#080808;
+  grid-template-columns:1.4fr 1fr;
+  gap:15px;
 }
 
-.custom-preview{
-  padding:25px;
-  border-radius:22px;
+.featured-card{
+  min-height:220px;
+  padding:20px;
+  border-radius:20px;
   border:1px solid var(--line);
   background:
-    radial-gradient(circle at 80% 20%,rgba(214,168,79,.2),transparent 35%),
-    var(--profile-bg);
+    radial-gradient(circle at 75% 20%,rgba(214,168,79,.18),transparent 28%),
+    #151515;
 }
 
-.custom-preview-card{
-  padding:22px;
-  border-radius:18px;
-  background:var(--profile-card);
+/* =========================
+   PROFILE CUSTOMIZATION
+========================= */
+
+.customizer{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
 }
 
-.custom-preview-accent{
-  color:var(--profile-accent);
-  margin-top:7px;
+.custom-card{
+  padding:20px;
+  border:1px solid var(--line);
+  background:var(--profile-card,#141414);
+  border-radius:20px;
 }
 
-/* =========================================================
+.custom-card h3{
+  margin-bottom:14px;
+}
+
+.field{
+  margin-bottom:14px;
+}
+
+.field label{
+  display:block;
+  color:#aaa;
+  font-size:12px;
+  margin-bottom:7px;
+}
+
+.field input,
+.field textarea,
+.field select{
+  width:100%;
+  border:1px solid var(--line);
+  background:#0e0e0e;
+  color:white;
+  border-radius:12px;
+  padding:12px;
+  outline:none;
+}
+
+.field textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+.color-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.color-row input[type=color]{
+  width:55px;
+  height:42px;
+  padding:3px;
+}
+
+.theme-presets{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+
+.theme-preset{
+  min-height:80px;
+  border-radius:14px;
+  border:2px solid transparent;
+  padding:9px;
+  display:flex;
+  align-items:flex-end;
+  color:white;
+  font-size:11px;
+  font-weight:800;
+}
+
+.theme-preset:hover{
+  border-color:var(--gold2);
+}
+
+.upload-box{
+  border:1px dashed rgba(255,255,255,.2);
+  border-radius:15px;
+  padding:17px;
+  text-align:center;
+  background:#0d0d0d;
+}
+
+.upload-box input{
+  margin-top:10px;
+  width:100%;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-box{
+  display:flex;
+  gap:8px;
+  margin-bottom:20px;
+}
+
+.search-box input{
+  flex:1;
+  background:#171717;
+  color:white;
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:14px;
+  outline:none;
+}
+
+.people-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.person-card{
+  padding:20px;
+  border-radius:20px;
+  border:1px solid var(--line);
+  background:#151515;
+  text-align:center;
+}
+
+.person-card .avatar{
+  width:76px;
+  height:76px;
+  margin:auto auto 10px;
+}
+
+/* =========================
+   DRAWER
+========================= */
+
+.drawer-backdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  z-index:2000;
+  display:none;
+}
+
+.drawer-backdrop.open{
+  display:block;
+}
+
+.drawer{
+  position:absolute;
+  top:0;
+  right:0;
+  width:min(380px,92%);
+  height:100%;
+  background:#101010;
+  border-left:1px solid var(--line);
+  padding:20px;
+  overflow:auto;
+  box-shadow:-20px 0 70px rgba(0,0,0,.5);
+}
+
+.drawer-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.drawer-item{
+  width:100%;
+  text-align:left;
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:15px;
+  border-radius:14px;
+  background:transparent;
+  color:white;
+}
+
+.drawer-item:hover{
+  background:#1b1b1b;
+}
+
+/* =========================
    MODALS
-========================================================= */
+========================= */
 
 .modal-backdrop{
   position:fixed;
   inset:0;
+  background:rgba(0,0,0,.76);
   z-index:3000;
   display:none;
   align-items:center;
   justify-content:center;
-  padding:18px;
-  background:rgba(0,0,0,.78);
-  backdrop-filter:blur(8px);
+  padding:16px;
 }
 
 .modal-backdrop.open{
@@ -1280,29 +1353,20 @@ svg{
 }
 
 .modal{
-  width:min(760px,100%);
+  width:min(720px,100%);
   max-height:90vh;
-  overflow-y:auto;
-  border-radius:24px;
-  background:#101010;
+  overflow:auto;
+  background:#111;
   border:1px solid var(--line);
-  box-shadow:0 30px 100px rgba(0,0,0,.6);
-}
-
-.modal.small{
-  width:min(450px,100%);
+  border-radius:24px;
+  box-shadow:0 30px 100px rgba(0,0,0,.65);
 }
 
 .modal-head{
-  position:sticky;
-  top:0;
-  z-index:5;
+  padding:18px 20px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:19px 20px;
-  background:rgba(16,16,16,.95);
-  backdrop-filter:blur(15px);
   border-bottom:1px solid var(--line);
 }
 
@@ -1310,198 +1374,17 @@ svg{
   padding:20px;
 }
 
-.form-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-}
-
-.form-group{
-  display:grid;
-  gap:7px;
-}
-
-.form-group.full{
-  grid-column:1/-1;
-}
-
-.form-group label{
-  color:#aaa59c;
-  font-size:12px;
-  font-weight:750;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select{
-  width:100%;
-  border:1px solid var(--line);
-  outline:none;
-  border-radius:13px;
-  background:#181818;
-  color:white;
-  padding:12px;
-}
-
-.form-group textarea{
-  min-height:105px;
-  resize:vertical;
-}
-
-.theme-section{
-  margin-top:22px;
-  padding-top:20px;
+.modal-foot{
+  padding:16px 20px;
   border-top:1px solid var(--line);
-}
-
-.theme-section h3{
-  margin-bottom:12px;
-}
-
-.upload-box{
-  padding:16px;
-  border-radius:16px;
-  border:1px dashed rgba(214,168,79,.4);
-  background:#151515;
-  margin-top:10px;
-}
-
-.upload-box p{
-  font-size:12px;
-  margin-top:4px;
-}
-
-.upload-box input{
-  margin-top:9px;
-  max-width:100%;
-}
-
-.color-row{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
-}
-
-.color-control{
-  padding:12px;
-  border-radius:14px;
-  border:1px solid var(--line);
-  background:#151515;
-}
-
-.color-control label{
-  display:block;
-  color:#99948b;
-  font-size:11px;
-  margin-bottom:8px;
-}
-
-.color-control input[type="color"]{
-  width:100%;
-  height:42px;
-  border:0;
-  padding:2px;
-  background:transparent;
-}
-
-.preset-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
-}
-
-.preset{
-  min-height:70px;
-  position:relative;
-  overflow:hidden;
-  border:1px solid var(--line);
-  border-radius:14px;
-  color:white;
-}
-
-.preset span{
-  position:absolute;
-  left:8px;
-  bottom:7px;
-  font-size:11px;
-  font-weight:900;
-  text-shadow:0 1px 8px #000;
-}
-
-.layout-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-}
-
-.layout-option{
-  padding:14px;
-  border-radius:14px;
-  border:1px solid var(--line);
-  background:#151515;
-  color:#aaa59c;
-  text-align:left;
-}
-
-.layout-option.active{
-  border-color:var(--gold);
-  color:var(--gold2);
-}
-
-.modal-actions{
   display:flex;
   justify-content:flex-end;
   gap:8px;
-  margin-top:20px;
 }
 
-.reaction-options{
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  padding:20px;
-}
-
-.reaction{
-  width:60px;
-  height:60px;
-  border-radius:50%;
-  border:1px solid var(--line);
-  background:#181818;
-  font-size:24px;
-}
-
-.reaction:hover{
-  border-color:var(--gold);
-  transform:translateY(-3px);
-}
-
-.toast{
-  position:fixed;
-  z-index:5000;
-  left:50%;
-  bottom:105px;
-  transform:translate(-50%,20px);
-  opacity:0;
-  pointer-events:none;
-  padding:12px 17px;
-  border-radius:999px;
-  background:#eee5d2;
-  color:#090909;
-  font-size:13px;
-  font-weight:850;
-  transition:.25s ease;
-}
-
-.toast.show{
-  opacity:1;
-  transform:translate(-50%,0);
-}
-
-/* =========================================================
+/* =========================
    BOTTOM NAV
-   PERMANENT APPROVED MODEL
-========================================================= */
+========================= */
 
 .bottom-nav{
   position:fixed;
@@ -1509,4519 +1392,3216 @@ svg{
   left:0;
   right:0;
   bottom:0;
-  height:76px;
+  height:78px;
   padding-bottom:env(safe-area-inset-bottom);
-  background:rgba(8,8,8,.96);
-  backdrop-filter:blur(20px);
+  background:rgba(9,9,9,.96);
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
   border-top:1px solid var(--line);
   display:flex;
   overflow:hidden;
 }
 
-.nav-item{
+.bottom-item{
   width:14.2857%;
   flex:1 1 14.2857%;
-  min-width:0;
   max-width:none;
-  padding:6px 2px;
-  border:0;
-  background:transparent;
-  color:#77736c;
+  min-width:0;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  gap:5px;
-  position:relative;
+  gap:4px;
+  color:#777;
+  background:transparent;
+  font-size:10px;
+  font-weight:750;
 }
 
-.nav-item svg{
-  width:22px;
-  height:22px;
+.bottom-item svg{
+  width:21px;
+  height:21px;
 }
 
-.nav-item span{
-  font-size:9px;
-  font-weight:850;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  max-width:100%;
-}
-
-.nav-item.active{
+.bottom-item.active{
   color:var(--gold2);
 }
 
-.nav-item.active::before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:25%;
-  right:25%;
-  height:2px;
-  background:var(--gold);
+.bottom-item.active svg{
+  filter:drop-shadow(0 0 7px rgba(214,168,79,.35));
 }
 
-/* =========================================================
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:95px;
+  transform:translateX(-50%) translateY(20px);
+  background:#f4f4f4;
+  color:#090909;
+  padding:12px 17px;
+  border-radius:13px;
+  font-weight:800;
+  z-index:5000;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s ease;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+/* =========================
    RESPONSIVE
-========================================================= */
+========================= */
 
-@media(max-width:900px){
-
-  .feed-grid,
-  .news-layout{
-    grid-template-columns:1fr;
-  }
-
-  .culture-feature{
-    grid-template-columns:1fr;
-  }
-
-  .content-grid{
+@media(max-width:850px){
+  .quick-grid{
     grid-template-columns:repeat(2,1fr);
   }
 
-  .reels-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
+  .skate-grid,
+  .culture-grid,
   .people-grid{
     grid-template-columns:repeat(2,1fr);
   }
 
+  .profile-identity{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .profile-details{
+    padding-bottom:0;
+  }
+
+  .profile-buttons{
+    padding-top:4px;
+  }
+
+  .featured,
+  .about-grid,
+  .customizer{
+    grid-template-columns:1fr;
+  }
 }
 
-@media(max-width:700px){
+@media(max-width:600px){
+  .app{
+    padding-bottom:82px;
+  }
 
   .topbar{
     height:62px;
   }
 
-  .brand-name{
-    font-size:19px;
-  }
-
-  .search-box{
-    display:none;
-  }
-
-  .section{
-    padding-top:78px;
-    padding-bottom:105px;
-  }
-
   .container{
-    width:calc(100% - 18px);
+    width:calc(100% - 20px);
   }
 
   .hero{
-    min-height:410px;
-    padding:24px;
-    border-radius:21px;
+    min-height:500px;
   }
 
   .hero h1{
-    letter-spacing:-2.5px;
+    letter-spacing:-2px;
   }
 
-  .content-grid{
-    grid-template-columns:1fr 1fr;
-    gap:10px;
+  .quick-grid{
+    gap:8px;
   }
 
-  .reels-grid{
-    grid-template-columns:1fr 1fr;
-    gap:9px;
+  .quick{
+    min-height:105px;
+    padding:14px;
   }
 
-  .reel{
-    min-height:390px;
-  }
-
-  .reel-visual{
-    height:280px;
-  }
-
+  .skate-grid,
+  .culture-grid,
   .people-grid{
     grid-template-columns:1fr;
   }
 
   .profile-cover{
     height:250px;
-    border-radius:20px 20px 0 0;
+    border-radius:0 0 22px 22px;
   }
 
   .profile-main{
-    padding:0 15px 20px;
-  }
-
-  .profile-avatar-wrap{
-    width:112px;
-    height:112px;
-    margin-top:-56px;
+    width:calc(100% - 20px);
+    margin-top:-48px;
   }
 
   .profile-avatar{
-    width:112px;
-    height:112px;
-    border-width:5px;
+    width:105px;
+    height:105px;
+    flex-basis:105px;
   }
 
-  .profile-top{
-    display:block;
+  .profile-details h1{
+    font-size:27px;
   }
 
-  .profile-name{
-    font-size:26px;
+  .profile-stat-row{
+    gap:6px;
   }
 
-  .profile-actions{
-    margin-top:16px;
-  }
-
-  .profile-stats{
-    gap:18px;
+  .profile-stat{
+    padding:13px 5px;
   }
 
   .profile-stat strong{
     font-size:17px;
   }
 
+  .profile-stat span{
+    font-size:10px;
+  }
+
   .profile-post-grid{
-    grid-template-columns:1fr;
-  }
-
-  .about-grid{
-    grid-template-columns:1fr;
-  }
-
-  .form-grid{
-    grid-template-columns:1fr;
-  }
-
-  .form-group.full{
-    grid-column:auto;
-  }
-
-  .color-row{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .preset-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .layout-grid{
-    grid-template-columns:1fr;
+    gap:5px;
   }
 
   .bottom-nav{
-    height:70px;
+    height:76px;
   }
 
-  .nav-item svg{
+  .bottom-item{
+    font-size:8px;
+    gap:3px;
+  }
+
+  .bottom-item svg{
     width:20px;
     height:20px;
   }
 
-  .nav-item span{
-    font-size:8px;
+  .reel-info{
+    bottom:24px;
+    left:14px;
+    right:74px;
   }
 
-}
-
-@media(max-width:430px){
-
-  .brand-name{
-    display:none;
+  .reel-actions{
+    right:7px;
+    bottom:22px;
   }
 
-  .content-grid{
-    grid-template-columns:1fr;
+  .reel-action .action-icon{
+    width:43px;
+    height:43px;
   }
 
-  .profile-cover{
-    height:220px;
+  .reels-top{
+    padding-left:13px;
+    padding-right:13px;
   }
-
-  .profile-avatar-wrap{
-    width:98px;
-    height:98px;
-    margin-top:-49px;
-  }
-
-  .profile-avatar{
-    width:98px;
-    height:98px;
-  }
-
-  .profile-name{
-    font-size:23px;
-  }
-
 }
 </style>
 </head>
 
 <body>
 
-<div class="app">
+<!-- =========================
+     SVG ICON DEFINITIONS
+========================= -->
 
-<!-- =======================================================
-     ICONS
-======================================================= -->
-
-<svg width="0" height="0" style="position:absolute">
-
+<svg style="display:none">
 <symbol id="i-home" viewBox="0 0 24 24">
-<path d="M3 10.5 12 3l9 7.5v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"
-fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M3 10.5 12 3l9 7.5"></path>
+<path d="M5 9.5V21h14V9.5"></path>
+<path d="M9 21v-7h6v7"></path>
 </symbol>
 
 <symbol id="i-news" viewBox="0 0 24 24">
-<rect x="3" y="4" width="18" height="16" rx="2"
-fill="none" stroke="currentColor" stroke-width="1.8"/>
-<path d="M7 8h10M7 12h6M7 16h8"
-fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+<rect x="4" y="4" width="16" height="16" rx="3"></rect>
+<path d="M8 8h8M8 12h8M8 16h5"></path>
 </symbol>
 
 <symbol id="i-skate" viewBox="0 0 24 24">
-<path d="M3 16h17"
-fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-<path d="M6 13.5 9.5 8l3.5 3 2-5 3 2.5"
-fill="none" stroke="currentColor" stroke-width="1.8"
-stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="7" cy="18.5" r="1.5" fill="currentColor"/>
-<circle cx="17" cy="18.5" r="1.5" fill="currentColor"/>
+<path d="M3 16c4 1.8 7.2 1.8 10.4 0 2.6-1.4 5-1.4 7.6 0"></path>
+<circle cx="6" cy="18.2" r="1.5"></circle>
+<circle cx="18" cy="18.2" r="1.5"></circle>
+<path d="m7 13 3-7 2.2 4.2L16 8l2 5"></path>
 </symbol>
 
 <symbol id="i-reels" viewBox="0 0 24 24">
-<rect x="4" y="3" width="16" height="18" rx="3"
-fill="none" stroke="currentColor" stroke-width="1.8"/>
-<path d="m9 3 3 5M15 3l3 5M4 8h16"
-fill="none" stroke="currentColor" stroke-width="1.8"/>
-<path d="m10 12 5 3-5 3z" fill="currentColor"/>
+<rect x="4" y="4" width="16" height="16" rx="4"></rect>
+<path d="m9 4 3 5M15 4l3 5M4 9h16"></path>
+<path d="m10 13 5 3-5 3z"></path>
 </symbol>
 
 <symbol id="i-fist" viewBox="0 0 24 24">
-<path d="M7 11V7a2 2 0 0 1 4 0v3-5a2 2 0 0 1 4 0v5-4a2 2 0 0 1 4 0v7c0 4-2.5 7-7 7-3.2 0-5.5-1.5-7-4l-2-3a2 2 0 0 1 3-2z"
-fill="none" stroke="currentColor" stroke-width="1.6"
-stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7 11V6a1.5 1.5 0 0 1 3 0v4"></path>
+<path d="M10 10V4.8a1.5 1.5 0 0 1 3 0V10"></path>
+<path d="M13 10V5.5a1.5 1.5 0 0 1 3 0v5"></path>
+<path d="M16 11V7.5a1.5 1.5 0 0 1 3 0v7c0 4-2.7 6.5-6.4 6.5H9.5c-2.2 0-3.6-1-4.7-2.8L2.5 13a1.7 1.7 0 0 1 3-1.7L7 13"></path>
 </symbol>
 
 <symbol id="i-ai" viewBox="0 0 24 24">
-<path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"
-stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-<circle cx="12" cy="12" r="4.5"
-fill="none" stroke="currentColor" stroke-width="1.7"/>
+<rect x="4" y="4" width="16" height="16" rx="5"></rect>
+<circle cx="9" cy="11" r="1"></circle>
+<circle cx="15" cy="11" r="1"></circle>
+<path d="M8 15c2 1.5 6 1.5 8 0"></path>
+<path d="M12 4V2"></path>
 </symbol>
 
 <symbol id="i-user" viewBox="0 0 24 24">
-<circle cx="12" cy="8" r="4"
-fill="none" stroke="currentColor" stroke-width="1.8"/>
-<path d="M4 21c.8-4 3.5-6 8-6s7.2 2 8 6"
-fill="none" stroke="currentColor" stroke-width="1.8"
-stroke-linecap="round"/>
+<circle cx="12" cy="8" r="4"></circle>
+<path d="M4 21c.8-4 3.5-6 8-6s7.2 2 8 6"></path>
 </symbol>
 
 <symbol id="i-menu" viewBox="0 0 24 24">
-<path d="M4 7h16M4 12h16M4 17h16"
-stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+<path d="M4 7h16M4 12h16M4 17h16"></path>
 </symbol>
 
 <symbol id="i-search" viewBox="0 0 24 24">
-<circle cx="10.8" cy="10.8" r="6.5"
-fill="none" stroke="currentColor" stroke-width="1.8"/>
-<path d="m16 16 5 5"
-stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+<circle cx="10.8" cy="10.8" r="6.8"></circle>
+<path d="m16 16 5 5"></path>
 </symbol>
 
 <symbol id="i-bell" viewBox="0 0 24 24">
-<path d="M6 17h12l-1.4-2V10a4.6 4.6 0 0 0-9.2 0v5z"
-fill="none" stroke="currentColor" stroke-width="1.8"/>
-<path d="M10 20h4"
-stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+<path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+<path d="M10 21h4"></path>
 </symbol>
 
 <symbol id="i-heart" viewBox="0 0 24 24">
-<path d="M20.8 8.7c0 5-8.8 10.2-8.8 10.2S3.2 13.7 3.2 8.7A4.7 4.7 0 0 1 12 6.4a4.7 4.7 0 0 1 8.8 2.3z"
-fill="none" stroke="currentColor" stroke-width="1.8"/>
+<path d="M20.8 8.8c0 5.5-8.8 11-8.8 11S3.2 14.3 3.2 8.8A4.7 4.7 0 0 1 12 6.2a4.7 4.7 0 0 1 8.8 2.6Z"></path>
 </symbol>
 
 <symbol id="i-comment" viewBox="0 0 24 24">
-<path d="M20 11.5a7.5 7.5 0 0 1-8 7.5 9.2 9.2 0 0 1-3.2-.6L4 20l1.5-3.5A7.2 7.2 0 0 1 4 11.5 7.5 7.5 0 0 1 12 4a7.5 7.5 0 0 1 8 7.5z"
-fill="none" stroke="currentColor" stroke-width="1.8"/>
+<path d="M20 11.5a7.5 7.5 0 0 1-7.8 7.5 8.5 8.5 0 0 1-4.1-1L4 19l1.1-3.3A7.4 7.4 0 0 1 4.5 12 7.5 7.5 0 0 1 12 4.5a7.5 7.5 0 0 1 8 7Z"></path>
 </symbol>
 
 <symbol id="i-share" viewBox="0 0 24 24">
-<path d="M8 12h10M14 6l6 6-6 6"
-fill="none" stroke="currentColor" stroke-width="1.8"
-stroke-linecap="round" stroke-linejoin="round"/>
+<path d="m20 4-7 16-3-7-6-3Z"></path>
+<path d="M10 13 20 4"></path>
 </symbol>
 
 <symbol id="i-camera" viewBox="0 0 24 24">
-<path d="M4 7h4l1.5-2h5L16 7h4v12H4z"
-fill="none" stroke="currentColor" stroke-width="1.8"
-stroke-linejoin="round"/>
-<circle cx="12" cy="13" r="3.5"
-fill="none" stroke="currentColor" stroke-width="1.8"/>
+<rect x="3" y="6" width="18" height="15" rx="3"></rect>
+<path d="M8 6 9.5 3h5L16 6"></path>
+<circle cx="12" cy="13.5" r="4"></circle>
 </symbol>
 
 <symbol id="i-edit" viewBox="0 0 24 24">
-<path d="m4 16.5-.8 4.3 4.3-.8L19 8.5a2.5 2.5 0 0 0-3.5-3.5z"
-fill="none" stroke="currentColor" stroke-width="1.8"
-stroke-linejoin="round"/>
-<path d="m14 7 3 3"
-stroke="currentColor" stroke-width="1.8"/>
+<path d="m4 20 4.5-1 10-10a2.1 2.1 0 0 0-3-3l-10 10Z"></path>
+<path d="m14 7 3 3"></path>
 </symbol>
 
 <symbol id="i-play" viewBox="0 0 24 24">
-<path d="m9 6 9 6-9 6z" fill="currentColor"/>
+<path d="m9 6 9 6-9 6z"></path>
 </symbol>
 
-<symbol id="i-location" viewBox="0 0 24 24">
-<path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0z"
-fill="none" stroke="currentColor" stroke-width="1.8"/>
-<circle cx="12" cy="10" r="2.2"
-fill="none" stroke="currentColor" stroke-width="1.6"/>
+<symbol id="i-settings" viewBox="0 0 24 24">
+<circle cx="12" cy="12" r="3"></circle>
+<path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.7 1.7-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V20h-2.4v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L8 17l.1-.1A1.7 1.7 0 0 0 8.4 15a1.7 1.7 0 0 0-1.6-1H6v-2.4h.8a1.7 1.7 0 0 0 1.6-1A1.7 1.7 0 0 0 8.1 9L8 8.9l1.7-1.7.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.6V6H15v.1a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1 1.7 1.7-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.1V14h-.1a1.7 1.7 0 0 0-1.5 1Z"></path>
 </symbol>
 
-<symbol id="i-music" viewBox="0 0 24 24">
-<path d="M9 18V5l10-2v13"
-fill="none" stroke="currentColor" stroke-width="1.8"/>
-<circle cx="6" cy="18" r="3"
-fill="none" stroke="currentColor" stroke-width="1.8"/>
-<circle cx="16" cy="16" r="3"
-fill="none" stroke="currentColor" stroke-width="1.8"/>
+<symbol id="i-volume" viewBox="0 0 24 24">
+<path d="M4 10v4h4l5 4V6l-5 4Z"></path>
+<path d="M16 9a4 4 0 0 1 0 6M18 6a8 8 0 0 1 0 12"></path>
 </symbol>
 
-<symbol id="i-x" viewBox="0 0 24 24">
-<path d="m6 6 12 12M18 6 6 18"
-stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+<symbol id="i-volume-off" viewBox="0 0 24 24">
+<path d="M4 10v4h4l5 4V6l-5 4Z"></path>
+<path d="m18 10-4 4M14 10l4 4"></path>
 </symbol>
-
 </svg>
 
-<!-- =======================================================
-     HEADER
-======================================================= -->
+<div class="app">
+
+<!-- =========================
+     TOP BAR
+========================= -->
 
 <header class="topbar">
+  <div class="brand">
+    <div class="brand-mark">S</div>
+    <span>Soulaani</span>
+  </div>
 
-<div class="topbar-inner">
+  <div class="header-actions">
+    <button class="icon-btn" onclick="openSearch()" aria-label="Search">
+      <svg class="icon"><use href="#i-search"></use></svg>
+    </button>
 
-<div class="brand" onclick="showSection('home')">
+    <button class="icon-btn" onclick="showToast('Notifications coming together next 🔔')" aria-label="Notifications">
+      <svg class="icon"><use href="#i-bell"></use></svg>
+    </button>
 
-<div class="brand-mark">S</div>
-
-<div class="brand-name">
-Soulaani
-</div>
-
-</div>
-
-<div class="top-actions">
-
-<div class="search-box">
-
-<svg>
-<use href="#i-search"></use>
-</svg>
-
-<input
-id="globalSearch"
-type="search"
-placeholder="Search Soulaani"
->
-
-</div>
-
-<button class="icon-btn" onclick="openDrawer()">
-<svg>
-<use href="#i-menu"></use>
-</svg>
-</button>
-
-<button class="icon-btn" onclick="showToast('Notifications are coming next.')">
-<svg>
-<use href="#i-bell"></use>
-</svg>
-</button>
-
-<div class="profile-mini" onclick="openOwnProfile()">
-<img id="miniAvatar" alt="">
-</div>
-
-</div>
-
-</div>
-
+    <button class="icon-btn" onclick="openDrawer()" aria-label="Menu">
+      <svg class="icon"><use href="#i-menu"></use></svg>
+    </button>
+  </div>
 </header>
 
-<!-- =======================================================
-     DRAWER
-======================================================= -->
-
-<div
-class="drawer-backdrop"
-id="drawerBackdrop"
-onclick="closeDrawer()">
-</div>
-
-<aside class="drawer" id="drawer">
-
-<div class="drawer-head">
-
-<div class="drawer-title">
-Soulaani
-</div>
-
-<button class="icon-btn" onclick="closeDrawer()">
-<svg>
-<use href="#i-x"></use>
-</svg>
-</button>
-
-</div>
-
-<div class="drawer-nav">
-
-<button class="drawer-item" onclick="showSection('connect');closeDrawer()">
-<svg><use href="#i-user"></use></svg>
-Connect
-</button>
-
-<button class="drawer-item" onclick="showToast('Date is being built.');closeDrawer()">
-<svg><use href="#i-heart"></use></svg>
-Date
-</button>
-
-<button class="drawer-item" onclick="showToast('Build is being built.');closeDrawer()">
-<svg><use href="#i-news"></use></svg>
-Build
-</button>
-
-<button class="drawer-item" onclick="showToast('Market is coming.');closeDrawer()">
-<svg><use href="#i-news"></use></svg>
-Market
-</button>
-
-<button class="drawer-item" onclick="showToast('Explore is being expanded.');closeDrawer()">
-<svg><use href="#i-search"></use></svg>
-Explore
-</button>
-
-<button class="drawer-item" onclick="showToast('Messaging is coming.');closeDrawer()">
-<svg><use href="#i-comment"></use></svg>
-Messages
-</button>
-
-<button class="drawer-item" onclick="showToast('Communities are coming.');closeDrawer()">
-<svg><use href="#i-user"></use></svg>
-Communities
-</button>
-
-<button class="drawer-item" onclick="showToast('Events are coming.');closeDrawer()">
-<svg><use href="#i-location"></use></svg>
-Events
-</button>
-
-<button class="drawer-item" onclick="showToast('Saved content is coming.');closeDrawer()">
-<svg><use href="#i-heart"></use></svg>
-Saved
-</button>
-
-<button class="drawer-item" onclick="openOwnProfile();closeDrawer()">
-<svg><use href="#i-user"></use></svg>
-My Profile
-</button>
-
-</div>
-
-</aside>
-
-<!-- =======================================================
-     MAIN
-======================================================= -->
-
-<main>
-
-<!-- =======================================================
+<!-- =========================
      HOME
-======================================================= -->
-
-<section class="section active" id="home">
-
-<div class="container">
-
-<div class="hero">
-
-<div class="hero-content">
-
-<div class="hero-kicker">
-The Culture. The People. The Platform.
-</div>
-
-<h1>
-Built around <span class="gold">us.</span>
-</h1>
-
-<p>
-Soulaani brings community, culture, creativity,
-business, entertainment and connection into one
-living platform.
-</p>
-
-<div class="hero-actions">
-
-<button class="btn gold-btn" onclick="openComposer()">
-Create a post
-</button>
-
-<button class="btn" onclick="openOwnProfile()">
-Open my profile
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="story-row">
-
-<div class="story">
-
-<div class="story-ring">
-
-<div class="story-inner">
-
-<img id="storyAvatar" alt="">
-
-</div>
-
-</div>
-
-<span>Your story</span>
-
-</div>
-
-<div class="story">
-
-<div class="story-ring">
-<div class="story-inner">+</div>
-</div>
-
-<span>Culture</span>
-
-</div>
-
-<div class="story">
-
-<div class="story-ring">
-<div class="story-inner">S</div>
-</div>
-
-<span>Skate</span>
-
-</div>
-
-<div class="story">
-
-<div class="story-ring">
-<div class="story-inner">R</div>
-</div>
-
-<span>Reels</span>
-
-</div>
-
-<div class="story">
-
-<div class="story-ring">
-<div class="story-inner">AI</div>
-</div>
-
-<span>Soulaani AI</span>
-
-</div>
-
-</div>
-
-<div class="composer card" onclick="openComposer()">
-
-<div class="composer-avatar">
-<img id="composerAvatar" alt="">
-</div>
-
-<button class="composer-input">
-What's happening in your world?
-</button>
-
-</div>
-
-<div class="feed-grid">
-
-<div class="feed">
-
-<article class="post card">
-
-<div class="post-head">
-
-<div
-class="post-avatar"
-onclick="openMemberProfile('maya')">
-
-<img
-src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=150&q=80"
-alt=""
->
-
-</div>
-
-<div class="post-meta">
-
-<div
-class="post-name"
-onclick="openMemberProfile('maya')">
-
-Maya Johnson
-
-</div>
-
-<div class="post-time">
-Just now · Public
-</div>
-
-</div>
-
-</div>
-
-<div class="post-body">
-Welcome to Soulaani. A platform where culture,
-people, creativity and community can live under one roof.
-</div>
-
-<div class="post-actions">
-
-<button class="post-action"
-onclick="openReactionModal(this)">
-♡ React
-</button>
-
-<button class="post-action">
-💬 Comment
-</button>
-
-<button class="post-action">
-↗ Share
-</button>
-
-</div>
-
-</article>
-
-<article class="post card">
-
-<div class="post-head">
-
-<div
-class="post-avatar"
-onclick="openMemberProfile('darius')">
-
-<img
-src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=150&q=80"
-alt=""
->
-
-</div>
-
-<div class="post-meta">
-
-<div
-class="post-name"
-onclick="openMemberProfile('darius')">
-
-Darius Carter
-
-</div>
-
-<div class="post-time">
-Today · Public
-</div>
-
-</div>
-
-</div>
-
-<div class="post-body">
-New spot. New tricks. Same energy.
-Skateboarding belongs in the culture.
-</div>
-
-<div class="post-actions">
-
-<button class="post-action"
-onclick="openReactionModal(this)">
-♡ React
-</button>
-
-<button class="post-action">
-💬 Comment
-</button>
-
-<button class="post-action">
-↗ Share
-</button>
-
-</div>
-
-</article>
-
-</div>
-
-<aside>
-
-<div class="card" style="padding:20px;">
-
-<div class="hero-kicker">
-Your Soulaani
-</div>
-
-<h3 style="font-size:22px;margin-top:5px;">
-Your profile is becoming yours.
-</h3>
-
-<p class="muted" style="line-height:1.6;margin-top:8px;">
-Customize your identity, discover other people,
-and eventually connect with real members.
-</p>
-
-<button
-class="btn gold-btn"
-style="width:100%;margin-top:15px;"
-onclick="openOwnProfile()">
-
-View profile
-
-</button>
-
-</div>
-
-</aside>
-
-</div>
-
-</div>
-
+========================= -->
+
+<section id="homePage" class="page active">
+
+  <div class="hero">
+    <div class="container hero-content">
+      <div class="gold" style="font-weight:900;letter-spacing:2px;margin-bottom:12px;">
+        THE CULTURE. THE PEOPLE. THE PLATFORM.
+      </div>
+
+      <h1>Soulaani</h1>
+
+      <p>
+        A place to connect, create, discover, build, share culture,
+        meet people and make your corner of the world feel a little
+        more like home.
+      </p>
+
+      <div class="hero-actions">
+        <button class="primary" onclick="openComposer()">Create a post</button>
+        <button class="secondary" onclick="navigate('culturePage','culture')">Explore Culture</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="stories">
+      <div class="story">
+        <div class="story-ring"><div class="story-ring-inner">+</div></div>
+        Your Story
+      </div>
+      <div class="story">
+        <div class="story-ring"><div class="story-ring-inner">🎵</div></div>
+        Music
+      </div>
+      <div class="story">
+        <div class="story-ring"><div class="story-ring-inner">🛹</div></div>
+        Skate
+      </div>
+      <div class="story">
+        <div class="story-ring"><div class="story-ring-inner">🍽️</div></div>
+        Food
+      </div>
+      <div class="story">
+        <div class="story-ring"><div class="story-ring-inner">🎨</div></div>
+        Art
+      </div>
+      <div class="story">
+        <div class="story-ring"><div class="story-ring-inner">📍</div></div>
+        Local
+      </div>
+    </div>
+
+    <div class="quick-grid">
+
+      <button class="quick" onclick="navigate('newsPage','news')">
+        <span class="quick-icon">◈</span>
+        <strong>Newsfeed</strong>
+        <span class="muted">See what’s happening</span>
+      </button>
+
+      <button class="quick" onclick="navigate('skatePage','skate')">
+        <span class="quick-icon">🛹</span>
+        <strong>Skate</strong>
+        <span class="muted">Riders, clips & spots</span>
+      </button>
+
+      <button class="quick" onclick="navigate('reelsPage','reels')">
+        <span class="quick-icon">▶</span>
+        <strong>Reels</strong>
+        <span class="muted">Vertical video</span>
+      </button>
+
+      <button class="quick" onclick="navigate('aiPage','ai')">
+        <span class="quick-icon">✦</span>
+        <strong>Soulaani AI</strong>
+        <span class="muted">Ask anything</span>
+      </button>
+
+    </div>
+
+    <div class="composer card">
+      <div class="avatar" id="homeAvatar">S</div>
+      <div class="composer-box" onclick="openComposer()">
+        What’s happening?
+      </div>
+      <button class="icon-btn" onclick="openComposer()">
+        <svg class="icon"><use href="#i-camera"></use></svg>
+      </button>
+    </div>
+
+    <article class="post card">
+      <div class="post-head">
+        <div class="avatar">D</div>
+        <div class="post-info">
+          <strong>Soulaani Community</strong>
+          <span>Today · Public</span>
+        </div>
+      </div>
+
+      <div class="post-text">
+        Welcome to Soulaani. This is your space to share your voice,
+        your creativity, your culture and your everyday life.
+      </div>
+
+      <div class="post-media" style="display:grid;place-items:center;font-size:60px;">
+        ✦
+      </div>
+
+      <div class="post-actions">
+        <button class="post-action" onclick="openReactionModal()">♡ React</button>
+        <button class="post-action" onclick="showToast('Comments opened')">○ Comment</button>
+        <button class="post-action" onclick="shareContent('Soulaani Community')">↗ Share</button>
+      </div>
+    </article>
+
+  </div>
 </section>
 
-<!-- =======================================================
+<!-- =========================
      NEWSFEED
-======================================================= -->
+========================= -->
 
-<section class="section" id="newsfeed">
+<section id="newsPage" class="page">
+  <div class="container">
 
-<div class="container">
+    <div class="page-head">
+      <h1>Newsfeed</h1>
+      <p>Your wider Soulaani feed.</p>
+    </div>
 
-<h2 class="section-title">
-Newsfeed
-</h2>
+    <div class="tabs">
+      <button class="tab active">For You</button>
+      <button class="tab">Following</button>
+      <button class="tab">Local</button>
+      <button class="tab">Trending</button>
+    </div>
 
-<p class="section-subtitle">
-See what's happening across Soulaani.
-</p>
+    <article class="post card">
+      <div class="post-head">
+        <div class="avatar">A</div>
+        <div class="post-info">
+          <strong>Alex</strong>
+          <span>@alexcreates · 2h</span>
+        </div>
+      </div>
 
-<div class="tabs">
+      <div class="post-text">
+        Building something new and putting the finishing touches on it.
+        Sometimes the quiet part is where the magic happens.
+      </div>
 
-<button class="tab active">
-For You
-</button>
+      <div class="post-media" style="display:grid;place-items:center;font-size:52px;">
+        ✦
+      </div>
 
-<button class="tab">
-Following
-</button>
+      <div class="post-actions">
+        <button class="post-action" onclick="openReactionModal()">♡ React</button>
+        <button class="post-action" onclick="showToast('Comments opened')">○ Comment</button>
+        <button class="post-action" onclick="shareContent('Alex')">↗ Share</button>
+      </div>
+    </article>
 
-<button class="tab">
-Trending
-</button>
+    <article class="post card">
+      <div class="post-head">
+        <div class="avatar">M</div>
+        <div class="post-info">
+          <strong>Marcus</strong>
+          <span>@marcusmoves · 5h</span>
+        </div>
+      </div>
 
-<button class="tab">
-Local
-</button>
+      <div class="post-text">
+        New week. New goals. Same energy.
+      </div>
 
-<button class="tab">
-Culture
-</button>
+      <div class="post-actions">
+        <button class="post-action" onclick="openReactionModal()">♡ React</button>
+        <button class="post-action">○ Comment</button>
+        <button class="post-action" onclick="shareContent('Marcus')">↗ Share</button>
+      </div>
+    </article>
 
-</div>
-
-<div class="news-layout">
-
-<div class="feed">
-
-<article class="post card">
-
-<div class="post-head">
-
-<div
-class="post-avatar"
-onclick="openMemberProfile('maya')">
-
-<img
-src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=150&q=80"
-alt=""
->
-
-</div>
-
-<div class="post-meta">
-
-<div
-class="post-name"
-onclick="openMemberProfile('maya')">
-Maya Johnson
-</div>
-
-<div class="post-time">
-1h · Public
-</div>
-
-</div>
-
-</div>
-
-<div class="post-body">
-What part of Black culture deserves a bigger spotlight?
-</div>
-
-<div class="post-actions">
-
-<button class="post-action"
-onclick="openReactionModal(this)">
-♡ React
-</button>
-
-<button class="post-action">
-💬 Comment
-</button>
-
-<button class="post-action">
-↗ Share
-</button>
-
-</div>
-
-</article>
-
-<article class="post card">
-
-<div class="post-head">
-
-<div
-class="post-avatar"
-onclick="openMemberProfile('jordan')">
-
-<img
-src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=150&q=80"
-alt=""
->
-
-</div>
-
-<div class="post-meta">
-
-<div
-class="post-name"
-onclick="openMemberProfile('jordan')">
-Jordan Williams
-</div>
-
-<div class="post-time">
-3h · Public
-</div>
-
-</div>
-
-</div>
-
-<div class="post-body">
-Creators, artists, entrepreneurs and everyday people.
-This is your space.
-</div>
-
-<div class="post-actions">
-
-<button class="post-action"
-onclick="openReactionModal(this)">
-♡ React
-</button>
-
-<button class="post-action">
-💬 Comment
-</button>
-
-<button class="post-action">
-↗ Share
-</button>
-
-</div>
-
-</article>
-
-</div>
-
-<aside class="card" style="padding:20px;height:max-content;">
-
-<div class="hero-kicker">
-Explore
-</div>
-
-<h3 style="font-size:22px;margin-top:5px;">
-Find your people.
-</h3>
-
-<p class="muted" style="line-height:1.6;margin-top:8px;">
-Profiles are now beginning to connect to the rest
-of the Soulaani platform.
-</p>
-
-</aside>
-
-</div>
-
-</div>
-
+  </div>
 </section>
 
-<!-- =======================================================
+<!-- =========================
      SKATE
-======================================================= -->
+========================= -->
 
-<section class="section" id="skate">
+<section id="skatePage" class="page">
+  <div class="container">
 
-<div class="container">
+    <div class="page-head">
+      <h1>Skate</h1>
+      <p>Riders, clips, spots, events and community.</p>
+    </div>
 
-<div class="skate-hero">
+    <div class="skate-hero">
+      <div>
+        <div class="skate-symbol">🛹</div>
+        <h2>Built for the riders.</h2>
+        <p class="muted" style="margin-top:8px;">
+          Discover local skate culture and connect with people who ride.
+        </p>
+      </div>
+    </div>
 
-<div>
+    <div class="skate-grid">
 
-<div class="skate-icon-large">
-<svg>
-<use href="#i-skate"></use>
-</svg>
-</div>
+      <article class="skate-card">
+        <div class="skate-card-image"></div>
+        <div class="skate-card-content">
+          <small class="gold">RIDERS</small>
+          <h3>Meet the community</h3>
+        </div>
+      </article>
 
-<div class="hero-kicker">
-Soulaani Skate
-</div>
+      <article class="skate-card">
+        <div class="skate-card-image"></div>
+        <div class="skate-card-content">
+          <small class="gold">CLIPS</small>
+          <h3>Latest skate clips</h3>
+        </div>
+      </article>
 
-<h2 class="section-title">
-Ride. Create. Connect.
-</h2>
+      <article class="skate-card">
+        <div class="skate-card-image"></div>
+        <div class="skate-card-content">
+          <small class="gold">LOCAL</small>
+          <h3>Find skate spots</h3>
+        </div>
+      </article>
 
-<p class="section-subtitle">
-Skate clips, riders, local spots, events and community.
-</p>
+    </div>
 
-</div>
-
-</div>
-
-<div class="tabs">
-
-<button class="tab active">For You</button>
-<button class="tab">Riders</button>
-<button class="tab">Clips</button>
-<button class="tab">Spots</button>
-<button class="tab">Events</button>
-
-</div>
-
-<div class="content-grid">
-
-<div class="media-card card">
-<div class="media-placeholder">
-<svg width="75" height="75">
-<use href="#i-skate"></use>
-</svg>
-</div>
-
-<div class="media-info">
-<h3>Local Riders</h3>
-<p>Meet riders pushing the scene forward.</p>
-</div>
-</div>
-
-<div class="media-card card">
-<div class="media-placeholder">
-<svg width="75" height="75">
-<use href="#i-skate"></use>
-</svg>
-</div>
-
-<div class="media-info">
-<h3>New Clips</h3>
-<p>Short-form skate content.</p>
-</div>
-</div>
-
-<div class="media-card card">
-<div class="media-placeholder">
-<svg width="75" height="75">
-<use href="#i-location"></use>
-</svg>
-</div>
-
-<div class="media-info">
-<h3>Local Spots</h3>
-<p>Discover places to skate.</p>
-</div>
-</div>
-
-</div>
-
-</div>
-
+  </div>
 </section>
 
-<!-- =======================================================
+<!-- =========================
      REELS
-======================================================= -->
+========================= -->
 
-<section class="section" id="reels">
+<section id="reelsPage" class="page">
 
-<div class="container">
+  <div class="reels-shell">
 
-<h2 class="section-title">
-Reels
-</h2>
+    <div class="reels-top">
+      <strong class="reels-title">Reels</strong>
 
-<p class="section-subtitle">
-Short-form culture, creativity, comedy, music,
-skating and everyday life.
-</p>
+      <select class="reels-filter" onchange="showToast('Reels filter: '+this.value)">
+        <option>For You</option>
+        <option>Following</option>
+        <option>Trending</option>
+        <option>Local</option>
+        <option>Culture</option>
+        <option>Skate</option>
+      </select>
+    </div>
 
-<div class="tabs">
+    <div class="reels-feed" id="reelsFeed">
 
-<button class="tab active">For You</button>
-<button class="tab">Following</button>
-<button class="tab">Culture</button>
-<button class="tab">Skate</button>
-<button class="tab">Music</button>
+      <!-- REEL 1 -->
 
-</div>
+      <article class="reel">
 
-<div class="reels-grid">
+        <div class="reel-progress"><span></span></div>
 
-<div class="reel">
+        <div class="reel-placeholder">▶</div>
 
-<div class="reel-visual">
+        <video
+          class="reel-video"
+          loop
+          muted
+          playsinline
+          preload="metadata"
+        ></video>
 
-<div class="reel-play">
-<svg>
-<use href="#i-play"></use>
-</svg>
-</div>
+        <div class="reel-shade"></div>
 
-</div>
+        <button class="icon-btn reel-mute" onclick="toggleReelMute(this)">
+          <svg class="icon"><use href="#i-volume-off"></use></svg>
+        </button>
 
-<div class="reel-caption">
-<h3>Culture in Motion</h3>
-<p>Stories from the community.</p>
-</div>
+        <div class="reel-info">
 
-</div>
+          <div class="reel-user">
+            <div class="reel-avatar">
+              <div style="width:100%;height:100%;display:grid;place-items:center;background:#242424;">J</div>
+            </div>
 
-<div class="reel">
+            <strong>@jordancreates</strong>
 
-<div class="reel-visual">
+            <button class="follow-mini" onclick="followReelUser(this)">
+              Follow
+            </button>
+          </div>
 
-<div class="reel-play">
-<svg>
-<use href="#i-play"></use>
-</svg>
-</div>
+          <div class="reel-caption">
+            Just enjoying the day and creating something new.
+            #Soulaani #ForYou
+          </div>
 
-</div>
+          <div class="reel-music">
+            ♫ Original sound · Jordan Creates
+          </div>
 
-<div class="reel-caption">
-<h3>Skate Session</h3>
-<p>New tricks. New clips.</p>
-</div>
+        </div>
 
-</div>
+        <div class="reel-actions">
 
-<div class="reel">
+          <button class="reel-action reel-like" onclick="toggleReelLike(this)">
+            <div class="action-icon">
+              <svg class="icon"><use href="#i-heart"></use></svg>
+            </div>
+            <span>1.2K</span>
+          </button>
 
-<div class="reel-visual">
+          <button class="reel-action" onclick="showToast('Comments opened')">
+            <div class="action-icon">
+              <svg class="icon"><use href="#i-comment"></use></svg>
+            </div>
+            <span>186</span>
+          </button>
 
-<div class="reel-play">
-<svg>
-<use href="#i-play"></use>
-</svg>
-</div>
+          <button class="reel-action" onclick="shareContent('Jordan Creates Reel')">
+            <div class="action-icon">
+              <svg class="icon"><use href="#i-share"></use></svg>
+            </div>
+            <span>Share</span>
+          </button>
 
-</div>
+          <button class="reel-action" onclick="openProfileByUsername('jordancreates')">
+            <div class="action-icon">S</div>
+            <span>Profile</span>
+          </button>
 
-<div class="reel-caption">
-<h3>Music</h3>
-<p>Sounds from the community.</p>
-</div>
+        </div>
 
-</div>
+      </article>
 
-<div class="reel">
+      <!-- REEL 2 -->
 
-<div class="reel-visual">
+      <article class="reel">
 
-<div class="reel-play">
-<svg>
-<use href="#i-play"></use>
-</svg>
-</div>
+        <div class="reel-progress"><span></span></div>
 
-</div>
+        <div
+          class="reel-placeholder"
+          style="background:
+          radial-gradient(circle at 50% 35%,rgba(214,168,79,.25),transparent 30%),
+          linear-gradient(145deg,#292929,#090909);"
+        >
+          ♫
+        </div>
 
-<div class="reel-caption">
-<h3>Everyday Life</h3>
-<p>Real people. Real stories.</p>
-</div>
+        <video
+          class="reel-video"
+          loop
+          muted
+          playsinline
+          preload="metadata"
+        ></video>
 
-</div>
+        <div class="reel-shade"></div>
 
-</div>
+        <button class="icon-btn reel-mute" onclick="toggleReelMute(this)">
+          <svg class="icon"><use href="#i-volume-off"></use></svg>
+        </button>
 
-</div>
+        <div class="reel-info">
+
+          <div class="reel-user">
+            <div class="reel-avatar">
+              <div style="width:100%;height:100%;display:grid;place-items:center;background:#282828;">N</div>
+            </div>
+
+            <strong>@nayahmusic</strong>
+
+            <button class="follow-mini" onclick="followReelUser(this)">
+              Follow
+            </button>
+          </div>
+
+          <div class="reel-caption">
+            New music, new energy. What are y'all listening to today?
+            🎶
+          </div>
+
+          <div class="reel-music">
+            ♫ Original sound · Nayah
+          </div>
+
+        </div>
+
+        <div class="reel-actions">
+
+          <button class="reel-action reel-like" onclick="toggleReelLike(this)">
+            <div class="action-icon">
+              <svg class="icon"><use href="#i-heart"></use></svg>
+            </div>
+            <span>842</span>
+          </button>
+
+          <button class="reel-action" onclick="showToast('Comments opened')">
+            <div class="action-icon">
+              <svg class="icon"><use href="#i-comment"></use></svg>
+            </div>
+            <span>91</span>
+          </button>
+
+          <button class="reel-action" onclick="shareContent('Nayah Music Reel')">
+            <div class="action-icon">
+              <svg class="icon"><use href="#i-share"></use></svg>
+            </div>
+            <span>Share</span>
+          </button>
+
+          <button class="reel-action" onclick="openProfileByUsername('nayahmusic')">
+            <div class="action-icon">S</div>
+            <span>Profile</span>
+          </button>
+
+        </div>
+
+      </article>
+
+      <!-- REEL 3 -->
+
+      <article class="reel">
+
+        <div class="reel-progress"><span></span></div>
+
+        <div
+          class="reel-placeholder"
+          style="background:
+          radial-gradient(circle at 35% 25%,rgba(214,168,79,.2),transparent 30%),
+          linear-gradient(145deg,#252525,#080808);"
+        >
+          🛹
+        </div>
+
+        <video
+          class="reel-video"
+          loop
+          muted
+          playsinline
+          preload="metadata"
+        ></video>
+
+        <div class="reel-shade"></div>
+
+        <button class="icon-btn reel-mute" onclick="toggleReelMute(this)">
+          <svg class="icon"><use href="#i-volume-off"></use></svg>
+        </button>
+
+        <div class="reel-info">
+
+          <div class="reel-user">
+            <div class="reel-avatar">
+              <div style="width:100%;height:100%;display:grid;place-items:center;background:#282828;">D</div>
+            </div>
+
+            <strong>@drewskates</strong>
+
+            <button class="follow-mini" onclick="followReelUser(this)">
+              Follow
+            </button>
+          </div>
+
+          <div class="reel-caption">
+            New spot. New line. Had to run it back.
+            🛹🔥 #Skate #Soulaani
+          </div>
+
+          <div class="reel-music">
+            ♫ Original sound · Drew Skates
+          </div>
+
+        </div>
+
+        <div class="reel-actions">
+
+          <button class="reel-action reel-like" onclick="toggleReelLike(this)">
+            <div class="action-icon">
+              <svg class="icon"><use href="#i-heart"></use></svg>
+            </div>
+            <span>3.4K</span>
+          </button>
+
+          <button class="reel-action" onclick="showToast('Comments opened')">
+            <div class="action-icon">
+              <svg class="icon"><use href="#i-comment"></use></svg>
+            </div>
+            <span>310</span>
+          </button>
+
+          <button class="reel-action" onclick="shareContent('Drew Skates Reel')">
+            <div class="action-icon">
+              <svg class="icon"><use href="#i-share"></use></svg>
+            </div>
+            <span>Share</span>
+          </button>
+
+          <button class="reel-action" onclick="openProfileByUsername('drewskates')">
+            <div class="action-icon">S</div>
+            <span>Profile</span>
+          </button>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </div>
 
 </section>
 
-<!-- =======================================================
+<!-- =========================
      CULTURE
-======================================================= -->
+========================= -->
 
-<section class="section" id="culture">
+<section id="culturePage" class="page">
+  <div class="container">
 
-<div class="container">
+    <div class="page-head">
+      <h1>Culture</h1>
+      <p>Food, music, art, fashion, businesses and creators.</p>
+    </div>
 
-<div class="culture-feature">
+    <div class="tabs">
+      <button class="tab active">All</button>
+      <button class="tab">Soul Food</button>
+      <button class="tab">Music</button>
+      <button class="tab">Art</button>
+      <button class="tab">Businesses</button>
+      <button class="tab">Creators</button>
+    </div>
 
-<div class="culture-big">
+    <div class="culture-grid">
 
-<div style="width:100%;">
+      <article class="culture-card">
+        <div class="culture-image"></div>
+        <div class="culture-content">
+          <span class="culture-tag">SOUL FOOD</span>
+          <h3>Sunday plate</h3>
+          <p class="muted">Food made for the whole table.</p>
+        </div>
+      </article>
 
-<div class="soul-plate"></div>
+      <article class="culture-card">
+        <div class="culture-image"></div>
+        <div class="culture-content">
+          <span class="culture-tag">MUSIC</span>
+          <h3>Sounds of the culture</h3>
+          <p class="muted">Discover artists and playlists.</p>
+        </div>
+      </article>
 
-<div>
+      <article class="culture-card">
+        <div class="culture-image"></div>
+        <div class="culture-content">
+          <span class="culture-tag">BUSINESS</span>
+          <h3>Black-owned businesses</h3>
+          <p class="muted">Find businesses in your community.</p>
+        </div>
+      </article>
 
-<div class="hero-kicker">
-Culture
-</div>
+      <article class="culture-card">
+        <div class="culture-image"></div>
+        <div class="culture-content">
+          <span class="culture-tag">ART</span>
+          <h3>Creative voices</h3>
+          <p class="muted">Artists shaping the culture.</p>
+        </div>
+      </article>
 
-<h2 class="section-title">
-Food. Music. Art. Business.
-</h2>
+      <article class="culture-card">
+        <div class="culture-image"></div>
+        <div class="culture-content">
+          <span class="culture-tag">FASHION</span>
+          <h3>Style & expression</h3>
+          <p class="muted">Wear your story.</p>
+        </div>
+      </article>
 
-<p class="section-subtitle">
-A place for Black American culture to be
-shared, discovered and celebrated.
-</p>
+      <article class="culture-card">
+        <div class="culture-image"></div>
+        <div class="culture-content">
+          <span class="culture-tag">CREATORS</span>
+          <h3>People worth knowing</h3>
+          <p class="muted">Meet the creators behind the posts.</p>
+        </div>
+      </article>
 
-</div>
+    </div>
 
-</div>
-
-</div>
-
-<div class="culture-side">
-
-<div class="culture-card card">
-
-<div class="culture-card-icon">
-<svg>
-<use href="#i-fist"></use>
-</svg>
-</div>
-
-<h3>
-Community
-</h3>
-
-<p>
-Conversations, creators, stories and cultural moments.
-</p>
-
-</div>
-
-<div class="culture-card card">
-
-<div class="culture-card-icon">
-<svg>
-<use href="#i-music"></use>
-</svg>
-</div>
-
-<h3>
-Music
-</h3>
-
-<p>
-Artists, playlists and sounds connected to the community.
-</p>
-
-</div>
-
-<div class="culture-card card">
-
-<div class="culture-card-icon">
-<svg>
-<use href="#i-news"></use>
-</svg>
-</div>
-
-<h3>
-Black-Owned Business
-</h3>
-
-<p>
-Discover businesses, entrepreneurs and local opportunities.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
+  </div>
 </section>
 
-<!-- =======================================================
-     SOULAANI AI
-======================================================= -->
+<!-- =========================
+     AI
+========================= -->
 
-<section class="section" id="ai">
+<section id="aiPage" class="page">
+  <div class="container ai-wrap">
 
-<div class="container">
+    <div class="page-head">
+      <h1>Soulaani AI</h1>
+      <p>Your built-in Soulaani assistant.</p>
+    </div>
 
-<div class="ai-shell">
+    <div class="ai-card card">
 
-<div class="ai-header">
+      <div class="ai-head">
+        <div class="ai-orb">S</div>
+        <div>
+          <strong>Soulaani AI</strong>
+          <div class="muted" style="font-size:12px;">
+            Your assistant inside Soulaani
+          </div>
+        </div>
+      </div>
 
-<div class="ai-badge">
-<svg>
-<use href="#i-ai"></use>
-</svg>
-</div>
+      <div class="ai-messages" id="aiMessages">
 
-<div class="hero-kicker">
-Soulaani AI
-</div>
+        <div class="ai-message bot">
+          What's up. I'm Soulaani AI. Ask me something, help plan
+          something, brainstorm an idea, or explore the platform.
+        </div>
 
-<h2 class="section-title">
-Your AI inside Soulaani.
-</h2>
+      </div>
 
-<p class="section-subtitle">
-Ask questions, brainstorm, create, learn or get help.
-</p>
+      <div class="ai-input">
+        <input
+          id="aiInput"
+          placeholder="Ask Soulaani AI..."
+          onkeydown="if(event.key==='Enter')sendAI()"
+        >
 
-</div>
+        <button class="primary" onclick="sendAI()">
+          Send
+        </button>
+      </div>
 
-<div class="ai-chat" id="aiChat">
+    </div>
 
-<div class="ai-message bot">
-What's up. I'm Soulaani AI. What are we working on?
-</div>
-
-</div>
-
-<div class="ai-input">
-
-<input
-id="aiInput"
-placeholder="Ask Soulaani AI something..."
->
-
-<button class="btn gold-btn" onclick="sendAI()">
-Send
-</button>
-
-</div>
-
-</div>
-
-</div>
-
+  </div>
 </section>
 
-<!-- =======================================================
-     CONNECT
-======================================================= -->
-
-<section class="section" id="connect">
-
-<div class="container">
-
-<h2 class="section-title">
-Connect
-</h2>
-
-<p class="section-subtitle">
-Discover people across the Soulaani community.
-</p>
-
-<div class="people-grid" id="peopleGrid">
-</div>
-
-</div>
-
-</section>
-
-<!-- =======================================================
+<!-- =========================
      PROFILE
-======================================================= -->
+========================= -->
 
-<section class="section profile-section" id="profile">
+<section id="profilePage" class="page profile-page">
 
-<div class="container profile-shell">
+  <div id="profileThemeRoot">
 
-<div class="profile-cover" id="profileCover">
+    <div class="profile-cover" id="profileCover">
 
-<div
-class="cover-live-badge"
-id="coverMediaBadge">
-PHOTO COVER
-</div>
+      <div class="profile-cover-overlay"></div>
 
-<div class="cover-actions">
+      <div class="profile-cover-actions">
 
-<button
-class="btn"
-id="editCoverButton"
-onclick="openProfileEditor()">
-<svg
-width="16"
-style="display:inline-block;vertical-align:middle;margin-right:5px;">
-<use href="#i-camera"></use>
-</svg>
-Edit Cover
-</button>
+        <button class="secondary" onclick="openProfileEditor()">
+          <svg class="icon" style="vertical-align:middle;margin-right:5px;">
+            <use href="#i-edit"></use>
+          </svg>
+          Edit Profile
+        </button>
 
-<button
-class="btn"
-onclick="shareProfile()">
-Share
-</button>
+        <button class="icon-btn" onclick="shareProfile()">
+          <svg class="icon"><use href="#i-share"></use></svg>
+        </button>
 
-</div>
+      </div>
 
-</div>
+    </div>
 
-<div class="profile-main">
+    <div class="profile-main">
 
-<div class="profile-top">
+      <div class="profile-identity">
 
-<div>
+        <div class="profile-avatar" id="profileAvatar">
+          <span style="display:grid;place-items:center;width:100%;height:100%;font-size:35px;">S</span>
+        </div>
 
-<div class="profile-avatar-wrap">
+        <div class="profile-details">
 
-<div
-class="profile-avatar"
-id="profileAvatarBox">
-<img id="profileAvatar" alt="">
-</div>
+          <h1 id="profileName">Soulaani User</h1>
 
-<div
-class="live-indicator"
-id="avatarLiveIndicator">
-LP
-</div>
+          <div class="handle" id="profileUsername">@soulaaniuser</div>
 
-</div>
+          <div class="profile-bio" id="profileBio">
+            Welcome to my Soulaani profile.
+          </div>
 
-<div class="profile-info">
+          <div class="profile-location" id="profileLocation">
+            📍 Somewhere in the community
+          </div>
 
-<div class="profile-name-row">
+        </div>
 
-<h1
-class="profile-name"
-id="profileNameDisplay">
-Soulaani Member
-</h1>
+        <div class="profile-buttons">
 
-<span
-class="verified"
-id="verifiedBadge">
-✓
-</span>
+          <button class="primary" onclick="openProfileEditor()">
+            Edit
+          </button>
 
-</div>
+          <button class="secondary" onclick="shareProfile()">
+            Share
+          </button>
 
-<div
-class="profile-username"
-id="profileUsernameDisplay">
-@soulaani_member
-</div>
+        </div>
 
-<p
-class="profile-bio"
-id="profileBioDisplay">
-Building my world on Soulaani.
-</p>
+      </div>
 
-<div class="profile-location">
+      <div class="profile-stat-row">
 
-<svg
-width="14"
-style="display:inline-block;vertical-align:-2px;">
-<use href="#i-location"></use>
-</svg>
+        <div class="profile-stat">
+          <strong id="statPosts">0</strong>
+          <span>Posts</span>
+        </div>
 
-<span id="profileLocationDisplay">
-United States
-</span>
+        <div class="profile-stat">
+          <strong id="statFollowers">0</strong>
+          <span>Followers</span>
+        </div>
 
-</div>
+        <div class="profile-stat">
+          <strong id="statFollowing">0</strong>
+          <span>Following</span>
+        </div>
 
-</div>
+        <div class="profile-stat">
+          <strong id="statFriends">0</strong>
+          <span>Friends</span>
+        </div>
 
-</div>
+      </div>
 
-<div class="profile-actions">
+      <div class="profile-tabs">
 
-<button
-class="btn gold-btn"
-id="profilePrimaryButton"
-onclick="profilePrimaryAction()">
-Edit Profile
-</button>
+        <button class="profile-tab active" onclick="profileTab('posts',this)">
+          Posts
+        </button>
 
-<button
-class="btn"
-onclick="shareProfile()">
-Share Profile
-</button>
+        <button class="profile-tab" onclick="profileTab('reels',this)">
+          Reels
+        </button>
 
-</div>
+        <button class="profile-tab" onclick="profileTab('photos',this)">
+          Photos
+        </button>
 
-</div>
+        <button class="profile-tab" onclick="profileTab('about',this)">
+          About
+        </button>
 
-<div class="profile-stats">
+        <button class="profile-tab" onclick="profileTab('music',this)">
+          Music
+        </button>
 
-<div class="profile-stat">
-<strong id="postCount">0</strong>
-<span>Posts</span>
-</div>
+        <button class="profile-tab" onclick="profileTab('customize',this)">
+          Customize
+        </button>
 
-<div class="profile-stat">
-<strong id="followersCount">0</strong>
-<span>Followers</span>
-</div>
+      </div>
 
-<div class="profile-stat">
-<strong id="followingCount">0</strong>
-<span>Following</span>
-</div>
+      <!-- POSTS -->
 
-<div class="profile-stat">
-<strong id="friendsCount">0</strong>
-<span>Friends</span>
-</div>
+      <div id="profilePosts" class="profile-content-panel active">
 
-</div>
+        <div class="featured">
 
-<div class="profile-tabs">
+          <div class="featured-card">
+            <small class="gold">FEATURED</small>
+            <h2 style="margin-top:12px;">
+              Your Soulaani profile is your own space.
+            </h2>
+            <p class="muted" style="margin-top:10px;line-height:1.6;">
+              Highlight your personality, your work, your culture,
+              your music and whatever you want people to see first.
+            </p>
+          </div>
 
-<button
-class="profile-tab active"
-onclick="openProfileTab('posts',this)">
-Posts
-</button>
+          <div class="featured-card">
+            <small class="gold">PROFILE THEME</small>
+            <h3 style="margin-top:12px;">Make it yours.</h3>
+            <p class="muted" style="margin-top:10px;">
+              Colors, backgrounds, cards, profile media and more.
+            </p>
+          </div>
 
-<button
-class="profile-tab"
-onclick="openProfileTab('reels',this)">
-Reels
-</button>
+        </div>
 
-<button
-class="profile-tab"
-onclick="openProfileTab('photos',this)">
-Photos
-</button>
+        <div style="height:15px;"></div>
 
-<button
-class="profile-tab"
-onclick="openProfileTab('about',this)">
-About
-</button>
+        <article class="post card">
 
-<button
-class="profile-tab"
-onclick="openProfileTab('music',this)">
-Music
-</button>
+          <div class="post-head">
 
-<button
-class="profile-tab"
-onclick="openProfileTab('customize',this)">
-Customize
-</button>
+            <div class="avatar" id="profilePostAvatar">
+              S
+            </div>
 
-</div>
+            <div class="post-info">
+              <strong id="profilePostName">Soulaani User</strong>
+              <span>Just now · Public</span>
+            </div>
 
-<div class="profile-tab-content">
+          </div>
 
-<!-- POSTS -->
+          <div class="post-text">
+            This is where your profile posts will live.
+          </div>
 
-<div
-class="profile-content-panel active"
-id="profileTab-posts">
+          <div class="post-actions">
+            <button class="post-action" onclick="openReactionModal()">♡ React</button>
+            <button class="post-action">○ Comment</button>
+            <button class="post-action" onclick="shareContent('Profile post')">↗ Share</button>
+          </div>
 
-<div class="profile-post-grid">
+        </article>
 
-<article class="profile-post-card card">
+      </div>
 
-<div class="post-head">
+      <!-- REELS -->
 
-<div class="post-avatar">
-<img
-id="postProfileAvatar"
-alt="">
-</div>
+      <div id="profileReels" class="profile-content-panel">
 
-<div class="post-meta">
+        <div class="profile-post-grid">
 
-<div
-class="post-name"
-id="postProfileName">
-Soulaani Member
-</div>
+          <div class="profile-tile">
+            <div style="height:100%;display:grid;place-items:center;font-size:35px;">▶</div>
+            <span class="profile-tile-label">Reel</span>
+          </div>
 
-<div class="post-time">
-Just now
-</div>
+          <div class="profile-tile">
+            <div style="height:100%;display:grid;place-items:center;font-size:35px;">♫</div>
+            <span class="profile-tile-label">Reel</span>
+          </div>
 
-</div>
+          <div class="profile-tile">
+            <div style="height:100%;display:grid;place-items:center;font-size:35px;">🛹</div>
+            <span class="profile-tile-label">Reel</span>
+          </div>
 
-</div>
+        </div>
 
-<div
-class="post-body"
-id="profilePostText">
-This is my Soulaani profile.
-More of my world is coming here.
-</div>
+      </div>
 
-<div class="post-actions">
+      <!-- PHOTOS -->
 
-<button
-class="post-action"
-onclick="openReactionModal(this)">
-♡ React
-</button>
+      <div id="profilePhotos" class="profile-content-panel">
 
-<button class="post-action">
-💬 Comment
-</button>
+        <div class="profile-post-grid">
 
-<button class="post-action">
-↗ Share
-</button>
+          <div class="profile-tile">
+            <div style="height:100%;display:grid;place-items:center;font-size:38px;">📷</div>
+          </div>
 
-</div>
+          <div class="profile-tile">
+            <div style="height:100%;display:grid;place-items:center;font-size:38px;">✦</div>
+          </div>
 
-</article>
+          <div class="profile-tile">
+            <div style="height:100%;display:grid;place-items:center;font-size:38px;">🎨</div>
+          </div>
 
-<article class="profile-post-card card">
+        </div>
 
-<div class="hero-kicker">
-Featured
-</div>
+      </div>
 
-<h3
-id="featuredTitle"
-style="font-size:22px;margin-top:5px;">
-My Soulaani world.
-</h3>
+      <!-- ABOUT -->
 
-<p
-class="muted"
-id="featuredText"
-style="line-height:1.6;margin-top:8px;">
-This space will contain featured content
-from this profile.
-</p>
+      <div id="profileAbout" class="profile-content-panel">
 
-</article>
+        <div class="about-grid">
 
-</div>
+          <div class="about-box">
 
-</div>
+            <h3>About</h3>
 
-<!-- REELS -->
+            <div class="about-row">
+              <span>Username</span>
+              <strong id="aboutUsername">@soulaaniuser</strong>
+            </div>
 
-<div
-class="profile-content-panel"
-id="profileTab-reels">
+            <div class="about-row">
+              <span>Location</span>
+              <strong id="aboutLocation">Not set</strong>
+            </div>
 
-<div
-class="card"
-style="padding:24px;">
+            <div class="about-row">
+              <span>Joined</span>
+              <strong>2026</strong>
+            </div>
 
-<div class="hero-kicker">
-Profile Reels
-</div>
+          </div>
 
-<h3 style="font-size:24px;">
-Short-form content lives here.
-</h3>
+          <div class="about-box">
 
-<p
-class="muted"
-style="line-height:1.6;margin-top:8px;">
-Each member will eventually have their own Reels library.
-</p>
+            <h3>Interests</h3>
 
-</div>
+            <div class="tabs" style="flex-wrap:wrap;">
+              <span class="tab active">Music</span>
+              <span class="tab active">Culture</span>
+              <span class="tab active">Art</span>
+              <span class="tab active">Community</span>
+            </div>
 
-</div>
+          </div>
 
-<!-- PHOTOS -->
+        </div>
 
-<div
-class="profile-content-panel"
-id="profileTab-photos">
+      </div>
 
-<div class="profile-photo-grid">
+      <!-- MUSIC -->
 
-<div class="profile-photo">
-<div
-class="media-placeholder"
-style="height:100%;">
-<svg width="45">
-<use href="#i-camera"></use>
-</svg>
-</div>
-</div>
+      <div id="profileMusic" class="profile-content-panel">
 
-<div class="profile-photo">
-<div
-class="media-placeholder"
-style="height:100%;">
-<svg width="45">
-<use href="#i-camera"></use>
-</svg>
-</div>
-</div>
+        <div class="about-box">
 
-<div class="profile-photo">
-<div
-class="media-placeholder"
-style="height:100%;">
-<svg width="45">
-<use href="#i-camera"></use>
-</svg>
-</div>
-</div>
+          <h3>My Playlist</h3>
 
-</div>
+          <p class="muted" style="margin-bottom:15px;">
+            Add playable music to your profile.
+          </p>
 
-</div>
+          <div class="playlist">
 
-<!-- ABOUT -->
+            <div class="song">
 
-<div
-class="profile-content-panel"
-id="profileTab-about">
+              <div class="song-art">♫</div>
 
-<div class="about-grid">
+              <div class="song-info">
+                <strong>Your Song</strong>
+                <span>Add an audio URL through profile editing.</span>
+              </div>
 
-<div class="about-item">
+              <button class="icon-btn" onclick="showToast('Add your audio URL in Edit Profile')">
+                <svg class="icon"><use href="#i-play"></use></svg>
+              </button>
 
-<div class="about-label">
-Name
-</div>
+            </div>
 
-<div
-class="about-value"
-id="aboutName">
-Soulaani Member
-</div>
+            <div class="song">
 
-</div>
+              <div class="song-art">♫</div>
 
-<div class="about-item">
+              <div class="song-info">
+                <strong>Favorite Track</strong>
+                <span>Music on your profile.</span>
+              </div>
 
-<div class="about-label">
-Username
-</div>
+              <button class="icon-btn" onclick="showToast('Music player ready for a real audio URL')">
+                <svg class="icon"><use href="#i-play"></use></svg>
+              </button>
 
-<div
-class="about-value"
-id="aboutUsername">
-@soulaani_member
-</div>
+            </div>
 
-</div>
+          </div>
 
-<div class="about-item">
+        </div>
 
-<div class="about-label">
-Location
-</div>
+      </div>
 
-<div
-class="about-value"
-id="aboutLocation">
-United States
-</div>
+      <!-- CUSTOMIZE -->
 
-</div>
+      <div id="profileCustomize" class="profile-content-panel">
 
-<div class="about-item">
+        <div class="customizer">
 
-<div class="about-label">
-Profile style
-</div>
+          <div class="custom-card">
 
-<div
-class="about-value"
-id="aboutStyle">
-Soulaani Gold
-</div>
+            <h3>Theme Colors</h3>
 
-</div>
+            <div class="field">
+              <label>Accent color</label>
+              <div class="color-row">
+                <input type="color" id="themeAccent" value="#d6a84f">
+                <span class="muted">Buttons, highlights and accents</span>
+              </div>
+            </div>
 
-<div
-class="about-item"
-style="grid-column:1/-1;">
+            <div class="field">
+              <label>Background color</label>
+              <div class="color-row">
+                <input type="color" id="themeBackground" value="#070707">
+                <span class="muted">Profile background</span>
+              </div>
+            </div>
 
-<div class="about-label">
-About
-</div>
+            <div class="field">
+              <label>Card color</label>
+              <div class="color-row">
+                <input type="color" id="themeCard" value="#141414">
+                <span class="muted">Profile cards</span>
+              </div>
+            </div>
 
-<div
-class="about-value"
-id="aboutBio">
-Building my world on Soulaani.
-</div>
+            <div class="field">
+              <label>Text color</label>
+              <div class="color-row">
+                <input type="color" id="themeText" value="#f7f7f7">
+                <span class="muted">Profile text</span>
+              </div>
+            </div>
 
-</div>
+            <button class="primary" onclick="applyCustomizer()">
+              Apply Theme
+            </button>
 
-</div>
+          </div>
 
-</div>
+          <div class="custom-card">
 
-<!-- MUSIC -->
+            <h3>Theme Presets</h3>
 
-<div
-class="profile-content-panel"
-id="profileTab-music">
+            <div class="theme-presets">
 
-<div
-class="card"
-style="padding:20px;">
+              <button
+                class="theme-preset"
+                style="background:linear-gradient(135deg,#070707,#2b2111);"
+                onclick="presetTheme('#d6a84f','#070707','#141414','#f7f7f7')"
+              >
+                Gold
+              </button>
 
-<div class="hero-kicker">
-My Playlist
-</div>
+              <button
+                class="theme-preset"
+                style="background:linear-gradient(135deg,#080d14,#12304b);"
+                onclick="presetTheme('#64b5ff','#080d14','#111b27','#f2f7ff')"
+              >
+                Ocean
+              </button>
 
-<h3
-style="font-size:24px;margin-bottom:15px;">
-Music on this profile
-</h3>
+              <button
+                class="theme-preset"
+                style="background:linear-gradient(135deg,#130814,#351044);"
+                onclick="presetTheme('#e48cff','#130814','#211027','#fff5ff')"
+              >
+                Purple
+              </button>
 
-<div class="playlist">
+              <button
+                class="theme-preset"
+                style="background:linear-gradient(135deg,#07120d,#123b27);"
+                onclick="presetTheme('#63e89a','#07120d','#10231a','#effff5')"
+              >
+                Emerald
+              </button>
 
-<div class="track">
+              <button
+                class="theme-preset"
+                style="background:linear-gradient(135deg,#160808,#431313);"
+                onclick="presetTheme('#ff7676','#160808','#251010','#fff4f4')"
+              >
+                Crimson
+              </button>
 
-<div class="track-number">
-1
-</div>
+              <button
+                class="theme-preset"
+                style="background:linear-gradient(135deg,#111,#333);"
+                onclick="presetTheme('#ffffff','#080808','#151515','#ffffff')"
+              >
+                Monochrome
+              </button>
 
-<div class="track-info">
+            </div>
 
-<strong>
-My First Track
-</strong>
+          </div>
 
-<span>
-Add music to your profile.
-</span>
+          <div class="custom-card">
 
-</div>
+            <h3>Profile Layout</h3>
 
-<button
-class="track-play"
-onclick="playDemoTrack(this)">
-<svg width="17">
-<use href="#i-play"></use>
-</svg>
-</button>
+            <div class="field">
+              <label>Profile style</label>
 
-</div>
+              <select id="profileLayout">
+                <option value="classic">Classic</option>
+                <option value="minimal">Minimal</option>
+                <option value="editorial">Editorial</option>
+                <option value="creator">Creator</option>
+              </select>
 
-<div class="track">
+            </div>
 
-<div class="track-number">
-2
-</div>
+            <div class="field">
+              <label>Profile picture shape</label>
 
-<div class="track-info">
+              <select id="avatarShape" onchange="changeAvatarShape(this.value)">
+                <option value="circle">Circle</option>
+                <option value="rounded">Rounded</option>
+                <option value="square">Square</option>
+              </select>
+            </div>
 
-<strong>
-Another Track
-</strong>
+          </div>
 
-<span>
-Your profile playlist.
-</span>
+          <div class="custom-card">
 
-</div>
+            <h3>Profile Media</h3>
 
-<button
-class="track-play"
-onclick="playDemoTrack(this)">
-<svg width="17">
-<use href="#i-play"></use>
-</svg>
-</button>
+            <p class="muted" style="line-height:1.6;margin-bottom:12px;">
+              Upload a profile picture or cover image/video.
+              This prototype is also prepared for future Live Photo-style
+              profile media.
+            </p>
 
-</div>
+            <button class="secondary" onclick="openProfileEditor()">
+              Manage Media
+            </button>
 
-<div class="track">
+          </div>
 
-<div class="track-number">
-3
-</div>
+        </div>
 
-<div class="track-info">
+      </div>
 
-<strong>
-Favorite Sound
-</strong>
+    </div>
 
-<span>
-Music will eventually connect to real audio.
-</span>
-
-</div>
-
-<button
-class="track-play"
-onclick="playDemoTrack(this)">
-<svg width="17">
-<use href="#i-play"></use>
-</svg>
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- CUSTOMIZE -->
-
-<div
-class="profile-content-panel"
-id="profileTab-customize">
-
-<div class="custom-preview">
-
-<div class="hero-kicker">
-Profile Customization
-</div>
-
-<div class="custom-preview-card">
-
-<h3 style="font-size:25px;">
-Your profile. Your atmosphere.
-</h3>
-
-<p class="custom-preview-accent">
-Make your profile feel like yours.
-</p>
-
-<p
-class="muted"
-style="line-height:1.6;margin-top:12px;">
-Colors, backgrounds, cards, accents,
-profile shapes and layouts can all be customized.
-</p>
-
-</div>
-
-<button
-class="btn gold-btn"
-style="margin-top:15px;"
-onclick="openProfileEditor()">
-Open Full Customizer
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
-</main>
+<!-- =========================
+     SEARCH PAGE
+========================= -->
 
-<!-- =======================================================
+<section id="searchPage" class="page">
+  <div class="container">
+
+    <div class="page-head">
+      <h1>Search</h1>
+      <p>Find people and profiles on Soulaani.</p>
+    </div>
+
+    <div class="search-box">
+
+      <input
+        id="peopleSearch"
+        placeholder="Search people..."
+        oninput="searchPeople(this.value)"
+      >
+
+      <button class="primary" onclick="searchPeople(document.getElementById('peopleSearch').value)">
+        Search
+      </button>
+
+    </div>
+
+    <div class="people-grid" id="peopleGrid"></div>
+
+  </div>
+</section>
+
+</div>
+
+<!-- =========================
      BOTTOM NAV
-======================================================= -->
+========================= -->
 
 <nav class="bottom-nav">
 
-<button
-class="nav-item active"
-data-section="home"
-onclick="showSection('home')">
+  <button class="bottom-item active" data-nav="home" onclick="navigate('homePage','home')">
+    <svg class="icon"><use href="#i-home"></use></svg>
+    <span>Home</span>
+  </button>
 
-<svg>
-<use href="#i-home"></use>
-</svg>
+  <button class="bottom-item" data-nav="news" onclick="navigate('newsPage','news')">
+    <svg class="icon"><use href="#i-news"></use></svg>
+    <span>Newsfeed</span>
+  </button>
 
-<span>
-Home
-</span>
+  <button class="bottom-item" data-nav="skate" onclick="navigate('skatePage','skate')">
+    <svg class="icon"><use href="#i-skate"></use></svg>
+    <span>Skate</span>
+  </button>
 
-</button>
+  <button class="bottom-item" data-nav="reels" onclick="navigate('reelsPage','reels')">
+    <svg class="icon"><use href="#i-reels"></use></svg>
+    <span>Reels</span>
+  </button>
 
-<button
-class="nav-item"
-data-section="newsfeed"
-onclick="showSection('newsfeed')">
+  <button class="bottom-item" data-nav="culture" onclick="navigate('culturePage','culture')">
+    <svg class="icon"><use href="#i-fist"></use></svg>
+    <span>Culture</span>
+  </button>
 
-<svg>
-<use href="#i-news"></use>
-</svg>
+  <button class="bottom-item" data-nav="ai" onclick="navigate('aiPage','ai')">
+    <svg class="icon"><use href="#i-ai"></use></svg>
+    <span>AI</span>
+  </button>
 
-<span>
-Newsfeed
-</span>
-
-</button>
-
-<button
-class="nav-item"
-data-section="skate"
-onclick="showSection('skate')">
-
-<svg>
-<use href="#i-skate"></use>
-</svg>
-
-<span>
-Skate
-</span>
-
-</button>
-
-<button
-class="nav-item"
-data-section="reels"
-onclick="showSection('reels')">
-
-<svg>
-<use href="#i-reels"></use>
-</svg>
-
-<span>
-Reels
-</span>
-
-</button>
-
-<button
-class="nav-item"
-data-section="culture"
-onclick="showSection('culture')">
-
-<svg>
-<use href="#i-fist"></use>
-</svg>
-
-<span>
-Culture
-</span>
-
-</button>
-
-<button
-class="nav-item"
-data-section="ai"
-onclick="showSection('ai')">
-
-<svg>
-<use href="#i-ai"></use>
-</svg>
-
-<span>
-AI
-</span>
-
-</button>
-
-<button
-class="nav-item"
-data-section="profile"
-onclick="openOwnProfile()">
-
-<svg>
-<use href="#i-user"></use>
-</svg>
-
-<span>
-Profile
-</span>
-
-</button>
+  <button class="bottom-item" data-nav="profile" onclick="navigate('profilePage','profile')">
+    <svg class="icon"><use href="#i-user"></use></svg>
+    <span>Profile</span>
+  </button>
 
 </nav>
 
-<!-- =======================================================
+<!-- =========================
+     DRAWER
+========================= -->
+
+<div class="drawer-backdrop" id="drawerBackdrop" onclick="closeDrawer(event)">
+
+  <aside class="drawer" onclick="event.stopPropagation()">
+
+    <div class="drawer-head">
+      <strong style="font-size:22px;">Soulaani</strong>
+
+      <button class="icon-btn" onclick="closeDrawer()">
+        ×
+      </button>
+    </div>
+
+    <button class="drawer-item" onclick="showToast('Connect is coming next')">
+      ◉ Connect
+    </button>
+
+    <button class="drawer-item" onclick="showToast('Date is coming next')">
+      ♡ Date
+    </button>
+
+    <button class="drawer-item" onclick="showToast('Build is coming next')">
+      ◈ Build
+    </button>
+
+    <button class="drawer-item" onclick="showToast('Market is coming next')">
+      ◇ Market
+    </button>
+
+    <button class="drawer-item" onclick="showToast('Explore is coming next')">
+      ⌖ Explore
+    </button>
+
+    <button class="drawer-item" onclick="showToast('Messages are coming next')">
+      ○ Messages
+    </button>
+
+    <button class="drawer-item" onclick="showToast('Communities are coming next')">
+      ◎ Communities
+    </button>
+
+    <button class="drawer-item" onclick="showToast('Events are coming next')">
+      ◷ Events
+    </button>
+
+    <button class="drawer-item" onclick="showToast('Saved posts are coming next')">
+      ☆ Saved
+    </button>
+
+    <button class="drawer-item" onclick="navigate('profilePage','profile');closeDrawer()">
+      <svg class="icon"><use href="#i-user"></use></svg>
+      Profile
+    </button>
+
+  </aside>
+
+</div>
+
+<!-- =========================
      PROFILE EDITOR
-======================================================= -->
+========================= -->
 
-<div
-class="modal-backdrop"
-id="profileEditorModal">
+<div class="modal-backdrop" id="profileEditorModal">
 
-<div class="modal">
+  <div class="modal">
 
-<div class="modal-head">
+    <div class="modal-head">
 
-<h2>
-Edit & Customize Profile
-</h2>
+      <strong>Edit Profile</strong>
 
-<button
-class="icon-btn"
-onclick="closeModal('profileEditorModal')">
+      <button class="icon-btn" onclick="closeModal('profileEditorModal')">
+        ×
+      </button>
 
-<svg>
-<use href="#i-x"></use>
-</svg>
+    </div>
 
-</button>
+    <div class="modal-body">
 
-</div>
+      <div class="field">
+        <label>Name</label>
+        <input id="editName" placeholder="Your name">
+      </div>
 
-<div class="modal-body">
+      <div class="field">
+        <label>Username</label>
+        <input id="editUsername" placeholder="@username">
+      </div>
 
-<div class="form-grid">
+      <div class="field">
+        <label>Bio</label>
+        <textarea id="editBio" placeholder="Tell people about yourself"></textarea>
+      </div>
 
-<div class="form-group">
+      <div class="field">
+        <label>Location</label>
+        <input id="editLocation" placeholder="City, State">
+      </div>
 
-<label>
-Display name
-</label>
+      <div class="field">
+        <label>Profile Picture</label>
 
-<input
-id="editName"
-type="text"
-placeholder="Your name">
+        <div class="upload-box">
 
-</div>
+          <div class="muted">
+            Image or video
+          </div>
 
-<div class="form-group">
+          <input
+            id="profileMediaUpload"
+            type="file"
+            accept="image/*,video/*"
+            onchange="handleProfileMedia(this)"
+          >
 
-<label>
-Username
-</label>
+        </div>
 
-<input
-id="editUsername"
-type="text"
-placeholder="@username">
+      </div>
 
-</div>
+      <div class="field">
 
-<div class="form-group">
+        <label>Cover Photo / Cover Video</label>
 
-<label>
-Location
-</label>
+        <div class="upload-box">
 
-<input
-id="editLocation"
-type="text"
-placeholder="City, State">
+          <div class="muted">
+            Image or video
+          </div>
 
-</div>
+          <input
+            id="coverMediaUpload"
+            type="file"
+            accept="image/*,video/*"
+            onchange="handleCoverMedia(this)"
+          >
 
-<div class="form-group">
+        </div>
 
-<label>
-Profile layout
-</label>
+      </div>
 
-<select id="editLayout">
+      <div class="field">
 
-<option value="classic">
-Classic
-</option>
+        <label>Playlist Audio URL</label>
 
-<option value="editorial">
-Editorial
-</option>
+        <input
+          id="editAudioUrl"
+          placeholder="https://example.com/song.mp3"
+        >
 
-<option value="minimal">
-Minimal
-</option>
+        <small class="muted">
+          HTML5 audio playback can use a direct audio URL.
+        </small>
 
-</select>
+      </div>
 
-</div>
+      <div style="
+        padding:14px;
+        border-radius:14px;
+        background:#181818;
+        border:1px solid var(--line);
+        color:#aaa;
+        line-height:1.5;
+        font-size:12px;
+      ">
+        <strong style="color:var(--gold2);">
+          Live Photo-ready
+        </strong><br>
+        This GitHub Pages prototype accepts image/video media.
+        True native Apple Live Photos require paired still + motion
+        assets and backend/mobile handling. That will be part of the
+        native Soulaani app layer later.
+      </div>
 
-<div class="form-group full">
+    </div>
 
-<label>
-Bio
-</label>
+    <div class="modal-foot">
 
-<textarea
-id="editBio"
-placeholder="Tell people about yourself...">
-</textarea>
+      <button class="secondary" onclick="closeModal('profileEditorModal')">
+        Cancel
+      </button>
 
-</div>
+      <button class="primary" onclick="saveProfile()">
+        Save Profile
+      </button>
 
-<div class="form-group full">
+    </div>
 
-<label>
-Featured headline
-</label>
-
-<input
-id="editFeaturedTitle"
-type="text"
-placeholder="Featured content">
-
-</div>
-
-<div class="form-group full">
-
-<label>
-Featured description
-</label>
-
-<textarea
-id="editFeaturedText"
-placeholder="Tell people what you want featured...">
-</textarea>
+  </div>
 
 </div>
 
-</div>
+<!-- =========================
+     COMPOSER MODAL
+========================= -->
 
-<div class="theme-section">
+<div class="modal-backdrop" id="composerModal">
 
-<h3>
-Profile Media
-</h3>
+  <div class="modal">
 
-<div class="upload-box">
+    <div class="modal-head">
 
-<strong>
-Profile picture
-</strong>
+      <strong>Create a Post</strong>
 
-<p class="muted">
-Images and video supported.
-</p>
+      <button class="icon-btn" onclick="closeModal('composerModal')">
+        ×
+      </button>
 
-<input
-id="avatarUpload"
-type="file"
-accept="image/*,video/*">
+    </div>
 
-</div>
+    <div class="modal-body">
 
-<div class="upload-box">
+      <div class="field">
 
-<strong>
-Cover photo
-</strong>
+        <label>What's happening?</label>
 
-<p class="muted">
-Images and video supported.
-</p>
+        <textarea
+          id="composerText"
+          placeholder="Share something with Soulaani..."
+        ></textarea>
 
-<input
-id="coverUpload"
-type="file"
-accept="image/*,video/*">
+      </div>
 
-</div>
+      <div class="field">
 
-</div>
+        <label>Media</label>
 
-<div class="theme-section">
+        <input
+          type="file"
+          accept="image/*,video/*"
+        >
 
-<h3>
-Colors
-</h3>
+      </div>
 
-<div class="color-row">
+    </div>
 
-<div class="color-control">
+    <div class="modal-foot">
 
-<label>
-Accent
-</label>
+      <button class="secondary" onclick="closeModal('composerModal')">
+        Cancel
+      </button>
 
-<input
-id="accentColor"
-type="color">
+      <button class="primary" onclick="createPost()">
+        Post
+      </button>
+
+    </div>
+
+  </div>
 
 </div>
 
-<div class="color-control">
+<!-- =========================
+     REACTION MODAL
+========================= -->
 
-<label>
-Background
-</label>
+<div class="modal-backdrop" id="reactionModal">
 
-<input
-id="backgroundColor"
-type="color">
+  <div class="modal" style="max-width:430px;">
 
-</div>
+    <div class="modal-head">
+      <strong>React</strong>
 
-<div class="color-control">
+      <button class="icon-btn" onclick="closeModal('reactionModal')">
+        ×
+      </button>
+    </div>
 
-<label>
-Card
-</label>
+    <div class="modal-body">
 
-<input
-id="cardColor"
-type="color">
+      <div style="
+        display:grid;
+        grid-template-columns:repeat(5,1fr);
+        gap:8px;
+      ">
 
-</div>
+        <button class="secondary" onclick="chooseReaction('Like')">👍</button>
+        <button class="secondary" onclick="chooseReaction('Love')">❤️</button>
+        <button class="secondary" onclick="chooseReaction('Laugh')">😂</button>
+        <button class="secondary" onclick="chooseReaction('Wow')">😮</button>
+        <button class="secondary" onclick="chooseReaction('Dislike')">👎</button>
 
-<div class="color-control">
+      </div>
 
-<label>
-Text
-</label>
+    </div>
 
-<input
-id="textColor"
-type="color">
-
-</div>
-
-</div>
+  </div>
 
 </div>
 
-<div class="theme-section">
-
-<h3>
-Theme presets
-</h3>
-
-<div class="preset-grid">
-
-<button
-class="preset"
-onclick="applyPreset('gold')"
-style="background:linear-gradient(135deg,#070707,#d6a84f)">
-<span>Gold</span>
-</button>
-
-<button
-class="preset"
-onclick="applyPreset('platinum')"
-style="background:linear-gradient(135deg,#080808,#b8b8b8)">
-<span>Platinum</span>
-</button>
-
-<button
-class="preset"
-onclick="applyPreset('emerald')"
-style="background:linear-gradient(135deg,#06100c,#258c61)">
-<span>Emerald</span>
-</button>
-
-<button
-class="preset"
-onclick="applyPreset('royal')"
-style="background:linear-gradient(135deg,#09060f,#7043c4)">
-<span>Royal</span>
-</button>
-
-<button
-class="preset"
-onclick="applyPreset('ruby')"
-style="background:linear-gradient(135deg,#120606,#b43d46)">
-<span>Ruby</span>
-</button>
-
-<button
-class="preset"
-onclick="applyPreset('ocean')"
-style="background:linear-gradient(135deg,#050c12,#267fa4)">
-<span>Ocean</span>
-</button>
-
-<button
-class="preset"
-onclick="applyPreset('sunset')"
-style="background:linear-gradient(135deg,#170b05,#c86b34)">
-<span>Sunset</span>
-</button>
-
-<button
-class="preset"
-onclick="applyPreset('mono')"
-style="background:linear-gradient(135deg,#080808,#eeeeee)">
-<span>Mono</span>
-</button>
-
-</div>
-
-</div>
-
-<div class="theme-section">
-
-<h3>
-Profile picture shape
-</h3>
-
-<div class="layout-grid">
-
-<button
-class="layout-option active"
-onclick="setAvatarShape('50%',this)">
-Circle
-</button>
-
-<button
-class="layout-option"
-onclick="setAvatarShape('24px',this)">
-Rounded
-</button>
-
-<button
-class="layout-option"
-onclick="setAvatarShape('8px',this)">
-Square
-</button>
-
-</div>
-
-</div>
-
-<div class="theme-section">
-
-<h3>
-Profile background
-</h3>
-
-<div class="layout-grid">
-
-<button
-class="layout-option active"
-onclick="setProfileBackground('solid',this)">
-Solid
-</button>
-
-<button
-class="layout-option"
-onclick="setProfileBackground('radial',this)">
-Glow
-</button>
-
-<button
-class="layout-option"
-onclick="setProfileBackground('grid',this)">
-Grid
-</button>
-
-</div>
-
-</div>
-
-<div class="modal-actions">
-
-<button
-class="btn"
-onclick="closeModal('profileEditorModal')">
-Cancel
-</button>
-
-<button
-class="btn gold-btn"
-onclick="saveProfile()">
-Save Profile
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- =======================================================
-     COMPOSER
-======================================================= -->
-
-<div
-class="modal-backdrop"
-id="composerModal">
-
-<div class="modal small">
-
-<div class="modal-head">
-
-<h2>
-Create Post
-</h2>
-
-<button
-class="icon-btn"
-onclick="closeModal('composerModal')">
-
-<svg>
-<use href="#i-x"></use>
-</svg>
-
-</button>
-
-</div>
-
-<div class="modal-body">
-
-<div class="form-group">
-
-<label>
-What's happening?
-</label>
-
-<textarea
-id="composerText"
-placeholder="Share something with Soulaani...">
-</textarea>
-
-</div>
-
-<div class="modal-actions">
-
-<button
-class="btn"
-onclick="closeModal('composerModal')">
-Cancel
-</button>
-
-<button
-class="btn gold-btn"
-onclick="createPost()">
-Post
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- =======================================================
-     REACTIONS
-======================================================= -->
-
-<div
-class="modal-backdrop"
-id="reactionModal">
-
-<div class="modal small">
-
-<div class="modal-head">
-
-<h2>
-React
-</h2>
-
-<button
-class="icon-btn"
-onclick="closeModal('reactionModal')">
-
-<svg>
-<use href="#i-x"></use>
-</svg>
-
-</button>
-
-</div>
-
-<div class="reaction-options">
-
-<button
-class="reaction"
-onclick="chooseReaction('❤️')">
-❤️
-</button>
-
-<button
-class="reaction"
-onclick="chooseReaction('😂')">
-😂
-</button>
-
-<button
-class="reaction"
-onclick="chooseReaction('😮')">
-😮
-</button>
-
-<button
-class="reaction"
-onclick="chooseReaction('😢')">
-😢
-</button>
-
-<button
-class="reaction"
-onclick="chooseReaction('👎🏾')">
-👎🏾
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-<div
-class="toast"
-id="toast">
-</div>
+<!-- =========================
+     TOAST
+========================= -->
+
+<div class="toast" id="toast"></div>
 
 <script>
+/* ============================================================
+   SOULAANI CORE
+   ============================================================ */
 
-/* =========================================================
-   PROFILE DATA ARCHITECTURE
-========================================================= */
+const PROFILE_KEY = "soulaani_profile_v3";
+const PROFILES_KEY = "soulaani_profiles_v1";
 
-const PROFILE_KEY =
-"soulaani_current_profile_v4";
-
-const MEMBERS_KEY =
-"soulaani_members_v1";
-
-const defaultProfile = {
-
-id:"me",
-
-name:"Soulaani Member",
-
-username:"@soulaani_member",
-
-bio:"Building my world on Soulaani.",
-
-location:"United States",
-
-accent:"#d6a84f",
-
-background:"#070707",
-
-card:"#111111",
-
-text:"#f7f3ea",
-
-avatar:"",
-
-cover:"",
-
-avatarType:"image",
-
-coverType:"image",
-
-avatarLive:false,
-
-coverLive:false,
-
-layout:"classic",
-
-avatarShape:"50%",
-
-backgroundStyle:"solid",
-
-posts:0,
-
-followers:0,
-
-following:0,
-
-friends:0,
-
-featuredTitle:"My Soulaani world.",
-
-featuredText:"This space will contain featured content from this profile.",
-
-followingMe:false
-
+let currentProfile = {
+  id:"me",
+  name:"Soulaani User",
+  username:"soulaaniuser",
+  bio:"Welcome to my Soulaani profile.",
+  location:"Somewhere in the community",
+  followers:0,
+  following:0,
+  friends:0,
+  posts:0,
+  accent:"#d6a84f",
+  background:"#070707",
+  card:"#141414",
+  text:"#f7f7f7",
+  avatar:"",
+  avatarType:"",
+  avatarLive:false,
+  cover:"",
+  coverType:"",
+  coverLive:false,
+  audioUrl:""
 };
 
-const demoMembers = {
-
-maya:{
-
-id:"maya",
-
-name:"Maya Johnson",
-
-username:"@mayaj",
-
-bio:"Culture, creativity, community and good energy.",
-
-location:"Philadelphia, Pennsylvania",
-
-avatar:"https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=500&q=85",
-
-cover:"",
-
-accent:"#d6a84f",
-
-background:"#080808",
-
-card:"#131313",
-
-text:"#f7f3ea",
-
-avatarShape:"50%",
-
-backgroundStyle:"radial",
-
-posts:42,
-
-followers:1280,
-
-following:361,
-
-friends:94,
-
-featuredTitle:"Culture is everything.",
-
-featuredText:"Sharing stories, creativity and community.",
-
-verified:true
-
-},
-
-darius:{
-
-id:"darius",
-
-name:"Darius Carter",
-
-username:"@dariusskates",
-
-bio:"Skater. Creator. Always looking for the next spot.",
-
-location:"Harrisburg, Pennsylvania",
-
-avatar:"https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=500&q=85",
-
-cover:"",
-
-accent:"#e48746",
-
-background:"#0b0806",
-
-card:"#17100b",
-
-text:"#fff4ed",
-
-avatarShape:"50%",
-
-backgroundStyle:"radial",
-
-posts:87,
-
-followers:2390,
-
-following:421,
-
-friends:118,
-
-featuredTitle:"Ride your own line.",
-
-featuredText:"Skate clips, spots and the journey.",
-
-verified:false
-
-},
-
-jordan:{
-
-id:"jordan",
-
-name:"Jordan Williams",
-
-username:"@jordanculture",
-
-bio:"Artist, music lover and community builder.",
-
-location:"Baltimore, Maryland",
-
-avatar:"https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=500&q=85",
-
-cover:"",
-
-accent:"#9b70e8",
-
-background:"#09060f",
-
-card:"#171020",
-
-text:"#f8f2ff",
-
-avatarShape:"50%",
-
-backgroundStyle:"radial",
-
-posts:63,
-
-followers:3420,
-
-following:512,
-
-friends:205,
-
-featuredTitle:"Create something real.",
-
-featuredText:"Art, music and culture through my lens.",
-
-verified:true
-
-},
-
-imani:{
-
-id:"imani",
-
-name:"Imani Davis",
-
-username:"@imanid",
-
-bio:"Food, fashion, music and everyday culture.",
-
-location:"Atlanta, Georgia",
-
-avatar:"https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?auto=format&fit=crop&w=500&q=85",
-
-cover:"",
-
-accent:"#37b77b",
-
-background:"#06100c",
-
-card:"#0e1b15",
-
-text:"#effff6",
-
-avatarShape:"50%",
-
-backgroundStyle:"radial",
-
-posts:91,
-
-followers:4180,
-
-following:640,
-
-friends:318,
-
-featuredTitle:"Eat. Create. Live.",
-
-featuredText:"Black culture through food and lifestyle.",
-
-verified:false
-
+let viewingProfile = "me";
+
+let sampleProfiles = [
+  {
+    id:"p1",
+    name:"Jordan Creates",
+    username:"jordancreates",
+    bio:"Creator. Artist. Building something real.",
+    location:"Philadelphia, PA",
+    followers:1240,
+    following:410,
+    friends:182,
+    posts:76,
+    accent:"#d6a84f",
+    background:"#080808",
+    card:"#151515",
+    text:"#f7f7f7",
+    avatar:"",
+    cover:"",
+    audioUrl:""
+  },
+  {
+    id:"p2",
+    name:"Nayah Music",
+    username:"nayahmusic",
+    bio:"Music, culture and good energy.",
+    location:"Harrisburg, PA",
+    followers:842,
+    following:265,
+    friends:91,
+    posts:42,
+    accent:"#e48cff",
+    background:"#130814",
+    card:"#211027",
+    text:"#fff5ff",
+    avatar:"",
+    cover:"",
+    audioUrl:""
+  },
+  {
+    id:"p3",
+    name:"Drew Skates",
+    username:"drewskates",
+    bio:"Skate everything. Fear nothing.",
+    location:"Pennsylvania",
+    followers:3400,
+    following:198,
+    friends:310,
+    posts:115,
+    accent:"#63e89a",
+    background:"#07120d",
+    card:"#10231a",
+    text:"#effff5",
+    avatar:"",
+    cover:"",
+    audioUrl:""
+  }
+];
+
+function svg(id){
+  return `<svg class="icon"><use href="#${id}"></use></svg>`;
 }
 
-};
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
 
-let profile =
-loadCurrentProfile();
+function navigate(pageId,navName){
 
-let members =
-loadMembers();
+  document.querySelectorAll(".page").forEach(page=>{
+    page.classList.remove("active");
+  });
 
-let viewedProfile =
-profile;
+  const page=document.getElementById(pageId);
 
-let activeReactionButton =
-null;
+  if(page){
+    page.classList.add("active");
+  }
 
-let currentBackgroundStyle =
-profile.backgroundStyle || "solid";
+  document.querySelectorAll(".bottom-item").forEach(item=>{
+    item.classList.toggle(
+      "active",
+      item.dataset.nav===navName
+    );
+  });
 
-/* =========================================================
-   DATA
-========================================================= */
+  if(navName==="reels"){
+    setTimeout(initReelsObserver,100);
+  }
 
-function loadCurrentProfile(){
-
-try{
-
-const saved =
-localStorage.getItem(PROFILE_KEY);
-
-if(saved){
-
-return {
-...defaultProfile,
-...JSON.parse(saved)
-};
-
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 }
 
-}catch(e){
+/* ============================================================
+   DRAWER
+   ============================================================ */
 
-console.log(e);
-
+function openDrawer(){
+  document.getElementById("drawerBackdrop").classList.add("open");
 }
 
-return {...defaultProfile};
+function closeDrawer(){
+  document.getElementById("drawerBackdrop").classList.remove("open");
+}
 
+/* ============================================================
+   MODALS
+   ============================================================ */
+
+function openModal(id){
+  document.getElementById(id).classList.add("open");
+}
+
+function closeModal(id){
+  document.getElementById(id).classList.remove("open");
+}
+
+function openComposer(){
+  openModal("composerModal");
+}
+
+function openProfileEditor(){
+
+  document.getElementById("editName").value=currentProfile.name;
+  document.getElementById("editUsername").value=currentProfile.username;
+  document.getElementById("editBio").value=currentProfile.bio;
+  document.getElementById("editLocation").value=currentProfile.location;
+  document.getElementById("editAudioUrl").value=currentProfile.audioUrl||"";
+
+  openModal("profileEditorModal");
+}
+
+function openReactionModal(){
+  openModal("reactionModal");
+}
+
+function openSearch(){
+  navigate("searchPage","profile");
+  document.querySelectorAll(".bottom-item").forEach(i=>i.classList.remove("active"));
+  document.getElementById("peopleSearch").focus();
+}
+
+/* ============================================================
+   TOAST
+   ============================================================ */
+
+let toastTimer;
+
+function showToast(message){
+
+  const toast=document.getElementById("toast");
+
+  toast.textContent=message;
+  toast.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer=setTimeout(()=>{
+    toast.classList.remove("show");
+  },2400);
+}
+
+/* ============================================================
+   PROFILE STORAGE
+   ============================================================ */
+
+function loadProfile(){
+
+  try{
+
+    const saved=localStorage.getItem(PROFILE_KEY);
+
+    if(saved){
+      currentProfile={
+        ...currentProfile,
+        ...JSON.parse(saved)
+      };
+    }
+
+  }catch(error){
+    console.log("Profile storage unavailable",error);
+  }
+
+  renderOwnProfile();
 }
 
 function saveCurrentProfile(){
 
-localStorage.setItem(
-PROFILE_KEY,
-JSON.stringify(profile)
-);
+  try{
 
+    localStorage.setItem(
+      PROFILE_KEY,
+      JSON.stringify(currentProfile)
+    );
+
+  }catch(error){
+
+    console.log("Could not save profile",error);
+
+    showToast("Browser storage is unavailable");
+
+  }
 }
 
-function loadMembers(){
+function loadSampleProfiles(){
 
-try{
+  try{
 
-const saved =
-localStorage.getItem(MEMBERS_KEY);
+    const saved=localStorage.getItem(PROFILES_KEY);
 
-if(saved){
+    if(saved){
 
-return {
-...demoMembers,
-...JSON.parse(saved)
-};
+      sampleProfiles=[
+        ...sampleProfiles,
+        ...JSON.parse(saved)
+      ];
 
+    }
+
+  }catch(error){
+    console.log(error);
+  }
 }
 
-}catch(e){
+/* ============================================================
+   PROFILE RENDERING
+   ============================================================ */
 
-console.log(e);
+function renderOwnProfile(){
 
+  viewingProfile="me";
+
+  document.getElementById("profileName").textContent=currentProfile.name;
+
+  document.getElementById("profileUsername").textContent=
+    "@"+currentProfile.username.replace(/^@/,"");
+
+  document.getElementById("profileBio").textContent=
+    currentProfile.bio;
+
+  document.getElementById("profileLocation").textContent=
+    "📍 "+currentProfile.location;
+
+  document.getElementById("statPosts").textContent=
+    currentProfile.posts;
+
+  document.getElementById("statFollowers").textContent=
+    formatNumber(currentProfile.followers);
+
+  document.getElementById("statFollowing").textContent=
+    formatNumber(currentProfile.following);
+
+  document.getElementById("statFriends").textContent=
+    formatNumber(currentProfile.friends);
+
+  document.getElementById("aboutUsername").textContent=
+    "@"+currentProfile.username.replace(/^@/,"");
+
+  document.getElementById("aboutLocation").textContent=
+    currentProfile.location;
+
+  document.getElementById("profilePostName").textContent=
+    currentProfile.name;
+
+  renderAvatar(
+    document.getElementById("profileAvatar"),
+    currentProfile.avatar,
+    currentProfile.avatarType,
+    currentProfile.name
+  );
+
+  renderAvatar(
+    document.getElementById("homeAvatar"),
+    currentProfile.avatar,
+    currentProfile.avatarType,
+    currentProfile.name
+  );
+
+  renderAvatar(
+    document.getElementById("profilePostAvatar"),
+    currentProfile.avatar,
+    currentProfile.avatarType,
+    currentProfile.name
+  );
+
+  renderCover();
+
+  applyProfileTheme();
 }
 
-return {...demoMembers};
+function renderAvatar(element,src,type,name){
 
+  if(!element) return;
+
+  element.innerHTML="";
+
+  if(src){
+
+    if(type==="video"){
+
+      const video=document.createElement("video");
+
+      video.src=src;
+      video.autoplay=true;
+      video.loop=true;
+      video.muted=true;
+      video.playsInline=true;
+
+      element.appendChild(video);
+
+    }else{
+
+      const img=document.createElement("img");
+
+      img.src=src;
+      img.alt=name+" profile picture";
+
+      element.appendChild(img);
+
+    }
+
+  }else{
+
+    const initial=(name||"S").trim().charAt(0).toUpperCase();
+
+    const span=document.createElement("span");
+
+    span.textContent=initial;
+
+    span.style.display="grid";
+    span.style.placeItems="center";
+    span.style.width="100%";
+    span.style.height="100%";
+    span.style.fontSize="32px";
+    span.style.fontWeight="900";
+    span.style.color="var(--profile-accent,var(--gold2))";
+
+    element.appendChild(span);
+
+  }
 }
 
-function saveMembers(){
+function renderCover(){
 
-localStorage.setItem(
-MEMBERS_KEY,
-JSON.stringify(members)
-);
+  const cover=document.getElementById("profileCover");
 
+  const existingMedia=cover.querySelector(
+    ".profile-cover-media"
+  );
+
+  if(existingMedia){
+    existingMedia.remove();
+  }
+
+  if(currentProfile.cover){
+
+    let media;
+
+    if(currentProfile.coverType==="video"){
+
+      media=document.createElement("video");
+
+      media.autoplay=true;
+      media.loop=true;
+      media.muted=true;
+      media.playsInline=true;
+
+    }else{
+
+      media=document.createElement("img");
+
+    }
+
+    media.className="profile-cover-media";
+    media.src=currentProfile.cover;
+
+    media.style.position="absolute";
+    media.style.inset="0";
+    media.style.width="100%";
+    media.style.height="100%";
+    media.style.objectFit="cover";
+
+    cover.insertBefore(
+      media,
+      cover.querySelector(".profile-cover-overlay")
+    );
+
+  }
 }
 
-/* =========================================================
-   PROFILE NAVIGATION
-========================================================= */
-
-function openOwnProfile(){
-
-viewedProfile =
-profile;
-
-renderViewedProfile();
-
-showSection("profile");
-
-}
-
-function openMemberProfile(id){
-
-if(!members[id]){
-
-showToast("Profile not found.");
-
-return;
-
-}
-
-viewedProfile =
-members[id];
-
-renderViewedProfile();
-
-showSection("profile");
-
-}
-
-function renderViewedProfile(){
-
-const p =
-viewedProfile;
-
-document.getElementById(
-"profileNameDisplay"
-).textContent =
-p.name;
-
-document.getElementById(
-"profileUsernameDisplay"
-).textContent =
-p.username;
-
-document.getElementById(
-"profileBioDisplay"
-).textContent =
-p.bio;
-
-document.getElementById(
-"profileLocationDisplay"
-).textContent =
-p.location;
-
-document.getElementById(
-"postCount"
-).textContent =
-p.posts || 0;
-
-document.getElementById(
-"followersCount"
-).textContent =
-p.followers || 0;
-
-document.getElementById(
-"followingCount"
-).textContent =
-p.following || 0;
-
-document.getElementById(
-"friendsCount"
-).textContent =
-p.friends || 0;
-
-document.getElementById(
-"aboutName"
-).textContent =
-p.name;
-
-document.getElementById(
-"aboutUsername"
-).textContent =
-p.username;
-
-document.getElementById(
-"aboutLocation"
-).textContent =
-p.location;
-
-document.getElementById(
-"aboutBio"
-).textContent =
-p.bio;
-
-document.getElementById(
-"aboutStyle"
-).textContent =
-getThemeName(p);
-
-document.getElementById(
-"postProfileName"
-).textContent =
-p.name;
-
-document.getElementById(
-"profilePostText"
-).textContent =
-p.id === "me"
-?
-"This is my Soulaani profile. More of my world is coming here."
-:
-p.featuredText || "Sharing my world on Soulaani.";
-
-document.getElementById(
-"featuredTitle"
-).textContent =
-p.featuredTitle ||
-"My Soulaani world.";
-
-document.getElementById(
-"featuredText"
-).textContent =
-p.featuredText ||
-"This space will contain featured content from this profile.";
-
-const avatar =
-document.getElementById(
-"profileAvatar"
-);
-
-const mini =
-document.getElementById(
-"miniAvatar"
-);
-
-const story =
-document.getElementById(
-"storyAvatar"
-);
-
-const composer =
-document.getElementById(
-"composerAvatar"
-);
-
-const postAvatar =
-document.getElementById(
-"postProfileAvatar"
-);
-
-const source =
-p.avatar ||
-makeAvatarPlaceholder(p.accent);
-
-avatar.src =
-source;
-
-postAvatar.src =
-source;
-
-if(p.id === "me"){
-
-mini.src =
-source;
-
-story.src =
-source;
-
-composer.src =
-source;
-
-}
-
-const cover =
-document.getElementById(
-"profileCover"
-);
-
-if(p.cover){
-
-cover.style.backgroundImage =
-`linear-gradient(0deg,rgba(0,0,0,.32),rgba(0,0,0,.08)),url("${p.cover}")`;
-
-}else{
-
-cover.style.backgroundImage =
-`
-linear-gradient(0deg,rgba(0,0,0,.35),transparent),
-radial-gradient(circle at 75% 25%,${p.accent}55,transparent 35%),
-linear-gradient(135deg,#1c1c1c,#090909)
-`;
-
-}
-
-document.getElementById(
-"avatarLiveIndicator"
-).style.display =
-p.avatarLive ? "grid" : "none";
-
-document.getElementById(
-"coverMediaBadge"
-).textContent =
-p.coverLive
-?
-"LIVE PHOTO READY"
-:
-"PHOTO COVER";
-
-const primary =
-document.getElementById(
-"profilePrimaryButton"
-);
-
-const editCover =
-document.getElementById(
-"editCoverButton"
-);
-
-if(p.id === "me"){
-
-primary.textContent =
-"Edit Profile";
-
-primary.className =
-"btn gold-btn";
-
-primary.onclick =
-openProfileEditor;
-
-editCover.style.display =
-"inline-flex";
-
-}else{
-
-primary.textContent =
-p.followingMe
-?
-"Following"
-:
-"Follow";
-
-primary.className =
-p.followingMe
-?
-"btn"
-:
-"btn gold-btn";
-
-primary.onclick =
-toggleFollowViewedProfile;
-
-editCover.style.display =
-"none";
-
-}
-
-document.getElementById(
-"verifiedBadge"
-).style.display =
-p.verified === false
-?
-"none"
-:
-"grid";
-
-applyViewedTheme(p);
-
-resetProfileTabs();
-
-}
-
-/* =========================================================
-   PROFILE THEMING
-========================================================= */
-
-function applyViewedTheme(p){
-
-const root =
-document.documentElement;
-
-root.style.setProperty(
-"--profile-accent",
-p.accent || "#d6a84f"
-);
-
-root.style.setProperty(
-"--profile-bg",
-p.background || "#070707"
-);
-
-root.style.setProperty(
-"--profile-card",
-p.card || "#111111"
-);
-
-root.style.setProperty(
-"--profile-text",
-p.text || "#f7f3ea"
-);
-
-root.style.setProperty(
-"--avatar-radius",
-p.avatarShape || "50%"
-);
-
-const section =
-document.getElementById(
-"profile"
-);
-
-if(p.backgroundStyle === "radial"){
-
-section.style.background =
-`radial-gradient(circle at 50% 0%,${p.accent}22,transparent 35%),${p.background}`;
-
-}else if(p.backgroundStyle === "grid"){
-
-section.style.background =
-`
-linear-gradient(${p.background},${p.background}),
-repeating-linear-gradient(
-0deg,
-transparent 0 39px,
-${p.accent}12 40px
-),
-repeating-linear-gradient(
-90deg,
-transparent 0 39px,
-${p.accent}12 40px
-)
-`;
-
-}else{
-
-section.style.background =
-p.background || "#070707";
-
-}
-
-}
-
-/* =========================================================
-   PEOPLE
-========================================================= */
-
-function renderPeople(){
-
-const grid =
-document.getElementById(
-"peopleGrid"
-);
-
-grid.innerHTML = "";
-
-Object.values(members).forEach(member => {
-
-const card =
-document.createElement("div");
-
-card.className =
-"person-card card";
-
-card.onclick =
-function(){
-
-openMemberProfile(member.id);
-
-};
-
-card.innerHTML = `
-
-<div
-class="person-cover"
-style="
-background:
-radial-gradient(
-circle at 75% 20%,
-${member.accent}66,
-transparent 35%
-),
-${member.background};
-">
-</div>
-
-<div class="person-body">
-
-<div class="person-avatar">
-
-<img
-src="${member.avatar}"
-alt="${member.name}">
-
-</div>
-
-<div class="person-name">
-${member.name}
-${member.verified ? " ✓" : ""}
-</div>
-
-<div class="person-username">
-${member.username}
-</div>
-
-<div class="person-bio">
-${member.bio}
-</div>
-
-<div class="person-actions">
-
-<button
-class="btn gold-btn"
-onclick="event.stopPropagation();openMemberProfile('${member.id}')">
-View Profile
-</button>
-
-<button
-class="btn"
-onclick="event.stopPropagation();toggleMemberFollow('${member.id}')">
-${member.followingMe ? "Following" : "Follow"}
-</button>
-
-</div>
-
-</div>
-`;
-
-grid.appendChild(card);
-
-});
-
-}
-
-/* =========================================================
-   FOLLOWING
-========================================================= */
-
-function toggleMemberFollow(id){
-
-const member =
-members[id];
-
-if(!member) return;
-
-member.followingMe =
-!member.followingMe;
-
-if(member.followingMe){
-
-member.followers =
-Number(member.followers || 0) + 1;
-
-showToast(
-"You are now following " +
-member.name
-);
-
-}else{
-
-member.followers =
-Math.max(
-0,
-Number(member.followers || 0) - 1
-);
-
-showToast(
-"You unfollowed " +
-member.name
-);
-
-}
-
-saveMembers();
-
-renderPeople();
-
-if(viewedProfile.id === id){
-
-viewedProfile =
-member;
-
-renderViewedProfile();
-
-}
-
-}
-
-function toggleFollowViewedProfile(){
-
-if(viewedProfile.id === "me"){
-
-openProfileEditor();
-
-return;
-
-}
-
-toggleMemberFollow(
-viewedProfile.id
-);
-
-}
-
-/* =========================================================
-   SECTIONS
-========================================================= */
-
-function showSection(id){
-
-document
-.querySelectorAll(".section")
-.forEach(section => {
-
-section.classList.remove("active");
-
-});
-
-const target =
-document.getElementById(id);
-
-if(target){
-
-target.classList.add("active");
-
-}
-
-document
-.querySelectorAll(".nav-item")
-.forEach(item => {
-
-item.classList.toggle(
-"active",
-item.dataset.section === id
-);
-
-});
-
-if(id === "connect"){
-
-renderPeople();
-
-}
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-}
-
-/* =========================================================
-   DRAWER
-========================================================= */
-
-function openDrawer(){
-
-document
-.getElementById("drawer")
-.classList.add("open");
-
-document
-.getElementById("drawerBackdrop")
-.classList.add("open");
-
-}
-
-function closeDrawer(){
-
-document
-.getElementById("drawer")
-.classList.remove("open");
-
-document
-.getElementById("drawerBackdrop")
-.classList.remove("open");
-
-}
-
-/* =========================================================
-   MODALS
-========================================================= */
-
-function openModal(id){
-
-document
-.getElementById(id)
-.classList.add("open");
-
-}
-
-function closeModal(id){
-
-document
-.getElementById(id)
-.classList.remove("open");
-
-}
-
-function openComposer(){
-
-document.getElementById(
-"composerText"
-).value = "";
-
-openModal(
-"composerModal"
-);
-
-}
-
-/* =========================================================
-   CREATE POST
-========================================================= */
-
-function createPost(){
-
-const text =
-document
-.getElementById("composerText")
-.value
-.trim();
-
-if(!text){
-
-showToast("Write something first.");
-
-return;
-
-}
-
-profile.posts =
-Number(profile.posts || 0) + 1;
-
-profile.featuredText =
-text;
-
-saveCurrentProfile();
-
-viewedProfile =
-profile;
-
-renderViewedProfile();
-
-closeModal(
-"composerModal"
-);
-
-showToast(
-"Post created."
-);
-
-}
-
-/* =========================================================
-   PROFILE EDITOR
-========================================================= */
-
-function openProfileEditor(){
-
-if(viewedProfile.id !== "me"){
-
-return;
-
-}
-
-document.getElementById(
-"editName"
-).value =
-profile.name;
-
-document.getElementById(
-"editUsername"
-).value =
-profile.username;
-
-document.getElementById(
-"editLocation"
-).value =
-profile.location;
-
-document.getElementById(
-"editBio"
-).value =
-profile.bio;
-
-document.getElementById(
-"editLayout"
-).value =
-profile.layout;
-
-document.getElementById(
-"editFeaturedTitle"
-).value =
-profile.featuredTitle;
-
-document.getElementById(
-"editFeaturedText"
-).value =
-profile.featuredText;
-
-document.getElementById(
-"accentColor"
-).value =
-profile.accent;
-
-document.getElementById(
-"backgroundColor"
-).value =
-profile.background;
-
-document.getElementById(
-"cardColor"
-).value =
-profile.card;
-
-document.getElementById(
-"textColor"
-).value =
-profile.text;
-
-currentBackgroundStyle =
-profile.backgroundStyle;
-
-openModal(
-"profileEditorModal"
-);
-
-}
-
-/* =========================================================
-   SAVE PROFILE
-========================================================= */
+/* ============================================================
+   PROFILE EDITING
+   ============================================================ */
 
 function saveProfile(){
 
-profile.name =
-document.getElementById(
-"editName"
-).value.trim()
-||
-"Soulaani Member";
+  let username=document.getElementById("editUsername").value.trim();
 
-profile.username =
-document.getElementById(
-"editUsername"
-).value.trim()
-||
-"@soulaani_member";
+  username=username.replace(/^@/,"");
 
-if(!profile.username.startsWith("@")){
+  if(!username){
+    username="soulaaniuser";
+  }
 
-profile.username =
-"@" + profile.username;
+  currentProfile.name=
+    document.getElementById("editName").value.trim() ||
+    "Soulaani User";
 
-}
+  currentProfile.username=username;
 
-profile.location =
-document.getElementById(
-"editLocation"
-).value.trim()
-||
-"United States";
+  currentProfile.bio=
+    document.getElementById("editBio").value.trim() ||
+    "Welcome to my Soulaani profile.";
 
-profile.bio =
-document.getElementById(
-"editBio"
-).value.trim()
-||
-"Building my world on Soulaani.";
+  currentProfile.location=
+    document.getElementById("editLocation").value.trim() ||
+    "Somewhere in the community";
 
-profile.layout =
-document.getElementById(
-"editLayout"
-).value;
+  currentProfile.audioUrl=
+    document.getElementById("editAudioUrl").value.trim();
 
-profile.featuredTitle =
-document.getElementById(
-"editFeaturedTitle"
-).value.trim()
-||
-"My Soulaani world.";
+  saveCurrentProfile();
 
-profile.featuredText =
-document.getElementById(
-"editFeaturedText"
-).value.trim()
-||
-"This space will contain featured content from this profile.";
+  renderOwnProfile();
 
-profile.accent =
-document.getElementById(
-"accentColor"
-).value;
+  closeModal("profileEditorModal");
 
-profile.background =
-document.getElementById(
-"backgroundColor"
-).value;
-
-profile.card =
-document.getElementById(
-"cardColor"
-).value;
-
-profile.text =
-document.getElementById(
-"textColor"
-).value;
-
-profile.backgroundStyle =
-currentBackgroundStyle;
-
-saveCurrentProfile();
-
-viewedProfile =
-profile;
-
-renderViewedProfile();
-
-closeModal(
-"profileEditorModal"
-);
-
-showToast(
-"Your profile has been saved on this device."
-);
+  showToast("Profile saved");
 
 }
 
-/* =========================================================
-   THEME PRESETS
-========================================================= */
+/* ============================================================
+   PROFILE MEDIA
+   ============================================================ */
 
-function applyPreset(name){
+function handleProfileMedia(input){
 
-const presets = {
+  const file=input.files[0];
 
-gold:{
-accent:"#d6a84f",
-background:"#070707",
-card:"#111111",
-text:"#f7f3ea"
-},
+  if(!file) return;
 
-platinum:{
-accent:"#d7d7d7",
-background:"#080808",
-card:"#151515",
-text:"#f4f4f4"
-},
+  const reader=new FileReader();
 
-emerald:{
-accent:"#37b77b",
-background:"#06100c",
-card:"#0e1b15",
-text:"#effff6"
-},
+  reader.onload=event=>{
 
-royal:{
-accent:"#9b70e8",
-background:"#09060f",
-card:"#171020",
-text:"#f8f2ff"
-},
+    currentProfile.avatar=event.target.result;
+    currentProfile.avatarType=
+      file.type.startsWith("video/")
+      ? "video"
+      : "image";
 
-ruby:{
-accent:"#e05a63",
-background:"#120606",
-card:"#1b0d0d",
-text:"#fff2f2"
-},
+    currentProfile.avatarLive=
+      file.type.startsWith("video/");
 
-ocean:{
-accent:"#43a9d0",
-background:"#050c12",
-card:"#0d171e",
-text:"#eefaff"
-},
+    renderOwnProfile();
 
-sunset:{
-accent:"#e48746",
-background:"#170b05",
-card:"#201008",
-text:"#fff4ed"
-},
+  };
 
-mono:{
-accent:"#eeeeee",
-background:"#080808",
-card:"#151515",
-text:"#ffffff"
+  reader.readAsDataURL(file);
 }
 
-};
+function handleCoverMedia(input){
 
-const p =
-presets[name];
+  const file=input.files[0];
 
-if(!p) return;
+  if(!file) return;
 
-profile.accent =
-p.accent;
+  const reader=new FileReader();
 
-profile.background =
-p.background;
+  reader.onload=event=>{
 
-profile.card =
-p.card;
+    currentProfile.cover=event.target.result;
 
-profile.text =
-p.text;
+    currentProfile.coverType=
+      file.type.startsWith("video/")
+      ? "video"
+      : "image";
 
-document.getElementById(
-"accentColor"
-).value =
-p.accent;
+    currentProfile.coverLive=
+      file.type.startsWith("video/");
 
-document.getElementById(
-"backgroundColor"
-).value =
-p.background;
+    renderOwnProfile();
 
-document.getElementById(
-"cardColor"
-).value =
-p.card;
+  };
 
-document.getElementById(
-"textColor"
-).value =
-p.text;
-
-applyViewedTheme(
-profile
-);
-
-showToast(
-name.charAt(0).toUpperCase() +
-name.slice(1) +
-" theme applied."
-);
-
+  reader.readAsDataURL(file);
 }
 
-/* =========================================================
-   SHAPE / BACKGROUND
-========================================================= */
+/* ============================================================
+   PROFILE THEMES
+   ============================================================ */
 
-function setAvatarShape(shape,button){
+function applyProfileTheme(){
 
-profile.avatarShape =
-shape;
+  const root=document.getElementById("profileThemeRoot");
 
-document
-.querySelectorAll(".layout-option")
-.forEach(item => {
+  root.style.setProperty(
+    "--profile-accent",
+    currentProfile.accent
+  );
 
-if(
-["Circle","Rounded","Square"]
-.includes(
-item.textContent.trim()
-)
-){
+  root.style.setProperty(
+    "--profile-card",
+    currentProfile.card
+  );
 
-item.classList.remove(
-"active"
-);
+  root.style.color=currentProfile.text;
 
+  root.style.background=currentProfile.background;
+
+  document.getElementById("profilePage").style.background=
+    currentProfile.background;
+
+  document.getElementById("profilePage").style.setProperty(
+    "--gold2",
+    currentProfile.accent
+  );
+
+  const colors=[
+    ["--profile-accent",currentProfile.accent],
+    ["--profile-card",currentProfile.card]
+  ];
+
+  colors.forEach(([name,value])=>{
+    root.style.setProperty(name,value);
+  });
 }
 
-});
+function applyCustomizer(){
 
-button.classList.add(
-"active"
-);
+  currentProfile.accent=
+    document.getElementById("themeAccent").value;
 
-applyViewedTheme(
-profile
-);
+  currentProfile.background=
+    document.getElementById("themeBackground").value;
 
+  currentProfile.card=
+    document.getElementById("themeCard").value;
+
+  currentProfile.text=
+    document.getElementById("themeText").value;
+
+  saveCurrentProfile();
+
+  applyProfileTheme();
+
+  showToast("Profile theme updated");
 }
 
-function setProfileBackground(
-style,
-button
-){
+function presetTheme(accent,background,card,text){
 
-currentBackgroundStyle =
-style;
+  currentProfile.accent=accent;
+  currentProfile.background=background;
+  currentProfile.card=card;
+  currentProfile.text=text;
 
-profile.backgroundStyle =
-style;
+  document.getElementById("themeAccent").value=accent;
+  document.getElementById("themeBackground").value=background;
+  document.getElementById("themeCard").value=card;
+  document.getElementById("themeText").value=text;
 
-document
-.querySelectorAll(".layout-option")
-.forEach(item => {
+  saveCurrentProfile();
 
-if(
-["Solid","Glow","Grid"]
-.includes(
-item.textContent.trim()
-)
-){
+  applyProfileTheme();
 
-item.classList.remove(
-"active"
-);
+  showToast("Theme preset applied");
+}
+
+function changeAvatarShape(shape){
+
+  const avatar=document.getElementById("profileAvatar");
+
+  if(shape==="circle"){
+    avatar.style.borderRadius="50%";
+  }
+
+  if(shape==="rounded"){
+    avatar.style.borderRadius="25px";
+  }
+
+  if(shape==="square"){
+    avatar.style.borderRadius="10px";
+  }
 
 }
 
-});
-
-button.classList.add(
-"active"
-);
-
-applyViewedTheme(
-profile
-);
-
-}
-
-/* =========================================================
+/* ============================================================
    PROFILE TABS
-========================================================= */
+   ============================================================ */
 
-function resetProfileTabs(){
+function profileTab(tab,button){
 
-const tabs =
-document.querySelectorAll(
-".profile-tab"
-);
+  document.querySelectorAll(".profile-tab").forEach(
+    item=>item.classList.remove("active")
+  );
 
-const panels =
-document.querySelectorAll(
-".profile-content-panel"
-);
+  button.classList.add("active");
 
-tabs.forEach(tab =>
-tab.classList.remove("active")
-);
+  document.querySelectorAll(".profile-content-panel").forEach(
+    panel=>panel.classList.remove("active")
+  );
 
-panels.forEach(panel =>
-panel.classList.remove("active")
-);
+  const target=document.getElementById(
+    "profile"+
+    tab.charAt(0).toUpperCase()+
+    tab.slice(1)
+  );
 
-if(tabs[0]){
+  if(target){
+    target.classList.add("active");
+  }
+}
 
-tabs[0].classList.add(
-"active"
-);
+/* ============================================================
+   PEOPLE / OTHER PROFILES
+   ============================================================ */
+
+function getAllProfiles(){
+
+  return [
+    {
+      ...currentProfile,
+      id:"me"
+    },
+    ...sampleProfiles
+  ];
 
 }
 
-const first =
-document.getElementById(
-"profileTab-posts"
-);
+function searchPeople(query=""){
 
-if(first){
+  const grid=document.getElementById("peopleGrid");
 
-first.classList.add(
-"active"
-);
+  if(!grid) return;
+
+  const q=query.toLowerCase().trim();
+
+  const profiles=getAllProfiles().filter(profile=>{
+
+    if(!q) return true;
+
+    return (
+      profile.name.toLowerCase().includes(q) ||
+      profile.username.toLowerCase().includes(q) ||
+      profile.bio.toLowerCase().includes(q)
+    );
+
+  });
+
+  grid.innerHTML="";
+
+  profiles.forEach(profile=>{
+
+    const card=document.createElement("button");
+
+    card.className="person-card";
+
+    card.onclick=()=>openPersonProfile(profile.id);
+
+    const avatar=document.createElement("div");
+
+    avatar.className="avatar";
+
+    avatar.style.margin="auto auto 10px";
+
+    renderAvatar(
+      avatar,
+      profile.avatar,
+      profile.avatarType,
+      profile.name
+    );
+
+    const name=document.createElement("strong");
+
+    name.textContent=profile.name;
+
+    const username=document.createElement("div");
+
+    username.className="muted";
+
+    username.textContent=
+      "@"+profile.username.replace(/^@/,"");
+
+    const bio=document.createElement("p");
+
+    bio.className="muted";
+
+    bio.style.marginTop="9px";
+    bio.style.fontSize="12px";
+
+    bio.textContent=profile.bio;
+
+    card.appendChild(avatar);
+    card.appendChild(name);
+    card.appendChild(username);
+    card.appendChild(bio);
+
+    grid.appendChild(card);
+
+  });
 
 }
 
-}
+function openPersonProfile(id){
 
-function openProfileTab(
-tab,
-button
-){
+  const profile=getAllProfiles().find(
+    item=>item.id===id
+  );
 
-document
-.querySelectorAll(".profile-tab")
-.forEach(item =>
-item.classList.remove("active")
-);
+  if(!profile){
+    showToast("Profile not found");
+    return;
+  }
 
-button.classList.add("active");
+  if(id==="me"){
 
-document
-.querySelectorAll(".profile-content-panel")
-.forEach(panel =>
-panel.classList.remove("active")
-);
+    navigate("profilePage","profile");
 
-const panel =
-document.getElementById(
-"profileTab-" + tab
-);
+    return;
+  }
 
-if(panel){
+  viewingProfile=id;
 
-panel.classList.add(
-"active"
-);
+  renderViewedProfile(profile);
+
+  navigate("profilePage","profile");
 
 }
 
+function openProfileByUsername(username){
+
+  const profile=getAllProfiles().find(
+    item=>item.username.toLowerCase()===username.toLowerCase()
+  );
+
+  if(profile){
+    openPersonProfile(profile.id);
+  }else{
+    showToast("Profile coming soon");
+  }
+
 }
 
-/* =========================================================
+function renderViewedProfile(profile){
+
+  document.getElementById("profileName").textContent=
+    profile.name;
+
+  document.getElementById("profileUsername").textContent=
+    "@"+profile.username;
+
+  document.getElementById("profileBio").textContent=
+    profile.bio;
+
+  document.getElementById("profileLocation").textContent=
+    "📍 "+profile.location;
+
+  document.getElementById("statPosts").textContent=
+    profile.posts;
+
+  document.getElementById("statFollowers").textContent=
+    formatNumber(profile.followers);
+
+  document.getElementById("statFollowing").textContent=
+    formatNumber(profile.following);
+
+  document.getElementById("statFriends").textContent=
+    formatNumber(profile.friends);
+
+  renderAvatar(
+    document.getElementById("profileAvatar"),
+    profile.avatar,
+    profile.avatarType,
+    profile.name
+  );
+
+  const cover=document.getElementById("profileCover");
+
+  const media=cover.querySelector(".profile-cover-media");
+
+  if(media) media.remove();
+
+  if(profile.cover){
+
+    const coverMedia=
+      profile.coverType==="video"
+      ? document.createElement("video")
+      : document.createElement("img");
+
+    coverMedia.className="profile-cover-media";
+    coverMedia.src=profile.cover;
+
+    coverMedia.style.position="absolute";
+    coverMedia.style.inset="0";
+    coverMedia.style.width="100%";
+    coverMedia.style.height="100%";
+    coverMedia.style.objectFit="cover";
+
+    if(profile.coverType==="video"){
+      coverMedia.autoplay=true;
+      coverMedia.loop=true;
+      coverMedia.muted=true;
+      coverMedia.playsInline=true;
+    }
+
+    cover.insertBefore(
+      coverMedia,
+      cover.querySelector(".profile-cover-overlay")
+    );
+
+  }
+
+  const buttons=document.querySelector(".profile-buttons");
+
+  buttons.innerHTML=`
+    <button class="primary" onclick="followViewedProfile()">
+      Follow
+    </button>
+
+    <button class="secondary" onclick="showToast('Friend request sent')">
+      Add Friend
+    </button>
+
+    <button class="secondary" onclick="showToast('Message composer coming next')">
+      Message
+    </button>
+
+    <button class="secondary" onclick="shareProfile()">
+      Share
+    </button>
+  `;
+
+  document.querySelector(".profile-cover-actions").innerHTML=`
+    <button class="secondary" onclick="shareProfile()">
+      ↗ Share
+    </button>
+  `;
+
+  document.getElementById("profilePosts").innerHTML=`
+    <article class="post card">
+      <div class="post-head">
+        <div class="avatar">${profile.name.charAt(0)}</div>
+        <div class="post-info">
+          <strong>${escapeHtml(profile.name)}</strong>
+          <span>@${escapeHtml(profile.username)} · Public</span>
+        </div>
+      </div>
+
+      <div class="post-text">
+        Welcome to ${escapeHtml(profile.name)}'s Soulaani profile.
+      </div>
+
+      <div class="post-actions">
+        <button class="post-action" onclick="openReactionModal()">♡ React</button>
+        <button class="post-action">○ Comment</button>
+        <button class="post-action" onclick="shareProfile()">↗ Share</button>
+      </div>
+    </article>
+  `;
+
+  applyViewedTheme(profile);
+
+}
+
+function applyViewedTheme(profile){
+
+  const root=document.getElementById("profileThemeRoot");
+
+  root.style.setProperty(
+    "--profile-accent",
+    profile.accent || "#d6a84f"
+  );
+
+  root.style.setProperty(
+    "--profile-card",
+    profile.card || "#141414"
+  );
+
+  root.style.color=
+    profile.text || "#f7f7f7";
+
+  document.getElementById("profilePage").style.background=
+    profile.background || "#070707";
+
+}
+
+function followViewedProfile(){
+
+  showToast("Following @"+getViewedUsername());
+
+}
+
+function getViewedUsername(){
+
+  const profile=getAllProfiles().find(
+    p=>p.id===viewingProfile
+  );
+
+  return profile
+    ? profile.username
+    : "profile";
+
+}
+
+/* ============================================================
    SHARE
-========================================================= */
+   ============================================================ */
 
-function shareProfile(){
+async function shareProfile(){
 
-const p =
-viewedProfile;
+  const username=getViewedUsername();
 
-const shareData = {
+  const shareData={
+    title:"Soulaani Profile",
+    text:"Check out this profile on Soulaani.",
+    url:window.location.href
+  };
 
-title:
-p.name +
-" | Soulaani",
+  if(navigator.share){
 
-text:
-"Check out " +
-p.name +
-"'s profile on Soulaani.",
+    try{
+      await navigator.share(shareData);
+    }catch(error){}
 
-url:
-window.location.href +
-"#profile-" +
-p.id
+  }else{
 
-};
+    showToast("Profile link ready to share");
 
-if(navigator.share){
-
-navigator.share(
-shareData
-).catch(() => {});
-
-}else{
-
-navigator.clipboard
-?.writeText(
-shareData.url
-)
-.then(() => {
-
-showToast(
-"Profile link copied."
-);
-
-})
-.catch(() => {
-
-showToast(
-"Your profile is ready to share."
-);
-
-});
+  }
 
 }
 
+async function shareContent(name){
+
+  if(navigator.share){
+
+    try{
+
+      await navigator.share({
+        title:"Soulaani",
+        text:"Check this out on Soulaani: "+name,
+        url:window.location.href
+      });
+
+    }catch(error){}
+
+  }else{
+
+    showToast("Shared: "+name);
+
+  }
+
 }
 
-/* =========================================================
+/* ============================================================
    REACTIONS
-========================================================= */
+   ============================================================ */
 
-function openReactionModal(
-button
-){
+function chooseReaction(reaction){
 
-activeReactionButton =
-button;
+  closeModal("reactionModal");
 
-openModal(
-"reactionModal"
-);
+  showToast("You reacted: "+reaction);
 
 }
 
-function chooseReaction(
-reaction
-){
+function toggleReelLike(button){
 
-if(activeReactionButton){
+  button.classList.toggle("active");
 
-activeReactionButton.innerHTML =
-reaction +
-" Reacted";
+  const span=button.querySelector("span");
 
-activeReactionButton.style.color =
-"var(--gold2)";
+  if(button.classList.contains("active")){
 
-}
+    span.textContent="Liked";
 
-closeModal(
-"reactionModal"
-);
+  }else{
 
-showToast(
-"Reaction added."
-);
+    span.textContent="Like";
+
+  }
 
 }
 
-/* =========================================================
-   MUSIC
-========================================================= */
+/* ============================================================
+   REELS
+   ============================================================ */
 
-function playDemoTrack(button){
+let reelObserver=null;
 
-button.innerHTML =
-"♥";
+function initReelsObserver(){
 
-showToast(
-"Real audio playback will connect when the music backend is added."
-);
+  const feed=document.getElementById("reelsFeed");
+
+  if(!feed) return;
+
+  if(reelObserver){
+    reelObserver.disconnect();
+  }
+
+  reelObserver=new IntersectionObserver(
+    entries=>{
+
+      entries.forEach(entry=>{
+
+        const reel=entry.target;
+
+        const video=reel.querySelector(".reel-video");
+
+        const progress=reel.querySelector(
+          ".reel-progress span"
+        );
+
+        if(entry.isIntersecting && entry.intersectionRatio>.65){
+
+          document.querySelectorAll(".reel-video").forEach(
+            other=>{
+              if(other!==video){
+                other.pause();
+              }
+            }
+          );
+
+          if(video.src){
+            video.play().catch(()=>{});
+          }
+
+          if(progress){
+
+            progress.style.width="0%";
+
+            video.ontimeupdate=()=>{
+
+              if(video.duration){
+
+                progress.style.width=
+                  ((video.currentTime/video.duration)*100)+"%";
+
+              }
+
+            };
+
+          }
+
+        }else{
+
+          video.pause();
+
+        }
+
+      });
+
+    },
+    {
+      root:feed,
+      threshold:[.65]
+    }
+  );
+
+  document.querySelectorAll(".reel").forEach(
+    reel=>reelObserver.observe(reel)
+  );
 
 }
 
-/* =========================================================
+function toggleReelMute(button){
+
+  const reel=button.closest(".reel");
+
+  const video=reel.querySelector(".reel-video");
+
+  video.muted=!video.muted;
+
+  button.innerHTML=video.muted
+    ? svg("i-volume-off")
+    : svg("i-volume");
+
+}
+
+/* ============================================================
+   REEL FOLLOW
+   ============================================================ */
+
+function followReelUser(button){
+
+  if(button.dataset.following==="true"){
+
+    button.dataset.following="false";
+    button.textContent="Follow";
+
+  }else{
+
+    button.dataset.following="true";
+    button.textContent="Following";
+
+  }
+
+}
+
+/* ============================================================
    AI
-========================================================= */
+   ============================================================ */
 
 function sendAI(){
 
-const input =
-document.getElementById(
-"aiInput"
-);
+  const input=document.getElementById("aiInput");
 
-const text =
-input.value.trim();
+  const text=input.value.trim();
 
-if(!text) return;
+  if(!text) return;
 
-const chat =
-document.getElementById(
-"aiChat"
-);
+  const messages=document.getElementById("aiMessages");
 
-const user =
-document.createElement(
-"div"
-);
+  const userMessage=document.createElement("div");
 
-user.className =
-"ai-message user";
+  userMessage.className="ai-message user";
 
-user.textContent =
-text;
+  userMessage.textContent=text;
 
-chat.appendChild(
-user
-);
+  messages.appendChild(userMessage);
 
-input.value = "";
+  input.value="";
 
-setTimeout(() => {
+  setTimeout(()=>{
 
-const bot =
-document.createElement(
-"div"
-);
+    const bot=document.createElement("div");
 
-bot.className =
-"ai-message bot";
+    bot.className="ai-message bot";
 
-bot.textContent =
-"Soulaani AI is connected to the prototype interface. The full AI assistant will connect to a real AI backend when the account and server layer are added.";
+    bot.textContent=
+      "I'm the Soulaani AI prototype right now. I can help you think through that. The full AI backend can be connected to the real Soulaani platform later.";
 
-chat.appendChild(
-bot
-);
+    messages.appendChild(bot);
 
-chat.scrollTop =
-chat.scrollHeight;
+    messages.scrollTop=messages.scrollHeight;
 
-},500);
+  },450);
 
 }
 
-/* =========================================================
-   MEDIA
-========================================================= */
+/* ============================================================
+   CREATE POST
+   ============================================================ */
 
-function handleMediaUpload(
-input,
-type
-){
+function createPost(){
 
-const file =
-input.files &&
-input.files[0];
+  const text=document.getElementById("composerText").value.trim();
 
-if(!file) return;
+  if(!text){
 
-const reader =
-new FileReader();
+    showToast("Write something first");
 
-reader.onload =
-function(event){
+    return;
 
-const result =
-event.target.result;
+  }
 
-const isVideo =
-file.type.startsWith(
-"video/"
-);
+  currentProfile.posts++;
 
-if(type === "avatar"){
+  saveCurrentProfile();
 
-profile.avatar =
-result;
+  renderOwnProfile();
 
-profile.avatarType =
-isVideo
-?
-"video"
-:
-"image";
+  closeModal("composerModal");
 
-profile.avatarLive =
-true;
+  document.getElementById("composerText").value="";
+
+  showToast("Post created");
 
 }
 
-if(type === "cover"){
-
-profile.cover =
-result;
-
-profile.coverType =
-isVideo
-?
-"video"
-:
-"image";
-
-profile.coverLive =
-true;
-
-}
-
-saveCurrentProfile();
-
-viewedProfile =
-profile;
-
-renderViewedProfile();
-
-showToast(
-type === "avatar"
-?
-"Profile media updated."
-:
-"Cover media updated."
-);
-
-};
-
-reader.readAsDataURL(
-file
-);
-
-}
-
-document
-.getElementById("avatarUpload")
-.addEventListener(
-"change",
-function(){
-
-handleMediaUpload(
-this,
-"avatar"
-);
-
-}
-);
-
-document
-.getElementById("coverUpload")
-.addEventListener(
-"change",
-function(){
-
-handleMediaUpload(
-this,
-"cover"
-);
-
-}
-);
-
-/* =========================================================
+/* ============================================================
    SEARCH
-========================================================= */
+   ============================================================ */
 
-document
-.getElementById("globalSearch")
-.addEventListener(
-"keydown",
-function(event){
+function escapeHtml(value){
 
-if(event.key !== "Enter")
-return;
-
-const value =
-this.value.trim()
-.toLowerCase();
-
-if(!value)
-return;
-
-const found =
-Object.values(members)
-.find(member =>
-member.name.toLowerCase().includes(value) ||
-member.username.toLowerCase().includes(value)
-);
-
-if(found){
-
-openMemberProfile(
-found.id
-);
-
-this.value = "";
-
-return;
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 
 }
 
-if(
-profile.name.toLowerCase().includes(value) ||
-profile.username.toLowerCase().includes(value)
-){
+/* ============================================================
+   NUMBER FORMATTING
+   ============================================================ */
 
-openOwnProfile();
+function formatNumber(number){
 
-this.value = "";
+  const n=Number(number)||0;
 
-return;
+  if(n>=1000000){
+    return (n/1000000).toFixed(1)+"M";
+  }
 
-}
+  if(n>=1000){
+    return (n/1000).toFixed(1)+"K";
+  }
 
-showToast(
-"No matching profile found yet."
-);
-
-}
-);
-
-/* =========================================================
-   HELPERS
-========================================================= */
-
-function makeAvatarPlaceholder(
-accent
-){
-
-return "data:image/svg+xml;charset=UTF-8," +
-encodeURIComponent(`
-<svg xmlns="http://www.w3.org/2000/svg"
-width="400"
-height="400">
-
-<rect
-width="100%"
-height="100%"
-fill="#171717"/>
-
-<circle
-cx="200"
-cy="150"
-r="70"
-fill="${accent || "#d6a84f"}"/>
-
-<path
-d="M75 390c15-90 65-135 125-135s110 45 125 135"
-fill="${accent || "#d6a84f"}"/>
-
-</svg>
-`);
+  return String(n);
 
 }
 
-function getThemeName(p){
+/* ============================================================
+   PROFILE RETURN BUTTON BEHAVIOR
+   ============================================================ */
 
-if(
-p.accent === "#37b77b"
-)
-return "Emerald";
+function restoreMyProfile(){
 
-if(
-p.accent === "#9b70e8"
-)
-return "Royal";
+  viewingProfile="me";
 
-if(
-p.accent === "#e05a63"
-)
-return "Ruby";
-
-if(
-p.accent === "#43a9d0"
-)
-return "Ocean";
-
-if(
-p.accent === "#e48746"
-)
-return "Sunset";
-
-if(
-p.accent === "#eeeeee"
-)
-return "Mono";
-
-return "Soulaani Gold";
+  renderOwnProfile();
 
 }
 
-function showToast(
-message
-){
+/* ============================================================
+   INITIALIZATION
+   ============================================================ */
 
-const toast =
-document.getElementById(
-"toast"
+document.addEventListener("DOMContentLoaded",()=>{
+
+  loadSampleProfiles();
+
+  loadProfile();
+
+  searchPeople("");
+
+  initReelsObserver();
+
+  /* Sync profile customization controls */
+  document.getElementById("themeAccent").value=
+    currentProfile.accent;
+
+  document.getElementById("themeBackground").value=
+    currentProfile.background;
+
+  document.getElementById("themeCard").value=
+    currentProfile.card;
+
+  document.getElementById("themeText").value=
+    currentProfile.text;
+
+});
+
+/* ============================================================
+   MOBILE REELS BACKGROUND BEHAVIOR
+   ============================================================ */
+
+document.addEventListener("visibilitychange",()=>{
+
+  if(document.hidden){
+
+    document.querySelectorAll(".reel-video").forEach(
+      video=>video.pause()
+    );
+
+  }
+
+});
+
+/* ============================================================
+   KEYBOARD REEL NAVIGATION ON DESKTOP
+   ============================================================ */
+
+document.addEventListener("keydown",event=>{
+
+  const reelsPage=document.getElementById("reelsPage");
+
+  if(!reelsPage.classList.contains("active")){
+    return;
+  }
+
+  const feed=document.getElementById("reelsFeed");
+
+  if(event.key==="ArrowDown"){
+
+    feed.scrollBy({
+      top:window.innerHeight,
+      behavior:"smooth"
+    });
+
+  }
+
+  if(event.key==="ArrowUp"){
+
+    feed.scrollBy({
+      top:-window.innerHeight,
+      behavior:"smooth"
+    });
+
+  }
+
+});
+
+/* ============================================================
+   PREVENT REELS PAGE FROM USING BODY SCROLL
+   ============================================================ */
+
+const reelsPageObserver=new MutationObserver(()=>{
+
+  const page=document.getElementById("reelsPage");
+
+  if(page.classList.contains("active")){
+
+    document.body.style.overflow="hidden";
+
+  }else{
+
+    document.body.style.overflow="";
+
+  }
+
+});
+
+reelsPageObserver.observe(
+  document.getElementById("reelsPage"),
+  {attributes:true,attributeFilter:["class"]}
 );
-
-toast.textContent =
-message;
-
-toast.classList.add(
-"show"
-);
-
-clearTimeout(
-window.__toastTimer
-);
-
-window.__toastTimer =
-setTimeout(() => {
-
-toast.classList.remove(
-"show"
-);
-
-},2500);
-
-}
-
-/* =========================================================
-   INITIALIZE
-========================================================= */
-
-renderPeople();
-
-renderViewedProfile();
 
 </script>
-
-</div>
 
 </body>
 </html>
