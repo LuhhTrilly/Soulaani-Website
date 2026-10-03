@@ -2,146 +2,107 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#080808">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#070707">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
 <title>Soulaani | The Culture. The People. The Platform.</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 :root{
   --black:#070707;
-  --black2:#0d0d0d;
-  --black3:#141414;
-  --card:#111111;
-  --card2:#181818;
+  --black2:#0c0c0c;
+  --black3:#121212;
+  --card:#151515;
+  --card2:#1b1b1b;
   --gold:#d6a84f;
   --gold2:#f0c76a;
   --white:#f7f7f7;
-  --muted:#9d9d9d;
-  --line:rgba(214,168,79,.18);
-  --danger:#e85d5d;
+  --muted:#999;
+  --line:rgba(214,168,79,.2);
   --green:#55c982;
-  --blue:#5599ff;
+  --red:#e85d5d;
+  --blue:#5d9cff;
 }
 
-html{
-  scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
   background:
-    radial-gradient(circle at top right,rgba(214,168,79,.08),transparent 30%),
-    var(--black);
+  radial-gradient(circle at top right,rgba(214,168,79,.09),transparent 30%),
+  var(--black);
   color:var(--white);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
   min-height:100vh;
-  overflow-x:hidden;
 }
 
-button,
-input,
-textarea,
-select{
-  font:inherit;
-}
-
-button{
-  cursor:pointer;
-}
-
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-/* =========================
-   HEADER
-========================= */
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+button:active{transform:scale(.98)}
+a{text-decoration:none;color:inherit}
 
 .header{
+  height:70px;
   position:sticky;
   top:0;
   z-index:1000;
-  height:68px;
-  background:rgba(7,7,7,.94);
+  background:rgba(7,7,7,.95);
   backdrop-filter:blur(18px);
   border-bottom:1px solid var(--line);
   display:flex;
   align-items:center;
-  padding:0 20px;
+  justify-content:space-between;
+  padding:0 18px;
 }
 
-.header-inner{
-  width:100%;
-  max-width:1400px;
-  margin:auto;
+.brand{
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  gap:20px;
+  gap:10px;
+  cursor:pointer;
 }
 
-.logo{
-  color:var(--gold2);
-  font-size:25px;
-  font-weight:900;
-  letter-spacing:-1px;
-  white-space:nowrap;
-}
-
-.logo span{
-  color:white;
-}
-
-.top-nav{
-  display:flex;
-  gap:6px;
-  overflow-x:auto;
-  scrollbar-width:none;
-}
-
-.top-nav::-webkit-scrollbar{
-  display:none;
-}
-
-.top-nav button{
-  background:transparent;
-  color:#aaa;
-  border:0;
-  padding:10px 13px;
+.brand-mark{
+  width:40px;
+  height:40px;
   border-radius:12px;
-  white-space:nowrap;
-  transition:.2s;
-}
-
-.top-nav button:hover,
-.top-nav button.active{
+  border:1px solid var(--gold);
   color:var(--gold2);
-  background:rgba(214,168,79,.1);
+  display:grid;
+  place-items:center;
+  font-weight:900;
 }
 
-.header-actions{
+.brand-name{
+  color:var(--gold2);
+  font-size:19px;
+  font-weight:800;
+}
+
+.brand-tag{
+  color:#777;
+  font-size:9px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+
+.top-actions{
   display:flex;
   gap:8px;
 }
 
 .icon-btn{
-  width:40px;
-  height:40px;
-  border:1px solid var(--line);
+  width:42px;
+  height:42px;
   border-radius:50%;
+  border:1px solid var(--line);
   background:#111;
-  color:white;
+  color:#fff;
   display:grid;
   place-items:center;
-  transition:.2s;
 }
 
 .icon-btn:hover{
@@ -149,15 +110,34 @@ a{
   color:var(--gold2);
 }
 
-/* =========================
-   APP LAYOUT
-========================= */
+.desktop-nav{
+  display:flex;
+  gap:4px;
+  padding:10px 15px;
+  overflow:auto;
+  background:#090909;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.desktop-nav button{
+  white-space:nowrap;
+  border:0;
+  background:transparent;
+  color:#999;
+  padding:9px 12px;
+  border-radius:20px;
+}
+
+.desktop-nav button:hover,
+.desktop-nav button.active{
+  color:#080808;
+  background:var(--gold);
+}
 
 .app{
-  width:100%;
-  max-width:1400px;
+  max-width:1180px;
   margin:auto;
-  padding:24px 20px 100px;
+  padding:22px 17px 110px;
 }
 
 .page{
@@ -165,439 +145,249 @@ a{
   animation:fade .25s ease;
 }
 
-.page.active{
-  display:block;
-}
+.page.active{display:block}
 
 @keyframes fade{
-  from{
-    opacity:0;
-    transform:translateY(5px);
-  }
-  to{
-    opacity:1;
-    transform:none;
-  }
+  from{opacity:0;transform:translateY(5px)}
+  to{opacity:1;transform:translateY(0)}
 }
-
-.section-title{
-  font-size:28px;
-  margin-bottom:6px;
-}
-
-.section-subtitle{
-  color:var(--muted);
-  margin-bottom:22px;
-}
-
-.gold{
-  color:var(--gold2);
-}
-
-/* =========================
-   HERO
-========================= */
 
 .hero{
-  min-height:390px;
   border:1px solid var(--line);
-  border-radius:28px;
-  overflow:hidden;
-  position:relative;
+  border-radius:27px;
+  padding:32px;
+  margin-bottom:22px;
   background:
-    linear-gradient(90deg,rgba(0,0,0,.95),rgba(0,0,0,.45),rgba(0,0,0,.85)),
-    radial-gradient(circle at 75% 35%,rgba(214,168,79,.22),transparent 35%),
-    #121212;
-  display:flex;
-  align-items:center;
-  padding:45px;
-  margin-bottom:24px;
-}
-
-.hero-content{
-  max-width:700px;
-}
-
-.hero-eyebrow{
-  color:var(--gold2);
-  font-weight:800;
-  text-transform:uppercase;
-  letter-spacing:2px;
-  font-size:12px;
-  margin-bottom:15px;
+  linear-gradient(135deg,rgba(214,168,79,.13),transparent 45%),
+  #0e0e0e;
+  box-shadow:0 15px 45px rgba(0,0,0,.3);
 }
 
 .hero h1{
-  font-size:clamp(40px,7vw,75px);
-  line-height:.98;
-  letter-spacing:-3px;
-  margin-bottom:20px;
+  font-size:clamp(34px,6vw,62px);
+  line-height:1;
+  margin-bottom:15px;
 }
+
+.hero h1 span{color:var(--gold2)}
 
 .hero p{
-  color:#c4c4c4;
-  font-size:17px;
+  color:#aaa;
   line-height:1.7;
-  max-width:650px;
+  max-width:750px;
 }
 
-.hero-buttons{
+.section-title{
   display:flex;
-  gap:12px;
-  margin-top:25px;
-  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  margin:25px 0 14px;
 }
 
-/* =========================
-   BUTTONS
-========================= */
+.section-title h2{font-size:22px}
+.section-title span{color:var(--gold);font-size:13px}
 
-.btn{
+.gold-btn{
   border:0;
-  border-radius:12px;
-  padding:12px 18px;
-  font-weight:800;
-  transition:.2s;
-}
-
-.btn-gold{
   background:linear-gradient(135deg,var(--gold),var(--gold2));
-  color:#080808;
+  color:#090909;
+  padding:11px 17px;
+  border-radius:12px;
+  font-weight:800;
 }
 
-.btn-gold:hover{
-  transform:translateY(-2px);
-}
-
-.btn-dark{
-  background:#171717;
-  color:white;
+.dark-btn{
   border:1px solid var(--line);
+  background:#111;
+  color:#fff;
+  padding:11px 17px;
+  border-radius:12px;
 }
 
-.btn-dark:hover{
-  border-color:var(--gold);
+.danger-btn{
+  border:1px solid rgba(232,93,93,.35);
+  background:#180d0d;
+  color:#ff9b9b;
+  padding:11px 17px;
+  border-radius:12px;
 }
-
-.btn-small{
-  padding:8px 12px;
-  font-size:13px;
-}
-
-/* =========================
-   CARDS / GRIDS
-========================= */
 
 .grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:18px;
+  gap:15px;
 }
 
-.grid-4{
+.two-grid{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:18px;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
 }
 
 .card{
-  background:linear-gradient(145deg,#131313,#0e0e0e);
-  border:1px solid var(--line);
+  background:linear-gradient(145deg,#161616,#101010);
+  border:1px solid rgba(255,255,255,.07);
   border-radius:20px;
   padding:20px;
-  transition:.2s;
+  box-shadow:0 12px 35px rgba(0,0,0,.22);
 }
 
-.card:hover{
-  transform:translateY(-2px);
-  border-color:rgba(214,168,79,.38);
-}
-
-.card h3{
-  margin-bottom:8px;
-}
+.card h3{margin-bottom:7px}
 
 .card p{
-  color:var(--muted);
-  line-height:1.55;
+  color:#999;
+  line-height:1.6;
+  font-size:14px;
 }
 
-/* =========================
-   FEED
-========================= */
+.gold{color:var(--gold2)}
+.small{font-size:12px;color:#777}
 
-.feed-layout{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) 330px;
-  gap:22px;
-}
+/* FEED */
 
 .post{
-  background:#111;
-  border:1px solid var(--line);
+  background:#101010;
+  border:1px solid rgba(255,255,255,.07);
   border-radius:20px;
+  margin-bottom:15px;
   overflow:hidden;
-  margin-bottom:18px;
 }
 
 .post-head{
+  padding:15px;
   display:flex;
   align-items:center;
-  gap:12px;
-  padding:16px;
+  gap:11px;
 }
 
 .avatar{
-  width:45px;
-  height:45px;
+  width:43px;
+  height:43px;
   border-radius:50%;
-  background:
-    linear-gradient(135deg,var(--gold),#292929);
+  background:linear-gradient(135deg,var(--gold),#674b18);
+  color:#090909;
   display:grid;
   place-items:center;
   font-weight:900;
-  color:#080808;
   flex-shrink:0;
 }
 
-.avatar.large{
-  width:75px;
-  height:75px;
-  font-size:24px;
-}
-
-.post-meta{
-  flex:1;
-}
-
-.post-meta strong{
-  display:block;
-}
-
-.post-meta small{
-  color:#777;
-}
+.post-head strong{display:block}
+.post-head span{color:#777;font-size:12px}
 
 .post-body{
-  padding:0 16px 16px;
+  padding:0 15px 15px;
   line-height:1.65;
-  color:#ddd;
 }
 
-.post-media{
+.post-image{
   width:100%;
   min-height:230px;
   background:
-    radial-gradient(circle at 50% 35%,rgba(214,168,79,.22),transparent 25%),
-    linear-gradient(135deg,#1b1b1b,#080808);
+  radial-gradient(circle at center,rgba(214,168,79,.12),transparent 40%),
+  linear-gradient(135deg,#191919,#080808);
   display:grid;
   place-items:center;
-  font-size:70px;
+  color:var(--gold2);
+  font-size:42px;
+  font-weight:900;
+  letter-spacing:3px;
 }
 
 .post-actions{
-  border-top:1px solid #222;
   display:flex;
-  padding:7px;
-}
-
-.reaction-wrap{
-  position:relative;
-  flex:1;
-}
-
-.reaction-btn{
-  width:100%;
-  background:transparent;
-  color:#aaa;
-  border:0;
-  padding:11px;
-  border-radius:10px;
-}
-
-.reaction-btn:hover{
-  background:#191919;
-  color:var(--gold2);
-}
-
-.reactions{
-  position:absolute;
-  bottom:48px;
-  left:0;
-  display:none;
-  background:#1a1a1a;
-  border:1px solid var(--line);
+  gap:4px;
   padding:8px;
-  border-radius:30px;
-  gap:5px;
-  box-shadow:0 12px 35px rgba(0,0,0,.5);
+  border-top:1px solid rgba(255,255,255,.06);
 }
 
-.reaction-wrap:hover .reactions{
-  display:flex;
-}
-
-.reactions button{
-  width:38px;
-  height:38px;
-  border:0;
-  background:#242424;
-  border-radius:50%;
-  font-size:18px;
-}
-
-.comment-btn,
-.share-btn{
+.post-actions button{
   flex:1;
   border:0;
   background:transparent;
   color:#aaa;
+  padding:10px 5px;
   border-radius:10px;
 }
 
-.comment-btn:hover,
-.share-btn:hover{
-  background:#191919;
+.post-actions button:hover{
+  background:#1b1b1b;
   color:var(--gold2);
 }
 
-/* =========================
-   SIDE PANEL
-========================= */
-
-.side-card{
-  margin-bottom:18px;
+.reaction-menu{
+  display:none;
+  gap:5px;
+  padding:7px 10px;
+  border-top:1px solid rgba(255,255,255,.05);
 }
 
-.side-card h3{
-  margin-bottom:15px;
+.reaction-menu.open{display:flex}
+
+.reaction-menu button{
+  border:0;
+  background:#1b1b1b;
+  padding:7px 10px;
+  border-radius:10px;
 }
 
-.side-list{
-  display:grid;
-  gap:12px;
+/* COMMENTS */
+
+.comments{
+  display:none;
+  padding:12px;
+  border-top:1px solid rgba(255,255,255,.06);
 }
 
-.side-item{
+.comments.open{display:block}
+
+.comment{
+  padding:9px 0;
+  border-bottom:1px solid rgba(255,255,255,.05);
+  font-size:13px;
+}
+
+.comment strong{color:var(--gold2)}
+
+.comment-form{
   display:flex;
-  gap:10px;
-  align-items:center;
+  gap:7px;
+  margin-top:10px;
 }
 
-.side-item div:last-child{
+.comment-form input{
   flex:1;
 }
 
-.side-item small{
-  color:#777;
+/* FORMS */
+
+.field{
+  width:100%;
+  background:#0d0d0d;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:12px;
+  padding:13px;
+  outline:none;
 }
 
-/* =========================
-   FEATURE CARDS
-========================= */
+.field:focus{border-color:var(--gold)}
 
-.feature-icon{
-  width:50px;
-  height:50px;
-  border-radius:15px;
-  background:rgba(214,168,79,.1);
-  border:1px solid var(--line);
-  display:grid;
-  place-items:center;
-  font-size:25px;
-  margin-bottom:14px;
+textarea.field{
+  min-height:130px;
+  resize:vertical;
 }
 
-/* =========================
-   SKATE
-========================= */
+.form{display:grid;gap:12px}
 
-.skate-banner{
-  border-radius:25px;
-  min-height:280px;
-  padding:35px;
-  margin-bottom:22px;
-  background:
-    linear-gradient(90deg,rgba(0,0,0,.95),rgba(0,0,0,.45)),
-    radial-gradient(circle at 75% 50%,rgba(214,168,79,.2),transparent 30%),
-    #151515;
-  border:1px solid var(--line);
-}
-
-.skateboard-art{
-  font-size:85px;
-  transform:rotate(-12deg);
-  float:right;
-  margin:15px 50px 0 20px;
-}
-
-.skate-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
-
-.skate-card{
-  min-height:240px;
-  border-radius:20px;
-  overflow:hidden;
-  background:#121212;
-  border:1px solid var(--line);
-}
-
-.skate-image{
-  height:150px;
-  background:
-    radial-gradient(circle at 50% 40%,rgba(214,168,79,.18),transparent 25%),
-    linear-gradient(135deg,#252525,#090909);
-  display:grid;
-  place-items:center;
-  font-size:65px;
-}
-
-.skate-info{
-  padding:15px;
-}
-
-/* =========================
-   CULTURE
-========================= */
-
-.food-card{
-  overflow:hidden;
-  padding:0;
-}
-
-.food-image{
-  height:210px;
-  background:
-    radial-gradient(ellipse at center,rgba(214,168,79,.22),transparent 45%),
-    linear-gradient(135deg,#291c12,#0b0907);
-  display:grid;
-  place-items:center;
-  font-size:80px;
-}
-
-.food-info{
-  padding:17px;
-}
-
-.culture-symbol{
-  font-size:60px;
-  margin-bottom:10px;
-}
-
-/* =========================
-   AI
-========================= */
+/* AI */
 
 .ai-shell{
-  max-width:850px;
-  margin:auto;
+  background:#0c0c0c;
   border:1px solid var(--line);
   border-radius:25px;
   overflow:hidden;
-  background:#0d0d0d;
+  box-shadow:0 15px 45px rgba(0,0,0,.35);
 }
 
 .ai-head{
@@ -605,584 +395,288 @@ a{
   border-bottom:1px solid var(--line);
   display:flex;
   align-items:center;
-  gap:13px;
+  justify-content:space-between;
+}
+
+.ai-title{
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 
 .ai-orb{
-  width:48px;
-  height:48px;
+  width:46px;
+  height:46px;
   border-radius:50%;
-  background:radial-gradient(circle,#f0c76a,#9a6a1e);
-  box-shadow:0 0 30px rgba(214,168,79,.3);
+  background:radial-gradient(circle,var(--gold2),#624719);
+  box-shadow:0 0 30px rgba(214,168,79,.25);
+}
+
+.ai-status{
+  color:var(--green);
+  font-size:12px;
+  margin-top:3px;
 }
 
 .chat-messages{
   height:470px;
-  overflow-y:auto;
+  overflow:auto;
   padding:20px;
   display:flex;
   flex-direction:column;
-  gap:13px;
+  gap:12px;
 }
 
 .message{
-  max-width:75%;
+  max-width:80%;
   padding:12px 15px;
   border-radius:17px;
-  line-height:1.5;
+  line-height:1.55;
+  white-space:pre-wrap;
 }
 
 .message.ai{
-  background:#181818;
-  border:1px solid #252525;
   align-self:flex-start;
+  background:#181818;
+  border:1px solid rgba(255,255,255,.06);
 }
 
 .message.user{
-  background:linear-gradient(135deg,#b9872e,#e2b958);
-  color:#090909;
   align-self:flex-end;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#080808;
+}
+
+.message.typing{
+  color:#999;
+  font-style:italic;
 }
 
 .chat-input{
   display:flex;
+  gap:8px;
   padding:12px;
   border-top:1px solid var(--line);
-  gap:10px;
 }
 
 .chat-input input{
   flex:1;
-  background:#161616;
-  border:1px solid #292929;
-  color:white;
+  background:#151515;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:13px;
   padding:13px;
-  border-radius:12px;
   outline:none;
 }
 
-/* =========================
-   LANGUAGE & CONNECTION
-========================= */
+.chat-input input:focus{border-color:var(--gold)}
 
-.language-hero{
-  border:1px solid var(--line);
-  border-radius:25px;
-  padding:32px;
-  margin-bottom:22px;
-  background:
-    radial-gradient(circle at 85% 20%,rgba(214,168,79,.16),transparent 30%),
-    linear-gradient(135deg,#141414,#090909);
-}
+/* LANGUAGE */
 
-.language-hero h2{
-  font-size:34px;
-  margin-bottom:10px;
-}
-
-.language-hero p{
-  color:#aaa;
-  max-width:800px;
-  line-height:1.7;
-}
-
-.language-tools{
+.language-panel{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:1fr 1fr;
   gap:15px;
-  margin-top:22px;
-}
-
-.language-tool{
-  border:1px solid var(--line);
-  background:#111;
-  border-radius:17px;
-  padding:18px;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.language-tool:hover{
-  border-color:var(--gold);
-  transform:translateY(-2px);
-}
-
-.language-tool .tool-icon{
-  font-size:30px;
-  margin-bottom:10px;
-}
-
-.language-tool strong{
-  display:block;
-  margin-bottom:5px;
-}
-
-.language-tool span{
-  color:#777;
-  font-size:13px;
-}
-
-.language-layout{
-  display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:20px;
 }
 
 .language-list{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
+  gap:9px;
 }
 
-.language-item{
-  padding:15px;
-  border:1px solid #242424;
-  border-radius:15px;
-  background:#101010;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  cursor:pointer;
-}
-
-.language-item:hover{
-  border-color:var(--gold);
-}
-
-.language-flag{
-  width:42px;
-  height:42px;
-  border-radius:12px;
-  background:#1d1d1d;
-  display:grid;
-  place-items:center;
-  font-size:20px;
-}
-
-.language-item div:nth-child(2){
-  flex:1;
-}
-
-.language-item small{
-  color:#777;
-}
-
-.language-item button{
-  background:transparent;
-  border:0;
-  color:var(--gold2);
-}
-
-.translator{
-  background:#111;
-  border:1px solid var(--line);
-  border-radius:20px;
-  padding:20px;
-}
-
-.translator select,
-.translator textarea{
-  width:100%;
-  background:#181818;
-  border:1px solid #292929;
-  color:white;
-  border-radius:12px;
-  padding:12px;
-  margin-bottom:12px;
-  outline:none;
-}
-
-.translator textarea{
-  min-height:120px;
-  resize:vertical;
-}
-
-.translation-output{
-  min-height:100px;
-  background:#090909;
-  border:1px solid #252525;
-  border-radius:12px;
+.language{
   padding:14px;
-  color:#ddd;
-  margin-top:12px;
-}
-
-.learn-panel{
-  margin-top:22px;
-  border:1px solid var(--line);
-  border-radius:22px;
-  padding:24px;
-  background:#111;
-}
-
-.lesson{
-  display:none;
-}
-
-.lesson.active{
-  display:block;
-}
-
-.lesson-word{
-  font-size:38px;
-  color:var(--gold2);
-  font-weight:900;
-  margin:18px 0 5px;
-}
-
-.lesson-pronunciation{
-  color:#777;
-  margin-bottom:15px;
-}
-
-.lesson-example{
-  background:#181818;
-  border-radius:15px;
-  padding:15px;
-  margin:15px 0;
-  line-height:1.7;
-}
-
-.lesson-controls{
-  display:flex;
-  gap:10px;
-  margin-top:18px;
-}
-
-.connection-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-  margin-top:20px;
-}
-
-.community-card{
-  border:1px solid var(--line);
-  background:#111;
-  border-radius:18px;
-  padding:18px;
-}
-
-.community-card .community-icon{
-  font-size:35px;
-  margin-bottom:10px;
-}
-
-.chat-language{
-  margin-top:22px;
-  border:1px solid var(--line);
-  border-radius:20px;
-  overflow:hidden;
-  background:#0e0e0e;
-}
-
-.chat-language-head{
-  padding:16px;
-  border-bottom:1px solid var(--line);
+  border-radius:14px;
+  background:#121212;
+  border:1px solid rgba(255,255,255,.07);
   display:flex;
   justify-content:space-between;
-  align-items:center;
+  gap:12px;
 }
 
-.language-chat-body{
-  height:300px;
-  overflow-y:auto;
-  padding:15px;
-}
+.language strong{color:#fff}
+.language span{color:#777;font-size:12px}
 
-.language-chat-input{
-  display:flex;
-  gap:8px;
-  padding:10px;
-  border-top:1px solid var(--line);
-}
-
-.language-chat-input input{
-  flex:1;
-  background:#171717;
-  border:1px solid #282828;
-  color:white;
-  border-radius:10px;
-  padding:11px;
-}
-
-/* =========================
-   PROFILE
-========================= */
+/* PROFILE */
 
 .profile-cover{
-  height:220px;
+  height:190px;
   border-radius:25px 25px 0 0;
-  background:
-    radial-gradient(circle at 70% 30%,rgba(214,168,79,.2),transparent 25%),
-    linear-gradient(135deg,#171717,#080808);
   border:1px solid var(--line);
+  background:
+  radial-gradient(circle at 70% 20%,rgba(240,199,106,.35),transparent 25%),
+  linear-gradient(135deg,#171717,#080808);
 }
 
-.profile-main{
-  background:#111;
-  border:1px solid var(--line);
-  border-top:0;
-  border-radius:0 0 25px 25px;
+.profile-box{
+  margin-top:-55px;
+  position:relative;
   padding:0 25px 25px;
 }
 
 .profile-avatar{
-  margin-top:-55px;
-  position:relative;
-  margin-bottom:15px;
-}
-
-.profile-avatar .avatar{
   width:105px;
   height:105px;
-  border:5px solid #111;
-  font-size:30px;
-}
-
-.profile-header{
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-}
-
-.profile-bio{
-  color:#999;
-  margin-top:8px;
-  max-width:600px;
-  line-height:1.6;
-}
-
-.profile-tabs{
-  display:flex;
-  gap:5px;
-  border-bottom:1px solid #252525;
-  margin-top:25px;
-}
-
-.profile-tabs button{
-  background:transparent;
-  border:0;
-  color:#888;
-  padding:12px 15px;
-}
-
-.profile-tabs button.active{
-  color:var(--gold2);
-  border-bottom:2px solid var(--gold);
-}
-
-.playlist{
-  margin-top:20px;
+  border-radius:50%;
+  border:4px solid #0b0b0b;
+  background:linear-gradient(135deg,var(--gold),#604516);
+  color:#090909;
   display:grid;
-  gap:10px;
+  place-items:center;
+  font-size:35px;
+  font-weight:900;
 }
+
+.profile-info{margin-top:10px}
+.profile-info h1{font-size:30px}
+.profile-info p{color:#888;margin-top:5px}
+
+.profile-actions{
+  display:flex;
+  gap:8px;
+  margin-top:15px;
+  flex-wrap:wrap;
+}
+
+/* PLAYLIST */
 
 .song{
   display:flex;
   align-items:center;
-  gap:12px;
-  padding:13px;
-  border:1px solid #252525;
-  border-radius:13px;
-  background:#151515;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px 0;
+  border-bottom:1px solid rgba(255,255,255,.06);
 }
 
-.song-icon{
-  width:40px;
-  height:40px;
-  border-radius:10px;
-  background:#222;
-  display:grid;
-  place-items:center;
-}
+.song:last-child{border-bottom:0}
 
 .song-info{
-  flex:1;
+  min-width:0;
 }
 
-.song-info small{
+.song-info strong{
+  display:block;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.song-info span{
   color:#777;
+  font-size:12px;
 }
 
-/* =========================
-   MODALS
-========================= */
+/* DRAWER */
+
+.drawer{
+  position:fixed;
+  inset:0;
+  z-index:2000;
+  pointer-events:none;
+}
+
+.drawer-bg{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  opacity:0;
+  transition:.2s;
+}
+
+.drawer-panel{
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  width:min(350px,88vw);
+  background:#0b0b0b;
+  border-right:1px solid var(--line);
+  transform:translateX(-100%);
+  transition:.25s;
+  padding:24px 18px;
+  overflow:auto;
+}
+
+.drawer.open{pointer-events:auto}
+.drawer.open .drawer-bg{opacity:1}
+.drawer.open .drawer-panel{transform:translateX(0)}
+
+.drawer-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.drawer-links{
+  display:grid;
+  gap:4px;
+}
+
+.drawer-links button{
+  border:0;
+  background:transparent;
+  color:#bbb;
+  padding:14px;
+  border-radius:12px;
+  text-align:left;
+}
+
+.drawer-links button:hover{
+  background:#181818;
+  color:var(--gold2);
+}
+
+/* MODALS */
 
 .modal{
   position:fixed;
   inset:0;
-  z-index:3000;
-  background:rgba(0,0,0,.75);
-  backdrop-filter:blur(8px);
+  z-index:2500;
   display:none;
-  place-items:center;
-  padding:20px;
+  background:rgba(0,0,0,.8);
+  backdrop-filter:blur(10px);
+  padding:60px 15px;
+  overflow:auto;
 }
 
-.modal.active{
-  display:grid;
-}
+.modal.open{display:block}
 
 .modal-box{
-  width:min(600px,100%);
-  max-height:90vh;
-  overflow-y:auto;
+  max-width:650px;
+  margin:auto;
   background:#111;
   border:1px solid var(--line);
   border-radius:22px;
-  padding:24px;
-  position:relative;
+  padding:20px;
 }
 
-.modal-close{
-  position:absolute;
-  top:15px;
-  right:15px;
-  width:35px;
-  height:35px;
-  border-radius:50%;
-  background:#202020;
-  color:white;
-  border:0;
-}
-
-.modal-box h2{
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
   margin-bottom:15px;
 }
 
-.modal-box input,
-.modal-box textarea{
-  width:100%;
-  background:#191919;
-  border:1px solid #292929;
-  color:white;
-  border-radius:12px;
-  padding:12px;
-  margin-bottom:12px;
-  outline:none;
-}
-
-/* =========================
-   MOBILE NAV
-========================= */
-
-.mobile-nav{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  height:72px;
-  z-index:2000;
-  background:rgba(8,8,8,.96);
-  backdrop-filter:blur(20px);
-  border-top:1px solid var(--line);
-  display:none;
-  padding-bottom:env(safe-area-inset-bottom);
-}
-
-.mobile-nav-inner{
-  height:100%;
-  display:grid;
-  grid-template-columns:repeat(7,1fr);
-}
-
-.mobile-nav button{
-  border:0;
-  background:transparent;
-  color:#777;
-  font-size:10px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:4px;
-}
-
-.mobile-nav button.active{
-  color:var(--gold2);
-}
-
-.nav-icon{
-  font-size:20px;
-}
-
-/* =========================
-   SIDE DRAWER
-========================= */
-
-.drawer-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.6);
-  z-index:2500;
-  display:none;
-}
-
-.drawer-overlay.active{
-  display:block;
-}
-
-.drawer{
-  position:fixed;
-  top:0;
-  left:0;
-  bottom:0;
-  width:min(360px,88vw);
-  background:#0c0c0c;
-  border-right:1px solid var(--line);
-  z-index:2600;
-  transform:translateX(-100%);
-  transition:.25s;
-  padding:25px;
-  overflow-y:auto;
-}
-
-.drawer.active{
-  transform:translateX(0);
-}
-
-.drawer h2{
-  margin-bottom:20px;
-  color:var(--gold2);
-}
-
-.drawer-link{
-  display:flex;
-  gap:12px;
-  align-items:center;
-  width:100%;
-  border:0;
-  background:#121212;
-  color:white;
-  padding:15px;
-  border-radius:13px;
-  margin-bottom:8px;
-  text-align:left;
-}
-
-.drawer-link:hover{
-  color:var(--gold2);
-}
-
-/* =========================
-   TOAST
-========================= */
+/* TOAST */
 
 .toast{
   position:fixed;
-  bottom:90px;
+  bottom:95px;
   left:50%;
   transform:translateX(-50%) translateY(20px);
-  background:#1b1b1b;
-  border:1px solid var(--line);
-  color:white;
+  background:#191919;
+  border:1px solid var(--gold);
+  color:#fff;
   padding:12px 17px;
-  border-radius:12px;
+  border-radius:13px;
   opacity:0;
   pointer-events:none;
   transition:.25s;
   z-index:5000;
+  max-width:90%;
+  text-align:center;
 }
 
 .toast.show{
@@ -1190,116 +684,87 @@ a{
   transform:translateX(-50%) translateY(0);
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* BOTTOM NAV */
 
-@media(max-width:1050px){
-  .top-nav{
-    display:none;
-  }
-
-  .feed-layout{
-    grid-template-columns:1fr;
-  }
-
-  .grid-4{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .language-tools{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .language-layout{
-    grid-template-columns:1fr;
-  }
+.bottom-nav{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:1500;
+  height:76px;
+  background:rgba(8,8,8,.97);
+  backdrop-filter:blur(20px);
+  border-top:1px solid var(--line);
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
 }
 
-@media(max-width:760px){
+.bottom-nav button{
+  border:0;
+  background:transparent;
+  color:#777;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  min-width:0;
+  font-size:9px;
+}
+
+.bottom-nav button span:first-child{font-size:18px}
+.bottom-nav button.active{color:var(--gold2)}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .desktop-nav{display:none}
+  .language-panel,.two-grid{grid-template-columns:1fr}
+}
+
+@media(max-width:620px){
+
   .header{
-    height:62px;
-    padding:0 14px;
+    height:64px;
+    padding:0 11px;
   }
 
-  .header-actions{
-    gap:5px;
-  }
-
-  .header-actions .icon-btn:nth-child(1){
-    display:none;
-  }
+  .brand-tag{display:none}
+  .brand-name{font-size:16px}
 
   .app{
-    padding:16px 12px 100px;
+    padding:15px 9px 105px;
   }
 
   .hero{
-    min-height:430px;
-    padding:28px 22px;
-    border-radius:22px;
+    padding:25px 19px;
+    border-radius:21px;
   }
 
-  .hero h1{
-    font-size:45px;
-    letter-spacing:-2px;
-  }
+  .hero h1{font-size:37px}
 
-  .grid,
-  .grid-4,
-  .skate-grid,
-  .connection-grid{
-    grid-template-columns:1fr;
-  }
+  .grid{grid-template-columns:1fr}
 
-  .language-list{
-    grid-template-columns:1fr;
-  }
+  .card{padding:17px}
 
-  .language-tools{
-    grid-template-columns:1fr 1fr;
-  }
+  .chat-messages{height:410px}
 
-  .skateboard-art{
-    display:none;
-  }
+  .message{max-width:90%}
 
-  .profile-header{
-    flex-direction:column;
-  }
+  .bottom-nav{height:72px}
 
-  .mobile-nav{
-    display:block;
-  }
-
-  .section-title{
-    font-size:24px;
-  }
-}
-
-@media(max-width:430px){
-  .logo{
-    font-size:21px;
-  }
-
-  .mobile-nav button{
+  .bottom-nav button{
     font-size:8px;
   }
 
-  .nav-icon{
-    font-size:18px;
+  .bottom-nav button span:first-child{
+    font-size:17px;
   }
 
-  .language-tools{
-    gap:8px;
-  }
-
-  .language-tool{
-    padding:13px 10px;
-  }
-
-  .message{
-    max-width:88%;
+  .profile-box{
+    padding:0 15px 20px;
   }
 }
 </style>
@@ -1307,327 +772,174 @@ a{
 
 <body>
 
-<!-- =========================
-     HEADER
-========================= -->
-
 <header class="header">
-  <div class="header-inner">
 
-    <div class="logo">
-      Soulaani<span>.</span>
+  <div class="brand" onclick="navigate('home')">
+    <div class="brand-mark">S</div>
+
+    <div>
+      <div class="brand-name">Soulaani</div>
+      <div class="brand-tag">
+        The Culture. The People. The Platform.
+      </div>
     </div>
-
-    <nav class="top-nav">
-      <button onclick="showPage('home')">Home</button>
-      <button onclick="showPage('connect')">Connect</button>
-      <button onclick="showPage('date')">Date</button>
-      <button onclick="showPage('build')">Build</button>
-      <button onclick="showPage('market')">Market</button>
-      <button onclick="showPage('explore')">Explore</button>
-      <button onclick="showPage('culture')">Culture</button>
-      <button onclick="showPage('languages')">Languages</button>
-      <button onclick="showPage('ai')">Soulaani AI</button>
-    </nav>
-
-    <div class="header-actions">
-      <button class="icon-btn" onclick="openSearch()">⌕</button>
-      <button class="icon-btn" onclick="openDrawer()">☰</button>
-    </div>
-
   </div>
+
+  <div class="top-actions">
+    <button class="icon-btn" onclick="openSearch()">⌕</button>
+    <button class="icon-btn" onclick="openDrawer()">☰</button>
+  </div>
+
 </header>
 
-<!-- =========================
-     APP
-========================= -->
+
+<nav class="desktop-nav">
+
+  <button data-page="home" onclick="navigate('home')">Home</button>
+  <button data-page="connect" onclick="navigate('connect')">Connect</button>
+  <button data-page="date" onclick="navigate('date')">Date</button>
+  <button data-page="build" onclick="navigate('build')">Build</button>
+  <button data-page="market" onclick="navigate('market')">Market</button>
+  <button data-page="explore" onclick="navigate('explore')">Explore</button>
+  <button data-page="culture" onclick="navigate('culture')">Culture</button>
+  <button data-page="skate" onclick="navigate('skate')">Skate</button>
+  <button data-page="languages" onclick="navigate('languages')">Languages</button>
+  <button data-page="ai" onclick="navigate('ai')">Soulaani AI</button>
+  <button data-page="profile" onclick="navigate('profile')">Profile</button>
+
+</nav>
+
 
 <main class="app">
 
+
 <!-- HOME -->
 
-<section id="home" class="page active">
+<section class="page active" id="home">
 
   <div class="hero">
 
-    <div class="hero-content">
+    <h1>
+      The Culture.<br>
+      <span>The People.</span><br>
+      The Platform.
+    </h1>
 
-      <div class="hero-eyebrow">
-        The Culture. The People. The Platform.
-      </div>
+    <p>
+      Soulaani is a community platform built around Black people,
+      culture, creativity, connection, language, business,
+      skating, local discovery and conversation.
+    </p>
 
-      <h1>
-        Built for <span class="gold">Us.</span>
-      </h1>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;">
 
-      <p>
-        Soulaani is a social platform built around Black American culture,
-        community, creativity, entrepreneurship, language, music, food,
-        skating, connection and the global Black diaspora.
-      </p>
+      <button class="gold-btn" onclick="navigate('connect')">
+        Connect
+      </button>
 
-      <div class="hero-buttons">
-        <button class="btn btn-gold" onclick="showPage('connect')">
-          Connect
-        </button>
+      <button class="dark-btn" onclick="navigate('languages')">
+        Learn Languages
+      </button>
 
-        <button class="btn btn-dark" onclick="showPage('languages')">
-          Explore Languages
-        </button>
-      </div>
-
-    </div>
-
-  </div>
-
-  <div class="section-title">Your Feed</div>
-  <div class="section-subtitle">
-    What's happening across the Soulaani community.
-  </div>
-
-  <div class="feed-layout">
-
-    <div>
-
-      <article class="post">
-
-        <div class="post-head">
-          <div class="avatar">S</div>
-
-          <div class="post-meta">
-            <strong>Soulaani Community</strong>
-            <small>Just now · 🌎</small>
-          </div>
-        </div>
-
-        <div class="post-body">
-          Welcome to Soulaani. A place to connect, create, learn,
-          build and celebrate culture.
-        </div>
-
-        <div class="post-media">
-          ✊🏾
-        </div>
-
-        <div class="post-actions">
-
-          <div class="reaction-wrap">
-
-            <div class="reactions">
-              <button onclick="react('❤️')">❤️</button>
-              <button onclick="react('😂')">😂</button>
-              <button onclick="react('🔥')">🔥</button>
-              <button onclick="react('😮')">😮</button>
-              <button onclick="react('👎🏾')">👎🏾</button>
-            </div>
-
-            <button class="reaction-btn" onclick="toggleReaction(this)">
-              👍🏾 React
-            </button>
-
-          </div>
-
-          <button class="comment-btn" onclick="openComments()">
-            💬 Comment
-          </button>
-
-          <button class="share-btn" onclick="sharePost()">
-            ↗ Share
-          </button>
-
-        </div>
-
-      </article>
-
-      <article class="post">
-
-        <div class="post-head">
-          <div class="avatar">T</div>
-
-          <div class="post-meta">
-            <strong>Trilly</strong>
-            <small>2h · Harrisburg, PA</small>
-          </div>
-
-        </div>
-
-        <div class="post-body">
-          Language is connection. Culture is memory. Let's keep the
-          knowledge moving forward.
-        </div>
-
-        <div class="post-actions">
-
-          <div class="reaction-wrap">
-            <div class="reactions">
-              <button>❤️</button>
-              <button>😂</button>
-              <button>🔥</button>
-              <button>😮</button>
-              <button>👎🏾</button>
-            </div>
-
-            <button class="reaction-btn">
-              👍🏾 React
-            </button>
-          </div>
-
-          <button class="comment-btn">
-            💬 Comment
-          </button>
-
-          <button class="share-btn">
-            ↗ Share
-          </button>
-
-        </div>
-
-      </article>
+      <button class="dark-btn" onclick="navigate('ai')">
+        Soulaani AI
+      </button>
 
     </div>
 
-    <aside>
+  </div>
 
-      <div class="card side-card">
 
-        <h3>Quick Access</h3>
+  <div class="section-title">
 
-        <div class="side-list">
+    <h2>Your Feed</h2>
 
-          <div class="side-item">
-            <div>🗣️</div>
-            <div>
-              <strong>Language & Connection</strong>
-              <small>Learn and connect</small>
-            </div>
-          </div>
-
-          <div class="side-item">
-            <div>🛹</div>
-            <div>
-              <strong>Skate</strong>
-              <small>Riders and spots</small>
-            </div>
-          </div>
-
-          <div class="side-item">
-            <div>🎵</div>
-            <div>
-              <strong>Culture</strong>
-              <small>Music, food and art</small>
-            </div>
-          </div>
-
-          <div class="side-item">
-            <div>🤖</div>
-            <div>
-              <strong>Soulaani AI</strong>
-              <small>Your AI assistant</small>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="card">
-
-        <h3>Local Discover</h3>
-
-        <p>
-          Explore people, businesses, events, food and culture
-          around your selected location.
-        </p>
-
-        <button
-          class="btn btn-gold btn-small"
-          style="margin-top:14px"
-          onclick="showPage('explore')">
-          Explore Local
-        </button>
-
-      </div>
-
-    </aside>
+    <span id="feedLocation">
+      Global
+    </span>
 
   </div>
+
+
+  <div id="feed"></div>
 
 </section>
 
 
 <!-- CONNECT -->
 
-<section id="connect" class="page">
+<section class="page" id="connect">
 
-  <h2 class="section-title">Connect</h2>
+  <div class="hero">
 
-  <p class="section-subtitle">
-    Meet people, communities and creators.
-  </p>
+    <h1>Connect</h1>
+
+    <p>
+      Meet people, communities, creators and conversations
+      across Soulaani.
+    </p>
+
+  </div>
+
 
   <div class="grid">
 
     <div class="card">
-      <div class="feature-icon">👥</div>
-      <h3>People</h3>
+
+      <h3>👥 Communities</h3>
+
       <p>
-        Find people who share your interests, culture and passions.
+        Find communities around cities, interests,
+        culture, creativity and shared experiences.
       </p>
-      <button class="btn btn-gold btn-small" style="margin-top:15px">
-        Find People
+
+      <button
+        class="gold-btn"
+        style="margin-top:15px"
+        onclick="createCommunity()"
+      >
+        Create Community
       </button>
+
     </div>
 
-    <div class="card">
-      <div class="feature-icon">🌍</div>
-      <h3>Communities</h3>
-      <p>
-        Join conversations built around culture, cities and interests.
-      </p>
-      <button class="btn btn-gold btn-small" style="margin-top:15px">
-        Communities
-      </button>
-    </div>
 
     <div class="card">
-      <div class="feature-icon">💬</div>
-      <h3>Messages</h3>
+
+      <h3>💬 Messages</h3>
+
       <p>
-        Chat privately or connect through community conversations.
+        Private conversations and community chats.
       </p>
-      <button class="btn btn-gold btn-small" style="margin-top:15px">
+
+      <button
+        class="dark-btn"
+        style="margin-top:15px"
+        onclick="openChat()"
+      >
         Open Messages
       </button>
+
     </div>
 
-  </div>
 
-  <div class="connection-grid">
+    <div class="card">
 
-    <div class="community-card">
-      <div class="community-icon">🗣️</div>
-      <h3>Language Exchange</h3>
+      <h3>🌎 Local Connections</h3>
+
       <p>
-        Meet people practicing Haitian Creole, Louisiana Creole,
-        Tutnese and other languages.
+        Discover people and conversations around your
+        selected location.
       </p>
-    </div>
 
-    <div class="community-card">
-      <div class="community-icon">🎨</div>
-      <h3>Creators</h3>
-      <p>
-        Discover artists, musicians, photographers, designers and
-        storytellers.
-      </p>
-    </div>
+      <button
+        class="dark-btn"
+        style="margin-top:15px"
+        onclick="navigate('explore')"
+      >
+        Local Discover
+      </button>
 
-    <div class="community-card">
-      <div class="community-icon">🏙️</div>
-      <h3>Local Communities</h3>
-      <p>
-        Connect with people and culture in your city or region.
-      </p>
     </div>
 
   </div>
@@ -1637,38 +949,58 @@ a{
 
 <!-- DATE -->
 
-<section id="date" class="page">
+<section class="page" id="date">
 
-  <h2 class="section-title">Date</h2>
+  <div class="hero">
 
-  <p class="section-subtitle">
-    Meaningful connections built around shared interests and culture.
-  </p>
+    <h1>Date</h1>
 
-  <div class="grid">
+    <p>
+      A dedicated space for connection and dating,
+      with privacy and safety built into the experience.
+    </p>
+
+  </div>
+
+
+  <div class="two-grid">
 
     <div class="card">
-      <div class="feature-icon">❤️</div>
-      <h3>Discover</h3>
+
+      <h3>Dating Profile</h3>
+
       <p>
-        Browse profiles and discover people who share your interests.
+        Create a dating profile separate from your main
+        Soulaani identity.
       </p>
+
+      <button
+        class="gold-btn"
+        style="margin-top:15px"
+        onclick="toast('Dating profile setup is ready for backend connection.')"
+      >
+        Create Profile
+      </button>
+
     </div>
 
-    <div class="card">
-      <div class="feature-icon">💫</div>
-      <h3>Match</h3>
-      <p>
-        Connect when both people choose to connect.
-      </p>
-    </div>
 
     <div class="card">
-      <div class="feature-icon">💬</div>
-      <h3>Conversation</h3>
+
+      <h3>Preferences</h3>
+
       <p>
-        Start conversations and get to know each other.
+        Control your discovery and privacy preferences.
       </p>
+
+      <button
+        class="dark-btn"
+        style="margin-top:15px"
+        onclick="toast('Preferences panel opened.')"
+      >
+        Preferences
+      </button>
+
     </div>
 
   </div>
@@ -1678,37 +1010,41 @@ a{
 
 <!-- BUILD -->
 
-<section id="build" class="page">
+<section class="page" id="build">
 
-  <h2 class="section-title">Build</h2>
+  <div class="hero">
 
-  <p class="section-subtitle">
-    Careers, entrepreneurship, networking and ideas.
-  </p>
+    <h1>Build</h1>
+
+    <p>
+      Careers, entrepreneurship, networking,
+      mentorship and opportunities.
+    </p>
+
+  </div>
+
 
   <div class="grid">
 
     <div class="card">
-      <div class="feature-icon">💼</div>
-      <h3>Careers</h3>
+      <h3>💼 Careers</h3>
       <p>
-        Discover career opportunities and professional communities.
+        Discover career resources, opportunities
+        and professional communities.
       </p>
     </div>
 
     <div class="card">
-      <div class="feature-icon">🚀</div>
-      <h3>Entrepreneurs</h3>
+      <h3>🚀 Entrepreneurship</h3>
       <p>
-        Connect with founders, creators and business owners.
+        Connect founders, creators and business owners.
       </p>
     </div>
 
     <div class="card">
-      <div class="feature-icon">🤝🏾</div>
-      <h3>Networking</h3>
+      <h3>🤝 Networking</h3>
       <p>
-        Build relationships that turn ideas into opportunities.
+        Build meaningful professional relationships.
       </p>
     </div>
 
@@ -1719,38 +1055,42 @@ a{
 
 <!-- MARKET -->
 
-<section id="market" class="page">
+<section class="page" id="market">
 
-  <h2 class="section-title">Market</h2>
+  <div class="hero">
 
-  <p class="section-subtitle">
-    Discover Black-owned businesses, products and services.
-  </p>
+    <h1>Market</h1>
 
-  <div class="grid-4">
+    <p>
+      Discover Black-owned businesses, products,
+      services and creators.
+    </p>
+
+  </div>
+
+
+  <div class="grid">
 
     <div class="card">
-      <div class="feature-icon">🛍️</div>
-      <h3>Businesses</h3>
-      <p>Discover businesses in your community.</p>
+      <h3>Black-Owned Businesses</h3>
+      <p>
+        Business owners can create dedicated profiles.
+      </p>
     </div>
 
     <div class="card">
-      <div class="feature-icon">👕</div>
-      <h3>Fashion</h3>
-      <p>Find independent designers and brands.</p>
+      <h3>Marketplace</h3>
+      <p>
+        Products and services can eventually be bought
+        and sold through Soulaani.
+      </p>
     </div>
 
     <div class="card">
-      <div class="feature-icon">🍽️</div>
-      <h3>Food</h3>
-      <p>Find restaurants, cooks and food businesses.</p>
-    </div>
-
-    <div class="card">
-      <div class="feature-icon">🧴</div>
-      <h3>Products</h3>
-      <p>Explore products from community businesses.</p>
+      <h3>Local Discovery</h3>
+      <p>
+        Find businesses around your selected area.
+      </p>
     </div>
 
   </div>
@@ -1760,70 +1100,83 @@ a{
 
 <!-- EXPLORE -->
 
-<section id="explore" class="page">
+<section class="page" id="explore">
 
-  <h2 class="section-title">Explore</h2>
+  <div class="hero">
 
-  <p class="section-subtitle">
-    Discover what's happening around you.
-  </p>
-
-  <div class="card" style="margin-bottom:20px">
-
-    <h3>📍 Local Discover</h3>
+    <h1>Explore</h1>
 
     <p>
-      Choose a city or area to personalize your feed with people,
-      culture, businesses, events, food and music from that community.
+      Your local Soulaani experience. Choose an area
+      and discover people, events, businesses, food,
+      music and culture.
     </p>
 
-    <div style="display:flex;gap:10px;margin-top:15px;flex-wrap:wrap">
+  </div>
+
+
+  <div class="card">
+
+    <h3>Local Discover</h3>
+
+    <p style="margin:8px 0 15px;">
+      Select your city or local area.
+    </p>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
 
       <input
         id="locationInput"
-        placeholder="Enter city or area"
-        style="
-          flex:1;
-          min-width:220px;
-          background:#181818;
-          color:white;
-          border:1px solid #292929;
-          border-radius:12px;
-          padding:12px;
-        "
+        class="field"
+        placeholder="City, State"
+        style="flex:1;min-width:200px"
       >
 
-      <button class="btn btn-gold" onclick="setLocation()">
+      <button
+        class="gold-btn"
+        onclick="saveLocation()"
+      >
         Set Location
       </button>
 
     </div>
 
-    <div id="currentLocation"
-         style="color:#777;margin-top:12px">
-      Location not selected
-    </div>
-
   </div>
+
+
+  <div class="section-title">
+    <h2>Local Discover</h2>
+  </div>
+
 
   <div class="grid">
 
     <div class="card">
-      <div class="feature-icon">🎉</div>
-      <h3>Events</h3>
-      <p>Find events and gatherings in your area.</p>
+      <h3>📍 People</h3>
+      <p>
+        Discover community members in your area.
+      </p>
     </div>
 
     <div class="card">
-      <div class="feature-icon">🎶</div>
-      <h3>Music</h3>
-      <p>Discover local artists and sounds.</p>
+      <h3>🎤 Events</h3>
+      <p>
+        Discover local cultural and community events.
+      </p>
     </div>
 
     <div class="card">
-      <div class="feature-icon">📸</div>
-      <h3>Local Feed</h3>
-      <p>See what's happening around your selected area.</p>
+      <h3>🍽️ Food</h3>
+      <p>
+        Discover soul food and Black-owned food businesses.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>🎵 Music</h3>
+      <p>
+        Discover local artists, DJs and music culture.
+      </p>
     </div>
 
   </div>
@@ -1833,77 +1186,62 @@ a{
 
 <!-- CULTURE -->
 
-<section id="culture" class="page">
+<section class="page" id="culture">
 
-  <h2 class="section-title">Culture</h2>
+  <div class="hero">
 
-  <p class="section-subtitle">
-    Food, music, art, fashion, history and creativity.
-  </p>
+    <h1>Culture</h1>
 
-  <div class="grid">
-
-    <div class="card">
-      <div class="culture-symbol">✊🏾</div>
-      <h3>Black American Culture</h3>
-      <p>
-        Stories, traditions, creativity and cultural expression.
-      </p>
-    </div>
-
-    <div class="card">
-      <div class="culture-symbol">🎵</div>
-      <h3>Music</h3>
-      <p>
-        Discover musicians, sounds and cultural movements.
-      </p>
-    </div>
-
-    <div class="card">
-      <div class="culture-symbol">🎨</div>
-      <h3>Art & Fashion</h3>
-      <p>
-        Showcase artists, designers and creative work.
-      </p>
-    </div>
+    <p>
+      Black American culture, soul food, music, art,
+      fashion, creators, history and cultural conversation.
+    </p>
 
   </div>
 
-  <h3 style="margin:28px 0 15px">
-    Soul Food
-  </h3>
 
   <div class="grid">
 
-    <div class="card food-card">
-      <div class="food-image">🍗🥬🍠</div>
-      <div class="food-info">
-        <h3>Sunday Soul Food</h3>
-        <p>
-          One plate, family-style comfort and the traditions behind
-          Black American soul food.
-        </p>
-      </div>
+    <div class="card">
+      <h3>✊🏿 Black Culture</h3>
+      <p>
+        Community traditions, creativity and cultural expression.
+      </p>
     </div>
 
-    <div class="card food-card">
-      <div class="food-image">🍖🥔🥗</div>
-      <div class="food-info">
-        <h3>Community Plates</h3>
-        <p>
-          Discover cooks, restaurants and food creators.
-        </p>
-      </div>
+    <div class="card">
+      <h3>🍽️ Soul Food</h3>
+      <p>
+        Soul-food plates, cooks, restaurants and food creators.
+      </p>
     </div>
 
-    <div class="card food-card">
-      <div class="food-image">🍤🍚🥬</div>
-      <div class="food-info">
-        <h3>Regional Flavor</h3>
-        <p>
-          Explore the regional traditions that shaped soul food.
-        </p>
-      </div>
+    <div class="card">
+      <h3>🎨 Art</h3>
+      <p>
+        Artists and visual creators.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>👕 Fashion</h3>
+      <p>
+        Fashion, streetwear, designers and personal style.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>🎵 Music</h3>
+      <p>
+        Artists, producers, DJs and playlists.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>🎬 Creators</h3>
+      <p>
+        Video creators, writers, photographers and storytellers.
+      </p>
     </div>
 
   </div>
@@ -1913,275 +1251,140 @@ a{
 
 <!-- SKATE -->
 
-<section id="skate" class="page">
+<section class="page" id="skate">
 
-  <div class="skate-banner">
+  <div class="hero">
 
-    <div class="skateboard-art">🛹</div>
+    <h1>Skate</h1>
 
-    <div style="max-width:650px">
+    <p>
+      Riders, clips, local skate spots, events,
+      skate culture and community.
+    </p>
 
-      <div class="hero-eyebrow">
-        SOULAANI SKATE
-      </div>
+  </div>
 
-      <h2 style="font-size:42px;margin-bottom:12px">
-        Ride. Create. Connect.
-      </h2>
 
-      <p style="color:#aaa;line-height:1.7">
-        A dedicated space for skateboarders, riders, clips,
-        local skate spots, events and community.
+  <div class="grid">
+
+    <div class="card">
+      <h3>🛹 Riders</h3>
+      <p>
+        Discover riders and skating communities.
       </p>
+    </div>
 
-      <button
-        class="btn btn-gold"
-        style="margin-top:20px"
-        onclick="showToast('Skate post composer opened')">
-        Post a Clip
-      </button>
+    <div class="card">
+      <h3>🎥 Clips</h3>
+      <p>
+        Share skating videos and memorable sessions.
+      </p>
+    </div>
 
+    <div class="card">
+      <h3>📍 Skate Spots</h3>
+      <p>
+        Discover local skate spots.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>🏁 Events</h3>
+      <p>
+        Competitions, sessions, meetups and skate events.
+      </p>
     </div>
 
   </div>
 
-  <div class="skate-grid">
 
-    <div class="skate-card">
-      <div class="skate-image">🛹</div>
-      <div class="skate-info">
-        <h3>Riders</h3>
-        <p>Discover riders and skating styles.</p>
-      </div>
-    </div>
+  <div class="section-title">
+    <h2>Skate Feed</h2>
+  </div>
 
-    <div class="skate-card">
-      <div class="skate-image">🎥</div>
-      <div class="skate-info">
-        <h3>Clips</h3>
-        <p>Watch community skate clips.</p>
-      </div>
-    </div>
 
-    <div class="skate-card">
-      <div class="skate-image">📍</div>
-      <div class="skate-info">
-        <h3>Skate Spots</h3>
-        <p>Discover local spots and parks.</p>
-      </div>
-    </div>
+  <div class="card">
 
-    <div class="skate-card">
-      <div class="skate-image">🏆</div>
-      <div class="skate-info">
-        <h3>Events</h3>
-        <p>Find competitions and skate events.</p>
-      </div>
-    </div>
+    <h3>🛹 Create Skate Post</h3>
 
-    <div class="skate-card">
-      <div class="skate-image">👟</div>
-      <div class="skate-info">
-        <h3>Style</h3>
-        <p>Skate fashion and personal style.</p>
-      </div>
-    </div>
+    <textarea
+      id="skatePost"
+      class="field"
+      placeholder="Share your session..."
+      style="margin-top:12px"
+    ></textarea>
 
-    <div class="skate-card">
-      <div class="skate-image">🔥</div>
-      <div class="skate-info">
-        <h3>Community</h3>
-        <p>Connect with the skate community.</p>
-      </div>
-    </div>
+    <button
+      class="gold-btn"
+      style="margin-top:10px"
+      onclick="createSkatePost()"
+    >
+      Post
+    </button>
 
   </div>
+
+
+  <div id="skatePosts" style="margin-top:15px"></div>
 
 </section>
 
 
-<!-- =========================
-     LANGUAGE & CONNECTION
-========================= -->
+<!-- LANGUAGES -->
 
-<section id="languages" class="page">
+<section class="page" id="languages">
 
-  <div class="language-hero">
+  <div class="hero">
 
-    <div class="hero-eyebrow">
-      SOULAANI LANGUAGE & CONNECTION
-    </div>
-
-    <h2>
-      Our languages. <span class="gold">Our voices.</span>
-    </h2>
+    <h1>Language & Connection</h1>
 
     <p>
-      A free language-learning and connection hub focused on languages
-      connected to Black American history, the African diaspora and
-      Creole-speaking communities. Learn, translate, practice and
-      connect with other people.
+      Learn languages connected to Black American communities
+      and the Black diaspora, practice with others,
+      translate phrases and connect through language.
     </p>
-
-    <div class="language-tools">
-
-      <div class="language-tool" onclick="startLesson()">
-        <div class="tool-icon">📚</div>
-        <strong>Learn Free</strong>
-        <span>Lessons and vocabulary</span>
-      </div>
-
-      <div class="language-tool" onclick="openTranslator()">
-        <div class="tool-icon">🌎</div>
-        <strong>Translator</strong>
-        <span>Translate phrases</span>
-      </div>
-
-      <div class="language-tool" onclick="openLanguageChat()">
-        <div class="tool-icon">💬</div>
-        <strong>Language Chat</strong>
-        <span>Practice with people</span>
-      </div>
-
-      <div class="language-tool" onclick="showToast('Language communities coming into focus')">
-        <div class="tool-icon">🤝🏾</div>
-        <strong>Communities</strong>
-        <span>Connect across the diaspora</span>
-      </div>
-
-    </div>
 
   </div>
 
 
-  <div class="language-layout">
+  <div class="language-panel">
 
-    <div>
+    <div class="card">
 
-      <h3 style="margin-bottom:15px">
-        Language Library
-      </h3>
+      <h2 style="margin-bottom:15px">
+        Languages
+      </h2>
 
       <div class="language-list">
 
-        <div class="language-item"
-             onclick="selectLanguage('Haitian Creole')">
-          <div class="language-flag">🇭🇹</div>
-          <div>
-            <strong>Haitian Creole</strong>
-            <small>Kreyòl Ayisyen</small>
-          </div>
-          <button>›</button>
+        <div class="language">
+          <strong>Haitian Creole</strong>
+          <span>Kreyòl Ayisyen</span>
         </div>
 
-        <div class="language-item"
-             onclick="selectLanguage('Louisiana Creole')">
-          <div class="language-flag">⚜️</div>
-          <div>
-            <strong>Louisiana Creole</strong>
-            <small>Créole Louisianais</small>
-          </div>
-          <button>›</button>
+        <div class="language">
+          <strong>Louisiana Creole</strong>
+          <span>Créole louisianais</span>
         </div>
 
-        <div class="language-item"
-             onclick="selectLanguage('Tutnese')">
-          <div class="language-flag">📜</div>
-          <div>
-            <strong>Tutnese</strong>
-            <small>Historical African American language tradition</small>
-          </div>
-          <button>›</button>
+        <div class="language">
+          <strong>Tutnese</strong>
+          <span>Historical language tradition</span>
         </div>
 
-        <div class="language-item"
-             onclick="selectLanguage('Gullah Geechee')">
-          <div class="language-flag">🌊</div>
-          <div>
-            <strong>Gullah Geechee</strong>
-            <small>Gullah Geechee cultural language tradition</small>
-          </div>
-          <button>›</button>
+        <div class="language">
+          <strong>Jamaican Patois</strong>
+          <span>Jamaican Creole</span>
         </div>
 
-        <div class="language-item"
-             onclick="selectLanguage('Jamaican Patois')">
-          <div class="language-flag">🇯🇲</div>
-          <div>
-            <strong>Jamaican Patois</strong>
-            <small>Jamaican Creole</small>
-          </div>
-          <button>›</button>
+        <div class="language">
+          <strong>Gullah Geechee</strong>
+          <span>Gullah/Geechee</span>
         </div>
 
-        <div class="language-item"
-             onclick="selectLanguage('Bajan')">
-          <div class="language-flag">🇧🇧</div>
-          <div>
-            <strong>Bajan</strong>
-            <small>Barbadian Creole tradition</small>
-          </div>
-          <button>›</button>
-        </div>
-
-        <div class="language-item"
-             onclick="selectLanguage('Trinidadian Creole')">
-          <div class="language-flag">🇹🇹</div>
-          <div>
-            <strong>Trinidadian Creole</strong>
-            <small>Creole language traditions</small>
-          </div>
-          <button>›</button>
-        </div>
-
-        <div class="language-item"
-             onclick="selectLanguage('Sierra Leone Krio')">
-          <div class="language-flag">🇸🇱</div>
-          <div>
-            <strong>Krio</strong>
-            <small>Sierra Leone</small>
-          </div>
-          <button>›</button>
-        </div>
-
-        <div class="language-item"
-             onclick="selectLanguage('Nigerian Pidgin')">
-          <div class="language-flag">🇳🇬</div>
-          <div>
-            <strong>Nigerian Pidgin</strong>
-            <small>West African language</small>
-          </div>
-          <button>›</button>
-        </div>
-
-        <div class="language-item"
-             onclick="selectLanguage('French')">
-          <div class="language-flag">🇫🇷</div>
-          <div>
-            <strong>French</strong>
-            <small>Important across the diaspora</small>
-          </div>
-          <button>›</button>
-        </div>
-
-        <div class="language-item"
-             onclick="selectLanguage('English')">
-          <div class="language-flag">🇺🇸</div>
-          <div>
-            <strong>English</strong>
-            <small>American English</small>
-          </div>
-          <button>›</button>
-        </div>
-
-        <div class="language-item"
-             onclick="selectLanguage('Spanish')">
-          <div class="language-flag">🌎</div>
-          <div>
-            <strong>Spanish</strong>
-            <small>Across the African diaspora</small>
-          </div>
-          <button>›</button>
+        <div class="language">
+          <strong>Other Creole Languages</strong>
+          <span>Growing library</span>
         </div>
 
       </div>
@@ -2189,137 +1392,32 @@ a{
     </div>
 
 
-    <div class="translator" id="translatorBox">
+    <div class="card">
 
-      <h3 style="margin-bottom:5px">
-        Free Translator
-      </h3>
+      <h2>Free Learning</h2>
 
-      <p style="color:#777;margin-bottom:15px">
-        Choose a language and practice a phrase.
+      <p style="margin-top:8px">
+        Learning lessons are designed to be free for
+        Soulaani users.
       </p>
 
-      <select id="fromLanguage">
-        <option>English</option>
-        <option>Haitian Creole</option>
-        <option>Louisiana Creole</option>
-        <option>Tutnese</option>
-        <option>Gullah Geechee</option>
-        <option>Jamaican Patois</option>
-        <option>French</option>
-        <option>Spanish</option>
-      </select>
-
-      <select id="toLanguage">
-        <option>Haitian Creole</option>
-        <option>English</option>
-        <option>Louisiana Creole</option>
-        <option>Tutnese</option>
-        <option>Gullah Geechee</option>
-        <option>Jamaican Patois</option>
-        <option>French</option>
-        <option>Spanish</option>
-      </select>
-
-      <textarea
-        id="translateInput"
-        placeholder="Type a phrase..."></textarea>
-
-      <button class="btn btn-gold"
-              style="width:100%"
-              onclick="translatePhrase()">
-        Translate
-      </button>
-
-      <div class="translation-output"
-           id="translationOutput">
-        Your translation will appear here.
+      <div style="height:7px;background:#222;border-radius:20px;margin:15px 0;overflow:hidden">
+        <div style="height:100%;width:35%;background:linear-gradient(90deg,var(--gold),var(--gold2))"></div>
       </div>
 
-    </div>
+      <strong>Beginner Lesson</strong>
 
-  </div>
+      <p style="margin-top:8px">
+        Greetings, introductions, everyday phrases
+        and cultural context.
+      </p>
 
-
-  <!-- FREE LESSON -->
-
-  <div class="learn-panel" id="learningPanel">
-
-    <h3>
-      Free Language Learning
-    </h3>
-
-    <p style="color:#777;margin-top:5px">
-      Start with simple phrases and build your vocabulary.
-    </p>
-
-    <div class="lesson active" id="lesson1">
-
-      <div class="lesson-word">
-        Bonjou
-      </div>
-
-      <div class="lesson-pronunciation">
-        Haitian Creole
-      </div>
-
-      <div class="lesson-example">
-        <strong>Meaning:</strong> Hello / Good morning
-        <br><br>
-        <strong>Example:</strong>
-        Bonjou, kijan ou ye?
-      </div>
-
-    </div>
-
-    <div class="lesson" id="lesson2">
-
-      <div class="lesson-word">
-        Kijan ou ye?
-      </div>
-
-      <div class="lesson-pronunciation">
-        Haitian Creole
-      </div>
-
-      <div class="lesson-example">
-        <strong>Meaning:</strong> How are you?
-        <br><br>
-        <strong>Practice:</strong>
-        Try saying the phrase out loud.
-      </div>
-
-    </div>
-
-    <div class="lesson" id="lesson3">
-
-      <div class="lesson-word">
-        Mèsi
-      </div>
-
-      <div class="lesson-pronunciation">
-        Haitian Creole
-      </div>
-
-      <div class="lesson-example">
-        <strong>Meaning:</strong> Thank you
-        <br><br>
-        <strong>Practice:</strong>
-        Use it when thanking someone.
-      </div>
-
-    </div>
-
-    <div class="lesson-controls">
-
-      <button class="btn btn-dark"
-              onclick="previousLesson()">
-        ← Previous
-      </button>
-
-      <button class="btn btn-gold"
-              onclick="nextLesson()">
-        Next →
+      <button
+        class="gold-btn"
+        style="margin-top:15px"
+        onclick="startLesson()"
+      >
+        Start Lesson
       </button>
 
     </div>
@@ -2327,102 +1425,180 @@ a{
   </div>
 
 
-  <!-- LANGUAGE CHAT -->
+  <div class="section-title">
+    <h2>Translator</h2>
+  </div>
 
-  <div class="chat-language" id="languageChat">
 
-    <div class="chat-language-head">
+  <div class="card">
+
+    <div class="two-grid">
 
       <div>
-        <strong>Language Connection Chat</strong>
-        <div style="color:#777;font-size:12px">
-          Practice languages with the community
-        </div>
+
+        <label class="small">
+          From
+        </label>
+
+        <select
+          id="fromLanguage"
+          class="field"
+        >
+          <option>English</option>
+          <option>Haitian Creole</option>
+          <option>Louisiana Creole</option>
+          <option>Jamaican Patois</option>
+          <option>Gullah Geechee</option>
+          <option>Tutnese</option>
+        </select>
+
       </div>
 
-      <span class="gold">● Live</span>
+
+      <div>
+
+        <label class="small">
+          To
+        </label>
+
+        <select
+          id="toLanguage"
+          class="field"
+        >
+          <option>Haitian Creole</option>
+          <option>English</option>
+          <option>Louisiana Creole</option>
+          <option>Jamaican Patois</option>
+          <option>Gullah Geechee</option>
+          <option>Tutnese</option>
+        </select>
+
+      </div>
 
     </div>
 
-    <div class="language-chat-body" id="languageChatBody">
 
-      <div class="message ai">
-        Welcome to Language Connection. Choose a language,
-        practice together and connect across the diaspora.
-      </div>
+    <textarea
+      id="translationInput"
+      class="field"
+      placeholder="Type something to translate..."
+      style="margin-top:12px"
+    ></textarea>
 
-      <div class="message user">
-        Bonjou!
-      </div>
 
-      <div class="message ai">
-        Bonjou! Kijan ou ye?
-      </div>
+    <button
+      class="gold-btn"
+      style="margin-top:10px"
+      onclick="translateText()"
+    >
+      Translate
+    </button>
 
-    </div>
 
-    <div class="language-chat-input">
+    <div
+      id="translationOutput"
+      class="card"
+      style="display:none;margin-top:15px"
+    ></div>
 
-      <input
-        id="languageMessage"
-        placeholder="Write a message...">
+  </div>
 
-      <button class="btn btn-gold"
-              onclick="sendLanguageMessage()">
-        Send
-      </button>
 
-    </div>
+  <div class="section-title">
+    <h2>Language Connection Chat</h2>
+  </div>
+
+
+  <div class="card">
+
+    <p>
+      Meet people learning and practicing languages.
+    </p>
+
+    <button
+      class="gold-btn"
+      style="margin-top:15px"
+      onclick="openChat()"
+    >
+      Enter Language Chat
+    </button>
 
   </div>
 
 </section>
 
 
-<!-- SOULAANI AI -->
+<!-- AI -->
 
-<section id="ai" class="page">
+<section class="page" id="ai">
 
-  <h2 class="section-title">Soulaani AI</h2>
+  <div class="hero">
 
-  <p class="section-subtitle">
-    Your built-in Soulaani assistant.
-  </p>
+    <h1>Soulaani AI</h1>
+
+    <p>
+      Your built-in Soulaani assistant for learning,
+      discovery, culture, languages, creativity,
+      planning and navigating the platform.
+    </p>
+
+  </div>
+
 
   <div class="ai-shell">
 
     <div class="ai-head">
 
-      <div class="ai-orb"></div>
+      <div class="ai-title">
 
-      <div>
-        <strong>Soulaani AI</strong>
-        <div style="color:#777;font-size:12px">
-          Community assistant
+        <div class="ai-orb"></div>
+
+        <div>
+          <strong>Soulaani AI</strong>
+
+          <div class="ai-status">
+            ● Ready
+          </div>
         </div>
+
       </div>
+
+
+      <button
+        class="dark-btn"
+        onclick="clearAI()"
+      >
+        Clear
+      </button>
 
     </div>
 
-    <div class="chat-messages" id="aiMessages">
+
+    <div
+      id="aiMessages"
+      class="chat-messages"
+    >
 
       <div class="message ai">
-        Welcome to Soulaani AI. Ask me about languages,
-        culture, communities, skating, careers, local discovery,
-        food, music or the Soulaani platform.
+        Welcome to Soulaani AI. Ask me about Soulaani, languages, culture, skating, business, ideas, learning or anything else.
       </div>
 
     </div>
+
 
     <div class="chat-input">
 
       <input
         id="aiInput"
-        placeholder="Ask Soulaani AI something..."
-        onkeydown="if(event.key==='Enter') sendAI()">
+        placeholder="Ask Soulaani AI anything..."
+        autocomplete="off"
+        onkeydown="if(event.key==='Enter')sendAI()"
+      >
 
-      <button class="btn btn-gold"
-              onclick="sendAI()">
+      <button
+        class="gold-btn"
+        onclick="sendAI()"
+      >
         Send
       </button>
 
@@ -2435,85 +1611,109 @@ a{
 
 <!-- PROFILE -->
 
-<section id="profile" class="page">
+<section class="page" id="profile">
 
   <div class="profile-cover"></div>
 
-  <div class="profile-main">
 
-    <div class="profile-avatar">
-      <div class="avatar">T</div>
+  <div class="profile-box">
+
+    <div
+      class="profile-avatar"
+      id="profileAvatar"
+    >
+      S
     </div>
 
-    <div class="profile-header">
 
-      <div>
+    <div class="profile-info">
 
-        <h2>My Profile</h2>
+      <h1 id="profileName">
+        Soulaani Member
+      </h1>
 
-        <div class="profile-bio">
-          Welcome to my Soulaani profile. Connect, create,
-          learn and share.
-        </div>
+      <p id="profileBio">
+        Building community through culture,
+        connection and creativity.
+      </p>
 
-      </div>
+    </div>
+
+
+    <div class="profile-actions">
 
       <button
-        class="btn btn-gold"
-        onclick="openProfileEditor()">
+        class="gold-btn"
+        onclick="openProfileEditor()"
+      >
         Edit Profile
+      </button>
+
+      <button
+        class="dark-btn"
+        onclick="openThemeEditor()"
+      >
+        Customize Theme
       </button>
 
     </div>
 
-    <div class="profile-tabs">
+  </div>
 
-      <button class="active">Posts</button>
-      <button>About</button>
-      <button>Music</button>
-      <button>Communities</button>
+
+  <div class="two-grid">
+
+    <div class="card">
+
+      <h3>🎵 My Playlist</h3>
+
+      <p style="margin-bottom:12px">
+        Your personal playlist.
+      </p>
+
+      <div class="song">
+
+        <div class="song-info">
+          <strong>Soulaani Playlist</strong>
+          <span>Your music</span>
+        </div>
+
+        <button
+          class="dark-btn"
+          onclick="toggleMusic(this)"
+        >
+          ▶
+        </button>
+
+      </div>
+
+      <div class="song">
+
+        <div class="song-info">
+          <strong>My Favorite Track</strong>
+          <span>Playlist</span>
+        </div>
+
+        <button
+          class="dark-btn"
+          onclick="toggleMusic(this)"
+        >
+          ▶
+        </button>
+
+      </div>
 
     </div>
 
-    <div class="playlist">
 
-      <h3 style="margin-bottom:5px">
-        🎵 Personal Playlist
-      </h3>
+    <div class="card">
 
-      <div class="song">
+      <h3>📊 My Activity</h3>
 
-        <div class="song-icon">▶</div>
-
-        <div class="song-info">
-          <strong>My Song</strong>
-          <small>Personal playlist</small>
-        </div>
-
-        <button
-          class="btn btn-dark btn-small"
-          onclick="playSong(this)">
-          Play
-        </button>
-
-      </div>
-
-      <div class="song">
-
-        <div class="song-icon">▶</div>
-
-        <div class="song-info">
-          <strong>Culture Playlist</strong>
-          <small>Soulaani Music</small>
-        </div>
-
-        <button
-          class="btn btn-dark btn-small"
-          onclick="playSong(this)">
-          Play
-        </button>
-
-      </div>
+      <p>
+        Posts, reactions, communities,
+        lessons and connections will appear here.
+      </p>
 
     </div>
 
@@ -2524,153 +1724,194 @@ a{
 </main>
 
 
-<!-- =========================
-     MOBILE NAV
-========================= -->
+<!-- BOTTOM NAV -->
 
-<nav class="mobile-nav">
+<nav class="bottom-nav">
 
-  <div class="mobile-nav-inner">
+  <button
+    data-page="home"
+    onclick="navigate('home')"
+  >
+    <span>⌂</span>
+    <span>Home</span>
+  </button>
 
-    <button class="active" onclick="showPage('home',this)">
-      <span class="nav-icon">⌂</span>
-      <span>Home</span>
-    </button>
 
-    <button onclick="showPage('connect',this)">
-      <span class="nav-icon">👥</span>
-      <span>Connect</span>
-    </button>
+  <button
+    data-page="connect"
+    onclick="navigate('connect')"
+  >
+    <span>♟</span>
+    <span>Connect</span>
+  </button>
 
-    <button onclick="showPage('skate',this)">
-      <span class="nav-icon">🛹</span>
-      <span>Skate</span>
-    </button>
 
-    <button onclick="showPage('culture',this)">
-      <span class="nav-icon">✊🏾</span>
-      <span>Culture</span>
-    </button>
+  <button
+    data-page="skate"
+    onclick="navigate('skate')"
+  >
+    <span>🛹</span>
+    <span>Skate</span>
+  </button>
 
-    <button onclick="showPage('languages',this)">
-      <span class="nav-icon">🗣️</span>
-      <span>Languages</span>
-    </button>
 
-    <button onclick="showPage('ai',this)">
-      <span class="nav-icon">🤖</span>
-      <span>AI</span>
-    </button>
+  <button
+    data-page="culture"
+    onclick="navigate('culture')"
+  >
+    <span>✊🏿</span>
+    <span>Culture</span>
+  </button>
 
-    <button onclick="showPage('profile',this)">
-      <span class="nav-icon">●</span>
-      <span>Profile</span>
-    </button>
 
-  </div>
+  <button
+    data-page="languages"
+    onclick="navigate('languages')"
+  >
+    <span>文</span>
+    <span>Languages</span>
+  </button>
+
+
+  <button
+    data-page="ai"
+    onclick="navigate('ai')"
+  >
+    <span>✦</span>
+    <span>AI</span>
+  </button>
+
+
+  <button
+    data-page="profile"
+    onclick="navigate('profile')"
+  >
+    <span>●</span>
+    <span>Profile</span>
+  </button>
 
 </nav>
 
 
-<!-- =========================
-     DRAWER
-========================= -->
+<!-- DRAWER -->
 
-<div class="drawer-overlay"
-     id="drawerOverlay"
-     onclick="closeDrawer()"></div>
+<div
+  class="drawer"
+  id="drawer"
+>
 
-<aside class="drawer" id="drawer">
-
-  <h2>Soulaani</h2>
-
-  <button class="drawer-link"
-          onclick="showPage('home');closeDrawer()">
-    🏠 Home
-  </button>
-
-  <button class="drawer-link"
-          onclick="showPage('connect');closeDrawer()">
-    👥 Connect
-  </button>
-
-  <button class="drawer-link"
-          onclick="showPage('date');closeDrawer()">
-    ❤️ Date
-  </button>
-
-  <button class="drawer-link"
-          onclick="showPage('build');closeDrawer()">
-    💼 Build
-  </button>
-
-  <button class="drawer-link"
-          onclick="showPage('market');closeDrawer()">
-    🛍️ Market
-  </button>
-
-  <button class="drawer-link"
-          onclick="showPage('explore');closeDrawer()">
-    📍 Explore
-  </button>
-
-  <button class="drawer-link"
-          onclick="showPage('culture');closeDrawer()">
-    ✊🏾 Culture
-  </button>
-
-  <button class="drawer-link"
-          onclick="showPage('skate');closeDrawer()">
-    🛹 Skate
-  </button>
-
-  <button class="drawer-link"
-          onclick="showPage('languages');closeDrawer()">
-    🗣️ Language & Connection
-  </button>
-
-  <button class="drawer-link"
-          onclick="showPage('ai');closeDrawer()">
-    🤖 Soulaani AI
-  </button>
-
-  <button class="drawer-link"
-          onclick="showPage('profile');closeDrawer()">
-    👤 Profile
-  </button>
-
-</aside>
+  <div
+    class="drawer-bg"
+    onclick="closeDrawer()"
+  ></div>
 
 
-<!-- =========================
-     SEARCH MODAL
-========================= -->
+  <div class="drawer-panel">
 
-<div class="modal" id="searchModal">
+    <div class="drawer-head">
+
+      <strong class="gold">
+        Soulaani
+      </strong>
+
+      <button
+        class="icon-btn"
+        onclick="closeDrawer()"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="drawer-links">
+
+      <button onclick="drawerGo('home')">
+        Home
+      </button>
+
+      <button onclick="drawerGo('connect')">
+        Connect
+      </button>
+
+      <button onclick="drawerGo('date')">
+        Date
+      </button>
+
+      <button onclick="drawerGo('build')">
+        Build
+      </button>
+
+      <button onclick="drawerGo('market')">
+        Market
+      </button>
+
+      <button onclick="drawerGo('explore')">
+        Explore
+      </button>
+
+      <button onclick="drawerGo('culture')">
+        Culture
+      </button>
+
+      <button onclick="drawerGo('skate')">
+        Skate
+      </button>
+
+      <button onclick="drawerGo('languages')">
+        Language & Connection
+      </button>
+
+      <button onclick="drawerGo('ai')">
+        Soulaani AI
+      </button>
+
+      <button onclick="drawerGo('profile')">
+        Profile
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- SEARCH -->
+
+<div
+  class="modal"
+  id="searchModal"
+>
 
   <div class="modal-box">
 
-    <button class="modal-close"
-            onclick="closeModal('searchModal')">
-      ×
-    </button>
+    <div class="modal-head">
 
-    <h2>Search Soulaani</h2>
+      <h2>Search Soulaani</h2>
+
+      <button
+        class="icon-btn"
+        onclick="closeSearch()"
+      >
+        ×
+      </button>
+
+    </div>
+
 
     <input
       id="searchInput"
-      placeholder="Search people, communities, culture, languages...">
+      class="field"
+      placeholder="Search Soulaani..."
+      oninput="runSearch()"
+    >
 
-    <button
-      class="btn btn-gold"
-      style="width:100%"
-      onclick="performSearch()">
-      Search
-    </button>
 
-    <div id="searchResults"
-         style="margin-top:18px;color:#999">
-    </div>
+    <div
+      id="searchResults"
+      style="margin-top:15px"
+    ></div>
 
   </div>
 
@@ -2679,631 +1920,1845 @@ a{
 
 <!-- PROFILE EDITOR -->
 
-<div class="modal" id="profileModal">
+<div
+  class="modal"
+  id="profileModal"
+>
 
   <div class="modal-box">
 
-    <button class="modal-close"
-            onclick="closeModal('profileModal')">
-      ×
-    </button>
+    <div class="modal-head">
 
-    <h2>Edit Profile</h2>
+      <h2>Edit Profile</h2>
 
-    <input placeholder="Display name">
+      <button
+        class="icon-btn"
+        onclick="closeProfileEditor()"
+      >
+        ×
+      </button>
 
-    <textarea placeholder="Bio"></textarea>
+    </div>
 
-    <label style="color:#aaa;display:block;margin-bottom:8px">
-      Profile theme
-    </label>
 
-    <input type="color"
-           value="#d6a84f"
-           style="height:50px;padding:4px">
+    <div class="form">
 
-    <button
-      class="btn btn-gold"
-      style="width:100%"
-      onclick="saveProfile()">
-      Save Profile
-    </button>
+      <input
+        id="editName"
+        class="field"
+        placeholder="Your name"
+      >
+
+
+      <textarea
+        id="editBio"
+        class="field"
+        placeholder="Your bio"
+      ></textarea>
+
+
+      <button
+        class="gold-btn"
+        onclick="saveProfile()"
+      >
+        Save Profile
+      </button>
+
+    </div>
 
   </div>
 
 </div>
 
 
-<!-- TOAST -->
+<!-- THEME EDITOR -->
 
-<div class="toast" id="toast"></div>
+<div
+  class="modal"
+  id="themeModal"
+>
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <h2>Profile Theme</h2>
+
+      <button
+        class="icon-btn"
+        onclick="closeThemeEditor()"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <p class="small">
+      Choose your profile accent.
+    </p>
+
+
+    <div
+      style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:15px"
+    >
+
+      <button
+        class="gold-btn"
+        onclick="setTheme('#d6a84f','#f0c76a')"
+      >
+        Gold
+      </button>
+
+      <button
+        class="dark-btn"
+        onclick="setTheme('#5d9cff','#79b0ff')"
+      >
+        Blue
+      </button>
+
+      <button
+        class="dark-btn"
+        onclick="setTheme('#55c982','#83e5a5')"
+      >
+        Green
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- CHAT MODAL -->
+
+<div
+  class="modal"
+  id="chatModal"
+>
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <h2>Soulaani Chat</h2>
+
+      <button
+        class="icon-btn"
+        onclick="closeChat()"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div
+      id="communityChat"
+      style="height:320px;overflow:auto;background:#0b0b0b;border-radius:15px;padding:15px"
+    >
+
+      <div class="message ai">
+        Welcome to the Soulaani community chat.
+      </div>
+
+    </div>
+
+
+    <div class="chat-input">
+
+      <input
+        id="communityChatInput"
+        placeholder="Write a message..."
+        onkeydown="if(event.key==='Enter')sendCommunityMessage()"
+      >
+
+      <button
+        class="gold-btn"
+        onclick="sendCommunityMessage()"
+      >
+        Send
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div
+  id="toast"
+  class="toast"
+></div>
 
 
 <script>
 
-/* =========================
-   PAGE NAVIGATION
-========================= */
+/* =========================================================
+   SOULAANI CONFIGURATION
+========================================================= */
 
-function showPage(pageId, button){
+/*
+  IMPORTANT:
 
-  document.querySelectorAll('.page').forEach(page=>{
-    page.classList.remove('active');
-  });
+  Leave this as an empty string until your secure API
+  server has been deployed.
 
-  const page=document.getElementById(pageId);
+  Example later:
 
-  if(page){
-    page.classList.add('active');
+  const SOULAANI_API_URL =
+    "https://your-api-domain.com/api/chat";
+
+  NEVER put your private API key here.
+*/
+
+const SOULAANI_API_URL = "";
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+const pages = [
+  "home",
+  "connect",
+  "date",
+  "build",
+  "market",
+  "explore",
+  "culture",
+  "skate",
+  "languages",
+  "ai",
+  "profile"
+];
+
+
+function navigate(page){
+
+  if(!pages.includes(page)){
+    page="home";
   }
 
-  document.querySelectorAll('.mobile-nav button')
-    .forEach(btn=>btn.classList.remove('active'));
+  document.querySelectorAll(".page")
+    .forEach(section=>{
+      section.classList.remove("active");
+    });
 
-  if(button){
-    button.classList.add('active');
-  }else{
 
-    const matching=[...document.querySelectorAll('.mobile-nav button')]
-      .find(btn=>btn.getAttribute('onclick')?.includes("'" + pageId + "'"));
+  const target =
+    document.getElementById(page);
 
-    if(matching){
-      matching.classList.add('active');
-    }
+  if(target){
+    target.classList.add("active");
   }
+
+
+  document.querySelectorAll(".bottom-nav button")
+    .forEach(button=>{
+      button.classList.toggle(
+        "active",
+        button.dataset.page===page
+      );
+    });
+
+
+  document.querySelectorAll(".desktop-nav button")
+    .forEach(button=>{
+      button.classList.toggle(
+        "active",
+        button.dataset.page===page
+      );
+    });
+
 
   window.scrollTo({
     top:0,
-    behavior:'smooth'
+    behavior:"smooth"
   });
-}
-
-
-/* =========================
-   DRAWER
-========================= */
-
-function openDrawer(){
-
-  document.getElementById('drawer').classList.add('active');
-  document.getElementById('drawerOverlay').classList.add('active');
-
-}
-
-function closeDrawer(){
-
-  document.getElementById('drawer').classList.remove('active');
-  document.getElementById('drawerOverlay').classList.remove('active');
 
 }
 
 
-/* =========================
-   SEARCH
-========================= */
-
-function openSearch(){
-
-  document.getElementById('searchModal').classList.add('active');
-
-  setTimeout(()=>{
-    document.getElementById('searchInput').focus();
-  },100);
-
-}
-
-function performSearch(){
-
-  const query=document
-    .getElementById('searchInput')
-    .value
-    .trim();
-
-  const results=document.getElementById('searchResults');
-
-  if(!query){
-
-    results.innerHTML=
-      'Type something to search Soulaani.';
-
-    return;
-  }
-
-  results.innerHTML=
-    `Searching Soulaani for <strong style="color:#f0c76a">
-    ${escapeHTML(query)}
-    </strong>...`;
-
-}
-
-function closeModal(id){
-
-  document.getElementById(id).classList.remove('active');
-
+function drawerGo(page){
+  closeDrawer();
+  navigate(page);
 }
 
 
-/* =========================
-   REACTIONS
-========================= */
-
-function toggleReaction(button){
-
-  button.innerHTML='❤️ Reacted';
-
-  showToast('Reaction added');
-
-}
-
-function react(reaction){
-
-  showToast(reaction + ' reaction added');
-
-}
-
-
-/* =========================
-   COMMENTS / SHARING
-========================= */
-
-function openComments(){
-
-  showToast('Comments opened');
-
-}
-
-function sharePost(){
-
-  if(navigator.share){
-
-    navigator.share({
-      title:'Soulaani',
-      text:'Check this out on Soulaani.'
-    });
-
-  }else{
-
-    showToast('Post ready to share');
-
-  }
-
-}
-
-
-/* =========================
-   LOCATION
-========================= */
-
-function setLocation(){
-
-  const input=document.getElementById('locationInput');
-
-  const location=input.value.trim();
-
-  if(!location){
-
-    showToast('Enter a location first');
-
-    return;
-  }
-
-  document.getElementById('currentLocation').innerHTML=
-    '📍 Discovering Soulaani around <strong style="color:#f0c76a">'
-    + escapeHTML(location)
-    + '</strong>';
-
-  showToast('Local Discover updated');
-
-}
-
-
-/* =========================
-   LANGUAGE SYSTEM
-========================= */
-
-let currentLesson=1;
-
-function startLesson(){
-
-  showPage('languages');
-
-  document
-    .getElementById('learningPanel')
-    .scrollIntoView({
-      behavior:'smooth',
-      block:'start'
-    });
-
-}
-
-function nextLesson(){
-
-  document
-    .getElementById('lesson'+currentLesson)
-    .classList.remove('active');
-
-  currentLesson++;
-
-  if(currentLesson>3){
-    currentLesson=1;
-  }
-
-  document
-    .getElementById('lesson'+currentLesson)
-    .classList.add('active');
-
-}
-
-function previousLesson(){
-
-  document
-    .getElementById('lesson'+currentLesson)
-    .classList.remove('active');
-
-  currentLesson--;
-
-  if(currentLesson<1){
-    currentLesson=3;
-  }
-
-  document
-    .getElementById('lesson'+currentLesson)
-    .classList.add('active');
-
-}
-
-function selectLanguage(language){
-
-  document.getElementById('fromLanguage').value =
-    language === 'English' ? 'English' : language;
-
-  showToast(language + ' selected');
-
-}
-
-function openTranslator(){
-
-  showPage('languages');
-
-  document
-    .getElementById('translatorBox')
-    .scrollIntoView({
-      behavior:'smooth',
-      block:'center'
-    });
-
-}
-
-function translatePhrase(){
-
-  const input=document
-    .getElementById('translateInput')
-    .value
-    .trim();
-
-  const from=document
-    .getElementById('fromLanguage')
-    .value;
-
-  const to=document
-    .getElementById('toLanguage')
-    .value;
-
-  const output=document
-    .getElementById('translationOutput');
-
-  if(!input){
-
-    output.textContent=
-      'Enter a phrase to translate.';
-
-    return;
-  }
-
-  /*
-    This front-end prototype uses a small demonstration
-    phrase library. A production version can connect this
-    interface to a real translation service/API.
-  */
-
-  const demo={
-
-    'English|Haitian Creole':{
-      'hello':'Bonjou',
-      'hi':'Bonjou',
-      'thank you':'Mèsi',
-      'how are you':'Kijan ou ye?'
-    },
-
-    'Haitian Creole|English':{
-      'bonjou':'Hello',
-      'mèsi':'Thank you',
-      'kijan ou ye?':'How are you?'
-    },
-
-    'English|Louisiana Creole':{
-      'hello':'Bonjou',
-      'thank you':'Mèsi'
-    },
-
-    'English|Jamaican Patois':{
-      'hello':'Wah gwaan',
-      'thank you':'Tank yuh'
-    }
-
-  };
-
-  const key=from+'|'+to;
-
-  const normalized=input.toLowerCase();
-
-  if(demo[key] && demo[key][normalized]){
-
-    output.textContent=demo[key][normalized];
-
-  }else if(from===to){
-
-    output.textContent=input;
-
-  }else{
-
-    output.innerHTML=
-      '<strong>Soulaani translation engine:</strong><br><br>' +
-      'This prototype is ready for a full translation API/database ' +
-      'to provide broader language coverage.';
-
-  }
-
-}
-
-function openLanguageChat(){
-
-  showPage('languages');
-
-  document
-    .getElementById('languageChat')
-    .scrollIntoView({
-      behavior:'smooth',
-      block:'center'
-    });
-
-}
-
-function sendLanguageMessage(){
-
-  const input=document
-    .getElementById('languageMessage');
-
-  const text=input.value.trim();
-
-  if(!text) return;
-
-  const body=document
-    .getElementById('languageChatBody');
-
-  const message=document.createElement('div');
-
-  message.className='message user';
-
-  message.textContent=text;
-
-  body.appendChild(message);
-
-  input.value='';
-
-  body.scrollTop=body.scrollHeight;
-
-  setTimeout(()=>{
-
-    const reply=document.createElement('div');
-
-    reply.className='message ai';
-
-    reply.textContent=
-      'Mèsi! Keep practicing. Language Connection is built for community learning and conversation.';
-
-    body.appendChild(reply);
-
-    body.scrollTop=body.scrollHeight;
-
-  },500);
-
-}
-
-
-/* =========================
-   SOULAANI AI
-========================= */
-
-function sendAI(){
-
-  const input=document
-    .getElementById('aiInput');
-
-  const text=input.value.trim();
-
-  if(!text) return;
-
-  const messages=document
-    .getElementById('aiMessages');
-
-  const user=document.createElement('div');
-
-  user.className='message user';
-
-  user.textContent=text;
-
-  messages.appendChild(user);
-
-  input.value='';
-
-  messages.scrollTop=messages.scrollHeight;
-
-  setTimeout(()=>{
-
-    const ai=document.createElement('div');
-
-    ai.className='message ai';
-
-    ai.textContent=getAIResponse(text);
-
-    messages.appendChild(ai);
-
-    messages.scrollTop=messages.scrollHeight;
-
-  },500);
-
-}
-
-function getAIResponse(text){
-
-  const t=text.toLowerCase();
-
-  if(t.includes('language') ||
-     t.includes('creole') ||
-     t.includes('tutnese')){
-
-    return 'Soulaani AI can help you explore the Language & Connection section, practice phrases, learn vocabulary and discover language communities.';
-
-  }
-
-  if(t.includes('skate')){
-
-    return 'Check out the Skate section for riders, clips, skate spots, events and community content.';
-
-  }
-
-  if(t.includes('culture')){
-
-    return 'The Culture section brings together Black American food, music, art, fashion, creators and cultural conversations.';
-
-  }
-
-  if(t.includes('food')){
-
-    return 'Soulaani Culture includes soul-food content, restaurants, cooks and food creators.';
-
-  }
-
-  if(t.includes('soulaani')){
-
-    return 'Soulaani is designed as a community platform connecting people, culture, creativity, language, business and local discovery.';
-
-  }
-
-  return 'I’m Soulaani AI. I can help you navigate the platform, explore languages, culture, skating, community, local discovery and more.';
-
-}
-
-
-/* =========================
-   PROFILE
-========================= */
-
-function openProfileEditor(){
-
-  document
-    .getElementById('profileModal')
-    .classList.add('active');
-
-}
-
-function saveProfile(){
-
-  closeModal('profileModal');
-
-  showToast('Profile updated');
-
-}
-
-function playSong(button){
-
-  if(button.textContent.includes('Play')){
-
-    button.textContent='Pause';
-
-    showToast('Music player started');
-
-  }else{
-
-    button.textContent='Play';
-
-    showToast('Music paused');
-
-  }
-
-}
-
-
-/* =========================
+/* =========================================================
    TOAST
-========================= */
+========================================================= */
 
 let toastTimer;
 
-function showToast(message){
 
-  const toast=document
-    .getElementById('toast');
+function toast(message){
 
-  toast.textContent=message;
+  const el =
+    document.getElementById("toast");
 
-  toast.classList.add('show');
+  el.textContent=message;
+
+  el.classList.add("show");
 
   clearTimeout(toastTimer);
 
   toastTimer=setTimeout(()=>{
-
-    toast.classList.remove('show');
-
-  },2200);
+    el.classList.remove("show");
+  },2600);
 
 }
 
 
-/* =========================
-   HELPERS
-========================= */
+/* =========================================================
+   DRAWER
+========================================================= */
 
-function escapeHTML(value){
+function openDrawer(){
+  document
+    .getElementById("drawer")
+    .classList.add("open");
+}
 
-  const div=document.createElement('div');
 
-  div.textContent=value;
+function closeDrawer(){
+  document
+    .getElementById("drawer")
+    .classList.remove("open");
+}
 
-  return div.innerHTML;
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+const searchItems=[
+
+  ["Home","Home","home"],
+  ["Connect","Community","connect"],
+  ["Date","Dating","date"],
+  ["Build","Business","build"],
+  ["Market","Marketplace","market"],
+  ["Explore","Local Discovery","explore"],
+  ["Culture","Culture","culture"],
+  ["Skate","Skateboarding","skate"],
+  ["Haitian Creole","Language","languages"],
+  ["Louisiana Creole","Language","languages"],
+  ["Tutnese","Language","languages"],
+  ["Jamaican Patois","Language","languages"],
+  ["Gullah Geechee","Language","languages"],
+  ["Soulaani AI","AI","ai"],
+  ["Profile","Profile","profile"]
+
+];
+
+
+function openSearch(){
+
+  document
+    .getElementById("searchModal")
+    .classList.add("open");
+
+  document
+    .getElementById("searchInput")
+    .focus();
 
 }
 
 
-/* =========================
-   CLOSE MODAL ON BACKDROP
-========================= */
+function closeSearch(){
 
-document.querySelectorAll('.modal').forEach(modal=>{
+  document
+    .getElementById("searchModal")
+    .classList.remove("open");
 
-  modal.addEventListener('click',function(e){
+}
 
-    if(e.target===modal){
 
-      modal.classList.remove('active');
+function runSearch(){
+
+  const query =
+    document
+      .getElementById("searchInput")
+      .value
+      .toLowerCase()
+      .trim();
+
+  const results =
+    document.getElementById("searchResults");
+
+
+  if(!query){
+
+    results.innerHTML=
+      '<p class="small">Start typing to search Soulaani.</p>';
+
+    return;
+  }
+
+
+  const matches =
+    searchItems.filter(item=>
+      (
+        item[0]+" "+item[1]
+      ).toLowerCase().includes(query)
+    );
+
+
+  if(!matches.length){
+
+    results.innerHTML=
+      '<p class="small">No results found.</p>';
+
+    return;
+  }
+
+
+  results.innerHTML =
+    matches.map(item=>`
+
+      <button
+        class="dark-btn"
+        style="width:100%;text-align:left;margin-bottom:7px"
+        onclick="closeSearch();navigate('${item[2]}')"
+      >
+        <strong>${escapeHTML(item[0])}</strong>
+        <span class="small">
+          · ${escapeHTML(item[1])}
+        </span>
+      </button>
+
+    `).join("");
+
+}
+
+
+/* =========================================================
+   HOME FEED
+========================================================= */
+
+function loadFeed(){
+
+  const feed =
+    document.getElementById("feed");
+
+
+  feed.innerHTML=`
+
+    <article class="post">
+
+      <div class="post-head">
+
+        <div class="avatar">
+          S
+        </div>
+
+        <div>
+          <strong>Soulaani Community</strong>
+          <span>Welcome to Soulaani</span>
+        </div>
+
+      </div>
+
+
+      <div class="post-body">
+        Welcome to Soulaani, a place for community,
+        culture, creativity, language and connection.
+      </div>
+
+
+      <div class="post-image">
+        SOULAANI
+      </div>
+
+
+      <div class="post-actions">
+
+        <button onclick="toggleReactions(this)">
+          ♡ React
+        </button>
+
+        <button onclick="toggleComments(this)">
+          💬 Comment
+        </button>
+
+        <button onclick="sharePost()">
+          ↗ Share
+        </button>
+
+      </div>
+
+
+      <div class="reaction-menu">
+
+        <button onclick="react(this,'❤️')">❤️</button>
+        <button onclick="react(this,'😂')">😂</button>
+        <button onclick="react(this,'🔥')">🔥</button>
+        <button onclick="react(this,'😮')">😮</button>
+        <button onclick="react(this,'👎🏿')">👎🏿</button>
+
+      </div>
+
+
+      <div class="comments">
+
+        <div class="comment-list"></div>
+
+        <div class="comment-form">
+
+          <input
+            class="field"
+            placeholder="Write a comment..."
+          >
+
+          <button
+            class="gold-btn"
+            onclick="addComment(this)"
+          >
+            Post
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <article class="post">
+
+      <div class="post-head">
+
+        <div class="avatar">
+          C
+        </div>
+
+        <div>
+          <strong>Soulaani Culture</strong>
+          <span>Culture</span>
+        </div>
+
+      </div>
+
+
+      <div class="post-body">
+        Culture lives through food, music, language,
+        art, fashion, stories and community.
+      </div>
+
+
+      <div class="post-actions">
+
+        <button onclick="toggleReactions(this)">
+          ♡ React
+        </button>
+
+        <button onclick="toggleComments(this)">
+          💬 Comment
+        </button>
+
+        <button onclick="sharePost()">
+          ↗ Share
+        </button>
+
+      </div>
+
+
+      <div class="reaction-menu">
+
+        <button onclick="react(this,'❤️')">❤️</button>
+        <button onclick="react(this,'😂')">😂</button>
+        <button onclick="react(this,'🔥')">🔥</button>
+        <button onclick="react(this,'😮')">😮</button>
+        <button onclick="react(this,'👎🏿')">👎🏿</button>
+
+      </div>
+
+
+      <div class="comments">
+
+        <div class="comment-list"></div>
+
+        <div class="comment-form">
+
+          <input
+            class="field"
+            placeholder="Write a comment..."
+          >
+
+          <button
+            class="gold-btn"
+            onclick="addComment(this)"
+          >
+            Post
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+
+  `;
+
+}
+
+
+function toggleReactions(button){
+
+  const menu =
+    button
+      .closest(".post")
+      .querySelector(".reaction-menu");
+
+  menu.classList.toggle("open");
+
+}
+
+
+function react(button,reaction){
+
+  const post =
+    button.closest(".post");
+
+  const reactButton =
+    post.querySelector(".post-actions button");
+
+  reactButton.textContent =
+    reaction+" Reacted";
+
+  post
+    .querySelector(".reaction-menu")
+    .classList.remove("open");
+
+  toast("Reaction saved.");
+
+}
+
+
+function toggleComments(button){
+
+  const comments =
+    button
+      .closest(".post")
+      .querySelector(".comments");
+
+  comments.classList.toggle("open");
+
+}
+
+
+function addComment(button){
+
+  const comments =
+    button.closest(".comments");
+
+  const input =
+    comments.querySelector("input");
+
+  const text =
+    input.value.trim();
+
+  if(!text){
+    return;
+  }
+
+
+  const list =
+    comments.querySelector(".comment-list");
+
+
+  const comment =
+    document.createElement("div");
+
+  comment.className="comment";
+
+  comment.innerHTML =
+    "<strong>You</strong> "+escapeHTML(text);
+
+  list.appendChild(comment);
+
+  input.value="";
+
+  saveLocalComment(text);
+
+  toast("Comment added.");
+
+}
+
+
+function saveLocalComment(text){
+
+  const comments =
+    JSON.parse(
+      localStorage.getItem("soulaani_comments")||"[]"
+    );
+
+  comments.push({
+    text,
+    date:new Date().toISOString()
+  });
+
+  localStorage.setItem(
+    "soulaani_comments",
+    JSON.stringify(comments)
+  );
+
+}
+
+
+async function sharePost(){
+
+  try{
+
+    if(navigator.share){
+
+      await navigator.share({
+        title:"Soulaani",
+        text:"Check out Soulaani."
+      });
+
+    }else{
+
+      await navigator.clipboard.writeText(
+        window.location.href
+      );
+
+      toast("Soulaani link copied.");
 
     }
 
+  }catch(error){}
+
+}
+
+
+/* =========================================================
+   LOCATION
+========================================================= */
+
+function saveLocation(){
+
+  const input =
+    document.getElementById("locationInput");
+
+  const location =
+    input.value.trim();
+
+  if(!location){
+
+    toast("Enter a city and state.");
+
+    return;
+  }
+
+
+  localStorage.setItem(
+    "soulaani_location",
+    location
+  );
+
+
+  document.getElementById(
+    "feedLocation"
+  ).textContent=location;
+
+
+  toast(
+    "Local feed set to "+location
+  );
+
+}
+
+
+function loadLocation(){
+
+  const location =
+    localStorage.getItem(
+      "soulaani_location"
+    );
+
+  if(location){
+
+    document.getElementById(
+      "feedLocation"
+    ).textContent=location;
+
+    document.getElementById(
+      "locationInput"
+    ).value=location;
+
+  }
+
+}
+
+
+/* =========================================================
+   SKATE POSTS
+========================================================= */
+
+function createSkatePost(){
+
+  const input =
+    document.getElementById("skatePost");
+
+  const text =
+    input.value.trim();
+
+  if(!text){
+
+    toast("Write something first.");
+
+    return;
+  }
+
+
+  const posts =
+    JSON.parse(
+      localStorage.getItem(
+        "soulaani_skate_posts"
+      )||"[]"
+    );
+
+
+  posts.unshift({
+    text:text,
+    date:new Date().toISOString()
   });
 
-});
+
+  localStorage.setItem(
+    "soulaani_skate_posts",
+    JSON.stringify(posts)
+  );
 
 
-/* =========================
-   INITIALIZATION
-========================= */
+  input.value="";
 
-document.addEventListener('DOMContentLoaded',()=>{
+  renderSkatePosts();
 
-  showPage('home');
+  toast("Skate post published.");
 
-});
+}
+
+
+function renderSkatePosts(){
+
+  const container =
+    document.getElementById("skatePosts");
+
+  const posts =
+    JSON.parse(
+      localStorage.getItem(
+        "soulaani_skate_posts"
+      )||"[]"
+    );
+
+
+  if(!posts.length){
+
+    container.innerHTML=
+      '<div class="card"><p>No skate posts yet. Start the session.</p></div>';
+
+    return;
+  }
+
+
+  container.innerHTML =
+    posts.map(post=>`
+
+      <article class="post">
+
+        <div class="post-head">
+
+          <div class="avatar">
+            S
+          </div>
+
+          <div>
+            <strong>Soulaani Skater</strong>
+            <span>Skate</span>
+          </div>
+
+        </div>
+
+        <div class="post-body">
+          ${escapeHTML(post.text)}
+        </div>
+
+        <div class="post-actions">
+
+          <button onclick="toggleReactions(this)">
+            ♡ React
+          </button>
+
+          <button onclick="sharePost()">
+            ↗ Share
+          </button>
+
+        </div>
+
+        <div class="reaction-menu">
+
+          <button onclick="react(this,'❤️')">❤️</button>
+          <button onclick="react(this,'😂')">😂</button>
+          <button onclick="react(this,'🔥')">🔥</button>
+          <button onclick="react(this,'😮')">😮</button>
+          <button onclick="react(this,'👎🏿')">👎🏿</button>
+
+        </div>
+
+      </article>
+
+    `).join("");
+
+}
+
+
+/* =========================================================
+   LANGUAGE LEARNING
+========================================================= */
+
+function startLesson(){
+
+  const lessons=[
+
+    "Haitian Creole\nBonjou = Hello",
+
+    "Haitian Creole\nMèsi = Thank you",
+
+    "Haitian Creole\nKijan ou ye? = How are you?",
+
+    "Jamaican Patois\nWah gwaan? = What's going on?",
+
+    "Louisiana Creole\nBonjou = Hello",
+
+    "Tutnese\nSoulaani will use documented sources rather than inventing vocabulary."
+
+  ];
+
+
+  let index=0;
+
+
+  function show(){
+
+    if(index>=lessons.length){
+
+      toast("Lesson complete!");
+
+      return;
+    }
+
+
+    alert(
+      "Soulaani Language Lesson\n\n"+
+      lessons[index]
+    );
+
+
+    index++;
+
+    setTimeout(show,100);
+
+  }
+
+
+  show();
+
+}
+
+
+/* =========================================================
+   TRANSLATOR
+========================================================= */
+
+async function translateText(){
+
+  const input =
+    document
+      .getElementById("translationInput")
+      .value
+      .trim();
+
+  const from =
+    document.getElementById("fromLanguage").value;
+
+  const to =
+    document.getElementById("toLanguage").value;
+
+  const output =
+    document.getElementById(
+      "translationOutput"
+    );
+
+
+  if(!input){
+
+    toast("Enter text to translate.");
+
+    return;
+  }
+
+
+  output.style.display="block";
+
+  output.textContent="Translating...";
+
+
+  const key =
+    from+"|"+to+"|"+input.toLowerCase();
+
+
+  const dictionary={
+
+    "English|Haitian Creole|hello":
+      "Bonjou",
+
+    "English|Haitian Creole|hi":
+      "Bonjou",
+
+    "English|Haitian Creole|thank you":
+      "Mèsi",
+
+    "English|Haitian Creole|how are you":
+      "Kijan ou ye?",
+
+    "Haitian Creole|English|bonjou":
+      "Hello",
+
+    "Haitian Creole|English|mèsi":
+      "Thank you",
+
+    "Haitian Creole|English|kijan ou ye?":
+      "How are you?",
+
+    "English|Jamaican Patois|hello":
+      "Wah gwaan",
+
+    "English|Jamaican Patois|thank you":
+      "Tank yuh"
+
+  };
+
+
+  if(dictionary[key]){
+
+    output.innerHTML =
+      "<strong>Translation</strong><br><br>"+
+      escapeHTML(dictionary[key]);
+
+    return;
+  }
+
+
+  output.innerHTML =
+    "<strong>Translation service</strong><br><br>"+
+    "This language pair is ready to be connected to Soulaani's secure translation backend.";
+
+}
+
+
+/* =========================================================
+   SOULAANI AI
+========================================================= */
+
+let aiHistory=[];
+
+
+function addAIMessage(text,type){
+
+  const messages =
+    document.getElementById(
+      "aiMessages"
+    );
+
+
+  const div =
+    document.createElement("div");
+
+  div.className=
+    "message "+type;
+
+  div.textContent=text;
+
+  messages.appendChild(div);
+
+  messages.scrollTop=
+    messages.scrollHeight;
+
+}
+
+
+function showTyping(){
+
+  const messages =
+    document.getElementById(
+      "aiMessages"
+    );
+
+
+  const div =
+    document.createElement("div");
+
+  div.className=
+    "message ai typing";
+
+  div.id="aiTyping";
+
+  div.textContent=
+    "Soulaani AI is thinking...";
+
+  messages.appendChild(div);
+
+  messages.scrollTop=
+    messages.scrollHeight;
+
+}
+
+
+function removeTyping(){
+
+  const typing =
+    document.getElementById(
+      "aiTyping"
+    );
+
+  if(typing){
+    typing.remove();
+  }
+
+}
+
+
+async function sendAI(){
+
+  const input =
+    document.getElementById(
+      "aiInput"
+    );
+
+  const text =
+    input.value.trim();
+
+
+  if(!text){
+    return;
+  }
+
+
+  addAIMessage(
+    text,
+    "user"
+  );
+
+
+  input.value="";
+
+
+  aiHistory.push({
+    role:"user",
+    content:text
+  });
+
+
+  showTyping();
+
+
+  /*
+    REAL SECURE AI CONNECTION
+
+    When the secure server exists,
+    SOULAANI_API_URL should point to:
+
+    https://your-api-domain/api/chat
+
+    The private API key must remain
+    on that server.
+  */
+
+
+  if(SOULAANI_API_URL){
+
+    try{
+
+      const response =
+        await fetch(
+          SOULAANI_API_URL,
+          {
+            method:"POST",
+
+            headers:{
+              "Content-Type":
+                "application/json"
+            },
+
+            body:JSON.stringify({
+              message:text,
+              history:aiHistory.slice(-12)
+            })
+
+          }
+        );
+
+
+      const data =
+        await response.json();
+
+
+      removeTyping();
+
+
+      if(!response.ok){
+        throw new Error(
+          data.error||
+          "AI server error."
+        );
+      }
+
+
+      const answer =
+        data.output||
+        data.message||
+        data.content||
+        "No response returned.";
+
+
+      addAIMessage(
+        answer,
+        "ai"
+      );
+
+
+      aiHistory.push({
+        role:"assistant",
+        content:answer
+      });
+
+
+      saveAIHistory();
+
+      return;
+
+
+    }catch(error){
+
+      removeTyping();
+
+      addAIMessage(
+        "The secure Soulaani AI server could not be reached.",
+        "ai"
+      );
+
+      console.error(error);
+
+      return;
+
+    }
+
+  }
+
+
+  /*
+    Local fallback until the secure API URL
+    is connected.
+  */
+
+  setTimeout(()=>{
+
+    removeTyping();
+
+    const response =
+      localAIResponse(text);
+
+    addAIMessage(
+      response,
+      "ai"
+    );
+
+
+    aiHistory.push({
+      role:"assistant",
+      content:response
+    });
+
+
+    saveAIHistory();
+
+  },500);
+
+}
+
+
+function localAIResponse(text){
+
+  const t =
+    text.toLowerCase();
+
+
+  if(
+    t.includes("language")||
+    t.includes("creole")||
+    t.includes("tutnese")
+  ){
+
+    return "Soulaani AI can help you explore the Language & Connection section, practice phrases, learn vocabulary and organize your language-learning journey.";
+
+  }
+
+
+  if(t.includes("skate")){
+
+    return "The Skate section is built for riders, clips, local skate spots, events and community conversations.";
+
+  }
+
+
+  if(t.includes("culture")){
+
+    return "The Culture section brings together Black American food, music, art, fashion, creators and cultural conversations.";
+
+  }
+
+
+  if(t.includes("food")||t.includes("soul food")){
+
+    return "Soulaani Culture includes soul-food plates, cooks, restaurants and food creators.";
+
+  }
+
+
+  if(
+    t.includes("soulaani")||
+    t.includes("what is this")
+  ){
+
+    return "Soulaani is being built as a community platform connecting people, culture, language, creativity, business, skating and local discovery.";
+
+  }
+
+
+  if(
+    t.includes("hello")||
+    t.includes("hi")
+  ){
+
+    return "Welcome to Soulaani. What would you like to explore?";
+
+  }
+
+
+  return "I'm Soulaani AI. I can help you explore the platform, languages, culture, skating, business, local discovery, ideas and more. Once the secure AI server is connected, I'll be able to have full AI conversations with you.";
+
+}
+
+
+function saveAIHistory(){
+
+  localStorage.setItem(
+    "soulaani_ai_history",
+    JSON.stringify(aiHistory)
+  );
+
+}
+
+
+function loadAIHistory(){
+
+  try{
+
+    const saved =
+      JSON.parse(
+        localStorage.getItem(
+          "soulaani_ai_history"
+        )
+      );
+
+
+    if(Array.isArray(saved)){
+
+      aiHistory=saved;
+
+      const messages =
+        document.getElementById(
+          "aiMessages"
+        );
+
+      messages.innerHTML="";
+
+
+      aiHistory.forEach(item=>{
+
+        addAIMessage(
+          item.content,
+          item.role==="user"
+            ?"user"
+            :"ai"
+        );
+
+      });
+
+    }
+
+  }catch(error){}
+
+}
+
+
+function clearAI(){
+
+  aiHistory=[];
+
+  localStorage.removeItem(
+    "soulaani_ai_history"
+  );
+
+
+  document.getElementById(
+    "aiMessages"
+  ).innerHTML=`
+
+    <div class="message ai">
+      Welcome back. I'm Soulaani AI. What would you like to explore?
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+function openProfileEditor(){
+
+  document
+    .getElementById(
+      "profileModal"
+    )
+    .classList.add("open");
+
+
+  document.getElementById(
+    "editName"
+  ).value =
+    localStorage.getItem(
+      "soulaani_profile_name"
+    )||
+    "Soulaani Member";
+
+
+  document.getElementById(
+    "editBio"
+  ).value =
+    localStorage.getItem(
+      "soulaani_profile_bio"
+    )||
+    "Building community through culture, connection and creativity.";
+
+}
+
+
+function closeProfileEditor(){
+
+  document
+    .getElementById(
+      "profileModal"
+    )
+    .classList.remove("open");
+
+}
+
+
+function saveProfile(){
+
+  const name =
+    document
+      .getElementById(
+        "editName"
+      )
+      .value
+      .trim();
+
+
+  const bio =
+    document
+      .getElementById(
+        "editBio"
+      )
+      .value
+      .trim();
+
+
+  if(!name){
+
+    toast("Enter a name.");
+
+    return;
+  }
+
+
+  localStorage.setItem(
+    "soulaani_profile_name",
+    name
+  );
+
+
+  localStorage.setItem(
+    "soulaani_profile_bio",
+    bio
+  );
+
+
+  document.getElementById(
+    "profileName"
+  ).textContent=name;
+
+
+  document.getElementById(
+    "profileBio"
+  ).textContent=bio;
+
+
+  document.getElementById(
+    "profileAvatar"
+  ).textContent=
+    name.charAt(0).toUpperCase();
+
+
+  closeProfileEditor();
+
+  toast("Profile updated.");
+
+}
+
+
+function loadProfile(){
+
+  const name =
+    localStorage.getItem(
+      "soulaani_profile_name"
+    );
+
+
+  const bio =
+    localStorage.getItem(
+      "soulaani_profile_bio"
+    );
+
+
+  if(name){
+
+    document.getElementById(
+      "profileName"
+    ).textContent=name;
+
+
+    document.getElementById(
+      "profileAvatar"
+    ).textContent=
+      name.charAt(0).toUpperCase();
+
+  }
+
+
+  if(bio){
+
+    document.getElementById(
+      "profileBio"
+    ).textContent=bio;
+
+  }
+
+}
+
+
+/* =========================================================
+   PROFILE THEME
+========================================================= */
+
+function openThemeEditor(){
+
+  document
+    .getElementById(
+      "themeModal"
+    )
+    .classList.add("open");
+
+}
+
+
+function closeThemeEditor(){
+
+  document
+    .getElementById(
+      "themeModal"
+    )
+    .classList.remove("open");
+
+}
+
+
+function setTheme(primary,secondary){
+
+  document.documentElement.style
+    .setProperty(
+      "--gold",
+      primary
+    );
+
+
+  document.documentElement.style
+    .setProperty(
+      "--gold2",
+      secondary
+    );
+
+
+  localStorage.setItem(
+    "soulaani_theme",
+    JSON.stringify({
+      primary,
+      secondary
+    })
+  );
+
+
+  closeThemeEditor();
+
+  toast("Profile theme updated.");
+
+}
+
+
+function loadTheme(){
+
+  try{
+
+    const theme =
+      JSON.parse(
+        localStorage.getItem(
+          "soulaani_theme"
+        )
+      );
+
+
+    if(theme){
+
+      document.documentElement.style
+        .setProperty(
+          "--gold",
+          theme.primary
+        );
+
+
+      document.documentElement.style
+        .setProperty(
+          "--gold2",
+          theme.secondary
+        );
+
+    }
+
+  }catch(error){}
+
+}
+
+
+/* =========================================================
+   COMMUNITY CHAT
+========================================================= */
+
+function openChat(){
+
+  document
+    .getElementById(
+      "chatModal"
+    )
+    .classList.add("open");
+
+}
+
+
+function closeChat(){
+
+  document
+    .getElementById(
+      "chatModal"
+    )
+    .classList.remove("open");
+
+}
+
+
+function sendCommunityMessage(){
+
+  const input =
+    document.getElementById(
+      "communityChatInput"
+    );
+
+
+  const text =
+    input.value.trim();
+
+
+  if(!text){
+    return;
+  }
+
+
+  const chat =
+    document.getElementById(
+      "communityChat"
+    );
+
+
+  const message =
+    document.createElement("div");
+
+  message.className=
+    "message user";
+
+  message.textContent=text;
+
+  chat.appendChild(message);
+
+  input.value="";
+
+  chat.scrollTop=
+    chat.scrollHeight;
+
+
+  localStorage.setItem(
+    "soulaani_last_chat",
+    text
+  );
+
+}
+
+
+/* =========================================================
+   COMMUNITY
+========================================================= */
+
+function createCommunity(){
+
+  const name =
+    prompt(
+      "Name your Soulaani community:"
+    );
+
+
+  if(!name){
+    return;
+  }
+
+
+  const communities =
+    JSON.parse(
+      localStorage.getItem(
+        "soulaani_communities"
+      )||"[]"
+    );
+
+
+  communities.push({
+    name,
+    created:new Date().toISOString()
+  });
+
+
+  localStorage.setItem(
+    "soulaani_communities",
+    JSON.stringify(communities)
+  );
+
+
+  toast(
+    "Community '"+name+"' created."
+  );
+
+}
+
+
+/* =========================================================
+   MUSIC
+========================================================= */
+
+function toggleMusic(button){
+
+  const playing =
+    button.dataset.playing==="true";
+
+
+  if(playing){
+
+    button.textContent="▶";
+
+    button.dataset.playing="false";
+
+    toast("Playback paused.");
+
+  }else{
+
+    button.textContent="❚❚";
+
+    button.dataset.playing="true";
+
+    toast(
+      "Playlist player ready for your licensed audio source."
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   SECURITY / HTML
+========================================================= */
+
+function escapeHTML(value){
+
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  ()=>{
+
+    loadFeed();
+
+    loadLocation();
+
+    loadProfile();
+
+    loadTheme();
+
+    renderSkatePosts();
+
+    loadAIHistory();
+
+    navigate("home");
+
+  }
+);
 
 </script>
 
