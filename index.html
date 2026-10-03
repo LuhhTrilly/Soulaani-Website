@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<meta name="theme-color" content="#070707">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#080808">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Soulaani | The Culture. The People. The Platform.</title>
@@ -18,27 +18,27 @@
 :root{
   --black:#070707;
   --black2:#0d0d0d;
-  --card:#141414;
-  --card2:#1a1a1a;
+  --black3:#141414;
+  --card:#111111;
+  --card2:#181818;
   --gold:#d6a84f;
   --gold2:#f0c76a;
   --white:#f7f7f7;
-  --muted:#a7a7a7;
-  --line:rgba(255,255,255,.09);
-  --danger:#ff5c6c;
-  --green:#55d98b;
-  --shadow:0 20px 60px rgba(0,0,0,.45);
+  --muted:#9d9d9d;
+  --line:rgba(214,168,79,.18);
+  --danger:#e85d5d;
+  --green:#55c982;
+  --blue:#5599ff;
 }
 
 html{
   scroll-behavior:smooth;
-  background:var(--black);
 }
 
 body{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
   background:
-    radial-gradient(circle at top right,rgba(214,168,79,.08),transparent 28%),
+    radial-gradient(circle at top right,rgba(214,168,79,.08),transparent 30%),
     var(--black);
   color:var(--white);
   min-height:100vh;
@@ -53,13 +53,7 @@ select{
 }
 
 button{
-  border:0;
   cursor:pointer;
-}
-
-img,
-video{
-  max-width:100%;
 }
 
 a{
@@ -68,120 +62,117 @@ a{
 }
 
 /* =========================
-   APP
-========================= */
-
-.app{
-  min-height:100vh;
-  padding-bottom:88px;
-}
-
-.hidden{
-  display:none!important;
-}
-
-.gold{
-  color:var(--gold2);
-}
-
-.muted{
-  color:var(--muted);
-}
-
-.container{
-  width:min(1180px,calc(100% - 30px));
-  margin:auto;
-}
-
-/* =========================
    HEADER
 ========================= */
 
-.topbar{
+.header{
   position:sticky;
   top:0;
   z-index:1000;
   height:68px;
+  background:rgba(7,7,7,.94);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  padding:0 20px;
+}
+
+.header-inner{
+  width:100%;
+  max-width:1400px;
+  margin:auto;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 18px;
-  background:rgba(7,7,7,.9);
-  backdrop-filter:blur(22px);
-  -webkit-backdrop-filter:blur(22px);
-  border-bottom:1px solid var(--line);
+  gap:20px;
 }
 
-.brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
+.logo{
+  color:var(--gold2);
+  font-size:25px;
   font-weight:900;
-  letter-spacing:.8px;
-  font-size:20px;
+  letter-spacing:-1px;
+  white-space:nowrap;
 }
 
-.brand-mark{
-  width:34px;
-  height:34px;
-  border-radius:11px;
-  display:grid;
-  place-items:center;
-  background:linear-gradient(135deg,var(--gold2),var(--gold));
-  color:#080808;
-  font-weight:1000;
-  box-shadow:0 8px 30px rgba(214,168,79,.2);
+.logo span{
+  color:white;
+}
+
+.top-nav{
+  display:flex;
+  gap:6px;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+
+.top-nav::-webkit-scrollbar{
+  display:none;
+}
+
+.top-nav button{
+  background:transparent;
+  color:#aaa;
+  border:0;
+  padding:10px 13px;
+  border-radius:12px;
+  white-space:nowrap;
+  transition:.2s;
+}
+
+.top-nav button:hover,
+.top-nav button.active{
+  color:var(--gold2);
+  background:rgba(214,168,79,.1);
 }
 
 .header-actions{
   display:flex;
-  align-items:center;
   gap:8px;
 }
 
 .icon-btn{
-  width:42px;
-  height:42px;
+  width:40px;
+  height:40px;
+  border:1px solid var(--line);
   border-radius:50%;
-  background:rgba(255,255,255,.07);
+  background:#111;
   color:white;
   display:grid;
   place-items:center;
-  transition:.2s ease;
+  transition:.2s;
 }
 
 .icon-btn:hover{
-  background:rgba(214,168,79,.18);
+  border-color:var(--gold);
   color:var(--gold2);
 }
 
-.icon{
-  width:21px;
-  height:21px;
-  fill:none;
-  stroke:currentColor;
-  stroke-width:1.8;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-
 /* =========================
-   SECTIONS
+   APP LAYOUT
 ========================= */
+
+.app{
+  width:100%;
+  max-width:1400px;
+  margin:auto;
+  padding:24px 20px 100px;
+}
 
 .page{
   display:none;
-  animation:pageIn .25s ease;
+  animation:fade .25s ease;
 }
 
 .page.active{
   display:block;
 }
 
-@keyframes pageIn{
+@keyframes fade{
   from{
     opacity:0;
-    transform:translateY(8px);
+    transform:translateY(5px);
   }
   to{
     opacity:1;
@@ -189,906 +180,800 @@ a{
   }
 }
 
-.page-head{
-  padding:34px 0 22px;
+.section-title{
+  font-size:28px;
+  margin-bottom:6px;
 }
 
-.page-head h1{
-  font-size:clamp(28px,5vw,48px);
-  line-height:1;
-  letter-spacing:-1.5px;
-}
-
-.page-head p{
-  margin-top:10px;
+.section-subtitle{
   color:var(--muted);
+  margin-bottom:22px;
 }
 
-/* =========================
-   HOME
-========================= */
-
-.hero{
-  min-height:440px;
-  display:flex;
-  align-items:flex-end;
-  padding:50px 0;
-  position:relative;
-  overflow:hidden;
-  background:
-    linear-gradient(180deg,transparent 20%,rgba(0,0,0,.9)),
-    radial-gradient(circle at 75% 25%,rgba(214,168,79,.18),transparent 28%);
-}
-
-.hero-content{
-  position:relative;
-  z-index:2;
-  max-width:720px;
-}
-
-.hero h1{
-  font-size:clamp(44px,9vw,90px);
-  line-height:.9;
-  letter-spacing:-4px;
-}
-
-.hero p{
-  max-width:620px;
-  color:#c8c8c8;
-  margin:22px 0;
-  font-size:17px;
-  line-height:1.65;
-}
-
-.hero-actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-}
-
-.primary{
-  background:linear-gradient(135deg,var(--gold2),var(--gold));
-  color:#090909;
-  padding:13px 20px;
-  border-radius:14px;
-  font-weight:850;
-}
-
-.secondary{
-  background:rgba(255,255,255,.08);
-  color:white;
-  padding:13px 20px;
-  border-radius:14px;
-  font-weight:750;
-  border:1px solid var(--line);
-}
-
-.stories{
-  display:flex;
-  gap:14px;
-  overflow-x:auto;
-  padding:20px 0;
-  scrollbar-width:none;
-}
-
-.stories::-webkit-scrollbar{
-  display:none;
-}
-
-.story{
-  min-width:78px;
-  text-align:center;
-  color:#ddd;
-  font-size:12px;
-}
-
-.story-ring{
-  width:68px;
-  height:68px;
-  margin:auto auto 7px;
-  padding:2px;
-  border-radius:50%;
-  background:linear-gradient(135deg,var(--gold2),#fff,var(--gold));
-}
-
-.story-ring-inner{
-  width:100%;
-  height:100%;
-  border-radius:50%;
-  background:#191919;
-  display:grid;
-  place-items:center;
-  font-size:22px;
-}
-
-.card{
-  background:linear-gradient(180deg,#161616,#101010);
-  border:1px solid var(--line);
-  border-radius:22px;
-  box-shadow:var(--shadow);
-}
-
-.composer{
-  padding:18px;
-  display:flex;
-  gap:13px;
-  align-items:center;
-  margin-bottom:20px;
-}
-
-.avatar{
-  width:48px;
-  height:48px;
-  flex:0 0 48px;
-  border-radius:50%;
-  overflow:hidden;
-  background:linear-gradient(135deg,#2b2b2b,#111);
-  display:grid;
-  place-items:center;
-  font-weight:900;
+.gold{
   color:var(--gold2);
 }
 
-.avatar img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
+/* =========================
+   HERO
+========================= */
 
-.composer-box{
-  flex:1;
-  min-height:46px;
-  border-radius:15px;
-  background:#202020;
+.hero{
+  min-height:390px;
+  border:1px solid var(--line);
+  border-radius:28px;
+  overflow:hidden;
+  position:relative;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.95),rgba(0,0,0,.45),rgba(0,0,0,.85)),
+    radial-gradient(circle at 75% 35%,rgba(214,168,79,.22),transparent 35%),
+    #121212;
   display:flex;
   align-items:center;
-  padding:0 16px;
-  color:#999;
-  cursor:pointer;
+  padding:45px;
+  margin-bottom:24px;
+}
+
+.hero-content{
+  max-width:700px;
+}
+
+.hero-eyebrow{
+  color:var(--gold2);
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:12px;
+  margin-bottom:15px;
+}
+
+.hero h1{
+  font-size:clamp(40px,7vw,75px);
+  line-height:.98;
+  letter-spacing:-3px;
+  margin-bottom:20px;
+}
+
+.hero p{
+  color:#c4c4c4;
+  font-size:17px;
+  line-height:1.7;
+  max-width:650px;
+}
+
+.hero-buttons{
+  display:flex;
+  gap:12px;
+  margin-top:25px;
+  flex-wrap:wrap;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn{
+  border:0;
+  border-radius:12px;
+  padding:12px 18px;
+  font-weight:800;
+  transition:.2s;
+}
+
+.btn-gold{
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#080808;
+}
+
+.btn-gold:hover{
+  transform:translateY(-2px);
+}
+
+.btn-dark{
+  background:#171717;
+  color:white;
+  border:1px solid var(--line);
+}
+
+.btn-dark:hover{
+  border-color:var(--gold);
+}
+
+.btn-small{
+  padding:8px 12px;
+  font-size:13px;
+}
+
+/* =========================
+   CARDS / GRIDS
+========================= */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.grid-4{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+
+.card{
+  background:linear-gradient(145deg,#131313,#0e0e0e);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:20px;
+  transition:.2s;
+}
+
+.card:hover{
+  transform:translateY(-2px);
+  border-color:rgba(214,168,79,.38);
+}
+
+.card h3{
+  margin-bottom:8px;
+}
+
+.card p{
+  color:var(--muted);
+  line-height:1.55;
+}
+
+/* =========================
+   FEED
+========================= */
+
+.feed-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 330px;
+  gap:22px;
 }
 
 .post{
-  padding:20px;
+  background:#111;
+  border:1px solid var(--line);
+  border-radius:20px;
+  overflow:hidden;
   margin-bottom:18px;
 }
 
 .post-head{
   display:flex;
-  gap:12px;
   align-items:center;
+  gap:12px;
+  padding:16px;
 }
 
-.post-info{
+.avatar{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  background:
+    linear-gradient(135deg,var(--gold),#292929);
+  display:grid;
+  place-items:center;
+  font-weight:900;
+  color:#080808;
+  flex-shrink:0;
+}
+
+.avatar.large{
+  width:75px;
+  height:75px;
+  font-size:24px;
+}
+
+.post-meta{
   flex:1;
 }
 
-.post-info strong{
+.post-meta strong{
   display:block;
 }
 
-.post-info span{
-  color:#888;
-  font-size:12px;
+.post-meta small{
+  color:#777;
 }
 
-.post-text{
-  margin:16px 0;
+.post-body{
+  padding:0 16px 16px;
+  line-height:1.65;
   color:#ddd;
-  line-height:1.6;
 }
 
 .post-media{
   width:100%;
-  aspect-ratio:16/10;
-  object-fit:cover;
-  border-radius:17px;
-  background:#202020;
+  min-height:230px;
+  background:
+    radial-gradient(circle at 50% 35%,rgba(214,168,79,.22),transparent 25%),
+    linear-gradient(135deg,#1b1b1b,#080808);
+  display:grid;
+  place-items:center;
+  font-size:70px;
 }
 
 .post-actions{
+  border-top:1px solid #222;
   display:flex;
-  justify-content:space-between;
-  gap:8px;
-  margin-top:14px;
-  padding-top:12px;
-  border-top:1px solid var(--line);
+  padding:7px;
 }
 
-.post-action{
+.reaction-wrap{
+  position:relative;
   flex:1;
-  padding:10px;
+}
+
+.reaction-btn{
+  width:100%;
   background:transparent;
   color:#aaa;
-  border-radius:12px;
+  border:0;
+  padding:11px;
+  border-radius:10px;
 }
 
-.post-action:hover{
-  background:rgba(255,255,255,.06);
+.reaction-btn:hover{
+  background:#191919;
   color:var(--gold2);
 }
 
-/* =========================
-   QUICK LINKS
-========================= */
-
-.quick-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:14px;
-  margin-bottom:25px;
-}
-
-.quick{
-  min-height:130px;
-  padding:18px;
-  border-radius:20px;
-  background:linear-gradient(145deg,#171717,#0d0d0d);
-  border:1px solid var(--line);
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-
-.quick-icon{
-  font-size:26px;
-  color:var(--gold2);
-}
-
-.quick strong{
-  font-size:15px;
-}
-
-/* =========================
-   NEWSFEED
-========================= */
-
-.tabs{
-  display:flex;
-  gap:8px;
-  overflow-x:auto;
-  scrollbar-width:none;
-  margin-bottom:20px;
-}
-
-.tabs::-webkit-scrollbar{
+.reactions{
+  position:absolute;
+  bottom:48px;
+  left:0;
   display:none;
-}
-
-.tab{
-  white-space:nowrap;
-  background:#171717;
+  background:#1a1a1a;
   border:1px solid var(--line);
-  color:#aaa;
-  padding:10px 15px;
-  border-radius:999px;
+  padding:8px;
+  border-radius:30px;
+  gap:5px;
+  box-shadow:0 12px 35px rgba(0,0,0,.5);
 }
 
-.tab.active{
-  color:#090909;
-  background:var(--gold2);
-  border-color:var(--gold2);
-  font-weight:800;
+.reaction-wrap:hover .reactions{
+  display:flex;
+}
+
+.reactions button{
+  width:38px;
+  height:38px;
+  border:0;
+  background:#242424;
+  border-radius:50%;
+  font-size:18px;
+}
+
+.comment-btn,
+.share-btn{
+  flex:1;
+  border:0;
+  background:transparent;
+  color:#aaa;
+  border-radius:10px;
+}
+
+.comment-btn:hover,
+.share-btn:hover{
+  background:#191919;
+  color:var(--gold2);
+}
+
+/* =========================
+   SIDE PANEL
+========================= */
+
+.side-card{
+  margin-bottom:18px;
+}
+
+.side-card h3{
+  margin-bottom:15px;
+}
+
+.side-list{
+  display:grid;
+  gap:12px;
+}
+
+.side-item{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.side-item div:last-child{
+  flex:1;
+}
+
+.side-item small{
+  color:#777;
+}
+
+/* =========================
+   FEATURE CARDS
+========================= */
+
+.feature-icon{
+  width:50px;
+  height:50px;
+  border-radius:15px;
+  background:rgba(214,168,79,.1);
+  border:1px solid var(--line);
+  display:grid;
+  place-items:center;
+  font-size:25px;
+  margin-bottom:14px;
 }
 
 /* =========================
    SKATE
 ========================= */
 
-.skate-hero{
-  padding:25px;
+.skate-banner{
   border-radius:25px;
-  min-height:270px;
-  display:flex;
-  align-items:flex-end;
-  background:
-    linear-gradient(180deg,transparent,rgba(0,0,0,.9)),
-    radial-gradient(circle at 70% 20%,rgba(214,168,79,.22),transparent 35%),
-    #111;
-  border:1px solid var(--line);
+  min-height:280px;
+  padding:35px;
   margin-bottom:22px;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.95),rgba(0,0,0,.45)),
+    radial-gradient(circle at 75% 50%,rgba(214,168,79,.2),transparent 30%),
+    #151515;
+  border:1px solid var(--line);
 }
 
-.skate-symbol{
-  font-size:58px;
-  margin-bottom:10px;
+.skateboard-art{
+  font-size:85px;
+  transform:rotate(-12deg);
+  float:right;
+  margin:15px 50px 0 20px;
 }
 
 .skate-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:15px;
+  gap:18px;
 }
 
 .skate-card{
-  min-height:210px;
+  min-height:240px;
   border-radius:20px;
   overflow:hidden;
-  position:relative;
+  background:#121212;
   border:1px solid var(--line);
-  background:#161616;
 }
 
-.skate-card-image{
-  position:absolute;
-  inset:0;
+.skate-image{
+  height:150px;
   background:
-    linear-gradient(180deg,transparent,rgba(0,0,0,.9)),
-    linear-gradient(135deg,#252525,#0c0c0c);
-}
-
-.skate-card-content{
-  position:absolute;
-  bottom:0;
-  padding:17px;
-}
-
-/* =========================
-   REELS TIKTOK STYLE
-========================= */
-
-#reelsPage{
-  position:fixed;
-  inset:0;
-  z-index:900;
-  background:#000;
-  padding-bottom:76px;
-}
-
-#reelsPage.active{
-  display:block;
-}
-
-.reels-shell{
-  height:100%;
-  position:relative;
-}
-
-.reels-top{
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  z-index:20;
-  padding:18px 18px 30px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  pointer-events:none;
-  background:linear-gradient(180deg,rgba(0,0,0,.65),transparent);
-}
-
-.reels-title{
-  font-size:20px;
-  font-weight:900;
-}
-
-.reels-filter{
-  pointer-events:auto;
-  padding:8px 13px;
-  border-radius:999px;
-  background:rgba(0,0,0,.5);
-  border:1px solid rgba(255,255,255,.15);
-  color:white;
-}
-
-.reels-feed{
-  height:100%;
-  overflow-y:auto;
-  scroll-snap-type:y mandatory;
-  overscroll-behavior-y:contain;
-  scrollbar-width:none;
-  background:#000;
-}
-
-.reels-feed::-webkit-scrollbar{
-  display:none;
-}
-
-.reel{
-  height:100%;
-  min-height:100%;
-  scroll-snap-align:start;
-  scroll-snap-stop:always;
-  position:relative;
-  background:#080808;
-  overflow:hidden;
-}
-
-.reel-video{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  background:#111;
-}
-
-.reel-placeholder{
-  position:absolute;
-  inset:0;
+    radial-gradient(circle at 50% 40%,rgba(214,168,79,.18),transparent 25%),
+    linear-gradient(135deg,#252525,#090909);
   display:grid;
   place-items:center;
-  background:
-    radial-gradient(circle at 50% 30%,rgba(214,168,79,.2),transparent 25%),
-    linear-gradient(145deg,#222,#050505);
-  color:#777;
-  font-size:70px;
+  font-size:65px;
 }
 
-.reel-shade{
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  background:
-    linear-gradient(180deg,rgba(0,0,0,.25),transparent 28%),
-    linear-gradient(0deg,rgba(0,0,0,.82),transparent 48%);
-}
-
-.reel-info{
-  position:absolute;
-  z-index:5;
-  left:18px;
-  right:85px;
-  bottom:25px;
-}
-
-.reel-user{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-bottom:12px;
-}
-
-.reel-avatar{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  overflow:hidden;
-  background:#222;
-  border:1px solid rgba(255,255,255,.2);
-}
-
-.reel-avatar img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.reel-user strong{
-  font-size:15px;
-}
-
-.follow-mini{
-  padding:6px 10px;
-  border:1px solid rgba(255,255,255,.35);
-  background:rgba(0,0,0,.35);
-  color:white;
-  border-radius:9px;
-  font-size:12px;
-}
-
-.reel-caption{
-  line-height:1.45;
-  font-size:15px;
-  margin-bottom:10px;
-}
-
-.reel-music{
-  display:flex;
-  align-items:center;
-  gap:7px;
-  font-size:13px;
-  color:#ddd;
-}
-
-.reel-actions{
-  position:absolute;
-  z-index:8;
-  right:14px;
-  bottom:24px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:17px;
-}
-
-.reel-action{
-  color:white;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:4px;
-  background:transparent;
-  text-shadow:0 2px 8px #000;
-}
-
-.reel-action .action-icon{
-  width:47px;
-  height:47px;
-  border-radius:50%;
-  background:rgba(0,0,0,.38);
-  backdrop-filter:blur(8px);
-  display:grid;
-  place-items:center;
-  border:1px solid rgba(255,255,255,.12);
-}
-
-.reel-action span{
-  font-size:11px;
-  font-weight:700;
-}
-
-.reel-like.active{
-  color:#ff6680;
-}
-
-.reel-mute{
-  position:absolute;
-  right:15px;
-  top:75px;
-  z-index:15;
-}
-
-.reel-progress{
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  height:3px;
-  background:rgba(255,255,255,.12);
-  z-index:30;
-}
-
-.reel-progress span{
-  display:block;
-  height:100%;
-  width:0;
-  background:var(--gold2);
+.skate-info{
+  padding:15px;
 }
 
 /* =========================
    CULTURE
 ========================= */
 
-.culture-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-}
-
-.culture-card{
-  min-height:260px;
-  border-radius:22px;
+.food-card{
   overflow:hidden;
-  position:relative;
-  background:#151515;
-  border:1px solid var(--line);
+  padding:0;
 }
 
-.culture-image{
-  position:absolute;
-  inset:0;
+.food-image{
+  height:210px;
   background:
-    linear-gradient(180deg,transparent 30%,rgba(0,0,0,.95)),
-    radial-gradient(circle at 50% 30%,rgba(214,168,79,.18),transparent 35%),
-    #222;
+    radial-gradient(ellipse at center,rgba(214,168,79,.22),transparent 45%),
+    linear-gradient(135deg,#291c12,#0b0907);
+  display:grid;
+  place-items:center;
+  font-size:80px;
 }
 
-.culture-content{
-  position:absolute;
-  bottom:0;
-  padding:18px;
+.food-info{
+  padding:17px;
 }
 
-.culture-tag{
-  display:inline-block;
-  color:#111;
-  background:var(--gold2);
-  padding:5px 9px;
-  border-radius:999px;
-  font-size:10px;
-  font-weight:900;
-  margin-bottom:8px;
+.culture-symbol{
+  font-size:60px;
+  margin-bottom:10px;
 }
 
 /* =========================
    AI
 ========================= */
 
-.ai-wrap{
+.ai-shell{
   max-width:850px;
   margin:auto;
-}
-
-.ai-card{
-  min-height:650px;
-  display:flex;
-  flex-direction:column;
+  border:1px solid var(--line);
+  border-radius:25px;
   overflow:hidden;
+  background:#0d0d0d;
 }
 
 .ai-head{
-  padding:18px;
+  padding:20px;
+  border-bottom:1px solid var(--line);
   display:flex;
   align-items:center;
-  gap:12px;
-  border-bottom:1px solid var(--line);
+  gap:13px;
 }
 
 .ai-orb{
-  width:45px;
-  height:45px;
-  border-radius:15px;
-  background:linear-gradient(135deg,var(--gold2),#fff0bd,var(--gold));
-  display:grid;
-  place-items:center;
-  color:#090909;
-  font-weight:1000;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  background:radial-gradient(circle,#f0c76a,#9a6a1e);
+  box-shadow:0 0 30px rgba(214,168,79,.3);
 }
 
-.ai-messages{
-  flex:1;
+.chat-messages{
+  height:470px;
+  overflow-y:auto;
   padding:20px;
-  overflow:auto;
+  display:flex;
+  flex-direction:column;
+  gap:13px;
 }
 
-.ai-message{
-  max-width:78%;
-  padding:13px 15px;
+.message{
+  max-width:75%;
+  padding:12px 15px;
   border-radius:17px;
-  margin-bottom:12px;
   line-height:1.5;
 }
 
-.ai-message.bot{
-  background:#1b1b1b;
-  border:1px solid var(--line);
+.message.ai{
+  background:#181818;
+  border:1px solid #252525;
+  align-self:flex-start;
 }
 
-.ai-message.user{
-  margin-left:auto;
-  background:var(--gold2);
+.message.user{
+  background:linear-gradient(135deg,#b9872e,#e2b958);
   color:#090909;
+  align-self:flex-end;
 }
 
-.ai-input{
-  padding:14px;
-  border-top:1px solid var(--line);
+.chat-input{
   display:flex;
-  gap:8px;
+  padding:12px;
+  border-top:1px solid var(--line);
+  gap:10px;
 }
 
-.ai-input input{
+.chat-input input{
   flex:1;
-  min-width:0;
-  border:0;
-  outline:0;
-  background:#202020;
+  background:#161616;
+  border:1px solid #292929;
   color:white;
-  border-radius:14px;
   padding:13px;
+  border-radius:12px;
+  outline:none;
 }
 
 /* =========================
-   PROFILE SYSTEM
+   LANGUAGE & CONNECTION
 ========================= */
 
-.profile-page{
-  padding-bottom:30px;
-}
-
-.profile-cover{
-  height:310px;
-  border-radius:0 0 28px 28px;
-  overflow:hidden;
-  position:relative;
+.language-hero{
+  border:1px solid var(--line);
+  border-radius:25px;
+  padding:32px;
+  margin-bottom:22px;
   background:
-    linear-gradient(180deg,transparent 30%,rgba(0,0,0,.8)),
-    radial-gradient(circle at 65% 25%,rgba(214,168,79,.28),transparent 32%),
-    #171717;
+    radial-gradient(circle at 85% 20%,rgba(214,168,79,.16),transparent 30%),
+    linear-gradient(135deg,#141414,#090909);
 }
 
-.profile-cover img,
-.profile-cover video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+.language-hero h2{
+  font-size:34px;
+  margin-bottom:10px;
 }
 
-.profile-cover-overlay{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.82));
+.language-hero p{
+  color:#aaa;
+  max-width:800px;
+  line-height:1.7;
 }
 
-.profile-cover-actions{
-  position:absolute;
-  top:18px;
-  right:18px;
-  display:flex;
-  gap:8px;
-}
-
-.profile-main{
-  width:min(1050px,calc(100% - 30px));
-  margin:-65px auto 0;
-  position:relative;
-  z-index:5;
-}
-
-.profile-identity{
-  display:flex;
-  align-items:flex-end;
-  gap:18px;
-}
-
-.profile-avatar{
-  width:145px;
-  height:145px;
-  border-radius:50%;
-  border:5px solid var(--black);
-  background:#181818;
-  overflow:hidden;
-  flex:0 0 145px;
-}
-
-.profile-avatar img,
-.profile-avatar video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.profile-details{
-  padding-bottom:12px;
-  flex:1;
-}
-
-.profile-details h1{
-  font-size:32px;
-  line-height:1;
-}
-
-.profile-details .handle{
-  color:#999;
-  margin-top:6px;
-}
-
-.profile-bio{
-  color:#ccc;
-  margin-top:9px;
-  line-height:1.5;
-}
-
-.profile-location{
-  color:#999;
-  font-size:13px;
-  margin-top:7px;
-}
-
-.profile-buttons{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  padding-bottom:12px;
-}
-
-.profile-stat-row{
+.language-tools{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:10px;
-  margin:22px 0;
+  gap:15px;
+  margin-top:22px;
 }
 
-.profile-stat{
-  padding:17px;
-  background:var(--profile-card,#141414);
+.language-tool{
   border:1px solid var(--line);
-  border-radius:18px;
-  text-align:center;
+  background:#111;
+  border-radius:17px;
+  padding:18px;
+  cursor:pointer;
+  transition:.2s;
 }
 
-.profile-stat strong{
+.language-tool:hover{
+  border-color:var(--gold);
+  transform:translateY(-2px);
+}
+
+.language-tool .tool-icon{
+  font-size:30px;
+  margin-bottom:10px;
+}
+
+.language-tool strong{
   display:block;
+  margin-bottom:5px;
+}
+
+.language-tool span{
+  color:#777;
+  font-size:13px;
+}
+
+.language-layout{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:20px;
+}
+
+.language-list{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.language-item{
+  padding:15px;
+  border:1px solid #242424;
+  border-radius:15px;
+  background:#101010;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  cursor:pointer;
+}
+
+.language-item:hover{
+  border-color:var(--gold);
+}
+
+.language-flag{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  background:#1d1d1d;
+  display:grid;
+  place-items:center;
   font-size:20px;
 }
 
-.profile-stat span{
+.language-item div:nth-child(2){
+  flex:1;
+}
+
+.language-item small{
+  color:#777;
+}
+
+.language-item button{
+  background:transparent;
+  border:0;
+  color:var(--gold2);
+}
+
+.translator{
+  background:#111;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:20px;
+}
+
+.translator select,
+.translator textarea{
+  width:100%;
+  background:#181818;
+  border:1px solid #292929;
+  color:white;
+  border-radius:12px;
+  padding:12px;
+  margin-bottom:12px;
+  outline:none;
+}
+
+.translator textarea{
+  min-height:120px;
+  resize:vertical;
+}
+
+.translation-output{
+  min-height:100px;
+  background:#090909;
+  border:1px solid #252525;
+  border-radius:12px;
+  padding:14px;
+  color:#ddd;
+  margin-top:12px;
+}
+
+.learn-panel{
+  margin-top:22px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:24px;
+  background:#111;
+}
+
+.lesson{
+  display:none;
+}
+
+.lesson.active{
+  display:block;
+}
+
+.lesson-word{
+  font-size:38px;
+  color:var(--gold2);
+  font-weight:900;
+  margin:18px 0 5px;
+}
+
+.lesson-pronunciation{
+  color:#777;
+  margin-bottom:15px;
+}
+
+.lesson-example{
+  background:#181818;
+  border-radius:15px;
+  padding:15px;
+  margin:15px 0;
+  line-height:1.7;
+}
+
+.lesson-controls{
+  display:flex;
+  gap:10px;
+  margin-top:18px;
+}
+
+.connection-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin-top:20px;
+}
+
+.community-card{
+  border:1px solid var(--line);
+  background:#111;
+  border-radius:18px;
+  padding:18px;
+}
+
+.community-card .community-icon{
+  font-size:35px;
+  margin-bottom:10px;
+}
+
+.chat-language{
+  margin-top:22px;
+  border:1px solid var(--line);
+  border-radius:20px;
+  overflow:hidden;
+  background:#0e0e0e;
+}
+
+.chat-language-head{
+  padding:16px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.language-chat-body{
+  height:300px;
+  overflow-y:auto;
+  padding:15px;
+}
+
+.language-chat-input{
+  display:flex;
+  gap:8px;
+  padding:10px;
+  border-top:1px solid var(--line);
+}
+
+.language-chat-input input{
+  flex:1;
+  background:#171717;
+  border:1px solid #282828;
+  color:white;
+  border-radius:10px;
+  padding:11px;
+}
+
+/* =========================
+   PROFILE
+========================= */
+
+.profile-cover{
+  height:220px;
+  border-radius:25px 25px 0 0;
+  background:
+    radial-gradient(circle at 70% 30%,rgba(214,168,79,.2),transparent 25%),
+    linear-gradient(135deg,#171717,#080808);
+  border:1px solid var(--line);
+}
+
+.profile-main{
+  background:#111;
+  border:1px solid var(--line);
+  border-top:0;
+  border-radius:0 0 25px 25px;
+  padding:0 25px 25px;
+}
+
+.profile-avatar{
+  margin-top:-55px;
+  position:relative;
+  margin-bottom:15px;
+}
+
+.profile-avatar .avatar{
+  width:105px;
+  height:105px;
+  border:5px solid #111;
+  font-size:30px;
+}
+
+.profile-header{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.profile-bio{
   color:#999;
-  font-size:12px;
+  margin-top:8px;
+  max-width:600px;
+  line-height:1.6;
 }
 
 .profile-tabs{
   display:flex;
-  overflow-x:auto;
-  gap:4px;
-  border-bottom:1px solid var(--line);
-  margin-bottom:20px;
-  scrollbar-width:none;
+  gap:5px;
+  border-bottom:1px solid #252525;
+  margin-top:25px;
 }
 
-.profile-tabs::-webkit-scrollbar{
-  display:none;
-}
-
-.profile-tab{
-  white-space:nowrap;
-  padding:14px 18px;
-  color:#999;
+.profile-tabs button{
   background:transparent;
-  border-bottom:2px solid transparent;
+  border:0;
+  color:#888;
+  padding:12px 15px;
 }
 
-.profile-tab.active{
+.profile-tabs button.active{
   color:var(--gold2);
-  border-bottom-color:var(--gold2);
-}
-
-.profile-content-panel{
-  display:none;
-}
-
-.profile-content-panel.active{
-  display:block;
-}
-
-.profile-post-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-}
-
-.profile-tile{
-  aspect-ratio:1;
-  background:#171717;
-  border-radius:13px;
-  overflow:hidden;
-  position:relative;
-}
-
-.profile-tile img,
-.profile-tile video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.profile-tile-label{
-  position:absolute;
-  left:9px;
-  bottom:9px;
-  padding:5px 8px;
-  background:rgba(0,0,0,.7);
-  border-radius:7px;
-  font-size:10px;
-}
-
-.about-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:15px;
-}
-
-.about-box{
-  padding:20px;
-  background:var(--profile-card,#141414);
-  border:1px solid var(--line);
-  border-radius:19px;
-}
-
-.about-box h3{
-  margin-bottom:10px;
-}
-
-.about-row{
-  display:flex;
-  justify-content:space-between;
-  padding:11px 0;
-  border-bottom:1px solid var(--line);
-  color:#bbb;
+  border-bottom:2px solid var(--gold);
 }
 
 .playlist{
+  margin-top:20px;
   display:grid;
   gap:10px;
 }
@@ -1098,16 +983,16 @@ a{
   align-items:center;
   gap:12px;
   padding:13px;
-  border-radius:15px;
-  background:var(--profile-card,#141414);
-  border:1px solid var(--line);
+  border:1px solid #252525;
+  border-radius:13px;
+  background:#151515;
 }
 
-.song-art{
-  width:48px;
-  height:48px;
+.song-icon{
+  width:40px;
+  height:40px;
   border-radius:10px;
-  background:linear-gradient(135deg,var(--gold),#292929);
+  background:#222;
   display:grid;
   place-items:center;
 }
@@ -1116,319 +1001,168 @@ a{
   flex:1;
 }
 
-.song-info strong{
-  display:block;
-}
-
-.song-info span{
-  color:#888;
-  font-size:12px;
-}
-
-.song audio{
-  width:160px;
-}
-
-.featured{
-  display:grid;
-  grid-template-columns:1.4fr 1fr;
-  gap:15px;
-}
-
-.featured-card{
-  min-height:220px;
-  padding:20px;
-  border-radius:20px;
-  border:1px solid var(--line);
-  background:
-    radial-gradient(circle at 75% 20%,rgba(214,168,79,.18),transparent 28%),
-    #151515;
-}
-
-/* =========================
-   PROFILE CUSTOMIZATION
-========================= */
-
-.customizer{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:15px;
-}
-
-.custom-card{
-  padding:20px;
-  border:1px solid var(--line);
-  background:var(--profile-card,#141414);
-  border-radius:20px;
-}
-
-.custom-card h3{
-  margin-bottom:14px;
-}
-
-.field{
-  margin-bottom:14px;
-}
-
-.field label{
-  display:block;
-  color:#aaa;
-  font-size:12px;
-  margin-bottom:7px;
-}
-
-.field input,
-.field textarea,
-.field select{
-  width:100%;
-  border:1px solid var(--line);
-  background:#0e0e0e;
-  color:white;
-  border-radius:12px;
-  padding:12px;
-  outline:none;
-}
-
-.field textarea{
-  min-height:100px;
-  resize:vertical;
-}
-
-.color-row{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.color-row input[type=color]{
-  width:55px;
-  height:42px;
-  padding:3px;
-}
-
-.theme-presets{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-}
-
-.theme-preset{
-  min-height:80px;
-  border-radius:14px;
-  border:2px solid transparent;
-  padding:9px;
-  display:flex;
-  align-items:flex-end;
-  color:white;
-  font-size:11px;
-  font-weight:800;
-}
-
-.theme-preset:hover{
-  border-color:var(--gold2);
-}
-
-.upload-box{
-  border:1px dashed rgba(255,255,255,.2);
-  border-radius:15px;
-  padding:17px;
-  text-align:center;
-  background:#0d0d0d;
-}
-
-.upload-box input{
-  margin-top:10px;
-  width:100%;
-}
-
-/* =========================
-   SEARCH
-========================= */
-
-.search-box{
-  display:flex;
-  gap:8px;
-  margin-bottom:20px;
-}
-
-.search-box input{
-  flex:1;
-  background:#171717;
-  color:white;
-  border:1px solid var(--line);
-  border-radius:15px;
-  padding:14px;
-  outline:none;
-}
-
-.people-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-}
-
-.person-card{
-  padding:20px;
-  border-radius:20px;
-  border:1px solid var(--line);
-  background:#151515;
-  text-align:center;
-}
-
-.person-card .avatar{
-  width:76px;
-  height:76px;
-  margin:auto auto 10px;
-}
-
-/* =========================
-   DRAWER
-========================= */
-
-.drawer-backdrop{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.65);
-  z-index:2000;
-  display:none;
-}
-
-.drawer-backdrop.open{
-  display:block;
-}
-
-.drawer{
-  position:absolute;
-  top:0;
-  right:0;
-  width:min(380px,92%);
-  height:100%;
-  background:#101010;
-  border-left:1px solid var(--line);
-  padding:20px;
-  overflow:auto;
-  box-shadow:-20px 0 70px rgba(0,0,0,.5);
-}
-
-.drawer-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:20px;
-}
-
-.drawer-item{
-  width:100%;
-  text-align:left;
-  display:flex;
-  align-items:center;
-  gap:13px;
-  padding:15px;
-  border-radius:14px;
-  background:transparent;
-  color:white;
-}
-
-.drawer-item:hover{
-  background:#1b1b1b;
+.song-info small{
+  color:#777;
 }
 
 /* =========================
    MODALS
 ========================= */
 
-.modal-backdrop{
+.modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.76);
   z-index:3000;
+  background:rgba(0,0,0,.75);
+  backdrop-filter:blur(8px);
   display:none;
-  align-items:center;
-  justify-content:center;
-  padding:16px;
-}
-
-.modal-backdrop.open{
-  display:flex;
-}
-
-.modal{
-  width:min(720px,100%);
-  max-height:90vh;
-  overflow:auto;
-  background:#111;
-  border:1px solid var(--line);
-  border-radius:24px;
-  box-shadow:0 30px 100px rgba(0,0,0,.65);
-}
-
-.modal-head{
-  padding:18px 20px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  border-bottom:1px solid var(--line);
-}
-
-.modal-body{
+  place-items:center;
   padding:20px;
 }
 
-.modal-foot{
-  padding:16px 20px;
-  border-top:1px solid var(--line);
-  display:flex;
-  justify-content:flex-end;
-  gap:8px;
+.modal.active{
+  display:grid;
+}
+
+.modal-box{
+  width:min(600px,100%);
+  max-height:90vh;
+  overflow-y:auto;
+  background:#111;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:24px;
+  position:relative;
+}
+
+.modal-close{
+  position:absolute;
+  top:15px;
+  right:15px;
+  width:35px;
+  height:35px;
+  border-radius:50%;
+  background:#202020;
+  color:white;
+  border:0;
+}
+
+.modal-box h2{
+  margin-bottom:15px;
+}
+
+.modal-box input,
+.modal-box textarea{
+  width:100%;
+  background:#191919;
+  border:1px solid #292929;
+  color:white;
+  border-radius:12px;
+  padding:12px;
+  margin-bottom:12px;
+  outline:none;
 }
 
 /* =========================
-   BOTTOM NAV
+   MOBILE NAV
 ========================= */
 
-.bottom-nav{
+.mobile-nav{
   position:fixed;
-  z-index:1500;
+  bottom:0;
   left:0;
   right:0;
-  bottom:0;
-  height:78px;
-  padding-bottom:env(safe-area-inset-bottom);
-  background:rgba(9,9,9,.96);
-  backdrop-filter:blur(22px);
-  -webkit-backdrop-filter:blur(22px);
+  height:72px;
+  z-index:2000;
+  background:rgba(8,8,8,.96);
+  backdrop-filter:blur(20px);
   border-top:1px solid var(--line);
-  display:flex;
-  overflow:hidden;
+  display:none;
+  padding-bottom:env(safe-area-inset-bottom);
 }
 
-.bottom-item{
-  width:14.2857%;
-  flex:1 1 14.2857%;
-  max-width:none;
-  min-width:0;
+.mobile-nav-inner{
+  height:100%;
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+}
+
+.mobile-nav button{
+  border:0;
+  background:transparent;
+  color:#777;
+  font-size:10px;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
   gap:4px;
-  color:#777;
-  background:transparent;
-  font-size:10px;
-  font-weight:750;
 }
 
-.bottom-item svg{
-  width:21px;
-  height:21px;
-}
-
-.bottom-item.active{
+.mobile-nav button.active{
   color:var(--gold2);
 }
 
-.bottom-item.active svg{
-  filter:drop-shadow(0 0 7px rgba(214,168,79,.35));
+.nav-icon{
+  font-size:20px;
+}
+
+/* =========================
+   SIDE DRAWER
+========================= */
+
+.drawer-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  z-index:2500;
+  display:none;
+}
+
+.drawer-overlay.active{
+  display:block;
+}
+
+.drawer{
+  position:fixed;
+  top:0;
+  left:0;
+  bottom:0;
+  width:min(360px,88vw);
+  background:#0c0c0c;
+  border-right:1px solid var(--line);
+  z-index:2600;
+  transform:translateX(-100%);
+  transition:.25s;
+  padding:25px;
+  overflow-y:auto;
+}
+
+.drawer.active{
+  transform:translateX(0);
+}
+
+.drawer h2{
+  margin-bottom:20px;
+  color:var(--gold2);
+}
+
+.drawer-link{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  width:100%;
+  border:0;
+  background:#121212;
+  color:white;
+  padding:15px;
+  border-radius:13px;
+  margin-bottom:8px;
+  text-align:left;
+}
+
+.drawer-link:hover{
+  color:var(--gold2);
 }
 
 /* =========================
@@ -1437,18 +1171,18 @@ a{
 
 .toast{
   position:fixed;
+  bottom:90px;
   left:50%;
-  bottom:95px;
   transform:translateX(-50%) translateY(20px);
-  background:#f4f4f4;
-  color:#090909;
+  background:#1b1b1b;
+  border:1px solid var(--line);
+  color:white;
   padding:12px 17px;
-  border-radius:13px;
-  font-weight:800;
-  z-index:5000;
+  border-radius:12px;
   opacity:0;
   pointer-events:none;
-  transition:.25s ease;
+  transition:.25s;
+  z-index:5000;
 }
 
 .toast.show{
@@ -1460,146 +1194,112 @@ a{
    RESPONSIVE
 ========================= */
 
-@media(max-width:850px){
-  .quick-grid{
+@media(max-width:1050px){
+  .top-nav{
+    display:none;
+  }
+
+  .feed-layout{
+    grid-template-columns:1fr;
+  }
+
+  .grid-4{
     grid-template-columns:repeat(2,1fr);
   }
 
-  .skate-grid,
-  .culture-grid,
-  .people-grid{
+  .language-tools{
     grid-template-columns:repeat(2,1fr);
   }
 
-  .profile-identity{
-    align-items:flex-start;
-    flex-direction:column;
-  }
-
-  .profile-details{
-    padding-bottom:0;
-  }
-
-  .profile-buttons{
-    padding-top:4px;
-  }
-
-  .featured,
-  .about-grid,
-  .customizer{
+  .language-layout{
     grid-template-columns:1fr;
   }
 }
 
-@media(max-width:600px){
-  .app{
-    padding-bottom:82px;
-  }
-
-  .topbar{
+@media(max-width:760px){
+  .header{
     height:62px;
+    padding:0 14px;
   }
 
-  .container{
-    width:calc(100% - 20px);
-  }
-
-  .hero{
-    min-height:500px;
-  }
-
-  .hero h1{
-    letter-spacing:-2px;
-  }
-
-  .quick-grid{
-    gap:8px;
-  }
-
-  .quick{
-    min-height:105px;
-    padding:14px;
-  }
-
-  .skate-grid,
-  .culture-grid,
-  .people-grid{
-    grid-template-columns:1fr;
-  }
-
-  .profile-cover{
-    height:250px;
-    border-radius:0 0 22px 22px;
-  }
-
-  .profile-main{
-    width:calc(100% - 20px);
-    margin-top:-48px;
-  }
-
-  .profile-avatar{
-    width:105px;
-    height:105px;
-    flex-basis:105px;
-  }
-
-  .profile-details h1{
-    font-size:27px;
-  }
-
-  .profile-stat-row{
-    gap:6px;
-  }
-
-  .profile-stat{
-    padding:13px 5px;
-  }
-
-  .profile-stat strong{
-    font-size:17px;
-  }
-
-  .profile-stat span{
-    font-size:10px;
-  }
-
-  .profile-post-grid{
+  .header-actions{
     gap:5px;
   }
 
-  .bottom-nav{
-    height:76px;
+  .header-actions .icon-btn:nth-child(1){
+    display:none;
   }
 
-  .bottom-item{
+  .app{
+    padding:16px 12px 100px;
+  }
+
+  .hero{
+    min-height:430px;
+    padding:28px 22px;
+    border-radius:22px;
+  }
+
+  .hero h1{
+    font-size:45px;
+    letter-spacing:-2px;
+  }
+
+  .grid,
+  .grid-4,
+  .skate-grid,
+  .connection-grid{
+    grid-template-columns:1fr;
+  }
+
+  .language-list{
+    grid-template-columns:1fr;
+  }
+
+  .language-tools{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .skateboard-art{
+    display:none;
+  }
+
+  .profile-header{
+    flex-direction:column;
+  }
+
+  .mobile-nav{
+    display:block;
+  }
+
+  .section-title{
+    font-size:24px;
+  }
+}
+
+@media(max-width:430px){
+  .logo{
+    font-size:21px;
+  }
+
+  .mobile-nav button{
     font-size:8px;
-    gap:3px;
   }
 
-  .bottom-item svg{
-    width:20px;
-    height:20px;
+  .nav-icon{
+    font-size:18px;
   }
 
-  .reel-info{
-    bottom:24px;
-    left:14px;
-    right:74px;
+  .language-tools{
+    gap:8px;
   }
 
-  .reel-actions{
-    right:7px;
-    bottom:22px;
+  .language-tool{
+    padding:13px 10px;
   }
 
-  .reel-action .action-icon{
-    width:43px;
-    height:43px;
-  }
-
-  .reels-top{
-    padding-left:13px;
-    padding-right:13px;
+  .message{
+    max-width:88%;
   }
 }
 </style>
@@ -1608,2998 +1308,2002 @@ a{
 <body>
 
 <!-- =========================
-     SVG ICON DEFINITIONS
+     HEADER
 ========================= -->
 
-<svg style="display:none">
-<symbol id="i-home" viewBox="0 0 24 24">
-<path d="M3 10.5 12 3l9 7.5"></path>
-<path d="M5 9.5V21h14V9.5"></path>
-<path d="M9 21v-7h6v7"></path>
-</symbol>
+<header class="header">
+  <div class="header-inner">
 
-<symbol id="i-news" viewBox="0 0 24 24">
-<rect x="4" y="4" width="16" height="16" rx="3"></rect>
-<path d="M8 8h8M8 12h8M8 16h5"></path>
-</symbol>
+    <div class="logo">
+      Soulaani<span>.</span>
+    </div>
 
-<symbol id="i-skate" viewBox="0 0 24 24">
-<path d="M3 16c4 1.8 7.2 1.8 10.4 0 2.6-1.4 5-1.4 7.6 0"></path>
-<circle cx="6" cy="18.2" r="1.5"></circle>
-<circle cx="18" cy="18.2" r="1.5"></circle>
-<path d="m7 13 3-7 2.2 4.2L16 8l2 5"></path>
-</symbol>
+    <nav class="top-nav">
+      <button onclick="showPage('home')">Home</button>
+      <button onclick="showPage('connect')">Connect</button>
+      <button onclick="showPage('date')">Date</button>
+      <button onclick="showPage('build')">Build</button>
+      <button onclick="showPage('market')">Market</button>
+      <button onclick="showPage('explore')">Explore</button>
+      <button onclick="showPage('culture')">Culture</button>
+      <button onclick="showPage('languages')">Languages</button>
+      <button onclick="showPage('ai')">Soulaani AI</button>
+    </nav>
 
-<symbol id="i-reels" viewBox="0 0 24 24">
-<rect x="4" y="4" width="16" height="16" rx="4"></rect>
-<path d="m9 4 3 5M15 4l3 5M4 9h16"></path>
-<path d="m10 13 5 3-5 3z"></path>
-</symbol>
+    <div class="header-actions">
+      <button class="icon-btn" onclick="openSearch()">⌕</button>
+      <button class="icon-btn" onclick="openDrawer()">☰</button>
+    </div>
 
-<symbol id="i-fist" viewBox="0 0 24 24">
-<path d="M7 11V6a1.5 1.5 0 0 1 3 0v4"></path>
-<path d="M10 10V4.8a1.5 1.5 0 0 1 3 0V10"></path>
-<path d="M13 10V5.5a1.5 1.5 0 0 1 3 0v5"></path>
-<path d="M16 11V7.5a1.5 1.5 0 0 1 3 0v7c0 4-2.7 6.5-6.4 6.5H9.5c-2.2 0-3.6-1-4.7-2.8L2.5 13a1.7 1.7 0 0 1 3-1.7L7 13"></path>
-</symbol>
-
-<symbol id="i-ai" viewBox="0 0 24 24">
-<rect x="4" y="4" width="16" height="16" rx="5"></rect>
-<circle cx="9" cy="11" r="1"></circle>
-<circle cx="15" cy="11" r="1"></circle>
-<path d="M8 15c2 1.5 6 1.5 8 0"></path>
-<path d="M12 4V2"></path>
-</symbol>
-
-<symbol id="i-user" viewBox="0 0 24 24">
-<circle cx="12" cy="8" r="4"></circle>
-<path d="M4 21c.8-4 3.5-6 8-6s7.2 2 8 6"></path>
-</symbol>
-
-<symbol id="i-menu" viewBox="0 0 24 24">
-<path d="M4 7h16M4 12h16M4 17h16"></path>
-</symbol>
-
-<symbol id="i-search" viewBox="0 0 24 24">
-<circle cx="10.8" cy="10.8" r="6.8"></circle>
-<path d="m16 16 5 5"></path>
-</symbol>
-
-<symbol id="i-bell" viewBox="0 0 24 24">
-<path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
-<path d="M10 21h4"></path>
-</symbol>
-
-<symbol id="i-heart" viewBox="0 0 24 24">
-<path d="M20.8 8.8c0 5.5-8.8 11-8.8 11S3.2 14.3 3.2 8.8A4.7 4.7 0 0 1 12 6.2a4.7 4.7 0 0 1 8.8 2.6Z"></path>
-</symbol>
-
-<symbol id="i-comment" viewBox="0 0 24 24">
-<path d="M20 11.5a7.5 7.5 0 0 1-7.8 7.5 8.5 8.5 0 0 1-4.1-1L4 19l1.1-3.3A7.4 7.4 0 0 1 4.5 12 7.5 7.5 0 0 1 12 4.5a7.5 7.5 0 0 1 8 7Z"></path>
-</symbol>
-
-<symbol id="i-share" viewBox="0 0 24 24">
-<path d="m20 4-7 16-3-7-6-3Z"></path>
-<path d="M10 13 20 4"></path>
-</symbol>
-
-<symbol id="i-camera" viewBox="0 0 24 24">
-<rect x="3" y="6" width="18" height="15" rx="3"></rect>
-<path d="M8 6 9.5 3h5L16 6"></path>
-<circle cx="12" cy="13.5" r="4"></circle>
-</symbol>
-
-<symbol id="i-edit" viewBox="0 0 24 24">
-<path d="m4 20 4.5-1 10-10a2.1 2.1 0 0 0-3-3l-10 10Z"></path>
-<path d="m14 7 3 3"></path>
-</symbol>
-
-<symbol id="i-play" viewBox="0 0 24 24">
-<path d="m9 6 9 6-9 6z"></path>
-</symbol>
-
-<symbol id="i-settings" viewBox="0 0 24 24">
-<circle cx="12" cy="12" r="3"></circle>
-<path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.7 1.7-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V20h-2.4v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L8 17l.1-.1A1.7 1.7 0 0 0 8.4 15a1.7 1.7 0 0 0-1.6-1H6v-2.4h.8a1.7 1.7 0 0 0 1.6-1A1.7 1.7 0 0 0 8.1 9L8 8.9l1.7-1.7.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.6V6H15v.1a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1 1.7 1.7-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.1V14h-.1a1.7 1.7 0 0 0-1.5 1Z"></path>
-</symbol>
-
-<symbol id="i-volume" viewBox="0 0 24 24">
-<path d="M4 10v4h4l5 4V6l-5 4Z"></path>
-<path d="M16 9a4 4 0 0 1 0 6M18 6a8 8 0 0 1 0 12"></path>
-</symbol>
-
-<symbol id="i-volume-off" viewBox="0 0 24 24">
-<path d="M4 10v4h4l5 4V6l-5 4Z"></path>
-<path d="m18 10-4 4M14 10l4 4"></path>
-</symbol>
-</svg>
-
-<div class="app">
-
-<!-- =========================
-     TOP BAR
-========================= -->
-
-<header class="topbar">
-  <div class="brand">
-    <div class="brand-mark">S</div>
-    <span>Soulaani</span>
-  </div>
-
-  <div class="header-actions">
-    <button class="icon-btn" onclick="openSearch()" aria-label="Search">
-      <svg class="icon"><use href="#i-search"></use></svg>
-    </button>
-
-    <button class="icon-btn" onclick="showToast('Notifications coming together next 🔔')" aria-label="Notifications">
-      <svg class="icon"><use href="#i-bell"></use></svg>
-    </button>
-
-    <button class="icon-btn" onclick="openDrawer()" aria-label="Menu">
-      <svg class="icon"><use href="#i-menu"></use></svg>
-    </button>
   </div>
 </header>
 
 <!-- =========================
-     HOME
+     APP
 ========================= -->
 
-<section id="homePage" class="page active">
+<main class="app">
+
+<!-- HOME -->
+
+<section id="home" class="page active">
 
   <div class="hero">
-    <div class="container hero-content">
-      <div class="gold" style="font-weight:900;letter-spacing:2px;margin-bottom:12px;">
-        THE CULTURE. THE PEOPLE. THE PLATFORM.
+
+    <div class="hero-content">
+
+      <div class="hero-eyebrow">
+        The Culture. The People. The Platform.
       </div>
 
-      <h1>Soulaani</h1>
+      <h1>
+        Built for <span class="gold">Us.</span>
+      </h1>
 
       <p>
-        A place to connect, create, discover, build, share culture,
-        meet people and make your corner of the world feel a little
-        more like home.
+        Soulaani is a social platform built around Black American culture,
+        community, creativity, entrepreneurship, language, music, food,
+        skating, connection and the global Black diaspora.
       </p>
 
-      <div class="hero-actions">
-        <button class="primary" onclick="openComposer()">Create a post</button>
-        <button class="secondary" onclick="navigate('culturePage','culture')">Explore Culture</button>
+      <div class="hero-buttons">
+        <button class="btn btn-gold" onclick="showPage('connect')">
+          Connect
+        </button>
+
+        <button class="btn btn-dark" onclick="showPage('languages')">
+          Explore Languages
+        </button>
       </div>
+
     </div>
+
   </div>
 
-  <div class="container">
+  <div class="section-title">Your Feed</div>
+  <div class="section-subtitle">
+    What's happening across the Soulaani community.
+  </div>
 
-    <div class="stories">
-      <div class="story">
-        <div class="story-ring"><div class="story-ring-inner">+</div></div>
-        Your Story
-      </div>
-      <div class="story">
-        <div class="story-ring"><div class="story-ring-inner">🎵</div></div>
-        Music
-      </div>
-      <div class="story">
-        <div class="story-ring"><div class="story-ring-inner">🛹</div></div>
-        Skate
-      </div>
-      <div class="story">
-        <div class="story-ring"><div class="story-ring-inner">🍽️</div></div>
-        Food
-      </div>
-      <div class="story">
-        <div class="story-ring"><div class="story-ring-inner">🎨</div></div>
-        Art
-      </div>
-      <div class="story">
-        <div class="story-ring"><div class="story-ring-inner">📍</div></div>
-        Local
-      </div>
-    </div>
+  <div class="feed-layout">
 
-    <div class="quick-grid">
+    <div>
 
-      <button class="quick" onclick="navigate('newsPage','news')">
-        <span class="quick-icon">◈</span>
-        <strong>Newsfeed</strong>
-        <span class="muted">See what’s happening</span>
-      </button>
+      <article class="post">
 
-      <button class="quick" onclick="navigate('skatePage','skate')">
-        <span class="quick-icon">🛹</span>
-        <strong>Skate</strong>
-        <span class="muted">Riders, clips & spots</span>
-      </button>
+        <div class="post-head">
+          <div class="avatar">S</div>
 
-      <button class="quick" onclick="navigate('reelsPage','reels')">
-        <span class="quick-icon">▶</span>
-        <strong>Reels</strong>
-        <span class="muted">Vertical video</span>
-      </button>
-
-      <button class="quick" onclick="navigate('aiPage','ai')">
-        <span class="quick-icon">✦</span>
-        <strong>Soulaani AI</strong>
-        <span class="muted">Ask anything</span>
-      </button>
-
-    </div>
-
-    <div class="composer card">
-      <div class="avatar" id="homeAvatar">S</div>
-      <div class="composer-box" onclick="openComposer()">
-        What’s happening?
-      </div>
-      <button class="icon-btn" onclick="openComposer()">
-        <svg class="icon"><use href="#i-camera"></use></svg>
-      </button>
-    </div>
-
-    <article class="post card">
-      <div class="post-head">
-        <div class="avatar">D</div>
-        <div class="post-info">
-          <strong>Soulaani Community</strong>
-          <span>Today · Public</span>
+          <div class="post-meta">
+            <strong>Soulaani Community</strong>
+            <small>Just now · 🌎</small>
+          </div>
         </div>
+
+        <div class="post-body">
+          Welcome to Soulaani. A place to connect, create, learn,
+          build and celebrate culture.
+        </div>
+
+        <div class="post-media">
+          ✊🏾
+        </div>
+
+        <div class="post-actions">
+
+          <div class="reaction-wrap">
+
+            <div class="reactions">
+              <button onclick="react('❤️')">❤️</button>
+              <button onclick="react('😂')">😂</button>
+              <button onclick="react('🔥')">🔥</button>
+              <button onclick="react('😮')">😮</button>
+              <button onclick="react('👎🏾')">👎🏾</button>
+            </div>
+
+            <button class="reaction-btn" onclick="toggleReaction(this)">
+              👍🏾 React
+            </button>
+
+          </div>
+
+          <button class="comment-btn" onclick="openComments()">
+            💬 Comment
+          </button>
+
+          <button class="share-btn" onclick="sharePost()">
+            ↗ Share
+          </button>
+
+        </div>
+
+      </article>
+
+      <article class="post">
+
+        <div class="post-head">
+          <div class="avatar">T</div>
+
+          <div class="post-meta">
+            <strong>Trilly</strong>
+            <small>2h · Harrisburg, PA</small>
+          </div>
+
+        </div>
+
+        <div class="post-body">
+          Language is connection. Culture is memory. Let's keep the
+          knowledge moving forward.
+        </div>
+
+        <div class="post-actions">
+
+          <div class="reaction-wrap">
+            <div class="reactions">
+              <button>❤️</button>
+              <button>😂</button>
+              <button>🔥</button>
+              <button>😮</button>
+              <button>👎🏾</button>
+            </div>
+
+            <button class="reaction-btn">
+              👍🏾 React
+            </button>
+          </div>
+
+          <button class="comment-btn">
+            💬 Comment
+          </button>
+
+          <button class="share-btn">
+            ↗ Share
+          </button>
+
+        </div>
+
+      </article>
+
+    </div>
+
+    <aside>
+
+      <div class="card side-card">
+
+        <h3>Quick Access</h3>
+
+        <div class="side-list">
+
+          <div class="side-item">
+            <div>🗣️</div>
+            <div>
+              <strong>Language & Connection</strong>
+              <small>Learn and connect</small>
+            </div>
+          </div>
+
+          <div class="side-item">
+            <div>🛹</div>
+            <div>
+              <strong>Skate</strong>
+              <small>Riders and spots</small>
+            </div>
+          </div>
+
+          <div class="side-item">
+            <div>🎵</div>
+            <div>
+              <strong>Culture</strong>
+              <small>Music, food and art</small>
+            </div>
+          </div>
+
+          <div class="side-item">
+            <div>🤖</div>
+            <div>
+              <strong>Soulaani AI</strong>
+              <small>Your AI assistant</small>
+            </div>
+          </div>
+
+        </div>
+
       </div>
 
-      <div class="post-text">
-        Welcome to Soulaani. This is your space to share your voice,
-        your creativity, your culture and your everyday life.
+      <div class="card">
+
+        <h3>Local Discover</h3>
+
+        <p>
+          Explore people, businesses, events, food and culture
+          around your selected location.
+        </p>
+
+        <button
+          class="btn btn-gold btn-small"
+          style="margin-top:14px"
+          onclick="showPage('explore')">
+          Explore Local
+        </button>
+
       </div>
 
-      <div class="post-media" style="display:grid;place-items:center;font-size:60px;">
-        ✦
-      </div>
-
-      <div class="post-actions">
-        <button class="post-action" onclick="openReactionModal()">♡ React</button>
-        <button class="post-action" onclick="showToast('Comments opened')">○ Comment</button>
-        <button class="post-action" onclick="shareContent('Soulaani Community')">↗ Share</button>
-      </div>
-    </article>
+    </aside>
 
   </div>
+
 </section>
 
-<!-- =========================
-     NEWSFEED
-========================= -->
 
-<section id="newsPage" class="page">
-  <div class="container">
+<!-- CONNECT -->
 
-    <div class="page-head">
-      <h1>Newsfeed</h1>
-      <p>Your wider Soulaani feed.</p>
+<section id="connect" class="page">
+
+  <h2 class="section-title">Connect</h2>
+
+  <p class="section-subtitle">
+    Meet people, communities and creators.
+  </p>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="feature-icon">👥</div>
+      <h3>People</h3>
+      <p>
+        Find people who share your interests, culture and passions.
+      </p>
+      <button class="btn btn-gold btn-small" style="margin-top:15px">
+        Find People
+      </button>
     </div>
 
-    <div class="tabs">
-      <button class="tab active">For You</button>
-      <button class="tab">Following</button>
-      <button class="tab">Local</button>
-      <button class="tab">Trending</button>
+    <div class="card">
+      <div class="feature-icon">🌍</div>
+      <h3>Communities</h3>
+      <p>
+        Join conversations built around culture, cities and interests.
+      </p>
+      <button class="btn btn-gold btn-small" style="margin-top:15px">
+        Communities
+      </button>
     </div>
 
-    <article class="post card">
-      <div class="post-head">
-        <div class="avatar">A</div>
-        <div class="post-info">
-          <strong>Alex</strong>
-          <span>@alexcreates · 2h</span>
-        </div>
-      </div>
-
-      <div class="post-text">
-        Building something new and putting the finishing touches on it.
-        Sometimes the quiet part is where the magic happens.
-      </div>
-
-      <div class="post-media" style="display:grid;place-items:center;font-size:52px;">
-        ✦
-      </div>
-
-      <div class="post-actions">
-        <button class="post-action" onclick="openReactionModal()">♡ React</button>
-        <button class="post-action" onclick="showToast('Comments opened')">○ Comment</button>
-        <button class="post-action" onclick="shareContent('Alex')">↗ Share</button>
-      </div>
-    </article>
-
-    <article class="post card">
-      <div class="post-head">
-        <div class="avatar">M</div>
-        <div class="post-info">
-          <strong>Marcus</strong>
-          <span>@marcusmoves · 5h</span>
-        </div>
-      </div>
-
-      <div class="post-text">
-        New week. New goals. Same energy.
-      </div>
-
-      <div class="post-actions">
-        <button class="post-action" onclick="openReactionModal()">♡ React</button>
-        <button class="post-action">○ Comment</button>
-        <button class="post-action" onclick="shareContent('Marcus')">↗ Share</button>
-      </div>
-    </article>
+    <div class="card">
+      <div class="feature-icon">💬</div>
+      <h3>Messages</h3>
+      <p>
+        Chat privately or connect through community conversations.
+      </p>
+      <button class="btn btn-gold btn-small" style="margin-top:15px">
+        Open Messages
+      </button>
+    </div>
 
   </div>
-</section>
 
-<!-- =========================
-     SKATE
-========================= -->
+  <div class="connection-grid">
 
-<section id="skatePage" class="page">
-  <div class="container">
-
-    <div class="page-head">
-      <h1>Skate</h1>
-      <p>Riders, clips, spots, events and community.</p>
+    <div class="community-card">
+      <div class="community-icon">🗣️</div>
+      <h3>Language Exchange</h3>
+      <p>
+        Meet people practicing Haitian Creole, Louisiana Creole,
+        Tutnese and other languages.
+      </p>
     </div>
 
-    <div class="skate-hero">
-      <div>
-        <div class="skate-symbol">🛹</div>
-        <h2>Built for the riders.</h2>
-        <p class="muted" style="margin-top:8px;">
-          Discover local skate culture and connect with people who ride.
+    <div class="community-card">
+      <div class="community-icon">🎨</div>
+      <h3>Creators</h3>
+      <p>
+        Discover artists, musicians, photographers, designers and
+        storytellers.
+      </p>
+    </div>
+
+    <div class="community-card">
+      <div class="community-icon">🏙️</div>
+      <h3>Local Communities</h3>
+      <p>
+        Connect with people and culture in your city or region.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- DATE -->
+
+<section id="date" class="page">
+
+  <h2 class="section-title">Date</h2>
+
+  <p class="section-subtitle">
+    Meaningful connections built around shared interests and culture.
+  </p>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="feature-icon">❤️</div>
+      <h3>Discover</h3>
+      <p>
+        Browse profiles and discover people who share your interests.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="feature-icon">💫</div>
+      <h3>Match</h3>
+      <p>
+        Connect when both people choose to connect.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="feature-icon">💬</div>
+      <h3>Conversation</h3>
+      <p>
+        Start conversations and get to know each other.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- BUILD -->
+
+<section id="build" class="page">
+
+  <h2 class="section-title">Build</h2>
+
+  <p class="section-subtitle">
+    Careers, entrepreneurship, networking and ideas.
+  </p>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="feature-icon">💼</div>
+      <h3>Careers</h3>
+      <p>
+        Discover career opportunities and professional communities.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="feature-icon">🚀</div>
+      <h3>Entrepreneurs</h3>
+      <p>
+        Connect with founders, creators and business owners.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="feature-icon">🤝🏾</div>
+      <h3>Networking</h3>
+      <p>
+        Build relationships that turn ideas into opportunities.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- MARKET -->
+
+<section id="market" class="page">
+
+  <h2 class="section-title">Market</h2>
+
+  <p class="section-subtitle">
+    Discover Black-owned businesses, products and services.
+  </p>
+
+  <div class="grid-4">
+
+    <div class="card">
+      <div class="feature-icon">🛍️</div>
+      <h3>Businesses</h3>
+      <p>Discover businesses in your community.</p>
+    </div>
+
+    <div class="card">
+      <div class="feature-icon">👕</div>
+      <h3>Fashion</h3>
+      <p>Find independent designers and brands.</p>
+    </div>
+
+    <div class="card">
+      <div class="feature-icon">🍽️</div>
+      <h3>Food</h3>
+      <p>Find restaurants, cooks and food businesses.</p>
+    </div>
+
+    <div class="card">
+      <div class="feature-icon">🧴</div>
+      <h3>Products</h3>
+      <p>Explore products from community businesses.</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- EXPLORE -->
+
+<section id="explore" class="page">
+
+  <h2 class="section-title">Explore</h2>
+
+  <p class="section-subtitle">
+    Discover what's happening around you.
+  </p>
+
+  <div class="card" style="margin-bottom:20px">
+
+    <h3>📍 Local Discover</h3>
+
+    <p>
+      Choose a city or area to personalize your feed with people,
+      culture, businesses, events, food and music from that community.
+    </p>
+
+    <div style="display:flex;gap:10px;margin-top:15px;flex-wrap:wrap">
+
+      <input
+        id="locationInput"
+        placeholder="Enter city or area"
+        style="
+          flex:1;
+          min-width:220px;
+          background:#181818;
+          color:white;
+          border:1px solid #292929;
+          border-radius:12px;
+          padding:12px;
+        "
+      >
+
+      <button class="btn btn-gold" onclick="setLocation()">
+        Set Location
+      </button>
+
+    </div>
+
+    <div id="currentLocation"
+         style="color:#777;margin-top:12px">
+      Location not selected
+    </div>
+
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="feature-icon">🎉</div>
+      <h3>Events</h3>
+      <p>Find events and gatherings in your area.</p>
+    </div>
+
+    <div class="card">
+      <div class="feature-icon">🎶</div>
+      <h3>Music</h3>
+      <p>Discover local artists and sounds.</p>
+    </div>
+
+    <div class="card">
+      <div class="feature-icon">📸</div>
+      <h3>Local Feed</h3>
+      <p>See what's happening around your selected area.</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- CULTURE -->
+
+<section id="culture" class="page">
+
+  <h2 class="section-title">Culture</h2>
+
+  <p class="section-subtitle">
+    Food, music, art, fashion, history and creativity.
+  </p>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="culture-symbol">✊🏾</div>
+      <h3>Black American Culture</h3>
+      <p>
+        Stories, traditions, creativity and cultural expression.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="culture-symbol">🎵</div>
+      <h3>Music</h3>
+      <p>
+        Discover musicians, sounds and cultural movements.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="culture-symbol">🎨</div>
+      <h3>Art & Fashion</h3>
+      <p>
+        Showcase artists, designers and creative work.
+      </p>
+    </div>
+
+  </div>
+
+  <h3 style="margin:28px 0 15px">
+    Soul Food
+  </h3>
+
+  <div class="grid">
+
+    <div class="card food-card">
+      <div class="food-image">🍗🥬🍠</div>
+      <div class="food-info">
+        <h3>Sunday Soul Food</h3>
+        <p>
+          One plate, family-style comfort and the traditions behind
+          Black American soul food.
         </p>
       </div>
     </div>
 
-    <div class="skate-grid">
-
-      <article class="skate-card">
-        <div class="skate-card-image"></div>
-        <div class="skate-card-content">
-          <small class="gold">RIDERS</small>
-          <h3>Meet the community</h3>
-        </div>
-      </article>
-
-      <article class="skate-card">
-        <div class="skate-card-image"></div>
-        <div class="skate-card-content">
-          <small class="gold">CLIPS</small>
-          <h3>Latest skate clips</h3>
-        </div>
-      </article>
-
-      <article class="skate-card">
-        <div class="skate-card-image"></div>
-        <div class="skate-card-content">
-          <small class="gold">LOCAL</small>
-          <h3>Find skate spots</h3>
-        </div>
-      </article>
-
+    <div class="card food-card">
+      <div class="food-image">🍖🥔🥗</div>
+      <div class="food-info">
+        <h3>Community Plates</h3>
+        <p>
+          Discover cooks, restaurants and food creators.
+        </p>
+      </div>
     </div>
 
-  </div>
-</section>
-
-<!-- =========================
-     REELS
-========================= -->
-
-<section id="reelsPage" class="page">
-
-  <div class="reels-shell">
-
-    <div class="reels-top">
-      <strong class="reels-title">Reels</strong>
-
-      <select class="reels-filter" onchange="showToast('Reels filter: '+this.value)">
-        <option>For You</option>
-        <option>Following</option>
-        <option>Trending</option>
-        <option>Local</option>
-        <option>Culture</option>
-        <option>Skate</option>
-      </select>
-    </div>
-
-    <div class="reels-feed" id="reelsFeed">
-
-      <!-- REEL 1 -->
-
-      <article class="reel">
-
-        <div class="reel-progress"><span></span></div>
-
-        <div class="reel-placeholder">▶</div>
-
-        <video
-          class="reel-video"
-          loop
-          muted
-          playsinline
-          preload="metadata"
-        ></video>
-
-        <div class="reel-shade"></div>
-
-        <button class="icon-btn reel-mute" onclick="toggleReelMute(this)">
-          <svg class="icon"><use href="#i-volume-off"></use></svg>
-        </button>
-
-        <div class="reel-info">
-
-          <div class="reel-user">
-            <div class="reel-avatar">
-              <div style="width:100%;height:100%;display:grid;place-items:center;background:#242424;">J</div>
-            </div>
-
-            <strong>@jordancreates</strong>
-
-            <button class="follow-mini" onclick="followReelUser(this)">
-              Follow
-            </button>
-          </div>
-
-          <div class="reel-caption">
-            Just enjoying the day and creating something new.
-            #Soulaani #ForYou
-          </div>
-
-          <div class="reel-music">
-            ♫ Original sound · Jordan Creates
-          </div>
-
-        </div>
-
-        <div class="reel-actions">
-
-          <button class="reel-action reel-like" onclick="toggleReelLike(this)">
-            <div class="action-icon">
-              <svg class="icon"><use href="#i-heart"></use></svg>
-            </div>
-            <span>1.2K</span>
-          </button>
-
-          <button class="reel-action" onclick="showToast('Comments opened')">
-            <div class="action-icon">
-              <svg class="icon"><use href="#i-comment"></use></svg>
-            </div>
-            <span>186</span>
-          </button>
-
-          <button class="reel-action" onclick="shareContent('Jordan Creates Reel')">
-            <div class="action-icon">
-              <svg class="icon"><use href="#i-share"></use></svg>
-            </div>
-            <span>Share</span>
-          </button>
-
-          <button class="reel-action" onclick="openProfileByUsername('jordancreates')">
-            <div class="action-icon">S</div>
-            <span>Profile</span>
-          </button>
-
-        </div>
-
-      </article>
-
-      <!-- REEL 2 -->
-
-      <article class="reel">
-
-        <div class="reel-progress"><span></span></div>
-
-        <div
-          class="reel-placeholder"
-          style="background:
-          radial-gradient(circle at 50% 35%,rgba(214,168,79,.25),transparent 30%),
-          linear-gradient(145deg,#292929,#090909);"
-        >
-          ♫
-        </div>
-
-        <video
-          class="reel-video"
-          loop
-          muted
-          playsinline
-          preload="metadata"
-        ></video>
-
-        <div class="reel-shade"></div>
-
-        <button class="icon-btn reel-mute" onclick="toggleReelMute(this)">
-          <svg class="icon"><use href="#i-volume-off"></use></svg>
-        </button>
-
-        <div class="reel-info">
-
-          <div class="reel-user">
-            <div class="reel-avatar">
-              <div style="width:100%;height:100%;display:grid;place-items:center;background:#282828;">N</div>
-            </div>
-
-            <strong>@nayahmusic</strong>
-
-            <button class="follow-mini" onclick="followReelUser(this)">
-              Follow
-            </button>
-          </div>
-
-          <div class="reel-caption">
-            New music, new energy. What are y'all listening to today?
-            🎶
-          </div>
-
-          <div class="reel-music">
-            ♫ Original sound · Nayah
-          </div>
-
-        </div>
-
-        <div class="reel-actions">
-
-          <button class="reel-action reel-like" onclick="toggleReelLike(this)">
-            <div class="action-icon">
-              <svg class="icon"><use href="#i-heart"></use></svg>
-            </div>
-            <span>842</span>
-          </button>
-
-          <button class="reel-action" onclick="showToast('Comments opened')">
-            <div class="action-icon">
-              <svg class="icon"><use href="#i-comment"></use></svg>
-            </div>
-            <span>91</span>
-          </button>
-
-          <button class="reel-action" onclick="shareContent('Nayah Music Reel')">
-            <div class="action-icon">
-              <svg class="icon"><use href="#i-share"></use></svg>
-            </div>
-            <span>Share</span>
-          </button>
-
-          <button class="reel-action" onclick="openProfileByUsername('nayahmusic')">
-            <div class="action-icon">S</div>
-            <span>Profile</span>
-          </button>
-
-        </div>
-
-      </article>
-
-      <!-- REEL 3 -->
-
-      <article class="reel">
-
-        <div class="reel-progress"><span></span></div>
-
-        <div
-          class="reel-placeholder"
-          style="background:
-          radial-gradient(circle at 35% 25%,rgba(214,168,79,.2),transparent 30%),
-          linear-gradient(145deg,#252525,#080808);"
-        >
-          🛹
-        </div>
-
-        <video
-          class="reel-video"
-          loop
-          muted
-          playsinline
-          preload="metadata"
-        ></video>
-
-        <div class="reel-shade"></div>
-
-        <button class="icon-btn reel-mute" onclick="toggleReelMute(this)">
-          <svg class="icon"><use href="#i-volume-off"></use></svg>
-        </button>
-
-        <div class="reel-info">
-
-          <div class="reel-user">
-            <div class="reel-avatar">
-              <div style="width:100%;height:100%;display:grid;place-items:center;background:#282828;">D</div>
-            </div>
-
-            <strong>@drewskates</strong>
-
-            <button class="follow-mini" onclick="followReelUser(this)">
-              Follow
-            </button>
-          </div>
-
-          <div class="reel-caption">
-            New spot. New line. Had to run it back.
-            🛹🔥 #Skate #Soulaani
-          </div>
-
-          <div class="reel-music">
-            ♫ Original sound · Drew Skates
-          </div>
-
-        </div>
-
-        <div class="reel-actions">
-
-          <button class="reel-action reel-like" onclick="toggleReelLike(this)">
-            <div class="action-icon">
-              <svg class="icon"><use href="#i-heart"></use></svg>
-            </div>
-            <span>3.4K</span>
-          </button>
-
-          <button class="reel-action" onclick="showToast('Comments opened')">
-            <div class="action-icon">
-              <svg class="icon"><use href="#i-comment"></use></svg>
-            </div>
-            <span>310</span>
-          </button>
-
-          <button class="reel-action" onclick="shareContent('Drew Skates Reel')">
-            <div class="action-icon">
-              <svg class="icon"><use href="#i-share"></use></svg>
-            </div>
-            <span>Share</span>
-          </button>
-
-          <button class="reel-action" onclick="openProfileByUsername('drewskates')">
-            <div class="action-icon">S</div>
-            <span>Profile</span>
-          </button>
-
-        </div>
-
-      </article>
-
+    <div class="card food-card">
+      <div class="food-image">🍤🍚🥬</div>
+      <div class="food-info">
+        <h3>Regional Flavor</h3>
+        <p>
+          Explore the regional traditions that shaped soul food.
+        </p>
+      </div>
     </div>
 
   </div>
 
 </section>
 
-<!-- =========================
-     CULTURE
-========================= -->
 
-<section id="culturePage" class="page">
-  <div class="container">
+<!-- SKATE -->
 
-    <div class="page-head">
-      <h1>Culture</h1>
-      <p>Food, music, art, fashion, businesses and creators.</p>
-    </div>
+<section id="skate" class="page">
 
-    <div class="tabs">
-      <button class="tab active">All</button>
-      <button class="tab">Soul Food</button>
-      <button class="tab">Music</button>
-      <button class="tab">Art</button>
-      <button class="tab">Businesses</button>
-      <button class="tab">Creators</button>
-    </div>
+  <div class="skate-banner">
 
-    <div class="culture-grid">
+    <div class="skateboard-art">🛹</div>
 
-      <article class="culture-card">
-        <div class="culture-image"></div>
-        <div class="culture-content">
-          <span class="culture-tag">SOUL FOOD</span>
-          <h3>Sunday plate</h3>
-          <p class="muted">Food made for the whole table.</p>
-        </div>
-      </article>
+    <div style="max-width:650px">
 
-      <article class="culture-card">
-        <div class="culture-image"></div>
-        <div class="culture-content">
-          <span class="culture-tag">MUSIC</span>
-          <h3>Sounds of the culture</h3>
-          <p class="muted">Discover artists and playlists.</p>
-        </div>
-      </article>
-
-      <article class="culture-card">
-        <div class="culture-image"></div>
-        <div class="culture-content">
-          <span class="culture-tag">BUSINESS</span>
-          <h3>Black-owned businesses</h3>
-          <p class="muted">Find businesses in your community.</p>
-        </div>
-      </article>
-
-      <article class="culture-card">
-        <div class="culture-image"></div>
-        <div class="culture-content">
-          <span class="culture-tag">ART</span>
-          <h3>Creative voices</h3>
-          <p class="muted">Artists shaping the culture.</p>
-        </div>
-      </article>
-
-      <article class="culture-card">
-        <div class="culture-image"></div>
-        <div class="culture-content">
-          <span class="culture-tag">FASHION</span>
-          <h3>Style & expression</h3>
-          <p class="muted">Wear your story.</p>
-        </div>
-      </article>
-
-      <article class="culture-card">
-        <div class="culture-image"></div>
-        <div class="culture-content">
-          <span class="culture-tag">CREATORS</span>
-          <h3>People worth knowing</h3>
-          <p class="muted">Meet the creators behind the posts.</p>
-        </div>
-      </article>
-
-    </div>
-
-  </div>
-</section>
-
-<!-- =========================
-     AI
-========================= -->
-
-<section id="aiPage" class="page">
-  <div class="container ai-wrap">
-
-    <div class="page-head">
-      <h1>Soulaani AI</h1>
-      <p>Your built-in Soulaani assistant.</p>
-    </div>
-
-    <div class="ai-card card">
-
-      <div class="ai-head">
-        <div class="ai-orb">S</div>
-        <div>
-          <strong>Soulaani AI</strong>
-          <div class="muted" style="font-size:12px;">
-            Your assistant inside Soulaani
-          </div>
-        </div>
+      <div class="hero-eyebrow">
+        SOULAANI SKATE
       </div>
 
-      <div class="ai-messages" id="aiMessages">
-
-        <div class="ai-message bot">
-          What's up. I'm Soulaani AI. Ask me something, help plan
-          something, brainstorm an idea, or explore the platform.
-        </div>
-
-      </div>
-
-      <div class="ai-input">
-        <input
-          id="aiInput"
-          placeholder="Ask Soulaani AI..."
-          onkeydown="if(event.key==='Enter')sendAI()"
-        >
-
-        <button class="primary" onclick="sendAI()">
-          Send
-        </button>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-<!-- =========================
-     PROFILE
-========================= -->
-
-<section id="profilePage" class="page profile-page">
-
-  <div id="profileThemeRoot">
-
-    <div class="profile-cover" id="profileCover">
-
-      <div class="profile-cover-overlay"></div>
-
-      <div class="profile-cover-actions">
-
-        <button class="secondary" onclick="openProfileEditor()">
-          <svg class="icon" style="vertical-align:middle;margin-right:5px;">
-            <use href="#i-edit"></use>
-          </svg>
-          Edit Profile
-        </button>
-
-        <button class="icon-btn" onclick="shareProfile()">
-          <svg class="icon"><use href="#i-share"></use></svg>
-        </button>
-
-      </div>
-
-    </div>
-
-    <div class="profile-main">
-
-      <div class="profile-identity">
-
-        <div class="profile-avatar" id="profileAvatar">
-          <span style="display:grid;place-items:center;width:100%;height:100%;font-size:35px;">S</span>
-        </div>
-
-        <div class="profile-details">
-
-          <h1 id="profileName">Soulaani User</h1>
-
-          <div class="handle" id="profileUsername">@soulaaniuser</div>
-
-          <div class="profile-bio" id="profileBio">
-            Welcome to my Soulaani profile.
-          </div>
-
-          <div class="profile-location" id="profileLocation">
-            📍 Somewhere in the community
-          </div>
-
-        </div>
-
-        <div class="profile-buttons">
-
-          <button class="primary" onclick="openProfileEditor()">
-            Edit
-          </button>
-
-          <button class="secondary" onclick="shareProfile()">
-            Share
-          </button>
-
-        </div>
-
-      </div>
-
-      <div class="profile-stat-row">
-
-        <div class="profile-stat">
-          <strong id="statPosts">0</strong>
-          <span>Posts</span>
-        </div>
-
-        <div class="profile-stat">
-          <strong id="statFollowers">0</strong>
-          <span>Followers</span>
-        </div>
-
-        <div class="profile-stat">
-          <strong id="statFollowing">0</strong>
-          <span>Following</span>
-        </div>
-
-        <div class="profile-stat">
-          <strong id="statFriends">0</strong>
-          <span>Friends</span>
-        </div>
-
-      </div>
-
-      <div class="profile-tabs">
-
-        <button class="profile-tab active" onclick="profileTab('posts',this)">
-          Posts
-        </button>
-
-        <button class="profile-tab" onclick="profileTab('reels',this)">
-          Reels
-        </button>
-
-        <button class="profile-tab" onclick="profileTab('photos',this)">
-          Photos
-        </button>
-
-        <button class="profile-tab" onclick="profileTab('about',this)">
-          About
-        </button>
-
-        <button class="profile-tab" onclick="profileTab('music',this)">
-          Music
-        </button>
-
-        <button class="profile-tab" onclick="profileTab('customize',this)">
-          Customize
-        </button>
-
-      </div>
-
-      <!-- POSTS -->
-
-      <div id="profilePosts" class="profile-content-panel active">
-
-        <div class="featured">
-
-          <div class="featured-card">
-            <small class="gold">FEATURED</small>
-            <h2 style="margin-top:12px;">
-              Your Soulaani profile is your own space.
-            </h2>
-            <p class="muted" style="margin-top:10px;line-height:1.6;">
-              Highlight your personality, your work, your culture,
-              your music and whatever you want people to see first.
-            </p>
-          </div>
-
-          <div class="featured-card">
-            <small class="gold">PROFILE THEME</small>
-            <h3 style="margin-top:12px;">Make it yours.</h3>
-            <p class="muted" style="margin-top:10px;">
-              Colors, backgrounds, cards, profile media and more.
-            </p>
-          </div>
-
-        </div>
-
-        <div style="height:15px;"></div>
-
-        <article class="post card">
-
-          <div class="post-head">
-
-            <div class="avatar" id="profilePostAvatar">
-              S
-            </div>
-
-            <div class="post-info">
-              <strong id="profilePostName">Soulaani User</strong>
-              <span>Just now · Public</span>
-            </div>
-
-          </div>
-
-          <div class="post-text">
-            This is where your profile posts will live.
-          </div>
-
-          <div class="post-actions">
-            <button class="post-action" onclick="openReactionModal()">♡ React</button>
-            <button class="post-action">○ Comment</button>
-            <button class="post-action" onclick="shareContent('Profile post')">↗ Share</button>
-          </div>
-
-        </article>
-
-      </div>
-
-      <!-- REELS -->
-
-      <div id="profileReels" class="profile-content-panel">
-
-        <div class="profile-post-grid">
-
-          <div class="profile-tile">
-            <div style="height:100%;display:grid;place-items:center;font-size:35px;">▶</div>
-            <span class="profile-tile-label">Reel</span>
-          </div>
-
-          <div class="profile-tile">
-            <div style="height:100%;display:grid;place-items:center;font-size:35px;">♫</div>
-            <span class="profile-tile-label">Reel</span>
-          </div>
-
-          <div class="profile-tile">
-            <div style="height:100%;display:grid;place-items:center;font-size:35px;">🛹</div>
-            <span class="profile-tile-label">Reel</span>
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- PHOTOS -->
-
-      <div id="profilePhotos" class="profile-content-panel">
-
-        <div class="profile-post-grid">
-
-          <div class="profile-tile">
-            <div style="height:100%;display:grid;place-items:center;font-size:38px;">📷</div>
-          </div>
-
-          <div class="profile-tile">
-            <div style="height:100%;display:grid;place-items:center;font-size:38px;">✦</div>
-          </div>
-
-          <div class="profile-tile">
-            <div style="height:100%;display:grid;place-items:center;font-size:38px;">🎨</div>
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- ABOUT -->
-
-      <div id="profileAbout" class="profile-content-panel">
-
-        <div class="about-grid">
-
-          <div class="about-box">
-
-            <h3>About</h3>
-
-            <div class="about-row">
-              <span>Username</span>
-              <strong id="aboutUsername">@soulaaniuser</strong>
-            </div>
-
-            <div class="about-row">
-              <span>Location</span>
-              <strong id="aboutLocation">Not set</strong>
-            </div>
-
-            <div class="about-row">
-              <span>Joined</span>
-              <strong>2026</strong>
-            </div>
-
-          </div>
-
-          <div class="about-box">
-
-            <h3>Interests</h3>
-
-            <div class="tabs" style="flex-wrap:wrap;">
-              <span class="tab active">Music</span>
-              <span class="tab active">Culture</span>
-              <span class="tab active">Art</span>
-              <span class="tab active">Community</span>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- MUSIC -->
-
-      <div id="profileMusic" class="profile-content-panel">
-
-        <div class="about-box">
-
-          <h3>My Playlist</h3>
-
-          <p class="muted" style="margin-bottom:15px;">
-            Add playable music to your profile.
-          </p>
-
-          <div class="playlist">
-
-            <div class="song">
-
-              <div class="song-art">♫</div>
-
-              <div class="song-info">
-                <strong>Your Song</strong>
-                <span>Add an audio URL through profile editing.</span>
-              </div>
-
-              <button class="icon-btn" onclick="showToast('Add your audio URL in Edit Profile')">
-                <svg class="icon"><use href="#i-play"></use></svg>
-              </button>
-
-            </div>
-
-            <div class="song">
-
-              <div class="song-art">♫</div>
-
-              <div class="song-info">
-                <strong>Favorite Track</strong>
-                <span>Music on your profile.</span>
-              </div>
-
-              <button class="icon-btn" onclick="showToast('Music player ready for a real audio URL')">
-                <svg class="icon"><use href="#i-play"></use></svg>
-              </button>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- CUSTOMIZE -->
-
-      <div id="profileCustomize" class="profile-content-panel">
-
-        <div class="customizer">
-
-          <div class="custom-card">
-
-            <h3>Theme Colors</h3>
-
-            <div class="field">
-              <label>Accent color</label>
-              <div class="color-row">
-                <input type="color" id="themeAccent" value="#d6a84f">
-                <span class="muted">Buttons, highlights and accents</span>
-              </div>
-            </div>
-
-            <div class="field">
-              <label>Background color</label>
-              <div class="color-row">
-                <input type="color" id="themeBackground" value="#070707">
-                <span class="muted">Profile background</span>
-              </div>
-            </div>
-
-            <div class="field">
-              <label>Card color</label>
-              <div class="color-row">
-                <input type="color" id="themeCard" value="#141414">
-                <span class="muted">Profile cards</span>
-              </div>
-            </div>
-
-            <div class="field">
-              <label>Text color</label>
-              <div class="color-row">
-                <input type="color" id="themeText" value="#f7f7f7">
-                <span class="muted">Profile text</span>
-              </div>
-            </div>
-
-            <button class="primary" onclick="applyCustomizer()">
-              Apply Theme
-            </button>
-
-          </div>
-
-          <div class="custom-card">
-
-            <h3>Theme Presets</h3>
-
-            <div class="theme-presets">
-
-              <button
-                class="theme-preset"
-                style="background:linear-gradient(135deg,#070707,#2b2111);"
-                onclick="presetTheme('#d6a84f','#070707','#141414','#f7f7f7')"
-              >
-                Gold
-              </button>
-
-              <button
-                class="theme-preset"
-                style="background:linear-gradient(135deg,#080d14,#12304b);"
-                onclick="presetTheme('#64b5ff','#080d14','#111b27','#f2f7ff')"
-              >
-                Ocean
-              </button>
-
-              <button
-                class="theme-preset"
-                style="background:linear-gradient(135deg,#130814,#351044);"
-                onclick="presetTheme('#e48cff','#130814','#211027','#fff5ff')"
-              >
-                Purple
-              </button>
-
-              <button
-                class="theme-preset"
-                style="background:linear-gradient(135deg,#07120d,#123b27);"
-                onclick="presetTheme('#63e89a','#07120d','#10231a','#effff5')"
-              >
-                Emerald
-              </button>
-
-              <button
-                class="theme-preset"
-                style="background:linear-gradient(135deg,#160808,#431313);"
-                onclick="presetTheme('#ff7676','#160808','#251010','#fff4f4')"
-              >
-                Crimson
-              </button>
-
-              <button
-                class="theme-preset"
-                style="background:linear-gradient(135deg,#111,#333);"
-                onclick="presetTheme('#ffffff','#080808','#151515','#ffffff')"
-              >
-                Monochrome
-              </button>
-
-            </div>
-
-          </div>
-
-          <div class="custom-card">
-
-            <h3>Profile Layout</h3>
-
-            <div class="field">
-              <label>Profile style</label>
-
-              <select id="profileLayout">
-                <option value="classic">Classic</option>
-                <option value="minimal">Minimal</option>
-                <option value="editorial">Editorial</option>
-                <option value="creator">Creator</option>
-              </select>
-
-            </div>
-
-            <div class="field">
-              <label>Profile picture shape</label>
-
-              <select id="avatarShape" onchange="changeAvatarShape(this.value)">
-                <option value="circle">Circle</option>
-                <option value="rounded">Rounded</option>
-                <option value="square">Square</option>
-              </select>
-            </div>
-
-          </div>
-
-          <div class="custom-card">
-
-            <h3>Profile Media</h3>
-
-            <p class="muted" style="line-height:1.6;margin-bottom:12px;">
-              Upload a profile picture or cover image/video.
-              This prototype is also prepared for future Live Photo-style
-              profile media.
-            </p>
-
-            <button class="secondary" onclick="openProfileEditor()">
-              Manage Media
-            </button>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- =========================
-     SEARCH PAGE
-========================= -->
-
-<section id="searchPage" class="page">
-  <div class="container">
-
-    <div class="page-head">
-      <h1>Search</h1>
-      <p>Find people and profiles on Soulaani.</p>
-    </div>
-
-    <div class="search-box">
-
-      <input
-        id="peopleSearch"
-        placeholder="Search people..."
-        oninput="searchPeople(this.value)"
-      >
-
-      <button class="primary" onclick="searchPeople(document.getElementById('peopleSearch').value)">
-        Search
+      <h2 style="font-size:42px;margin-bottom:12px">
+        Ride. Create. Connect.
+      </h2>
+
+      <p style="color:#aaa;line-height:1.7">
+        A dedicated space for skateboarders, riders, clips,
+        local skate spots, events and community.
+      </p>
+
+      <button
+        class="btn btn-gold"
+        style="margin-top:20px"
+        onclick="showToast('Skate post composer opened')">
+        Post a Clip
       </button>
 
     </div>
 
-    <div class="people-grid" id="peopleGrid"></div>
+  </div>
+
+  <div class="skate-grid">
+
+    <div class="skate-card">
+      <div class="skate-image">🛹</div>
+      <div class="skate-info">
+        <h3>Riders</h3>
+        <p>Discover riders and skating styles.</p>
+      </div>
+    </div>
+
+    <div class="skate-card">
+      <div class="skate-image">🎥</div>
+      <div class="skate-info">
+        <h3>Clips</h3>
+        <p>Watch community skate clips.</p>
+      </div>
+    </div>
+
+    <div class="skate-card">
+      <div class="skate-image">📍</div>
+      <div class="skate-info">
+        <h3>Skate Spots</h3>
+        <p>Discover local spots and parks.</p>
+      </div>
+    </div>
+
+    <div class="skate-card">
+      <div class="skate-image">🏆</div>
+      <div class="skate-info">
+        <h3>Events</h3>
+        <p>Find competitions and skate events.</p>
+      </div>
+    </div>
+
+    <div class="skate-card">
+      <div class="skate-image">👟</div>
+      <div class="skate-info">
+        <h3>Style</h3>
+        <p>Skate fashion and personal style.</p>
+      </div>
+    </div>
+
+    <div class="skate-card">
+      <div class="skate-image">🔥</div>
+      <div class="skate-info">
+        <h3>Community</h3>
+        <p>Connect with the skate community.</p>
+      </div>
+    </div>
 
   </div>
+
 </section>
 
-</div>
 
 <!-- =========================
-     BOTTOM NAV
+     LANGUAGE & CONNECTION
 ========================= -->
 
-<nav class="bottom-nav">
+<section id="languages" class="page">
 
-  <button class="bottom-item active" data-nav="home" onclick="navigate('homePage','home')">
-    <svg class="icon"><use href="#i-home"></use></svg>
-    <span>Home</span>
-  </button>
+  <div class="language-hero">
 
-  <button class="bottom-item" data-nav="news" onclick="navigate('newsPage','news')">
-    <svg class="icon"><use href="#i-news"></use></svg>
-    <span>Newsfeed</span>
-  </button>
+    <div class="hero-eyebrow">
+      SOULAANI LANGUAGE & CONNECTION
+    </div>
 
-  <button class="bottom-item" data-nav="skate" onclick="navigate('skatePage','skate')">
-    <svg class="icon"><use href="#i-skate"></use></svg>
-    <span>Skate</span>
-  </button>
+    <h2>
+      Our languages. <span class="gold">Our voices.</span>
+    </h2>
 
-  <button class="bottom-item" data-nav="reels" onclick="navigate('reelsPage','reels')">
-    <svg class="icon"><use href="#i-reels"></use></svg>
-    <span>Reels</span>
-  </button>
+    <p>
+      A free language-learning and connection hub focused on languages
+      connected to Black American history, the African diaspora and
+      Creole-speaking communities. Learn, translate, practice and
+      connect with other people.
+    </p>
 
-  <button class="bottom-item" data-nav="culture" onclick="navigate('culturePage','culture')">
-    <svg class="icon"><use href="#i-fist"></use></svg>
-    <span>Culture</span>
-  </button>
+    <div class="language-tools">
 
-  <button class="bottom-item" data-nav="ai" onclick="navigate('aiPage','ai')">
-    <svg class="icon"><use href="#i-ai"></use></svg>
-    <span>AI</span>
-  </button>
+      <div class="language-tool" onclick="startLesson()">
+        <div class="tool-icon">📚</div>
+        <strong>Learn Free</strong>
+        <span>Lessons and vocabulary</span>
+      </div>
 
-  <button class="bottom-item" data-nav="profile" onclick="navigate('profilePage','profile')">
-    <svg class="icon"><use href="#i-user"></use></svg>
-    <span>Profile</span>
-  </button>
+      <div class="language-tool" onclick="openTranslator()">
+        <div class="tool-icon">🌎</div>
+        <strong>Translator</strong>
+        <span>Translate phrases</span>
+      </div>
+
+      <div class="language-tool" onclick="openLanguageChat()">
+        <div class="tool-icon">💬</div>
+        <strong>Language Chat</strong>
+        <span>Practice with people</span>
+      </div>
+
+      <div class="language-tool" onclick="showToast('Language communities coming into focus')">
+        <div class="tool-icon">🤝🏾</div>
+        <strong>Communities</strong>
+        <span>Connect across the diaspora</span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="language-layout">
+
+    <div>
+
+      <h3 style="margin-bottom:15px">
+        Language Library
+      </h3>
+
+      <div class="language-list">
+
+        <div class="language-item"
+             onclick="selectLanguage('Haitian Creole')">
+          <div class="language-flag">🇭🇹</div>
+          <div>
+            <strong>Haitian Creole</strong>
+            <small>Kreyòl Ayisyen</small>
+          </div>
+          <button>›</button>
+        </div>
+
+        <div class="language-item"
+             onclick="selectLanguage('Louisiana Creole')">
+          <div class="language-flag">⚜️</div>
+          <div>
+            <strong>Louisiana Creole</strong>
+            <small>Créole Louisianais</small>
+          </div>
+          <button>›</button>
+        </div>
+
+        <div class="language-item"
+             onclick="selectLanguage('Tutnese')">
+          <div class="language-flag">📜</div>
+          <div>
+            <strong>Tutnese</strong>
+            <small>Historical African American language tradition</small>
+          </div>
+          <button>›</button>
+        </div>
+
+        <div class="language-item"
+             onclick="selectLanguage('Gullah Geechee')">
+          <div class="language-flag">🌊</div>
+          <div>
+            <strong>Gullah Geechee</strong>
+            <small>Gullah Geechee cultural language tradition</small>
+          </div>
+          <button>›</button>
+        </div>
+
+        <div class="language-item"
+             onclick="selectLanguage('Jamaican Patois')">
+          <div class="language-flag">🇯🇲</div>
+          <div>
+            <strong>Jamaican Patois</strong>
+            <small>Jamaican Creole</small>
+          </div>
+          <button>›</button>
+        </div>
+
+        <div class="language-item"
+             onclick="selectLanguage('Bajan')">
+          <div class="language-flag">🇧🇧</div>
+          <div>
+            <strong>Bajan</strong>
+            <small>Barbadian Creole tradition</small>
+          </div>
+          <button>›</button>
+        </div>
+
+        <div class="language-item"
+             onclick="selectLanguage('Trinidadian Creole')">
+          <div class="language-flag">🇹🇹</div>
+          <div>
+            <strong>Trinidadian Creole</strong>
+            <small>Creole language traditions</small>
+          </div>
+          <button>›</button>
+        </div>
+
+        <div class="language-item"
+             onclick="selectLanguage('Sierra Leone Krio')">
+          <div class="language-flag">🇸🇱</div>
+          <div>
+            <strong>Krio</strong>
+            <small>Sierra Leone</small>
+          </div>
+          <button>›</button>
+        </div>
+
+        <div class="language-item"
+             onclick="selectLanguage('Nigerian Pidgin')">
+          <div class="language-flag">🇳🇬</div>
+          <div>
+            <strong>Nigerian Pidgin</strong>
+            <small>West African language</small>
+          </div>
+          <button>›</button>
+        </div>
+
+        <div class="language-item"
+             onclick="selectLanguage('French')">
+          <div class="language-flag">🇫🇷</div>
+          <div>
+            <strong>French</strong>
+            <small>Important across the diaspora</small>
+          </div>
+          <button>›</button>
+        </div>
+
+        <div class="language-item"
+             onclick="selectLanguage('English')">
+          <div class="language-flag">🇺🇸</div>
+          <div>
+            <strong>English</strong>
+            <small>American English</small>
+          </div>
+          <button>›</button>
+        </div>
+
+        <div class="language-item"
+             onclick="selectLanguage('Spanish')">
+          <div class="language-flag">🌎</div>
+          <div>
+            <strong>Spanish</strong>
+            <small>Across the African diaspora</small>
+          </div>
+          <button>›</button>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="translator" id="translatorBox">
+
+      <h3 style="margin-bottom:5px">
+        Free Translator
+      </h3>
+
+      <p style="color:#777;margin-bottom:15px">
+        Choose a language and practice a phrase.
+      </p>
+
+      <select id="fromLanguage">
+        <option>English</option>
+        <option>Haitian Creole</option>
+        <option>Louisiana Creole</option>
+        <option>Tutnese</option>
+        <option>Gullah Geechee</option>
+        <option>Jamaican Patois</option>
+        <option>French</option>
+        <option>Spanish</option>
+      </select>
+
+      <select id="toLanguage">
+        <option>Haitian Creole</option>
+        <option>English</option>
+        <option>Louisiana Creole</option>
+        <option>Tutnese</option>
+        <option>Gullah Geechee</option>
+        <option>Jamaican Patois</option>
+        <option>French</option>
+        <option>Spanish</option>
+      </select>
+
+      <textarea
+        id="translateInput"
+        placeholder="Type a phrase..."></textarea>
+
+      <button class="btn btn-gold"
+              style="width:100%"
+              onclick="translatePhrase()">
+        Translate
+      </button>
+
+      <div class="translation-output"
+           id="translationOutput">
+        Your translation will appear here.
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- FREE LESSON -->
+
+  <div class="learn-panel" id="learningPanel">
+
+    <h3>
+      Free Language Learning
+    </h3>
+
+    <p style="color:#777;margin-top:5px">
+      Start with simple phrases and build your vocabulary.
+    </p>
+
+    <div class="lesson active" id="lesson1">
+
+      <div class="lesson-word">
+        Bonjou
+      </div>
+
+      <div class="lesson-pronunciation">
+        Haitian Creole
+      </div>
+
+      <div class="lesson-example">
+        <strong>Meaning:</strong> Hello / Good morning
+        <br><br>
+        <strong>Example:</strong>
+        Bonjou, kijan ou ye?
+      </div>
+
+    </div>
+
+    <div class="lesson" id="lesson2">
+
+      <div class="lesson-word">
+        Kijan ou ye?
+      </div>
+
+      <div class="lesson-pronunciation">
+        Haitian Creole
+      </div>
+
+      <div class="lesson-example">
+        <strong>Meaning:</strong> How are you?
+        <br><br>
+        <strong>Practice:</strong>
+        Try saying the phrase out loud.
+      </div>
+
+    </div>
+
+    <div class="lesson" id="lesson3">
+
+      <div class="lesson-word">
+        Mèsi
+      </div>
+
+      <div class="lesson-pronunciation">
+        Haitian Creole
+      </div>
+
+      <div class="lesson-example">
+        <strong>Meaning:</strong> Thank you
+        <br><br>
+        <strong>Practice:</strong>
+        Use it when thanking someone.
+      </div>
+
+    </div>
+
+    <div class="lesson-controls">
+
+      <button class="btn btn-dark"
+              onclick="previousLesson()">
+        ← Previous
+      </button>
+
+      <button class="btn btn-gold"
+              onclick="nextLesson()">
+        Next →
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- LANGUAGE CHAT -->
+
+  <div class="chat-language" id="languageChat">
+
+    <div class="chat-language-head">
+
+      <div>
+        <strong>Language Connection Chat</strong>
+        <div style="color:#777;font-size:12px">
+          Practice languages with the community
+        </div>
+      </div>
+
+      <span class="gold">● Live</span>
+
+    </div>
+
+    <div class="language-chat-body" id="languageChatBody">
+
+      <div class="message ai">
+        Welcome to Language Connection. Choose a language,
+        practice together and connect across the diaspora.
+      </div>
+
+      <div class="message user">
+        Bonjou!
+      </div>
+
+      <div class="message ai">
+        Bonjou! Kijan ou ye?
+      </div>
+
+    </div>
+
+    <div class="language-chat-input">
+
+      <input
+        id="languageMessage"
+        placeholder="Write a message...">
+
+      <button class="btn btn-gold"
+              onclick="sendLanguageMessage()">
+        Send
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- SOULAANI AI -->
+
+<section id="ai" class="page">
+
+  <h2 class="section-title">Soulaani AI</h2>
+
+  <p class="section-subtitle">
+    Your built-in Soulaani assistant.
+  </p>
+
+  <div class="ai-shell">
+
+    <div class="ai-head">
+
+      <div class="ai-orb"></div>
+
+      <div>
+        <strong>Soulaani AI</strong>
+        <div style="color:#777;font-size:12px">
+          Community assistant
+        </div>
+      </div>
+
+    </div>
+
+    <div class="chat-messages" id="aiMessages">
+
+      <div class="message ai">
+        Welcome to Soulaani AI. Ask me about languages,
+        culture, communities, skating, careers, local discovery,
+        food, music or the Soulaani platform.
+      </div>
+
+    </div>
+
+    <div class="chat-input">
+
+      <input
+        id="aiInput"
+        placeholder="Ask Soulaani AI something..."
+        onkeydown="if(event.key==='Enter') sendAI()">
+
+      <button class="btn btn-gold"
+              onclick="sendAI()">
+        Send
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- PROFILE -->
+
+<section id="profile" class="page">
+
+  <div class="profile-cover"></div>
+
+  <div class="profile-main">
+
+    <div class="profile-avatar">
+      <div class="avatar">T</div>
+    </div>
+
+    <div class="profile-header">
+
+      <div>
+
+        <h2>My Profile</h2>
+
+        <div class="profile-bio">
+          Welcome to my Soulaani profile. Connect, create,
+          learn and share.
+        </div>
+
+      </div>
+
+      <button
+        class="btn btn-gold"
+        onclick="openProfileEditor()">
+        Edit Profile
+      </button>
+
+    </div>
+
+    <div class="profile-tabs">
+
+      <button class="active">Posts</button>
+      <button>About</button>
+      <button>Music</button>
+      <button>Communities</button>
+
+    </div>
+
+    <div class="playlist">
+
+      <h3 style="margin-bottom:5px">
+        🎵 Personal Playlist
+      </h3>
+
+      <div class="song">
+
+        <div class="song-icon">▶</div>
+
+        <div class="song-info">
+          <strong>My Song</strong>
+          <small>Personal playlist</small>
+        </div>
+
+        <button
+          class="btn btn-dark btn-small"
+          onclick="playSong(this)">
+          Play
+        </button>
+
+      </div>
+
+      <div class="song">
+
+        <div class="song-icon">▶</div>
+
+        <div class="song-info">
+          <strong>Culture Playlist</strong>
+          <small>Soulaani Music</small>
+        </div>
+
+        <button
+          class="btn btn-dark btn-small"
+          onclick="playSong(this)">
+          Play
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================
+     MOBILE NAV
+========================= -->
+
+<nav class="mobile-nav">
+
+  <div class="mobile-nav-inner">
+
+    <button class="active" onclick="showPage('home',this)">
+      <span class="nav-icon">⌂</span>
+      <span>Home</span>
+    </button>
+
+    <button onclick="showPage('connect',this)">
+      <span class="nav-icon">👥</span>
+      <span>Connect</span>
+    </button>
+
+    <button onclick="showPage('skate',this)">
+      <span class="nav-icon">🛹</span>
+      <span>Skate</span>
+    </button>
+
+    <button onclick="showPage('culture',this)">
+      <span class="nav-icon">✊🏾</span>
+      <span>Culture</span>
+    </button>
+
+    <button onclick="showPage('languages',this)">
+      <span class="nav-icon">🗣️</span>
+      <span>Languages</span>
+    </button>
+
+    <button onclick="showPage('ai',this)">
+      <span class="nav-icon">🤖</span>
+      <span>AI</span>
+    </button>
+
+    <button onclick="showPage('profile',this)">
+      <span class="nav-icon">●</span>
+      <span>Profile</span>
+    </button>
+
+  </div>
 
 </nav>
+
 
 <!-- =========================
      DRAWER
 ========================= -->
 
-<div class="drawer-backdrop" id="drawerBackdrop" onclick="closeDrawer(event)">
+<div class="drawer-overlay"
+     id="drawerOverlay"
+     onclick="closeDrawer()"></div>
 
-  <aside class="drawer" onclick="event.stopPropagation()">
+<aside class="drawer" id="drawer">
 
-    <div class="drawer-head">
-      <strong style="font-size:22px;">Soulaani</strong>
+  <h2>Soulaani</h2>
 
-      <button class="icon-btn" onclick="closeDrawer()">
-        ×
-      </button>
-    </div>
+  <button class="drawer-link"
+          onclick="showPage('home');closeDrawer()">
+    🏠 Home
+  </button>
 
-    <button class="drawer-item" onclick="showToast('Connect is coming next')">
-      ◉ Connect
-    </button>
+  <button class="drawer-link"
+          onclick="showPage('connect');closeDrawer()">
+    👥 Connect
+  </button>
 
-    <button class="drawer-item" onclick="showToast('Date is coming next')">
-      ♡ Date
-    </button>
+  <button class="drawer-link"
+          onclick="showPage('date');closeDrawer()">
+    ❤️ Date
+  </button>
 
-    <button class="drawer-item" onclick="showToast('Build is coming next')">
-      ◈ Build
-    </button>
+  <button class="drawer-link"
+          onclick="showPage('build');closeDrawer()">
+    💼 Build
+  </button>
 
-    <button class="drawer-item" onclick="showToast('Market is coming next')">
-      ◇ Market
-    </button>
+  <button class="drawer-link"
+          onclick="showPage('market');closeDrawer()">
+    🛍️ Market
+  </button>
 
-    <button class="drawer-item" onclick="showToast('Explore is coming next')">
-      ⌖ Explore
-    </button>
+  <button class="drawer-link"
+          onclick="showPage('explore');closeDrawer()">
+    📍 Explore
+  </button>
 
-    <button class="drawer-item" onclick="showToast('Messages are coming next')">
-      ○ Messages
-    </button>
+  <button class="drawer-link"
+          onclick="showPage('culture');closeDrawer()">
+    ✊🏾 Culture
+  </button>
 
-    <button class="drawer-item" onclick="showToast('Communities are coming next')">
-      ◎ Communities
-    </button>
+  <button class="drawer-link"
+          onclick="showPage('skate');closeDrawer()">
+    🛹 Skate
+  </button>
 
-    <button class="drawer-item" onclick="showToast('Events are coming next')">
-      ◷ Events
-    </button>
+  <button class="drawer-link"
+          onclick="showPage('languages');closeDrawer()">
+    🗣️ Language & Connection
+  </button>
 
-    <button class="drawer-item" onclick="showToast('Saved posts are coming next')">
-      ☆ Saved
-    </button>
+  <button class="drawer-link"
+          onclick="showPage('ai');closeDrawer()">
+    🤖 Soulaani AI
+  </button>
 
-    <button class="drawer-item" onclick="navigate('profilePage','profile');closeDrawer()">
-      <svg class="icon"><use href="#i-user"></use></svg>
-      Profile
-    </button>
+  <button class="drawer-link"
+          onclick="showPage('profile');closeDrawer()">
+    👤 Profile
+  </button>
 
-  </aside>
+</aside>
 
-</div>
 
 <!-- =========================
-     PROFILE EDITOR
+     SEARCH MODAL
 ========================= -->
 
-<div class="modal-backdrop" id="profileEditorModal">
+<div class="modal" id="searchModal">
 
-  <div class="modal">
+  <div class="modal-box">
 
-    <div class="modal-head">
+    <button class="modal-close"
+            onclick="closeModal('searchModal')">
+      ×
+    </button>
 
-      <strong>Edit Profile</strong>
+    <h2>Search Soulaani</h2>
 
-      <button class="icon-btn" onclick="closeModal('profileEditorModal')">
-        ×
-      </button>
+    <input
+      id="searchInput"
+      placeholder="Search people, communities, culture, languages...">
 
-    </div>
+    <button
+      class="btn btn-gold"
+      style="width:100%"
+      onclick="performSearch()">
+      Search
+    </button>
 
-    <div class="modal-body">
-
-      <div class="field">
-        <label>Name</label>
-        <input id="editName" placeholder="Your name">
-      </div>
-
-      <div class="field">
-        <label>Username</label>
-        <input id="editUsername" placeholder="@username">
-      </div>
-
-      <div class="field">
-        <label>Bio</label>
-        <textarea id="editBio" placeholder="Tell people about yourself"></textarea>
-      </div>
-
-      <div class="field">
-        <label>Location</label>
-        <input id="editLocation" placeholder="City, State">
-      </div>
-
-      <div class="field">
-        <label>Profile Picture</label>
-
-        <div class="upload-box">
-
-          <div class="muted">
-            Image or video
-          </div>
-
-          <input
-            id="profileMediaUpload"
-            type="file"
-            accept="image/*,video/*"
-            onchange="handleProfileMedia(this)"
-          >
-
-        </div>
-
-      </div>
-
-      <div class="field">
-
-        <label>Cover Photo / Cover Video</label>
-
-        <div class="upload-box">
-
-          <div class="muted">
-            Image or video
-          </div>
-
-          <input
-            id="coverMediaUpload"
-            type="file"
-            accept="image/*,video/*"
-            onchange="handleCoverMedia(this)"
-          >
-
-        </div>
-
-      </div>
-
-      <div class="field">
-
-        <label>Playlist Audio URL</label>
-
-        <input
-          id="editAudioUrl"
-          placeholder="https://example.com/song.mp3"
-        >
-
-        <small class="muted">
-          HTML5 audio playback can use a direct audio URL.
-        </small>
-
-      </div>
-
-      <div style="
-        padding:14px;
-        border-radius:14px;
-        background:#181818;
-        border:1px solid var(--line);
-        color:#aaa;
-        line-height:1.5;
-        font-size:12px;
-      ">
-        <strong style="color:var(--gold2);">
-          Live Photo-ready
-        </strong><br>
-        This GitHub Pages prototype accepts image/video media.
-        True native Apple Live Photos require paired still + motion
-        assets and backend/mobile handling. That will be part of the
-        native Soulaani app layer later.
-      </div>
-
-    </div>
-
-    <div class="modal-foot">
-
-      <button class="secondary" onclick="closeModal('profileEditorModal')">
-        Cancel
-      </button>
-
-      <button class="primary" onclick="saveProfile()">
-        Save Profile
-      </button>
-
+    <div id="searchResults"
+         style="margin-top:18px;color:#999">
     </div>
 
   </div>
 
 </div>
 
-<!-- =========================
-     COMPOSER MODAL
-========================= -->
 
-<div class="modal-backdrop" id="composerModal">
+<!-- PROFILE EDITOR -->
 
-  <div class="modal">
+<div class="modal" id="profileModal">
 
-    <div class="modal-head">
+  <div class="modal-box">
 
-      <strong>Create a Post</strong>
+    <button class="modal-close"
+            onclick="closeModal('profileModal')">
+      ×
+    </button>
 
-      <button class="icon-btn" onclick="closeModal('composerModal')">
-        ×
-      </button>
+    <h2>Edit Profile</h2>
 
-    </div>
+    <input placeholder="Display name">
 
-    <div class="modal-body">
+    <textarea placeholder="Bio"></textarea>
 
-      <div class="field">
+    <label style="color:#aaa;display:block;margin-bottom:8px">
+      Profile theme
+    </label>
 
-        <label>What's happening?</label>
+    <input type="color"
+           value="#d6a84f"
+           style="height:50px;padding:4px">
 
-        <textarea
-          id="composerText"
-          placeholder="Share something with Soulaani..."
-        ></textarea>
-
-      </div>
-
-      <div class="field">
-
-        <label>Media</label>
-
-        <input
-          type="file"
-          accept="image/*,video/*"
-        >
-
-      </div>
-
-    </div>
-
-    <div class="modal-foot">
-
-      <button class="secondary" onclick="closeModal('composerModal')">
-        Cancel
-      </button>
-
-      <button class="primary" onclick="createPost()">
-        Post
-      </button>
-
-    </div>
+    <button
+      class="btn btn-gold"
+      style="width:100%"
+      onclick="saveProfile()">
+      Save Profile
+    </button>
 
   </div>
 
 </div>
 
-<!-- =========================
-     REACTION MODAL
-========================= -->
 
-<div class="modal-backdrop" id="reactionModal">
-
-  <div class="modal" style="max-width:430px;">
-
-    <div class="modal-head">
-      <strong>React</strong>
-
-      <button class="icon-btn" onclick="closeModal('reactionModal')">
-        ×
-      </button>
-    </div>
-
-    <div class="modal-body">
-
-      <div style="
-        display:grid;
-        grid-template-columns:repeat(5,1fr);
-        gap:8px;
-      ">
-
-        <button class="secondary" onclick="chooseReaction('Like')">👍</button>
-        <button class="secondary" onclick="chooseReaction('Love')">❤️</button>
-        <button class="secondary" onclick="chooseReaction('Laugh')">😂</button>
-        <button class="secondary" onclick="chooseReaction('Wow')">😮</button>
-        <button class="secondary" onclick="chooseReaction('Dislike')">👎</button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
-
-<!-- =========================
-     TOAST
-========================= -->
+<!-- TOAST -->
 
 <div class="toast" id="toast"></div>
 
+
 <script>
-/* ============================================================
-   SOULAANI CORE
-   ============================================================ */
 
-const PROFILE_KEY = "soulaani_profile_v3";
-const PROFILES_KEY = "soulaani_profiles_v1";
+/* =========================
+   PAGE NAVIGATION
+========================= */
 
-let currentProfile = {
-  id:"me",
-  name:"Soulaani User",
-  username:"soulaaniuser",
-  bio:"Welcome to my Soulaani profile.",
-  location:"Somewhere in the community",
-  followers:0,
-  following:0,
-  friends:0,
-  posts:0,
-  accent:"#d6a84f",
-  background:"#070707",
-  card:"#141414",
-  text:"#f7f7f7",
-  avatar:"",
-  avatarType:"",
-  avatarLive:false,
-  cover:"",
-  coverType:"",
-  coverLive:false,
-  audioUrl:""
-};
+function showPage(pageId, button){
 
-let viewingProfile = "me";
-
-let sampleProfiles = [
-  {
-    id:"p1",
-    name:"Jordan Creates",
-    username:"jordancreates",
-    bio:"Creator. Artist. Building something real.",
-    location:"Philadelphia, PA",
-    followers:1240,
-    following:410,
-    friends:182,
-    posts:76,
-    accent:"#d6a84f",
-    background:"#080808",
-    card:"#151515",
-    text:"#f7f7f7",
-    avatar:"",
-    cover:"",
-    audioUrl:""
-  },
-  {
-    id:"p2",
-    name:"Nayah Music",
-    username:"nayahmusic",
-    bio:"Music, culture and good energy.",
-    location:"Harrisburg, PA",
-    followers:842,
-    following:265,
-    friends:91,
-    posts:42,
-    accent:"#e48cff",
-    background:"#130814",
-    card:"#211027",
-    text:"#fff5ff",
-    avatar:"",
-    cover:"",
-    audioUrl:""
-  },
-  {
-    id:"p3",
-    name:"Drew Skates",
-    username:"drewskates",
-    bio:"Skate everything. Fear nothing.",
-    location:"Pennsylvania",
-    followers:3400,
-    following:198,
-    friends:310,
-    posts:115,
-    accent:"#63e89a",
-    background:"#07120d",
-    card:"#10231a",
-    text:"#effff5",
-    avatar:"",
-    cover:"",
-    audioUrl:""
-  }
-];
-
-function svg(id){
-  return `<svg class="icon"><use href="#${id}"></use></svg>`;
-}
-
-/* ============================================================
-   NAVIGATION
-   ============================================================ */
-
-function navigate(pageId,navName){
-
-  document.querySelectorAll(".page").forEach(page=>{
-    page.classList.remove("active");
+  document.querySelectorAll('.page').forEach(page=>{
+    page.classList.remove('active');
   });
 
   const page=document.getElementById(pageId);
 
   if(page){
-    page.classList.add("active");
+    page.classList.add('active');
   }
 
-  document.querySelectorAll(".bottom-item").forEach(item=>{
-    item.classList.toggle(
-      "active",
-      item.dataset.nav===navName
-    );
-  });
+  document.querySelectorAll('.mobile-nav button')
+    .forEach(btn=>btn.classList.remove('active'));
 
-  if(navName==="reels"){
-    setTimeout(initReelsObserver,100);
+  if(button){
+    button.classList.add('active');
+  }else{
+
+    const matching=[...document.querySelectorAll('.mobile-nav button')]
+      .find(btn=>btn.getAttribute('onclick')?.includes("'" + pageId + "'"));
+
+    if(matching){
+      matching.classList.add('active');
+    }
   }
 
   window.scrollTo({
     top:0,
-    behavior:"smooth"
+    behavior:'smooth'
   });
 }
 
-/* ============================================================
+
+/* =========================
    DRAWER
-   ============================================================ */
+========================= */
 
 function openDrawer(){
-  document.getElementById("drawerBackdrop").classList.add("open");
+
+  document.getElementById('drawer').classList.add('active');
+  document.getElementById('drawerOverlay').classList.add('active');
+
 }
 
 function closeDrawer(){
-  document.getElementById("drawerBackdrop").classList.remove("open");
+
+  document.getElementById('drawer').classList.remove('active');
+  document.getElementById('drawerOverlay').classList.remove('active');
+
 }
 
-/* ============================================================
-   MODALS
-   ============================================================ */
 
-function openModal(id){
-  document.getElementById(id).classList.add("open");
+/* =========================
+   SEARCH
+========================= */
+
+function openSearch(){
+
+  document.getElementById('searchModal').classList.add('active');
+
+  setTimeout(()=>{
+    document.getElementById('searchInput').focus();
+  },100);
+
+}
+
+function performSearch(){
+
+  const query=document
+    .getElementById('searchInput')
+    .value
+    .trim();
+
+  const results=document.getElementById('searchResults');
+
+  if(!query){
+
+    results.innerHTML=
+      'Type something to search Soulaani.';
+
+    return;
+  }
+
+  results.innerHTML=
+    `Searching Soulaani for <strong style="color:#f0c76a">
+    ${escapeHTML(query)}
+    </strong>...`;
+
 }
 
 function closeModal(id){
-  document.getElementById(id).classList.remove("open");
-}
 
-function openComposer(){
-  openModal("composerModal");
-}
-
-function openProfileEditor(){
-
-  document.getElementById("editName").value=currentProfile.name;
-  document.getElementById("editUsername").value=currentProfile.username;
-  document.getElementById("editBio").value=currentProfile.bio;
-  document.getElementById("editLocation").value=currentProfile.location;
-  document.getElementById("editAudioUrl").value=currentProfile.audioUrl||"";
-
-  openModal("profileEditorModal");
-}
-
-function openReactionModal(){
-  openModal("reactionModal");
-}
-
-function openSearch(){
-  navigate("searchPage","profile");
-  document.querySelectorAll(".bottom-item").forEach(i=>i.classList.remove("active"));
-  document.getElementById("peopleSearch").focus();
-}
-
-/* ============================================================
-   TOAST
-   ============================================================ */
-
-let toastTimer;
-
-function showToast(message){
-
-  const toast=document.getElementById("toast");
-
-  toast.textContent=message;
-  toast.classList.add("show");
-
-  clearTimeout(toastTimer);
-
-  toastTimer=setTimeout(()=>{
-    toast.classList.remove("show");
-  },2400);
-}
-
-/* ============================================================
-   PROFILE STORAGE
-   ============================================================ */
-
-function loadProfile(){
-
-  try{
-
-    const saved=localStorage.getItem(PROFILE_KEY);
-
-    if(saved){
-      currentProfile={
-        ...currentProfile,
-        ...JSON.parse(saved)
-      };
-    }
-
-  }catch(error){
-    console.log("Profile storage unavailable",error);
-  }
-
-  renderOwnProfile();
-}
-
-function saveCurrentProfile(){
-
-  try{
-
-    localStorage.setItem(
-      PROFILE_KEY,
-      JSON.stringify(currentProfile)
-    );
-
-  }catch(error){
-
-    console.log("Could not save profile",error);
-
-    showToast("Browser storage is unavailable");
-
-  }
-}
-
-function loadSampleProfiles(){
-
-  try{
-
-    const saved=localStorage.getItem(PROFILES_KEY);
-
-    if(saved){
-
-      sampleProfiles=[
-        ...sampleProfiles,
-        ...JSON.parse(saved)
-      ];
-
-    }
-
-  }catch(error){
-    console.log(error);
-  }
-}
-
-/* ============================================================
-   PROFILE RENDERING
-   ============================================================ */
-
-function renderOwnProfile(){
-
-  viewingProfile="me";
-
-  document.getElementById("profileName").textContent=currentProfile.name;
-
-  document.getElementById("profileUsername").textContent=
-    "@"+currentProfile.username.replace(/^@/,"");
-
-  document.getElementById("profileBio").textContent=
-    currentProfile.bio;
-
-  document.getElementById("profileLocation").textContent=
-    "📍 "+currentProfile.location;
-
-  document.getElementById("statPosts").textContent=
-    currentProfile.posts;
-
-  document.getElementById("statFollowers").textContent=
-    formatNumber(currentProfile.followers);
-
-  document.getElementById("statFollowing").textContent=
-    formatNumber(currentProfile.following);
-
-  document.getElementById("statFriends").textContent=
-    formatNumber(currentProfile.friends);
-
-  document.getElementById("aboutUsername").textContent=
-    "@"+currentProfile.username.replace(/^@/,"");
-
-  document.getElementById("aboutLocation").textContent=
-    currentProfile.location;
-
-  document.getElementById("profilePostName").textContent=
-    currentProfile.name;
-
-  renderAvatar(
-    document.getElementById("profileAvatar"),
-    currentProfile.avatar,
-    currentProfile.avatarType,
-    currentProfile.name
-  );
-
-  renderAvatar(
-    document.getElementById("homeAvatar"),
-    currentProfile.avatar,
-    currentProfile.avatarType,
-    currentProfile.name
-  );
-
-  renderAvatar(
-    document.getElementById("profilePostAvatar"),
-    currentProfile.avatar,
-    currentProfile.avatarType,
-    currentProfile.name
-  );
-
-  renderCover();
-
-  applyProfileTheme();
-}
-
-function renderAvatar(element,src,type,name){
-
-  if(!element) return;
-
-  element.innerHTML="";
-
-  if(src){
-
-    if(type==="video"){
-
-      const video=document.createElement("video");
-
-      video.src=src;
-      video.autoplay=true;
-      video.loop=true;
-      video.muted=true;
-      video.playsInline=true;
-
-      element.appendChild(video);
-
-    }else{
-
-      const img=document.createElement("img");
-
-      img.src=src;
-      img.alt=name+" profile picture";
-
-      element.appendChild(img);
-
-    }
-
-  }else{
-
-    const initial=(name||"S").trim().charAt(0).toUpperCase();
-
-    const span=document.createElement("span");
-
-    span.textContent=initial;
-
-    span.style.display="grid";
-    span.style.placeItems="center";
-    span.style.width="100%";
-    span.style.height="100%";
-    span.style.fontSize="32px";
-    span.style.fontWeight="900";
-    span.style.color="var(--profile-accent,var(--gold2))";
-
-    element.appendChild(span);
-
-  }
-}
-
-function renderCover(){
-
-  const cover=document.getElementById("profileCover");
-
-  const existingMedia=cover.querySelector(
-    ".profile-cover-media"
-  );
-
-  if(existingMedia){
-    existingMedia.remove();
-  }
-
-  if(currentProfile.cover){
-
-    let media;
-
-    if(currentProfile.coverType==="video"){
-
-      media=document.createElement("video");
-
-      media.autoplay=true;
-      media.loop=true;
-      media.muted=true;
-      media.playsInline=true;
-
-    }else{
-
-      media=document.createElement("img");
-
-    }
-
-    media.className="profile-cover-media";
-    media.src=currentProfile.cover;
-
-    media.style.position="absolute";
-    media.style.inset="0";
-    media.style.width="100%";
-    media.style.height="100%";
-    media.style.objectFit="cover";
-
-    cover.insertBefore(
-      media,
-      cover.querySelector(".profile-cover-overlay")
-    );
-
-  }
-}
-
-/* ============================================================
-   PROFILE EDITING
-   ============================================================ */
-
-function saveProfile(){
-
-  let username=document.getElementById("editUsername").value.trim();
-
-  username=username.replace(/^@/,"");
-
-  if(!username){
-    username="soulaaniuser";
-  }
-
-  currentProfile.name=
-    document.getElementById("editName").value.trim() ||
-    "Soulaani User";
-
-  currentProfile.username=username;
-
-  currentProfile.bio=
-    document.getElementById("editBio").value.trim() ||
-    "Welcome to my Soulaani profile.";
-
-  currentProfile.location=
-    document.getElementById("editLocation").value.trim() ||
-    "Somewhere in the community";
-
-  currentProfile.audioUrl=
-    document.getElementById("editAudioUrl").value.trim();
-
-  saveCurrentProfile();
-
-  renderOwnProfile();
-
-  closeModal("profileEditorModal");
-
-  showToast("Profile saved");
+  document.getElementById(id).classList.remove('active');
 
 }
 
-/* ============================================================
-   PROFILE MEDIA
-   ============================================================ */
 
-function handleProfileMedia(input){
-
-  const file=input.files[0];
-
-  if(!file) return;
-
-  const reader=new FileReader();
-
-  reader.onload=event=>{
-
-    currentProfile.avatar=event.target.result;
-    currentProfile.avatarType=
-      file.type.startsWith("video/")
-      ? "video"
-      : "image";
-
-    currentProfile.avatarLive=
-      file.type.startsWith("video/");
-
-    renderOwnProfile();
-
-  };
-
-  reader.readAsDataURL(file);
-}
-
-function handleCoverMedia(input){
-
-  const file=input.files[0];
-
-  if(!file) return;
-
-  const reader=new FileReader();
-
-  reader.onload=event=>{
-
-    currentProfile.cover=event.target.result;
-
-    currentProfile.coverType=
-      file.type.startsWith("video/")
-      ? "video"
-      : "image";
-
-    currentProfile.coverLive=
-      file.type.startsWith("video/");
-
-    renderOwnProfile();
-
-  };
-
-  reader.readAsDataURL(file);
-}
-
-/* ============================================================
-   PROFILE THEMES
-   ============================================================ */
-
-function applyProfileTheme(){
-
-  const root=document.getElementById("profileThemeRoot");
-
-  root.style.setProperty(
-    "--profile-accent",
-    currentProfile.accent
-  );
-
-  root.style.setProperty(
-    "--profile-card",
-    currentProfile.card
-  );
-
-  root.style.color=currentProfile.text;
-
-  root.style.background=currentProfile.background;
-
-  document.getElementById("profilePage").style.background=
-    currentProfile.background;
-
-  document.getElementById("profilePage").style.setProperty(
-    "--gold2",
-    currentProfile.accent
-  );
-
-  const colors=[
-    ["--profile-accent",currentProfile.accent],
-    ["--profile-card",currentProfile.card]
-  ];
-
-  colors.forEach(([name,value])=>{
-    root.style.setProperty(name,value);
-  });
-}
-
-function applyCustomizer(){
-
-  currentProfile.accent=
-    document.getElementById("themeAccent").value;
-
-  currentProfile.background=
-    document.getElementById("themeBackground").value;
-
-  currentProfile.card=
-    document.getElementById("themeCard").value;
-
-  currentProfile.text=
-    document.getElementById("themeText").value;
-
-  saveCurrentProfile();
-
-  applyProfileTheme();
-
-  showToast("Profile theme updated");
-}
-
-function presetTheme(accent,background,card,text){
-
-  currentProfile.accent=accent;
-  currentProfile.background=background;
-  currentProfile.card=card;
-  currentProfile.text=text;
-
-  document.getElementById("themeAccent").value=accent;
-  document.getElementById("themeBackground").value=background;
-  document.getElementById("themeCard").value=card;
-  document.getElementById("themeText").value=text;
-
-  saveCurrentProfile();
-
-  applyProfileTheme();
-
-  showToast("Theme preset applied");
-}
-
-function changeAvatarShape(shape){
-
-  const avatar=document.getElementById("profileAvatar");
-
-  if(shape==="circle"){
-    avatar.style.borderRadius="50%";
-  }
-
-  if(shape==="rounded"){
-    avatar.style.borderRadius="25px";
-  }
-
-  if(shape==="square"){
-    avatar.style.borderRadius="10px";
-  }
-
-}
-
-/* ============================================================
-   PROFILE TABS
-   ============================================================ */
-
-function profileTab(tab,button){
-
-  document.querySelectorAll(".profile-tab").forEach(
-    item=>item.classList.remove("active")
-  );
-
-  button.classList.add("active");
-
-  document.querySelectorAll(".profile-content-panel").forEach(
-    panel=>panel.classList.remove("active")
-  );
-
-  const target=document.getElementById(
-    "profile"+
-    tab.charAt(0).toUpperCase()+
-    tab.slice(1)
-  );
-
-  if(target){
-    target.classList.add("active");
-  }
-}
-
-/* ============================================================
-   PEOPLE / OTHER PROFILES
-   ============================================================ */
-
-function getAllProfiles(){
-
-  return [
-    {
-      ...currentProfile,
-      id:"me"
-    },
-    ...sampleProfiles
-  ];
-
-}
-
-function searchPeople(query=""){
-
-  const grid=document.getElementById("peopleGrid");
-
-  if(!grid) return;
-
-  const q=query.toLowerCase().trim();
-
-  const profiles=getAllProfiles().filter(profile=>{
-
-    if(!q) return true;
-
-    return (
-      profile.name.toLowerCase().includes(q) ||
-      profile.username.toLowerCase().includes(q) ||
-      profile.bio.toLowerCase().includes(q)
-    );
-
-  });
-
-  grid.innerHTML="";
-
-  profiles.forEach(profile=>{
-
-    const card=document.createElement("button");
-
-    card.className="person-card";
-
-    card.onclick=()=>openPersonProfile(profile.id);
-
-    const avatar=document.createElement("div");
-
-    avatar.className="avatar";
-
-    avatar.style.margin="auto auto 10px";
-
-    renderAvatar(
-      avatar,
-      profile.avatar,
-      profile.avatarType,
-      profile.name
-    );
-
-    const name=document.createElement("strong");
-
-    name.textContent=profile.name;
-
-    const username=document.createElement("div");
-
-    username.className="muted";
-
-    username.textContent=
-      "@"+profile.username.replace(/^@/,"");
-
-    const bio=document.createElement("p");
-
-    bio.className="muted";
-
-    bio.style.marginTop="9px";
-    bio.style.fontSize="12px";
-
-    bio.textContent=profile.bio;
-
-    card.appendChild(avatar);
-    card.appendChild(name);
-    card.appendChild(username);
-    card.appendChild(bio);
-
-    grid.appendChild(card);
-
-  });
-
-}
-
-function openPersonProfile(id){
-
-  const profile=getAllProfiles().find(
-    item=>item.id===id
-  );
-
-  if(!profile){
-    showToast("Profile not found");
-    return;
-  }
-
-  if(id==="me"){
-
-    navigate("profilePage","profile");
-
-    return;
-  }
-
-  viewingProfile=id;
-
-  renderViewedProfile(profile);
-
-  navigate("profilePage","profile");
-
-}
-
-function openProfileByUsername(username){
-
-  const profile=getAllProfiles().find(
-    item=>item.username.toLowerCase()===username.toLowerCase()
-  );
-
-  if(profile){
-    openPersonProfile(profile.id);
-  }else{
-    showToast("Profile coming soon");
-  }
-
-}
-
-function renderViewedProfile(profile){
-
-  document.getElementById("profileName").textContent=
-    profile.name;
-
-  document.getElementById("profileUsername").textContent=
-    "@"+profile.username;
-
-  document.getElementById("profileBio").textContent=
-    profile.bio;
-
-  document.getElementById("profileLocation").textContent=
-    "📍 "+profile.location;
-
-  document.getElementById("statPosts").textContent=
-    profile.posts;
-
-  document.getElementById("statFollowers").textContent=
-    formatNumber(profile.followers);
-
-  document.getElementById("statFollowing").textContent=
-    formatNumber(profile.following);
-
-  document.getElementById("statFriends").textContent=
-    formatNumber(profile.friends);
-
-  renderAvatar(
-    document.getElementById("profileAvatar"),
-    profile.avatar,
-    profile.avatarType,
-    profile.name
-  );
-
-  const cover=document.getElementById("profileCover");
-
-  const media=cover.querySelector(".profile-cover-media");
-
-  if(media) media.remove();
-
-  if(profile.cover){
-
-    const coverMedia=
-      profile.coverType==="video"
-      ? document.createElement("video")
-      : document.createElement("img");
-
-    coverMedia.className="profile-cover-media";
-    coverMedia.src=profile.cover;
-
-    coverMedia.style.position="absolute";
-    coverMedia.style.inset="0";
-    coverMedia.style.width="100%";
-    coverMedia.style.height="100%";
-    coverMedia.style.objectFit="cover";
-
-    if(profile.coverType==="video"){
-      coverMedia.autoplay=true;
-      coverMedia.loop=true;
-      coverMedia.muted=true;
-      coverMedia.playsInline=true;
-    }
-
-    cover.insertBefore(
-      coverMedia,
-      cover.querySelector(".profile-cover-overlay")
-    );
-
-  }
-
-  const buttons=document.querySelector(".profile-buttons");
-
-  buttons.innerHTML=`
-    <button class="primary" onclick="followViewedProfile()">
-      Follow
-    </button>
-
-    <button class="secondary" onclick="showToast('Friend request sent')">
-      Add Friend
-    </button>
-
-    <button class="secondary" onclick="showToast('Message composer coming next')">
-      Message
-    </button>
-
-    <button class="secondary" onclick="shareProfile()">
-      Share
-    </button>
-  `;
-
-  document.querySelector(".profile-cover-actions").innerHTML=`
-    <button class="secondary" onclick="shareProfile()">
-      ↗ Share
-    </button>
-  `;
-
-  document.getElementById("profilePosts").innerHTML=`
-    <article class="post card">
-      <div class="post-head">
-        <div class="avatar">${profile.name.charAt(0)}</div>
-        <div class="post-info">
-          <strong>${escapeHtml(profile.name)}</strong>
-          <span>@${escapeHtml(profile.username)} · Public</span>
-        </div>
-      </div>
-
-      <div class="post-text">
-        Welcome to ${escapeHtml(profile.name)}'s Soulaani profile.
-      </div>
-
-      <div class="post-actions">
-        <button class="post-action" onclick="openReactionModal()">♡ React</button>
-        <button class="post-action">○ Comment</button>
-        <button class="post-action" onclick="shareProfile()">↗ Share</button>
-      </div>
-    </article>
-  `;
-
-  applyViewedTheme(profile);
-
-}
-
-function applyViewedTheme(profile){
-
-  const root=document.getElementById("profileThemeRoot");
-
-  root.style.setProperty(
-    "--profile-accent",
-    profile.accent || "#d6a84f"
-  );
-
-  root.style.setProperty(
-    "--profile-card",
-    profile.card || "#141414"
-  );
-
-  root.style.color=
-    profile.text || "#f7f7f7";
-
-  document.getElementById("profilePage").style.background=
-    profile.background || "#070707";
-
-}
-
-function followViewedProfile(){
-
-  showToast("Following @"+getViewedUsername());
-
-}
-
-function getViewedUsername(){
-
-  const profile=getAllProfiles().find(
-    p=>p.id===viewingProfile
-  );
-
-  return profile
-    ? profile.username
-    : "profile";
-
-}
-
-/* ============================================================
-   SHARE
-   ============================================================ */
-
-async function shareProfile(){
-
-  const username=getViewedUsername();
-
-  const shareData={
-    title:"Soulaani Profile",
-    text:"Check out this profile on Soulaani.",
-    url:window.location.href
-  };
-
-  if(navigator.share){
-
-    try{
-      await navigator.share(shareData);
-    }catch(error){}
-
-  }else{
-
-    showToast("Profile link ready to share");
-
-  }
-
-}
-
-async function shareContent(name){
-
-  if(navigator.share){
-
-    try{
-
-      await navigator.share({
-        title:"Soulaani",
-        text:"Check this out on Soulaani: "+name,
-        url:window.location.href
-      });
-
-    }catch(error){}
-
-  }else{
-
-    showToast("Shared: "+name);
-
-  }
-
-}
-
-/* ============================================================
+/* =========================
    REACTIONS
-   ============================================================ */
+========================= */
 
-function chooseReaction(reaction){
+function toggleReaction(button){
 
-  closeModal("reactionModal");
+  button.innerHTML='❤️ Reacted';
 
-  showToast("You reacted: "+reaction);
+  showToast('Reaction added');
 
 }
 
-function toggleReelLike(button){
+function react(reaction){
 
-  button.classList.toggle("active");
+  showToast(reaction + ' reaction added');
 
-  const span=button.querySelector("span");
+}
 
-  if(button.classList.contains("active")){
 
-    span.textContent="Liked";
+/* =========================
+   COMMENTS / SHARING
+========================= */
+
+function openComments(){
+
+  showToast('Comments opened');
+
+}
+
+function sharePost(){
+
+  if(navigator.share){
+
+    navigator.share({
+      title:'Soulaani',
+      text:'Check this out on Soulaani.'
+    });
 
   }else{
 
-    span.textContent="Like";
+    showToast('Post ready to share');
 
   }
 
 }
 
-/* ============================================================
-   REELS
-   ============================================================ */
 
-let reelObserver=null;
+/* =========================
+   LOCATION
+========================= */
 
-function initReelsObserver(){
+function setLocation(){
 
-  const feed=document.getElementById("reelsFeed");
+  const input=document.getElementById('locationInput');
 
-  if(!feed) return;
+  const location=input.value.trim();
 
-  if(reelObserver){
-    reelObserver.disconnect();
+  if(!location){
+
+    showToast('Enter a location first');
+
+    return;
   }
 
-  reelObserver=new IntersectionObserver(
-    entries=>{
+  document.getElementById('currentLocation').innerHTML=
+    '📍 Discovering Soulaani around <strong style="color:#f0c76a">'
+    + escapeHTML(location)
+    + '</strong>';
 
-      entries.forEach(entry=>{
+  showToast('Local Discover updated');
 
-        const reel=entry.target;
+}
 
-        const video=reel.querySelector(".reel-video");
 
-        const progress=reel.querySelector(
-          ".reel-progress span"
-        );
+/* =========================
+   LANGUAGE SYSTEM
+========================= */
 
-        if(entry.isIntersecting && entry.intersectionRatio>.65){
+let currentLesson=1;
 
-          document.querySelectorAll(".reel-video").forEach(
-            other=>{
-              if(other!==video){
-                other.pause();
-              }
-            }
-          );
+function startLesson(){
 
-          if(video.src){
-            video.play().catch(()=>{});
-          }
+  showPage('languages');
 
-          if(progress){
+  document
+    .getElementById('learningPanel')
+    .scrollIntoView({
+      behavior:'smooth',
+      block:'start'
+    });
 
-            progress.style.width="0%";
+}
 
-            video.ontimeupdate=()=>{
+function nextLesson(){
 
-              if(video.duration){
+  document
+    .getElementById('lesson'+currentLesson)
+    .classList.remove('active');
 
-                progress.style.width=
-                  ((video.currentTime/video.duration)*100)+"%";
+  currentLesson++;
 
-              }
+  if(currentLesson>3){
+    currentLesson=1;
+  }
 
-            };
+  document
+    .getElementById('lesson'+currentLesson)
+    .classList.add('active');
 
-          }
+}
 
-        }else{
+function previousLesson(){
 
-          video.pause();
+  document
+    .getElementById('lesson'+currentLesson)
+    .classList.remove('active');
 
-        }
+  currentLesson--;
 
-      });
+  if(currentLesson<1){
+    currentLesson=3;
+  }
 
+  document
+    .getElementById('lesson'+currentLesson)
+    .classList.add('active');
+
+}
+
+function selectLanguage(language){
+
+  document.getElementById('fromLanguage').value =
+    language === 'English' ? 'English' : language;
+
+  showToast(language + ' selected');
+
+}
+
+function openTranslator(){
+
+  showPage('languages');
+
+  document
+    .getElementById('translatorBox')
+    .scrollIntoView({
+      behavior:'smooth',
+      block:'center'
+    });
+
+}
+
+function translatePhrase(){
+
+  const input=document
+    .getElementById('translateInput')
+    .value
+    .trim();
+
+  const from=document
+    .getElementById('fromLanguage')
+    .value;
+
+  const to=document
+    .getElementById('toLanguage')
+    .value;
+
+  const output=document
+    .getElementById('translationOutput');
+
+  if(!input){
+
+    output.textContent=
+      'Enter a phrase to translate.';
+
+    return;
+  }
+
+  /*
+    This front-end prototype uses a small demonstration
+    phrase library. A production version can connect this
+    interface to a real translation service/API.
+  */
+
+  const demo={
+
+    'English|Haitian Creole':{
+      'hello':'Bonjou',
+      'hi':'Bonjou',
+      'thank you':'Mèsi',
+      'how are you':'Kijan ou ye?'
     },
-    {
-      root:feed,
-      threshold:[.65]
+
+    'Haitian Creole|English':{
+      'bonjou':'Hello',
+      'mèsi':'Thank you',
+      'kijan ou ye?':'How are you?'
+    },
+
+    'English|Louisiana Creole':{
+      'hello':'Bonjou',
+      'thank you':'Mèsi'
+    },
+
+    'English|Jamaican Patois':{
+      'hello':'Wah gwaan',
+      'thank you':'Tank yuh'
     }
-  );
 
-  document.querySelectorAll(".reel").forEach(
-    reel=>reelObserver.observe(reel)
-  );
+  };
 
-}
+  const key=from+'|'+to;
 
-function toggleReelMute(button){
+  const normalized=input.toLowerCase();
 
-  const reel=button.closest(".reel");
+  if(demo[key] && demo[key][normalized]){
 
-  const video=reel.querySelector(".reel-video");
+    output.textContent=demo[key][normalized];
 
-  video.muted=!video.muted;
+  }else if(from===to){
 
-  button.innerHTML=video.muted
-    ? svg("i-volume-off")
-    : svg("i-volume");
-
-}
-
-/* ============================================================
-   REEL FOLLOW
-   ============================================================ */
-
-function followReelUser(button){
-
-  if(button.dataset.following==="true"){
-
-    button.dataset.following="false";
-    button.textContent="Follow";
+    output.textContent=input;
 
   }else{
 
-    button.dataset.following="true";
-    button.textContent="Following";
+    output.innerHTML=
+      '<strong>Soulaani translation engine:</strong><br><br>' +
+      'This prototype is ready for a full translation API/database ' +
+      'to provide broader language coverage.';
 
   }
 
 }
 
-/* ============================================================
-   AI
-   ============================================================ */
+function openLanguageChat(){
 
-function sendAI(){
+  showPage('languages');
 
-  const input=document.getElementById("aiInput");
+  document
+    .getElementById('languageChat')
+    .scrollIntoView({
+      behavior:'smooth',
+      block:'center'
+    });
+
+}
+
+function sendLanguageMessage(){
+
+  const input=document
+    .getElementById('languageMessage');
 
   const text=input.value.trim();
 
   if(!text) return;
 
-  const messages=document.getElementById("aiMessages");
+  const body=document
+    .getElementById('languageChatBody');
 
-  const userMessage=document.createElement("div");
+  const message=document.createElement('div');
 
-  userMessage.className="ai-message user";
+  message.className='message user';
 
-  userMessage.textContent=text;
+  message.textContent=text;
 
-  messages.appendChild(userMessage);
+  body.appendChild(message);
 
-  input.value="";
+  input.value='';
+
+  body.scrollTop=body.scrollHeight;
 
   setTimeout(()=>{
 
-    const bot=document.createElement("div");
+    const reply=document.createElement('div');
 
-    bot.className="ai-message bot";
+    reply.className='message ai';
 
-    bot.textContent=
-      "I'm the Soulaani AI prototype right now. I can help you think through that. The full AI backend can be connected to the real Soulaani platform later.";
+    reply.textContent=
+      'Mèsi! Keep practicing. Language Connection is built for community learning and conversation.';
 
-    messages.appendChild(bot);
+    body.appendChild(reply);
+
+    body.scrollTop=body.scrollHeight;
+
+  },500);
+
+}
+
+
+/* =========================
+   SOULAANI AI
+========================= */
+
+function sendAI(){
+
+  const input=document
+    .getElementById('aiInput');
+
+  const text=input.value.trim();
+
+  if(!text) return;
+
+  const messages=document
+    .getElementById('aiMessages');
+
+  const user=document.createElement('div');
+
+  user.className='message user';
+
+  user.textContent=text;
+
+  messages.appendChild(user);
+
+  input.value='';
+
+  messages.scrollTop=messages.scrollHeight;
+
+  setTimeout(()=>{
+
+    const ai=document.createElement('div');
+
+    ai.className='message ai';
+
+    ai.textContent=getAIResponse(text);
+
+    messages.appendChild(ai);
 
     messages.scrollTop=messages.scrollHeight;
 
-  },450);
+  },500);
 
 }
 
-/* ============================================================
-   CREATE POST
-   ============================================================ */
+function getAIResponse(text){
 
-function createPost(){
+  const t=text.toLowerCase();
 
-  const text=document.getElementById("composerText").value.trim();
+  if(t.includes('language') ||
+     t.includes('creole') ||
+     t.includes('tutnese')){
 
-  if(!text){
-
-    showToast("Write something first");
-
-    return;
+    return 'Soulaani AI can help you explore the Language & Connection section, practice phrases, learn vocabulary and discover language communities.';
 
   }
 
-  currentProfile.posts++;
+  if(t.includes('skate')){
 
-  saveCurrentProfile();
+    return 'Check out the Skate section for riders, clips, skate spots, events and community content.';
 
-  renderOwnProfile();
+  }
 
-  closeModal("composerModal");
+  if(t.includes('culture')){
 
-  document.getElementById("composerText").value="";
+    return 'The Culture section brings together Black American food, music, art, fashion, creators and cultural conversations.';
 
-  showToast("Post created");
+  }
+
+  if(t.includes('food')){
+
+    return 'Soulaani Culture includes soul-food content, restaurants, cooks and food creators.';
+
+  }
+
+  if(t.includes('soulaani')){
+
+    return 'Soulaani is designed as a community platform connecting people, culture, creativity, language, business and local discovery.';
+
+  }
+
+  return 'I’m Soulaani AI. I can help you navigate the platform, explore languages, culture, skating, community, local discovery and more.';
 
 }
 
-/* ============================================================
-   SEARCH
-   ============================================================ */
 
-function escapeHtml(value){
+/* =========================
+   PROFILE
+========================= */
 
-  return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+function openProfileEditor(){
+
+  document
+    .getElementById('profileModal')
+    .classList.add('active');
 
 }
 
-/* ============================================================
-   NUMBER FORMATTING
-   ============================================================ */
+function saveProfile(){
 
-function formatNumber(number){
+  closeModal('profileModal');
 
-  const n=Number(number)||0;
-
-  if(n>=1000000){
-    return (n/1000000).toFixed(1)+"M";
-  }
-
-  if(n>=1000){
-    return (n/1000).toFixed(1)+"K";
-  }
-
-  return String(n);
+  showToast('Profile updated');
 
 }
 
-/* ============================================================
-   PROFILE RETURN BUTTON BEHAVIOR
-   ============================================================ */
+function playSong(button){
 
-function restoreMyProfile(){
+  if(button.textContent.includes('Play')){
 
-  viewingProfile="me";
+    button.textContent='Pause';
 
-  renderOwnProfile();
-
-}
-
-/* ============================================================
-   INITIALIZATION
-   ============================================================ */
-
-document.addEventListener("DOMContentLoaded",()=>{
-
-  loadSampleProfiles();
-
-  loadProfile();
-
-  searchPeople("");
-
-  initReelsObserver();
-
-  /* Sync profile customization controls */
-  document.getElementById("themeAccent").value=
-    currentProfile.accent;
-
-  document.getElementById("themeBackground").value=
-    currentProfile.background;
-
-  document.getElementById("themeCard").value=
-    currentProfile.card;
-
-  document.getElementById("themeText").value=
-    currentProfile.text;
-
-});
-
-/* ============================================================
-   MOBILE REELS BACKGROUND BEHAVIOR
-   ============================================================ */
-
-document.addEventListener("visibilitychange",()=>{
-
-  if(document.hidden){
-
-    document.querySelectorAll(".reel-video").forEach(
-      video=>video.pause()
-    );
-
-  }
-
-});
-
-/* ============================================================
-   KEYBOARD REEL NAVIGATION ON DESKTOP
-   ============================================================ */
-
-document.addEventListener("keydown",event=>{
-
-  const reelsPage=document.getElementById("reelsPage");
-
-  if(!reelsPage.classList.contains("active")){
-    return;
-  }
-
-  const feed=document.getElementById("reelsFeed");
-
-  if(event.key==="ArrowDown"){
-
-    feed.scrollBy({
-      top:window.innerHeight,
-      behavior:"smooth"
-    });
-
-  }
-
-  if(event.key==="ArrowUp"){
-
-    feed.scrollBy({
-      top:-window.innerHeight,
-      behavior:"smooth"
-    });
-
-  }
-
-});
-
-/* ============================================================
-   PREVENT REELS PAGE FROM USING BODY SCROLL
-   ============================================================ */
-
-const reelsPageObserver=new MutationObserver(()=>{
-
-  const page=document.getElementById("reelsPage");
-
-  if(page.classList.contains("active")){
-
-    document.body.style.overflow="hidden";
+    showToast('Music player started');
 
   }else{
 
-    document.body.style.overflow="";
+    button.textContent='Play';
+
+    showToast('Music paused');
 
   }
 
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+let toastTimer;
+
+function showToast(message){
+
+  const toast=document
+    .getElementById('toast');
+
+  toast.textContent=message;
+
+  toast.classList.add('show');
+
+  clearTimeout(toastTimer);
+
+  toastTimer=setTimeout(()=>{
+
+    toast.classList.remove('show');
+
+  },2200);
+
+}
+
+
+/* =========================
+   HELPERS
+========================= */
+
+function escapeHTML(value){
+
+  const div=document.createElement('div');
+
+  div.textContent=value;
+
+  return div.innerHTML;
+
+}
+
+
+/* =========================
+   CLOSE MODAL ON BACKDROP
+========================= */
+
+document.querySelectorAll('.modal').forEach(modal=>{
+
+  modal.addEventListener('click',function(e){
+
+    if(e.target===modal){
+
+      modal.classList.remove('active');
+
+    }
+
+  });
+
 });
 
-reelsPageObserver.observe(
-  document.getElementById("reelsPage"),
-  {attributes:true,attributeFilter:["class"]}
-);
+
+/* =========================
+   INITIALIZATION
+========================= */
+
+document.addEventListener('DOMContentLoaded',()=>{
+
+  showPage('home');
+
+});
 
 </script>
 
