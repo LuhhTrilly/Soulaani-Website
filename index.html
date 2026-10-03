@@ -2,107 +2,125 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <meta name="theme-color" content="#070707">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
 <title>Soulaani | The Culture. The People. The Platform.</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
 :root{
   --black:#070707;
-  --black2:#0c0c0c;
-  --black3:#121212;
+  --black2:#0b0b0b;
+  --black3:#111111;
   --card:#151515;
   --card2:#1b1b1b;
   --gold:#d6a84f;
   --gold2:#f0c76a;
   --white:#f7f7f7;
-  --muted:#999;
-  --line:rgba(214,168,79,.2);
-  --green:#55c982;
-  --red:#e85d5d;
-  --blue:#5d9cff;
+  --muted:#9b9b9b;
+  --line:rgba(214,168,79,.20);
+  --green:#55d88b;
+  --red:#ef6464;
+  --blue:#669eff;
+  --purple:#aa82ff;
 }
 
-html{scroll-behavior:smooth}
+html{
+  scroll-behavior:smooth;
+}
 
 body{
-  background:
-  radial-gradient(circle at top right,rgba(214,168,79,.09),transparent 30%),
-  var(--black);
-  color:var(--white);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
   min-height:100vh;
+  background:var(--black);
+  color:var(--white);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  padding-bottom:86px;
 }
 
-button,input,textarea,select{font:inherit}
-button{cursor:pointer}
-button:active{transform:scale(.98)}
-a{text-decoration:none;color:inherit}
-
-.header{
-  height:70px;
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:rgba(7,7,7,.95);
-  backdrop-filter:blur(18px);
-  border-bottom:1px solid var(--line);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 18px;
+button,
+input,
+textarea,
+select{
+  font:inherit;
 }
 
-.brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
+button{
   cursor:pointer;
 }
 
-.brand-mark{
-  width:40px;
-  height:40px;
-  border-radius:12px;
-  border:1px solid var(--gold);
+img{
+  max-width:100%;
+  display:block;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.app{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 90% -10%,rgba(214,168,79,.13),transparent 28%),
+    linear-gradient(180deg,#090909 0%,#070707 60%,#090909 100%);
+}
+
+/* HEADER */
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:100;
+  height:68px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:0 18px;
+  background:rgba(7,7,7,.92);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+}
+
+.logo{
   color:var(--gold2);
-  display:grid;
-  place-items:center;
+  font-size:23px;
   font-weight:900;
+  letter-spacing:-.8px;
+  white-space:nowrap;
 }
 
-.brand-name{
-  color:var(--gold2);
-  font-size:19px;
-  font-weight:800;
-}
-
-.brand-tag{
-  color:#777;
-  font-size:9px;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
+.logo span{
+  display:block;
+  color:#aaa;
+  font-size:8px;
+  letter-spacing:2px;
+  margin-top:-2px;
+  font-weight:700;
 }
 
 .top-actions{
   display:flex;
+  align-items:center;
   gap:8px;
 }
 
 .icon-btn{
-  width:42px;
-  height:42px;
+  width:40px;
+  height:40px;
   border-radius:50%;
   border:1px solid var(--line);
   background:#111;
-  color:#fff;
+  color:var(--white);
   display:grid;
   place-items:center;
+  font-size:18px;
 }
 
 .icon-btn:hover{
@@ -110,461 +128,783 @@ a{text-decoration:none;color:inherit}
   color:var(--gold2);
 }
 
+/* DESKTOP NAV */
+
 .desktop-nav{
-  display:flex;
-  gap:4px;
-  padding:10px 15px;
-  overflow:auto;
-  background:#090909;
-  border-bottom:1px solid rgba(255,255,255,.05);
+  display:none;
 }
 
-.desktop-nav button{
-  white-space:nowrap;
-  border:0;
-  background:transparent;
-  color:#999;
-  padding:9px 12px;
-  border-radius:20px;
+@media(min-width:900px){
+  .desktop-nav{
+    display:flex;
+    gap:5px;
+    overflow:auto;
+    padding:10px 18px;
+    border-bottom:1px solid rgba(255,255,255,.05);
+    background:#090909;
+  }
+
+  .desktop-nav button{
+    border:0;
+    color:#aaa;
+    background:transparent;
+    padding:9px 12px;
+    border-radius:10px;
+    white-space:nowrap;
+  }
+
+  .desktop-nav button:hover,
+  .desktop-nav button.active{
+    color:var(--gold2);
+    background:rgba(214,168,79,.08);
+  }
 }
 
-.desktop-nav button:hover,
-.desktop-nav button.active{
-  color:#080808;
-  background:var(--gold);
-}
+/* MAIN */
 
-.app{
-  max-width:1180px;
+main{
+  width:min(1100px,100%);
   margin:auto;
-  padding:22px 17px 110px;
 }
 
 .page{
   display:none;
-  animation:fade .25s ease;
+  padding:20px 15px 35px;
 }
 
-.page.active{display:block}
-
-@keyframes fade{
-  from{opacity:0;transform:translateY(5px)}
-  to{opacity:1;transform:translateY(0)}
+.page.active{
+  display:block;
 }
 
-.hero{
-  border:1px solid var(--line);
-  border-radius:27px;
-  padding:32px;
+.page-title{
+  font-size:30px;
+  line-height:1.05;
+  margin-bottom:7px;
+  letter-spacing:-1px;
+}
+
+.page-subtitle{
+  color:var(--muted);
   margin-bottom:22px;
+  line-height:1.5;
+}
+
+.gold{
+  color:var(--gold2);
+}
+
+/* CARDS */
+
+.card{
   background:
-  linear-gradient(135deg,rgba(214,168,79,.13),transparent 45%),
-  #0e0e0e;
-  box-shadow:0 15px 45px rgba(0,0,0,.3);
+    linear-gradient(145deg,rgba(255,255,255,.025),rgba(255,255,255,.005)),
+    var(--card);
+  border:1px solid rgba(255,255,255,.075);
+  border-radius:18px;
+  padding:17px;
+  margin-bottom:14px;
+  box-shadow:0 12px 35px rgba(0,0,0,.18);
 }
 
-.hero h1{
-  font-size:clamp(34px,6vw,62px);
-  line-height:1;
-  margin-bottom:15px;
+.card h3{
+  margin-bottom:7px;
 }
 
-.hero h1 span{color:var(--gold2)}
-
-.hero p{
-  color:#aaa;
-  line-height:1.7;
-  max-width:750px;
-}
-
-.section-title{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin:25px 0 14px;
-}
-
-.section-title h2{font-size:22px}
-.section-title span{color:var(--gold);font-size:13px}
-
-.gold-btn{
-  border:0;
-  background:linear-gradient(135deg,var(--gold),var(--gold2));
-  color:#090909;
-  padding:11px 17px;
-  border-radius:12px;
-  font-weight:800;
-}
-
-.dark-btn{
-  border:1px solid var(--line);
-  background:#111;
-  color:#fff;
-  padding:11px 17px;
-  border-radius:12px;
-}
-
-.danger-btn{
-  border:1px solid rgba(232,93,93,.35);
-  background:#180d0d;
-  color:#ff9b9b;
-  padding:11px 17px;
-  border-radius:12px;
+.card p{
+  color:#b0b0b0;
+  line-height:1.5;
 }
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
+  gap:14px;
 }
 
-.two-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:15px;
+@media(min-width:700px){
+  .grid.two{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .grid.three{
+    grid-template-columns:repeat(3,1fr);
+  }
 }
 
-.card{
-  background:linear-gradient(145deg,#161616,#101010);
-  border:1px solid rgba(255,255,255,.07);
-  border-radius:20px;
-  padding:20px;
-  box-shadow:0 12px 35px rgba(0,0,0,.22);
-}
+/* BUTTONS */
 
-.card h3{margin-bottom:7px}
-
-.card p{
-  color:#999;
-  line-height:1.6;
-  font-size:14px;
-}
-
-.gold{color:var(--gold2)}
-.small{font-size:12px;color:#777}
-
-/* FEED */
-
-.post{
+.btn{
+  border:1px solid var(--line);
   background:#101010;
-  border:1px solid rgba(255,255,255,.07);
-  border-radius:20px;
-  margin-bottom:15px;
-  overflow:hidden;
+  color:var(--white);
+  border-radius:11px;
+  padding:10px 14px;
+  transition:.2s;
 }
 
-.post-head{
-  padding:15px;
+.btn:hover{
+  border-color:var(--gold);
+  transform:translateY(-1px);
+}
+
+.btn.gold-btn{
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#080808;
+  border:0;
+  font-weight:800;
+}
+
+.btn.green{
+  border-color:rgba(85,216,139,.4);
+  color:var(--green);
+}
+
+.btn.red{
+  border-color:rgba(239,100,100,.35);
+  color:var(--red);
+}
+
+/* HERO */
+
+.hero{
+  min-height:350px;
   display:flex;
-  align-items:center;
-  gap:11px;
+  flex-direction:column;
+  justify-content:center;
+  padding:28px 0;
 }
 
-.avatar{
-  width:43px;
-  height:43px;
-  border-radius:50%;
-  background:linear-gradient(135deg,var(--gold),#674b18);
-  color:#090909;
-  display:grid;
-  place-items:center;
-  font-weight:900;
-  flex-shrink:0;
+.hero-badge{
+  display:inline-flex;
+  width:max-content;
+  border:1px solid var(--line);
+  color:var(--gold2);
+  padding:7px 10px;
+  border-radius:999px;
+  font-size:12px;
+  margin-bottom:18px;
+  background:rgba(214,168,79,.06);
 }
 
-.post-head strong{display:block}
-.post-head span{color:#777;font-size:12px}
+.hero h1{
+  font-size:clamp(42px,9vw,78px);
+  line-height:.92;
+  letter-spacing:-4px;
+  max-width:850px;
+}
 
-.post-body{
-  padding:0 15px 15px;
+.hero h1 span{
+  color:var(--gold2);
+}
+
+.hero p{
+  color:#aaa;
+  max-width:680px;
+  margin:20px 0;
+  font-size:16px;
   line-height:1.65;
 }
 
-.post-image{
-  width:100%;
-  min-height:230px;
-  background:
-  radial-gradient(circle at center,rgba(214,168,79,.12),transparent 40%),
-  linear-gradient(135deg,#191919,#080808);
+.hero-actions{
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+}
+
+/* FEED */
+
+.feed-create{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.avatar{
+  width:44px;
+  height:44px;
+  flex:0 0 44px;
+  border-radius:50%;
   display:grid;
   place-items:center;
+  background:
+    radial-gradient(circle at 35% 25%,#8f6b3c,#292015 55%,#090909);
+  border:1px solid var(--line);
   color:var(--gold2);
-  font-size:42px;
   font-weight:900;
-  letter-spacing:3px;
+}
+
+.fake-input{
+  flex:1;
+  background:#0d0d0d;
+  border:1px solid #242424;
+  color:#888;
+  border-radius:999px;
+  padding:12px 16px;
+  text-align:left;
+}
+
+.post-head{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:13px;
+}
+
+.post-name{
+  font-weight:800;
+}
+
+.post-meta{
+  font-size:11px;
+  color:#777;
+  margin-top:3px;
+}
+
+.post-text{
+  color:#ddd!important;
+  white-space:pre-wrap;
+  margin-bottom:14px;
+}
+
+.post-image{
+  min-height:210px;
+  border-radius:14px;
+  display:flex;
+  align-items:flex-end;
+  padding:18px;
+  margin-bottom:12px;
+  background:
+    linear-gradient(180deg,transparent 20%,rgba(0,0,0,.9)),
+    linear-gradient(135deg,#292015,#171717 48%,#080808);
+  border:1px solid rgba(214,168,79,.16);
+}
+
+.post-image strong{
+  font-size:22px;
+  color:var(--gold2);
 }
 
 .post-actions{
   display:flex;
-  gap:4px;
-  padding:8px;
-  border-top:1px solid rgba(255,255,255,.06);
+  flex-wrap:wrap;
+  gap:5px;
+  border-top:1px solid #242424;
+  padding-top:10px;
 }
 
-.post-actions button{
-  flex:1;
+.action{
   border:0;
   background:transparent;
-  color:#aaa;
-  padding:10px 5px;
-  border-radius:10px;
+  color:#999;
+  padding:8px 9px;
+  border-radius:8px;
 }
 
-.post-actions button:hover{
-  background:#1b1b1b;
-  color:var(--gold2);
+.action:hover{
+  background:#222;
+  color:var(--white);
 }
 
-.reaction-menu{
-  display:none;
-  gap:5px;
-  padding:7px 10px;
-  border-top:1px solid rgba(255,255,255,.05);
-}
-
-.reaction-menu.open{display:flex}
-
-.reaction-menu button{
-  border:0;
-  background:#1b1b1b;
-  padding:7px 10px;
-  border-radius:10px;
-}
-
-/* COMMENTS */
-
-.comments{
-  display:none;
-  padding:12px;
-  border-top:1px solid rgba(255,255,255,.06);
-}
-
-.comments.open{display:block}
-
-.comment{
-  padding:9px 0;
-  border-bottom:1px solid rgba(255,255,255,.05);
-  font-size:13px;
-}
-
-.comment strong{color:var(--gold2)}
-
-.comment-form{
+.reaction-picker{
   display:flex;
-  gap:7px;
-  margin-top:10px;
+  gap:4px;
+  padding:7px;
+  margin-top:6px;
+  background:#0c0c0c;
+  border:1px solid #292929;
+  border-radius:12px;
+  width:max-content;
 }
 
-.comment-form input{
-  flex:1;
+.reaction-picker button{
+  border:0;
+  background:#171717;
+  border-radius:8px;
+  padding:7px;
 }
 
 /* FORMS */
 
-.field{
+input,
+textarea,
+select{
   width:100%;
-  background:#0d0d0d;
-  color:#fff;
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:12px;
-  padding:13px;
+  background:#0b0b0b;
+  border:1px solid #2a2a2a;
+  border-radius:11px;
+  color:var(--white);
+  padding:12px 13px;
   outline:none;
 }
 
-.field:focus{border-color:var(--gold)}
+input:focus,
+textarea:focus,
+select:focus{
+  border-color:var(--gold);
+}
 
-textarea.field{
-  min-height:130px;
+textarea{
+  min-height:120px;
   resize:vertical;
 }
 
-.form{display:grid;gap:12px}
-
-/* AI */
-
-.ai-shell{
-  background:#0c0c0c;
-  border:1px solid var(--line);
-  border-radius:25px;
-  overflow:hidden;
-  box-shadow:0 15px 45px rgba(0,0,0,.35);
+.form-row{
+  display:grid;
+  gap:10px;
+  margin-bottom:10px;
 }
 
-.ai-head{
-  padding:20px;
-  border-bottom:1px solid var(--line);
+@media(min-width:650px){
+  .form-row.two{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+/* CATEGORY */
+
+.category{
+  border:1px solid #242424;
+  background:#111;
+  padding:17px;
+  border-radius:16px;
+  min-height:125px;
+  transition:.2s;
+}
+
+.category:hover{
+  transform:translateY(-2px);
+  border-color:var(--line);
+}
+
+.category-icon{
+  font-size:29px;
+  margin-bottom:10px;
+}
+
+.category h3{
+  margin-bottom:5px;
+}
+
+.category p{
+  font-size:13px;
+}
+
+/* LANGUAGE SERVERS */
+
+.language-shell{
+  display:grid;
+  gap:15px;
+}
+
+@media(min-width:900px){
+  .language-shell{
+    grid-template-columns:330px 1fr;
+    align-items:start;
+  }
+}
+
+.server-list{
+  max-height:650px;
+  overflow:auto;
+  padding-right:3px;
+}
+
+.server{
+  width:100%;
+  text-align:left;
+  border:1px solid #292929;
+  background:#101010;
+  color:white;
+  padding:14px;
+  border-radius:14px;
+  margin-bottom:8px;
+  transition:.2s;
+}
+
+.server:hover,
+.server.active{
+  border-color:var(--gold);
+  background:rgba(214,168,79,.07);
+}
+
+.server-top{
   display:flex;
   align-items:center;
-  justify-content:space-between;
+  gap:10px;
 }
 
-.ai-title{
-  display:flex;
-  align-items:center;
-  gap:12px;
+.server-icon{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  background:#1b1b1b;
+  font-size:20px;
 }
 
-.ai-orb{
-  width:46px;
-  height:46px;
-  border-radius:50%;
-  background:radial-gradient(circle,var(--gold2),#624719);
-  box-shadow:0 0 30px rgba(214,168,79,.25);
+.server-name{
+  font-weight:800;
 }
 
-.ai-status{
-  color:var(--green);
-  font-size:12px;
+.server-members{
+  font-size:11px;
+  color:#777;
   margin-top:3px;
 }
 
-.chat-messages{
-  height:470px;
-  overflow:auto;
-  padding:20px;
+.server-status{
+  margin-left:auto;
+  width:8px;
+  height:8px;
+  background:var(--green);
+  border-radius:50%;
+}
+
+.language-chat{
+  min-height:590px;
   display:flex;
   flex-direction:column;
-  gap:12px;
+  padding:0;
+  overflow:hidden;
+}
+
+.chat-head{
+  padding:16px;
+  border-bottom:1px solid #292929;
+  background:#101010;
+}
+
+.chat-head-top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.chat-title{
+  font-size:20px;
+  font-weight:850;
+}
+
+.chat-desc{
+  color:#888;
+  font-size:12px;
+  margin-top:4px;
+}
+
+.chat-controls{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  margin-top:12px;
+}
+
+.chat-controls select{
+  width:auto;
+  min-width:145px;
+  padding:9px;
+  font-size:12px;
+}
+
+.chat-messages{
+  flex:1;
+  min-height:330px;
+  max-height:460px;
+  overflow:auto;
+  padding:15px;
 }
 
 .message{
-  max-width:80%;
-  padding:12px 15px;
+  margin-bottom:12px;
+  max-width:86%;
+}
+
+.message.mine{
+  margin-left:auto;
+}
+
+.message-name{
+  font-size:11px;
+  color:var(--gold2);
+  margin-bottom:4px;
+}
+
+.message-bubble{
+  display:inline-block;
+  background:#1a1a1a;
+  border:1px solid #282828;
+  border-radius:13px;
+  padding:10px 12px;
+  line-height:1.45;
+}
+
+.message.mine .message-bubble{
+  background:rgba(214,168,79,.12);
+  border-color:rgba(214,168,79,.28);
+}
+
+.translation{
+  display:block;
+  margin-top:7px;
+  padding-top:7px;
+  border-top:1px solid #303030;
+  color:#9ec3ff;
+  font-size:12px;
+}
+
+.chat-compose{
+  display:flex;
+  gap:8px;
+  padding:12px;
+  border-top:1px solid #292929;
+  background:#0d0d0d;
+}
+
+.chat-compose input{
+  flex:1;
+}
+
+/* LEARNING */
+
+.lesson{
+  border:1px solid #252525;
+  background:#101010;
+  border-radius:15px;
+  padding:15px;
+}
+
+.lesson-word{
+  color:var(--gold2);
+  font-size:20px;
+  font-weight:800;
+  margin-bottom:5px;
+}
+
+.lesson-answer{
+  color:#aaa;
+  margin-bottom:12px;
+}
+
+.progress{
+  height:7px;
+  background:#222;
+  border-radius:99px;
+  overflow:hidden;
+  margin:9px 0 15px;
+}
+
+.progress span{
+  display:block;
+  height:100%;
+  width:45%;
+  background:linear-gradient(90deg,var(--gold),var(--gold2));
+}
+
+/* AI */
+
+.ai-layout{
+  display:grid;
+  gap:14px;
+}
+
+@media(min-width:900px){
+  .ai-layout{
+    grid-template-columns:250px 1fr;
+  }
+}
+
+.ai-sidebar{
+  background:#101010;
+  border:1px solid #242424;
   border-radius:17px;
+  padding:14px;
+}
+
+.ai-mode{
+  width:100%;
+  text-align:left;
+  border:1px solid #242424;
+  background:#151515;
+  color:#aaa;
+  padding:11px;
+  border-radius:10px;
+  margin-bottom:7px;
+}
+
+.ai-mode.active{
+  border-color:var(--gold);
+  color:var(--gold2);
+}
+
+.ai-window{
+  min-height:620px;
+  display:flex;
+  flex-direction:column;
+  background:#0e0e0e;
+  border:1px solid #242424;
+  border-radius:17px;
+  overflow:hidden;
+}
+
+.ai-header{
+  padding:15px;
+  border-bottom:1px solid #282828;
+}
+
+.ai-header strong{
+  color:var(--gold2);
+}
+
+.ai-messages{
+  flex:1;
+  overflow:auto;
+  padding:15px;
+  min-height:450px;
+}
+
+.ai-message{
+  max-width:88%;
+  padding:12px 14px;
+  border-radius:15px;
+  margin-bottom:10px;
   line-height:1.55;
   white-space:pre-wrap;
 }
 
-.message.ai{
-  align-self:flex-start;
+.ai-message.bot{
   background:#181818;
-  border:1px solid rgba(255,255,255,.06);
+  border:1px solid #292929;
 }
 
-.message.user{
-  align-self:flex-end;
-  background:linear-gradient(135deg,var(--gold),var(--gold2));
-  color:#080808;
+.ai-message.user{
+  margin-left:auto;
+  background:rgba(214,168,79,.13);
+  border:1px solid rgba(214,168,79,.24);
 }
 
-.message.typing{
-  color:#999;
-  font-style:italic;
-}
-
-.chat-input{
+.ai-compose{
   display:flex;
   gap:8px;
   padding:12px;
-  border-top:1px solid var(--line);
+  border-top:1px solid #292929;
 }
-
-.chat-input input{
-  flex:1;
-  background:#151515;
-  color:#fff;
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:13px;
-  padding:13px;
-  outline:none;
-}
-
-.chat-input input:focus{border-color:var(--gold)}
-
-/* LANGUAGE */
-
-.language-panel{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:15px;
-}
-
-.language-list{
-  display:grid;
-  gap:9px;
-}
-
-.language{
-  padding:14px;
-  border-radius:14px;
-  background:#121212;
-  border:1px solid rgba(255,255,255,.07);
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-}
-
-.language strong{color:#fff}
-.language span{color:#777;font-size:12px}
 
 /* PROFILE */
 
 .profile-cover{
-  height:190px;
-  border-radius:25px 25px 0 0;
-  border:1px solid var(--line);
+  min-height:180px;
+  border-radius:20px;
   background:
-  radial-gradient(circle at 70% 20%,rgba(240,199,106,.35),transparent 25%),
-  linear-gradient(135deg,#171717,#080808);
+    radial-gradient(circle at 20% 20%,rgba(240,199,106,.22),transparent 25%),
+    linear-gradient(135deg,#18130b,#090909 60%,#1a1309);
+  border:1px solid var(--line);
+  padding:20px;
+  display:flex;
+  align-items:flex-end;
 }
 
-.profile-box{
-  margin-top:-55px;
-  position:relative;
-  padding:0 25px 25px;
+.profile-main{
+  display:flex;
+  align-items:flex-end;
+  gap:14px;
 }
 
 .profile-avatar{
-  width:105px;
-  height:105px;
+  width:85px;
+  height:85px;
   border-radius:50%;
-  border:4px solid #0b0b0b;
-  background:linear-gradient(135deg,var(--gold),#604516);
-  color:#090909;
+  background:radial-gradient(circle at 35% 25%,#9a713d,#251d13 55%,#080808);
+  border:3px solid var(--gold);
   display:grid;
   place-items:center;
-  font-size:35px;
+  font-size:28px;
+  font-weight:900;
+  color:var(--gold2);
+}
+
+.profile-name{
+  font-size:25px;
   font-weight:900;
 }
 
-.profile-info{margin-top:10px}
-.profile-info h1{font-size:30px}
-.profile-info p{color:#888;margin-top:5px}
-
-.profile-actions{
-  display:flex;
-  gap:8px;
-  margin-top:15px;
-  flex-wrap:wrap;
+.profile-handle{
+  color:#999;
+  font-size:13px;
 }
 
-/* PLAYLIST */
+.playlist{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  padding:11px;
+  border:1px solid #252525;
+  border-radius:12px;
+  margin-bottom:8px;
+}
 
-.song{
+.play-icon{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:var(--gold);
+  color:#090909;
+}
+
+/* LOCAL DISCOVER */
+
+.location-box{
+  display:flex;
+  gap:8px;
+}
+
+.location-box input{
+  flex:1;
+}
+
+/* MODAL */
+
+.modal-backdrop{
+  position:fixed;
+  inset:0;
+  z-index:500;
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(8px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+}
+
+.modal-backdrop.show{
+  display:flex;
+}
+
+.modal{
+  width:min(650px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:#111;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:18px;
+  box-shadow:0 30px 90px rgba(0,0,0,.6);
+}
+
+.modal-head{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:10px;
-  padding:12px 0;
-  border-bottom:1px solid rgba(255,255,255,.06);
+  margin-bottom:15px;
 }
 
-.song:last-child{border-bottom:0}
-
-.song-info{
-  min-width:0;
-}
-
-.song-info strong{
-  display:block;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-.song-info span{
-  color:#777;
-  font-size:12px;
+.modal-close{
+  border:0;
+  background:#1b1b1b;
+  color:#aaa;
+  width:35px;
+  height:35px;
+  border-radius:50%;
 }
 
 /* DRAWER */
@@ -572,7 +912,7 @@ textarea.field{
 .drawer{
   position:fixed;
   inset:0;
-  z-index:2000;
+  z-index:400;
   pointer-events:none;
 }
 
@@ -581,126 +921,113 @@ textarea.field{
   inset:0;
   background:rgba(0,0,0,.7);
   opacity:0;
-  transition:.2s;
+  transition:.25s;
 }
 
 .drawer-panel{
   position:absolute;
   top:0;
-  bottom:0;
   left:0;
-  width:min(350px,88vw);
-  background:#0b0b0b;
+  bottom:0;
+  width:min(340px,88vw);
+  background:#0c0c0c;
   border-right:1px solid var(--line);
-  transform:translateX(-100%);
+  transform:translateX(-105%);
   transition:.25s;
-  padding:24px 18px;
+  padding:20px 15px;
   overflow:auto;
 }
 
-.drawer.open{pointer-events:auto}
-.drawer.open .drawer-bg{opacity:1}
-.drawer.open .drawer-panel{transform:translateX(0)}
+.drawer.open{
+  pointer-events:auto;
+}
 
-.drawer-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+.drawer.open .drawer-bg{
+  opacity:1;
+}
+
+.drawer.open .drawer-panel{
+  transform:translateX(0);
+}
+
+.drawer-logo{
+  font-size:25px;
+  font-weight:900;
+  color:var(--gold2);
   margin-bottom:20px;
 }
 
-.drawer-links{
-  display:grid;
-  gap:4px;
-}
-
-.drawer-links button{
+.drawer-item{
+  width:100%;
   border:0;
   background:transparent;
-  color:#bbb;
-  padding:14px;
-  border-radius:12px;
+  color:#aaa;
+  padding:13px;
+  border-radius:11px;
   text-align:left;
+  margin-bottom:4px;
 }
 
-.drawer-links button:hover{
+.drawer-item:hover{
   background:#181818;
   color:var(--gold2);
 }
 
-/* MODALS */
+/* SEARCH */
 
-.modal{
-  position:fixed;
-  inset:0;
-  z-index:2500;
-  display:none;
-  background:rgba(0,0,0,.8);
-  backdrop-filter:blur(10px);
-  padding:60px 15px;
-  overflow:auto;
+.search-results{
+  margin-top:12px;
 }
 
-.modal.open{display:block}
-
-.modal-box{
-  max-width:650px;
-  margin:auto;
-  background:#111;
-  border:1px solid var(--line);
-  border-radius:22px;
-  padding:20px;
-}
-
-.modal-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:15px;
+.search-result{
+  padding:12px;
+  border-bottom:1px solid #252525;
 }
 
 /* TOAST */
 
 .toast{
   position:fixed;
-  bottom:95px;
+  z-index:900;
   left:50%;
-  transform:translateX(-50%) translateY(20px);
-  background:#191919;
-  border:1px solid var(--gold);
-  color:#fff;
-  padding:12px 17px;
-  border-radius:13px;
+  bottom:92px;
+  transform:translate(-50%,20px);
   opacity:0;
   pointer-events:none;
+  background:#1b1b1b;
+  border:1px solid var(--line);
+  color:white;
+  padding:11px 15px;
+  border-radius:999px;
   transition:.25s;
-  z-index:5000;
   max-width:90%;
   text-align:center;
 }
 
 .toast.show{
   opacity:1;
-  transform:translateX(-50%) translateY(0);
+  transform:translate(-50%,0);
 }
 
 /* BOTTOM NAV */
 
 .bottom-nav{
   position:fixed;
+  z-index:200;
+  bottom:0;
   left:0;
   right:0;
-  bottom:0;
-  z-index:1500;
-  height:76px;
-  background:rgba(8,8,8,.97);
-  backdrop-filter:blur(20px);
-  border-top:1px solid var(--line);
+  height:78px;
   display:grid;
   grid-template-columns:repeat(7,1fr);
+  background:rgba(7,7,7,.96);
+  backdrop-filter:blur(18px);
+  border-top:1px solid var(--line);
+  padding:6px 3px env(safe-area-inset-bottom);
 }
 
 .bottom-nav button{
+  min-width:0;
   border:0;
   background:transparent;
   color:#777;
@@ -709,115 +1036,118 @@ textarea.field{
   align-items:center;
   justify-content:center;
   gap:4px;
-  min-width:0;
   font-size:9px;
 }
 
-.bottom-nav button span:first-child{font-size:18px}
-.bottom-nav button.active{color:var(--gold2)}
-
-/* RESPONSIVE */
-
-@media(max-width:900px){
-  .grid{grid-template-columns:repeat(2,1fr)}
-  .desktop-nav{display:none}
-  .language-panel,.two-grid{grid-template-columns:1fr}
+.bottom-nav button.active{
+  color:var(--gold2);
 }
 
-@media(max-width:620px){
+.nav-icon{
+  font-size:18px;
+  line-height:1;
+}
 
-  .header{
-    height:64px;
-    padding:0 11px;
+.nav-label{
+  white-space:nowrap;
+}
+
+@media(min-width:900px){
+  .bottom-nav{
+    display:none;
   }
 
-  .brand-tag{display:none}
-  .brand-name{font-size:16px}
-
-  .app{
-    padding:15px 9px 105px;
+  body{
+    padding-bottom:0;
   }
+}
 
-  .hero{
-    padding:25px 19px;
-    border-radius:21px;
-  }
+/* STATUS */
 
-  .hero h1{font-size:37px}
+.status{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:11px;
+  color:#888;
+}
 
-  .grid{grid-template-columns:1fr}
+.status-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--green);
+}
 
-  .card{padding:17px}
+/* TABLE */
 
-  .chat-messages{height:410px}
+.simple-table{
+  width:100%;
+  border-collapse:collapse;
+}
 
-  .message{max-width:90%}
+.simple-table th,
+.simple-table td{
+  text-align:left;
+  padding:10px;
+  border-bottom:1px solid #242424;
+  font-size:13px;
+}
 
-  .bottom-nav{height:72px}
+.simple-table th{
+  color:var(--gold2);
+}
 
-  .bottom-nav button{
-    font-size:8px;
-  }
+/* FOOTER */
 
-  .bottom-nav button span:first-child{
-    font-size:17px;
-  }
-
-  .profile-box{
-    padding:0 15px 20px;
-  }
+footer{
+  text-align:center;
+  color:#666;
+  font-size:11px;
+  padding:25px 15px 30px;
 }
 </style>
 </head>
 
 <body>
+<div class="app">
 
-<header class="header">
+<header class="topbar">
+  <button class="icon-btn" onclick="openDrawer()" aria-label="Menu">☰</button>
 
-  <div class="brand" onclick="navigate('home')">
-    <div class="brand-mark">S</div>
-
-    <div>
-      <div class="brand-name">Soulaani</div>
-      <div class="brand-tag">
-        The Culture. The People. The Platform.
-      </div>
-    </div>
+  <div class="logo">
+    SOULAANI
+    <span>THE CULTURE • THE PEOPLE • THE PLATFORM</span>
   </div>
 
   <div class="top-actions">
-    <button class="icon-btn" onclick="openSearch()">⌕</button>
-    <button class="icon-btn" onclick="openDrawer()">☰</button>
+    <button class="icon-btn" onclick="openSearch()" aria-label="Search">⌕</button>
+    <button class="icon-btn" onclick="go('profile')" aria-label="Profile">◉</button>
   </div>
-
 </header>
 
-
 <nav class="desktop-nav">
-
-  <button data-page="home" onclick="navigate('home')">Home</button>
-  <button data-page="connect" onclick="navigate('connect')">Connect</button>
-  <button data-page="date" onclick="navigate('date')">Date</button>
-  <button data-page="build" onclick="navigate('build')">Build</button>
-  <button data-page="market" onclick="navigate('market')">Market</button>
-  <button data-page="explore" onclick="navigate('explore')">Explore</button>
-  <button data-page="culture" onclick="navigate('culture')">Culture</button>
-  <button data-page="skate" onclick="navigate('skate')">Skate</button>
-  <button data-page="languages" onclick="navigate('languages')">Languages</button>
-  <button data-page="ai" onclick="navigate('ai')">Soulaani AI</button>
-  <button data-page="profile" onclick="navigate('profile')">Profile</button>
-
+  <button onclick="go('home')">Home</button>
+  <button onclick="go('connect')">Connect</button>
+  <button onclick="go('date')">Date</button>
+  <button onclick="go('build')">Build</button>
+  <button onclick="go('market')">Market</button>
+  <button onclick="go('explore')">Explore</button>
+  <button onclick="go('culture')">Culture</button>
+  <button onclick="go('skate')">Skate</button>
+  <button onclick="go('languages')">Languages</button>
+  <button onclick="go('ai')">Soulaani AI</button>
+  <button onclick="go('profile')">Profile</button>
 </nav>
 
-
-<main class="app">
-
+<main>
 
 <!-- HOME -->
 
-<section class="page active" id="home">
+<section id="page-home" class="page active">
 
   <div class="hero">
+    <div class="hero-badge">✦ A home for culture, community & connection</div>
 
     <h1>
       The Culture.<br>
@@ -826,40 +1156,25 @@ textarea.field{
     </h1>
 
     <p>
-      Soulaani is a community platform built around Black people,
-      culture, creativity, connection, language, business,
-      skating, local discovery and conversation.
+      Soulaani brings community, culture, creativity, business,
+      language, skating, music, conversation and connection into one place.
     </p>
 
-    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;">
-
-      <button class="gold-btn" onclick="navigate('connect')">
-        Connect
-      </button>
-
-      <button class="dark-btn" onclick="navigate('languages')">
-        Learn Languages
-      </button>
-
-      <button class="dark-btn" onclick="navigate('ai')">
-        Soulaani AI
-      </button>
-
+    <div class="hero-actions">
+      <button class="btn gold-btn" onclick="openComposer()">Create a post</button>
+      <button class="btn" onclick="go('languages')">Explore languages</button>
+      <button class="btn" onclick="go('ai')">Talk to Soulaani AI</button>
     </div>
-
   </div>
 
-
-  <div class="section-title">
-
-    <h2>Your Feed</h2>
-
-    <span id="feedLocation">
-      Global
-    </span>
-
+  <div class="card">
+    <div class="feed-create">
+      <div class="avatar">S</div>
+      <button class="fake-input" onclick="openComposer()">
+        What's happening in your community?
+      </button>
+    </div>
   </div>
-
 
   <div id="feed"></div>
 
@@ -868,78 +1183,49 @@ textarea.field{
 
 <!-- CONNECT -->
 
-<section class="page" id="connect">
+<section id="page-connect" class="page">
 
-  <div class="hero">
+  <h1 class="page-title">Connect</h1>
+  <p class="page-subtitle">
+    Find people, communities, conversations and shared interests.
+  </p>
 
-    <h1>Connect</h1>
-
-    <p>
-      Meet people, communities, creators and conversations
-      across Soulaani.
-    </p>
-
-  </div>
-
-
-  <div class="grid">
+  <div class="grid two">
 
     <div class="card">
-
-      <h3>👥 Communities</h3>
-
-      <p>
-        Find communities around cities, interests,
-        culture, creativity and shared experiences.
-      </p>
-
-      <button
-        class="gold-btn"
-        style="margin-top:15px"
-        onclick="createCommunity()"
-      >
-        Create Community
+      <h3>👥 People</h3>
+      <p>Discover people based on interests, culture, creativity and community.</p>
+      <br>
+      <button class="btn gold-btn" onclick="toast('People discovery opened')">
+        Discover people
       </button>
-
     </div>
 
+    <div class="card">
+      <h3>🌎 Communities</h3>
+      <p>Join communities built around cities, interests, language and culture.</p>
+      <br>
+      <button class="btn" onclick="go('languages')">
+        Language communities
+      </button>
+    </div>
 
     <div class="card">
-
       <h3>💬 Messages</h3>
-
-      <p>
-        Private conversations and community chats.
-      </p>
-
-      <button
-        class="dark-btn"
-        style="margin-top:15px"
-        onclick="openChat()"
-      >
-        Open Messages
+      <p>Your private conversations and community connections.</p>
+      <br>
+      <button class="btn" onclick="openCommunityChat()">
+        Open messages
       </button>
-
     </div>
 
-
     <div class="card">
-
-      <h3>🌎 Local Connections</h3>
-
-      <p>
-        Discover people and conversations around your
-        selected location.
-      </p>
-
-      <button
-        class="dark-btn"
-        style="margin-top:15px"
-        onclick="navigate('explore')"
-      >
+      <h3>📍 Local connections</h3>
+      <p>Connect with people and opportunities around your selected area.</p>
+      <br>
+      <button class="btn" onclick="go('explore')">
         Local Discover
       </button>
-
     </div>
 
   </div>
@@ -949,58 +1235,44 @@ textarea.field{
 
 <!-- DATE -->
 
-<section class="page" id="date">
+<section id="page-date" class="page">
 
-  <div class="hero">
+  <h1 class="page-title">Date</h1>
+  <p class="page-subtitle">
+    A community-centered space for meeting people and building meaningful connections.
+  </p>
 
-    <h1>Date</h1>
-
-    <p>
-      A dedicated space for connection and dating,
-      with privacy and safety built into the experience.
-    </p>
-
+  <div class="card">
+    <h3>Dating profile</h3>
+    <p>Create your dating profile separately from your main profile.</p>
+    <br>
+    <div class="form-row two">
+      <input id="dateName" placeholder="Display name">
+      <input id="dateAge" type="number" placeholder="Age">
+    </div>
+    <textarea id="dateBio" placeholder="Tell people about yourself"></textarea>
+    <br><br>
+    <button class="btn gold-btn" onclick="saveDatingProfile()">Save dating profile</button>
   </div>
 
+  <div class="grid three">
 
-  <div class="two-grid">
-
-    <div class="card">
-
-      <h3>Dating Profile</h3>
-
-      <p>
-        Create a dating profile separate from your main
-        Soulaani identity.
-      </p>
-
-      <button
-        class="gold-btn"
-        style="margin-top:15px"
-        onclick="toast('Dating profile setup is ready for backend connection.')"
-      >
-        Create Profile
-      </button>
-
+    <div class="category">
+      <div class="category-icon">❤️</div>
+      <h3>Shared interests</h3>
+      <p>Music, food, skating, business, language and culture.</p>
     </div>
 
+    <div class="category">
+      <div class="category-icon">💫</div>
+      <h3>Conversation</h3>
+      <p>Start with conversation before deciding where it goes.</p>
+    </div>
 
-    <div class="card">
-
-      <h3>Preferences</h3>
-
-      <p>
-        Control your discovery and privacy preferences.
-      </p>
-
-      <button
-        class="dark-btn"
-        style="margin-top:15px"
-        onclick="toast('Preferences panel opened.')"
-      >
-        Preferences
-      </button>
-
+    <div class="category">
+      <div class="category-icon">🔒</div>
+      <h3>Privacy</h3>
+      <p>Your dating information can remain separate from your public profile.</p>
     </div>
 
   </div>
@@ -1010,42 +1282,41 @@ textarea.field{
 
 <!-- BUILD -->
 
-<section class="page" id="build">
+<section id="page-build" class="page">
 
-  <div class="hero">
+  <h1 class="page-title">Build</h1>
+  <p class="page-subtitle">
+    Careers, entrepreneurship, networking and opportunities.
+  </p>
 
-    <h1>Build</h1>
-
-    <p>
-      Careers, entrepreneurship, networking,
-      mentorship and opportunities.
-    </p>
-
-  </div>
-
-
-  <div class="grid">
+  <div class="grid two">
 
     <div class="card">
       <h3>💼 Careers</h3>
-      <p>
-        Discover career resources, opportunities
-        and professional communities.
-      </p>
+      <p>Discover jobs, career resources and professional communities.</p>
+      <br>
+      <button class="btn gold-btn" onclick="toast('Career discovery ready')">Explore careers</button>
     </div>
 
     <div class="card">
       <h3>🚀 Entrepreneurship</h3>
-      <p>
-        Connect founders, creators and business owners.
-      </p>
+      <p>Build ideas, find collaborators and connect with entrepreneurs.</p>
+      <br>
+      <button class="btn" onclick="toast('Entrepreneur community opened')">Build together</button>
     </div>
 
     <div class="card">
       <h3>🤝 Networking</h3>
-      <p>
-        Build meaningful professional relationships.
-      </p>
+      <p>Meet creators, professionals, founders and community builders.</p>
+      <br>
+      <button class="btn" onclick="go('connect')">Network</button>
+    </div>
+
+    <div class="card">
+      <h3>📚 Resources</h3>
+      <p>Learning materials, business education and practical tools.</p>
+      <br>
+      <button class="btn" onclick="go('languages')">Learn something</button>
     </div>
 
   </div>
@@ -1055,42 +1326,65 @@ textarea.field{
 
 <!-- MARKET -->
 
-<section class="page" id="market">
+<section id="page-market" class="page">
 
-  <div class="hero">
+  <h1 class="page-title">Market</h1>
+  <p class="page-subtitle">
+    Discover Black-owned businesses, products, services and creators.
+  </p>
 
-    <h1>Market</h1>
-
-    <p>
-      Discover Black-owned businesses, products,
-      services and creators.
-    </p>
-
+  <div class="card">
+    <div class="form-row two">
+      <input id="marketSearch" placeholder="Search businesses or products">
+      <select id="marketCategory">
+        <option>All categories</option>
+        <option>Food</option>
+        <option>Fashion</option>
+        <option>Beauty</option>
+        <option>Art</option>
+        <option>Music</option>
+        <option>Services</option>
+        <option>Technology</option>
+      </select>
+    </div>
   </div>
 
+  <div class="grid three">
 
-  <div class="grid">
-
-    <div class="card">
-      <h3>Black-Owned Businesses</h3>
-      <p>
-        Business owners can create dedicated profiles.
-      </p>
+    <div class="category">
+      <div class="category-icon">🍽️</div>
+      <h3>Soul food</h3>
+      <p>Restaurants and cooks serving Black American soul food.</p>
     </div>
 
-    <div class="card">
-      <h3>Marketplace</h3>
-      <p>
-        Products and services can eventually be bought
-        and sold through Soulaani.
-      </p>
+    <div class="category">
+      <div class="category-icon">👕</div>
+      <h3>Fashion</h3>
+      <p>Independent designers and community brands.</p>
     </div>
 
-    <div class="card">
-      <h3>Local Discovery</h3>
-      <p>
-        Find businesses around your selected area.
-      </p>
+    <div class="category">
+      <div class="category-icon">🎨</div>
+      <h3>Art</h3>
+      <p>Artists, visual creators and cultural work.</p>
+    </div>
+
+    <div class="category">
+      <div class="category-icon">💇🏾</div>
+      <h3>Beauty</h3>
+      <p>Barbers, stylists, braiders and beauty businesses.</p>
+    </div>
+
+    <div class="category">
+      <div class="category-icon">💻</div>
+      <h3>Technology</h3>
+      <p>Black-owned technology businesses and creators.</p>
+    </div>
+
+    <div class="category">
+      <div class="category-icon">🛠️</div>
+      <h3>Services</h3>
+      <p>Local professionals and community services.</p>
     </div>
 
   </div>
@@ -1100,83 +1394,51 @@ textarea.field{
 
 <!-- EXPLORE -->
 
-<section class="page" id="explore">
+<section id="page-explore" class="page">
 
-  <div class="hero">
-
-    <h1>Explore</h1>
-
-    <p>
-      Your local Soulaani experience. Choose an area
-      and discover people, events, businesses, food,
-      music and culture.
-    </p>
-
-  </div>
-
+  <h1 class="page-title">Explore</h1>
+  <p class="page-subtitle">
+    Your local FYP for people, businesses, culture, food, events and music.
+  </p>
 
   <div class="card">
+    <h3>📍 Local Discover</h3>
+    <p>Select the area you want your local feed to represent.</p>
+    <br>
 
-    <h3>Local Discover</h3>
-
-    <p style="margin:8px 0 15px;">
-      Select your city or local area.
-    </p>
-
-    <div style="display:flex;gap:10px;flex-wrap:wrap;">
-
-      <input
-        id="locationInput"
-        class="field"
-        placeholder="City, State"
-        style="flex:1;min-width:200px"
-      >
-
-      <button
-        class="gold-btn"
-        onclick="saveLocation()"
-      >
-        Set Location
-      </button>
-
+    <div class="location-box">
+      <input id="locationInput" placeholder="City, State">
+      <button class="btn gold-btn" onclick="saveLocation()">Save</button>
     </div>
 
-  </div>
+    <br>
 
-
-  <div class="section-title">
-    <h2>Local Discover</h2>
-  </div>
-
-
-  <div class="grid">
-
-    <div class="card">
-      <h3>📍 People</h3>
-      <p>
-        Discover community members in your area.
-      </p>
+    <div id="savedLocation" class="status">
+      <span class="status-dot"></span>
+      No location selected
     </div>
+  </div>
+
+  <div class="grid two">
 
     <div class="card">
-      <h3>🎤 Events</h3>
-      <p>
-        Discover local cultural and community events.
-      </p>
+      <h3>🎉 Events</h3>
+      <p>Community events, cultural gatherings, music and local activities.</p>
     </div>
 
     <div class="card">
       <h3>🍽️ Food</h3>
-      <p>
-        Discover soul food and Black-owned food businesses.
-      </p>
+      <p>Discover soul food and local Black-owned food businesses.</p>
     </div>
 
     <div class="card">
       <h3>🎵 Music</h3>
-      <p>
-        Discover local artists, DJs and music culture.
-      </p>
+      <p>Discover artists, playlists, DJs and local sounds.</p>
+    </div>
+
+    <div class="card">
+      <h3>🏪 Businesses</h3>
+      <p>Find businesses and services in your selected local area.</p>
     </div>
 
   </div>
@@ -1186,62 +1448,49 @@ textarea.field{
 
 <!-- CULTURE -->
 
-<section class="page" id="culture">
+<section id="page-culture" class="page">
 
-  <div class="hero">
+  <h1 class="page-title">Culture</h1>
+  <p class="page-subtitle">
+    Black American culture, food, art, fashion, music and creators.
+  </p>
 
-    <h1>Culture</h1>
+  <div class="grid two">
 
-    <p>
-      Black American culture, soul food, music, art,
-      fashion, creators, history and cultural conversation.
-    </p>
-
-  </div>
-
-
-  <div class="grid">
-
-    <div class="card">
-      <h3>✊🏿 Black Culture</h3>
-      <p>
-        Community traditions, creativity and cultural expression.
-      </p>
+    <div class="category">
+      <div class="category-icon">✊🏿</div>
+      <h3>Black American culture</h3>
+      <p>Stories, traditions, creativity and community.</p>
     </div>
 
-    <div class="card">
-      <h3>🍽️ Soul Food</h3>
-      <p>
-        Soul-food plates, cooks, restaurants and food creators.
-      </p>
+    <div class="category">
+      <div class="category-icon">🍽️</div>
+      <h3>Soul food</h3>
+      <p>Black American soul-food plates, cooks, restaurants and recipes.</p>
     </div>
 
-    <div class="card">
-      <h3>🎨 Art</h3>
-      <p>
-        Artists and visual creators.
-      </p>
+    <div class="category">
+      <div class="category-icon">🎵</div>
+      <h3>Music</h3>
+      <p>Artists, genres, playlists and cultural sounds.</p>
     </div>
 
-    <div class="card">
-      <h3>👕 Fashion</h3>
-      <p>
-        Fashion, streetwear, designers and personal style.
-      </p>
+    <div class="category">
+      <div class="category-icon">🎨</div>
+      <h3>Art</h3>
+      <p>Visual artists, photographers and creative work.</p>
     </div>
 
-    <div class="card">
-      <h3>🎵 Music</h3>
-      <p>
-        Artists, producers, DJs and playlists.
-      </p>
+    <div class="category">
+      <div class="category-icon">👑</div>
+      <h3>Fashion</h3>
+      <p>Style, designers, streetwear and cultural fashion.</p>
     </div>
 
-    <div class="card">
-      <h3>🎬 Creators</h3>
-      <p>
-        Video creators, writers, photographers and storytellers.
-      </p>
+    <div class="category">
+      <div class="category-icon">🎬</div>
+      <h3>Creators</h3>
+      <p>Video creators, writers, filmmakers and storytellers.</p>
     </div>
 
   </div>
@@ -1251,277 +1500,257 @@ textarea.field{
 
 <!-- SKATE -->
 
-<section class="page" id="skate">
+<section id="page-skate" class="page">
 
-  <div class="hero">
-
-    <h1>Skate</h1>
-
-    <p>
-      Riders, clips, local skate spots, events,
-      skate culture and community.
-    </p>
-
-  </div>
-
-
-  <div class="grid">
-
-    <div class="card">
-      <h3>🛹 Riders</h3>
-      <p>
-        Discover riders and skating communities.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>🎥 Clips</h3>
-      <p>
-        Share skating videos and memorable sessions.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>📍 Skate Spots</h3>
-      <p>
-        Discover local skate spots.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>🏁 Events</h3>
-      <p>
-        Competitions, sessions, meetups and skate events.
-      </p>
-    </div>
-
-  </div>
-
-
-  <div class="section-title">
-    <h2>Skate Feed</h2>
-  </div>
-
+  <h1 class="page-title">Skate</h1>
+  <p class="page-subtitle">
+    Riders, clips, skate spots, events and community skate culture.
+  </p>
 
   <div class="card">
-
-    <h3>🛹 Create Skate Post</h3>
-
-    <textarea
-      id="skatePost"
-      class="field"
-      placeholder="Share your session..."
-      style="margin-top:12px"
-    ></textarea>
-
-    <button
-      class="gold-btn"
-      style="margin-top:10px"
-      onclick="createSkatePost()"
-    >
-      Post
+    <button class="btn gold-btn" onclick="openSkateComposer()">
+      + Create skate post
     </button>
+  </div>
+
+  <div class="grid two">
+
+    <div class="category">
+      <div class="category-icon">🛹</div>
+      <h3>Riders</h3>
+      <p>Discover riders and skating communities.</p>
+    </div>
+
+    <div class="category">
+      <div class="category-icon">🎥</div>
+      <h3>Clips</h3>
+      <p>Post tricks, lines and skate videos.</p>
+    </div>
+
+    <div class="category">
+      <div class="category-icon">📍</div>
+      <h3>Skate spots</h3>
+      <p>Find local spots and community favorites.</p>
+    </div>
+
+    <div class="category">
+      <div class="category-icon">🏆</div>
+      <h3>Events</h3>
+      <p>Competitions, meetups and skate events.</p>
+    </div>
 
   </div>
 
-
-  <div id="skatePosts" style="margin-top:15px"></div>
+  <div id="skateFeed"></div>
 
 </section>
 
 
 <!-- LANGUAGES -->
 
-<section class="page" id="languages">
+<section id="page-languages" class="page">
 
-  <div class="hero">
+  <h1 class="page-title">Language & Connection</h1>
 
-    <h1>Language & Connection</h1>
+  <p class="page-subtitle">
+    Learn, translate and connect across languages of Black America and the Black diaspora.
+  </p>
 
+  <div class="card">
+    <h3>🌎 Choose your language server</h3>
     <p>
-      Learn languages connected to Black American communities
-      and the Black diaspora, practice with others,
-      translate phrases and connect through language.
+      Enter a dedicated community for the language you want to learn,
+      practice or speak.
     </p>
-
   </div>
 
+  <div class="language-shell">
 
-  <div class="language-panel">
+    <div>
 
-    <div class="card">
+      <div class="card">
+        <input
+          id="serverSearch"
+          placeholder="Search language servers..."
+          oninput="renderServers()"
+        >
+      </div>
 
-      <h2 style="margin-bottom:15px">
-        Languages
-      </h2>
+      <div id="serverList" class="server-list"></div>
 
-      <div class="language-list">
+    </div>
 
-        <div class="language">
-          <strong>Haitian Creole</strong>
-          <span>Kreyòl Ayisyen</span>
+    <div class="language-chat card">
+
+      <div class="chat-head">
+
+        <div class="chat-head-top">
+
+          <div>
+            <div id="chatServerTitle" class="chat-title">
+              Choose a language server
+            </div>
+
+            <div id="chatServerDesc" class="chat-desc">
+              Select a language community to begin.
+            </div>
+          </div>
+
+          <span id="serverOnline" class="status">
+            <span class="status-dot"></span>
+            Online
+          </span>
+
         </div>
 
-        <div class="language">
-          <strong>Louisiana Creole</strong>
-          <span>Créole louisianais</span>
+        <div class="chat-controls">
+
+          <select id="sourceLanguage">
+            <option value="English">English</option>
+            <option value="Haitian Creole">Haitian Creole</option>
+            <option value="Louisiana Creole">Louisiana Creole</option>
+            <option value="Tutnese">Tutnese</option>
+            <option value="Jamaican Patois">Jamaican Patois</option>
+            <option value="Gullah Geechee">Gullah Geechee</option>
+            <option value="Kreyòl">Kreyòl</option>
+            <option value="French">French</option>
+            <option value="Spanish">Spanish</option>
+            <option value="Portuguese">Portuguese</option>
+            <option value="Other">Other</option>
+          </select>
+
+          <span style="align-self:center;color:#777">→</span>
+
+          <select id="targetLanguage">
+            <option value="English">English</option>
+            <option value="Haitian Creole">Haitian Creole</option>
+            <option value="Louisiana Creole">Louisiana Creole</option>
+            <option value="Tutnese">Tutnese</option>
+            <option value="Jamaican Patois">Jamaican Patois</option>
+            <option value="Gullah Geechee">Gullah Geechee</option>
+            <option value="Kreyòl">Kreyòl</option>
+            <option value="French">French</option>
+            <option value="Spanish">Spanish</option>
+            <option value="Portuguese">Portuguese</option>
+            <option value="Other">Other</option>
+          </select>
+
+          <button class="btn" onclick="translateCurrentMessage()">
+            Translate
+          </button>
+
         </div>
 
-        <div class="language">
-          <strong>Tutnese</strong>
-          <span>Historical language tradition</span>
-        </div>
+      </div>
 
-        <div class="language">
-          <strong>Jamaican Patois</strong>
-          <span>Jamaican Creole</span>
-        </div>
+      <div id="languageMessages" class="chat-messages"></div>
 
-        <div class="language">
-          <strong>Gullah Geechee</strong>
-          <span>Gullah/Geechee</span>
-        </div>
+      <div class="chat-compose">
 
-        <div class="language">
-          <strong>Other Creole Languages</strong>
-          <span>Growing library</span>
-        </div>
+        <input
+          id="languageMessageInput"
+          placeholder="Write a message..."
+          onkeydown="if(event.key==='Enter')sendLanguageMessage()"
+        >
+
+        <button class="btn gold-btn" onclick="sendLanguageMessage()">
+          Send
+        </button>
 
       </div>
 
     </div>
 
+  </div>
 
-    <div class="card">
+  <br>
 
-      <h2>Free Learning</h2>
+  <div class="card">
+    <h2 style="margin-bottom:7px">📚 Free Language Learning</h2>
 
-      <p style="margin-top:8px">
-        Learning lessons are designed to be free for
-        Soulaani users.
-      </p>
+    <p>
+      Learn vocabulary, greetings, phrases and cultural context.
+      Choose a language below.
+    </p>
 
-      <div style="height:7px;background:#222;border-radius:20px;margin:15px 0;overflow:hidden">
-        <div style="height:100%;width:35%;background:linear-gradient(90deg,var(--gold),var(--gold2))"></div>
-      </div>
+    <br>
 
-      <strong>Beginner Lesson</strong>
+    <div class="form-row two">
 
-      <p style="margin-top:8px">
-        Greetings, introductions, everyday phrases
-        and cultural context.
-      </p>
+      <select id="lessonLanguage" onchange="renderLesson()">
+        <option>Haitian Creole</option>
+        <option>Louisiana Creole</option>
+        <option>Tutnese</option>
+        <option>Jamaican Patois</option>
+        <option>Gullah Geechee</option>
+      </select>
 
-      <button
-        class="gold-btn"
-        style="margin-top:15px"
-        onclick="startLesson()"
-      >
-        Start Lesson
+      <button class="btn gold-btn" onclick="nextLesson()">
+        Next lesson
       </button>
 
     </div>
 
+    <div class="progress">
+      <span id="lessonProgress"></span>
+    </div>
+
+    <div id="lessonArea"></div>
+
   </div>
-
-
-  <div class="section-title">
-    <h2>Translator</h2>
-  </div>
-
 
   <div class="card">
 
-    <div class="two-grid">
+    <h2>🌐 Universal Translation</h2>
 
-      <div>
+    <p>
+      Enter text and choose the source and destination languages.
+    </p>
 
-        <label class="small">
-          From
-        </label>
+    <br>
 
-        <select
-          id="fromLanguage"
-          class="field"
-        >
-          <option>English</option>
-          <option>Haitian Creole</option>
-          <option>Louisiana Creole</option>
-          <option>Jamaican Patois</option>
-          <option>Gullah Geechee</option>
-          <option>Tutnese</option>
-        </select>
+    <div class="form-row two">
 
-      </div>
+      <select id="translatorFrom">
+        <option>English</option>
+        <option>Haitian Creole</option>
+        <option>Louisiana Creole</option>
+        <option>Tutnese</option>
+        <option>Jamaican Patois</option>
+        <option>Gullah Geechee</option>
+        <option>French</option>
+        <option>Spanish</option>
+        <option>Portuguese</option>
+      </select>
 
-
-      <div>
-
-        <label class="small">
-          To
-        </label>
-
-        <select
-          id="toLanguage"
-          class="field"
-        >
-          <option>Haitian Creole</option>
-          <option>English</option>
-          <option>Louisiana Creole</option>
-          <option>Jamaican Patois</option>
-          <option>Gullah Geechee</option>
-          <option>Tutnese</option>
-        </select>
-
-      </div>
+      <select id="translatorTo">
+        <option>Haitian Creole</option>
+        <option>English</option>
+        <option>Louisiana Creole</option>
+        <option>Tutnese</option>
+        <option>Jamaican Patois</option>
+        <option>Gullah Geechee</option>
+        <option>French</option>
+        <option>Spanish</option>
+        <option>Portuguese</option>
+      </select>
 
     </div>
 
-
     <textarea
-      id="translationInput"
-      class="field"
+      id="translatorInput"
       placeholder="Type something to translate..."
-      style="margin-top:12px"
     ></textarea>
 
+    <br>
 
-    <button
-      class="gold-btn"
-      style="margin-top:10px"
-      onclick="translateText()"
-    >
+    <button class="btn gold-btn" onclick="runTranslation()">
       Translate
     </button>
 
+    <br><br>
 
-    <div
-      id="translationOutput"
-      class="card"
-      style="display:none;margin-top:15px"
-    ></div>
-
-  </div>
-
-
-  <div class="section-title">
-    <h2>Language Connection Chat</h2>
-  </div>
-
-
-  <div class="card">
-
-    <p>
-      Meet people learning and practicing languages.
-    </p>
-
-    <button
-      class="gold-btn"
-      style="margin-top:15px"
-      onclick="openChat()"
-    >
-      Enter Language Chat
-    </button>
+    <div id="translatorOutput" class="lesson"></div>
 
   </div>
 
@@ -1530,77 +1759,75 @@ textarea.field{
 
 <!-- AI -->
 
-<section class="page" id="ai">
+<section id="page-ai" class="page">
 
-  <div class="hero">
+  <h1 class="page-title">Soulaani AI</h1>
 
-    <h1>Soulaani AI</h1>
+  <p class="page-subtitle">
+    Your built-in Soulaani assistant for conversation, culture,
+    language learning, writing, ideas and platform help.
+  </p>
 
-    <p>
-      Your built-in Soulaani assistant for learning,
-      discovery, culture, languages, creativity,
-      planning and navigating the platform.
-    </p>
+  <div class="ai-layout">
 
-  </div>
+    <aside class="ai-sidebar">
 
+      <button class="ai-mode active" onclick="setAIMode('General',this)">
+        ✦ General
+      </button>
 
-  <div class="ai-shell">
+      <button class="ai-mode" onclick="setAIMode('Language Teacher',this)">
+        🗣️ Language Teacher
+      </button>
 
-    <div class="ai-head">
+      <button class="ai-mode" onclick="setAIMode('Culture Guide',this)">
+        ✊🏿 Culture Guide
+      </button>
 
-      <div class="ai-title">
+      <button class="ai-mode" onclick="setAIMode('Business',this)">
+        💼 Business
+      </button>
 
-        <div class="ai-orb"></div>
+      <button class="ai-mode" onclick="setAIMode('Writing',this)">
+        ✍🏿 Writing
+      </button>
 
-        <div>
-          <strong>Soulaani AI</strong>
+      <button class="ai-mode" onclick="setAIMode('Soulaani Help',this)">
+        ⚙️ Soulaani Help
+      </button>
 
-          <div class="ai-status">
-            ● Ready
-          </div>
+      <br>
+
+      <button class="btn" style="width:100%" onclick="clearAI()">
+        Clear conversation
+      </button>
+
+    </aside>
+
+    <div class="ai-window">
+
+      <div class="ai-header">
+        <strong>Soulaani AI</strong>
+        <div style="font-size:12px;color:#777;margin-top:3px">
+          Mode: <span id="aiModeLabel">General</span>
         </div>
-
       </div>
 
+      <div id="aiMessages" class="ai-messages"></div>
 
-      <button
-        class="dark-btn"
-        onclick="clearAI()"
-      >
-        Clear
-      </button>
+      <div class="ai-compose">
 
-    </div>
+        <input
+          id="aiInput"
+          placeholder="Ask Soulaani AI anything..."
+          onkeydown="if(event.key==='Enter')sendAI()"
+        >
 
+        <button class="btn gold-btn" onclick="sendAI()">
+          Send
+        </button>
 
-    <div
-      id="aiMessages"
-      class="chat-messages"
-    >
-
-      <div class="message ai">
-        Welcome to Soulaani AI. Ask me about Soulaani, languages, culture, skating, business, ideas, learning or anything else.
       </div>
-
-    </div>
-
-
-    <div class="chat-input">
-
-      <input
-        id="aiInput"
-        placeholder="Ask Soulaani AI anything..."
-        autocomplete="off"
-        onkeydown="if(event.key==='Enter')sendAI()"
-      >
-
-      <button
-        class="gold-btn"
-        onclick="sendAI()"
-      >
-        Send
-      </button>
 
     </div>
 
@@ -1611,110 +1838,101 @@ textarea.field{
 
 <!-- PROFILE -->
 
-<section class="page" id="profile">
+<section id="page-profile" class="page">
 
-  <div class="profile-cover"></div>
+  <h1 class="page-title">Profile</h1>
 
+  <div class="profile-cover">
 
-  <div class="profile-box">
+    <div class="profile-main">
 
-    <div
-      class="profile-avatar"
-      id="profileAvatar"
-    >
-      S
-    </div>
+      <div id="profileAvatar" class="profile-avatar">
+        S
+      </div>
 
+      <div>
+        <div id="profileName" class="profile-name">
+          Soulaani User
+        </div>
 
-    <div class="profile-info">
-
-      <h1 id="profileName">
-        Soulaani Member
-      </h1>
-
-      <p id="profileBio">
-        Building community through culture,
-        connection and creativity.
-      </p>
-
-    </div>
-
-
-    <div class="profile-actions">
-
-      <button
-        class="gold-btn"
-        onclick="openProfileEditor()"
-      >
-        Edit Profile
-      </button>
-
-      <button
-        class="dark-btn"
-        onclick="openThemeEditor()"
-      >
-        Customize Theme
-      </button>
+        <div id="profileHandle" class="profile-handle">
+          @soulaaniuser
+        </div>
+      </div>
 
     </div>
 
   </div>
 
+  <br>
 
-  <div class="two-grid">
+  <div class="card">
 
-    <div class="card">
+    <h3>Edit profile</h3>
 
-      <h3>🎵 My Playlist</h3>
+    <br>
 
-      <p style="margin-bottom:12px">
-        Your personal playlist.
-      </p>
+    <div class="form-row two">
 
-      <div class="song">
+      <input id="profileNameInput" placeholder="Name">
 
-        <div class="song-info">
-          <strong>Soulaani Playlist</strong>
-          <span>Your music</span>
-        </div>
-
-        <button
-          class="dark-btn"
-          onclick="toggleMusic(this)"
-        >
-          ▶
-        </button>
-
-      </div>
-
-      <div class="song">
-
-        <div class="song-info">
-          <strong>My Favorite Track</strong>
-          <span>Playlist</span>
-        </div>
-
-        <button
-          class="dark-btn"
-          onclick="toggleMusic(this)"
-        >
-          ▶
-        </button>
-
-      </div>
+      <input id="profileHandleInput" placeholder="@username">
 
     </div>
 
+    <textarea
+      id="profileBioInput"
+      placeholder="Tell the Soulaani community about yourself"
+    ></textarea>
 
-    <div class="card">
+    <br><br>
 
-      <h3>📊 My Activity</h3>
+    <button class="btn gold-btn" onclick="saveProfile()">
+      Save profile
+    </button>
 
-      <p>
-        Posts, reactions, communities,
-        lessons and connections will appear here.
-      </p>
+  </div>
 
+  <div class="card">
+
+    <h3>🎨 Profile theme</h3>
+
+    <p>Customize the accent color of your profile.</p>
+
+    <br>
+
+    <input
+      id="themePicker"
+      type="color"
+      value="#d6a84f"
+      style="height:48px;padding:4px"
+      onchange="changeTheme()"
+    >
+
+  </div>
+
+  <div class="card">
+
+    <h3>🎵 My Playlist</h3>
+
+    <p>Music can live on your Soulaani profile.</p>
+
+    <br>
+
+    <div class="playlist">
+      <div class="play-icon" onclick="toggleMusic(this)">▶</div>
+      <div>
+        <strong>Soulaani Playlist</strong>
+        <div style="font-size:11px;color:#777">Add music through your future media connection</div>
+      </div>
+    </div>
+
+    <div class="playlist">
+      <div class="play-icon" onclick="toggleMusic(this)">▶</div>
+      <div>
+        <strong>My Culture Mix</strong>
+        <div style="font-size:11px;color:#777">Profile playlist</div>
+      </div>
     </div>
 
   </div>
@@ -1724,70 +1942,48 @@ textarea.field{
 </main>
 
 
+<footer>
+  SOULAANI • The Culture. The People. The Platform.
+</footer>
+
+
 <!-- BOTTOM NAV -->
 
 <nav class="bottom-nav">
 
-  <button
-    data-page="home"
-    onclick="navigate('home')"
-  >
-    <span>⌂</span>
-    <span>Home</span>
+  <button data-page="home" onclick="go('home')">
+    <span class="nav-icon">⌂</span>
+    <span class="nav-label">Home</span>
   </button>
 
-
-  <button
-    data-page="connect"
-    onclick="navigate('connect')"
-  >
-    <span>♟</span>
-    <span>Connect</span>
+  <button data-page="connect" onclick="go('connect')">
+    <span class="nav-icon">♧</span>
+    <span class="nav-label">Connect</span>
   </button>
 
-
-  <button
-    data-page="skate"
-    onclick="navigate('skate')"
-  >
-    <span>🛹</span>
-    <span>Skate</span>
+  <button data-page="skate" onclick="go('skate')">
+    <span class="nav-icon">🛹</span>
+    <span class="nav-label">Skate</span>
   </button>
 
-
-  <button
-    data-page="culture"
-    onclick="navigate('culture')"
-  >
-    <span>✊🏿</span>
-    <span>Culture</span>
+  <button data-page="culture" onclick="go('culture')">
+    <span class="nav-icon">✊🏿</span>
+    <span class="nav-label">Culture</span>
   </button>
 
-
-  <button
-    data-page="languages"
-    onclick="navigate('languages')"
-  >
-    <span>文</span>
-    <span>Languages</span>
+  <button data-page="languages" onclick="go('languages')">
+    <span class="nav-icon">文</span>
+    <span class="nav-label">Languages</span>
   </button>
 
-
-  <button
-    data-page="ai"
-    onclick="navigate('ai')"
-  >
-    <span>✦</span>
-    <span>AI</span>
+  <button data-page="ai" onclick="go('ai')">
+    <span class="nav-icon">✦</span>
+    <span class="nav-label">AI</span>
   </button>
 
-
-  <button
-    data-page="profile"
-    onclick="navigate('profile')"
-  >
-    <span>●</span>
-    <span>Profile</span>
+  <button data-page="profile" onclick="go('profile')">
+    <span class="nav-icon">◉</span>
+    <span class="nav-label">Profile</span>
   </button>
 
 </nav>
@@ -1795,289 +1991,155 @@ textarea.field{
 
 <!-- DRAWER -->
 
-<div
-  class="drawer"
-  id="drawer"
->
+<div id="drawer" class="drawer">
 
-  <div
-    class="drawer-bg"
-    onclick="closeDrawer()"
-  ></div>
-
+  <div class="drawer-bg" onclick="closeDrawer()"></div>
 
   <div class="drawer-panel">
 
-    <div class="drawer-head">
+    <div class="drawer-logo">SOULAANI</div>
 
-      <strong class="gold">
-        Soulaani
-      </strong>
+    <button class="drawer-item" onclick="go('home');closeDrawer()">⌂ Home</button>
+    <button class="drawer-item" onclick="go('connect');closeDrawer()">♧ Connect</button>
+    <button class="drawer-item" onclick="go('date');closeDrawer()">♡ Date</button>
+    <button class="drawer-item" onclick="go('build');closeDrawer()">◈ Build</button>
+    <button class="drawer-item" onclick="go('market');closeDrawer()">▣ Market</button>
+    <button class="drawer-item" onclick="go('explore');closeDrawer()">⌖ Explore</button>
+    <button class="drawer-item" onclick="go('culture');closeDrawer()">✊🏿 Culture</button>
+    <button class="drawer-item" onclick="go('skate');closeDrawer()">🛹 Skate</button>
+    <button class="drawer-item" onclick="go('languages');closeDrawer()">文 Languages</button>
+    <button class="drawer-item" onclick="go('ai');closeDrawer()">✦ Soulaani AI</button>
+    <button class="drawer-item" onclick="go('profile');closeDrawer()">◉ Profile</button>
 
-      <button
-        class="icon-btn"
-        onclick="closeDrawer()"
-      >
-        ×
-      </button>
+    <br>
 
-    </div>
-
-
-    <div class="drawer-links">
-
-      <button onclick="drawerGo('home')">
-        Home
-      </button>
-
-      <button onclick="drawerGo('connect')">
-        Connect
-      </button>
-
-      <button onclick="drawerGo('date')">
-        Date
-      </button>
-
-      <button onclick="drawerGo('build')">
-        Build
-      </button>
-
-      <button onclick="drawerGo('market')">
-        Market
-      </button>
-
-      <button onclick="drawerGo('explore')">
-        Explore
-      </button>
-
-      <button onclick="drawerGo('culture')">
-        Culture
-      </button>
-
-      <button onclick="drawerGo('skate')">
-        Skate
-      </button>
-
-      <button onclick="drawerGo('languages')">
-        Language & Connection
-      </button>
-
-      <button onclick="drawerGo('ai')">
-        Soulaani AI
-      </button>
-
-      <button onclick="drawerGo('profile')">
-        Profile
-      </button>
-
-    </div>
+    <button class="btn" style="width:100%" onclick="closeDrawer()">
+      Close
+    </button>
 
   </div>
 
 </div>
 
 
-<!-- SEARCH -->
+<!-- SEARCH MODAL -->
 
-<div
-  class="modal"
-  id="searchModal"
->
+<div id="searchModal" class="modal-backdrop">
 
-  <div class="modal-box">
+  <div class="modal">
 
     <div class="modal-head">
 
       <h2>Search Soulaani</h2>
 
-      <button
-        class="icon-btn"
-        onclick="closeSearch()"
-      >
-        ×
-      </button>
+      <button class="modal-close" onclick="closeSearch()">×</button>
 
     </div>
-
 
     <input
-      id="searchInput"
-      class="field"
+      id="globalSearch"
       placeholder="Search Soulaani..."
-      oninput="runSearch()"
+      oninput="performSearch()"
     >
 
-
-    <div
-      id="searchResults"
-      style="margin-top:15px"
-    ></div>
+    <div id="searchResults" class="search-results"></div>
 
   </div>
 
 </div>
 
 
-<!-- PROFILE EDITOR -->
+<!-- COMPOSER -->
 
-<div
-  class="modal"
-  id="profileModal"
->
+<div id="composerModal" class="modal-backdrop">
 
-  <div class="modal-box">
+  <div class="modal">
 
     <div class="modal-head">
 
-      <h2>Edit Profile</h2>
+      <h2>Create a post</h2>
 
-      <button
-        class="icon-btn"
-        onclick="closeProfileEditor()"
-      >
-        ×
-      </button>
+      <button class="modal-close" onclick="closeComposer()">×</button>
 
     </div>
 
+    <textarea
+      id="postInput"
+      placeholder="Share something with Soulaani..."
+    ></textarea>
 
-    <div class="form">
+    <br><br>
+
+    <button class="btn gold-btn" onclick="createPost()">
+      Publish
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- SKATE COMPOSER -->
+
+<div id="skateModal" class="modal-backdrop">
+
+  <div class="modal">
+
+    <div class="modal-head">
+
+      <h2>Create skate post</h2>
+
+      <button class="modal-close" onclick="closeSkateComposer()">×</button>
+
+    </div>
+
+    <input id="skateTitle" placeholder="Title">
+
+    <br><br>
+
+    <textarea
+      id="skateText"
+      placeholder="Post a trick, spot, event or skate story..."
+    ></textarea>
+
+    <br><br>
+
+    <button class="btn gold-btn" onclick="createSkatePost()">
+      Publish skate post
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- COMMUNITY CHAT -->
+
+<div id="communityChatModal" class="modal-backdrop">
+
+  <div class="modal">
+
+    <div class="modal-head">
+
+      <h2>Messages</h2>
+
+      <button class="modal-close" onclick="closeCommunityChat()">×</button>
+
+    </div>
+
+    <div id="communityMessages" style="max-height:400px;overflow:auto"></div>
+
+    <br>
+
+    <div class="chat-compose">
 
       <input
-        id="editName"
-        class="field"
-        placeholder="Your name"
-      >
-
-
-      <textarea
-        id="editBio"
-        class="field"
-        placeholder="Your bio"
-      ></textarea>
-
-
-      <button
-        class="gold-btn"
-        onclick="saveProfile()"
-      >
-        Save Profile
-      </button>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- THEME EDITOR -->
-
-<div
-  class="modal"
-  id="themeModal"
->
-
-  <div class="modal-box">
-
-    <div class="modal-head">
-
-      <h2>Profile Theme</h2>
-
-      <button
-        class="icon-btn"
-        onclick="closeThemeEditor()"
-      >
-        ×
-      </button>
-
-    </div>
-
-
-    <p class="small">
-      Choose your profile accent.
-    </p>
-
-
-    <div
-      style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:15px"
-    >
-
-      <button
-        class="gold-btn"
-        onclick="setTheme('#d6a84f','#f0c76a')"
-      >
-        Gold
-      </button>
-
-      <button
-        class="dark-btn"
-        onclick="setTheme('#5d9cff','#79b0ff')"
-      >
-        Blue
-      </button>
-
-      <button
-        class="dark-btn"
-        onclick="setTheme('#55c982','#83e5a5')"
-      >
-        Green
-      </button>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- CHAT MODAL -->
-
-<div
-  class="modal"
-  id="chatModal"
->
-
-  <div class="modal-box">
-
-    <div class="modal-head">
-
-      <h2>Soulaani Chat</h2>
-
-      <button
-        class="icon-btn"
-        onclick="closeChat()"
-      >
-        ×
-      </button>
-
-    </div>
-
-
-    <div
-      id="communityChat"
-      style="height:320px;overflow:auto;background:#0b0b0b;border-radius:15px;padding:15px"
-    >
-
-      <div class="message ai">
-        Welcome to the Soulaani community chat.
-      </div>
-
-    </div>
-
-
-    <div class="chat-input">
-
-      <input
-        id="communityChatInput"
+        id="communityInput"
         placeholder="Write a message..."
         onkeydown="if(event.key==='Enter')sendCommunityMessage()"
       >
 
-      <button
-        class="gold-btn"
-        onclick="sendCommunityMessage()"
-      >
+      <button class="btn gold-btn" onclick="sendCommunityMessage()">
         Send
       </button>
 
@@ -2088,117 +2150,1807 @@ textarea.field{
 </div>
 
 
-<div
-  id="toast"
-  class="toast"
-></div>
+<div id="toast" class="toast"></div>
+
+</div>
 
 
 <script>
-
-/* =========================================================
-   SOULAANI CONFIGURATION
-========================================================= */
+/* ============================================================
+   SOULAANI CORE
+   ============================================================ */
 
 /*
-  IMPORTANT:
+  SECURITY NOTE
 
-  Leave this as an empty string until your secure API
-  server has been deployed.
+  Keep these blank on GitHub Pages.
 
-  Example later:
+  For production:
+  Frontend -> your secure server -> AI provider
+  Frontend -> your secure server -> translation provider
+  Frontend -> database/realtime service -> language chat
 
-  const SOULAANI_API_URL =
-    "https://your-api-domain.com/api/chat";
-
-  NEVER put your private API key here.
+  NEVER put a private API key in this file.
 */
 
-const SOULAANI_API_URL = "";
+const SOULAANI_AI_ENDPOINT = "";
+const SOULAANI_TRANSLATE_ENDPOINT = "";
+const SOULAANI_CHAT_ENDPOINT = "";
 
 
-/* =========================================================
-   NAVIGATION
-========================================================= */
+/* ============================================================
+   APP STATE
+   ============================================================ */
 
-const pages = [
-  "home",
-  "connect",
-  "date",
-  "build",
-  "market",
-  "explore",
-  "culture",
-  "skate",
-  "languages",
-  "ai",
-  "profile"
+let currentPage = localStorage.getItem("soulaaniPage") || "home";
+
+let currentServer =
+  localStorage.getItem("soulaaniLanguageServer") || "haitian";
+
+let currentAIMode =
+  localStorage.getItem("soulaaniAIMode") || "General";
+
+let lessonIndex =
+  Number(localStorage.getItem("soulaaniLessonIndex") || 0);
+
+let posts =
+  JSON.parse(localStorage.getItem("soulaaniPosts") || "[]");
+
+let skatePosts =
+  JSON.parse(localStorage.getItem("soulaaniSkatePosts") || "[]");
+
+let languageMessages =
+  JSON.parse(localStorage.getItem("soulaaniLanguageMessages") || "{}");
+
+let communityMessages =
+  JSON.parse(localStorage.getItem("soulaaniCommunityMessages") || "[]");
+
+let aiMessages =
+  JSON.parse(localStorage.getItem("soulaaniAIMessages") || "[]");
+
+
+/* ============================================================
+   LANGUAGE SERVERS
+   ============================================================ */
+
+const languageServers = [
+
+  {
+    id:"haitian",
+    name:"Haitian Creole",
+    icon:"🇭🇹",
+    members:"12.8K",
+    description:"Kreyòl Ayisyen language learning and community.",
+    language:"Haitian Creole"
+  },
+
+  {
+    id:"louisiana",
+    name:"Louisiana Creole",
+    icon:"⚜️",
+    members:"4.7K",
+    description:"Louisiana Creole language, history and community.",
+    language:"Louisiana Creole"
+  },
+
+  {
+    id:"tutnese",
+    name:"Tutnese",
+    icon:"📜",
+    members:"3.1K",
+    description:"Explore Tutnese, its documented history and revival work.",
+    language:"Tutnese"
+  },
+
+  {
+    id:"jamaican",
+    name:"Jamaican Patois",
+    icon:"🇯🇲",
+    members:"15.4K",
+    description:"Jamaican Patois conversation and learning.",
+    language:"Jamaican Patois"
+  },
+
+  {
+    id:"gullah",
+    name:"Gullah Geechee",
+    icon:"🌊",
+    members:"5.9K",
+    description:"Gullah Geechee language and cultural connection.",
+    language:"Gullah Geechee"
+  },
+
+  {
+    id:"kreyol",
+    name:"Kreyòl Diaspora",
+    icon:"🌍",
+    members:"8.2K",
+    description:"Connect across Kreyòl-speaking communities.",
+    language:"Kreyòl"
+  },
+
+  {
+    id:"french",
+    name:"French",
+    icon:"🇫🇷",
+    members:"9.8K",
+    description:"French learning and diaspora connection.",
+    language:"French"
+  },
+
+  {
+    id:"spanish",
+    name:"Spanish",
+    icon:"🌎",
+    members:"10.3K",
+    description:"Spanish language connection and learning.",
+    language:"Spanish"
+  },
+
+  {
+    id:"portuguese",
+    name:"Portuguese",
+    icon:"🇧🇷",
+    members:"6.4K",
+    description:"Portuguese language and Lusophone connection.",
+    language:"Portuguese"
+  },
+
+  {
+    id:"creole",
+    name:"Creole Languages",
+    icon:"🌐",
+    members:"7.6K",
+    description:"A wider space for Creole language exchange.",
+    language:"Other"
+  },
+
+  {
+    id:"diaspora",
+    name:"Black Diaspora Languages",
+    icon:"🌍",
+    members:"18.5K",
+    description:"Connect across languages of the Black diaspora.",
+    language:"Other"
+  }
+
 ];
 
 
-function navigate(page){
+/* ============================================================
+   LESSON DATA
+   ============================================================ */
 
-  if(!pages.includes(page)){
-    page="home";
+const lessons = {
+
+  "Haitian Creole":[
+    ["Bonjou","Hello"],
+    ["Kijan ou ye?","How are you?"],
+    ["Mwen byen.","I am well."],
+    ["Mèsi.","Thank you."],
+    ["Tanpri.","Please."],
+    ["Wi","Yes"],
+    ["Non","No"],
+    ["N a wè pita.","See you later."]
+  ],
+
+  "Louisiana Creole":[
+    ["Bonjou","Hello"],
+    ["Mèsi","Thank you"],
+    ["Kouman to yé?","How are you?"],
+    ["Mo byen.","I am well."],
+    ["Wi","Yes"],
+    ["Non","No"]
+  ],
+
+  "Tutnese":[
+    ["Hello","Greeting"],
+    ["Friend","A person you connect with"],
+    ["Community","People connected by shared identity or place"],
+    ["Language","A system of communication"],
+    ["Learn","To gain knowledge or skill"]
+  ],
+
+  "Jamaican Patois":[
+    ["Wah gwaan?","What's going on? / How are you?"],
+    ["Mi deh yah.","I'm here / I'm doing okay."],
+    ["Respect.","Respect."],
+    ["Mi soon come.","I'll be back soon."],
+    ["Big up.","Respect / congratulations."]
+  ],
+
+  "Gullah Geechee":[
+    ["Hey-o","Hello"],
+    ["Tanks","Thanks"],
+    ["We gon","We are going to"],
+    ["Oona","You all"],
+    ["Chilun","Children"]
+  ]
+
+};
+
+
+/* ============================================================
+   LOCAL TRANSLATION PHRASEBOOK
+   ============================================================ */
+
+const translationBook = {
+
+  "hello":{
+    "Haitian Creole":"Bonjou",
+    "Louisiana Creole":"Bonjou",
+    "Jamaican Patois":"Wah gwaan",
+    "Gullah Geechee":"Hey-o",
+    "French":"Bonjour",
+    "Spanish":"Hola",
+    "Portuguese":"Olá"
+  },
+
+  "hi":{
+    "Haitian Creole":"Bonjou",
+    "Louisiana Creole":"Bonjou",
+    "Jamaican Patois":"Wah gwaan",
+    "Gullah Geechee":"Hey-o",
+    "French":"Bonjour",
+    "Spanish":"Hola",
+    "Portuguese":"Olá"
+  },
+
+  "how are you":{
+    "Haitian Creole":"Kijan ou ye?",
+    "Louisiana Creole":"Kouman to yé?",
+    "Jamaican Patois":"Wah gwaan?",
+    "French":"Comment allez-vous ?",
+    "Spanish":"¿Cómo estás?",
+    "Portuguese":"Como você está?"
+  },
+
+  "thank you":{
+    "Haitian Creole":"Mèsi",
+    "Louisiana Creole":"Mèsi",
+    "Jamaican Patois":"Tank yuh",
+    "French":"Merci",
+    "Spanish":"Gracias",
+    "Portuguese":"Obrigado"
+  },
+
+  "please":{
+    "Haitian Creole":"Tanpri",
+    "Louisiana Creole":"Tanpri",
+    "French":"S'il vous plaît",
+    "Spanish":"Por favor",
+    "Portuguese":"Por favor"
+  },
+
+  "yes":{
+    "Haitian Creole":"Wi",
+    "Louisiana Creole":"Wi",
+    "Jamaican Patois":"Yes",
+    "French":"Oui",
+    "Spanish":"Sí",
+    "Portuguese":"Sim"
+  },
+
+  "no":{
+    "Haitian Creole":"Non",
+    "Louisiana Creole":"Non",
+    "Jamaican Patois":"No",
+    "French":"Non",
+    "Spanish":"No",
+    "Portuguese":"Não"
+  },
+
+  "good morning":{
+    "Haitian Creole":"Bonjou",
+    "Louisiana Creole":"Bonjou",
+    "Jamaican Patois":"Gud mawnin",
+    "French":"Bonjour",
+    "Spanish":"Buenos días",
+    "Portuguese":"Bom dia"
+  },
+
+  "good night":{
+    "Haitian Creole":"Bonswa",
+    "French":"Bonne nuit",
+    "Spanish":"Buenas noches",
+    "Portuguese":"Boa noite"
+  },
+
+  "friend":{
+    "Haitian Creole":"Zanmi",
+    "French":"Ami",
+    "Spanish":"Amigo",
+    "Portuguese":"Amigo"
+  },
+
+  "community":{
+    "Haitian Creole":"Kominote",
+    "French":"Communauté",
+    "Spanish":"Comunidad",
+    "Portuguese":"Comunidade"
+  },
+
+  "love":{
+    "Haitian Creole":"Lanmou",
+    "French":"Amour",
+    "Spanish":"Amor",
+    "Portuguese":"Amor"
+  },
+
+  "family":{
+    "Haitian Creole":"Fanmi",
+    "French":"Famille",
+    "Spanish":"Familia",
+    "Portuguese":"Família"
   }
 
-  document.querySelectorAll(".page")
-    .forEach(section=>{
-      section.classList.remove("active");
-    });
+};
 
 
-  const target =
-    document.getElementById(page);
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
 
-  if(target){
-    target.classList.add("active");
-  }
+function go(page){
 
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("active");
+  });
 
-  document.querySelectorAll(".bottom-nav button")
-    .forEach(button=>{
-      button.classList.toggle(
-        "active",
-        button.dataset.page===page
-      );
-    });
+  const target=document.getElementById("page-"+page);
 
+  if(!target)return;
 
-  document.querySelectorAll(".desktop-nav button")
-    .forEach(button=>{
-      button.classList.toggle(
-        "active",
-        button.dataset.page===page
-      );
-    });
+  target.classList.add("active");
 
+  currentPage=page;
+
+  localStorage.setItem("soulaaniPage",page);
+
+  document.querySelectorAll(".bottom-nav button").forEach(btn=>{
+    btn.classList.toggle("active",btn.dataset.page===page);
+  });
+
+  document.querySelectorAll(".desktop-nav button").forEach(btn=>{
+    btn.classList.remove("active");
+  });
 
   window.scrollTo({
     top:0,
     behavior:"smooth"
   });
 
+  if(page==="languages"){
+    renderServers();
+    selectServer(currentServer);
+    renderLesson();
+  }
+
+  if(page==="ai"){
+    renderAI();
+  }
+
+  if(page==="profile"){
+    loadProfile();
+  }
+
+  if(page==="skate"){
+    renderSkatePosts();
+  }
+
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+  go(currentPage);
+
+  renderFeed();
+  renderServers();
+  renderLesson();
+  renderAI();
+  renderCommunityMessages();
+  loadLocation();
+  loadProfile();
+
+});
+
+
+/* ============================================================
+   DRAWER
+   ============================================================ */
+
+function openDrawer(){
+  document.getElementById("drawer").classList.add("open");
+}
+
+function closeDrawer(){
+  document.getElementById("drawer").classList.remove("open");
 }
 
 
-function drawerGo(page){
-  closeDrawer();
-  navigate(page);
+/* ============================================================
+   SEARCH
+   ============================================================ */
+
+function openSearch(){
+  document.getElementById("searchModal").classList.add("show");
+  setTimeout(()=>{
+    document.getElementById("globalSearch").focus();
+  },100);
+}
+
+function closeSearch(){
+  document.getElementById("searchModal").classList.remove("show");
+}
+
+function performSearch(){
+
+  const q=document
+    .getElementById("globalSearch")
+    .value
+    .toLowerCase()
+    .trim();
+
+  const results=document.getElementById("searchResults");
+
+  if(!q){
+    results.innerHTML="";
+    return;
+  }
+
+  const data=[
+    ["Home","Feed and community posts","home"],
+    ["Connect","People and communities","connect"],
+    ["Date","Dating and connection","date"],
+    ["Build","Careers and entrepreneurship","build"],
+    ["Market","Black-owned businesses and products","market"],
+    ["Explore","Local culture and events","explore"],
+    ["Culture","Music, art, fashion and soul food","culture"],
+    ["Skate","Skateboarding community","skate"],
+    ["Languages","Language servers and learning","languages"],
+    ["Soulaani AI","AI assistant","ai"],
+    ["Profile","Your Soulaani profile","profile"]
+  ];
+
+  const found=data.filter(x=>
+    x[0].toLowerCase().includes(q) ||
+    x[1].toLowerCase().includes(q)
+  );
+
+  results.innerHTML=found.length
+    ? found.map(x=>`
+      <button
+        class="search-result"
+        style="width:100%;background:transparent;border:0;color:white;text-align:left"
+        onclick="closeSearch();go('${x[2]}')"
+      >
+        <strong>${escapeHTML(x[0])}</strong>
+        <div style="color:#777;font-size:12px">${escapeHTML(x[1])}</div>
+      </button>
+    `).join("")
+    : `<div style="padding:15px;color:#777">No results found.</div>`;
+
 }
 
 
-/* =========================================================
+/* ============================================================
+   HOME FEED
+   ============================================================ */
+
+const starterPosts=[
+
+  {
+    id:"starter1",
+    name:"Soulaani Community",
+    text:"Welcome to Soulaani. This is a space for culture, connection, creativity and community.",
+    image:"The Culture • The People • The Platform",
+    reactions:{heart:3,laugh:1,fire:4,surprised:0,dislike:0},
+    comments:[]
+  },
+
+  {
+    id:"starter2",
+    name:"Culture & Community",
+    text:"What language are you learning or reconnecting with? Visit Language & Connection and choose your server.",
+    image:"Language Connection",
+    reactions:{heart:7,laugh:0,fire:3,surprised:1,dislike:0},
+    comments:[]
+  }
+
+];
+
+function allPosts(){
+
+  if(!posts.length){
+    return starterPosts;
+  }
+
+  return [...posts,...starterPosts];
+
+}
+
+function renderFeed(){
+
+  const feed=document.getElementById("feed");
+
+  if(!feed)return;
+
+  feed.innerHTML=allPosts().map(post=>`
+
+    <article class="card">
+
+      <div class="post-head">
+
+        <div class="avatar">
+          ${escapeHTML((post.name||"S").charAt(0).toUpperCase())}
+        </div>
+
+        <div>
+          <div class="post-name">${escapeHTML(post.name||"Soulaani User")}</div>
+          <div class="post-meta">Soulaani • public</div>
+        </div>
+
+      </div>
+
+      <p class="post-text">${escapeHTML(post.text||"")}</p>
+
+      ${
+        post.image
+        ? `<div class="post-image">
+             <strong>${escapeHTML(post.image)}</strong>
+           </div>`
+        : ""
+      }
+
+      <div style="font-size:12px;color:#777;margin-bottom:4px">
+        ❤️ ${post.reactions?.heart||0}
+        😂 ${post.reactions?.laugh||0}
+        🔥 ${post.reactions?.fire||0}
+        😮 ${post.reactions?.surprised||0}
+        👎 ${post.reactions?.dislike||0}
+      </div>
+
+      <div class="post-actions">
+
+        <button class="action" onclick="toggleReactions('${post.id}')">
+          👍 React
+        </button>
+
+        <button class="action" onclick="commentPost('${post.id}')">
+          💬 Comment
+        </button>
+
+        <button class="action" onclick="sharePost('${post.id}')">
+          ↗ Share
+        </button>
+
+      </div>
+
+      <div id="reactions-${post.id}" class="reaction-picker hidden">
+
+        <button onclick="react('${post.id}','heart')">❤️</button>
+        <button onclick="react('${post.id}','laugh')">😂</button>
+        <button onclick="react('${post.id}','fire')">🔥</button>
+        <button onclick="react('${post.id}','surprised')">😮</button>
+        <button onclick="react('${post.id}','dislike')">👎</button>
+
+      </div>
+
+    </article>
+
+  `).join("");
+
+}
+
+function toggleReactions(id){
+
+  const el=document.getElementById("reactions-"+id);
+
+  if(el){
+    el.classList.toggle("hidden");
+  }
+
+}
+
+function react(id,type){
+
+  const post=posts.find(p=>p.id===id);
+
+  if(post){
+
+    if(!post.reactions){
+      post.reactions={
+        heart:0,
+        laugh:0,
+        fire:0,
+        surprised:0,
+        dislike:0
+      };
+    }
+
+    post.reactions[type]++;
+
+    savePosts();
+    renderFeed();
+
+    toast("Reaction added");
+    return;
+  }
+
+  toast("Reaction recorded");
+
+}
+
+function commentPost(id){
+
+  const text=prompt("Write your comment:");
+
+  if(!text)return;
+
+  const post=posts.find(p=>p.id===id);
+
+  if(post){
+
+    post.comments=post.comments||[];
+
+    post.comments.push({
+      name:"You",
+      text
+    });
+
+    savePosts();
+    renderFeed();
+
+  }
+
+  toast("Comment added");
+
+}
+
+function sharePost(id){
+  toast("Post sharing is ready for the social backend.");
+}
+
+function openComposer(){
+  document.getElementById("composerModal").classList.add("show");
+}
+
+function closeComposer(){
+  document.getElementById("composerModal").classList.remove("show");
+}
+
+function createPost(){
+
+  const text=document.getElementById("postInput").value.trim();
+
+  if(!text){
+    toast("Write something first.");
+    return;
+  }
+
+  posts.unshift({
+    id:"post_"+Date.now(),
+    name:"You",
+    text,
+    reactions:{
+      heart:0,
+      laugh:0,
+      fire:0,
+      surprised:0,
+      dislike:0
+    },
+    comments:[]
+  });
+
+  savePosts();
+
+  document.getElementById("postInput").value="";
+
+  closeComposer();
+
+  renderFeed();
+
+  toast("Post published");
+
+}
+
+function savePosts(){
+  localStorage.setItem("soulaaniPosts",JSON.stringify(posts));
+}
+
+
+/* ============================================================
+   LANGUAGE SERVERS
+   ============================================================ */
+
+function renderServers(){
+
+  const list=document.getElementById("serverList");
+
+  if(!list)return;
+
+  const q=(document.getElementById("serverSearch")?.value||"")
+    .toLowerCase();
+
+  const filtered=languageServers.filter(server=>
+    server.name.toLowerCase().includes(q) ||
+    server.description.toLowerCase().includes(q)
+  );
+
+  list.innerHTML=filtered.map(server=>`
+
+    <button
+      class="server ${server.id===currentServer?"active":""}"
+      onclick="selectServer('${server.id}')"
+    >
+
+      <div class="server-top">
+
+        <div class="server-icon">${server.icon}</div>
+
+        <div>
+
+          <div class="server-name">
+            ${escapeHTML(server.name)}
+          </div>
+
+          <div class="server-members">
+            ${escapeHTML(server.members)} members
+          </div>
+
+        </div>
+
+        <span class="server-status"></span>
+
+      </div>
+
+      <div style="font-size:12px;color:#777;margin-top:9px">
+        ${escapeHTML(server.description)}
+      </div>
+
+    </button>
+
+  `).join("");
+
+}
+
+function selectServer(id){
+
+  const server=languageServers.find(s=>s.id===id);
+
+  if(!server)return;
+
+  currentServer=id;
+
+  localStorage.setItem("soulaaniLanguageServer",id);
+
+  document.getElementById("chatServerTitle").textContent=
+    server.icon+" "+server.name;
+
+  document.getElementById("chatServerDesc").textContent=
+    server.description;
+
+  renderServers();
+  renderLanguageMessages();
+
+}
+
+
+/* ============================================================
+   LANGUAGE CHAT
+   ============================================================ */
+
+function renderLanguageMessages(){
+
+  const area=document.getElementById("languageMessages");
+
+  if(!area)return;
+
+  const messages=languageMessages[currentServer]||[];
+
+  if(!messages.length){
+
+    area.innerHTML=`
+      <div style="padding:25px;text-align:center;color:#666">
+        <div style="font-size:30px;margin-bottom:10px">🌎</div>
+        <strong>No messages yet</strong>
+        <div style="font-size:12px;margin-top:5px">
+          Start the conversation in this language server.
+        </div>
+      </div>
+    `;
+
+    return;
+  }
+
+  area.innerHTML=messages.map((message,index)=>`
+
+    <div class="message ${message.mine?"mine":""}">
+
+      <div class="message-name">
+        ${escapeHTML(message.name||"Community Member")}
+      </div>
+
+      <div class="message-bubble">
+
+        ${escapeHTML(message.text)}
+
+        ${
+          message.translation
+          ? `<span class="translation">
+              ${escapeHTML(message.translation)}
+             </span>`
+          : ""
+        }
+
+      </div>
+
+    </div>
+
+  `).join("");
+
+  area.scrollTop=area.scrollHeight;
+
+}
+
+function sendLanguageMessage(){
+
+  const input=document.getElementById("languageMessageInput");
+
+  const text=input.value.trim();
+
+  if(!text){
+    return;
+  }
+
+  if(!languageMessages[currentServer]){
+    languageMessages[currentServer]=[];
+  }
+
+  const source=document.getElementById("sourceLanguage").value;
+  const target=document.getElementById("targetLanguage").value;
+
+  const translation=localTranslate(text,source,target);
+
+  languageMessages[currentServer].push({
+    name:"You",
+    text,
+    mine:true,
+    translation:translation!==text?translation:""
+  });
+
+  localStorage.setItem(
+    "soulaaniLanguageMessages",
+    JSON.stringify(languageMessages)
+  );
+
+  input.value="";
+
+  renderLanguageMessages();
+
+  /*
+    Production:
+    POST the same message to SOULAANI_CHAT_ENDPOINT
+    so every member of the server receives it in real time.
+  */
+
+}
+
+function translateCurrentMessage(){
+
+  const input=document.getElementById("languageMessageInput");
+
+  if(!input.value.trim()){
+    toast("Write a message first.");
+    return;
+  }
+
+  const from=document.getElementById("sourceLanguage").value;
+  const to=document.getElementById("targetLanguage").value;
+
+  const translated=localTranslate(
+    input.value.trim(),
+    from,
+    to
+  );
+
+  input.value=translated;
+
+}
+
+
+/* ============================================================
+   TRANSLATION
+   ============================================================ */
+
+async function runTranslation(){
+
+  const input=document
+    .getElementById("translatorInput")
+    .value
+    .trim();
+
+  const from=document
+    .getElementById("translatorFrom")
+    .value;
+
+  const to=document
+    .getElementById("translatorTo")
+    .value;
+
+  const output=document.getElementById("translatorOutput");
+
+  if(!input){
+    output.textContent="Enter something to translate.";
+    return;
+  }
+
+  output.textContent="Translating...";
+
+  /*
+    If your secure backend exists, this is the connection point.
+  */
+
+  if(SOULAANI_TRANSLATE_ENDPOINT){
+
+    try{
+
+      const response=await fetch(
+        SOULAANI_TRANSLATE_ENDPOINT,
+        {
+          method:"POST",
+          headers:{
+            "Content-Type":"application/json"
+          },
+          body:JSON.stringify({
+            text:input,
+            source:from,
+            target:to
+          })
+        }
+      );
+
+      if(!response.ok){
+        throw new Error("Translation server error");
+      }
+
+      const data=await response.json();
+
+      output.textContent=
+        data.translation ||
+        data.output ||
+        "No translation returned.";
+
+      return;
+
+    }catch(error){
+
+      console.error(error);
+
+    }
+
+  }
+
+  output.textContent=localTranslate(input,from,to);
+
+}
+
+function localTranslate(text,from,to){
+
+  if(from===to){
+    return text;
+  }
+
+  const clean=text
+    .trim()
+    .toLowerCase();
+
+  if(translationBook[clean] &&
+     translationBook[clean][to]){
+
+    return translationBook[clean][to];
+
+  }
+
+  /*
+    Preserve already-known phrases.
+  */
+
+  const reverse=findReverseTranslation(
+    clean,
+    from,
+    to
+  );
+
+  if(reverse){
+    return reverse;
+  }
+
+  /*
+    Tutnese is represented carefully here.
+    The local prototype does not invent undocumented vocabulary.
+  */
+
+  if(to==="Tutnese"){
+    return "Tutnese translation requires the Soulaani language database/API for this phrase.";
+  }
+
+  if(from==="Tutnese"){
+    return "Translation from Tutnese requires the Soulaani language database/API for this phrase.";
+  }
+
+  return "Local phrasebook does not contain this phrase yet. Connect Soulaani's translation API to translate unrestricted text.";
+
+}
+
+function findReverseTranslation(text,from,to){
+
+  for(const englishPhrase in translationBook){
+
+    const entries=translationBook[englishPhrase];
+
+    if(entries[from] &&
+       entries[from].toLowerCase()===text){
+
+      if(entries[to]){
+        return entries[to];
+      }
+
+    }
+
+  }
+
+  return null;
+
+}
+
+
+/* ============================================================
+   LESSONS
+   ============================================================ */
+
+function renderLesson(){
+
+  const language=document.getElementById("lessonLanguage")?.value;
+
+  const area=document.getElementById("lessonArea");
+
+  if(!area || !language)return;
+
+  const data=lessons[language]||[];
+
+  if(!data.length){
+
+    area.innerHTML=`
+      <div class="lesson">
+        This language course is being expanded.
+      </div>
+    `;
+
+    return;
+  }
+
+  if(lessonIndex>=data.length){
+    lessonIndex=0;
+  }
+
+  const item=data[lessonIndex];
+
+  document.getElementById("lessonProgress").style.width=
+    ((lessonIndex+1)/data.length*100)+"%";
+
+  area.innerHTML=`
+
+    <div class="lesson">
+
+      <div style="font-size:11px;color:#777">
+        ${escapeHTML(language)} • Lesson ${lessonIndex+1} of ${data.length}
+      </div>
+
+      <div class="lesson-word">
+        ${escapeHTML(item[0])}
+      </div>
+
+      <div class="lesson-answer">
+        ${escapeHTML(item[1])}
+      </div>
+
+      <button class="btn" onclick="speakText('${escapeHTML(item[0])}')">
+        🔊 Hear phrase
+      </button>
+
+    </div>
+
+  `;
+
+}
+
+function nextLesson(){
+
+  lessonIndex++;
+
+  localStorage.setItem(
+    "soulaaniLessonIndex",
+    lessonIndex
+  );
+
+  renderLesson();
+
+}
+
+function speakText(text){
+
+  if("speechSynthesis" in window){
+
+    const utterance=new SpeechSynthesisUtterance(text);
+
+    speechSynthesis.cancel();
+
+    speechSynthesis.speak(utterance);
+
+  }else{
+
+    toast("Speech playback is not supported on this device.");
+
+  }
+
+}
+
+
+/* ============================================================
+   SOULAANI AI
+   ============================================================ */
+
+function renderAI(){
+
+  const area=document.getElementById("aiMessages");
+
+  if(!area)return;
+
+  if(!aiMessages.length){
+
+    aiMessages=[
+      {
+        role:"assistant",
+        text:
+          "Welcome to Soulaani AI. I can help with language learning, writing, culture, business ideas, platform navigation and more."
+      }
+    ];
+
+  }
+
+  area.innerHTML=aiMessages.map(message=>`
+
+    <div class="ai-message ${
+      message.role==="user"?"user":"bot"
+    }">
+
+      ${escapeHTML(message.text)}
+
+    </div>
+
+  `).join("");
+
+  area.scrollTop=area.scrollHeight;
+
+}
+
+function setAIMode(mode,button){
+
+  currentAIMode=mode;
+
+  localStorage.setItem(
+    "soulaaniAIMode",
+    mode
+  );
+
+  document.getElementById("aiModeLabel").textContent=mode;
+
+  document.querySelectorAll(".ai-mode").forEach(b=>{
+    b.classList.remove("active");
+  });
+
+  if(button){
+    button.classList.add("active");
+  }
+
+}
+
+async function sendAI(){
+
+  const input=document.getElementById("aiInput");
+
+  const text=input.value.trim();
+
+  if(!text)return;
+
+  aiMessages.push({
+    role:"user",
+    text
+  });
+
+  input.value="";
+
+  renderAI();
+
+  /*
+    REAL SERVER CONNECTION
+
+    If SOULAANI_AI_ENDPOINT is configured,
+    the browser sends the message to your secure server.
+
+    The private AI key stays on that server.
+  */
+
+  if(SOULAANI_AI_ENDPOINT){
+
+    try{
+
+      const response=await fetch(
+        SOULAANI_AI_ENDPOINT,
+        {
+          method:"POST",
+          headers:{
+            "Content-Type":"application/json"
+          },
+          body:JSON.stringify({
+            message:text,
+            mode:currentAIMode,
+            history:aiMessages.slice(-20)
+          })
+        }
+      );
+
+      if(!response.ok){
+        throw new Error("AI server error");
+      }
+
+      const data=await response.json();
+
+      const answer=
+        data.reply ||
+        data.output ||
+        data.text ||
+        "Soulaani AI did not return a response.";
+
+      aiMessages.push({
+        role:"assistant",
+        text:answer
+      });
+
+      saveAI();
+      renderAI();
+
+      return;
+
+    }catch(error){
+
+      console.error(error);
+
+      aiMessages.push({
+        role:"assistant",
+        text:
+          "Soulaani AI could not reach its secure server. The local assistant is available below."
+      });
+
+    }
+
+  }
+
+  const answer=localAIResponse(text);
+
+  aiMessages.push({
+    role:"assistant",
+    text:answer
+  });
+
+  saveAI();
+
+  renderAI();
+
+}
+
+function localAIResponse(input){
+
+  const text=input.toLowerCase();
+
+  if(text.includes("hello") ||
+     text.includes("hi ") ||
+     text==="hi"){
+
+    return "Welcome to Soulaani. What would you like to explore today?";
+  }
+
+  if(text.includes("haitian creole") ||
+     text.includes("kreyol")){
+
+    return "I can help you practice Haitian Creole. Try: “Bonjou” means “Hello,” “Mèsi” means “Thank you,” and “Kijan ou ye?” means “How are you?”";
+  }
+
+  if(text.includes("tutnese")){
+
+    return "Tutnese is included in Soulaani's language-learning system. Because historical language documentation can be incomplete, Soulaani should use documented sources and clearly distinguish reconstructed or uncertain material instead of inventing translations.";
+  }
+
+  if(text.includes("louisiana creole")){
+
+    return "Louisiana Creole is included as a dedicated Soulaani language community. The full translation system should use a verified Louisiana Creole language database rather than guessing at vocabulary.";
+  }
+
+  if(text.includes("language")){
+
+    return "Open Language & Connection to choose a server, practice a language, translate phrases and work through free lessons.";
+  }
+
+  if(text.includes("skate")){
+
+    return "Open Skate to share clips, discover riders, find skate spots and post local skate events.";
+  }
+
+  if(text.includes("culture")){
+
+    return "Culture is Soulaani's home for Black American culture, soul food, music, art, fashion and creators.";
+  }
+
+  if(text.includes("soulaani")){
+
+    return "Soulaani is being built as a community platform centered around culture, connection, creativity, language and opportunity.";
+  }
+
+  if(text.includes("business") ||
+     text.includes("entrepreneur")){
+
+    return "The Build and Market sections are designed for entrepreneurship, careers, networking and discovering Black-owned businesses.";
+  }
+
+  if(currentAIMode==="Language Teacher"){
+
+    return "Language Teacher mode is ready. Tell me the language you want to study and I can structure practice around greetings, vocabulary, conversation and translation.";
+  }
+
+  if(currentAIMode==="Culture Guide"){
+
+    return "Culture Guide mode can help organize topics around Black American culture, diaspora communities, food, music, art, language and history.";
+  }
+
+  if(currentAIMode==="Business"){
+
+    return "Business mode can help you brainstorm products, services, community projects, branding, marketing and entrepreneurship ideas.";
+  }
+
+  if(currentAIMode==="Writing"){
+
+    return "Writing mode is ready. Give me your idea, rough draft or message and tell me the tone you want.";
+  }
+
+  if(currentAIMode==="Soulaani Help"){
+
+    return "Soulaani Help can guide you through Home, Connect, Date, Build, Market, Explore, Culture, Skate, Languages, AI and Profile.";
+  }
+
+  return "I'm Soulaani AI. I received your message. For unrestricted AI conversations, connect the secure SOULAANI_AI_ENDPOINT to your server. This browser-only version will still provide Soulaani's built-in local assistant responses.";
+
+}
+
+function saveAI(){
+
+  localStorage.setItem(
+    "soulaaniAIMessages",
+    JSON.stringify(aiMessages.slice(-50))
+  );
+
+}
+
+function clearAI(){
+
+  aiMessages=[];
+
+  localStorage.removeItem("soulaaniAIMessages");
+
+  renderAI();
+
+  toast("AI conversation cleared");
+
+}
+
+
+/* ============================================================
+   SKATE
+   ============================================================ */
+
+function openSkateComposer(){
+  document.getElementById("skateModal").classList.add("show");
+}
+
+function closeSkateComposer(){
+  document.getElementById("skateModal").classList.remove("show");
+}
+
+function createSkatePost(){
+
+  const title=document.getElementById("skateTitle").value.trim();
+
+  const text=document.getElementById("skateText").value.trim();
+
+  if(!title || !text){
+
+    toast("Add a title and post.");
+    return;
+
+  }
+
+  skatePosts.unshift({
+    id:"skate_"+Date.now(),
+    title,
+    text,
+    name:"You",
+    date:new Date().toLocaleDateString()
+  });
+
+  localStorage.setItem(
+    "soulaaniSkatePosts",
+    JSON.stringify(skatePosts)
+  );
+
+  document.getElementById("skateTitle").value="";
+  document.getElementById("skateText").value="";
+
+  closeSkateComposer();
+
+  renderSkatePosts();
+
+  toast("Skate post published");
+
+}
+
+function renderSkatePosts(){
+
+  const area=document.getElementById("skateFeed");
+
+  if(!area)return;
+
+  if(!skatePosts.length){
+
+    area.innerHTML=`
+      <div class="card">
+        <h3>🛹 Start the Skate feed</h3>
+        <p>
+          Be the first rider to post a clip, spot, event or skate story.
+        </p>
+      </div>
+    `;
+
+    return;
+
+  }
+
+  area.innerHTML=skatePosts.map(post=>`
+
+    <article class="card">
+
+      <div class="post-head">
+
+        <div class="avatar">🛹</div>
+
+        <div>
+          <div class="post-name">${escapeHTML(post.name)}</div>
+          <div class="post-meta">${escapeHTML(post.date)}</div>
+        </div>
+
+      </div>
+
+      <h3>${escapeHTML(post.title)}</h3>
+
+      <br>
+
+      <p>${escapeHTML(post.text)}</p>
+
+    </article>
+
+  `).join("");
+
+}
+
+
+/* ============================================================
+   LOCATION
+   ============================================================ */
+
+function saveLocation(){
+
+  const input=document.getElementById("locationInput");
+
+  const location=input.value.trim();
+
+  if(!location){
+
+    toast("Enter a city or area.");
+    return;
+
+  }
+
+  localStorage.setItem(
+    "soulaaniLocation",
+    location
+  );
+
+  loadLocation();
+
+  toast("Local Discover updated");
+
+}
+
+function loadLocation(){
+
+  const location=
+    localStorage.getItem("soulaaniLocation");
+
+  const output=document.getElementById("savedLocation");
+
+  const input=document.getElementById("locationInput");
+
+  if(!output)return;
+
+  if(location){
+
+    output.innerHTML=`
+      <span class="status-dot"></span>
+      Local FYP: ${escapeHTML(location)}
+    `;
+
+    if(input){
+      input.value=location;
+    }
+
+  }
+
+}
+
+
+/* ============================================================
+   PROFILE
+   ============================================================ */
+
+function saveProfile(){
+
+  const name=document
+    .getElementById("profileNameInput")
+    .value.trim() || "Soulaani User";
+
+  const handle=document
+    .getElementById("profileHandleInput")
+    .value.trim() || "@soulaaniuser";
+
+  const bio=document
+    .getElementById("profileBioInput")
+    .value.trim();
+
+  const profile={
+    name,
+    handle,
+    bio
+  };
+
+  localStorage.setItem(
+    "soulaaniProfile",
+    JSON.stringify(profile)
+  );
+
+  loadProfile();
+
+  toast("Profile saved");
+
+}
+
+function loadProfile(){
+
+  const profile=JSON.parse(
+    localStorage.getItem("soulaaniProfile") ||
+    '{"name":"Soulaani User","handle":"@soulaaniuser","bio":""}'
+  );
+
+  const name=document.getElementById("profileName");
+
+  const handle=document.getElementById("profileHandle");
+
+  const avatar=document.getElementById("profileAvatar");
+
+  const nameInput=document.getElementById("profileNameInput");
+
+  const handleInput=document.getElementById("profileHandleInput");
+
+  const bioInput=document.getElementById("profileBioInput");
+
+  if(name)name.textContent=profile.name;
+
+  if(handle)handle.textContent=profile.handle;
+
+  if(avatar){
+    avatar.textContent=
+      (profile.name||"S").charAt(0).toUpperCase();
+  }
+
+  if(nameInput)nameInput.value=profile.name;
+
+  if(handleInput)handleInput.value=profile.handle;
+
+  if(bioInput)bioInput.value=profile.bio||"";
+
+}
+
+function changeTheme(){
+
+  const color=document.getElementById("themePicker").value;
+
+  document.documentElement.style.setProperty(
+    "--gold",
+    color
+  );
+
+  localStorage.setItem(
+    "soulaaniTheme",
+    color
+  );
+
+}
+
+function loadTheme(){
+
+  const color=
+    localStorage.getItem("soulaaniTheme");
+
+  if(color){
+
+    document.documentElement.style.setProperty(
+      "--gold",
+      color
+    );
+
+    document.getElementById("themePicker").value=color;
+
+  }
+
+}
+
+
+/* ============================================================
+   DATING
+   ============================================================ */
+
+function saveDatingProfile(){
+
+  const profile={
+    name:document.getElementById("dateName").value,
+    age:document.getElementById("dateAge").value,
+    bio:document.getElementById("dateBio").value
+  };
+
+  localStorage.setItem(
+    "soulaaniDatingProfile",
+    JSON.stringify(profile)
+  );
+
+  toast("Dating profile saved");
+
+}
+
+
+/* ============================================================
+   COMMUNITY CHAT
+   ============================================================ */
+
+function openCommunityChat(){
+
+  document
+    .getElementById("communityChatModal")
+    .classList.add("show");
+
+  renderCommunityMessages();
+
+}
+
+function closeCommunityChat(){
+
+  document
+    .getElementById("communityChatModal")
+    .classList.remove("show");
+
+}
+
+function renderCommunityMessages(){
+
+  const area=
+    document.getElementById("communityMessages");
+
+  if(!area)return;
+
+  if(!communityMessages.length){
+
+    area.innerHTML=`
+      <div style="padding:20px;color:#777;text-align:center">
+        Your conversations will appear here.
+      </div>
+    `;
+
+    return;
+
+  }
+
+  area.innerHTML=communityMessages.map(m=>`
+
+    <div class="message ${m.mine?"mine":""}">
+
+      <div class="message-name">
+        ${escapeHTML(m.name)}
+      </div>
+
+      <div class="message-bubble">
+        ${escapeHTML(m.text)}
+      </div>
+
+    </div>
+
+  `).join("");
+
+}
+
+function sendCommunityMessage(){
+
+  const input=
+    document.getElementById("communityInput");
+
+  const text=input.value.trim();
+
+  if(!text)return;
+
+  communityMessages.push({
+    name:"You",
+    text,
+    mine:true
+  });
+
+  localStorage.setItem(
+    "soulaaniCommunityMessages",
+    JSON.stringify(communityMessages)
+  );
+
+  input.value="";
+
+  renderCommunityMessages();
+
+}
+
+
+/* ============================================================
+   MUSIC UI
+   ============================================================ */
+
+function toggleMusic(button){
+
+  if(button.textContent==="▶"){
+
+    button.textContent="❚❚";
+
+    toast("Playlist playback interface activated");
+
+  }else{
+
+    button.textContent="▶";
+
+  }
+
+}
+
+
+/* ============================================================
    TOAST
-========================================================= */
+   ============================================================ */
 
 let toastTimer;
 
-
 function toast(message){
 
-  const el =
-    document.getElementById("toast");
+  const el=document.getElementById("toast");
 
   el.textContent=message;
 
@@ -2208,1557 +3960,32 @@ function toast(message){
 
   toastTimer=setTimeout(()=>{
     el.classList.remove("show");
-  },2600);
+  },2500);
 
 }
 
 
-/* =========================================================
-   DRAWER
-========================================================= */
-
-function openDrawer(){
-  document
-    .getElementById("drawer")
-    .classList.add("open");
-}
-
-
-function closeDrawer(){
-  document
-    .getElementById("drawer")
-    .classList.remove("open");
-}
-
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-const searchItems=[
-
-  ["Home","Home","home"],
-  ["Connect","Community","connect"],
-  ["Date","Dating","date"],
-  ["Build","Business","build"],
-  ["Market","Marketplace","market"],
-  ["Explore","Local Discovery","explore"],
-  ["Culture","Culture","culture"],
-  ["Skate","Skateboarding","skate"],
-  ["Haitian Creole","Language","languages"],
-  ["Louisiana Creole","Language","languages"],
-  ["Tutnese","Language","languages"],
-  ["Jamaican Patois","Language","languages"],
-  ["Gullah Geechee","Language","languages"],
-  ["Soulaani AI","AI","ai"],
-  ["Profile","Profile","profile"]
-
-];
-
-
-function openSearch(){
-
-  document
-    .getElementById("searchModal")
-    .classList.add("open");
-
-  document
-    .getElementById("searchInput")
-    .focus();
-
-}
-
-
-function closeSearch(){
-
-  document
-    .getElementById("searchModal")
-    .classList.remove("open");
-
-}
-
-
-function runSearch(){
-
-  const query =
-    document
-      .getElementById("searchInput")
-      .value
-      .toLowerCase()
-      .trim();
-
-  const results =
-    document.getElementById("searchResults");
-
-
-  if(!query){
-
-    results.innerHTML=
-      '<p class="small">Start typing to search Soulaani.</p>';
-
-    return;
-  }
-
-
-  const matches =
-    searchItems.filter(item=>
-      (
-        item[0]+" "+item[1]
-      ).toLowerCase().includes(query)
-    );
-
-
-  if(!matches.length){
-
-    results.innerHTML=
-      '<p class="small">No results found.</p>';
-
-    return;
-  }
-
-
-  results.innerHTML =
-    matches.map(item=>`
-
-      <button
-        class="dark-btn"
-        style="width:100%;text-align:left;margin-bottom:7px"
-        onclick="closeSearch();navigate('${item[2]}')"
-      >
-        <strong>${escapeHTML(item[0])}</strong>
-        <span class="small">
-          · ${escapeHTML(item[1])}
-        </span>
-      </button>
-
-    `).join("");
-
-}
-
-
-/* =========================================================
-   HOME FEED
-========================================================= */
-
-function loadFeed(){
-
-  const feed =
-    document.getElementById("feed");
-
-
-  feed.innerHTML=`
-
-    <article class="post">
-
-      <div class="post-head">
-
-        <div class="avatar">
-          S
-        </div>
-
-        <div>
-          <strong>Soulaani Community</strong>
-          <span>Welcome to Soulaani</span>
-        </div>
-
-      </div>
-
-
-      <div class="post-body">
-        Welcome to Soulaani, a place for community,
-        culture, creativity, language and connection.
-      </div>
-
-
-      <div class="post-image">
-        SOULAANI
-      </div>
-
-
-      <div class="post-actions">
-
-        <button onclick="toggleReactions(this)">
-          ♡ React
-        </button>
-
-        <button onclick="toggleComments(this)">
-          💬 Comment
-        </button>
-
-        <button onclick="sharePost()">
-          ↗ Share
-        </button>
-
-      </div>
-
-
-      <div class="reaction-menu">
-
-        <button onclick="react(this,'❤️')">❤️</button>
-        <button onclick="react(this,'😂')">😂</button>
-        <button onclick="react(this,'🔥')">🔥</button>
-        <button onclick="react(this,'😮')">😮</button>
-        <button onclick="react(this,'👎🏿')">👎🏿</button>
-
-      </div>
-
-
-      <div class="comments">
-
-        <div class="comment-list"></div>
-
-        <div class="comment-form">
-
-          <input
-            class="field"
-            placeholder="Write a comment..."
-          >
-
-          <button
-            class="gold-btn"
-            onclick="addComment(this)"
-          >
-            Post
-          </button>
-
-        </div>
-
-      </div>
-
-    </article>
-
-
-    <article class="post">
-
-      <div class="post-head">
-
-        <div class="avatar">
-          C
-        </div>
-
-        <div>
-          <strong>Soulaani Culture</strong>
-          <span>Culture</span>
-        </div>
-
-      </div>
-
-
-      <div class="post-body">
-        Culture lives through food, music, language,
-        art, fashion, stories and community.
-      </div>
-
-
-      <div class="post-actions">
-
-        <button onclick="toggleReactions(this)">
-          ♡ React
-        </button>
-
-        <button onclick="toggleComments(this)">
-          💬 Comment
-        </button>
-
-        <button onclick="sharePost()">
-          ↗ Share
-        </button>
-
-      </div>
-
-
-      <div class="reaction-menu">
-
-        <button onclick="react(this,'❤️')">❤️</button>
-        <button onclick="react(this,'😂')">😂</button>
-        <button onclick="react(this,'🔥')">🔥</button>
-        <button onclick="react(this,'😮')">😮</button>
-        <button onclick="react(this,'👎🏿')">👎🏿</button>
-
-      </div>
-
-
-      <div class="comments">
-
-        <div class="comment-list"></div>
-
-        <div class="comment-form">
-
-          <input
-            class="field"
-            placeholder="Write a comment..."
-          >
-
-          <button
-            class="gold-btn"
-            onclick="addComment(this)"
-          >
-            Post
-          </button>
-
-        </div>
-
-      </div>
-
-    </article>
-
-  `;
-
-}
-
-
-function toggleReactions(button){
-
-  const menu =
-    button
-      .closest(".post")
-      .querySelector(".reaction-menu");
-
-  menu.classList.toggle("open");
-
-}
-
-
-function react(button,reaction){
-
-  const post =
-    button.closest(".post");
-
-  const reactButton =
-    post.querySelector(".post-actions button");
-
-  reactButton.textContent =
-    reaction+" Reacted";
-
-  post
-    .querySelector(".reaction-menu")
-    .classList.remove("open");
-
-  toast("Reaction saved.");
-
-}
-
-
-function toggleComments(button){
-
-  const comments =
-    button
-      .closest(".post")
-      .querySelector(".comments");
-
-  comments.classList.toggle("open");
-
-}
-
-
-function addComment(button){
-
-  const comments =
-    button.closest(".comments");
-
-  const input =
-    comments.querySelector("input");
-
-  const text =
-    input.value.trim();
-
-  if(!text){
-    return;
-  }
-
-
-  const list =
-    comments.querySelector(".comment-list");
-
-
-  const comment =
-    document.createElement("div");
-
-  comment.className="comment";
-
-  comment.innerHTML =
-    "<strong>You</strong> "+escapeHTML(text);
-
-  list.appendChild(comment);
-
-  input.value="";
-
-  saveLocalComment(text);
-
-  toast("Comment added.");
-
-}
-
-
-function saveLocalComment(text){
-
-  const comments =
-    JSON.parse(
-      localStorage.getItem("soulaani_comments")||"[]"
-    );
-
-  comments.push({
-    text,
-    date:new Date().toISOString()
-  });
-
-  localStorage.setItem(
-    "soulaani_comments",
-    JSON.stringify(comments)
-  );
-
-}
-
-
-async function sharePost(){
-
-  try{
-
-    if(navigator.share){
-
-      await navigator.share({
-        title:"Soulaani",
-        text:"Check out Soulaani."
-      });
-
-    }else{
-
-      await navigator.clipboard.writeText(
-        window.location.href
-      );
-
-      toast("Soulaani link copied.");
-
-    }
-
-  }catch(error){}
-
-}
-
-
-/* =========================================================
-   LOCATION
-========================================================= */
-
-function saveLocation(){
-
-  const input =
-    document.getElementById("locationInput");
-
-  const location =
-    input.value.trim();
-
-  if(!location){
-
-    toast("Enter a city and state.");
-
-    return;
-  }
-
-
-  localStorage.setItem(
-    "soulaani_location",
-    location
-  );
-
-
-  document.getElementById(
-    "feedLocation"
-  ).textContent=location;
-
-
-  toast(
-    "Local feed set to "+location
-  );
-
-}
-
-
-function loadLocation(){
-
-  const location =
-    localStorage.getItem(
-      "soulaani_location"
-    );
-
-  if(location){
-
-    document.getElementById(
-      "feedLocation"
-    ).textContent=location;
-
-    document.getElementById(
-      "locationInput"
-    ).value=location;
-
-  }
-
-}
-
-
-/* =========================================================
-   SKATE POSTS
-========================================================= */
-
-function createSkatePost(){
-
-  const input =
-    document.getElementById("skatePost");
-
-  const text =
-    input.value.trim();
-
-  if(!text){
-
-    toast("Write something first.");
-
-    return;
-  }
-
-
-  const posts =
-    JSON.parse(
-      localStorage.getItem(
-        "soulaani_skate_posts"
-      )||"[]"
-    );
-
-
-  posts.unshift({
-    text:text,
-    date:new Date().toISOString()
-  });
-
-
-  localStorage.setItem(
-    "soulaani_skate_posts",
-    JSON.stringify(posts)
-  );
-
-
-  input.value="";
-
-  renderSkatePosts();
-
-  toast("Skate post published.");
-
-}
-
-
-function renderSkatePosts(){
-
-  const container =
-    document.getElementById("skatePosts");
-
-  const posts =
-    JSON.parse(
-      localStorage.getItem(
-        "soulaani_skate_posts"
-      )||"[]"
-    );
-
-
-  if(!posts.length){
-
-    container.innerHTML=
-      '<div class="card"><p>No skate posts yet. Start the session.</p></div>';
-
-    return;
-  }
-
-
-  container.innerHTML =
-    posts.map(post=>`
-
-      <article class="post">
-
-        <div class="post-head">
-
-          <div class="avatar">
-            S
-          </div>
-
-          <div>
-            <strong>Soulaani Skater</strong>
-            <span>Skate</span>
-          </div>
-
-        </div>
-
-        <div class="post-body">
-          ${escapeHTML(post.text)}
-        </div>
-
-        <div class="post-actions">
-
-          <button onclick="toggleReactions(this)">
-            ♡ React
-          </button>
-
-          <button onclick="sharePost()">
-            ↗ Share
-          </button>
-
-        </div>
-
-        <div class="reaction-menu">
-
-          <button onclick="react(this,'❤️')">❤️</button>
-          <button onclick="react(this,'😂')">😂</button>
-          <button onclick="react(this,'🔥')">🔥</button>
-          <button onclick="react(this,'😮')">😮</button>
-          <button onclick="react(this,'👎🏿')">👎🏿</button>
-
-        </div>
-
-      </article>
-
-    `).join("");
-
-}
-
-
-/* =========================================================
-   LANGUAGE LEARNING
-========================================================= */
-
-function startLesson(){
-
-  const lessons=[
-
-    "Haitian Creole\nBonjou = Hello",
-
-    "Haitian Creole\nMèsi = Thank you",
-
-    "Haitian Creole\nKijan ou ye? = How are you?",
-
-    "Jamaican Patois\nWah gwaan? = What's going on?",
-
-    "Louisiana Creole\nBonjou = Hello",
-
-    "Tutnese\nSoulaani will use documented sources rather than inventing vocabulary."
-
-  ];
-
-
-  let index=0;
-
-
-  function show(){
-
-    if(index>=lessons.length){
-
-      toast("Lesson complete!");
-
-      return;
-    }
-
-
-    alert(
-      "Soulaani Language Lesson\n\n"+
-      lessons[index]
-    );
-
-
-    index++;
-
-    setTimeout(show,100);
-
-  }
-
-
-  show();
-
-}
-
-
-/* =========================================================
-   TRANSLATOR
-========================================================= */
-
-async function translateText(){
-
-  const input =
-    document
-      .getElementById("translationInput")
-      .value
-      .trim();
-
-  const from =
-    document.getElementById("fromLanguage").value;
-
-  const to =
-    document.getElementById("toLanguage").value;
-
-  const output =
-    document.getElementById(
-      "translationOutput"
-    );
-
-
-  if(!input){
-
-    toast("Enter text to translate.");
-
-    return;
-  }
-
-
-  output.style.display="block";
-
-  output.textContent="Translating...";
-
-
-  const key =
-    from+"|"+to+"|"+input.toLowerCase();
-
-
-  const dictionary={
-
-    "English|Haitian Creole|hello":
-      "Bonjou",
-
-    "English|Haitian Creole|hi":
-      "Bonjou",
-
-    "English|Haitian Creole|thank you":
-      "Mèsi",
-
-    "English|Haitian Creole|how are you":
-      "Kijan ou ye?",
-
-    "Haitian Creole|English|bonjou":
-      "Hello",
-
-    "Haitian Creole|English|mèsi":
-      "Thank you",
-
-    "Haitian Creole|English|kijan ou ye?":
-      "How are you?",
-
-    "English|Jamaican Patois|hello":
-      "Wah gwaan",
-
-    "English|Jamaican Patois|thank you":
-      "Tank yuh"
-
-  };
-
-
-  if(dictionary[key]){
-
-    output.innerHTML =
-      "<strong>Translation</strong><br><br>"+
-      escapeHTML(dictionary[key]);
-
-    return;
-  }
-
-
-  output.innerHTML =
-    "<strong>Translation service</strong><br><br>"+
-    "This language pair is ready to be connected to Soulaani's secure translation backend.";
-
-}
-
-
-/* =========================================================
-   SOULAANI AI
-========================================================= */
-
-let aiHistory=[];
-
-
-function addAIMessage(text,type){
-
-  const messages =
-    document.getElementById(
-      "aiMessages"
-    );
-
-
-  const div =
-    document.createElement("div");
-
-  div.className=
-    "message "+type;
-
-  div.textContent=text;
-
-  messages.appendChild(div);
-
-  messages.scrollTop=
-    messages.scrollHeight;
-
-}
-
-
-function showTyping(){
-
-  const messages =
-    document.getElementById(
-      "aiMessages"
-    );
-
-
-  const div =
-    document.createElement("div");
-
-  div.className=
-    "message ai typing";
-
-  div.id="aiTyping";
-
-  div.textContent=
-    "Soulaani AI is thinking...";
-
-  messages.appendChild(div);
-
-  messages.scrollTop=
-    messages.scrollHeight;
-
-}
-
-
-function removeTyping(){
-
-  const typing =
-    document.getElementById(
-      "aiTyping"
-    );
-
-  if(typing){
-    typing.remove();
-  }
-
-}
-
-
-async function sendAI(){
-
-  const input =
-    document.getElementById(
-      "aiInput"
-    );
-
-  const text =
-    input.value.trim();
-
-
-  if(!text){
-    return;
-  }
-
-
-  addAIMessage(
-    text,
-    "user"
-  );
-
-
-  input.value="";
-
-
-  aiHistory.push({
-    role:"user",
-    content:text
-  });
-
-
-  showTyping();
-
-
-  /*
-    REAL SECURE AI CONNECTION
-
-    When the secure server exists,
-    SOULAANI_API_URL should point to:
-
-    https://your-api-domain/api/chat
-
-    The private API key must remain
-    on that server.
-  */
-
-
-  if(SOULAANI_API_URL){
-
-    try{
-
-      const response =
-        await fetch(
-          SOULAANI_API_URL,
-          {
-            method:"POST",
-
-            headers:{
-              "Content-Type":
-                "application/json"
-            },
-
-            body:JSON.stringify({
-              message:text,
-              history:aiHistory.slice(-12)
-            })
-
-          }
-        );
-
-
-      const data =
-        await response.json();
-
-
-      removeTyping();
-
-
-      if(!response.ok){
-        throw new Error(
-          data.error||
-          "AI server error."
-        );
-      }
-
-
-      const answer =
-        data.output||
-        data.message||
-        data.content||
-        "No response returned.";
-
-
-      addAIMessage(
-        answer,
-        "ai"
-      );
-
-
-      aiHistory.push({
-        role:"assistant",
-        content:answer
-      });
-
-
-      saveAIHistory();
-
-      return;
-
-
-    }catch(error){
-
-      removeTyping();
-
-      addAIMessage(
-        "The secure Soulaani AI server could not be reached.",
-        "ai"
-      );
-
-      console.error(error);
-
-      return;
-
-    }
-
-  }
-
-
-  /*
-    Local fallback until the secure API URL
-    is connected.
-  */
-
-  setTimeout(()=>{
-
-    removeTyping();
-
-    const response =
-      localAIResponse(text);
-
-    addAIMessage(
-      response,
-      "ai"
-    );
-
-
-    aiHistory.push({
-      role:"assistant",
-      content:response
-    });
-
-
-    saveAIHistory();
-
-  },500);
-
-}
-
-
-function localAIResponse(text){
-
-  const t =
-    text.toLowerCase();
-
-
-  if(
-    t.includes("language")||
-    t.includes("creole")||
-    t.includes("tutnese")
-  ){
-
-    return "Soulaani AI can help you explore the Language & Connection section, practice phrases, learn vocabulary and organize your language-learning journey.";
-
-  }
-
-
-  if(t.includes("skate")){
-
-    return "The Skate section is built for riders, clips, local skate spots, events and community conversations.";
-
-  }
-
-
-  if(t.includes("culture")){
-
-    return "The Culture section brings together Black American food, music, art, fashion, creators and cultural conversations.";
-
-  }
-
-
-  if(t.includes("food")||t.includes("soul food")){
-
-    return "Soulaani Culture includes soul-food plates, cooks, restaurants and food creators.";
-
-  }
-
-
-  if(
-    t.includes("soulaani")||
-    t.includes("what is this")
-  ){
-
-    return "Soulaani is being built as a community platform connecting people, culture, language, creativity, business, skating and local discovery.";
-
-  }
-
-
-  if(
-    t.includes("hello")||
-    t.includes("hi")
-  ){
-
-    return "Welcome to Soulaani. What would you like to explore?";
-
-  }
-
-
-  return "I'm Soulaani AI. I can help you explore the platform, languages, culture, skating, business, local discovery, ideas and more. Once the secure AI server is connected, I'll be able to have full AI conversations with you.";
-
-}
-
-
-function saveAIHistory(){
-
-  localStorage.setItem(
-    "soulaani_ai_history",
-    JSON.stringify(aiHistory)
-  );
-
-}
-
-
-function loadAIHistory(){
-
-  try{
-
-    const saved =
-      JSON.parse(
-        localStorage.getItem(
-          "soulaani_ai_history"
-        )
-      );
-
-
-    if(Array.isArray(saved)){
-
-      aiHistory=saved;
-
-      const messages =
-        document.getElementById(
-          "aiMessages"
-        );
-
-      messages.innerHTML="";
-
-
-      aiHistory.forEach(item=>{
-
-        addAIMessage(
-          item.content,
-          item.role==="user"
-            ?"user"
-            :"ai"
-        );
-
-      });
-
-    }
-
-  }catch(error){}
-
-}
-
-
-function clearAI(){
-
-  aiHistory=[];
-
-  localStorage.removeItem(
-    "soulaani_ai_history"
-  );
-
-
-  document.getElementById(
-    "aiMessages"
-  ).innerHTML=`
-
-    <div class="message ai">
-      Welcome back. I'm Soulaani AI. What would you like to explore?
-    </div>
-
-  `;
-
-}
-
-
-/* =========================================================
-   PROFILE
-========================================================= */
-
-function openProfileEditor(){
-
-  document
-    .getElementById(
-      "profileModal"
-    )
-    .classList.add("open");
-
-
-  document.getElementById(
-    "editName"
-  ).value =
-    localStorage.getItem(
-      "soulaani_profile_name"
-    )||
-    "Soulaani Member";
-
-
-  document.getElementById(
-    "editBio"
-  ).value =
-    localStorage.getItem(
-      "soulaani_profile_bio"
-    )||
-    "Building community through culture, connection and creativity.";
-
-}
-
-
-function closeProfileEditor(){
-
-  document
-    .getElementById(
-      "profileModal"
-    )
-    .classList.remove("open");
-
-}
-
-
-function saveProfile(){
-
-  const name =
-    document
-      .getElementById(
-        "editName"
-      )
-      .value
-      .trim();
-
-
-  const bio =
-    document
-      .getElementById(
-        "editBio"
-      )
-      .value
-      .trim();
-
-
-  if(!name){
-
-    toast("Enter a name.");
-
-    return;
-  }
-
-
-  localStorage.setItem(
-    "soulaani_profile_name",
-    name
-  );
-
-
-  localStorage.setItem(
-    "soulaani_profile_bio",
-    bio
-  );
-
-
-  document.getElementById(
-    "profileName"
-  ).textContent=name;
-
-
-  document.getElementById(
-    "profileBio"
-  ).textContent=bio;
-
-
-  document.getElementById(
-    "profileAvatar"
-  ).textContent=
-    name.charAt(0).toUpperCase();
-
-
-  closeProfileEditor();
-
-  toast("Profile updated.");
-
-}
-
-
-function loadProfile(){
-
-  const name =
-    localStorage.getItem(
-      "soulaani_profile_name"
-    );
-
-
-  const bio =
-    localStorage.getItem(
-      "soulaani_profile_bio"
-    );
-
-
-  if(name){
-
-    document.getElementById(
-      "profileName"
-    ).textContent=name;
-
-
-    document.getElementById(
-      "profileAvatar"
-    ).textContent=
-      name.charAt(0).toUpperCase();
-
-  }
-
-
-  if(bio){
-
-    document.getElementById(
-      "profileBio"
-    ).textContent=bio;
-
-  }
-
-}
-
-
-/* =========================================================
-   PROFILE THEME
-========================================================= */
-
-function openThemeEditor(){
-
-  document
-    .getElementById(
-      "themeModal"
-    )
-    .classList.add("open");
-
-}
-
-
-function closeThemeEditor(){
-
-  document
-    .getElementById(
-      "themeModal"
-    )
-    .classList.remove("open");
-
-}
-
-
-function setTheme(primary,secondary){
-
-  document.documentElement.style
-    .setProperty(
-      "--gold",
-      primary
-    );
-
-
-  document.documentElement.style
-    .setProperty(
-      "--gold2",
-      secondary
-    );
-
-
-  localStorage.setItem(
-    "soulaani_theme",
-    JSON.stringify({
-      primary,
-      secondary
-    })
-  );
-
-
-  closeThemeEditor();
-
-  toast("Profile theme updated.");
-
-}
-
-
-function loadTheme(){
-
-  try{
-
-    const theme =
-      JSON.parse(
-        localStorage.getItem(
-          "soulaani_theme"
-        )
-      );
-
-
-    if(theme){
-
-      document.documentElement.style
-        .setProperty(
-          "--gold",
-          theme.primary
-        );
-
-
-      document.documentElement.style
-        .setProperty(
-          "--gold2",
-          theme.secondary
-        );
-
-    }
-
-  }catch(error){}
-
-}
-
-
-/* =========================================================
-   COMMUNITY CHAT
-========================================================= */
-
-function openChat(){
-
-  document
-    .getElementById(
-      "chatModal"
-    )
-    .classList.add("open");
-
-}
-
-
-function closeChat(){
-
-  document
-    .getElementById(
-      "chatModal"
-    )
-    .classList.remove("open");
-
-}
-
-
-function sendCommunityMessage(){
-
-  const input =
-    document.getElementById(
-      "communityChatInput"
-    );
-
-
-  const text =
-    input.value.trim();
-
-
-  if(!text){
-    return;
-  }
-
-
-  const chat =
-    document.getElementById(
-      "communityChat"
-    );
-
-
-  const message =
-    document.createElement("div");
-
-  message.className=
-    "message user";
-
-  message.textContent=text;
-
-  chat.appendChild(message);
-
-  input.value="";
-
-  chat.scrollTop=
-    chat.scrollHeight;
-
-
-  localStorage.setItem(
-    "soulaani_last_chat",
-    text
-  );
-
-}
-
-
-/* =========================================================
-   COMMUNITY
-========================================================= */
-
-function createCommunity(){
-
-  const name =
-    prompt(
-      "Name your Soulaani community:"
-    );
-
-
-  if(!name){
-    return;
-  }
-
-
-  const communities =
-    JSON.parse(
-      localStorage.getItem(
-        "soulaani_communities"
-      )||"[]"
-    );
-
-
-  communities.push({
-    name,
-    created:new Date().toISOString()
-  });
-
-
-  localStorage.setItem(
-    "soulaani_communities",
-    JSON.stringify(communities)
-  );
-
-
-  toast(
-    "Community '"+name+"' created."
-  );
-
-}
-
-
-/* =========================================================
-   MUSIC
-========================================================= */
-
-function toggleMusic(button){
-
-  const playing =
-    button.dataset.playing==="true";
-
-
-  if(playing){
-
-    button.textContent="▶";
-
-    button.dataset.playing="false";
-
-    toast("Playback paused.");
-
-  }else{
-
-    button.textContent="❚❚";
-
-    button.dataset.playing="true";
-
-    toast(
-      "Playlist player ready for your licensed audio source."
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   SECURITY / HTML
-========================================================= */
+/* ============================================================
+   ESCAPE HTML
+   ============================================================ */
 
 function escapeHTML(value){
 
-  return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+  return String(value??"")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
 
 
-/* =========================================================
-   INITIALIZE
-========================================================= */
+/* ============================================================
+   THEME STARTUP
+   ============================================================ */
 
-document.addEventListener(
-  "DOMContentLoaded",
-  ()=>{
-
-    loadFeed();
-
-    loadLocation();
-
-    loadProfile();
-
-    loadTheme();
-
-    renderSkatePosts();
-
-    loadAIHistory();
-
-    navigate("home");
-
-  }
-);
+loadTheme();
 
 </script>
 
