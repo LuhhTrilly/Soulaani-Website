@@ -2,59 +2,54 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#060606">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="theme-color" content="#070707">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
 <title>Soulaani | The Culture. The People. The Platform.</title>
 
 <style>
+:root{
+  --black:#070707;
+  --black2:#0d0d0d;
+  --black3:#141414;
+  --card:#111111;
+  --card2:#171717;
+  --gold:#d6a84f;
+  --gold2:#f0c76a;
+  --gold3:#8f6b27;
+  --white:#f5f5f5;
+  --muted:#a7a7a7;
+  --line:#292929;
+  --danger:#e35b5b;
+  --success:#61c98b;
+  --radius:18px;
+}
+
 *{
   box-sizing:border-box;
   margin:0;
   padding:0;
 }
 
-:root{
-  --black:#050505;
-  --black2:#090909;
-  --panel:#101010;
-  --panel2:#161616;
-  --panel3:#1d1d1d;
-  --gold:#d6a84f;
-  --gold2:#f0c76a;
-  --gold3:#a97928;
-  --white:#f7f7f7;
-  --muted:#969696;
-  --muted2:#666;
-  --line:rgba(255,255,255,.09);
-  --green:#65c98b;
-  --red:#e96b6b;
-  --blue:#719de8;
-  --radius:18px;
-}
-
 html{
   scroll-behavior:smooth;
+  background:var(--black);
 }
 
 body{
-  min-height:100vh;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
   background:
-    radial-gradient(circle at 85% 0%,rgba(214,168,79,.08),transparent 27%),
-    radial-gradient(circle at 0% 100%,rgba(214,168,79,.035),transparent 25%),
+    radial-gradient(circle at top right,rgba(214,168,79,.08),transparent 28rem),
     var(--black);
   color:var(--white);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-  overflow-x:hidden;
+  min-height:100vh;
 }
 
-body.lock{
-  overflow:hidden;
-}
-
-button,input,textarea,select{
+button,
+input,
+textarea,
+select{
   font:inherit;
 }
 
@@ -62,435 +57,175 @@ button{
   cursor:pointer;
 }
 
-button:focus,input:focus,textarea:focus,select:focus{
-  outline:2px solid rgba(214,168,79,.35);
-  outline-offset:1px;
+img{
+  max-width:100%;
+  display:block;
 }
 
-.hidden{
-  display:none!important;
+a{
+  color:inherit;
+  text-decoration:none;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* TOP BAR */
 
-.app-header{
-  position:fixed;
-  z-index:1000;
+.topbar{
+  position:sticky;
   top:0;
-  left:0;
-  right:0;
+  z-index:1000;
   height:68px;
-  display:flex;
-  align-items:center;
-  padding:0 16px;
-  background:rgba(5,5,5,.94);
-  backdrop-filter:blur(20px);
+  background:rgba(7,7,7,.94);
+  backdrop-filter:blur(18px);
   border-bottom:1px solid var(--line);
-}
-
-.header-left,
-.header-right{
-  width:34%;
   display:flex;
   align-items:center;
-  gap:9px;
+  justify-content:space-between;
+  padding:0 22px;
 }
 
-.header-right{
-  justify-content:flex-end;
+.brand{
+  color:var(--gold);
+  font-size:26px;
+  font-weight:900;
+  letter-spacing:-1px;
 }
 
-.header-center{
-  flex:1;
+.brand span{
+  color:white;
+}
+
+.top-actions{
   display:flex;
-  justify-content:center;
+  gap:8px;
 }
 
-.menu-btn,
-.header-btn{
-  width:41px;
-  height:41px;
-  border-radius:50%;
+.icon-btn{
+  width:42px;
+  height:42px;
   border:1px solid var(--line);
   background:#111;
-  color:#fff;
+  color:white;
+  border-radius:50%;
   display:grid;
   place-items:center;
-  transition:.2s;
+  font-size:18px;
 }
 
-.menu-btn:hover,
-.header-btn:hover{
-  color:var(--gold2);
+.icon-btn:hover{
   border-color:var(--gold);
+  color:var(--gold);
 }
 
-.logo{
-  font-size:25px;
-  font-weight:900;
-  letter-spacing:-1.4px;
-  color:var(--gold2);
-}
+/* LAYOUT */
 
-.logo span{
-  color:#fff;
-}
-
-.search-box{
-  width:min(470px,100%);
-  height:41px;
+.app{
   display:flex;
-  align-items:center;
-  gap:9px;
-  padding:0 14px;
-  border-radius:22px;
-  background:#111;
-  border:1px solid var(--line);
+  min-height:calc(100vh - 68px);
 }
 
-.search-box span{
-  color:#777;
-}
-
-.search-box input{
-  width:100%;
-  border:0;
-  outline:0;
-  background:transparent;
-  color:#fff;
-}
-
-/* =========================
-   SIDE MENU
-========================= */
-
-.side-overlay{
+.sidebar{
+  width:245px;
+  border-right:1px solid var(--line);
+  padding:22px 12px;
   position:fixed;
-  inset:0;
-  z-index:1998;
-  background:rgba(0,0,0,.68);
-  opacity:0;
-  pointer-events:none;
-  transition:.25s;
-}
-
-.side-overlay.open{
-  opacity:1;
-  pointer-events:auto;
-}
-
-.side-menu{
-  position:fixed;
-  z-index:1999;
-  top:0;
-  left:0;
+  top:68px;
   bottom:0;
-  width:min(370px,89vw);
   overflow-y:auto;
   background:#090909;
-  border-right:1px solid var(--line);
-  transform:translateX(-105%);
-  transition:.28s ease;
-  box-shadow:20px 0 70px rgba(0,0,0,.5);
 }
 
-.side-menu.open{
-  transform:translateX(0);
+.main{
+  margin-left:245px;
+  width:calc(100% - 245px);
+  padding-bottom:100px;
 }
 
-.side-top{
-  padding:21px;
-  border-bottom:1px solid var(--line);
-}
-
-.side-brand{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.side-brand strong{
-  color:var(--gold2);
-  font-size:25px;
-}
-
-.close-menu{
-  width:38px;
-  height:38px;
-  border-radius:50%;
-  border:1px solid var(--line);
-  background:#151515;
-  color:#fff;
-}
-
-.side-profile{
-  margin-top:19px;
-  padding:14px;
-  display:flex;
-  gap:12px;
-  align-items:center;
-  background:#111;
-  border:1px solid var(--line);
-  border-radius:16px;
-}
-
-.avatar{
-  width:47px;
-  height:47px;
-  flex:none;
-  border-radius:50%;
-  border:2px solid var(--gold);
-  background:
-    radial-gradient(circle at 50% 35%,#6b4b2d 0 16%,transparent 17%),
-    radial-gradient(circle at 50% 62%,#3b2114 0 27%,transparent 28%),
-    #171717;
-  display:grid;
-  place-items:center;
-  color:var(--gold2);
-  font-weight:900;
-}
-
-.side-profile small{
-  color:#777;
-}
-
-.menu-section-title{
-  padding:19px 21px 8px;
-  color:#686868;
+.nav-title{
+  color:#666;
+  text-transform:uppercase;
   font-size:10px;
   font-weight:800;
-  text-transform:uppercase;
   letter-spacing:1.5px;
+  padding:8px 14px;
 }
 
-.side-item{
-  width:calc(100% - 22px);
-  margin:3px 11px;
+.side-nav{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+
+.side-nav button{
+  background:transparent;
+  border:0;
+  color:#bbb;
   padding:12px 14px;
+  border-radius:13px;
+  text-align:left;
   display:flex;
   align-items:center;
-  gap:13px;
-  border:0;
-  border-radius:13px;
-  background:transparent;
-  color:#ddd;
-  text-align:left;
-  transition:.2s;
+  gap:12px;
+  font-weight:650;
 }
 
-.side-item:hover,
-.side-item.active{
+.side-nav button:hover,
+.side-nav button.active{
   background:rgba(214,168,79,.11);
   color:var(--gold2);
 }
 
 .side-icon{
-  width:24px;
+  width:27px;
   text-align:center;
   font-size:19px;
 }
 
-/* =========================
-   MAIN
-========================= */
-
-main{
-  padding-top:86px;
-  padding-bottom:105px;
-}
-
 .page{
   display:none;
-  width:min(1080px,calc(100% - 28px));
+  max-width:1100px;
   margin:0 auto;
+  padding:28px 22px;
 }
 
 .page.active{
   display:block;
 }
 
-.page-title{
-  margin-bottom:4px;
-  font-size:31px;
-  font-weight:900;
-  letter-spacing:-1px;
-}
-
-.page-subtitle{
+.page-head{
   margin-bottom:22px;
+}
+
+.page-head h1{
+  font-size:32px;
+  margin-bottom:6px;
+}
+
+.page-head p{
   color:var(--muted);
-  line-height:1.5;
 }
 
-/* =========================
-   HERO
-========================= */
-
-.hero{
-  position:relative;
-  overflow:hidden;
-  min-height:285px;
-  padding:34px;
-  margin-bottom:19px;
-  border:1px solid var(--line);
-  border-radius:26px;
-  background:
-    radial-gradient(circle at 80% 15%,rgba(214,168,79,.18),transparent 27%),
-    linear-gradient(145deg,#141414,#070707);
-}
-
-.hero:after{
-  content:"S";
-  position:absolute;
-  right:30px;
-  bottom:-70px;
-  font-size:280px;
-  line-height:1;
-  font-weight:900;
-  color:rgba(214,168,79,.035);
-}
-
-.hero h1{
-  position:relative;
-  z-index:2;
-  max-width:700px;
-  font-size:clamp(40px,7vw,72px);
-  line-height:.94;
-  letter-spacing:-3px;
-}
-
-.hero h1 span{
-  color:var(--gold2);
-}
-
-.hero p{
-  position:relative;
-  z-index:2;
-  max-width:650px;
-  margin-top:18px;
-  color:#b6b6b6;
-  line-height:1.6;
-}
-
-.hero-actions{
-  position:relative;
-  z-index:2;
-  display:flex;
-  flex-wrap:wrap;
-  gap:9px;
-  margin-top:22px;
-}
-
-/* =========================
-   BUTTONS
-========================= */
-
-.btn{
-  padding:11px 16px;
-  border:1px solid var(--line);
-  border-radius:12px;
-  background:#151515;
-  color:#fff;
-  transition:.2s;
-}
-
-.btn:hover{
-  border-color:var(--gold);
-  transform:translateY(-1px);
-}
-
-.btn.gold{
-  border-color:transparent;
-  background:linear-gradient(135deg,var(--gold2),var(--gold));
-  color:#070707;
-  font-weight:800;
-}
-
-.btn.small{
-  padding:8px 12px;
-  font-size:13px;
-}
-
-.btn.full{
-  width:100%;
-}
-
-/* =========================
-   STORIES
-========================= */
-
-.stories{
-  display:flex;
-  gap:11px;
-  overflow-x:auto;
-  padding:3px 0 18px;
-  scrollbar-width:none;
-}
-
-.stories::-webkit-scrollbar{
-  display:none;
-}
-
-.story{
-  position:relative;
-  flex:none;
-  width:105px;
-  height:145px;
-  overflow:hidden;
-  border:1px solid var(--line);
-  border-radius:17px;
-  background:
-    radial-gradient(circle at 50% 30%,rgba(214,168,79,.25),transparent 25%),
-    linear-gradient(160deg,#292929,#080808);
-}
-
-.story:before{
-  content:"";
-  position:absolute;
-  inset:5px;
-  border:1px solid rgba(214,168,79,.65);
-  border-radius:13px;
-}
-
-.story-avatar{
-  position:absolute;
-  top:11px;
-  left:10px;
-  width:38px;
-  height:38px;
-  display:grid;
-  place-items:center;
-  border:2px solid var(--gold2);
-  border-radius:50%;
-  background:#111;
-  font-size:11px;
-  font-weight:800;
-}
-
-.story span{
-  position:absolute;
-  right:9px;
-  bottom:10px;
-  left:9px;
-  font-size:12px;
-  font-weight:800;
-}
-
-/* =========================
-   CARDS
-========================= */
+/* CARDS */
 
 .card{
-  background:linear-gradient(145deg,#121212,#0b0b0b);
+  background:linear-gradient(145deg,#111,#0d0d0d);
   border:1px solid var(--line);
-  border-radius:19px;
-  overflow:hidden;
+  border-radius:var(--radius);
+  padding:18px;
+  margin-bottom:16px;
 }
 
-.card-pad{
-  padding:18px;
+.card-title{
+  font-size:18px;
+  font-weight:800;
+  margin-bottom:7px;
+}
+
+.muted{
+  color:var(--muted);
+}
+
+.gold{
+  color:var(--gold2);
 }
 
 .grid{
@@ -498,1154 +233,932 @@ main{
   gap:16px;
 }
 
-.grid-2{
+.grid2{
   grid-template-columns:repeat(2,minmax(0,1fr));
 }
 
-.grid-3{
+.grid3{
   grid-template-columns:repeat(3,minmax(0,1fr));
 }
 
-.section-head{
+/* HERO */
+
+.hero{
+  min-height:330px;
+  border:1px solid #3a2c12;
+  border-radius:25px;
+  padding:35px;
+  margin-bottom:20px;
   display:flex;
-  justify-content:space-between;
-  align-items:end;
-  gap:15px;
-  margin:25px 0 12px;
+  flex-direction:column;
+  justify-content:center;
+  background:
+    linear-gradient(135deg,rgba(214,168,79,.16),rgba(0,0,0,.85)),
+    radial-gradient(circle at 85% 20%,rgba(240,199,106,.25),transparent 25rem),
+    #0d0d0d;
 }
 
-.section-head h2{
-  font-size:21px;
+.hero h1{
+  max-width:720px;
+  font-size:clamp(35px,6vw,68px);
+  line-height:.98;
+  letter-spacing:-3px;
+  margin-bottom:18px;
 }
 
-.muted{
-  color:var(--muted);
+.hero h1 span{
+  color:var(--gold);
 }
 
-.gold-text{
-  color:var(--gold2);
+.hero p{
+  max-width:650px;
+  color:#c0c0c0;
+  font-size:17px;
+  line-height:1.6;
 }
 
-/* =========================
-   POSTS
-========================= */
-
-.feed{
-  display:grid;
-  gap:17px;
-}
-
-.post{
-  overflow:hidden;
-  background:linear-gradient(145deg,#121212,#0b0b0b);
-  border:1px solid var(--line);
-  border-radius:20px;
-}
-
-.post-header{
-  padding:15px 16px;
+.hero-actions{
   display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.user{
-  display:flex;
-  align-items:center;
   gap:10px;
+  margin-top:25px;
+  flex-wrap:wrap;
 }
 
-.user-info strong{
-  display:block;
+/* BUTTONS */
+
+.btn{
+  border:1px solid var(--line);
+  background:#151515;
+  color:white;
+  padding:11px 17px;
+  border-radius:12px;
+  font-weight:750;
 }
 
-.user-info small{
+.btn:hover{
+  border-color:var(--gold);
+}
+
+.btn.gold-btn{
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#090909;
+  border-color:var(--gold);
+}
+
+.btn.small{
+  padding:8px 11px;
+  font-size:13px;
+}
+
+/* STORIES */
+
+.stories{
+  display:flex;
+  gap:12px;
+  overflow-x:auto;
+  padding-bottom:5px;
+  margin-bottom:20px;
+}
+
+.story{
+  min-width:90px;
+  height:118px;
+  border-radius:16px;
+  border:1px solid var(--line);
+  background:
+    linear-gradient(145deg,rgba(214,168,79,.25),#101010);
+  display:flex;
+  align-items:flex-end;
+  padding:10px;
+  position:relative;
+  overflow:hidden;
+}
+
+.story:first-child{
+  border-color:var(--gold);
+}
+
+.story span{
+  font-size:12px;
+  font-weight:800;
+}
+
+/* COMPOSER */
+
+.composer{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+
+.avatar{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,var(--gold),#70521d);
+  color:#080808;
+  font-weight:900;
+  flex-shrink:0;
+}
+
+.fake-input{
+  flex:1;
+  background:#171717;
+  border:1px solid var(--line);
+  border-radius:30px;
+  color:#888;
+  padding:13px 17px;
+  cursor:pointer;
+}
+
+/* POSTS */
+
+.post-head{
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
+
+.post-user{
+  font-weight:800;
+}
+
+.post-time{
+  font-size:12px;
   color:#777;
-}
-
-.more{
-  border:0;
-  background:transparent;
-  color:#777;
-  font-size:21px;
-}
-
-.post-body{
-  padding:0 16px 15px;
 }
 
 .post-text{
-  margin-bottom:14px;
-  color:#ddd;
   line-height:1.55;
+  margin:15px 0;
 }
 
-.post-image{
-  width:100%;
-  aspect-ratio:16/9;
+.post-media{
+  min-height:210px;
+  border-radius:16px;
+  background:
+    linear-gradient(135deg,rgba(214,168,79,.24),rgba(0,0,0,.85)),
+    #191919;
   display:grid;
   place-items:center;
-  overflow:hidden;
-  border:1px solid var(--line);
-  border-radius:15px;
-  background:
-    radial-gradient(circle at 30% 30%,rgba(214,168,79,.2),transparent 25%),
-    linear-gradient(145deg,#2a2a2a,#090909);
-}
-
-.fake-art{
-  font-size:70px;
-  font-weight:900;
-  color:rgba(214,168,79,.19);
+  color:#ddd;
+  font-weight:800;
+  text-align:center;
+  padding:30px;
 }
 
 .post-stats{
-  padding:11px 16px;
   display:flex;
   justify-content:space-between;
-  color:#777;
+  color:#888;
   font-size:13px;
+  padding:12px 2px;
   border-bottom:1px solid var(--line);
 }
 
 .post-actions{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:3px;
-  padding:7px;
-}
-
-.action-btn{
-  padding:10px 5px;
   display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:5px;
+  justify-content:space-between;
+  padding-top:9px;
+}
+
+.post-actions button{
+  background:none;
   border:0;
+  color:#aaa;
+  padding:8px 10px;
   border-radius:10px;
-  background:transparent;
-  color:#999;
-  transition:.2s;
 }
 
-.action-btn:hover{
-  background:#1b1b1b;
-  color:#fff;
-}
-
-.action-btn.active{
+.post-actions button:hover{
+  background:#1c1c1c;
   color:var(--gold2);
 }
 
-/* =========================
-   REACTIONS
-========================= */
+/* REACTIONS */
 
 .reaction-wrap{
   position:relative;
 }
 
-.reaction-picker{
+.reaction-menu{
+  display:none;
   position:absolute;
-  z-index:50;
+  bottom:42px;
   left:0;
-  bottom:47px;
-  display:flex;
-  gap:5px;
-  padding:8px;
+  background:#171717;
   border:1px solid var(--line);
   border-radius:30px;
-  background:#181818;
-  box-shadow:0 15px 40px rgba(0,0,0,.55);
-  opacity:0;
-  transform:translateY(8px);
-  pointer-events:none;
-  transition:.2s;
+  padding:7px;
+  gap:3px;
+  box-shadow:0 12px 30px rgba(0,0,0,.45);
 }
 
-.reaction-picker.open{
-  opacity:1;
-  transform:translateY(0);
-  pointer-events:auto;
+.reaction-wrap:hover .reaction-menu{
+  display:flex;
 }
 
-.react{
-  width:38px;
-  height:38px;
+.reaction-menu button{
+  font-size:21px;
+  width:37px;
+  height:37px;
+  padding:0;
+  border-radius:50%;
+}
+
+/* REELS */
+
+.reels-grid{
   display:grid;
-  place-items:center;
-  border:0;
-  border-radius:50%;
-  background:#242424;
-  font-size:18px;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
 }
 
-.react:hover{
-  transform:scale(1.1);
-}
-
-/* =========================
-   SKATE
-========================= */
-
-.skate-hero{
-  min-height:250px;
-  background:
-    linear-gradient(120deg,rgba(0,0,0,.82),rgba(0,0,0,.3)),
-    radial-gradient(circle at 70% 35%,rgba(214,168,79,.22),transparent 30%),
-    #171717;
-}
-
-.skate-board{
-  position:absolute;
-  right:40px;
-  bottom:25px;
-  width:210px;
-  height:32px;
-  border-radius:50%;
-  transform:rotate(-10deg);
-  background:linear-gradient(90deg,#d6a84f,#f0c76a,#a87928);
-  opacity:.8;
-}
-
-.skate-board:before,
-.skate-board:after{
-  content:"";
-  position:absolute;
-  bottom:-14px;
-  width:19px;
-  height:19px;
-  border-radius:50%;
-  background:#050505;
-  border:2px solid #555;
-}
-
-.skate-board:before{
-  left:30px;
-}
-
-.skate-board:after{
-  right:30px;
-}
-
-/* =========================
-   CULTURE
-========================= */
-
-.culture-card{
-  min-height:210px;
-  padding:20px;
+.reel{
+  min-height:430px;
+  border-radius:20px;
+  border:1px solid var(--line);
+  overflow:hidden;
+  background:#101010;
+  position:relative;
   display:flex;
   flex-direction:column;
   justify-content:flex-end;
-  position:relative;
-  overflow:hidden;
-  border:1px solid var(--line);
-  border-radius:20px;
-  background:
-    radial-gradient(circle at 50% 25%,rgba(214,168,79,.2),transparent 30%),
-    linear-gradient(145deg,#292929,#0a0a0a);
 }
 
-.culture-symbol{
+.reel-video{
   position:absolute;
-  top:18px;
-  right:20px;
-  font-size:64px;
-  opacity:.35;
+  inset:0;
+  background:
+    radial-gradient(circle at 50% 30%,rgba(214,168,79,.25),transparent 15rem),
+    linear-gradient(160deg,#171717,#080808);
+  display:grid;
+  place-items:center;
+  font-size:52px;
 }
 
-.culture-card h3{
+.reel-info{
   position:relative;
   z-index:2;
-  font-size:22px;
+  padding:18px;
+  background:linear-gradient(transparent,rgba(0,0,0,.95));
 }
 
-.culture-card p{
-  position:relative;
-  z-index:2;
-  margin-top:6px;
-  color:#aaa;
+.reel-info h3{
+  margin-bottom:7px;
 }
 
-/* =========================
-   LANGUAGE HUB
-========================= */
+.reel-actions{
+  display:flex;
+  gap:7px;
+  margin-top:13px;
+}
+
+.reel-actions button{
+  background:rgba(20,20,20,.9);
+  color:white;
+  border:1px solid #333;
+  border-radius:10px;
+  padding:8px;
+}
+
+/* SKATE */
+
+.skate-hero{
+  border:1px solid #453415;
+  background:
+    linear-gradient(135deg,rgba(214,168,79,.12),rgba(0,0,0,.9));
+  border-radius:22px;
+  padding:25px;
+  margin-bottom:18px;
+}
+
+.skate-icon{
+  font-size:52px;
+  margin-bottom:12px;
+}
+
+.skate-card{
+  min-height:190px;
+  background:
+    linear-gradient(145deg,rgba(214,168,79,.12),#101010);
+}
+
+/* CULTURE */
+
+.culture-card{
+  min-height:200px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  background:
+    linear-gradient(145deg,rgba(214,168,79,.2),#0b0b0b);
+}
+
+.culture-icon{
+  font-size:42px;
+  margin-bottom:auto;
+}
+
+/* AI */
+
+.ai-shell{
+  max-width:850px;
+  margin:auto;
+}
+
+.ai-header{
+  padding:24px;
+  border:1px solid #3b2e15;
+  border-radius:22px 22px 0 0;
+  background:linear-gradient(135deg,rgba(214,168,79,.13),#101010);
+}
+
+.ai-messages{
+  min-height:390px;
+  max-height:520px;
+  overflow-y:auto;
+  padding:18px;
+  background:#0b0b0b;
+  border-left:1px solid var(--line);
+  border-right:1px solid var(--line);
+}
+
+.ai-msg{
+  max-width:80%;
+  padding:12px 14px;
+  border-radius:15px;
+  margin-bottom:12px;
+  line-height:1.5;
+}
+
+.ai-msg.bot{
+  background:#171717;
+  border:1px solid var(--line);
+}
+
+.ai-msg.user{
+  background:#4f3c17;
+  margin-left:auto;
+}
+
+.ai-input{
+  display:flex;
+  gap:8px;
+  padding:12px;
+  background:#101010;
+  border:1px solid var(--line);
+  border-radius:0 0 22px 22px;
+}
+
+.ai-input input{
+  flex:1;
+  background:#171717;
+  color:white;
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:12px;
+  outline:none;
+}
+
+/* LANGUAGE */
 
 .language-hero{
   background:
-    radial-gradient(circle at 85% 20%,rgba(214,168,79,.2),transparent 25%),
-    radial-gradient(circle at 10% 90%,rgba(214,168,79,.08),transparent 25%),
-    linear-gradient(145deg,#171717,#080808);
+    radial-gradient(circle at 90% 20%,rgba(214,168,79,.2),transparent 20rem),
+    linear-gradient(135deg,#15110a,#0c0c0c);
+  border:1px solid #493714;
+  border-radius:23px;
+  padding:30px;
+  margin-bottom:20px;
 }
 
 .language-hero h1{
-  max-width:760px;
+  font-size:36px;
+  margin-bottom:10px;
 }
 
-.language-badge{
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  padding:7px 11px;
-  margin-bottom:14px;
-  border:1px solid rgba(214,168,79,.3);
-  border-radius:20px;
-  background:rgba(214,168,79,.08);
-  color:var(--gold2);
-  font-size:12px;
-  font-weight:800;
+.language-hero p{
+  color:#bbb;
+  line-height:1.6;
+  max-width:760px;
 }
 
 .language-tabs{
   display:flex;
-  gap:7px;
+  gap:8px;
   overflow-x:auto;
   padding-bottom:5px;
-  scrollbar-width:none;
+  margin-bottom:18px;
 }
 
-.language-tabs::-webkit-scrollbar{
-  display:none;
-}
-
-.lang-tab{
-  flex:none;
+.language-tab{
+  white-space:nowrap;
+  border:1px solid var(--line);
+  background:#111;
+  color:#aaa;
   padding:10px 14px;
-  border:1px solid var(--line);
-  border-radius:12px;
-  background:#111;
-  color:#aaa;
+  border-radius:30px;
 }
 
-.lang-tab.active,
-.lang-tab:hover{
-  color:var(--gold2);
-  border-color:var(--gold3);
-  background:rgba(214,168,79,.08);
-}
-
-.language-search{
-  margin:16px 0;
-  display:flex;
-  gap:8px;
-}
-
-.language-search input{
-  flex:1;
-  min-width:0;
-  padding:13px 15px;
-  border:1px solid var(--line);
-  border-radius:13px;
-  outline:0;
-  background:#111;
-  color:#fff;
-}
-
-.language-card{
-  position:relative;
-  padding:18px;
-  min-height:175px;
-  border:1px solid var(--line);
-  border-radius:18px;
-  background:linear-gradient(145deg,#151515,#0c0c0c);
-  transition:.2s;
-}
-
-.language-card:hover{
-  border-color:rgba(214,168,79,.4);
-  transform:translateY(-2px);
-}
-
-.lang-flag{
-  font-size:30px;
-  margin-bottom:12px;
-}
-
-.language-card h3{
-  margin-bottom:5px;
-}
-
-.language-card p{
-  min-height:42px;
-  color:#888;
-  font-size:13px;
-  line-height:1.45;
-}
-
-.lang-meta{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-  margin:12px 0;
-}
-
-.tag{
-  padding:5px 8px;
-  border:1px solid var(--line);
-  border-radius:20px;
-  color:#999;
-  font-size:10px;
-}
-
-.free{
-  color:var(--green);
-  border-color:rgba(101,201,139,.25);
-}
-
-/* =========================
-   LANGUAGE LESSON
-========================= */
-
-.lesson-box{
-  padding:22px;
-  border:1px solid var(--line);
-  border-radius:20px;
-  background:#101010;
-}
-
-.lesson-progress{
-  height:6px;
-  overflow:hidden;
-  margin:12px 0 20px;
-  border-radius:10px;
-  background:#252525;
-}
-
-.lesson-progress span{
-  display:block;
-  width:35%;
-  height:100%;
-  background:linear-gradient(90deg,var(--gold),var(--gold2));
-}
-
-.lesson-word{
-  margin:25px 0;
-  text-align:center;
-}
-
-.lesson-word .native{
-  font-size:40px;
-  font-weight:900;
-  color:var(--gold2);
-}
-
-.lesson-word .meaning{
-  margin-top:7px;
-  color:#aaa;
-}
-
-.lesson-options{
-  display:grid;
-  gap:9px;
-}
-
-.lesson-option{
-  padding:14px;
-  border:1px solid var(--line);
-  border-radius:13px;
-  background:#151515;
-  color:#fff;
-  text-align:left;
-}
-
-.lesson-option:hover{
+.language-tab.active{
+  background:var(--gold);
+  color:#080808;
   border-color:var(--gold);
+  font-weight:800;
 }
 
-/* =========================
-   TRANSLATOR
-========================= */
-
-.translator{
+.language-server{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:12px;
+  gap:15px;
 }
 
-.translate-panel{
-  padding:16px;
+.server{
+  padding:18px;
   border:1px solid var(--line);
   border-radius:17px;
   background:#111;
 }
 
-.translate-panel label{
-  display:block;
-  margin-bottom:8px;
-  color:#777;
-  font-size:12px;
-}
-
-.translate-panel select,
-.translate-panel textarea{
-  width:100%;
-  border:1px solid var(--line);
-  border-radius:12px;
-  background:#181818;
-  color:#fff;
-  outline:0;
-}
-
-.translate-panel select{
-  padding:10px;
+.server-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
   margin-bottom:10px;
 }
 
-.translate-panel textarea{
-  min-height:145px;
-  resize:vertical;
-  padding:13px;
+.online{
+  color:var(--success);
+  font-size:12px;
 }
 
-.translate-center{
+.language-select{
+  width:100%;
+  padding:12px;
+  background:#171717;
+  border:1px solid var(--line);
+  border-radius:11px;
+  color:white;
+  margin-top:10px;
+}
+
+.lesson{
+  min-height:170px;
+  padding:20px;
+  border-radius:17px;
+  background:
+    linear-gradient(145deg,rgba(214,168,79,.12),#101010);
+  border:1px solid var(--line);
+}
+
+.lesson h3{
+  margin-bottom:8px;
+  color:var(--gold2);
+}
+
+.lesson-word{
+  font-size:27px;
+  font-weight:900;
+  margin:12px 0;
+}
+
+.translator{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.translator textarea{
+  width:100%;
+  min-height:180px;
+  resize:vertical;
+  background:#0c0c0c;
+  border:1px solid var(--line);
+  color:white;
+  padding:14px;
+  border-radius:14px;
+  outline:none;
+}
+
+.translation-result{
+  min-height:180px;
+  padding:15px;
+  background:#0c0c0c;
+  border:1px solid var(--line);
+  border-radius:14px;
+  color:#ddd;
+  white-space:pre-wrap;
+}
+
+.diaspora-list{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.diaspora{
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px;
+  background:#101010;
+}
+
+.diaspora strong{
+  color:var(--gold2);
+  display:block;
+  margin-bottom:4px;
+}
+
+/* PROFILE */
+
+.profile-cover{
+  height:230px;
+  border-radius:23px 23px 0 0;
+  background:
+    linear-gradient(135deg,rgba(214,168,79,.3),rgba(0,0,0,.9)),
+    #171717;
+  position:relative;
+}
+
+.profile-info{
+  background:#101010;
+  border:1px solid var(--line);
+  border-top:0;
+  border-radius:0 0 23px 23px;
+  padding:0 22px 22px;
+}
+
+.profile-avatar{
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  margin-top:-50px;
+  border:5px solid #101010;
+  background:linear-gradient(135deg,var(--gold),#5d4317);
+  display:grid;
+  place-items:center;
+  font-size:32px;
+  font-weight:900;
+  position:relative;
+}
+
+.profile-name{
+  font-size:27px;
+  font-weight:900;
+  margin-top:10px;
+}
+
+.profile-tabs{
   display:flex;
+  gap:5px;
+  overflow-x:auto;
+  margin-top:18px;
+}
+
+.profile-tabs button{
+  background:none;
+  border:0;
+  color:#888;
+  padding:10px 13px;
+}
+
+.profile-tabs button.active{
+  color:var(--gold2);
+  border-bottom:2px solid var(--gold);
+}
+
+/* FORMS */
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:13px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.field label{
+  font-size:12px;
+  color:#888;
+}
+
+.field input,
+.field textarea,
+.field select{
+  background:#101010;
+  border:1px solid var(--line);
+  color:white;
+  padding:12px;
+  border-radius:11px;
+  outline:none;
+}
+
+.field textarea{
+  min-height:110px;
+  resize:vertical;
+}
+
+/* CONNECT / DRAWER */
+
+.drawer{
+  position:fixed;
+  inset:0;
+  z-index:2000;
+  display:none;
+}
+
+.drawer.open{
+  display:block;
+}
+
+.drawer-bg{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.7);
+}
+
+.drawer-panel{
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:min(360px,88vw);
+  background:#0c0c0c;
+  border-right:1px solid var(--line);
+  padding:25px 18px;
+  overflow-y:auto;
+}
+
+.drawer-close{
+  float:right;
+  background:none;
+  color:white;
+  border:0;
+  font-size:25px;
+}
+
+/* BOTTOM NAV */
+
+.bottom-nav{
+  display:none;
+}
+
+/* MODAL */
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:3000;
+  background:rgba(0,0,0,.8);
   align-items:center;
   justify-content:center;
+  padding:20px;
 }
 
-/* =========================
-   LANGUAGE CHAT
-========================= */
+.modal.open{
+  display:flex;
+}
+
+.modal-box{
+  width:min(620px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:#111;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:20px;
+}
+
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:17px;
+}
+
+.close{
+  background:none;
+  border:0;
+  color:#aaa;
+  font-size:25px;
+}
+
+/* CHAT */
 
 .chat-layout{
   display:grid;
-  grid-template-columns:250px 1fr;
-  min-height:600px;
+  grid-template-columns:230px 1fr;
+  min-height:550px;
   border:1px solid var(--line);
   border-radius:20px;
   overflow:hidden;
-  background:#0e0e0e;
 }
 
-.chat-list{
+.chat-users{
   border-right:1px solid var(--line);
-  background:#0a0a0a;
+  background:#0d0d0d;
 }
 
-.chat-list-header{
-  padding:16px;
-  border-bottom:1px solid var(--line);
-}
-
-.chat-person{
-  padding:13px;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  border-bottom:1px solid rgba(255,255,255,.04);
+.chat-user{
+  padding:14px;
+  border-bottom:1px solid #1d1d1d;
   cursor:pointer;
 }
 
-.chat-person:hover,
-.chat-person.active{
-  background:#151515;
+.chat-user:hover{
+  background:#171717;
 }
 
 .chat-window{
   display:flex;
   flex-direction:column;
-  min-width:0;
-}
-
-.chat-header{
-  padding:15px;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  border-bottom:1px solid var(--line);
+  background:#0a0a0a;
 }
 
 .chat-messages{
   flex:1;
-  min-height:370px;
-  padding:17px;
+  min-height:400px;
+  padding:18px;
   overflow-y:auto;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
 }
 
-.message{
+.chat-message{
   max-width:75%;
   padding:11px 13px;
-  border-radius:15px;
-  background:#1a1a1a;
-  color:#ddd;
-  line-height:1.45;
+  border-radius:14px;
+  background:#181818;
+  margin-bottom:9px;
 }
 
-.message.me{
-  align-self:flex-end;
-  background:rgba(214,168,79,.17);
-  border:1px solid rgba(214,168,79,.18);
-}
-
-.translation{
-  display:block;
-  margin-top:5px;
-  color:#777;
-  font-size:11px;
+.chat-message.mine{
+  margin-left:auto;
+  background:#493817;
 }
 
 .chat-compose{
-  padding:11px;
   display:flex;
-  gap:7px;
+  gap:8px;
+  padding:12px;
   border-top:1px solid var(--line);
 }
 
 .chat-compose input{
   flex:1;
-  min-width:0;
-  padding:11px 13px;
+  background:#161616;
   border:1px solid var(--line);
-  border-radius:20px;
-  outline:0;
-  background:#151515;
-  color:#fff;
-}
-
-.send-btn{
-  width:43px;
-  height:43px;
-  border:0;
-  border-radius:50%;
-  background:var(--gold);
-  color:#070707;
-  font-weight:900;
-}
-
-/* =========================
-   AI
-========================= */
-
-.ai-shell{
-  min-height:610px;
-  display:flex;
-  flex-direction:column;
-  overflow:hidden;
-  border:1px solid var(--line);
-  border-radius:22px;
-  background:
-    radial-gradient(circle at 70% 0%,rgba(214,168,79,.08),transparent 30%),
-    #0b0b0b;
-}
-
-.ai-header{
-  padding:20px;
-  display:flex;
-  align-items:center;
-  gap:13px;
-  border-bottom:1px solid var(--line);
-}
-
-.ai-logo{
-  width:48px;
-  height:48px;
-  display:grid;
-  place-items:center;
-  border-radius:15px;
-  background:linear-gradient(135deg,var(--gold2),var(--gold3));
-  color:#070707;
-  font-size:21px;
-  font-weight:900;
-}
-
-.ai-messages{
-  flex:1;
-  min-height:430px;
-  padding:20px;
-  overflow-y:auto;
-  display:flex;
-  flex-direction:column;
-  gap:13px;
-}
-
-.ai-message{
-  max-width:80%;
-  padding:13px 15px;
-  border:1px solid var(--line);
-  border-radius:16px;
-  background:#151515;
-  color:#ddd;
-  line-height:1.5;
-}
-
-.ai-message.me{
-  align-self:flex-end;
-  background:rgba(214,168,79,.12);
-}
-
-.ai-suggestions{
-  display:flex;
-  gap:7px;
-  overflow-x:auto;
-  padding:0 15px 10px;
-}
-
-.ai-suggestion{
-  flex:none;
-  padding:9px 12px;
-  border:1px solid var(--line);
-  border-radius:20px;
-  background:#121212;
-  color:#aaa;
-  font-size:12px;
-}
-
-.ai-input{
-  padding:12px;
-  display:flex;
-  gap:8px;
-  border-top:1px solid var(--line);
-}
-
-.ai-input textarea{
-  flex:1;
-  min-height:45px;
-  max-height:130px;
-  resize:none;
-  padding:12px 14px;
-  border:1px solid var(--line);
-  border-radius:15px;
-  outline:0;
-  background:#151515;
-  color:#fff;
-}
-
-/* =========================
-   PROFILE
-========================= */
-
-.profile-cover{
-  min-height:220px;
-  padding:25px;
-  display:flex;
-  align-items:flex-end;
-  position:relative;
-  overflow:hidden;
-  border:1px solid var(--line);
-  border-radius:23px;
-  background:
-    radial-gradient(circle at 75% 20%,rgba(214,168,79,.23),transparent 30%),
-    linear-gradient(135deg,#252525,#080808);
-}
-
-.profile-cover:after{
-  content:"";
-  position:absolute;
-  inset:auto -20px -110px auto;
-  width:300px;
-  height:300px;
-  border:1px solid rgba(214,168,79,.15);
-  border-radius:50%;
-}
-
-.profile-info{
-  position:relative;
-  z-index:2;
-  display:flex;
-  align-items:end;
-  gap:15px;
-}
-
-.profile-avatar{
-  width:85px;
-  height:85px;
-  border:3px solid var(--gold2);
-  border-radius:50%;
-  background:
-    radial-gradient(circle at 50% 34%,#795534 0 16%,transparent 17%),
-    radial-gradient(circle at 50% 64%,#3c2114 0 28%,transparent 29%),
-    #171717;
-}
-
-.profile-info h1{
-  font-size:29px;
-}
-
-.profile-info p{
-  margin-top:4px;
-  color:#999;
-}
-
-.profile-actions{
-  margin:13px 0 20px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-}
-
-.playlist{
-  padding:17px;
-  border:1px solid var(--line);
-  border-radius:17px;
-  background:#111;
-}
-
-.song{
-  padding:11px 0;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  border-bottom:1px solid rgba(255,255,255,.05);
-}
-
-.song:last-child{
-  border-bottom:0;
-}
-
-.play{
-  width:36px;
-  height:36px;
-  border:0;
-  border-radius:50%;
-  background:var(--gold);
-  color:#050505;
-}
-
-/* =========================
-   DISCOVER / OTHER PAGES
-========================= */
-
-.feature-card{
-  min-height:180px;
-  padding:20px;
-  border:1px solid var(--line);
-  border-radius:19px;
-  background:linear-gradient(145deg,#151515,#0b0b0b);
-}
-
-.feature-icon{
-  font-size:32px;
-  margin-bottom:14px;
-}
-
-.feature-card h3{
-  margin-bottom:6px;
-}
-
-.feature-card p{
-  color:#888;
-  line-height:1.5;
-  font-size:14px;
-}
-
-.event-card{
-  padding:17px;
-  border:1px solid var(--line);
-  border-radius:17px;
-  background:#111;
-}
-
-.event-date{
-  color:var(--gold2);
-  font-size:12px;
-  font-weight:800;
-  text-transform:uppercase;
-}
-
-.event-card h3{
-  margin:7px 0;
-}
-
-.event-card p{
-  color:#888;
-  font-size:13px;
-}
-
-/* =========================
-   MODAL
-========================= */
-
-.modal-overlay{
-  position:fixed;
-  z-index:3000;
-  inset:0;
-  padding:20px;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  background:rgba(0,0,0,.78);
-  backdrop-filter:blur(8px);
-}
-
-.modal-overlay.open{
-  display:flex;
-}
-
-.modal{
-  width:min(620px,100%);
-  max-height:90vh;
-  overflow-y:auto;
-  padding:21px;
-  border:1px solid var(--line);
-  border-radius:21px;
-  background:#101010;
-  box-shadow:0 25px 90px rgba(0,0,0,.6);
-}
-
-.modal-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:18px;
-}
-
-.modal-close{
-  width:37px;
-  height:37px;
-  border:1px solid var(--line);
-  border-radius:50%;
-  background:#181818;
-  color:#fff;
-}
-
-.form-group{
-  margin-bottom:13px;
-}
-
-.form-group label{
-  display:block;
-  margin-bottom:7px;
-  color:#888;
-  font-size:12px;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select{
-  width:100%;
-  padding:12px;
-  border:1px solid var(--line);
-  border-radius:12px;
-  outline:0;
-  background:#181818;
-  color:#fff;
-}
-
-/* =========================
-   TOAST
-========================= */
-
-.toast{
-  position:fixed;
-  z-index:5000;
-  left:50%;
-  bottom:90px;
-  transform:translate(-50%,20px);
-  padding:11px 16px;
-  border:1px solid var(--line);
+  color:white;
   border-radius:13px;
-  background:#171717;
-  color:#fff;
-  opacity:0;
-  pointer-events:none;
-  transition:.25s;
-  box-shadow:0 10px 35px rgba(0,0,0,.45);
+  padding:12px;
 }
 
-.toast.show{
-  opacity:1;
-  transform:translate(-50%,0);
-}
+/* RESPONSIVE */
 
-/* =========================
-   BOTTOM NAV
-========================= */
-
-.bottom-nav{
-  position:fixed;
-  z-index:1200;
-  left:0;
-  right:0;
-  bottom:0;
-  height:76px;
-  padding:7px 7px calc(7px + env(safe-area-inset-bottom));
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:3px;
-  background:rgba(6,6,6,.96);
-  backdrop-filter:blur(18px);
-  border-top:1px solid var(--line);
-}
-
-.nav-btn{
-  min-width:0;
-  border:0;
-  border-radius:13px;
-  background:transparent;
-  color:#737373;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:3px;
-  transition:.2s;
-}
-
-.nav-btn .nav-icon{
-  font-size:20px;
-  line-height:1;
-}
-
-.nav-btn span:last-child{
-  font-size:10px;
-  font-weight:700;
-  white-space:nowrap;
-}
-
-.nav-btn.active{
-  color:var(--gold2);
-  background:rgba(214,168,79,.08);
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-width:760px){
-  .app-header{
-    padding:0 10px;
-  }
-
-  .header-left,
-  .header-right{
-    width:auto;
-  }
-
-  .header-center{
-    padding:0 7px;
-  }
-
-  .logo{
-    font-size:21px;
-  }
-
-  .search-box{
-    max-width:220px;
-  }
-
-  .header-right .header-btn:nth-child(2){
+@media(max-width:900px){
+  .sidebar{
     display:none;
   }
 
+  .main{
+    margin-left:0;
+    width:100%;
+  }
+
+  .page{
+    padding:20px 14px 95px;
+  }
+
+  .bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:72px;
+    background:rgba(9,9,9,.97);
+    border-top:1px solid var(--line);
+    z-index:1500;
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+
+  .bottom-nav button{
+    min-width:0;
+    border:0;
+    background:none;
+    color:#777;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
+    font-size:9px;
+    font-weight:750;
+  }
+
+  .bottom-nav button.active{
+    color:var(--gold2);
+  }
+
+  .bottom-icon{
+    font-size:19px;
+    line-height:1;
+  }
+
   .hero{
-    padding:26px 21px;
+    padding:25px 20px;
+    min-height:290px;
   }
 
-  .hero:after{
-    font-size:180px;
-    right:-5px;
+  .hero h1{
+    letter-spacing:-2px;
   }
 
-  .grid-2,
-  .grid-3{
+  .grid2,
+  .grid3{
     grid-template-columns:1fr;
   }
 
+  .reels-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .language-server,
   .translator{
     grid-template-columns:1fr;
   }
 
-  .translate-center{
-    transform:rotate(90deg);
+  .diaspora-list{
+    grid-template-columns:1fr 1fr;
   }
 
   .chat-layout{
     grid-template-columns:1fr;
   }
 
-  .chat-list{
-    display:none;
+  .chat-users{
+    display:flex;
+    overflow-x:auto;
+    border-right:0;
+    border-bottom:1px solid var(--line);
   }
 
-  .chat-messages{
-    min-height:350px;
-  }
-
-  .profile-info{
-    align-items:center;
-  }
-
-  .profile-avatar{
-    width:70px;
-    height:70px;
-  }
-
-  .profile-info h1{
-    font-size:23px;
-  }
-
-  .skate-board{
-    width:140px;
-    right:-20px;
-    bottom:22px;
+  .chat-user{
+    min-width:130px;
   }
 }
 
-@media(max-width:460px){
-  main{
-    padding-top:80px;
+@media(max-width:520px){
+  .topbar{
+    padding:0 13px;
   }
 
-  .page{
-    width:calc(100% - 18px);
+  .brand{
+    font-size:23px;
   }
 
-  .app-header{
-    height:62px;
+  .reels-grid{
+    grid-template-columns:1fr 1fr;
+    gap:9px;
   }
 
-  .header-btn,
-  .menu-btn{
-    width:37px;
-    height:37px;
+  .reel{
+    min-height:330px;
   }
 
-  .search-box{
-    height:37px;
+  .form-grid{
+    grid-template-columns:1fr;
   }
 
-  .search-box span{
-    display:none;
+  .diaspora-list{
+    grid-template-columns:1fr;
   }
 
-  .logo{
-    font-size:18px;
+  .page-head h1{
+    font-size:28px;
   }
 
-  .hero h1{
-    font-size:42px;
-  }
-
-  .page-title{
-    font-size:27px;
+  .language-hero h1{
+    font-size:29px;
   }
 
   .bottom-nav{
-    height:72px;
+    height:70px;
   }
 
-  .nav-btn .nav-icon{
-    font-size:18px;
+  .bottom-nav button{
+    font-size:8px;
   }
 
-  .nav-btn span:last-child{
-    font-size:9px;
-  }
-
-  .post-actions{
-    grid-template-columns:repeat(4,1fr);
-  }
-
-  .action-btn{
-    font-size:12px;
-  }
-
-  .action-btn .reaction-label{
-    display:none;
+  .bottom-icon{
+    font-size:17px;
   }
 }
 </style>
@@ -1653,422 +1166,209 @@ main{
 
 <body>
 
-<!-- =========================
-     HEADER
-========================= -->
+<header class="topbar">
+  <div class="brand">Soulaani<span>®</span></div>
 
-<header class="app-header">
-
-  <div class="header-left">
-    <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+  <div class="top-actions">
+    <button class="icon-btn" onclick="openDrawer()">☰</button>
+    <button class="icon-btn" onclick="openPage('profile')">◉</button>
   </div>
-
-  <div class="header-center">
-    <div class="logo">Soulaani<span>.</span></div>
-  </div>
-
-  <div class="header-right">
-    <button class="header-btn" onclick="openSearch()" aria-label="Search">⌕</button>
-    <button class="header-btn" onclick="openCreate()" aria-label="Create">＋</button>
-  </div>
-
 </header>
 
-<!-- =========================
-     SIDE MENU
-========================= -->
+<div class="app">
 
-<div class="side-overlay" id="sideOverlay" onclick="toggleMenu()"></div>
+<aside class="sidebar">
 
-<aside class="side-menu" id="sideMenu">
+  <div class="nav-title">Soulaani</div>
 
-  <div class="side-top">
-    <div class="side-brand">
-      <strong>Soulaani</strong>
-      <button class="close-menu" onclick="toggleMenu()">×</button>
-    </div>
+  <nav class="side-nav">
 
-    <div class="side-profile">
-      <div class="avatar">LT</div>
-      <div>
-        <strong>Your Soulaani Profile</strong>
-        <small>View and edit profile</small>
-      </div>
-    </div>
-  </div>
+    <button data-page="home" onclick="openPage('home')">
+      <span class="side-icon">⌂</span> Home
+    </button>
 
-  <div class="menu-section-title">Main</div>
+    <button data-page="newsfeed" onclick="openPage('newsfeed')">
+      <span class="side-icon">▤</span> Newsfeed
+    </button>
 
-  <button class="side-item" onclick="showPage('home')">
-    <span class="side-icon">⌂</span>
-    <span>Home</span>
-  </button>
+    <button data-page="skate" onclick="openPage('skate')">
+      <span class="side-icon">🛹</span> Skate
+    </button>
 
-  <button class="side-item" onclick="showPage('connect')">
-    <span class="side-icon">♧</span>
-    <span>Connect</span>
-  </button>
+    <button data-page="reels" onclick="openPage('reels')">
+      <span class="side-icon">▶</span> Reels
+    </button>
 
-  <button class="side-item" onclick="showPage('date')">
-    <span class="side-icon">♡</span>
-    <span>Date</span>
-  </button>
+    <button data-page="culture" onclick="openPage('culture')">
+      <span class="side-icon">✊🏿</span> Culture
+    </button>
 
-  <button class="side-item" onclick="showPage('build')">
-    <span class="side-icon">▦</span>
-    <span>Build</span>
-  </button>
+    <button data-page="ai" onclick="openPage('ai')">
+      <span class="side-icon">✦</span> Soulaani AI
+    </button>
 
-  <button class="side-item" onclick="showPage('market')">
-    <span class="side-icon">◇</span>
-    <span>Market</span>
-  </button>
+    <button data-page="profile" onclick="openPage('profile')">
+      <span class="side-icon">●</span> Profile
+    </button>
 
-  <button class="side-item" onclick="showPage('explore')">
-    <span class="side-icon">◎</span>
-    <span>Explore</span>
-  </button>
+    <br>
 
-  <div class="menu-section-title">Culture & Community</div>
+    <div class="nav-title">Connect</div>
 
-  <button class="side-item" onclick="showPage('culture')">
-    <span class="side-icon">✊🏾</span>
-    <span>Culture</span>
-  </button>
+    <button onclick="openPage('language')">
+      <span class="side-icon">文</span> Language & Connections
+    </button>
 
-  <button class="side-item" onclick="showPage('language')">
-    <span class="side-icon">🌍</span>
-    <span>Language & Connection</span>
-  </button>
+    <button onclick="openPage('chat')">
+      <span class="side-icon">☵</span> Messages
+    </button>
 
-  <button class="side-item" onclick="showPage('skate')">
-    <span class="side-icon">🛹</span>
-    <span>Skate</span>
-  </button>
+    <button onclick="openPage('communities')">
+      <span class="side-icon">♧</span> Communities
+    </button>
 
-  <button class="side-item" onclick="showPage('ai')">
-    <span class="side-icon">✦</span>
-    <span>Soulaani AI</span>
-  </button>
+    <button onclick="openPage('discover')">
+      <span class="side-icon">⌖</span> Local Discover
+    </button>
 
-  <div class="menu-section-title">Your Space</div>
+    <button onclick="openPage('date')">
+      <span class="side-icon">♡</span> Date
+    </button>
 
-  <button class="side-item" onclick="showPage('profile')">
-    <span class="side-icon">◉</span>
-    <span>Profile</span>
-  </button>
+    <button onclick="openPage('build')">
+      <span class="side-icon">▰</span> Build
+    </button>
 
-  <button class="side-item" onclick="showPage('saved')">
-    <span class="side-icon">▣</span>
-    <span>Saved</span>
-  </button>
+    <button onclick="openPage('market')">
+      <span class="side-icon">◇</span> Market
+    </button>
 
-  <button class="side-item" onclick="showPage('settings')">
-    <span class="side-icon">⚙</span>
-    <span>Settings</span>
-  </button>
+    <button onclick="openPage('explore')">
+      <span class="side-icon">◎</span> Explore
+    </button>
+
+    <button onclick="openPage('saved')">
+      <span class="side-icon">▱</span> Saved
+    </button>
+
+  </nav>
 
 </aside>
 
-<!-- =========================
-     MAIN
-========================= -->
-
-<main>
+<main class="main">
 
 <!-- HOME -->
 
-<section class="page active" id="page-home">
+<section id="home" class="page active">
 
   <div class="hero">
     <h1>The Culture.<br><span>The People.</span><br>The Platform.</h1>
     <p>
-      A social home for Black communities, creativity, culture, connection,
-      entrepreneurship, language, skating, music and everything in between.
+      Soulaani is a social platform built around Black communities,
+      culture, creativity, connection, language, business and the diaspora.
     </p>
 
     <div class="hero-actions">
-      <button class="btn gold" onclick="openCreate()">Create Post</button>
-      <button class="btn" onclick="showPage('language')">Explore Languages</button>
+      <button class="btn gold-btn" onclick="openPage('newsfeed')">Enter Soulaani</button>
+      <button class="btn" onclick="openPage('language')">Explore Languages</button>
     </div>
   </div>
 
   <div class="stories">
-    <div class="story">
-      <div class="story-avatar">+</div>
-      <span>Add Story</span>
-    </div>
+    <div class="story"><span>＋ Your Story</span></div>
+    <div class="story"><span>Community</span></div>
+    <div class="story"><span>Culture</span></div>
+    <div class="story"><span>Skate</span></div>
+    <div class="story"><span>Music</span></div>
+    <div class="story"><span>Creators</span></div>
+  </div>
 
-    <div class="story">
-      <div class="story-avatar">AJ</div>
-      <span>Atlanta</span>
-    </div>
-
-    <div class="story">
-      <div class="story-avatar">KM</div>
-      <span>Philly</span>
-    </div>
-
-    <div class="story">
-      <div class="story-avatar">JS</div>
-      <span>Harrisburg</span>
-    </div>
-
-    <div class="story">
-      <div class="story-avatar">MR</div>
-      <span>Haiti</span>
+  <div class="card">
+    <div class="composer">
+      <div class="avatar">S</div>
+      <div class="fake-input" onclick="openComposer()">What's happening in your world?</div>
     </div>
   </div>
 
-  <div class="section-head">
-    <div>
-      <h2>Your Feed</h2>
-      <div class="muted">Local + community content</div>
-    </div>
-    <button class="btn small" onclick="showToast('Feed refreshed')">Refresh</button>
-  </div>
-
-  <div class="feed">
-
-    <article class="post">
-      <div class="post-header">
-        <div class="user">
-          <div class="avatar">JS</div>
-          <div class="user-info">
-            <strong>Jay • Harrisburg</strong>
-            <small>12 min ago · Public</small>
-          </div>
-        </div>
-        <button class="more">•••</button>
-      </div>
-
-      <div class="post-body">
-        <div class="post-text">
-          Building community right here in Pennsylvania. Who's outside this weekend?
-          🖤
-        </div>
-
-        <div class="post-image">
-          <div class="fake-art">SOULAANI</div>
-        </div>
-      </div>
-
-      <div class="post-stats">
-        <span id="reactionCount1">❤️ 18 · 😂 7</span>
-        <span>6 comments · 2 shares</span>
-      </div>
-
-      <div class="post-actions">
-
-        <div class="reaction-wrap">
-          <div class="reaction-picker" id="picker1">
-            <button class="react" onclick="reactPost(1,'❤️','Love')">❤️</button>
-            <button class="react" onclick="reactPost(1,'😂','Laugh')">😂</button>
-            <button class="react" onclick="reactPost(1,'🔥','Fire')">🔥</button>
-            <button class="react" onclick="reactPost(1,'😮','Wow')">😮</button>
-            <button class="react" onclick="reactPost(1,'👎🏾','Dislike')">👎🏾</button>
-          </div>
-
-          <button class="action-btn" onclick="toggleReactions(1)">
-            <span id="reactionButton1">♡</span>
-            <span class="reaction-label">React</span>
-          </button>
-        </div>
-
-        <button class="action-btn" onclick="commentPost()">
-          💬 <span class="reaction-label">Comment</span>
-        </button>
-
-        <button class="action-btn" onclick="sharePost()">
-          ↗ <span class="reaction-label">Share</span>
-        </button>
-
-        <button class="action-btn" onclick="savePost(this)">
-          ▣ <span class="reaction-label">Save</span>
-        </button>
-
-      </div>
-    </article>
-
-
-    <article class="post">
-      <div class="post-header">
-        <div class="user">
-          <div class="avatar">MR</div>
-          <div class="user-info">
-            <strong>Maya R.</strong>
-            <small>Haiti · 1 hr ago</small>
-          </div>
-        </div>
-        <button class="more">•••</button>
-      </div>
-
-      <div class="post-body">
-        <div class="post-text">
-          Language connects us. I'm learning more Kreyòl every day.
-          Sak pase, fanmi? 🇭🇹
-        </div>
-
-        <div class="post-image">
-          <div class="fake-art">KREYÒL</div>
-        </div>
-      </div>
-
-      <div class="post-stats">
-        <span>❤️ 42 · 🔥 12</span>
-        <span>13 comments · 4 shares</span>
-      </div>
-
-      <div class="post-actions">
-        <button class="action-btn" onclick="toggleReactions(2)">♡ React</button>
-        <button class="action-btn" onclick="commentPost()">💬 Comment</button>
-        <button class="action-btn" onclick="sharePost()">↗ Share</button>
-        <button class="action-btn" onclick="savePost(this)">▣ Save</button>
-      </div>
-    </article>
-
-  </div>
+  <div id="homePosts"></div>
 
 </section>
 
 
-<!-- CONNECT -->
+<!-- NEWSFEED -->
 
-<section class="page" id="page-connect">
+<section id="newsfeed" class="page">
 
-  <h1 class="page-title">Connect</h1>
-  <p class="page-subtitle">
-    Find people, communities and conversations that match your interests.
-  </p>
-
-  <div class="grid grid-3">
-
-    <div class="feature-card">
-      <div class="feature-icon">👥</div>
-      <h3>People</h3>
-      <p>Discover people by interests, location, culture and languages.</p>
-      <button class="btn small" onclick="showToast('People discovery opened')">Discover</button>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">🌍</div>
-      <h3>Language Communities</h3>
-      <p>Connect with people who speak or are learning diaspora languages.</p>
-      <button class="btn small" onclick="showPage('language')">Explore</button>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">💬</div>
-      <h3>Groups</h3>
-      <p>Build communities around culture, business, skating, music and more.</p>
-      <button class="btn small" onclick="showToast('Groups coming into your community feed')">Groups</button>
-    </div>
-
+  <div class="page-head">
+    <h1>Newsfeed</h1>
+    <p>Your Soulaani feed.</p>
   </div>
 
-  <div class="section-head">
-    <h2>People You May Know</h2>
+  <div class="card">
+    <div class="composer">
+      <div class="avatar">S</div>
+      <div class="fake-input" onclick="openComposer()">Create a post...</div>
+    </div>
   </div>
 
-  <div class="grid grid-2">
-
-    <div class="card card-pad">
-      <div class="user">
-        <div class="avatar">KM</div>
-        <div>
-          <strong>Keisha M.</strong>
-          <p class="muted">Philadelphia · Haitian Creole learner</p>
-        </div>
-      </div>
-      <button class="btn small" style="margin-top:14px" onclick="connectPerson(this)">Connect</button>
-    </div>
-
-    <div class="card card-pad">
-      <div class="user">
-        <div class="avatar">DA</div>
-        <div>
-          <strong>DeAndre A.</strong>
-          <p class="muted">Harrisburg · Skate · Music</p>
-        </div>
-      </div>
-      <button class="btn small" style="margin-top:14px" onclick="connectPerson(this)">Connect</button>
-    </div>
-
-  </div>
+  <div id="feedPosts"></div>
 
 </section>
 
 
-<!-- DATE -->
+<!-- SKATE -->
 
-<section class="page" id="page-date">
+<section id="skate" class="page">
 
-  <h1 class="page-title">Date</h1>
-  <p class="page-subtitle">
-    A dedicated space for people looking for meaningful connections.
-  </p>
-
-  <div class="hero">
-    <h1 style="font-size:42px">Meet people.<br><span>Build connections.</span></h1>
-    <p>
-      Dating profiles can highlight interests, culture, music, languages,
-      communities and the things that actually matter to you.
+  <div class="skate-hero">
+    <div class="skate-icon">🛹</div>
+    <h1>Soulaani Skate</h1>
+    <p class="muted">
+      Riders. Clips. Spots. Events. Skate culture and community.
     </p>
-    <button class="btn gold" onclick="showToast('Dating profile setup opened')">Set Up Dating Profile</button>
+
+    <div class="hero-actions">
+      <button class="btn gold-btn" onclick="openComposer('skate')">Post a Clip</button>
+      <button class="btn" onclick="alert('Local skate spots will appear here.')">Find Spots</button>
+    </div>
   </div>
 
-  <div class="grid grid-3">
+  <div class="grid grid3">
 
-    <div class="feature-card">
-      <div class="feature-icon">♡</div>
-      <h3>Shared Culture</h3>
-      <p>Discover people based on interests and cultural communities.</p>
+    <div class="card skate-card">
+      <div style="font-size:40px">🛹</div>
+      <h3 class="card-title">Riders</h3>
+      <p class="muted">Discover riders and connect with the skate community.</p>
     </div>
 
-    <div class="feature-card">
-      <div class="feature-icon">🌍</div>
-      <h3>Language</h3>
-      <p>Connect with people who speak or want to learn the same languages.</p>
+    <div class="card skate-card">
+      <div style="font-size:40px">🎥</div>
+      <h3 class="card-title">Skate Clips</h3>
+      <p class="muted">Share lines, tricks, sessions and street clips.</p>
     </div>
 
-    <div class="feature-card">
-      <div class="feature-icon">📍</div>
-      <h3>Local</h3>
-      <p>Discover people and activities around your selected local area.</p>
+    <div class="card skate-card">
+      <div style="font-size:40px">📍</div>
+      <h3 class="card-title">Local Spots</h3>
+      <p class="muted">Discover skate spots and sessions around you.</p>
     </div>
 
-  </div>
-
-</section>
-
-
-<!-- BUILD -->
-
-<section class="page" id="page-build">
-
-  <h1 class="page-title">Build</h1>
-  <p class="page-subtitle">
-    Careers, entrepreneurship, networking and opportunities.
-  </p>
-
-  <div class="grid grid-3">
-
-    <div class="feature-card">
-      <div class="feature-icon">💼</div>
-      <h3>Jobs</h3>
-      <p>Discover career opportunities and connect with professionals.</p>
+    <div class="card skate-card">
+      <div style="font-size:40px">📅</div>
+      <h3 class="card-title">Events</h3>
+      <p class="muted">Find jams, meetups, competitions and community sessions.</p>
     </div>
 
-    <div class="feature-card">
-      <div class="feature-icon">🚀</div>
-      <h3>Entrepreneurs</h3>
-      <p>Showcase businesses, ideas, products and startups.</p>
+    <div class="card skate-card">
+      <div style="font-size:40px">👥</div>
+      <h3 class="card-title">Skate Community</h3>
+      <p class="muted">Follow riders and build connections.</p>
     </div>
 
-    <div class="feature-card">
-      <div class="feature-icon">🤝</div>
-      <h3>Networking</h3>
-      <p>Build relationships with people working toward similar goals.</p>
+    <div class="card skate-card">
+      <div style="font-size:40px">🔥</div>
+      <h3 class="card-title">Trending</h3>
+      <p class="muted">See what's moving through Soulaani Skate.</p>
     </div>
 
   </div>
@@ -2076,82 +1376,104 @@ main{
 </section>
 
 
-<!-- MARKET -->
+<!-- REELS -->
 
-<section class="page" id="page-market">
+<section id="reels" class="page">
 
-  <h1 class="page-title">Market</h1>
-  <p class="page-subtitle">
-    Discover Black-owned businesses, creators and products.
-  </p>
-
-  <div class="grid grid-3">
-
-    <div class="feature-card">
-      <div class="feature-icon">🛍️</div>
-      <h3>Black-Owned Businesses</h3>
-      <p>Discover businesses and entrepreneurs in your community.</p>
-      <button class="btn small" onclick="showToast('Business discovery opened')">Explore</button>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">🎨</div>
-      <h3>Creators</h3>
-      <p>Support artists, designers, musicians and independent creators.</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">📍</div>
-      <h3>Local Market</h3>
-      <p>Switch your area to discover businesses around you.</p>
-    </div>
-
+  <div class="page-head">
+    <h1>Reels</h1>
+    <p>Short-form videos from the Soulaani community.</p>
   </div>
 
-</section>
+  <div class="card">
+    <button class="btn gold-btn" onclick="openComposer('reel')">＋ Create Reel</button>
+  </div>
 
+  <div class="reels-grid">
 
-<!-- EXPLORE -->
-
-<section class="page" id="page-explore">
-
-  <h1 class="page-title">Explore</h1>
-  <p class="page-subtitle">
-    Discover local events, people, food, music, businesses and opportunities.
-  </p>
-
-  <div class="card card-pad">
-
-    <div class="section-head" style="margin-top:0">
-      <div>
-        <h2>Local FYP</h2>
-        <div class="muted">Currently exploring Harrisburg</div>
+    <article class="reel">
+      <div class="reel-video">▶</div>
+      <div class="reel-info">
+        <h3>Culture in Motion</h3>
+        <p class="muted">@soulaani_creator</p>
+        <div class="reel-actions">
+          <button onclick="react(this)">♡</button>
+          <button onclick="alert('Comments opened.')">💬</button>
+          <button onclick="shareContent()">↗</button>
+          <button onclick="saveContent(this)">▱</button>
+        </div>
       </div>
+    </article>
 
-      <button class="btn small" onclick="changeLocation()">Change</button>
-    </div>
-
-    <div class="grid grid-3">
-
-      <div class="event-card">
-        <div class="event-date">Community</div>
-        <h3>Local Black Creators</h3>
-        <p>Discover creators and community posts near your selected area.</p>
+    <article class="reel">
+      <div class="reel-video">🛹</div>
+      <div class="reel-info">
+        <h3>Street Session</h3>
+        <p class="muted">@soulaani_skate</p>
+        <div class="reel-actions">
+          <button onclick="react(this)">♡</button>
+          <button onclick="alert('Comments opened.')">💬</button>
+          <button onclick="shareContent()">↗</button>
+          <button onclick="saveContent(this)">▱</button>
+        </div>
       </div>
+    </article>
 
-      <div class="event-card">
-        <div class="event-date">Culture</div>
-        <h3>Food & Culture</h3>
-        <p>Find local soul food, businesses and cultural experiences.</p>
+    <article class="reel">
+      <div class="reel-video">🎶</div>
+      <div class="reel-info">
+        <h3>Black Music</h3>
+        <p class="muted">@culture</p>
+        <div class="reel-actions">
+          <button onclick="react(this)">♡</button>
+          <button onclick="alert('Comments opened.')">💬</button>
+          <button onclick="shareContent()">↗</button>
+          <button onclick="saveContent(this)">▱</button>
+        </div>
       </div>
+    </article>
 
-      <div class="event-card">
-        <div class="event-date">Events</div>
-        <h3>What's Happening</h3>
-        <p>Discover events and activities around your community.</p>
+    <article class="reel">
+      <div class="reel-video">🍽️</div>
+      <div class="reel-info">
+        <h3>Soul Food</h3>
+        <p class="muted">@soulaani_culture</p>
+        <div class="reel-actions">
+          <button onclick="react(this)">♡</button>
+          <button onclick="alert('Comments opened.')">💬</button>
+          <button onclick="shareContent()">↗</button>
+          <button onclick="saveContent(this)">▱</button>
+        </div>
       </div>
+    </article>
 
-    </div>
+    <article class="reel">
+      <div class="reel-video">🌍</div>
+      <div class="reel-info">
+        <h3>Diaspora Connections</h3>
+        <p class="muted">@diaspora</p>
+        <div class="reel-actions">
+          <button onclick="react(this)">♡</button>
+          <button onclick="alert('Comments opened.')">💬</button>
+          <button onclick="shareContent()">↗</button>
+          <button onclick="saveContent(this)">▱</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="reel">
+      <div class="reel-video">✊🏿</div>
+      <div class="reel-info">
+        <h3>Our Stories</h3>
+        <p class="muted">@soulaani</p>
+        <div class="reel-actions">
+          <button onclick="react(this)">♡</button>
+          <button onclick="alert('Comments opened.')">💬</button>
+          <button onclick="shareContent()">↗</button>
+          <button onclick="saveContent(this)">▱</button>
+        </div>
+      </div>
+    </article>
 
   </div>
 
@@ -2160,655 +1482,49 @@ main{
 
 <!-- CULTURE -->
 
-<section class="page" id="page-culture">
+<section id="culture" class="page">
 
-  <h1 class="page-title">Culture</h1>
-  <p class="page-subtitle">
-    Black American culture, creativity, food, music, art, fashion and community.
-  </p>
+  <div class="page-head">
+    <h1>Culture</h1>
+    <p>Black American culture, creativity and the wider diaspora.</p>
+  </div>
 
-  <div class="grid grid-2">
+  <div class="grid grid3">
 
-    <div class="culture-card">
-      <div class="culture-symbol">✊🏾</div>
-      <h3>Black American Culture</h3>
-      <p>History, traditions, creativity and community.</p>
-    </div>
-
-    <div class="culture-card">
-      <div class="culture-symbol">🍽️</div>
+    <div class="card culture-card">
+      <div class="culture-icon">🍽️</div>
       <h3>Soul Food</h3>
-      <p>Discover soul food plates, restaurants and recipes.</p>
+      <p class="muted">Black American soul-food plates, restaurants and recipes.</p>
     </div>
 
-    <div class="culture-card">
-      <div class="culture-symbol">🎵</div>
+    <div class="card culture-card">
+      <div class="culture-icon">🎶</div>
       <h3>Music</h3>
-      <p>Artists, playlists, sounds and cultural movements.</p>
+      <p class="muted">Artists, sounds, playlists and musical history.</p>
     </div>
 
-    <div class="culture-card">
-      <div class="culture-symbol">🎨</div>
-      <h3>Art & Fashion</h3>
-      <p>Showcase Black artists, designers and creative culture.</p>
+    <div class="card culture-card">
+      <div class="culture-icon">🎨</div>
+      <h3>Art</h3>
+      <p class="muted">Artists and creative expression.</p>
     </div>
 
-  </div>
-
-</section>
-
-
-<!-- =========================
-     LANGUAGE & CONNECTION
-========================= -->
-
-<section class="page" id="page-language">
-
-  <div class="hero language-hero">
-
-    <div class="language-badge">
-      🌍 FREE LANGUAGE LEARNING
+    <div class="card culture-card">
+      <div class="culture-icon">👕</div>
+      <h3>Fashion</h3>
+      <p class="muted">Style, designers and streetwear.</p>
     </div>
 
-    <h1>
-      Learn the languages.<br>
-      <span>Connect the diaspora.</span>
-    </h1>
-
-    <p>
-      Learn, practice, translate and connect through languages and language
-      traditions from Black communities around the world.
-    </p>
-
-    <div class="hero-actions">
-      <button class="btn gold" onclick="scrollToLanguage('learn')">
-        Start Learning
-      </button>
-
-      <button class="btn" onclick="scrollToLanguage('translate')">
-        Translate
-      </button>
-
-      <button class="btn" onclick="scrollToLanguage('chat')">
-        Language Chat
-      </button>
+    <div class="card culture-card">
+      <div class="culture-icon">🏪</div>
+      <h3>Black-Owned Businesses</h3>
+      <p class="muted">Discover and support Black-owned businesses.</p>
     </div>
 
-  </div>
-
-
-  <div class="language-tabs">
-
-    <button class="lang-tab active" onclick="languageTab('languages',this)">
-      🌍 Languages
-    </button>
-
-    <button class="lang-tab" onclick="languageTab('learn',this)">
-      📚 Learn
-    </button>
-
-    <button class="lang-tab" onclick="languageTab('translate',this)">
-      🔄 Translate
-    </button>
-
-    <button class="lang-tab" onclick="languageTab('chat',this)">
-      💬 Chat
-    </button>
-
-    <button class="lang-tab" onclick="languageTab('communities',this)">
-      👥 Communities
-    </button>
-
-  </div>
-
-
-  <!-- LANGUAGES -->
-
-  <div id="languagePanel-languages">
-
-    <div class="language-search">
-      <input
-        id="languageSearch"
-        type="search"
-        placeholder="Search languages, Creoles, regions..."
-        oninput="filterLanguages()"
-      >
-      <button class="btn gold" onclick="showToast('All language learning is free')">
-        FREE
-      </button>
-    </div>
-
-    <div class="section-head">
-      <div>
-        <h2>Black Diaspora Language Library</h2>
-        <div class="muted">
-          Explore languages and varieties from communities around the world.
-        </div>
-      </div>
-    </div>
-
-    <div class="grid grid-3" id="languageGrid">
-
-      <div class="language-card" data-language="Haitian Creole Kreyol Haiti Caribbean">
-        <div class="lang-flag">🇭🇹</div>
-        <h3>Haitian Creole</h3>
-        <p>Kreyòl Ayisyen · Haiti and Haitian communities worldwide.</p>
-        <div class="lang-meta">
-          <span class="tag free">FREE</span>
-          <span class="tag">Creole</span>
-          <span class="tag">Caribbean</span>
-        </div>
-        <button class="btn small" onclick="openLanguage('Haitian Creole')">Learn</button>
-      </div>
-
-      <div class="language-card" data-language="Louisiana Creole Louisiana United States">
-        <div class="lang-flag">🇺🇸</div>
-        <h3>Louisiana Creole</h3>
-        <p>A historic Louisiana Creole language tradition.</p>
-        <div class="lang-meta">
-          <span class="tag free">FREE</span>
-          <span class="tag">Creole</span>
-          <span class="tag">Louisiana</span>
-        </div>
-        <button class="btn small" onclick="openLanguage('Louisiana Creole')">Learn</button>
-      </div>
-
-      <div class="language-card" data-language="Tutnese United States Black American">
-        <div class="lang-flag">🖤</div>
-        <h3>Tutnese</h3>
-        <p>Explore the historical language tradition associated with Black communities in the United States.</p>
-        <div class="lang-meta">
-          <span class="tag free">FREE</span>
-          <span class="tag">Historical</span>
-          <span class="tag">U.S.</span>
-        </div>
-        <button class="btn small" onclick="openLanguage('Tutnese')">Explore</button>
-      </div>
-
-      <div class="language-card" data-language="Gullah Geechee United States">
-        <div class="lang-flag">🇺🇸</div>
-        <h3>Gullah Geechee</h3>
-        <p>Explore language, history and culture of the Gullah Geechee community.</p>
-        <div class="lang-meta">
-          <span class="tag free">FREE</span>
-          <span class="tag">U.S.</span>
-          <span class="tag">Heritage</span>
-        </div>
-        <button class="btn small" onclick="openLanguage('Gullah Geechee')">Learn</button>
-      </div>
-
-      <div class="language-card" data-language="Jamaican Patois Jamaica Caribbean">
-        <div class="lang-flag">🇯🇲</div>
-        <h3>Jamaican Patois</h3>
-        <p>Jamaican Creole and everyday Jamaican speech.</p>
-        <div class="lang-meta">
-          <span class="tag free">FREE</span>
-          <span class="tag">Creole</span>
-          <span class="tag">Caribbean</span>
-        </div>
-        <button class="btn small" onclick="openLanguage('Jamaican Patois')">Learn</button>
-      </div>
-
-      <div class="language-card" data-language="Bajan Barbados Barbados Creole">
-        <div class="lang-flag">🇧🇧</div>
-        <h3>Bajan</h3>
-        <p>Explore Barbadian speech, expressions and culture.</p>
-        <div class="lang-meta">
-          <span class="tag free">FREE</span>
-          <span class="tag">Creole</span>
-          <span class="tag">Barbados</span>
-        </div>
-        <button class="btn small" onclick="openLanguage('Bajan')">Learn</button>
-      </div>
-
-      <div class="language-card" data-language="Trinidad Tobago Trinidadian Creole Caribbean">
-        <div class="lang-flag">🇹🇹</div>
-        <h3>Trinidadian Creoles</h3>
-        <p>Explore Trinidad and Tobago's rich language landscape.</p>
-        <div class="lang-meta">
-          <span class="tag free">FREE</span>
-          <span class="tag">Caribbean</span>
-        </div>
-        <button class="btn small" onclick="openLanguage('Trinidadian Creoles')">Learn</button>
-      </div>
-
-      <div class="language-card" data-language="Guyanese Creole Guyana">
-        <div class="lang-flag">🇬🇾</div>
-        <h3>Guyanese Creole</h3>
-        <p>Explore Guyanese Creole and regional expressions.</p>
-        <div class="lang-meta">
-          <span class="tag free">FREE</span>
-          <span class="tag">Creole</span>
-          <span class="tag">South America</span>
-        </div>
-        <button class="btn small" onclick="openLanguage('Guyanese Creole')">Learn</button>
-      </div>
-
-      <div class="language-card" data-language="Belize Kriol Belize Central America">
-        <div class="lang-flag">🇧🇿</div>
-        <h3>Belize Kriol</h3>
-        <p>A major language variety of Belize and its communities.</p>
-        <div class="lang-meta">
-          <span class="tag free">FREE</span>
-          <span class="tag">Creole</span>
-        </div>
-        <button class="btn small" onclick="openLanguage('Belize Kriol')">Learn</button>
-      </div>
-
-      <div class="language-card" data-language="Krio Sierra Leone Africa">
-        <div class="lang-flag">🇸🇱</div>
-        <h3>Krio</h3>
-        <p>A widely used language of Sierra Leone.</p>
-        <div class="lang-meta">
-          <span class="tag free">FREE</span>
-          <span class="tag">Africa</span>
-        </div>
-        <button class="btn small" onclick="openLanguage('Krio')">Learn</button>
-      </div>
-
-      <div class="language-card" data-language="Nigerian Pidgin Nigeria Africa">
-        <div class="lang-flag">🇳🇬</div>
-        <h3>Nigerian Pidgin</h3>
-        <p>A major contact language used throughout Nigeria.</p>
-        <div class="lang-meta">
-          <span class="tag free">FREE</span>
-          <span class="tag">Africa</span>
-        </div>
-        <button class="btn small" onclick="openLanguage('Nigerian Pidgin')">Learn</button>
-      </div>
-
-      <div class="language-card" data-language="Cameroon Pidgin Cameroon Africa">
-        <div class="lang-flag">🇨🇲</div>
-        <h3>Cameroon Pidgin English</h3>
-        <p>Explore language and expressions from Cameroon.</p>
-        <div class="lang-meta">
-          <span class="tag free">FREE</span>
-          <span class="tag">Africa</span>
-        </div>
-        <button class="btn small" onclick="openLanguage('Cameroon Pidgin English')">Learn</button>
-      </div>
-
-      <div class="language-card" data-language="Cape Verdean Creole Cabo Verde">
-        <div class="lang-flag">🇨🇻</div>
-        <h3>Cape Verdean Creole</h3>
-        <p>Kriolu varieties spoken across Cape Verdean communities.</p>
-        <div class="lang-meta">
-          <span class="tag free">FREE</span>
-          <span class="tag">Creole</span>
-        </div>
-        <button class="btn small" onclick="openLanguage('Cape Verdean Creole')">Learn</button>
-      </div>
-
-      <div class="language-card" data-language="Mauritian Creole Mauritius Indian Ocean">
-        <div class="lang-flag">🇲🇺</div>
-        <h3>Mauritian Creole</h3>
-        <p>A major language of Mauritius and its diaspora.</p>
-        <div class="lang-meta">
-          <span class="tag free">FREE</span>
-          <span class="tag">Creole</span>
-        </div>
-        <button class="btn small" onclick="openLanguage('Mauritian Creole')">Learn</button>
-      </div>
-
-      <div class="language-card" data-language="Seychellois Creole Seychelles">
-        <div class="lang-flag">🇸🇨</div>
-        <h3>Seychellois Creole</h3>
-        <p>Explore Seselwa and the culture of Seychelles.</p>
-        <div class="lang-meta">
-          <span class="tag free">FREE</span>
-          <span class="tag">Creole</span>
-        </div>
-        <button class="btn small" onclick="openLanguage('Seychellois Creole')">Learn</button>
-      </div>
-
-      <div class="language-card" data-language="Papiamento Papiamentu Caribbean Aruba Curacao">
-        <div class="lang-flag">🌴</div>
-        <h3>Papiamento / Papiamentu</h3>
-        <p>Explore the Caribbean language traditions of Aruba, Curaçao and Bonaire.</p>
-        <div class="lang-meta">
-          <span class="tag free">FREE</span>
-          <span class="tag">Caribbean</span>
-        </div>
-        <button class="btn small" onclick="openLanguage('Papiamento / Papiamentu')">Learn</button>
-      </div>
-
-      <div class="language-card" data-language="African languages Yoruba Igbo Wolof Twi Amharic Swahili Zulu Xhosa">
-        <div class="lang-flag">🌍</div>
-        <h3>African Languages</h3>
-        <p>Expand the library with African languages and regional communities.</p>
-        <div class="lang-meta">
-          <span class="tag free">FREE</span>
-          <span class="tag">Africa</span>
-        </div>
-        <button class="btn small" onclick="showToast('African language library selected')">Explore</button>
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- LEARNING -->
-
-  <div id="languagePanel-learn" class="hidden">
-
-    <div class="section-head">
-      <div>
-        <h2>Free Language School</h2>
-        <div class="muted">No paywall for learning.</div>
-      </div>
-    </div>
-
-    <div class="card card-pad">
-      <div class="language-badge">📚 FREE COURSE</div>
-
-      <h2 id="selectedLanguageTitle">Haitian Creole</h2>
-
-      <p class="muted" style="margin-top:6px">
-        Beginner pathway · Greetings & everyday conversation
-      </p>
-
-      <div class="lesson-progress">
-        <span id="lessonProgress"></span>
-      </div>
-
-      <div class="lesson-word">
-        <div class="native" id="lessonWord">Sak pase?</div>
-        <div class="meaning" id="lessonMeaning">
-          What’s up? / How are things?
-        </div>
-      </div>
-
-      <div class="lesson-options">
-
-        <button class="lesson-option" onclick="lessonAnswer(true)">
-          What’s up? / How are things?
-        </button>
-
-        <button class="lesson-option" onclick="lessonAnswer(false)">
-          Good night
-        </button>
-
-        <button class="lesson-option" onclick="lessonAnswer(false)">
-          Thank you
-        </button>
-
-      </div>
-
-      <div style="display:flex;gap:8px;margin-top:15px">
-        <button class="btn gold" onclick="nextLesson()">Next Lesson</button>
-        <button class="btn" onclick="showToast('Progress saved on this device')">Save Progress</button>
-      </div>
-
-    </div>
-
-    <div class="section-head">
-      <h2>Free Learning Paths</h2>
-    </div>
-
-    <div class="grid grid-3">
-
-      <div class="feature-card">
-        <div class="feature-icon">🇭🇹</div>
-        <h3>Haitian Creole</h3>
-        <p>Greetings, conversation, vocabulary and everyday Kreyòl.</p>
-        <button class="btn small" onclick="openLanguage('Haitian Creole')">Start Free</button>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">🖤</div>
-        <h3>Tutnese</h3>
-        <p>Historical context, documented material and preservation-focused learning.</p>
-        <button class="btn small" onclick="openLanguage('Tutnese')">Explore Free</button>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">🇺🇸</div>
-        <h3>Louisiana Creole</h3>
-        <p>Explore vocabulary, expressions, history and community resources.</p>
-        <button class="btn small" onclick="openLanguage('Louisiana Creole')">Start Free</button>
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- TRANSLATOR -->
-
-  <div id="languagePanel-translate" class="hidden">
-
-    <div class="section-head">
-      <div>
-        <h2>Free Translator</h2>
-        <div class="muted">
-          Translate supported languages and language varieties.
-        </div>
-      </div>
-    </div>
-
-    <div class="card card-pad">
-
-      <div class="translator">
-
-        <div class="translate-panel">
-          <label>FROM</label>
-
-          <select id="fromLanguage">
-            <option>English</option>
-            <option>Haitian Creole</option>
-            <option>Louisiana Creole</option>
-            <option>Tutnese</option>
-            <option>Jamaican Patois</option>
-            <option>Krio</option>
-            <option>Nigerian Pidgin</option>
-            <option>Gullah Geechee</option>
-          </select>
-
-          <textarea
-            id="translateInput"
-            placeholder="Type something to translate..."
-          ></textarea>
-
-        </div>
-
-        <div class="translate-panel">
-          <label>TO</label>
-
-          <select id="toLanguage">
-            <option>Haitian Creole</option>
-            <option>English</option>
-            <option>Louisiana Creole</option>
-            <option>Tutnese</option>
-            <option>Jamaican Patois</option>
-            <option>Krio</option>
-            <option>Nigerian Pidgin</option>
-            <option>Gullah Geechee</option>
-          </select>
-
-          <textarea
-            id="translateOutput"
-            placeholder="Your translation will appear here..."
-            readonly
-          ></textarea>
-
-        </div>
-
-      </div>
-
-      <div style="display:flex;gap:8px;margin-top:13px;flex-wrap:wrap">
-        <button class="btn gold" onclick="translateText()">Translate</button>
-        <button class="btn" onclick="swapLanguages()">Swap</button>
-        <button class="btn" onclick="speakTranslation()">🔊 Listen</button>
-      </div>
-
-      <p class="muted" style="margin-top:13px;font-size:12px">
-        Translation quality can vary by language, dialect, historical status and
-        available linguistic resources. Community verification will be important
-        for Soulaani's future language system.
-      </p>
-
-    </div>
-
-  </div>
-
-
-  <!-- CHAT -->
-
-  <div id="languagePanel-chat" class="hidden">
-
-    <div class="section-head">
-      <div>
-        <h2>Language Chat</h2>
-        <div class="muted">Practice and connect across languages.</div>
-      </div>
-
-      <button class="btn small" onclick="showToast('New language chat created')">
-        + New Chat
-      </button>
-    </div>
-
-    <div class="chat-layout">
-
-      <div class="chat-list">
-
-        <div class="chat-list-header">
-          <strong>Language Chats</strong>
-        </div>
-
-        <div class="chat-person active">
-          <div class="avatar">MR</div>
-          <div>
-            <strong>Maya</strong>
-            <small class="muted">Kreyòl practice</small>
-          </div>
-        </div>
-
-        <div class="chat-person">
-          <div class="avatar">DJ</div>
-          <div>
-            <strong>DeAndre</strong>
-            <small class="muted">Jamaican Patois</small>
-          </div>
-        </div>
-
-        <div class="chat-person">
-          <div class="avatar">SA</div>
-          <div>
-            <strong>Sierra</strong>
-            <small class="muted">Louisiana Creole</small>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="chat-window">
-
-        <div class="chat-header">
-          <div class="avatar">MR</div>
-          <div>
-            <strong>Maya</strong>
-            <div class="muted" style="font-size:12px">
-              Haitian Creole practice
-            </div>
-          </div>
-        </div>
-
-        <div class="chat-messages" id="languageMessages">
-
-          <div class="message">
-            Sak pase, zanmi?
-            <span class="translation">
-              What's up, friend?
-            </span>
-          </div>
-
-          <div class="message me">
-            M ap boule! Mwen ap aprann Kreyòl.
-            <span class="translation">
-              I'm doing good! I'm learning Creole.
-            </span>
-          </div>
-
-          <div class="message">
-            Sa se bèl bagay!
-            <span class="translation">
-              That's a beautiful thing!
-            </span>
-          </div>
-
-        </div>
-
-        <div class="chat-compose">
-
-          <button
-            class="btn small"
-            onclick="showToast('Translation mode enabled')"
-          >
-            🌐
-          </button>
-
-          <input
-            id="languageChatInput"
-            type="text"
-            placeholder="Write a message..."
-            onkeydown="if(event.key==='Enter')sendLanguageMessage()"
-          >
-
-          <button class="send-btn" onclick="sendLanguageMessage()">➤</button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- COMMUNITIES -->
-
-  <div id="languagePanel-communities" class="hidden">
-
-    <div class="section-head">
-      <div>
-        <h2>Language Communities</h2>
-        <div class="muted">
-          Find people who speak, teach or are learning these languages.
-        </div>
-      </div>
-    </div>
-
-    <div class="grid grid-2">
-
-      <div class="card card-pad">
-        <div class="lang-flag">🇭🇹</div>
-        <h3>Haitian Creole Community</h3>
-        <p class="muted">Practice Kreyòl, discuss culture and meet learners.</p>
-        <button class="btn small" onclick="joinCommunity(this)">Join Community</button>
-      </div>
-
-      <div class="card card-pad">
-        <div class="lang-flag">🇺🇸</div>
-        <h3>Louisiana Creole Community</h3>
-        <p class="muted">Language, heritage and community discussion.</p>
-        <button class="btn small" onclick="joinCommunity(this)">Join Community</button>
-      </div>
-
-      <div class="card card-pad">
-        <div class="lang-flag">🖤</div>
-        <h3>Tutnese Preservation</h3>
-        <p class="muted">Explore historical materials and preservation discussions.</p>
-        <button class="btn small" onclick="joinCommunity(this)">Join Community</button>
-      </div>
-
-      <div class="card card-pad">
-        <div class="lang-flag">🌍</div>
-        <h3>Black Diaspora Language Exchange</h3>
-        <p class="muted">Connect learners and speakers across countries.</p>
-        <button class="btn small" onclick="joinCommunity(this)">Join Community</button>
-      </div>
-
+    <div class="card culture-card">
+      <div class="culture-icon">🎬</div>
+      <h3>Creators</h3>
+      <p class="muted">Connect with creators across the community.</p>
     </div>
 
   </div>
@@ -2816,131 +1532,35 @@ main{
 </section>
 
 
-<!-- SKATE -->
+<!-- AI -->
 
-<section class="page" id="page-skate">
+<section id="ai" class="page">
 
-  <div class="hero skate-hero">
-    <h1>Skate.<br><span>Ride your way.</span></h1>
-    <p>
-      Riders, clips, skate spots, events and community.
-      A dedicated space for Black skateboard culture.
-    </p>
-
-    <div class="skate-board"></div>
-
-    <div class="hero-actions">
-      <button class="btn gold" onclick="openCreate('skate')">Post a Clip</button>
-      <button class="btn" onclick="showToast('Nearby skate spots opened')">Find Spots</button>
-    </div>
+  <div class="page-head">
+    <h1>Soulaani AI</h1>
+    <p>Your built-in Soulaani assistant.</p>
   </div>
-
-  <div class="section-head">
-    <h2>Skate Feed</h2>
-  </div>
-
-  <div class="feed">
-
-    <article class="post">
-      <div class="post-header">
-        <div class="user">
-          <div class="avatar">DA</div>
-          <div class="user-info">
-            <strong>DeAndre A.</strong>
-            <small>Local rider · 22 min ago</small>
-          </div>
-        </div>
-      </div>
-
-      <div class="post-body">
-        <div class="post-text">
-          New line finally feels right. 🛹
-        </div>
-
-        <div class="post-image">
-          <div class="fake-art">SK8</div>
-        </div>
-      </div>
-
-      <div class="post-stats">
-        <span>🔥 31 reactions</span>
-        <span>8 comments</span>
-      </div>
-
-      <div class="post-actions">
-        <button class="action-btn" onclick="toggleReactions(3)">♡ React</button>
-        <button class="action-btn" onclick="commentPost()">💬 Comment</button>
-        <button class="action-btn" onclick="sharePost()">↗ Share</button>
-        <button class="action-btn" onclick="savePost(this)">▣ Save</button>
-      </div>
-    </article>
-
-  </div>
-
-</section>
-
-
-<!-- SOULAANI AI -->
-
-<section class="page" id="page-ai">
-
-  <h1 class="page-title">Soulaani AI</h1>
-  <p class="page-subtitle">
-    Your AI assistant for culture, creativity, language, connection and everyday life.
-  </p>
 
   <div class="ai-shell">
 
     <div class="ai-header">
-      <div class="ai-logo">S</div>
-
-      <div>
-        <strong>Soulaani AI</strong>
-        <div class="muted" style="font-size:12px">
-          Ask, learn, create and explore.
-        </div>
-      </div>
+      <strong>✦ Soulaani AI</strong>
+      <p class="muted" style="margin-top:5px">
+        Ask questions, learn, translate, explore culture and navigate Soulaani.
+      </p>
     </div>
 
     <div class="ai-messages" id="aiMessages">
 
-      <div class="ai-message">
-        What's up! I'm Soulaani AI. I can help you explore languages,
-        culture, communities, ideas, business, skating, music and more.
+      <div class="ai-msg bot">
+        Welcome to Soulaani AI. What would you like to explore?
       </div>
 
     </div>
 
-    <div class="ai-suggestions">
-
-      <button class="ai-suggestion" onclick="aiPrompt('Teach me Haitian Creole')">
-        Teach me Haitian Creole
-      </button>
-
-      <button class="ai-suggestion" onclick="aiPrompt('Translate a phrase')">
-        Translate a phrase
-      </button>
-
-      <button class="ai-suggestion" onclick="aiPrompt('Find language communities')">
-        Find communities
-      </button>
-
-      <button class="ai-suggestion" onclick="aiPrompt('Help me build my profile')">
-        Build my profile
-      </button>
-
-    </div>
-
     <div class="ai-input">
-
-      <textarea
-        id="aiInput"
-        placeholder="Ask Soulaani AI..."
-        onkeydown="if(event.key==='Enter' && !event.shiftKey){event.preventDefault();sendAI()}"
-      ></textarea>
-
-      <button class="send-btn" onclick="sendAI()">➤</button>
-
+      <input id="aiInput" placeholder="Ask Soulaani AI anything..." onkeydown="if(event.key==='Enter')sendAI()">
+      <button class="btn gold-btn" onclick="sendAI()">Send</button>
     </div>
 
   </div>
@@ -2950,58 +1570,709 @@ main{
 
 <!-- PROFILE -->
 
-<section class="page" id="page-profile">
+<section id="profile" class="page">
 
-  <div class="profile-cover">
+  <div class="profile-cover"></div>
 
-    <div class="profile-info">
+  <div class="profile-info">
 
-      <div class="profile-avatar"></div>
+    <div class="profile-avatar" id="profileAvatar">S</div>
 
-      <div>
-        <h1>Your Soulaani Profile</h1>
-        <p>@soulaani_user · Harrisburg</p>
+    <div class="profile-name" id="profileName">Soulaani User</div>
+
+    <div class="muted" id="profileUsername">@soulaaniuser</div>
+
+    <p class="post-text" id="profileBio">
+      Building connections through culture, community and creativity.
+    </p>
+
+    <button class="btn small" onclick="openProfileEditor()">Edit Profile</button>
+
+    <div class="profile-tabs">
+
+      <button class="active">Posts</button>
+      <button onclick="openPage('reels')">Reels</button>
+      <button>Photos</button>
+      <button>About</button>
+      <button>Music</button>
+      <button>Customize</button>
+
+    </div>
+
+  </div>
+
+  <div class="grid grid2" style="margin-top:18px">
+
+    <div class="card">
+      <div class="card-title">🎵 My Playlist</div>
+      <p class="muted">Your music can live directly on your profile.</p>
+      <button class="btn small" style="margin-top:12px" onclick="alert('Playlist controls opened.')">
+        Manage Playlist
+      </button>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🎨 Profile Theme</div>
+      <p class="muted">Customize colors, backgrounds, cards and layout.</p>
+      <button class="btn small" style="margin-top:12px" onclick="openProfileEditor()">
+        Customize
+      </button>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- LANGUAGE & CONNECTIONS -->
+
+<section id="language" class="page">
+
+  <div class="language-hero">
+
+    <h1>Language & Connections</h1>
+
+    <p>
+      Learn, practice, translate and connect through the languages of Black
+      Americans and the Black diaspora. Language learning is designed to be
+      free inside Soulaani.
+    </p>
+
+    <div class="hero-actions">
+
+      <button class="btn gold-btn" onclick="document.getElementById('languageLessons').scrollIntoView({behavior:'smooth'})">
+        Start Learning
+      </button>
+
+      <button class="btn" onclick="document.getElementById('translator').scrollIntoView({behavior:'smooth'})">
+        Translate
+      </button>
+
+      <button class="btn" onclick="openPage('chat')">
+        Enter Language Chat
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">Choose Your Language Server</div>
+
+    <p class="muted">
+      Each server can become its own learning and conversation community.
+    </p>
+
+    <div class="language-tabs" style="margin-top:15px">
+
+      <button class="language-tab active" onclick="selectLanguage(this,'Haitian Creole')">
+        Haitian Creole
+      </button>
+
+      <button class="language-tab" onclick="selectLanguage(this,'Louisiana Creole')">
+        Louisiana Creole
+      </button>
+
+      <button class="language-tab" onclick="selectLanguage(this,'Tutnese')">
+        Tutnese
+      </button>
+
+      <button class="language-tab" onclick="selectLanguage(this,'Gullah Geechee')">
+        Gullah Geechee
+      </button>
+
+      <button class="language-tab" onclick="selectLanguage(this,'Jamaican Patois')">
+        Jamaican Patois
+      </button>
+
+      <button class="language-tab" onclick="selectLanguage(this,'Other Diaspora')">
+        Other Diaspora
+      </button>
+
+    </div>
+
+    <div class="language-server">
+
+      <div class="server">
+
+        <div class="server-top">
+          <strong id="selectedLanguage">Haitian Creole</strong>
+          <span class="online">● Learning Server</span>
+        </div>
+
+        <p class="muted">
+          Learn vocabulary, phrases, pronunciation, culture and conversation.
+        </p>
+
+        <select class="language-select" id="serverLevel">
+          <option>Beginner</option>
+          <option>Intermediate</option>
+          <option>Advanced</option>
+        </select>
+
+        <button class="btn gold-btn" style="margin-top:10px" onclick="startLesson()">
+          Begin Lesson
+        </button>
+
+      </div>
+
+      <div class="server">
+
+        <div class="server-top">
+          <strong>Connect With Speakers</strong>
+          <span class="online">● Live</span>
+        </div>
+
+        <p class="muted">
+          Meet people learning or speaking the same language.
+        </p>
+
+        <button class="btn" style="margin-top:13px" onclick="openPage('chat')">
+          Join Language Chat
+        </button>
+
       </div>
 
     </div>
 
   </div>
 
-  <div class="profile-actions">
-    <button class="btn gold" onclick="editProfile()">Edit Profile</button>
-    <button class="btn" onclick="showToast('Profile theme editor opened')">Change Theme</button>
-    <button class="btn" onclick="showToast('Playlist editor opened')">Edit Playlist</button>
-  </div>
 
-  <div class="grid grid-2">
+  <!-- FREE LEARNING -->
 
-    <div class="card card-pad">
-      <h2>About</h2>
-      <p class="muted" style="margin-top:8px;line-height:1.6">
-        Tell your Soulaani community about yourself, your interests,
-        languages, music and communities.
-      </p>
+  <div id="languageLessons">
+
+    <div class="page-head" style="margin-top:28px">
+      <h1>Free Language Learning</h1>
+      <p>No paid lesson wall. Learn directly inside Soulaani.</p>
     </div>
 
-    <div class="playlist">
-      <h2>My Playlist</h2>
+    <div class="grid grid3">
 
-      <div class="song">
-        <button class="play" onclick="playSong(this)">▶</button>
-        <div>
-          <strong>My Soulaani Playlist</strong>
-          <small class="muted">Music on your profile</small>
-        </div>
+      <div class="lesson">
+        <h3>Haitian Creole</h3>
+        <div class="lesson-word">Bonjou</div>
+        <p class="muted">Hello / Good morning</p>
+        <button class="btn small" style="margin-top:12px" onclick="speakWord('Bonjou')">
+          🔊 Hear It
+        </button>
       </div>
 
-      <div class="song">
-        <button class="play" onclick="playSong(this)">▶</button>
-        <div>
-          <strong>Favorite Track</strong>
-          <small class="muted">Your music</small>
-        </div>
+      <div class="lesson">
+        <h3>Louisiana Creole</h3>
+        <div class="lesson-word">Bonjou</div>
+        <p class="muted">A traditional Creole greeting.</p>
+        <button class="btn small" style="margin-top:12px" onclick="speakWord('Bonjou')">
+          🔊 Hear It
+        </button>
       </div>
 
+      <div class="lesson">
+        <h3>Tutnese</h3>
+        <div class="lesson-word">Tutnese</div>
+        <p class="muted">Explore the historic language tradition and vocabulary.</p>
+        <button class="btn small" style="margin-top:12px" onclick="alert('Tutnese lesson opened.')">
+          Open Lesson
+        </button>
+      </div>
+
+      <div class="lesson">
+        <h3>Gullah Geechee</h3>
+        <div class="lesson-word">Gullah</div>
+        <p class="muted">Explore language, history and cultural vocabulary.</p>
+        <button class="btn small" style="margin-top:12px" onclick="alert('Gullah Geechee lesson opened.')">
+          Open Lesson
+        </button>
+      </div>
+
+      <div class="lesson">
+        <h3>Jamaican Patois</h3>
+        <div class="lesson-word">Wah gwaan?</div>
+        <p class="muted">What's going on? / How are you?</p>
+        <button class="btn small" style="margin-top:12px" onclick="speakWord('Wah gwaan?')">
+          🔊 Hear It
+        </button>
+      </div>
+
+      <div class="lesson">
+        <h3>Diaspora Languages</h3>
+        <div class="lesson-word">Explore</div>
+        <p class="muted">Discover African and Caribbean languages worldwide.</p>
+        <button class="btn small" style="margin-top:12px" onclick="alert('Diaspora language library opened.')">
+          Browse Library
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- TRANSLATOR -->
+
+  <div id="translator" class="card" style="margin-top:25px">
+
+    <div class="card-title">🌍 Soulaani Translator</div>
+
+    <p class="muted">
+      Choose a source and destination language and translate your message.
+    </p>
+
+    <div class="form-grid" style="margin-top:15px">
+
+      <div class="field">
+        <label>From</label>
+
+        <select id="translateFrom">
+          <option>English</option>
+          <option>Haitian Creole</option>
+          <option>Louisiana Creole</option>
+          <option>Tutnese</option>
+          <option>Gullah Geechee</option>
+          <option>Jamaican Patois</option>
+          <option>French</option>
+          <option>Spanish</option>
+          <option>Portuguese</option>
+          <option>Swahili</option>
+          <option>Yoruba</option>
+          <option>Igbo</option>
+          <option>Wolof</option>
+          <option>Amharic</option>
+          <option>Arabic</option>
+          <option>Other</option>
+        </select>
+
+      </div>
+
+      <div class="field">
+        <label>To</label>
+
+        <select id="translateTo">
+          <option>Haitian Creole</option>
+          <option>English</option>
+          <option>Louisiana Creole</option>
+          <option>Tutnese</option>
+          <option>Gullah Geechee</option>
+          <option>Jamaican Patois</option>
+          <option>French</option>
+          <option>Spanish</option>
+          <option>Portuguese</option>
+          <option>Swahili</option>
+          <option>Yoruba</option>
+          <option>Igbo</option>
+          <option>Wolof</option>
+          <option>Amharic</option>
+          <option>Arabic</option>
+          <option>Other</option>
+        </select>
+
+      </div>
+
+    </div>
+
+    <div class="translator" style="margin-top:14px">
+
+      <textarea id="translateInput" placeholder="Type what you want to translate..."></textarea>
+
+      <div class="translation-result" id="translationResult">
+        Your translation will appear here.
+      </div>
+
+    </div>
+
+    <button class="btn gold-btn" style="margin-top:12px" onclick="translateLocal()">
+      Translate
+    </button>
+
+    <p class="muted" style="font-size:12px;margin-top:10px">
+      The browser prototype uses built-in starter phrases. A secure language API
+      can later power broader real-time translation.
+    </p>
+
+  </div>
+
+
+  <!-- DIASPORA -->
+
+  <div class="card">
+
+    <div class="card-title">Black Diaspora Language Library</div>
+
+    <p class="muted" style="margin-bottom:15px">
+      Soulaani is designed to grow into a worldwide language library.
+    </p>
+
+    <div class="diaspora-list">
+
+      <div class="diaspora">
+        <strong>Haiti</strong>
+        Haitian Creole
+      </div>
+
+      <div class="diaspora">
+        <strong>Louisiana</strong>
+        Louisiana Creole
+      </div>
+
+      <div class="diaspora">
+        <strong>United States</strong>
+        Gullah Geechee
+      </div>
+
+      <div class="diaspora">
+        <strong>United States</strong>
+        Tutnese
+      </div>
+
+      <div class="diaspora">
+        <strong>Jamaica</strong>
+        Jamaican Patois
+      </div>
+
+      <div class="diaspora">
+        <strong>Barbados</strong>
+        Bajan
+      </div>
+
+      <div class="diaspora">
+        <strong>Trinidad & Tobago</strong>
+        Trinidadian Creole
+      </div>
+
+      <div class="diaspora">
+        <strong>Guyana</strong>
+        Guyanese Creole
+      </div>
+
+      <div class="diaspora">
+        <strong>Suriname</strong>
+        Sranan Tongo
+      </div>
+
+      <div class="diaspora">
+        <strong>West Africa</strong>
+        Yoruba
+      </div>
+
+      <div class="diaspora">
+        <strong>West Africa</strong>
+        Igbo
+      </div>
+
+      <div class="diaspora">
+        <strong>West Africa</strong>
+        Wolof
+      </div>
+
+      <div class="diaspora">
+        <strong>East Africa</strong>
+        Swahili
+      </div>
+
+      <div class="diaspora">
+        <strong>Ethiopia</strong>
+        Amharic
+      </div>
+
+      <div class="diaspora">
+        <strong>Global</strong>
+        More languages continually added
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- CHAT -->
+
+<section id="chat" class="page">
+
+  <div class="page-head">
+    <h1>Messages & Language Chat</h1>
+    <p>Connect through conversation, communities and language servers.</p>
+  </div>
+
+  <div class="chat-layout">
+
+    <div class="chat-users">
+
+      <div class="chat-user">
+        <strong>🌍 Haitian Creole</strong>
+        <p class="muted">Language server</p>
+      </div>
+
+      <div class="chat-user">
+        <strong>🌿 Louisiana Creole</strong>
+        <p class="muted">Language server</p>
+      </div>
+
+      <div class="chat-user">
+        <strong>📜 Tutnese</strong>
+        <p class="muted">Learning server</p>
+      </div>
+
+      <div class="chat-user">
+        <strong>✊🏿 Diaspora</strong>
+        <p class="muted">Global community</p>
+      </div>
+
+    </div>
+
+    <div class="chat-window">
+
+      <div class="chat-messages" id="chatMessages">
+
+        <div class="chat-message">
+          Welcome to the Soulaani Language & Connections chat.
+        </div>
+
+        <div class="chat-message">
+          Choose a language server and start connecting.
+        </div>
+
+      </div>
+
+      <div class="chat-compose">
+
+        <input
+          id="chatInput"
+          placeholder="Write a message..."
+          onkeydown="if(event.key==='Enter')sendChat()"
+        >
+
+        <button class="btn gold-btn" onclick="sendChat()">Send</button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- DISCOVER -->
+
+<section id="discover" class="page">
+
+  <div class="page-head">
+    <h1>Local Discover</h1>
+    <p>Find people, culture, businesses, food, events and music around your selected area.</p>
+  </div>
+
+  <div class="card">
+
+    <div class="field">
+      <label>Your City / Area</label>
+      <input id="localLocation" placeholder="Enter your city or area">
+    </div>
+
+    <button class="btn gold-btn" style="margin-top:12px" onclick="saveLocation()">
+      Save Location
+    </button>
+
+    <p class="muted" id="savedLocation" style="margin-top:10px"></p>
+
+  </div>
+
+  <div class="grid grid3">
+
+    <div class="card">
+      <div style="font-size:35px">👥</div>
+      <h3>People</h3>
+      <p class="muted">Discover people in your area.</p>
+    </div>
+
+    <div class="card">
+      <div style="font-size:35px">🏪</div>
+      <h3>Businesses</h3>
+      <p class="muted">Find Black-owned businesses.</p>
+    </div>
+
+    <div class="card">
+      <div style="font-size:35px">📅</div>
+      <h3>Events</h3>
+      <p class="muted">Discover local events.</p>
+    </div>
+
+    <div class="card">
+      <div style="font-size:35px">🍽️</div>
+      <h3>Food</h3>
+      <p class="muted">Discover soul food and local restaurants.</p>
+    </div>
+
+    <div class="card">
+      <div style="font-size:35px">🎵</div>
+      <h3>Music</h3>
+      <p class="muted">Discover local artists and sounds.</p>
+    </div>
+
+    <div class="card">
+      <div style="font-size:35px">🛹</div>
+      <h3>Skate</h3>
+      <p class="muted">Find nearby skate activity.</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- CONNECT -->
+
+<section id="communities" class="page">
+
+  <div class="page-head">
+    <h1>Communities</h1>
+    <p>Find your people and build communities around shared interests.</p>
+  </div>
+
+  <div class="grid grid2">
+
+    <div class="card">
+      <h3>Black Creators</h3>
+      <p class="muted">Creators, artists and storytellers.</p>
+      <button class="btn small" style="margin-top:12px">Join</button>
+    </div>
+
+    <div class="card">
+      <h3>Language Learners</h3>
+      <p class="muted">Learn Black diaspora languages together.</p>
+      <button class="btn small" style="margin-top:12px" onclick="openPage('language')">Join</button>
+    </div>
+
+    <div class="card">
+      <h3>Skate Community</h3>
+      <p class="muted">Riders and skateboard culture.</p>
+      <button class="btn small" style="margin-top:12px" onclick="openPage('skate')">Join</button>
+    </div>
+
+    <div class="card">
+      <h3>Entrepreneurs</h3>
+      <p class="muted">Networking and building.</p>
+      <button class="btn small" style="margin-top:12px" onclick="openPage('build')">Join</button>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- DATE -->
+
+<section id="date" class="page">
+
+  <div class="page-head">
+    <h1>Date</h1>
+    <p>Meet people and make meaningful connections.</p>
+  </div>
+
+  <div class="card">
+    <h3>Dating on Soulaani</h3>
+    <p class="muted">
+      Profiles, interests, communities and connections can eventually power the dating experience.
+    </p>
+
+    <button class="btn gold-btn" style="margin-top:15px">
+      Explore Connections
+    </button>
+  </div>
+
+</section>
+
+
+<!-- BUILD -->
+
+<section id="build" class="page">
+
+  <div class="page-head">
+    <h1>Build</h1>
+    <p>Careers, entrepreneurship, networking and opportunity.</p>
+  </div>
+
+  <div class="grid grid3">
+
+    <div class="card">
+      <h3>💼 Careers</h3>
+      <p class="muted">Discover jobs and career opportunities.</p>
+    </div>
+
+    <div class="card">
+      <h3>🚀 Entrepreneurs</h3>
+      <p class="muted">Build businesses and connect with founders.</p>
+    </div>
+
+    <div class="card">
+      <h3>🤝 Networking</h3>
+      <p class="muted">Build professional connections.</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- MARKET -->
+
+<section id="market" class="page">
+
+  <div class="page-head">
+    <h1>Market</h1>
+    <p>Discover Black-owned businesses, products and services.</p>
+  </div>
+
+  <div class="grid grid3">
+
+    <div class="card">
+      <h3>🛍️ Marketplace</h3>
+      <p class="muted">Shop from community businesses.</p>
+    </div>
+
+    <div class="card">
+      <h3>🏪 Businesses</h3>
+      <p class="muted">Find businesses in your area.</p>
+    </div>
+
+    <div class="card">
+      <h3>⭐ Featured</h3>
+      <p class="muted">Featured community businesses.</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- EXPLORE -->
+
+<section id="explore" class="page">
+
+  <div class="page-head">
+    <h1>Explore</h1>
+    <p>Discover what's happening across Soulaani.</p>
+  </div>
+
+  <div class="grid grid2">
+
+    <div class="card">
+      <h3>⌖ Local Discover</h3>
+      <p class="muted">Explore your local Soulaani feed.</p>
+      <button class="btn small" style="margin-top:12px" onclick="openPage('discover')">
+        Open
+      </button>
+    </div>
+
+    <div class="card">
+      <h3>🌍 Diaspora</h3>
+      <p class="muted">Explore communities worldwide.</p>
+      <button class="btn small" style="margin-top:12px" onclick="openPage('language')">
+        Connect
+      </button>
     </div>
 
   </div>
@@ -3011,138 +2282,131 @@ main{
 
 <!-- SAVED -->
 
-<section class="page" id="page-saved">
+<section id="saved" class="page">
 
-  <h1 class="page-title">Saved</h1>
-  <p class="page-subtitle">
-    Posts, languages, lessons and content you've saved.
-  </p>
+  <div class="page-head">
+    <h1>Saved</h1>
+    <p>Your saved posts, Reels and content.</p>
+  </div>
 
-  <div class="card card-pad">
-    <h2>Your saved space</h2>
-    <p class="muted" style="margin-top:8px">
-      Saved posts and lessons will appear here as you use Soulaani.
+  <div class="card">
+    <h3>▱ Your Saved Content</h3>
+    <p class="muted" style="margin-top:6px">
+      Saved items are stored locally in this prototype.
     </p>
   </div>
 
 </section>
 
-
-<!-- SETTINGS -->
-
-<section class="page" id="page-settings">
-
-  <h1 class="page-title">Settings</h1>
-  <p class="page-subtitle">
-    Customize your Soulaani experience.
-  </p>
-
-  <div class="grid">
-
-    <div class="card card-pad">
-      <h3>Language Preferences</h3>
-      <p class="muted" style="margin:7px 0 12px">
-        Choose languages you speak and languages you're learning.
-      </p>
-      <button class="btn small" onclick="showPage('language')">Manage Languages</button>
-    </div>
-
-    <div class="card card-pad">
-      <h3>Local Area</h3>
-      <p class="muted" style="margin:7px 0 12px">
-        Your local FYP can be customized by city or area.
-      </p>
-      <button class="btn small" onclick="changeLocation()">Change Area</button>
-    </div>
-
-    <div class="card card-pad">
-      <h3>Notifications</h3>
-      <p class="muted" style="margin:7px 0 12px">
-        Control notifications from messages, communities and connections.
-      </p>
-      <button class="btn small" onclick="showToast('Notification settings opened')">Manage</button>
-    </div>
-
-  </div>
-
-</section>
-
 </main>
+</div>
 
 
-<!-- =========================
-     BOTTOM NAV
-========================= -->
+<!-- BOTTOM NAV -->
 
 <nav class="bottom-nav">
 
-  <button class="nav-btn active" data-page="home" onclick="showPage('home')">
-    <span class="nav-icon">⌂</span>
-    <span>Home</span>
+  <button data-page="home" onclick="openPage('home')">
+    <span class="bottom-icon">⌂</span>
+    Home
   </button>
 
-  <button class="nav-btn" data-page="skate" onclick="showPage('skate')">
-    <span class="nav-icon">🛹</span>
-    <span>Skate</span>
+  <button data-page="newsfeed" onclick="openPage('newsfeed')">
+    <span class="bottom-icon">▤</span>
+    Newsfeed
   </button>
 
-  <button class="nav-btn" data-page="culture" onclick="showPage('culture')">
-    <span class="nav-icon">✊🏾</span>
-    <span>Culture</span>
+  <button data-page="skate" onclick="openPage('skate')">
+    <span class="bottom-icon">🛹</span>
+    Skate
   </button>
 
-  <button class="nav-btn" data-page="ai" onclick="showPage('ai')">
-    <span class="nav-icon">✦</span>
-    <span>Soulaani AI</span>
+  <button data-page="reels" onclick="openPage('reels')">
+    <span class="bottom-icon">▶</span>
+    Reels
   </button>
 
-  <button class="nav-btn" data-page="profile" onclick="showPage('profile')">
-    <span class="nav-icon">◉</span>
-    <span>Profile</span>
+  <button data-page="culture" onclick="openPage('culture')">
+    <span class="bottom-icon">✊🏿</span>
+    Culture
+  </button>
+
+  <button data-page="ai" onclick="openPage('ai')">
+    <span class="bottom-icon">✦</span>
+    AI
+  </button>
+
+  <button data-page="profile" onclick="openPage('profile')">
+    <span class="bottom-icon">●</span>
+    Profile
   </button>
 
 </nav>
 
 
-<!-- =========================
-     CREATE MODAL
-========================= -->
+<!-- DRAWER -->
 
-<div class="modal-overlay" id="createModal">
+<div class="drawer" id="drawer">
 
-  <div class="modal">
+  <div class="drawer-bg" onclick="closeDrawer()"></div>
+
+  <div class="drawer-panel">
+
+    <button class="drawer-close" onclick="closeDrawer()">×</button>
+
+    <h2 style="color:var(--gold);margin-bottom:5px">Soulaani</h2>
+    <p class="muted" style="margin-bottom:25px">Explore everything.</p>
+
+    <div class="side-nav">
+
+      <button onclick="drawerPage('language')">🌍 Language & Connections</button>
+      <button onclick="drawerPage('chat')">💬 Messages & Chat</button>
+      <button onclick="drawerPage('communities')">👥 Communities</button>
+      <button onclick="drawerPage('discover')">⌖ Local Discover</button>
+      <button onclick="drawerPage('date')">♡ Date</button>
+      <button onclick="drawerPage('build')">▰ Build</button>
+      <button onclick="drawerPage('market')">◇ Market</button>
+      <button onclick="drawerPage('explore')">◎ Explore</button>
+      <button onclick="drawerPage('saved')">▱ Saved</button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- COMPOSER MODAL -->
+
+<div class="modal" id="composerModal">
+
+  <div class="modal-box">
 
     <div class="modal-head">
       <h2>Create on Soulaani</h2>
-      <button class="modal-close" onclick="closeModal('createModal')">×</button>
+      <button class="close" onclick="closeModal('composerModal')">×</button>
     </div>
 
-    <div class="form-group">
-      <label>POST TYPE</label>
-
-      <select id="postType">
-        <option>Community Post</option>
-        <option>Culture</option>
-        <option>Skate</option>
-        <option>Language</option>
-        <option>Music</option>
-        <option>Business</option>
-      </select>
-
-    </div>
-
-    <div class="form-group">
-      <label>WHAT'S ON YOUR MIND?</label>
+    <div class="field">
+      <label>What do you want to share?</label>
 
       <textarea
-        id="newPostText"
-        rows="6"
+        id="postText"
         placeholder="Share something with your community..."
       ></textarea>
 
     </div>
 
-    <button class="btn gold full" onclick="publishPost()">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:13px">
+
+      <button class="btn small">📷 Photo</button>
+      <button class="btn small">🎥 Video</button>
+      <button class="btn small">😊 Feeling</button>
+      <button class="btn small">📍 Location</button>
+
+    </div>
+
+    <button class="btn gold-btn" style="margin-top:16px;width:100%" onclick="publishPost()">
       Publish
     </button>
 
@@ -3151,695 +2415,518 @@ main{
 </div>
 
 
-<!-- =========================
-     SEARCH MODAL
-========================= -->
+<!-- PROFILE EDITOR -->
 
-<div class="modal-overlay" id="searchModal">
+<div class="modal" id="profileModal">
 
-  <div class="modal">
+  <div class="modal-box">
 
     <div class="modal-head">
-      <h2>Search Soulaani</h2>
-      <button class="modal-close" onclick="closeModal('searchModal')">×</button>
+      <h2>Edit Profile</h2>
+      <button class="close" onclick="closeModal('profileModal')">×</button>
     </div>
 
-    <div class="form-group">
-      <input
-        id="globalSearch"
-        type="search"
-        placeholder="People, posts, languages, businesses..."
-        oninput="globalSearch()"
-      >
-    </div>
+    <div class="form-grid">
 
-    <div id="searchResults" class="grid"></div>
+      <div class="field">
+        <label>Name</label>
+        <input id="editName" value="Soulaani User">
+      </div>
 
-  </div>
-
-</div>
-
-
-<!-- =========================
-     LANGUAGE MODAL
-========================= -->
-
-<div class="modal-overlay" id="languageModal">
-
-  <div class="modal">
-
-    <div class="modal-head">
-      <h2 id="languageModalTitle">Language</h2>
-      <button class="modal-close" onclick="closeModal('languageModal')">×</button>
-    </div>
-
-    <div id="languageModalBody">
-
-      <div class="language-badge">FREE LEARNING</div>
-
-      <h3>Start your language journey</h3>
-
-      <p class="muted" style="margin:9px 0 18px;line-height:1.6">
-        Learn vocabulary, phrases, pronunciation and cultural context.
-        Soulaani's language learning experience is designed to remain free.
-      </p>
-
-      <div class="grid">
-
-        <button class="btn" onclick="startLessonFromModal()">📚 Start Lessons</button>
-
-        <button class="btn" onclick="languageTab('translate');closeModal('languageModal')">
-          🔄 Open Translator
-        </button>
-
-        <button class="btn" onclick="languageTab('chat');closeModal('languageModal')">
-          💬 Find Language Chat
-        </button>
-
+      <div class="field">
+        <label>Username</label>
+        <input id="editUsername" value="@soulaaniuser">
       </div>
 
     </div>
 
+    <div class="field" style="margin-top:13px">
+      <label>Bio</label>
+      <textarea id="editBio">Building connections through culture, community and creativity.</textarea>
+    </div>
+
+    <button class="btn gold-btn" style="margin-top:15px;width:100%" onclick="saveProfile()">
+      Save Profile
+    </button>
+
   </div>
 
 </div>
 
 
-<!-- TOAST -->
-
-<div class="toast" id="toast"></div>
-
-
 <script>
 
-/* =========================
-   STATE
-========================= */
+/* ============================================================
+   SOULAANI CORE APP
+   Persistent browser prototype
+   ============================================================ */
 
-let currentPage = "home";
-let currentLanguage = "Haitian Creole";
-let lessonIndex = 0;
-let toastTimer;
+const STORAGE_KEY = "soulaani_v4";
 
-const lessonData = {
+let state = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
 
-  "Haitian Creole":[
-    ["Sak pase?","What's up? / How are things?"],
-    ["Mèsi","Thank you"],
-    ["Bonjou","Good morning / Hello"],
-    ["Bonswa","Good evening"],
-    ["Mwen renmen ou","I love you"]
-  ],
+if(!state.posts){
+  state.posts = [];
+}
 
-  "Louisiana Creole":[
-    ["Bonjour","Hello"],
-    ["Merci","Thank you"],
-    ["Comment ça va?","How are you?"],
-    ["Bonjou","Good day"]
-  ],
+if(!state.profile){
+  state.profile = {
+    name:"Soulaani User",
+    username:"@soulaaniuser",
+    bio:"Building connections through culture, community and creativity."
+  };
+}
 
-  "Jamaican Patois":[
-    ["Wah gwaan?","What's going on?"],
-    ["Mi deh yah","I'm here / I'm good"],
-    ["Respect","Respect / thanks"],
-    ["Big up","Greetings / respect"]
-  ],
+if(!state.saved){
+  state.saved = [];
+}
 
-  "Krio":[
-    ["Kusheh","Hello"],
-    ["Aw yu de?","How are you?"],
-    ["Tenki","Thank you"]
-  ],
+if(!state.location){
+  state.location = "";
+}
 
-  "Nigerian Pidgin":[
-    ["How far?","How are you? / What's up?"],
-    ["I dey","I'm good / I'm here"],
-    ["Thank you","Thank you"]
-  ],
-
-  "Gullah Geechee":[
-    ["Hey y'all","Hello everyone"],
-    ["How you duh?","How are you?"]
-  ],
-
-  "Bajan":[
-    ["Wuh gine on?","What's going on?"],
-    ["Good mornin'","Good morning"]
-  ],
-
-  "Tutnese":[
-    ["Explore documented materials","Study historical sources and documented language material."],
-    ["Preservation","Explore preservation and reconstruction efforts."]
-  ]
-
-};
+function persist(){
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+}
 
 
-/* =========================
-   PAGE NAVIGATION
-========================= */
+/* PAGE NAVIGATION */
 
-function showPage(page){
+function openPage(page){
 
   document.querySelectorAll(".page").forEach(p=>{
     p.classList.remove("active");
   });
 
-  const target=document.getElementById("page-"+page);
+  const target=document.getElementById(page);
 
   if(target){
     target.classList.add("active");
-    currentPage=page;
   }
 
-  document.querySelectorAll(".nav-btn").forEach(btn=>{
-    btn.classList.toggle(
-      "active",
-      btn.dataset.page===page
-    );
-  });
-
-  document.querySelectorAll(".side-item").forEach(item=>{
-    item.classList.remove("active");
-  });
-
-  closeMenu();
+  document.querySelectorAll(".side-nav button[data-page], .bottom-nav button[data-page]")
+    .forEach(btn=>{
+      btn.classList.toggle("active",btn.dataset.page===page);
+    });
 
   window.scrollTo({
     top:0,
     behavior:"smooth"
   });
-}
 
+  closeDrawer();
 
-/* =========================
-   SIDE MENU
-========================= */
+  if(page==="profile"){
+    renderProfile();
+  }
 
-function toggleMenu(){
-
-  const menu=document.getElementById("sideMenu");
-  const overlay=document.getElementById("sideOverlay");
-
-  menu.classList.toggle("open");
-  overlay.classList.toggle("open");
-
-  document.body.classList.toggle(
-    "lock",
-    menu.classList.contains("open")
-  );
-}
-
-function closeMenu(){
-
-  document.getElementById("sideMenu").classList.remove("open");
-  document.getElementById("sideOverlay").classList.remove("open");
-  document.body.classList.remove("lock");
-}
-
-
-/* =========================
-   TOAST
-========================= */
-
-function showToast(message){
-
-  const toast=document.getElementById("toast");
-
-  toast.textContent=message;
-  toast.classList.add("show");
-
-  clearTimeout(toastTimer);
-
-  toastTimer=setTimeout(()=>{
-    toast.classList.remove("show");
-  },2200);
-}
-
-
-/* =========================
-   CREATE
-========================= */
-
-function openCreate(type){
-
-  document.getElementById("createModal").classList.add("open");
-
-  if(type==="skate"){
-    document.getElementById("postType").value="Skate";
+  if(page==="discover"){
+    loadLocation();
   }
 }
 
-function publishPost(){
 
-  const text=document.getElementById("newPostText").value.trim();
-  const type=document.getElementById("postType").value;
+/* DRAWER */
 
-  if(!text){
-    showToast("Write something first");
-    return;
-  }
+function openDrawer(){
+  document.getElementById("drawer").classList.add("open");
+}
 
-  document.getElementById("newPostText").value="";
+function closeDrawer(){
+  document.getElementById("drawer").classList.remove("open");
+}
 
-  closeModal("createModal");
-
-  showToast(type+" post published");
+function drawerPage(page){
+  openPage(page);
 }
 
 
-/* =========================
-   MODALS
-========================= */
+/* MODALS */
+
+function openModal(id){
+  document.getElementById(id).classList.add("open");
+}
 
 function closeModal(id){
   document.getElementById(id).classList.remove("open");
 }
 
-function openSearch(){
 
-  document.getElementById("searchModal").classList.add("open");
+/* COMPOSER */
 
-  setTimeout(()=>{
-    document.getElementById("globalSearch").focus();
-  },100);
+let composerType="post";
+
+function openComposer(type="post"){
+  composerType=type;
+  document.getElementById("postText").value="";
+  openModal("composerModal");
 }
 
+function publishPost(){
 
-/* =========================
-   SEARCH
-========================= */
-
-function globalSearch(){
-
-  const query=
-    document.getElementById("globalSearch")
-    .value
-    .toLowerCase()
-    .trim();
-
-  const results=document.getElementById("searchResults");
-
-  if(!query){
-    results.innerHTML=
-      '<p class="muted">Search people, languages, posts, businesses and communities.</p>';
-    return;
-  }
-
-  const items=[
-    "Haitian Creole",
-    "Louisiana Creole",
-    "Tutnese",
-    "Gullah Geechee",
-    "Jamaican Patois",
-    "Black-owned businesses",
-    "Skate community",
-    "Culture",
-    "Language communities"
-  ];
-
-  const matches=items.filter(
-    item=>item.toLowerCase().includes(query)
-  );
-
-  if(!matches.length){
-    results.innerHTML=
-      '<p class="muted">No results yet.</p>';
-    return;
-  }
-
-  results.innerHTML=matches.map(item=>`
-    <button class="side-item" onclick="searchResult('${item.replace(/'/g,"\\'")}')">
-      <span class="side-icon">🔎</span>
-      <span>${item}</span>
-    </button>
-  `).join("");
-}
-
-function searchResult(item){
-
-  closeModal("searchModal");
-
-  if(
-    item.toLowerCase().includes("creole") ||
-    item.toLowerCase().includes("tutnese") ||
-    item.toLowerCase().includes("gullah") ||
-    item.toLowerCase().includes("patois") ||
-    item.toLowerCase().includes("language")
-  ){
-    showPage("language");
-  }
-
-  showToast("Opened "+item);
-}
-
-
-/* =========================
-   REACTIONS
-========================= */
-
-function toggleReactions(id){
-
-  const picker=document.getElementById("picker"+id);
-
-  if(picker){
-    picker.classList.toggle("open");
-  }else{
-    showToast("Choose a reaction");
-  }
-}
-
-function reactPost(id,emoji,name){
-
-  const button=document.getElementById("reactionButton"+id);
-
-  if(button){
-    button.textContent=emoji;
-  }
-
-  const picker=document.getElementById("picker"+id);
-
-  if(picker){
-    picker.classList.remove("open");
-  }
-
-  showToast(name+" reaction added");
-}
-
-function commentPost(){
-  showToast("Comment composer opened");
-}
-
-function sharePost(){
-  showToast("Share options opened");
-}
-
-function savePost(button){
-
-  button.classList.toggle("active");
-
-  if(button.classList.contains("active")){
-    showToast("Post saved");
-  }else{
-    showToast("Post removed from saved");
-  }
-}
-
-
-/* =========================
-   LANGUAGE TABS
-========================= */
-
-function languageTab(panel,button){
-
-  [
-    "languages",
-    "learn",
-    "translate",
-    "chat",
-    "communities"
-  ].forEach(name=>{
-    const el=document.getElementById("languagePanel-"+name);
-
-    if(el){
-      el.classList.toggle(
-        "hidden",
-        name!==panel
-      );
-    }
-  });
-
-  document.querySelectorAll(".lang-tab").forEach(tab=>{
-    tab.classList.remove("active");
-  });
-
-  if(button){
-    button.classList.add("active");
-  }
-
-  showPage("language");
-}
-
-
-/* =========================
-   LANGUAGE SCROLL
-========================= */
-
-function scrollToLanguage(panel){
-
-  const button=[...document.querySelectorAll(".lang-tab")]
-    .find(b=>b.textContent.toLowerCase().includes(
-      panel==="learn" ? "learn" :
-      panel==="translate" ? "translate" :
-      panel==="chat" ? "chat" :
-      "languages"
-    ));
-
-  languageTab(panel,button);
-
-  setTimeout(()=>{
-    document.getElementById("page-language")
-      .scrollIntoView({
-        behavior:"smooth",
-        block:"start"
-      });
-  },100);
-}
-
-
-/* =========================
-   LANGUAGE SEARCH
-========================= */
-
-function filterLanguages(){
-
-  const query=
-    document.getElementById("languageSearch")
-    .value
-    .toLowerCase()
-    .trim();
-
-  document.querySelectorAll(".language-card").forEach(card=>{
-
-    const text=card.dataset.language.toLowerCase();
-
-    card.style.display=
-      text.includes(query) ? "" : "none";
-  });
-}
-
-
-/* =========================
-   LANGUAGE OPEN
-========================= */
-
-function openLanguage(language){
-
-  currentLanguage=language;
-  lessonIndex=0;
-
-  document.getElementById("languageModalTitle").textContent=
-    language;
-
-  document.getElementById("languageModal").classList.add("open");
-
-  updateLesson();
-}
-
-function startLessonFromModal(){
-
-  closeModal("languageModal");
-
-  languageTab(
-    "learn",
-    document.querySelectorAll(".lang-tab")[1]
-  );
-
-  updateLesson();
-}
-
-
-/* =========================
-   LESSON SYSTEM
-========================= */
-
-function updateLesson(){
-
-  const data=
-    lessonData[currentLanguage] ||
-    lessonData["Haitian Creole"];
-
-  const item=data[lessonIndex % data.length];
-
-  document.getElementById("selectedLanguageTitle").textContent=
-    currentLanguage;
-
-  document.getElementById("lessonWord").textContent=
-    item[0];
-
-  document.getElementById("lessonMeaning").textContent=
-    item[1];
-
-  const progress=
-    ((lessonIndex % data.length)+1) /
-    data.length *
-    100;
-
-  document.getElementById("lessonProgress").style.width=
-    progress+"%";
-}
-
-function lessonAnswer(correct){
-
-  if(correct){
-    showToast("Correct! ✓");
-  }else{
-    showToast("Keep practicing. You'll get it.");
-  }
-}
-
-function nextLesson(){
-
-  const data=
-    lessonData[currentLanguage] ||
-    lessonData["Haitian Creole"];
-
-  lessonIndex++;
-
-  if(lessonIndex>=data.length){
-    lessonIndex=0;
-    showToast("Lesson completed! 🎉");
-  }
-
-  updateLesson();
-}
-
-
-/* =========================
-   TRANSLATOR
-========================= */
-
-function translateText(){
-
-  const input=
-    document.getElementById("translateInput")
-    .value
-    .trim();
-
-  const from=
-    document.getElementById("fromLanguage")
-    .value;
-
-  const to=
-    document.getElementById("toLanguage")
-    .value;
-
-  if(!input){
-    showToast("Enter something to translate");
-    return;
-  }
-
-  const known={
-    "hello":{
-      "Haitian Creole":"Bonjou",
-      "Jamaican Patois":"Wah gwaan",
-      "Louisiana Creole":"Bonjour"
-    },
-
-    "what's up":{
-      "Haitian Creole":"Sak pase?",
-      "Jamaican Patois":"Wah gwaan?",
-      "Nigerian Pidgin":"How far?"
-    },
-
-    "thank you":{
-      "Haitian Creole":"Mèsi",
-      "Jamaican Patois":"Respect",
-      "Krio":"Tenki"
-    }
-  };
-
-  const key=input.toLowerCase();
-
-  let result="";
-
-  if(
-    from==="English" &&
-    known[key] &&
-    known[key][to]
-  ){
-    result=known[key][to];
-  }else if(
-    from===to
-  ){
-    result=input;
-  }else{
-    result=
-      "Soulaani translation preview: "+
-      input+
-      "\n\nA full production translator will connect this interface to a language model / translation service and community-verified language resources.";
-  }
-
-  document.getElementById("translateOutput").value=result;
-
-  showToast("Translation complete");
-}
-
-function swapLanguages(){
-
-  const from=document.getElementById("fromLanguage");
-  const to=document.getElementById("toLanguage");
-
-  const temp=from.value;
-
-  from.value=to.value;
-  to.value=temp;
-
-  const input=
-    document.getElementById("translateInput");
-
-  const output=
-    document.getElementById("translateOutput");
-
-  const tempText=input.value;
-
-  input.value=output.value;
-  output.value=tempText;
-}
-
-function speakTranslation(){
-
-  const text=
-    document.getElementById("translateOutput").value;
+  const text=document.getElementById("postText").value.trim();
 
   if(!text){
-    showToast("Translate something first");
+    alert("Write something first.");
     return;
   }
+
+  state.posts.unshift({
+    id:Date.now(),
+    text:text,
+    type:composerType,
+    reactions:0,
+    comments:0,
+    saved:false,
+    created:new Date().toLocaleString()
+  });
+
+  persist();
+  closeModal("composerModal");
+  renderPosts();
+
+  openPage(composerType==="reel" ? "reels" : "newsfeed");
+}
+
+
+/* POSTS */
+
+function renderPosts(){
+
+  const containers=[
+    document.getElementById("homePosts"),
+    document.getElementById("feedPosts")
+  ];
+
+  let html="";
+
+  state.posts.forEach(post=>{
+
+    html+=`
+
+      <article class="card">
+
+        <div class="post-head">
+          <div class="avatar">S</div>
+
+          <div>
+            <div class="post-user">
+              ${escapeHTML(state.profile.name)}
+            </div>
+
+            <div class="post-time">
+              ${escapeHTML(post.created)}
+            </div>
+          </div>
+        </div>
+
+        <div class="post-text">
+          ${escapeHTML(post.text)}
+        </div>
+
+        ${
+          post.type==="reel"
+          ?
+          `<div class="post-media">▶ REEL</div>`
+          :
+          ""
+        }
+
+        <div class="post-stats">
+          <span>${post.reactions || 0} reactions</span>
+          <span>${post.comments || 0} comments</span>
+        </div>
+
+        <div class="post-actions">
+
+          <div class="reaction-wrap">
+
+            <button onclick="reactPost(${post.id})">
+              ♡ React
+            </button>
+
+            <div class="reaction-menu">
+
+              <button onclick="chooseReaction(${post.id},'❤️')">❤️</button>
+              <button onclick="chooseReaction(${post.id},'😂')">😂</button>
+              <button onclick="chooseReaction(${post.id},'🔥')">🔥</button>
+              <button onclick="chooseReaction(${post.id},'😮')">😮</button>
+              <button onclick="chooseReaction(${post.id},'😢')">😢</button>
+              <button onclick="chooseReaction(${post.id},'👎🏿')">👎🏿</button>
+
+            </div>
+
+          </div>
+
+          <button onclick="commentPost(${post.id})">💬 Comment</button>
+
+          <button onclick="shareContent()">↗ Share</button>
+
+          <button onclick="savePost(${post.id})">▱ Save</button>
+
+        </div>
+
+      </article>
+
+    `;
+  });
+
+  containers.forEach(c=>{
+    if(c){
+      c.innerHTML=html;
+    }
+  });
+
+}
+
+
+/* REACTIONS */
+
+function react(button){
+
+  button.textContent="❤️";
+}
+
+function reactPost(id){
+
+  const post=state.posts.find(p=>p.id===id);
+
+  if(post){
+    post.reactions=(post.reactions||0)+1;
+    persist();
+    renderPosts();
+  }
+
+}
+
+function chooseReaction(id,reaction){
+
+  const post=state.posts.find(p=>p.id===id);
+
+  if(post){
+    post.reactions=(post.reactions||0)+1;
+    post.lastReaction=reaction;
+    persist();
+    renderPosts();
+  }
+
+}
+
+function commentPost(id){
+
+  const comment=prompt("Write your comment:");
+
+  if(!comment){
+    return;
+  }
+
+  const post=state.posts.find(p=>p.id===id);
+
+  if(post){
+    post.comments=(post.comments||0)+1;
+    persist();
+    renderPosts();
+    alert("Comment added.");
+  }
+
+}
+
+
+/* SAVE */
+
+function savePost(id){
+
+  if(!state.saved.includes(id)){
+    state.saved.push(id);
+    persist();
+    alert("Saved to Soulaani.");
+  }else{
+    alert("Already saved.");
+  }
+
+}
+
+function saveContent(button){
+
+  button.textContent="✓";
+
+  const key="soulaani_saved_content";
+
+  let saved=JSON.parse(localStorage.getItem(key)||"[]");
+
+  saved.push(Date.now());
+
+  localStorage.setItem(key,JSON.stringify(saved));
+
+}
+
+function shareContent(){
+
+  if(navigator.share){
+
+    navigator.share({
+      title:"Soulaani",
+      text:"Check this out on Soulaani."
+    }).catch(()=>{});
+
+  }else{
+
+    navigator.clipboard?.writeText(location.href);
+
+    alert("Soulaani link copied.");
+
+  }
+
+}
+
+
+/* PROFILE */
+
+function renderProfile(){
+
+  document.getElementById("profileName").textContent=state.profile.name;
+
+  document.getElementById("profileUsername").textContent=state.profile.username;
+
+  document.getElementById("profileBio").textContent=state.profile.bio;
+
+  const letter=(state.profile.name||"S").charAt(0).toUpperCase();
+
+  document.getElementById("profileAvatar").textContent=letter;
+
+}
+
+function openProfileEditor(){
+
+  document.getElementById("editName").value=state.profile.name;
+
+  document.getElementById("editUsername").value=state.profile.username;
+
+  document.getElementById("editBio").value=state.profile.bio;
+
+  openModal("profileModal");
+
+}
+
+function saveProfile(){
+
+  state.profile.name=document.getElementById("editName").value.trim()||"Soulaani User";
+
+  state.profile.username=document.getElementById("editUsername").value.trim()||"@soulaaniuser";
+
+  state.profile.bio=document.getElementById("editBio").value.trim();
+
+  persist();
+
+  renderProfile();
+
+  closeModal("profileModal");
+
+}
+
+
+/* LANGUAGE */
+
+function selectLanguage(button,name){
+
+  document.querySelectorAll(".language-tab").forEach(b=>{
+    b.classList.remove("active");
+  });
+
+  button.classList.add("active");
+
+  document.getElementById("selectedLanguage").textContent=name;
+
+  localStorage.setItem("soulaani_selected_language",name);
+
+}
+
+function startLesson(){
+
+  const language=document.getElementById("selectedLanguage").textContent;
+
+  alert("Starting your free "+language+" lesson.");
+
+}
+
+function speakWord(word){
 
   if("speechSynthesis" in window){
 
-    const utterance=
-      new SpeechSynthesisUtterance(text);
+    const utterance=new SpeechSynthesisUtterance(word);
 
     speechSynthesis.speak(utterance);
 
   }else{
 
-    showToast("Voice playback isn't supported here");
+    alert(word);
 
   }
+
 }
 
 
-/* =========================
-   LANGUAGE CHAT
-========================= */
+/* BASIC LOCAL TRANSLATION DEMO */
 
-function sendLanguageMessage(){
+const phraseBook={
 
-  const input=
-    document.getElementById("languageChatInput");
+  "hello|English|Haitian Creole":"Bonjou",
+
+  "how are you|English|Haitian Creole":"Kijan ou ye?",
+
+  "thank you|English|Haitian Creole":"Mèsi",
+
+  "good morning|English|Haitian Creole":"Bonjou",
+
+  "hello|Haitian Creole|English":"Hello",
+
+  "bonjou|Haitian Creole|English":"Hello",
+
+  "mèsi|Haitian Creole|English":"Thank you",
+
+  "kijan ou ye?|Haitian Creole|English":"How are you?"
+
+};
+
+function translateLocal(){
+
+  const input=document.getElementById("translateInput").value.trim();
+
+  const from=document.getElementById("translateFrom").value;
+
+  const to=document.getElementById("translateTo").value;
+
+  if(!input){
+
+    document.getElementById("translationResult").textContent=
+      "Enter text to translate.";
+
+    return;
+
+  }
+
+  const key=input.toLowerCase()+"|"+from+"|"+to;
+
+  if(phraseBook[key]){
+
+    document.getElementById("translationResult").textContent=
+      phraseBook[key];
+
+  }else{
+
+    document.getElementById("translationResult").textContent=
+      "Translation service ready. Connect Soulaani's secure translation API for full worldwide language translation.";
+
+  }
+
+}
+
+
+/* CHAT */
+
+function sendChat(){
+
+  const input=document.getElementById("chatInput");
 
   const text=input.value.trim();
 
@@ -3847,63 +2934,28 @@ function sendLanguageMessage(){
     return;
   }
 
-  const messages=
-    document.getElementById("languageMessages");
+  const messages=document.getElementById("chatMessages");
 
-  const bubble=document.createElement("div");
+  const mine=document.createElement("div");
 
-  bubble.className="message me";
+  mine.className="chat-message mine";
 
-  bubble.innerHTML=
-    escapeHTML(text)+
-    '<span class="translation">Translation can be generated here.</span>';
+  mine.textContent=text;
 
-  messages.appendChild(bubble);
+  messages.appendChild(mine);
 
   input.value="";
 
   messages.scrollTop=messages.scrollHeight;
 
-  setTimeout(()=>{
-
-    const reply=document.createElement("div");
-
-    reply.className="message";
-
-    reply.innerHTML=
-      "Mwen kontan wè ou ap aprann!<span class='translation'>I'm happy to see you learning!</span>";
-
-    messages.appendChild(reply);
-
-    messages.scrollTop=messages.scrollHeight;
-
-  },700);
-}
-
-function joinCommunity(button){
-
-  button.textContent="Joined ✓";
-  button.classList.add("gold");
-
-  showToast("Community joined");
 }
 
 
-/* =========================
-   AI
-========================= */
-
-function aiPrompt(prompt){
-
-  document.getElementById("aiInput").value=prompt;
-
-  sendAI();
-}
+/* AI */
 
 function sendAI(){
 
-  const input=
-    document.getElementById("aiInput");
+  const input=document.getElementById("aiInput");
 
   const text=input.value.trim();
 
@@ -3911,151 +2963,140 @@ function sendAI(){
     return;
   }
 
-  const messages=
-    document.getElementById("aiMessages");
+  const messages=document.getElementById("aiMessages");
 
-  const userMessage=document.createElement("div");
+  const user=document.createElement("div");
 
-  userMessage.className="ai-message me";
+  user.className="ai-msg user";
 
-  userMessage.textContent=text;
+  user.textContent=text;
 
-  messages.appendChild(userMessage);
+  messages.appendChild(user);
 
   input.value="";
 
+  const bot=document.createElement("div");
+
+  bot.className="ai-msg bot";
+
+  bot.textContent=getLocalAIResponse(text);
+
+  messages.appendChild(bot);
+
   messages.scrollTop=messages.scrollHeight;
 
-  setTimeout(()=>{
-
-    const response=document.createElement("div");
-
-    response.className="ai-message";
-
-    let answer=
-      "I can help you explore that inside Soulaani.";
-
-    const lower=text.toLowerCase();
-
-    if(lower.includes("haitian") || lower.includes("kreyol")){
-
-      answer=
-        "Let's learn Haitian Creole. I can help you practice greetings, vocabulary, conversation, pronunciation and translation. Open Language & Connection for the free learning section.";
-
-    }else if(lower.includes("tutnese")){
-
-      answer=
-        "Tutnese has an important historical and preservation dimension. Soulaani can provide a dedicated area for documented materials, historical context and careful learning rather than presenting uncertain material as fact.";
-
-    }else if(lower.includes("translate")){
-
-      answer=
-        "Open Language & Connection → Translate. Choose your source and target language, enter your phrase, and use the translation tools.";
-
-    }else if(lower.includes("community")){
-
-      answer=
-        "Open Language & Connection → Communities to discover language groups and connect with people who speak or are learning diaspora languages.";
-
-    }else{
-
-      answer=
-        "I'm here to help with Soulaani, language learning, translation, culture, communities, business, skating, music and more. Ask me something specific.";
-
-    }
-
-    response.textContent=answer;
-
-    messages.appendChild(response);
-
-    messages.scrollTop=messages.scrollHeight;
-
-  },650);
 }
 
+function getLocalAIResponse(text){
 
-/* =========================
-   PROFILE
-========================= */
+  const lower=text.toLowerCase();
 
-function editProfile(){
-  showToast("Profile editor opened");
-}
+  if(lower.includes("language") || lower.includes("translate")){
 
-function playSong(button){
-
-  button.textContent=
-    button.textContent==="▶" ? "❚❚" : "▶";
-
-  showToast(
-    button.textContent==="❚❚"
-      ? "Playing playlist preview"
-      : "Paused"
-  );
-}
-
-
-/* =========================
-   CONNECTION
-========================= */
-
-function connectPerson(button){
-
-  button.textContent="Connected ✓";
-  button.classList.add("gold");
-
-  showToast("Connection added");
-}
-
-
-/* =========================
-   LOCATION
-========================= */
-
-function changeLocation(){
-
-  const location=
-    prompt(
-      "Choose your local Soulaani area:",
-      "Harrisburg"
-    );
-
-  if(location){
-
-    showToast(
-      "Local FYP changed to "+location
-    );
+    return "You can use Language & Connections to learn Haitian Creole, Louisiana Creole, Tutnese, Gullah Geechee, Jamaican Patois and explore the wider Black diaspora language library.";
 
   }
+
+  if(lower.includes("tutnese")){
+
+    return "Tutnese is available in the Language & Connections section as a dedicated learning area.";
+
+  }
+
+  if(lower.includes("haitian")){
+
+    return "Haitian Creole has its own learning server, free lessons, translation tools and language chat.";
+
+  }
+
+  if(lower.includes("skate")){
+
+    return "Soulaani Skate is a dedicated section for riders, clips, spots, events and community.";
+
+  }
+
+  if(lower.includes("reel")){
+
+    return "Reels is a dedicated Soulaani section for short-form video.";
+
+  }
+
+  return "I'm connected to the Soulaani prototype. I can help you navigate the platform, explore languages, culture, Skate, Reels, communities and more. A secure AI connection can power broader live responses.";
+
 }
 
 
-/* =========================
-   ESCAPE HTML
-========================= */
+/* LOCAL DISCOVER */
 
-function escapeHTML(text){
+function saveLocation(){
 
-  return text
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+  const input=document.getElementById("localLocation");
+
+  state.location=input.value.trim();
+
+  persist();
+
+  loadLocation();
+
+}
+
+function loadLocation(){
+
+  const saved=document.getElementById("savedLocation");
+
+  const input=document.getElementById("localLocation");
+
+  if(!saved){
+    return;
+  }
+
+  if(state.location){
+
+    saved.textContent="Current Soulaani area: "+state.location;
+
+    if(input){
+      input.value=state.location;
+    }
+
+  }else{
+
+    saved.textContent="No local area selected yet.";
+
+  }
+
 }
 
 
-/* =========================
-   CLOSE MODALS BY CLICKING
-   OUTSIDE
-========================= */
+/* ESCAPE HTML */
 
-document.querySelectorAll(".modal-overlay").forEach(overlay=>{
+function escapeHTML(value){
 
-  overlay.addEventListener("click",function(event){
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 
-    if(event.target===overlay){
-      overlay.classList.remove("open");
+}
+
+
+/* INITIALIZE */
+
+renderPosts();
+renderProfile();
+loadLocation();
+openPage("home");
+
+
+/* CLOSE MODAL WHEN CLICKING OUTSIDE */
+
+document.querySelectorAll(".modal").forEach(modal=>{
+
+  modal.addEventListener("click",function(e){
+
+    if(e.target===modal){
+      modal.classList.remove("open");
     }
 
   });
@@ -4063,11 +3104,19 @@ document.querySelectorAll(".modal-overlay").forEach(overlay=>{
 });
 
 
-/* =========================
-   INITIALIZE
-========================= */
+/* SAVE LANGUAGE SELECTION */
 
-updateLesson();
+const savedLanguage=localStorage.getItem("soulaani_selected_language");
+
+if(savedLanguage){
+
+  const selected=document.getElementById("selectedLanguage");
+
+  if(selected){
+    selected.textContent=savedLanguage;
+  }
+
+}
 
 </script>
 
