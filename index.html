@@ -2,3121 +2,2500 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#070707">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Soulaani | The Culture. The People. The Platform.</title>
 
+<!--
+SOULAANI BUILD MANIFEST
+Version: 2026.10.04
+
+PERMANENT CORE:
+Home
+Newsfeed
+Skate
+Reels
+Culture
+Soulaani AI
+Profile
+
+SIDE/DRAWER:
+Connect
+Date
+Build
+Market
+Explore / Local Discover
+Language & Connections
+Messages
+Communities
+Saved
+Data & Backup
+
+LANGUAGE:
+Real translation requests through LibreTranslate-compatible API.
+Default public endpoint can be changed later to a Soulaani secure server.
+No provider secret is stored in this frontend.
+
+AI:
+Prepared for /api/ai/chat on a future Soulaani server.
+
+IMPORTANT:
+GitHub Pages is the frontend. Real private credentials belong on a server.
+-->
+
 <style>
+*{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --black:#070707;
-  --black2:#0d0d0d;
-  --black3:#141414;
-  --card:#111111;
-  --card2:#171717;
+  --black:#060606;
+  --black2:#0b0b0b;
+  --black3:#111;
+  --panel:#141414;
+  --panel2:#191919;
   --gold:#d6a84f;
   --gold2:#f0c76a;
-  --gold3:#8f6b27;
-  --white:#f5f5f5;
-  --muted:#a7a7a7;
-  --line:#292929;
-  --danger:#e35b5b;
-  --success:#61c98b;
+  --white:#f6f3ec;
+  --muted:#aaa49a;
+  --border:rgba(214,168,79,.22);
+  --danger:#d95757;
+  --green:#58c78a;
   --radius:18px;
 }
-
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html{
-  scroll-behavior:smooth;
-  background:var(--black);
-}
-
+html{scroll-behavior:smooth}
 body{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-  background:
-    radial-gradient(circle at top right,rgba(214,168,79,.08),transparent 28rem),
-    var(--black);
+  background:radial-gradient(circle at top,#17130b 0,#070707 34%,#050505 100%);
   color:var(--white);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
   min-height:100vh;
+  padding-bottom:92px;
 }
-
-button,
-input,
-textarea,
-select{
-  font:inherit;
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+button:focus,input:focus,textarea:focus,select:focus{
+  outline:2px solid var(--gold);
+  outline-offset:2px;
 }
+img{max-width:100%;display:block}
+.hidden{display:none!important}
+.gold{color:var(--gold2)}
+.muted{color:var(--muted)}
+.small{font-size:12px}
+.container{width:min(1120px,calc(100% - 28px));margin:auto}
 
-button{
-  cursor:pointer;
-}
-
-img{
-  max-width:100%;
-  display:block;
-}
-
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-/* TOP BAR */
-
-.topbar{
+header{
   position:sticky;
   top:0;
   z-index:1000;
   height:68px;
-  background:rgba(7,7,7,.94);
+  background:rgba(5,5,5,.94);
   backdrop-filter:blur(18px);
-  border-bottom:1px solid var(--line);
+  border-bottom:1px solid var(--border);
+}
+.header-inner{
+  height:100%;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 22px;
+  gap:14px;
 }
-
 .brand{
-  color:var(--gold);
-  font-size:26px;
+  border:0;
+  background:none;
+  color:var(--gold2);
+  font-size:23px;
   font-weight:900;
-  letter-spacing:-1px;
+  letter-spacing:.12em;
 }
-
-.brand span{
-  color:white;
-}
-
-.top-actions{
-  display:flex;
-  gap:8px;
-}
-
+.header-actions{display:flex;gap:8px}
 .icon-btn{
   width:42px;
   height:42px;
-  border:1px solid var(--line);
+  border:1px solid var(--border);
   background:#111;
-  color:white;
+  color:var(--white);
   border-radius:50%;
   display:grid;
   place-items:center;
-  font-size:18px;
 }
+.icon-btn svg{width:21px;height:21px}
 
-.icon-btn:hover{
-  border-color:var(--gold);
-  color:var(--gold);
-}
-
-/* LAYOUT */
-
-.app{
-  display:flex;
-  min-height:calc(100vh - 68px);
-}
-
-.sidebar{
-  width:245px;
-  border-right:1px solid var(--line);
-  padding:22px 12px;
-  position:fixed;
-  top:68px;
-  bottom:0;
-  overflow-y:auto;
-  background:#090909;
-}
-
-.main{
-  margin-left:245px;
-  width:calc(100% - 245px);
-  padding-bottom:100px;
-}
-
-.nav-title{
-  color:#666;
-  text-transform:uppercase;
-  font-size:10px;
-  font-weight:800;
-  letter-spacing:1.5px;
-  padding:8px 14px;
-}
-
-.side-nav{
-  display:flex;
-  flex-direction:column;
-  gap:5px;
-}
-
-.side-nav button{
-  background:transparent;
-  border:0;
-  color:#bbb;
-  padding:12px 14px;
-  border-radius:13px;
-  text-align:left;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  font-weight:650;
-}
-
-.side-nav button:hover,
-.side-nav button.active{
-  background:rgba(214,168,79,.11);
-  color:var(--gold2);
-}
-
-.side-icon{
-  width:27px;
-  text-align:center;
-  font-size:19px;
-}
-
-.page{
-  display:none;
-  max-width:1100px;
-  margin:0 auto;
-  padding:28px 22px;
-}
-
-.page.active{
-  display:block;
-}
-
-.page-head{
-  margin-bottom:22px;
-}
-
-.page-head h1{
-  font-size:32px;
-  margin-bottom:6px;
-}
-
-.page-head p{
-  color:var(--muted);
-}
-
-/* CARDS */
-
-.card{
-  background:linear-gradient(145deg,#111,#0d0d0d);
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:18px;
-  margin-bottom:16px;
-}
-
-.card-title{
-  font-size:18px;
-  font-weight:800;
-  margin-bottom:7px;
-}
-
-.muted{
-  color:var(--muted);
-}
-
-.gold{
-  color:var(--gold2);
-}
-
-.grid{
-  display:grid;
-  gap:16px;
-}
-
-.grid2{
-  grid-template-columns:repeat(2,minmax(0,1fr));
-}
-
-.grid3{
-  grid-template-columns:repeat(3,minmax(0,1fr));
-}
-
-/* HERO */
-
-.hero{
-  min-height:330px;
-  border:1px solid #3a2c12;
-  border-radius:25px;
-  padding:35px;
-  margin-bottom:20px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  background:
-    linear-gradient(135deg,rgba(214,168,79,.16),rgba(0,0,0,.85)),
-    radial-gradient(circle at 85% 20%,rgba(240,199,106,.25),transparent 25rem),
-    #0d0d0d;
-}
-
-.hero h1{
-  max-width:720px;
-  font-size:clamp(35px,6vw,68px);
-  line-height:.98;
-  letter-spacing:-3px;
-  margin-bottom:18px;
-}
-
-.hero h1 span{
-  color:var(--gold);
-}
-
-.hero p{
-  max-width:650px;
-  color:#c0c0c0;
-  font-size:17px;
-  line-height:1.6;
-}
-
-.hero-actions{
-  display:flex;
-  gap:10px;
-  margin-top:25px;
-  flex-wrap:wrap;
-}
-
-/* BUTTONS */
-
-.btn{
-  border:1px solid var(--line);
-  background:#151515;
-  color:white;
-  padding:11px 17px;
-  border-radius:12px;
-  font-weight:750;
-}
-
-.btn:hover{
-  border-color:var(--gold);
-}
-
-.btn.gold-btn{
-  background:linear-gradient(135deg,var(--gold),var(--gold2));
-  color:#090909;
-  border-color:var(--gold);
-}
-
-.btn.small{
-  padding:8px 11px;
-  font-size:13px;
-}
-
-/* STORIES */
-
-.stories{
-  display:flex;
-  gap:12px;
-  overflow-x:auto;
-  padding-bottom:5px;
-  margin-bottom:20px;
-}
-
-.story{
-  min-width:90px;
-  height:118px;
-  border-radius:16px;
-  border:1px solid var(--line);
-  background:
-    linear-gradient(145deg,rgba(214,168,79,.25),#101010);
+main{padding-top:22px}
+.section{display:none}
+.section.active{display:block}
+.section-head{
   display:flex;
   align-items:flex-end;
-  padding:10px;
-  position:relative;
-  overflow:hidden;
+  justify-content:space-between;
+  gap:15px;
+  margin:12px 0 18px;
 }
+.section-head h1{font-size:29px}
+.section-head p{color:var(--muted);margin-top:5px}
 
-.story:first-child{
-  border-color:var(--gold);
+.hero{
+  border:1px solid var(--border);
+  border-radius:26px;
+  padding:30px;
+  background:
+    radial-gradient(circle at 90% 10%,rgba(214,168,79,.18),transparent 35%),
+    linear-gradient(145deg,#17130d,#0b0b0b);
+  margin-bottom:18px;
 }
+.hero h1{font-size:clamp(32px,6vw,62px);line-height:.98;max-width:700px}
+.hero p{color:#c4beb2;max-width:650px;margin-top:15px;line-height:1.6}
 
-.story span{
-  font-size:12px;
+.card{
+  background:linear-gradient(145deg,#141414,#0e0e0e);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:18px;
+  margin-bottom:14px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.stat{
+  padding:18px;
+  border:1px solid var(--border);
+  border-radius:16px;
+  background:#101010;
+}
+.stat b{display:block;font-size:25px;color:var(--gold2)}
+.stat span{font-size:12px;color:var(--muted)}
+
+.btn{
+  border:1px solid var(--border);
+  background:#151515;
+  color:var(--white);
+  border-radius:12px;
+  padding:11px 15px;
+  min-height:44px;
+}
+.btn:hover{border-color:var(--gold);color:var(--gold2)}
+.btn.primary{
+  background:linear-gradient(135deg,#b9852f,#f0c76a);
+  color:#090909;
+  border:0;
   font-weight:800;
 }
+.btn.danger{border-color:rgba(217,87,87,.45);color:#ff8a8a}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 
-/* COMPOSER */
-
-.composer{
-  display:flex;
-  gap:12px;
-  align-items:center;
+input,textarea,select{
+  width:100%;
+  background:#090909;
+  color:var(--white);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:13px;
 }
-
-.avatar{
-  width:44px;
-  height:44px;
-  border-radius:50%;
+textarea{min-height:105px;resize:vertical}
+label{
+  display:block;
+  color:#cfc8ba;
+  font-size:13px;
+  margin:10px 0 6px;
+}
+.form-grid{
   display:grid;
-  place-items:center;
-  background:linear-gradient(135deg,var(--gold),#70521d);
-  color:#080808;
-  font-weight:900;
-  flex-shrink:0;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
 }
 
-.fake-input{
-  flex:1;
-  background:#171717;
-  border:1px solid var(--line);
-  border-radius:30px;
-  color:#888;
-  padding:13px 17px;
-  cursor:pointer;
+.story-row{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  padding-bottom:7px;
 }
+.story{
+  flex:0 0 82px;
+  height:112px;
+  border-radius:18px;
+  border:1px solid var(--border);
+  background:linear-gradient(160deg,#2a2114,#101010);
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:9px;
+}
+.story b{font-size:12px}
 
-/* POSTS */
-
+.post{
+  overflow:hidden;
+}
 .post-head{
   display:flex;
   align-items:center;
-  gap:11px;
+  gap:10px;
 }
-
-.post-user{
-  font-weight:800;
-}
-
-.post-time{
-  font-size:12px;
-  color:#777;
-}
-
-.post-text{
-  line-height:1.55;
-  margin:15px 0;
-}
-
-.post-media{
-  min-height:210px;
-  border-radius:16px;
-  background:
-    linear-gradient(135deg,rgba(214,168,79,.24),rgba(0,0,0,.85)),
-    #191919;
+.avatar{
+  width:44px;height:44px;border-radius:50%;
+  background:linear-gradient(145deg,#d6a84f,#4c3616);
+  color:#111;
   display:grid;
   place-items:center;
-  color:#ddd;
-  font-weight:800;
+  font-weight:900;
+  flex:0 0 auto;
+}
+.post-meta{flex:1}
+.post-meta b{display:block}
+.post-meta span{font-size:12px;color:var(--muted)}
+.post-text{line-height:1.55;margin:15px 0}
+.post-media{
+  min-height:190px;
+  border-radius:15px;
+  border:1px solid var(--border);
+  background:
+    radial-gradient(circle at 30% 30%,rgba(214,168,79,.25),transparent 28%),
+    linear-gradient(145deg,#251e12,#0c0c0c);
+  display:grid;
+  place-items:center;
   text-align:center;
-  padding:30px;
+  padding:25px;
+  color:#c9bfae;
 }
-
-.post-stats{
-  display:flex;
-  justify-content:space-between;
-  color:#888;
-  font-size:13px;
-  padding:12px 2px;
-  border-bottom:1px solid var(--line);
-}
-
 .post-actions{
   display:flex;
-  justify-content:space-between;
-  padding-top:9px;
+  flex-wrap:wrap;
+  gap:5px;
+  margin-top:10px;
+  border-top:1px solid rgba(255,255,255,.06);
+  padding-top:10px;
 }
-
-.post-actions button{
-  background:none;
+.action{
+  flex:1;
+  min-width:75px;
+  min-height:42px;
   border:0;
-  color:#aaa;
-  padding:8px 10px;
+  background:transparent;
+  color:#c8c2b7;
   border-radius:10px;
 }
-
-.post-actions button:hover{
-  background:#1c1c1c;
-  color:var(--gold2);
-}
-
-/* REACTIONS */
-
-.reaction-wrap{
-  position:relative;
-}
+.action:hover,.action.active{background:#1b1812;color:var(--gold2)}
 
 .reaction-menu{
-  display:none;
-  position:absolute;
-  bottom:42px;
-  left:0;
-  background:#171717;
-  border:1px solid var(--line);
-  border-radius:30px;
-  padding:7px;
-  gap:3px;
-  box-shadow:0 12px 30px rgba(0,0,0,.45);
-}
-
-.reaction-wrap:hover .reaction-menu{
   display:flex;
+  gap:5px;
+  padding:7px;
+  background:#1a1a1a;
+  border:1px solid var(--border);
+  border-radius:14px;
+  margin-top:7px;
 }
-
 .reaction-menu button{
-  font-size:21px;
-  width:37px;
-  height:37px;
-  padding:0;
-  border-radius:50%;
+  border:0;background:#0e0e0e;border-radius:9px;padding:8px 10px;color:white;
 }
 
-/* REELS */
-
-.reels-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
+.comment-box{display:flex;gap:8px;margin-top:12px}
+.comment-box input{flex:1}
+.comments{margin-top:10px}
+.comment{
+  padding:9px 11px;
+  border-radius:11px;
+  background:#0d0d0d;
+  margin-top:7px;
+  font-size:13px;
 }
 
 .reel{
-  min-height:430px;
-  border-radius:20px;
-  border:1px solid var(--line);
+  min-height:520px;
+  border-radius:24px;
+  border:1px solid var(--border);
   overflow:hidden;
-  background:#101010;
   position:relative;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-}
-
-.reel-video{
-  position:absolute;
-  inset:0;
   background:
-    radial-gradient(circle at 50% 30%,rgba(214,168,79,.25),transparent 15rem),
-    linear-gradient(160deg,#171717,#080808);
+    radial-gradient(circle at 60% 25%,rgba(214,168,79,.24),transparent 28%),
+    linear-gradient(155deg,#211b11,#070707 65%);
+  display:flex;
+  align-items:flex-end;
+}
+.reel-content{padding:24px;width:100%;background:linear-gradient(transparent,rgba(0,0,0,.9))}
+.reel-content h2{font-size:27px}
+.reel-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}
+
+.skate-art,.culture-art{
+  height:190px;
+  border-radius:18px;
+  background:#0b0b0b;
+  border:1px solid var(--border);
   display:grid;
   place-items:center;
-  font-size:52px;
-}
-
-.reel-info{
-  position:relative;
-  z-index:2;
-  padding:18px;
-  background:linear-gradient(transparent,rgba(0,0,0,.95));
-}
-
-.reel-info h3{
-  margin-bottom:7px;
-}
-
-.reel-actions{
-  display:flex;
-  gap:7px;
-  margin-top:13px;
-}
-
-.reel-actions button{
-  background:rgba(20,20,20,.9);
-  color:white;
-  border:1px solid #333;
-  border-radius:10px;
-  padding:8px;
-}
-
-/* SKATE */
-
-.skate-hero{
-  border:1px solid #453415;
-  background:
-    linear-gradient(135deg,rgba(214,168,79,.12),rgba(0,0,0,.9));
-  border-radius:22px;
-  padding:25px;
-  margin-bottom:18px;
-}
-
-.skate-icon{
-  font-size:52px;
   margin-bottom:12px;
 }
-
-.skate-card{
-  min-height:190px;
-  background:
-    linear-gradient(145deg,rgba(214,168,79,.12),#101010);
+.skate-art svg{width:min(85%,420px);height:150px}
+.fist{
+  font-size:70px;
+  filter:grayscale(1) brightness(1.5);
 }
-
-/* CULTURE */
-
-.culture-card{
-  min-height:200px;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  background:
-    linear-gradient(145deg,rgba(214,168,79,.2),#0b0b0b);
-}
-
-.culture-icon{
-  font-size:42px;
-  margin-bottom:auto;
-}
-
-/* AI */
-
-.ai-shell{
-  max-width:850px;
-  margin:auto;
-}
-
-.ai-header{
-  padding:24px;
-  border:1px solid #3b2e15;
-  border-radius:22px 22px 0 0;
-  background:linear-gradient(135deg,rgba(214,168,79,.13),#101010);
-}
-
-.ai-messages{
-  min-height:390px;
-  max-height:520px;
-  overflow-y:auto;
-  padding:18px;
-  background:#0b0b0b;
-  border-left:1px solid var(--line);
-  border-right:1px solid var(--line);
-}
-
-.ai-msg{
-  max-width:80%;
-  padding:12px 14px;
-  border-radius:15px;
-  margin-bottom:12px;
-  line-height:1.5;
-}
-
-.ai-msg.bot{
-  background:#171717;
-  border:1px solid var(--line);
-}
-
-.ai-msg.user{
-  background:#4f3c17;
-  margin-left:auto;
-}
-
-.ai-input{
-  display:flex;
-  gap:8px;
-  padding:12px;
-  background:#101010;
-  border:1px solid var(--line);
-  border-radius:0 0 22px 22px;
-}
-
-.ai-input input{
-  flex:1;
-  background:#171717;
-  color:white;
-  border:1px solid var(--line);
-  border-radius:13px;
-  padding:12px;
-  outline:none;
-}
-
-/* LANGUAGE */
 
 .language-hero{
   background:
-    radial-gradient(circle at 90% 20%,rgba(214,168,79,.2),transparent 20rem),
-    linear-gradient(135deg,#15110a,#0c0c0c);
-  border:1px solid #493714;
-  border-radius:23px;
-  padding:30px;
-  margin-bottom:20px;
+    radial-gradient(circle at 90% 20%,rgba(214,168,79,.22),transparent 30%),
+    linear-gradient(145deg,#17130d,#0b0b0b);
 }
-
-.language-hero h1{
-  font-size:36px;
-  margin-bottom:10px;
-}
-
-.language-hero p{
-  color:#bbb;
-  line-height:1.6;
-  max-width:760px;
-}
-
-.language-tabs{
-  display:flex;
-  gap:8px;
-  overflow-x:auto;
-  padding-bottom:5px;
-  margin-bottom:18px;
-}
-
-.language-tab{
-  white-space:nowrap;
-  border:1px solid var(--line);
-  background:#111;
-  color:#aaa;
-  padding:10px 14px;
-  border-radius:30px;
-}
-
-.language-tab.active{
-  background:var(--gold);
-  color:#080808;
-  border-color:var(--gold);
-  font-weight:800;
-}
-
-.language-server{
+.language-grid{
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:15px;
-}
-
-.server{
-  padding:18px;
-  border:1px solid var(--line);
-  border-radius:17px;
-  background:#111;
-}
-
-.server-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:10px;
-}
-
-.online{
-  color:var(--success);
-  font-size:12px;
-}
-
-.language-select{
-  width:100%;
-  padding:12px;
-  background:#171717;
-  border:1px solid var(--line);
-  border-radius:11px;
-  color:white;
-  margin-top:10px;
-}
-
-.lesson{
-  min-height:170px;
-  padding:20px;
-  border-radius:17px;
-  background:
-    linear-gradient(145deg,rgba(214,168,79,.12),#101010);
-  border:1px solid var(--line);
-}
-
-.lesson h3{
-  margin-bottom:8px;
-  color:var(--gold2);
-}
-
-.lesson-word{
-  font-size:27px;
-  font-weight:900;
-  margin:12px 0;
-}
-
-.translator{
-  display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:1.15fr .85fr;
   gap:14px;
 }
-
-.translator textarea{
+.server-list{display:grid;gap:8px}
+.server{
   width:100%;
-  min-height:180px;
-  resize:vertical;
+  text-align:left;
+  border:1px solid var(--border);
   background:#0c0c0c;
-  border:1px solid var(--line);
-  color:white;
-  padding:14px;
-  border-radius:14px;
-  outline:none;
+  color:var(--white);
+  border-radius:13px;
+  padding:13px;
 }
-
-.translation-result{
-  min-height:180px;
-  padding:15px;
-  background:#0c0c0c;
-  border:1px solid var(--line);
-  border-radius:14px;
-  color:#ddd;
-  white-space:pre-wrap;
+.server.selected{
+  border-color:var(--gold);
+  background:#18140d;
 }
+.server small{display:block;color:var(--muted);margin-top:4px}
 
-.diaspora-list{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-}
-
-.diaspora{
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:14px;
-  background:#101010;
-}
-
-.diaspora strong{
-  color:var(--gold2);
-  display:block;
-  margin-bottom:4px;
-}
-
-/* PROFILE */
-
-.profile-cover{
-  height:230px;
-  border-radius:23px 23px 0 0;
-  background:
-    linear-gradient(135deg,rgba(214,168,79,.3),rgba(0,0,0,.9)),
-    #171717;
-  position:relative;
-}
-
-.profile-info{
-  background:#101010;
-  border:1px solid var(--line);
-  border-top:0;
-  border-radius:0 0 23px 23px;
-  padding:0 22px 22px;
-}
-
-.profile-avatar{
-  width:100px;
-  height:100px;
-  border-radius:50%;
-  margin-top:-50px;
-  border:5px solid #101010;
-  background:linear-gradient(135deg,var(--gold),#5d4317);
-  display:grid;
-  place-items:center;
-  font-size:32px;
-  font-weight:900;
-  position:relative;
-}
-
-.profile-name{
-  font-size:27px;
-  font-weight:900;
+.language-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
   margin-top:10px;
 }
-
-.profile-tabs{
-  display:flex;
-  gap:5px;
-  overflow-x:auto;
-  margin-top:18px;
+.lang-chip{
+  border:1px solid var(--border);
+  background:#0c0c0c;
+  color:#ddd;
+  border-radius:999px;
+  padding:8px 11px;
 }
+.lang-chip:hover{border-color:var(--gold);color:var(--gold2)}
 
-.profile-tabs button{
-  background:none;
-  border:0;
-  color:#888;
-  padding:10px 13px;
-}
-
-.profile-tabs button.active{
-  color:var(--gold2);
-  border-bottom:2px solid var(--gold);
-}
-
-/* FORMS */
-
-.form-grid{
+.translate-box{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:13px;
+  gap:10px;
 }
+.translate-output{
+  min-height:130px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:#080808;
+  padding:14px;
+  line-height:1.55;
+  white-space:pre-wrap;
+}
+.connection-status{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 12px;
+  border-radius:10px;
+  background:#0c0c0c;
+  border:1px solid var(--border);
+  font-size:13px;
+}
+.dot{
+  width:9px;height:9px;border-radius:50%;
+  background:#777;
+}
+.dot.online{background:var(--green)}
+.dot.error{background:var(--danger)}
 
-.field{
+.chat{
   display:flex;
   flex-direction:column;
-  gap:7px;
+  gap:8px;
+  max-height:390px;
+  overflow-y:auto;
+  padding:5px;
 }
-
-.field label{
-  font-size:12px;
-  color:#888;
+.message{
+  max-width:82%;
+  padding:10px 13px;
+  border-radius:15px;
+  background:#161616;
+  align-self:flex-start;
 }
+.message.me{
+  background:#2b2110;
+  align-self:flex-end;
+}
+.message small{display:block;color:var(--muted);font-size:10px;margin-top:4px}
 
-.field input,
-.field textarea,
-.field select{
+.profile-cover{
+  min-height:220px;
+  border-radius:22px;
+  border:1px solid var(--border);
+  background:
+    radial-gradient(circle at 70% 25%,rgba(240,199,106,.25),transparent 28%),
+    linear-gradient(140deg,#241d11,#0a0a0a);
+  position:relative;
+  padding:20px;
+  display:flex;
+  align-items:flex-end;
+}
+.profile-info{display:flex;align-items:flex-end;gap:15px}
+.profile-avatar{
+  width:92px;height:92px;border-radius:50%;
+  border:4px solid #080808;
+  background:linear-gradient(145deg,#f0c76a,#674817);
+  display:grid;place-items:center;
+  color:#090909;font-size:30px;font-weight:900;
+}
+.profile-name{font-size:27px;font-weight:900}
+.profile-tabs{display:flex;gap:5px;overflow-x:auto;margin:14px 0}
+.profile-tab{
+  white-space:nowrap;
+  padding:10px 14px;
   background:#101010;
-  border:1px solid var(--line);
-  color:white;
+  color:#aaa;
+  border:1px solid var(--border);
+  border-radius:10px;
+}
+.profile-tab.active{color:var(--gold2);border-color:var(--gold)}
+
+.playlist{
+  display:flex;
+  align-items:center;
+  gap:12px;
   padding:12px;
-  border-radius:11px;
-  outline:none;
+  border-radius:13px;
+  background:#0d0d0d;
+  margin-top:8px;
+}
+.album{
+  width:48px;height:48px;border-radius:9px;
+  background:linear-gradient(145deg,#d6a84f,#33240f);
+  display:grid;place-items:center;color:#111;font-weight:900;
 }
 
-.field textarea{
-  min-height:110px;
-  resize:vertical;
-}
-
-/* CONNECT / DRAWER */
-
-.drawer{
-  position:fixed;
-  inset:0;
+.drawer-backdrop{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.68);
   z-index:2000;
   display:none;
 }
-
-.drawer.open{
-  display:block;
-}
-
-.drawer-bg{
+.drawer-backdrop.open{display:block}
+.drawer{
   position:absolute;
-  inset:0;
-  background:rgba(0,0,0,.7);
-}
-
-.drawer-panel{
-  position:absolute;
-  left:0;
-  top:0;
-  bottom:0;
-  width:min(360px,88vw);
-  background:#0c0c0c;
-  border-right:1px solid var(--line);
-  padding:25px 18px;
-  overflow-y:auto;
-}
-
-.drawer-close{
-  float:right;
-  background:none;
-  color:white;
-  border:0;
-  font-size:25px;
-}
-
-/* BOTTOM NAV */
-
-.bottom-nav{
-  display:none;
-}
-
-/* MODAL */
-
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  z-index:3000;
-  background:rgba(0,0,0,.8);
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-}
-
-.modal.open{
-  display:flex;
-}
-
-.modal-box{
-  width:min(620px,100%);
-  max-height:90vh;
-  overflow:auto;
-  background:#111;
-  border:1px solid var(--line);
-  border-radius:22px;
-  padding:20px;
-}
-
-.modal-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:17px;
-}
-
-.close{
-  background:none;
-  border:0;
-  color:#aaa;
-  font-size:25px;
-}
-
-/* CHAT */
-
-.chat-layout{
-  display:grid;
-  grid-template-columns:230px 1fr;
-  min-height:550px;
-  border:1px solid var(--line);
-  border-radius:20px;
-  overflow:hidden;
-}
-
-.chat-users{
-  border-right:1px solid var(--line);
-  background:#0d0d0d;
-}
-
-.chat-user{
-  padding:14px;
-  border-bottom:1px solid #1d1d1d;
-  cursor:pointer;
-}
-
-.chat-user:hover{
-  background:#171717;
-}
-
-.chat-window{
-  display:flex;
-  flex-direction:column;
-  background:#0a0a0a;
-}
-
-.chat-messages{
-  flex:1;
-  min-height:400px;
+  left:0;top:0;bottom:0;
+  width:min(350px,88vw);
+  background:#090909;
+  border-right:1px solid var(--border);
   padding:18px;
   overflow-y:auto;
 }
-
-.chat-message{
-  max-width:75%;
-  padding:11px 13px;
-  border-radius:14px;
-  background:#181818;
-  margin-bottom:9px;
-}
-
-.chat-message.mine{
-  margin-left:auto;
-  background:#493817;
-}
-
-.chat-compose{
+.drawer-top{
   display:flex;
-  gap:8px;
-  padding:12px;
-  border-top:1px solid var(--line);
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:15px;
+}
+.drawer-nav{display:grid;gap:6px}
+.drawer-item{
+  width:100%;
+  text-align:left;
+  min-height:48px;
+  padding:12px 14px;
+  border:1px solid transparent;
+  background:#0f0f0f;
+  color:#ddd;
+  border-radius:12px;
+}
+.drawer-item:hover{border-color:var(--border);color:var(--gold2)}
+.drawer-group{
+  color:var(--gold2);
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  margin:18px 3px 7px;
 }
 
-.chat-compose input{
-  flex:1;
-  background:#161616;
-  border:1px solid var(--line);
-  color:white;
+.bottom-nav{
+  position:fixed;
+  z-index:1500;
+  left:0;right:0;bottom:0;
+  background:rgba(7,7,7,.97);
+  backdrop-filter:blur(20px);
+  border-top:1px solid var(--border);
+  padding:7px max(6px,env(safe-area-inset-left)) calc(7px + env(safe-area-inset-bottom));
+}
+.bottom-grid{
+  width:min(900px,100%);
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(7,minmax(0,1fr));
+  gap:3px;
+}
+.nav-btn{
+  min-width:0;
+  min-height:61px;
+  border:0;
+  border-radius:11px;
+  background:transparent;
+  color:#888;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+}
+.nav-btn svg{width:21px;height:21px}
+.nav-btn span{font-size:9px;white-space:nowrap}
+.nav-btn.active{
+  color:var(--gold2);
+  background:#17130d;
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:105px;
+  transform:translateX(-50%);
+  z-index:3000;
+  background:#171717;
+  border:1px solid var(--gold);
+  color:var(--white);
   border-radius:13px;
-  padding:12px;
+  padding:11px 15px;
+  max-width:calc(100% - 30px);
+  text-align:center;
+  box-shadow:0 10px 35px rgba(0,0,0,.5);
 }
 
-/* RESPONSIVE */
+.loading{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+}
+.spinner{
+  width:14px;height:14px;border:2px solid #777;border-top-color:var(--gold);
+  border-radius:50%;
+  animation:spin .8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
 
-@media(max-width:900px){
-  .sidebar{
-    display:none;
-  }
-
-  .main{
-    margin-left:0;
-    width:100%;
-  }
-
-  .page{
-    padding:20px 14px 95px;
-  }
-
-  .bottom-nav{
-    position:fixed;
-    bottom:0;
-    left:0;
-    right:0;
-    height:72px;
-    background:rgba(9,9,9,.97);
-    border-top:1px solid var(--line);
-    z-index:1500;
-    display:grid;
-    grid-template-columns:repeat(7,1fr);
-    padding-bottom:env(safe-area-inset-bottom);
-  }
-
-  .bottom-nav button{
-    min-width:0;
-    border:0;
-    background:none;
-    color:#777;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:4px;
-    font-size:9px;
-    font-weight:750;
-  }
-
-  .bottom-nav button.active{
-    color:var(--gold2);
-  }
-
-  .bottom-icon{
-    font-size:19px;
-    line-height:1;
-  }
-
-  .hero{
-    padding:25px 20px;
-    min-height:290px;
-  }
-
-  .hero h1{
-    letter-spacing:-2px;
-  }
-
-  .grid2,
-  .grid3{
-    grid-template-columns:1fr;
-  }
-
-  .reels-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .language-server,
-  .translator{
-    grid-template-columns:1fr;
-  }
-
-  .diaspora-list{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .chat-layout{
-    grid-template-columns:1fr;
-  }
-
-  .chat-users{
-    display:flex;
-    overflow-x:auto;
-    border-right:0;
-    border-bottom:1px solid var(--line);
-  }
-
-  .chat-user{
-    min-width:130px;
-  }
+.notice{
+  border-left:3px solid var(--gold);
+  background:#14110b;
+  padding:12px 14px;
+  border-radius:10px;
+  color:#cfc6b5;
+  line-height:1.5;
+  font-size:13px;
 }
 
+footer{
+  text-align:center;
+  color:#68635b;
+  font-size:12px;
+  padding:30px 0 10px;
+}
+
+@media(max-width:800px){
+  .grid,.two,.language-grid{grid-template-columns:1fr}
+  .translate-box{grid-template-columns:1fr}
+  .hero{padding:23px}
+  .section-head{align-items:flex-start}
+  .form-grid{grid-template-columns:1fr}
+}
 @media(max-width:520px){
-  .topbar{
-    padding:0 13px;
-  }
-
-  .brand{
-    font-size:23px;
-  }
-
-  .reels-grid{
-    grid-template-columns:1fr 1fr;
-    gap:9px;
-  }
-
-  .reel{
-    min-height:330px;
-  }
-
-  .form-grid{
-    grid-template-columns:1fr;
-  }
-
-  .diaspora-list{
-    grid-template-columns:1fr;
-  }
-
-  .page-head h1{
-    font-size:28px;
-  }
-
-  .language-hero h1{
-    font-size:29px;
-  }
-
-  .bottom-nav{
-    height:70px;
-  }
-
-  .bottom-nav button{
-    font-size:8px;
-  }
-
-  .bottom-icon{
-    font-size:17px;
-  }
+  body{padding-bottom:86px}
+  header{height:62px}
+  .brand{font-size:19px}
+  .container{width:min(100% - 18px,1120px)}
+  main{padding-top:12px}
+  .hero h1{font-size:35px}
+  .card{padding:14px}
+  .bottom-nav{padding-left:2px;padding-right:2px}
+  .bottom-grid{gap:1px}
+  .nav-btn{min-height:58px}
+  .nav-btn span{font-size:8px}
+  .nav-btn svg{width:19px;height:19px}
+  .reel{min-height:470px}
+  .profile-info{gap:10px}
+  .profile-avatar{width:72px;height:72px;font-size:23px}
+  .profile-name{font-size:22px}
 }
 </style>
 </head>
 
 <body>
 
-<header class="topbar">
-  <div class="brand">Soulaani<span>®</span></div>
+<header>
+  <div class="container header-inner">
+    <button class="brand" data-section="homeSection" aria-label="Soulaani home">SOULAANI</button>
 
-  <div class="top-actions">
-    <button class="icon-btn" onclick="openDrawer()">☰</button>
-    <button class="icon-btn" onclick="openPage('profile')">◉</button>
+    <div class="header-actions">
+      <button class="icon-btn" id="searchBtn" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path>
+        </svg>
+      </button>
+
+      <button class="icon-btn" id="menuBtn" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
   </div>
 </header>
 
-<div class="app">
+<div id="drawerBackdrop" class="drawer-backdrop">
+  <aside class="drawer">
+    <div class="drawer-top">
+      <b class="gold">SOULAANI</b>
+      <button class="icon-btn" id="closeDrawer">×</button>
+    </div>
 
-<aside class="sidebar">
+    <div class="drawer-group">Community</div>
+    <nav class="drawer-nav">
+      <button class="drawer-item" data-section="connectSection">Connect</button>
+      <button class="drawer-item" data-section="dateSection">Date</button>
+      <button class="drawer-item" data-section="buildSection">Build</button>
+      <button class="drawer-item" data-section="marketSection">Market</button>
+      <button class="drawer-item" data-section="exploreSection">Explore / Local Discover</button>
+      <button class="drawer-item" data-section="messagesSection">Messages</button>
+      <button class="drawer-item" data-section="communitiesSection">Communities</button>
+    </nav>
 
-  <div class="nav-title">Soulaani</div>
+    <div class="drawer-group">Language</div>
+    <nav class="drawer-nav">
+      <button class="drawer-item" data-section="languageSection">Language & Connections</button>
+    </nav>
 
-  <nav class="side-nav">
+    <div class="drawer-group">Your Soulaani</div>
+    <nav class="drawer-nav">
+      <button class="drawer-item" data-section="savedSection">Saved</button>
+      <button class="drawer-item" data-section="backupSection">Data & Backup</button>
+    </nav>
+  </aside>
+</div>
 
-    <button data-page="home" onclick="openPage('home')">
-      <span class="side-icon">⌂</span> Home
-    </button>
-
-    <button data-page="newsfeed" onclick="openPage('newsfeed')">
-      <span class="side-icon">▤</span> Newsfeed
-    </button>
-
-    <button data-page="skate" onclick="openPage('skate')">
-      <span class="side-icon">🛹</span> Skate
-    </button>
-
-    <button data-page="reels" onclick="openPage('reels')">
-      <span class="side-icon">▶</span> Reels
-    </button>
-
-    <button data-page="culture" onclick="openPage('culture')">
-      <span class="side-icon">✊🏿</span> Culture
-    </button>
-
-    <button data-page="ai" onclick="openPage('ai')">
-      <span class="side-icon">✦</span> Soulaani AI
-    </button>
-
-    <button data-page="profile" onclick="openPage('profile')">
-      <span class="side-icon">●</span> Profile
-    </button>
-
-    <br>
-
-    <div class="nav-title">Connect</div>
-
-    <button onclick="openPage('language')">
-      <span class="side-icon">文</span> Language & Connections
-    </button>
-
-    <button onclick="openPage('chat')">
-      <span class="side-icon">☵</span> Messages
-    </button>
-
-    <button onclick="openPage('communities')">
-      <span class="side-icon">♧</span> Communities
-    </button>
-
-    <button onclick="openPage('discover')">
-      <span class="side-icon">⌖</span> Local Discover
-    </button>
-
-    <button onclick="openPage('date')">
-      <span class="side-icon">♡</span> Date
-    </button>
-
-    <button onclick="openPage('build')">
-      <span class="side-icon">▰</span> Build
-    </button>
-
-    <button onclick="openPage('market')">
-      <span class="side-icon">◇</span> Market
-    </button>
-
-    <button onclick="openPage('explore')">
-      <span class="side-icon">◎</span> Explore
-    </button>
-
-    <button onclick="openPage('saved')">
-      <span class="side-icon">▱</span> Saved
-    </button>
-
-  </nav>
-
-</aside>
-
-<main class="main">
+<main class="container">
 
 <!-- HOME -->
-
-<section id="home" class="page active">
-
+<section id="homeSection" class="section active">
   <div class="hero">
-    <h1>The Culture.<br><span>The People.</span><br>The Platform.</h1>
-    <p>
-      Soulaani is a social platform built around Black communities,
-      culture, creativity, connection, language, business and the diaspora.
-    </p>
-
-    <div class="hero-actions">
-      <button class="btn gold-btn" onclick="openPage('newsfeed')">Enter Soulaani</button>
-      <button class="btn" onclick="openPage('language')">Explore Languages</button>
+    <div class="small gold">THE CULTURE. THE PEOPLE. THE PLATFORM.</div>
+    <h1>Welcome to <span class="gold">Soulaani.</span></h1>
+    <p>A social home built around Black people, culture, creativity, connection, community, language and opportunity.</p>
+    <div class="btn-row">
+      <button class="btn primary" data-section="newsfeedSection">Open Newsfeed</button>
+      <button class="btn" data-section="languageSection">Explore Languages</button>
+      <button class="btn" data-section="aiSection">Talk to Soulaani AI</button>
     </div>
   </div>
 
-  <div class="stories">
-    <div class="story"><span>＋ Your Story</span></div>
-    <div class="story"><span>Community</span></div>
-    <div class="story"><span>Culture</span></div>
-    <div class="story"><span>Skate</span></div>
-    <div class="story"><span>Music</span></div>
-    <div class="story"><span>Creators</span></div>
+  <div class="grid">
+    <div class="stat"><b id="homePostCount">0</b><span>Posts saved locally</span></div>
+    <div class="stat"><b id="homeSavedCount">0</b><span>Saved posts</span></div>
+    <div class="stat"><b id="homeLanguage">English</b><span>Current language</span></div>
   </div>
 
   <div class="card">
-    <div class="composer">
-      <div class="avatar">S</div>
-      <div class="fake-input" onclick="openComposer()">What's happening in your world?</div>
+    <h2>Stories</h2>
+    <div class="story-row" style="margin-top:12px">
+      <div class="story"><b>Your Story</b></div>
+      <div class="story"><b>Culture</b></div>
+      <div class="story"><b>Skate</b></div>
+      <div class="story"><b>Music</b></div>
+      <div class="story"><b>Community</b></div>
     </div>
   </div>
-
-  <div id="homePosts"></div>
-
 </section>
-
 
 <!-- NEWSFEED -->
-
-<section id="newsfeed" class="page">
-
-  <div class="page-head">
-    <h1>Newsfeed</h1>
-    <p>Your Soulaani feed.</p>
-  </div>
-
-  <div class="card">
-    <div class="composer">
-      <div class="avatar">S</div>
-      <div class="fake-input" onclick="openComposer()">Create a post...</div>
+<section id="newsfeedSection" class="section">
+  <div class="section-head">
+    <div>
+      <h1>Newsfeed</h1>
+      <p>See what your Soulaani community is sharing.</p>
     </div>
   </div>
 
-  <div id="feedPosts"></div>
+  <div class="card">
+    <div class="post-head">
+      <div class="avatar" id="composerAvatar">S</div>
+      <div>
+        <b id="composerName">Soulaani User</b>
+        <div class="small muted">Post something with your community.</div>
+      </div>
+    </div>
+    <textarea id="postInput" placeholder="What's happening in your world?"></textarea>
+    <div class="btn-row">
+      <button class="btn" id="photoPostBtn">＋ Photo</button>
+      <button class="btn" id="videoPostBtn">▶ Video</button>
+      <button class="btn" id="feelingPostBtn">☺ Feeling</button>
+      <button class="btn primary" id="publishPost">Post</button>
+    </div>
+  </div>
 
+  <div id="feed"></div>
 </section>
-
 
 <!-- SKATE -->
-
-<section id="skate" class="page">
-
-  <div class="skate-hero">
-    <div class="skate-icon">🛹</div>
-    <h1>Soulaani Skate</h1>
-    <p class="muted">
-      Riders. Clips. Spots. Events. Skate culture and community.
-    </p>
-
-    <div class="hero-actions">
-      <button class="btn gold-btn" onclick="openComposer('skate')">Post a Clip</button>
-      <button class="btn" onclick="alert('Local skate spots will appear here.')">Find Spots</button>
+<section id="skateSection" class="section">
+  <div class="section-head">
+    <div>
+      <h1>Skate</h1>
+      <p>Riders. Spots. Clips. Events. Community.</p>
     </div>
   </div>
 
-  <div class="grid grid3">
-
-    <div class="card skate-card">
-      <div style="font-size:40px">🛹</div>
-      <h3 class="card-title">Riders</h3>
-      <p class="muted">Discover riders and connect with the skate community.</p>
-    </div>
-
-    <div class="card skate-card">
-      <div style="font-size:40px">🎥</div>
-      <h3 class="card-title">Skate Clips</h3>
-      <p class="muted">Share lines, tricks, sessions and street clips.</p>
-    </div>
-
-    <div class="card skate-card">
-      <div style="font-size:40px">📍</div>
-      <h3 class="card-title">Local Spots</h3>
-      <p class="muted">Discover skate spots and sessions around you.</p>
-    </div>
-
-    <div class="card skate-card">
-      <div style="font-size:40px">📅</div>
-      <h3 class="card-title">Events</h3>
-      <p class="muted">Find jams, meetups, competitions and community sessions.</p>
-    </div>
-
-    <div class="card skate-card">
-      <div style="font-size:40px">👥</div>
-      <h3 class="card-title">Skate Community</h3>
-      <p class="muted">Follow riders and build connections.</p>
-    </div>
-
-    <div class="card skate-card">
-      <div style="font-size:40px">🔥</div>
-      <h3 class="card-title">Trending</h3>
-      <p class="muted">See what's moving through Soulaani Skate.</p>
-    </div>
-
+  <div class="skate-art">
+    <svg viewBox="0 0 520 180" fill="none" aria-label="Skateboard graphic">
+      <path d="M80 105 Q260 145 440 105" stroke="#d6a84f" stroke-width="12" stroke-linecap="round"/>
+      <circle cx="120" cy="123" r="19" fill="#ddd"/>
+      <circle cx="400" cy="123" r="19" fill="#ddd"/>
+      <circle cx="120" cy="123" r="7" fill="#111"/>
+      <circle cx="400" cy="123" r="7" fill="#111"/>
+      <path d="M150 110 L175 76 M370 110 L345 76" stroke="#aaa" stroke-width="8"/>
+      <path d="M190 60 L330 60" stroke="#f0c76a" stroke-width="5"/>
+      <text x="260" y="35" fill="#f0c76a" text-anchor="middle" font-size="20" font-weight="700">SOULAANI SKATE</text>
+    </svg>
   </div>
 
+  <div class="grid">
+    <div class="card">
+      <h3>Black Riders</h3>
+      <p class="muted" style="margin-top:7px">Discover riders and local skate communities.</p>
+      <button class="btn" style="margin-top:12px" id="ridersBtn">Explore Riders</button>
+    </div>
+    <div class="card">
+      <h3>Local Spots</h3>
+      <p class="muted" style="margin-top:7px">Find skate spots around your selected area.</p>
+      <button class="btn" style="margin-top:12px" data-section="exploreSection">Explore Local</button>
+    </div>
+    <div class="card">
+      <h3>Skate Events</h3>
+      <p class="muted" style="margin-top:7px">Community sessions, competitions and meetups.</p>
+      <button class="btn" style="margin-top:12px" id="eventBtn">Create Event</button>
+    </div>
+  </div>
 </section>
-
 
 <!-- REELS -->
-
-<section id="reels" class="page">
-
-  <div class="page-head">
-    <h1>Reels</h1>
-    <p>Short-form videos from the Soulaani community.</p>
+<section id="reelsSection" class="section">
+  <div class="section-head">
+    <div>
+      <h1>Reels</h1>
+      <p>Short-form culture, creativity and community.</p>
+    </div>
   </div>
 
-  <div class="card">
-    <button class="btn gold-btn" onclick="openComposer('reel')">＋ Create Reel</button>
+  <div class="reel">
+    <div class="reel-content">
+      <div class="small gold">SOULAANI REEL</div>
+      <h2>Culture in motion.</h2>
+      <p class="muted" style="margin-top:7px">A vertical reel experience ready for real videos when media uploads are connected.</p>
+      <div class="reel-actions">
+        <button class="btn" data-reaction="heart">♥ Like</button>
+        <button class="btn" id="reelComment">Comment</button>
+        <button class="btn" id="reelShare">Share</button>
+        <button class="btn" id="reelSave">Save</button>
+        <button class="btn primary" id="reelFollow">Follow</button>
+      </div>
+    </div>
   </div>
-
-  <div class="reels-grid">
-
-    <article class="reel">
-      <div class="reel-video">▶</div>
-      <div class="reel-info">
-        <h3>Culture in Motion</h3>
-        <p class="muted">@soulaani_creator</p>
-        <div class="reel-actions">
-          <button onclick="react(this)">♡</button>
-          <button onclick="alert('Comments opened.')">💬</button>
-          <button onclick="shareContent()">↗</button>
-          <button onclick="saveContent(this)">▱</button>
-        </div>
-      </div>
-    </article>
-
-    <article class="reel">
-      <div class="reel-video">🛹</div>
-      <div class="reel-info">
-        <h3>Street Session</h3>
-        <p class="muted">@soulaani_skate</p>
-        <div class="reel-actions">
-          <button onclick="react(this)">♡</button>
-          <button onclick="alert('Comments opened.')">💬</button>
-          <button onclick="shareContent()">↗</button>
-          <button onclick="saveContent(this)">▱</button>
-        </div>
-      </div>
-    </article>
-
-    <article class="reel">
-      <div class="reel-video">🎶</div>
-      <div class="reel-info">
-        <h3>Black Music</h3>
-        <p class="muted">@culture</p>
-        <div class="reel-actions">
-          <button onclick="react(this)">♡</button>
-          <button onclick="alert('Comments opened.')">💬</button>
-          <button onclick="shareContent()">↗</button>
-          <button onclick="saveContent(this)">▱</button>
-        </div>
-      </div>
-    </article>
-
-    <article class="reel">
-      <div class="reel-video">🍽️</div>
-      <div class="reel-info">
-        <h3>Soul Food</h3>
-        <p class="muted">@soulaani_culture</p>
-        <div class="reel-actions">
-          <button onclick="react(this)">♡</button>
-          <button onclick="alert('Comments opened.')">💬</button>
-          <button onclick="shareContent()">↗</button>
-          <button onclick="saveContent(this)">▱</button>
-        </div>
-      </div>
-    </article>
-
-    <article class="reel">
-      <div class="reel-video">🌍</div>
-      <div class="reel-info">
-        <h3>Diaspora Connections</h3>
-        <p class="muted">@diaspora</p>
-        <div class="reel-actions">
-          <button onclick="react(this)">♡</button>
-          <button onclick="alert('Comments opened.')">💬</button>
-          <button onclick="shareContent()">↗</button>
-          <button onclick="saveContent(this)">▱</button>
-        </div>
-      </div>
-    </article>
-
-    <article class="reel">
-      <div class="reel-video">✊🏿</div>
-      <div class="reel-info">
-        <h3>Our Stories</h3>
-        <p class="muted">@soulaani</p>
-        <div class="reel-actions">
-          <button onclick="react(this)">♡</button>
-          <button onclick="alert('Comments opened.')">💬</button>
-          <button onclick="shareContent()">↗</button>
-          <button onclick="saveContent(this)">▱</button>
-        </div>
-      </div>
-    </article>
-
-  </div>
-
 </section>
-
 
 <!-- CULTURE -->
-
-<section id="culture" class="page">
-
-  <div class="page-head">
-    <h1>Culture</h1>
-    <p>Black American culture, creativity and the wider diaspora.</p>
+<section id="cultureSection" class="section">
+  <div class="section-head">
+    <div>
+      <h1>Culture</h1>
+      <p>Black American culture, soul food, music, art, fashion and creators.</p>
+    </div>
   </div>
 
-  <div class="grid grid3">
+  <div class="card">
+    <div class="culture-art"><div class="fist">✊🏿</div></div>
+    <h2>Culture belongs here.</h2>
+    <p class="muted" style="margin-top:7px">A dedicated home for the people, traditions, businesses and creative expression that shape our communities.</p>
+  </div>
 
-    <div class="card culture-card">
-      <div class="culture-icon">🍽️</div>
-      <h3>Soul Food</h3>
-      <p class="muted">Black American soul-food plates, restaurants and recipes.</p>
+  <div class="grid">
+    <div class="card">
+      <h3>🍽 Soul Food</h3>
+      <p class="muted" style="margin-top:7px">Plated soul-food meals, recipes and restaurants.</p>
+      <button class="btn" style="margin-top:12px" id="foodBtn">Open Food</button>
     </div>
-
-    <div class="card culture-card">
-      <div class="culture-icon">🎶</div>
+    <div class="card">
       <h3>Music</h3>
-      <p class="muted">Artists, sounds, playlists and musical history.</p>
+      <p class="muted" style="margin-top:7px">Artists, playlists and sounds.</p>
+      <button class="btn" style="margin-top:12px" data-section="profileSection">Open Music</button>
     </div>
-
-    <div class="card culture-card">
-      <div class="culture-icon">🎨</div>
-      <h3>Art</h3>
-      <p class="muted">Artists and creative expression.</p>
+    <div class="card">
+      <h3>Black-Owned</h3>
+      <p class="muted" style="margin-top:7px">Businesses and creators.</p>
+      <button class="btn" style="margin-top:12px" data-section="marketSection">Open Market</button>
     </div>
-
-    <div class="card culture-card">
-      <div class="culture-icon">👕</div>
-      <h3>Fashion</h3>
-      <p class="muted">Style, designers and streetwear.</p>
-    </div>
-
-    <div class="card culture-card">
-      <div class="culture-icon">🏪</div>
-      <h3>Black-Owned Businesses</h3>
-      <p class="muted">Discover and support Black-owned businesses.</p>
-    </div>
-
-    <div class="card culture-card">
-      <div class="culture-icon">🎬</div>
-      <h3>Creators</h3>
-      <p class="muted">Connect with creators across the community.</p>
-    </div>
-
   </div>
-
 </section>
-
 
 <!-- AI -->
-
-<section id="ai" class="page">
-
-  <div class="page-head">
-    <h1>Soulaani AI</h1>
-    <p>Your built-in Soulaani assistant.</p>
+<section id="aiSection" class="section">
+  <div class="section-head">
+    <div>
+      <h1>Soulaani AI</h1>
+      <p>Your built-in Soulaani assistant.</p>
+    </div>
   </div>
 
-  <div class="ai-shell">
+  <div class="notice">
+    Soulaani AI is wired for a real server endpoint at <b>/api/ai/chat</b>. The frontend never needs to contain your AI provider's secret key.
+  </div>
 
-    <div class="ai-header">
-      <strong>✦ Soulaani AI</strong>
-      <p class="muted" style="margin-top:5px">
-        Ask questions, learn, translate, explore culture and navigate Soulaani.
-      </p>
-    </div>
-
-    <div class="ai-messages" id="aiMessages">
-
-      <div class="ai-msg bot">
-        Welcome to Soulaani AI. What would you like to explore?
+  <div class="card" style="margin-top:14px">
+    <div id="aiChat" class="chat">
+      <div class="message">
+        What's up. I'm Soulaani AI. Once the AI server is connected, I'll be able to answer through the real model.
       </div>
-
     </div>
 
-    <div class="ai-input">
-      <input id="aiInput" placeholder="Ask Soulaani AI anything..." onkeydown="if(event.key==='Enter')sendAI()">
-      <button class="btn gold-btn" onclick="sendAI()">Send</button>
+    <div class="comment-box">
+      <input id="aiInput" placeholder="Ask Soulaani AI something...">
+      <button class="btn primary" id="aiSend">Send</button>
     </div>
-
   </div>
-
 </section>
-
 
 <!-- PROFILE -->
-
-<section id="profile" class="page">
-
-  <div class="profile-cover"></div>
-
-  <div class="profile-info">
-
-    <div class="profile-avatar" id="profileAvatar">S</div>
-
-    <div class="profile-name" id="profileName">Soulaani User</div>
-
-    <div class="muted" id="profileUsername">@soulaaniuser</div>
-
-    <p class="post-text" id="profileBio">
-      Building connections through culture, community and creativity.
-    </p>
-
-    <button class="btn small" onclick="openProfileEditor()">Edit Profile</button>
-
-    <div class="profile-tabs">
-
-      <button class="active">Posts</button>
-      <button onclick="openPage('reels')">Reels</button>
-      <button>Photos</button>
-      <button>About</button>
-      <button>Music</button>
-      <button>Customize</button>
-
+<section id="profileSection" class="section">
+  <div class="profile-cover">
+    <div class="profile-info">
+      <div class="profile-avatar" id="profileAvatar">S</div>
+      <div>
+        <div class="profile-name" id="profileDisplayName">Soulaani User</div>
+        <div class="muted" id="profileUsername">@soulaaniuser</div>
+      </div>
     </div>
-
   </div>
 
-  <div class="grid grid2" style="margin-top:18px">
+  <div class="profile-tabs">
+    <button class="profile-tab active">Posts</button>
+    <button class="profile-tab">Reels</button>
+    <button class="profile-tab">Photos</button>
+    <button class="profile-tab">About</button>
+    <button class="profile-tab">Music</button>
+    <button class="profile-tab">Customize</button>
+  </div>
 
+  <div class="grid two">
     <div class="card">
-      <div class="card-title">🎵 My Playlist</div>
-      <p class="muted">Your music can live directly on your profile.</p>
-      <button class="btn small" style="margin-top:12px" onclick="alert('Playlist controls opened.')">
-        Manage Playlist
-      </button>
+      <h3>Edit Profile</h3>
+      <label>Name</label>
+      <input id="profileNameInput">
+      <label>Username</label>
+      <input id="profileUsernameInput">
+      <label>Bio</label>
+      <textarea id="profileBioInput"></textarea>
+      <label>Location</label>
+      <input id="profileLocationInput" placeholder="City, State">
+      <button class="btn primary" id="saveProfile" style="margin-top:12px">Save Profile</button>
     </div>
 
     <div class="card">
-      <div class="card-title">🎨 Profile Theme</div>
-      <p class="muted">Customize colors, backgrounds, cards and layout.</p>
-      <button class="btn small" style="margin-top:12px" onclick="openProfileEditor()">
-        Customize
-      </button>
+      <h3>Profile Theme</h3>
+      <label>Gold Accent</label>
+      <input type="color" id="goldPicker" value="#d6a84f" style="height:48px;padding:4px">
+      <label>Background</label>
+      <input type="color" id="bgPicker" value="#060606" style="height:48px;padding:4px">
+      <button class="btn primary" id="saveTheme" style="margin-top:12px">Save Theme</button>
+
+      <h3 style="margin-top:22px">Playlist</h3>
+      <div class="playlist">
+        <div class="album">▶</div>
+        <div style="flex:1">
+          <b>Soulaani Playlist</b>
+          <div class="small muted">Your music can live here.</div>
+        </div>
+        <button class="btn" id="playMusic">Play</button>
+      </div>
     </div>
-
   </div>
-
 </section>
 
-
-<!-- LANGUAGE & CONNECTIONS -->
-
-<section id="language" class="page">
-
-  <div class="language-hero">
-
-    <h1>Language & Connections</h1>
-
-    <p>
-      Learn, practice, translate and connect through the languages of Black
-      Americans and the Black diaspora. Language learning is designed to be
-      free inside Soulaani.
-    </p>
-
-    <div class="hero-actions">
-
-      <button class="btn gold-btn" onclick="document.getElementById('languageLessons').scrollIntoView({behavior:'smooth'})">
-        Start Learning
-      </button>
-
-      <button class="btn" onclick="document.getElementById('translator').scrollIntoView({behavior:'smooth'})">
-        Translate
-      </button>
-
-      <button class="btn" onclick="openPage('chat')">
-        Enter Language Chat
-      </button>
-
+<!-- LANGUAGE -->
+<section id="languageSection" class="section">
+  <div class="section-head">
+    <div>
+      <h1>Language & Connections</h1>
+      <p>Learn. Translate. Connect across languages and communities.</p>
     </div>
-
   </div>
 
-
-  <div class="card">
-
-    <div class="card-title">Choose Your Language Server</div>
-
-    <p class="muted">
-      Each server can become its own learning and conversation community.
+  <div class="card language-hero">
+    <div class="small gold">SOULAANI LANGUAGE NETWORK</div>
+    <h2 style="font-size:32px;margin-top:7px">Language should connect people, not separate them.</h2>
+    <p class="muted" style="margin-top:8px">
+      Translate messages, learn languages, and enter language-based communities.
     </p>
+  </div>
 
-    <div class="language-tabs" style="margin-top:15px">
+  <div class="language-grid">
 
-      <button class="language-tab active" onclick="selectLanguage(this,'Haitian Creole')">
-        Haitian Creole
-      </button>
+    <div>
+      <div class="card">
+        <h3>🌍 Real Translator</h3>
 
-      <button class="language-tab" onclick="selectLanguage(this,'Louisiana Creole')">
-        Louisiana Creole
-      </button>
-
-      <button class="language-tab" onclick="selectLanguage(this,'Tutnese')">
-        Tutnese
-      </button>
-
-      <button class="language-tab" onclick="selectLanguage(this,'Gullah Geechee')">
-        Gullah Geechee
-      </button>
-
-      <button class="language-tab" onclick="selectLanguage(this,'Jamaican Patois')">
-        Jamaican Patois
-      </button>
-
-      <button class="language-tab" onclick="selectLanguage(this,'Other Diaspora')">
-        Other Diaspora
-      </button>
-
-    </div>
-
-    <div class="language-server">
-
-      <div class="server">
-
-        <div class="server-top">
-          <strong id="selectedLanguage">Haitian Creole</strong>
-          <span class="online">● Learning Server</span>
+        <div class="connection-status" id="translationStatus" style="margin-top:10px">
+          <span class="dot" id="translationDot"></span>
+          <span id="translationStatusText">Translation engine ready</span>
         </div>
 
-        <p class="muted">
-          Learn vocabulary, phrases, pronunciation, culture and conversation.
+        <label>Translate from</label>
+        <select id="sourceLanguage"></select>
+
+        <label>Translate to</label>
+        <select id="targetLanguage"></select>
+
+        <label>Your text</label>
+        <textarea id="translationInput" placeholder="Type something to translate..."></textarea>
+
+        <div class="btn-row">
+          <button class="btn primary" id="translateBtn">Translate</button>
+          <button class="btn" id="swapLanguages">Swap</button>
+          <button class="btn" id="detectBtn">Auto Detect</button>
+        </div>
+
+        <label>Translation</label>
+        <div id="translationOutput" class="translate-output">Your real translation will appear here.</div>
+
+        <div class="small muted" style="margin-top:10px">
+          Translation engine: LibreTranslate-compatible API.
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Black Diaspora Language Focus</h3>
+        <p class="muted" style="margin-top:6px">Languages and language varieties important to Black communities.</p>
+        <div class="language-chips" id="diasporaLanguages"></div>
+      </div>
+
+      <div class="card">
+        <h3>Free Language Learning</h3>
+        <div class="grid two" style="margin-top:10px">
+          <div class="stat">
+            <b>01</b>
+            <span>Greetings & introductions</span>
+            <button class="btn" style="margin-top:10px" data-lesson="Greetings">Start</button>
+          </div>
+          <div class="stat">
+            <b>02</b>
+            <span>Everyday conversation</span>
+            <button class="btn" style="margin-top:10px" data-lesson="Conversation">Start</button>
+          </div>
+          <div class="stat">
+            <b>03</b>
+            <span>Culture & history</span>
+            <button class="btn" style="margin-top:10px" data-lesson="Culture">Start</button>
+          </div>
+          <div class="stat">
+            <b>04</b>
+            <span>Build your vocabulary</span>
+            <button class="btn" style="margin-top:10px" data-lesson="Vocabulary">Start</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <h3>Language Servers</h3>
+        <p class="muted" style="margin-top:6px">Choose the language community you want to connect with.</p>
+
+        <div class="server-list" id="serverList" style="margin-top:12px"></div>
+      </div>
+
+      <div class="card">
+        <h3>Language Connection Chat</h3>
+        <p class="muted" style="margin-top:6px">
+          Current server: <b id="currentServerName">Global English</b>
         </p>
 
-        <select class="language-select" id="serverLevel">
-          <option>Beginner</option>
-          <option>Intermediate</option>
-          <option>Advanced</option>
-        </select>
+        <div id="languageChat" class="chat" style="margin-top:12px"></div>
 
-        <button class="btn gold-btn" style="margin-top:10px" onclick="startLesson()">
-          Begin Lesson
-        </button>
-
-      </div>
-
-      <div class="server">
-
-        <div class="server-top">
-          <strong>Connect With Speakers</strong>
-          <span class="online">● Live</span>
+        <div class="comment-box">
+          <input id="languageChatInput" placeholder="Message this language server...">
+          <button class="btn primary" id="languageChatSend">Send</button>
         </div>
 
-        <p class="muted">
-          Meet people learning or speaking the same language.
-        </p>
-
-        <button class="btn" style="margin-top:13px" onclick="openPage('chat')">
-          Join Language Chat
+        <button class="btn" id="translateLastMessage" style="margin-top:9px">
+          Translate last message
         </button>
-
       </div>
-
     </div>
-
   </div>
+</section>
 
-
-  <!-- FREE LEARNING -->
-
-  <div id="languageLessons">
-
-    <div class="page-head" style="margin-top:28px">
-      <h1>Free Language Learning</h1>
-      <p>No paid lesson wall. Learn directly inside Soulaani.</p>
-    </div>
-
-    <div class="grid grid3">
-
-      <div class="lesson">
-        <h3>Haitian Creole</h3>
-        <div class="lesson-word">Bonjou</div>
-        <p class="muted">Hello / Good morning</p>
-        <button class="btn small" style="margin-top:12px" onclick="speakWord('Bonjou')">
-          🔊 Hear It
-        </button>
-      </div>
-
-      <div class="lesson">
-        <h3>Louisiana Creole</h3>
-        <div class="lesson-word">Bonjou</div>
-        <p class="muted">A traditional Creole greeting.</p>
-        <button class="btn small" style="margin-top:12px" onclick="speakWord('Bonjou')">
-          🔊 Hear It
-        </button>
-      </div>
-
-      <div class="lesson">
-        <h3>Tutnese</h3>
-        <div class="lesson-word">Tutnese</div>
-        <p class="muted">Explore the historic language tradition and vocabulary.</p>
-        <button class="btn small" style="margin-top:12px" onclick="alert('Tutnese lesson opened.')">
-          Open Lesson
-        </button>
-      </div>
-
-      <div class="lesson">
-        <h3>Gullah Geechee</h3>
-        <div class="lesson-word">Gullah</div>
-        <p class="muted">Explore language, history and cultural vocabulary.</p>
-        <button class="btn small" style="margin-top:12px" onclick="alert('Gullah Geechee lesson opened.')">
-          Open Lesson
-        </button>
-      </div>
-
-      <div class="lesson">
-        <h3>Jamaican Patois</h3>
-        <div class="lesson-word">Wah gwaan?</div>
-        <p class="muted">What's going on? / How are you?</p>
-        <button class="btn small" style="margin-top:12px" onclick="speakWord('Wah gwaan?')">
-          🔊 Hear It
-        </button>
-      </div>
-
-      <div class="lesson">
-        <h3>Diaspora Languages</h3>
-        <div class="lesson-word">Explore</div>
-        <p class="muted">Discover African and Caribbean languages worldwide.</p>
-        <button class="btn small" style="margin-top:12px" onclick="alert('Diaspora language library opened.')">
-          Browse Library
-        </button>
-      </div>
-
-    </div>
-
+<!-- OTHER SECTIONS -->
+<section id="connectSection" class="section">
+  <div class="section-head"><div><h1>Connect</h1><p>Meet people and communities.</p></div></div>
+  <div class="grid">
+    <div class="card"><h3>People</h3><p class="muted" style="margin-top:7px">Discover people with shared interests.</p><button class="btn primary" style="margin-top:12px" id="discoverPeople">Discover</button></div>
+    <div class="card"><h3>Communities</h3><p class="muted" style="margin-top:7px">Join conversations built around culture and interests.</p><button class="btn" style="margin-top:12px" data-section="communitiesSection">Communities</button></div>
+    <div class="card"><h3>Language</h3><p class="muted" style="margin-top:7px">Connect through language.</p><button class="btn" style="margin-top:12px" data-section="languageSection">Language Connections</button></div>
   </div>
+</section>
 
-
-  <!-- TRANSLATOR -->
-
-  <div id="translator" class="card" style="margin-top:25px">
-
-    <div class="card-title">🌍 Soulaani Translator</div>
-
-    <p class="muted">
-      Choose a source and destination language and translate your message.
-    </p>
-
-    <div class="form-grid" style="margin-top:15px">
-
-      <div class="field">
-        <label>From</label>
-
-        <select id="translateFrom">
-          <option>English</option>
-          <option>Haitian Creole</option>
-          <option>Louisiana Creole</option>
-          <option>Tutnese</option>
-          <option>Gullah Geechee</option>
-          <option>Jamaican Patois</option>
-          <option>French</option>
-          <option>Spanish</option>
-          <option>Portuguese</option>
-          <option>Swahili</option>
-          <option>Yoruba</option>
-          <option>Igbo</option>
-          <option>Wolof</option>
-          <option>Amharic</option>
-          <option>Arabic</option>
-          <option>Other</option>
-        </select>
-
-      </div>
-
-      <div class="field">
-        <label>To</label>
-
-        <select id="translateTo">
-          <option>Haitian Creole</option>
-          <option>English</option>
-          <option>Louisiana Creole</option>
-          <option>Tutnese</option>
-          <option>Gullah Geechee</option>
-          <option>Jamaican Patois</option>
-          <option>French</option>
-          <option>Spanish</option>
-          <option>Portuguese</option>
-          <option>Swahili</option>
-          <option>Yoruba</option>
-          <option>Igbo</option>
-          <option>Wolof</option>
-          <option>Amharic</option>
-          <option>Arabic</option>
-          <option>Other</option>
-        </select>
-
-      </div>
-
-    </div>
-
-    <div class="translator" style="margin-top:14px">
-
-      <textarea id="translateInput" placeholder="Type what you want to translate..."></textarea>
-
-      <div class="translation-result" id="translationResult">
-        Your translation will appear here.
-      </div>
-
-    </div>
-
-    <button class="btn gold-btn" style="margin-top:12px" onclick="translateLocal()">
-      Translate
-    </button>
-
-    <p class="muted" style="font-size:12px;margin-top:10px">
-      The browser prototype uses built-in starter phrases. A secure language API
-      can later power broader real-time translation.
-    </p>
-
+<section id="dateSection" class="section">
+  <div class="section-head"><div><h1>Date</h1><p>Meet people intentionally.</p></div></div>
+  <div class="card">
+    <h2>Soulaani Date</h2>
+    <p class="muted" style="margin-top:8px">A future dating layer built around profiles, interests, culture and meaningful connection.</p>
+    <button class="btn primary" style="margin-top:14px" id="dateProfileBtn">Create Dating Profile</button>
   </div>
+</section>
 
+<section id="buildSection" class="section">
+  <div class="section-head"><div><h1>Build</h1><p>Careers, entrepreneurship and networking.</p></div></div>
+  <div class="grid">
+    <div class="card"><h3>Careers</h3><p class="muted" style="margin-top:7px">Find opportunities.</p></div>
+    <div class="card"><h3>Entrepreneurs</h3><p class="muted" style="margin-top:7px">Build with other founders.</p></div>
+    <div class="card"><h3>Networking</h3><p class="muted" style="margin-top:7px">Make professional connections.</p></div>
+  </div>
+</section>
 
-  <!-- DIASPORA -->
+<section id="marketSection" class="section">
+  <div class="section-head"><div><h1>Market</h1><p>Black-owned businesses and marketplace.</p></div></div>
+  <div class="grid">
+    <div class="card"><h3>Black-Owned Businesses</h3><p class="muted" style="margin-top:7px">Discover businesses in your community.</p></div>
+    <div class="card"><h3>Marketplace</h3><p class="muted" style="margin-top:7px">A future marketplace for products and services.</p></div>
+    <div class="card"><h3>Creators</h3><p class="muted" style="margin-top:7px">Support independent creators.</p></div>
+  </div>
+</section>
+
+<section id="exploreSection" class="section">
+  <div class="section-head"><div><h1>Explore</h1><p>Local Discover and your community FYP.</p></div></div>
 
   <div class="card">
-
-    <div class="card-title">Black Diaspora Language Library</div>
-
-    <p class="muted" style="margin-bottom:15px">
-      Soulaani is designed to grow into a worldwide language library.
-    </p>
-
-    <div class="diaspora-list">
-
-      <div class="diaspora">
-        <strong>Haiti</strong>
-        Haitian Creole
-      </div>
-
-      <div class="diaspora">
-        <strong>Louisiana</strong>
-        Louisiana Creole
-      </div>
-
-      <div class="diaspora">
-        <strong>United States</strong>
-        Gullah Geechee
-      </div>
-
-      <div class="diaspora">
-        <strong>United States</strong>
-        Tutnese
-      </div>
-
-      <div class="diaspora">
-        <strong>Jamaica</strong>
-        Jamaican Patois
-      </div>
-
-      <div class="diaspora">
-        <strong>Barbados</strong>
-        Bajan
-      </div>
-
-      <div class="diaspora">
-        <strong>Trinidad & Tobago</strong>
-        Trinidadian Creole
-      </div>
-
-      <div class="diaspora">
-        <strong>Guyana</strong>
-        Guyanese Creole
-      </div>
-
-      <div class="diaspora">
-        <strong>Suriname</strong>
-        Sranan Tongo
-      </div>
-
-      <div class="diaspora">
-        <strong>West Africa</strong>
-        Yoruba
-      </div>
-
-      <div class="diaspora">
-        <strong>West Africa</strong>
-        Igbo
-      </div>
-
-      <div class="diaspora">
-        <strong>West Africa</strong>
-        Wolof
-      </div>
-
-      <div class="diaspora">
-        <strong>East Africa</strong>
-        Swahili
-      </div>
-
-      <div class="diaspora">
-        <strong>Ethiopia</strong>
-        Amharic
-      </div>
-
-      <div class="diaspora">
-        <strong>Global</strong>
-        More languages continually added
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- CHAT -->
-
-<section id="chat" class="page">
-
-  <div class="page-head">
-    <h1>Messages & Language Chat</h1>
-    <p>Connect through conversation, communities and language servers.</p>
-  </div>
-
-  <div class="chat-layout">
-
-    <div class="chat-users">
-
-      <div class="chat-user">
-        <strong>🌍 Haitian Creole</strong>
-        <p class="muted">Language server</p>
-      </div>
-
-      <div class="chat-user">
-        <strong>🌿 Louisiana Creole</strong>
-        <p class="muted">Language server</p>
-      </div>
-
-      <div class="chat-user">
-        <strong>📜 Tutnese</strong>
-        <p class="muted">Learning server</p>
-      </div>
-
-      <div class="chat-user">
-        <strong>✊🏿 Diaspora</strong>
-        <p class="muted">Global community</p>
-      </div>
-
-    </div>
-
-    <div class="chat-window">
-
-      <div class="chat-messages" id="chatMessages">
-
-        <div class="chat-message">
-          Welcome to the Soulaani Language & Connections chat.
-        </div>
-
-        <div class="chat-message">
-          Choose a language server and start connecting.
-        </div>
-
-      </div>
-
-      <div class="chat-compose">
-
-        <input
-          id="chatInput"
-          placeholder="Write a message..."
-          onkeydown="if(event.key==='Enter')sendChat()"
-        >
-
-        <button class="btn gold-btn" onclick="sendChat()">Send</button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- DISCOVER -->
-
-<section id="discover" class="page">
-
-  <div class="page-head">
-    <h1>Local Discover</h1>
-    <p>Find people, culture, businesses, food, events and music around your selected area.</p>
-  </div>
-
-  <div class="card">
-
-    <div class="field">
-      <label>Your City / Area</label>
-      <input id="localLocation" placeholder="Enter your city or area">
-    </div>
-
-    <button class="btn gold-btn" style="margin-top:12px" onclick="saveLocation()">
-      Save Location
-    </button>
-
-    <p class="muted" id="savedLocation" style="margin-top:10px"></p>
-
-  </div>
-
-  <div class="grid grid3">
-
-    <div class="card">
-      <div style="font-size:35px">👥</div>
-      <h3>People</h3>
-      <p class="muted">Discover people in your area.</p>
-    </div>
-
-    <div class="card">
-      <div style="font-size:35px">🏪</div>
-      <h3>Businesses</h3>
-      <p class="muted">Find Black-owned businesses.</p>
-    </div>
-
-    <div class="card">
-      <div style="font-size:35px">📅</div>
-      <h3>Events</h3>
-      <p class="muted">Discover local events.</p>
-    </div>
-
-    <div class="card">
-      <div style="font-size:35px">🍽️</div>
-      <h3>Food</h3>
-      <p class="muted">Discover soul food and local restaurants.</p>
-    </div>
-
-    <div class="card">
-      <div style="font-size:35px">🎵</div>
-      <h3>Music</h3>
-      <p class="muted">Discover local artists and sounds.</p>
-    </div>
-
-    <div class="card">
-      <div style="font-size:35px">🛹</div>
-      <h3>Skate</h3>
-      <p class="muted">Find nearby skate activity.</p>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- CONNECT -->
-
-<section id="communities" class="page">
-
-  <div class="page-head">
-    <h1>Communities</h1>
-    <p>Find your people and build communities around shared interests.</p>
-  </div>
-
-  <div class="grid grid2">
-
-    <div class="card">
-      <h3>Black Creators</h3>
-      <p class="muted">Creators, artists and storytellers.</p>
-      <button class="btn small" style="margin-top:12px">Join</button>
-    </div>
-
-    <div class="card">
-      <h3>Language Learners</h3>
-      <p class="muted">Learn Black diaspora languages together.</p>
-      <button class="btn small" style="margin-top:12px" onclick="openPage('language')">Join</button>
-    </div>
-
-    <div class="card">
-      <h3>Skate Community</h3>
-      <p class="muted">Riders and skateboard culture.</p>
-      <button class="btn small" style="margin-top:12px" onclick="openPage('skate')">Join</button>
-    </div>
-
-    <div class="card">
-      <h3>Entrepreneurs</h3>
-      <p class="muted">Networking and building.</p>
-      <button class="btn small" style="margin-top:12px" onclick="openPage('build')">Join</button>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- DATE -->
-
-<section id="date" class="page">
-
-  <div class="page-head">
-    <h1>Date</h1>
-    <p>Meet people and make meaningful connections.</p>
-  </div>
-
-  <div class="card">
-    <h3>Dating on Soulaani</h3>
-    <p class="muted">
-      Profiles, interests, communities and connections can eventually power the dating experience.
-    </p>
-
-    <button class="btn gold-btn" style="margin-top:15px">
-      Explore Connections
-    </button>
-  </div>
-
-</section>
-
-
-<!-- BUILD -->
-
-<section id="build" class="page">
-
-  <div class="page-head">
-    <h1>Build</h1>
-    <p>Careers, entrepreneurship, networking and opportunity.</p>
-  </div>
-
-  <div class="grid grid3">
-
-    <div class="card">
-      <h3>💼 Careers</h3>
-      <p class="muted">Discover jobs and career opportunities.</p>
-    </div>
-
-    <div class="card">
-      <h3>🚀 Entrepreneurs</h3>
-      <p class="muted">Build businesses and connect with founders.</p>
-    </div>
-
-    <div class="card">
-      <h3>🤝 Networking</h3>
-      <p class="muted">Build professional connections.</p>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- MARKET -->
-
-<section id="market" class="page">
-
-  <div class="page-head">
-    <h1>Market</h1>
-    <p>Discover Black-owned businesses, products and services.</p>
-  </div>
-
-  <div class="grid grid3">
-
-    <div class="card">
-      <h3>🛍️ Marketplace</h3>
-      <p class="muted">Shop from community businesses.</p>
-    </div>
-
-    <div class="card">
-      <h3>🏪 Businesses</h3>
-      <p class="muted">Find businesses in your area.</p>
-    </div>
-
-    <div class="card">
-      <h3>⭐ Featured</h3>
-      <p class="muted">Featured community businesses.</p>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- EXPLORE -->
-
-<section id="explore" class="page">
-
-  <div class="page-head">
-    <h1>Explore</h1>
-    <p>Discover what's happening across Soulaani.</p>
-  </div>
-
-  <div class="grid grid2">
-
-    <div class="card">
-      <h3>⌖ Local Discover</h3>
-      <p class="muted">Explore your local Soulaani feed.</p>
-      <button class="btn small" style="margin-top:12px" onclick="openPage('discover')">
-        Open
-      </button>
-    </div>
-
-    <div class="card">
-      <h3>🌍 Diaspora</h3>
-      <p class="muted">Explore communities worldwide.</p>
-      <button class="btn small" style="margin-top:12px" onclick="openPage('language')">
-        Connect
-      </button>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- SAVED -->
-
-<section id="saved" class="page">
-
-  <div class="page-head">
-    <h1>Saved</h1>
-    <p>Your saved posts, Reels and content.</p>
-  </div>
-
-  <div class="card">
-    <h3>▱ Your Saved Content</h3>
-    <p class="muted" style="margin-top:6px">
-      Saved items are stored locally in this prototype.
-    </p>
-  </div>
-
-</section>
-
-</main>
-</div>
-
-
-<!-- BOTTOM NAV -->
-
-<nav class="bottom-nav">
-
-  <button data-page="home" onclick="openPage('home')">
-    <span class="bottom-icon">⌂</span>
-    Home
-  </button>
-
-  <button data-page="newsfeed" onclick="openPage('newsfeed')">
-    <span class="bottom-icon">▤</span>
-    Newsfeed
-  </button>
-
-  <button data-page="skate" onclick="openPage('skate')">
-    <span class="bottom-icon">🛹</span>
-    Skate
-  </button>
-
-  <button data-page="reels" onclick="openPage('reels')">
-    <span class="bottom-icon">▶</span>
-    Reels
-  </button>
-
-  <button data-page="culture" onclick="openPage('culture')">
-    <span class="bottom-icon">✊🏿</span>
-    Culture
-  </button>
-
-  <button data-page="ai" onclick="openPage('ai')">
-    <span class="bottom-icon">✦</span>
-    AI
-  </button>
-
-  <button data-page="profile" onclick="openPage('profile')">
-    <span class="bottom-icon">●</span>
-    Profile
-  </button>
-
-</nav>
-
-
-<!-- DRAWER -->
-
-<div class="drawer" id="drawer">
-
-  <div class="drawer-bg" onclick="closeDrawer()"></div>
-
-  <div class="drawer-panel">
-
-    <button class="drawer-close" onclick="closeDrawer()">×</button>
-
-    <h2 style="color:var(--gold);margin-bottom:5px">Soulaani</h2>
-    <p class="muted" style="margin-bottom:25px">Explore everything.</p>
-
-    <div class="side-nav">
-
-      <button onclick="drawerPage('language')">🌍 Language & Connections</button>
-      <button onclick="drawerPage('chat')">💬 Messages & Chat</button>
-      <button onclick="drawerPage('communities')">👥 Communities</button>
-      <button onclick="drawerPage('discover')">⌖ Local Discover</button>
-      <button onclick="drawerPage('date')">♡ Date</button>
-      <button onclick="drawerPage('build')">▰ Build</button>
-      <button onclick="drawerPage('market')">◇ Market</button>
-      <button onclick="drawerPage('explore')">◎ Explore</button>
-      <button onclick="drawerPage('saved')">▱ Saved</button>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- COMPOSER MODAL -->
-
-<div class="modal" id="composerModal">
-
-  <div class="modal-box">
-
-    <div class="modal-head">
-      <h2>Create on Soulaani</h2>
-      <button class="close" onclick="closeModal('composerModal')">×</button>
-    </div>
-
-    <div class="field">
-      <label>What do you want to share?</label>
-
-      <textarea
-        id="postText"
-        placeholder="Share something with your community..."
-      ></textarea>
-
-    </div>
-
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:13px">
-
-      <button class="btn small">📷 Photo</button>
-      <button class="btn small">🎥 Video</button>
-      <button class="btn small">😊 Feeling</button>
-      <button class="btn small">📍 Location</button>
-
-    </div>
-
-    <button class="btn gold-btn" style="margin-top:16px;width:100%" onclick="publishPost()">
-      Publish
-    </button>
-
-  </div>
-
-</div>
-
-
-<!-- PROFILE EDITOR -->
-
-<div class="modal" id="profileModal">
-
-  <div class="modal-box">
-
-    <div class="modal-head">
-      <h2>Edit Profile</h2>
-      <button class="close" onclick="closeModal('profileModal')">×</button>
-    </div>
+    <h3>Local Discover</h3>
+    <p class="muted" style="margin-top:6px">Choose your local area.</p>
 
     <div class="form-grid">
-
-      <div class="field">
-        <label>Name</label>
-        <input id="editName" value="Soulaani User">
+      <div>
+        <label>City</label>
+        <input id="localCity" placeholder="Philadelphia">
       </div>
-
-      <div class="field">
-        <label>Username</label>
-        <input id="editUsername" value="@soulaaniuser">
+      <div>
+        <label>State</label>
+        <input id="localState" placeholder="Pennsylvania">
       </div>
-
     </div>
 
-    <div class="field" style="margin-top:13px">
-      <label>Bio</label>
-      <textarea id="editBio">Building connections through culture, community and creativity.</textarea>
-    </div>
+    <button class="btn primary" id="saveLocation" style="margin-top:12px">Set Local FYP</button>
+  </div>
 
-    <button class="btn gold-btn" style="margin-top:15px;width:100%" onclick="saveProfile()">
-      Save Profile
+  <div class="grid">
+    <div class="card"><h3>People nearby</h3><p class="muted" style="margin-top:6px">Local community discovery.</p></div>
+    <div class="card"><h3>Culture nearby</h3><p class="muted" style="margin-top:6px">Food, music and creators.</p></div>
+    <div class="card"><h3>Events nearby</h3><p class="muted" style="margin-top:6px">Local opportunities.</p></div>
+  </div>
+</section>
+
+<section id="messagesSection" class="section">
+  <div class="section-head"><div><h1>Messages</h1><p>Your conversations.</p></div></div>
+  <div class="card">
+    <div id="generalMessages" class="chat"></div>
+    <div class="comment-box">
+      <input id="generalMessageInput" placeholder="Write a message...">
+      <button class="btn primary" id="generalMessageSend">Send</button>
+    </div>
+  </div>
+</section>
+
+<section id="communitiesSection" class="section">
+  <div class="section-head"><div><h1>Communities</h1><p>Find your people.</p></div></div>
+  <div class="grid">
+    <div class="card"><h3>Culture & History</h3><button class="btn" style="margin-top:10px" data-section="cultureSection">Enter</button></div>
+    <div class="card"><h3>Skate Community</h3><button class="btn" style="margin-top:10px" data-section="skateSection">Enter</button></div>
+    <div class="card"><h3>Language Communities</h3><button class="btn" style="margin-top:10px" data-section="languageSection">Enter</button></div>
+  </div>
+</section>
+
+<section id="savedSection" class="section">
+  <div class="section-head"><div><h1>Saved</h1><p>Your saved Soulaani content.</p></div></div>
+  <div id="savedContent"></div>
+</section>
+
+<section id="backupSection" class="section">
+  <div class="section-head"><div><h1>Data & Backup</h1><p>Keep your Soulaani prototype data safe.</p></div></div>
+
+  <div class="card">
+    <h3>Local Data</h3>
+    <p class="muted" style="margin-top:7px">
+      Your prototype data is saved in this browser. Export it so you can keep a backup.
+    </p>
+
+    <div class="btn-row">
+      <button class="btn primary" id="exportData">Export Data</button>
+      <button class="btn" id="importDataBtn">Import Data</button>
+      <button class="btn danger" id="resetData">Reset Local Data</button>
+      <input type="file" id="importDataFile" accept="application/json" class="hidden">
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Translation Server</h3>
+    <p class="muted" style="margin-top:7px">
+      You can change the translation endpoint later to your own Soulaani server.
+    </p>
+    <label>Translation API URL</label>
+    <input id="translationApiUrl">
+    <button class="btn primary" id="saveTranslationApi" style="margin-top:10px">Save Translation Server</button>
+  </div>
+
+  <div class="card">
+    <h3>Soulaani AI Server</h3>
+    <label>AI API URL</label>
+    <input id="aiApiUrl" placeholder="https://your-server.com/api/ai/chat">
+    <button class="btn primary" id="saveAiApi" style="margin-top:10px">Save AI Server</button>
+  </div>
+</section>
+
+<footer>
+  SOULAANI • The Culture. The People. The Platform.
+</footer>
+
+</main>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav" aria-label="Main navigation">
+  <div class="bottom-grid">
+
+    <button class="nav-btn active" data-section="homeSection">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="m3 11 9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>
+      </svg>
+      <span>Home</span>
+    </button>
+
+    <button class="nav-btn" data-section="newsfeedSection">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/>
+        <path d="M7 8h10M7 12h10M7 16h6"/>
+      </svg>
+      <span>Newsfeed</span>
+    </button>
+
+    <button class="nav-btn" data-section="skateSection">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M3 15c4 2 14 2 18 0"/>
+        <circle cx="6" cy="17" r="1.8"/>
+        <circle cx="18" cy="17" r="1.8"/>
+        <path d="m7 15 2-4m8 4-2-4"/>
+      </svg>
+      <span>Skate</span>
+    </button>
+
+    <button class="nav-btn" data-section="reelsSection">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="4" y="3" width="16" height="18" rx="3"/>
+        <path d="m10 8 6 4-6 4z"/>
+      </svg>
+      <span>Reels</span>
+    </button>
+
+    <button class="nav-btn" data-section="cultureSection">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2.5c-1.4 2.3-1.8 4.3-1.1 6.2C9.8 7.4 8.3 6.5 6.6 6c.2 2.1 1.1 3.6 2.7 4.7-2.3-.2-4.2.3-5.8 1.5 1.6 1.4 3.3 2 5.2 1.8-1.6 1.2-2.7 2.8-3.1 4.7 2.2.2 4-.5 5.4-2.1-.2 2 .2 3.6 1 4.9 1.1-1.5 1.5-3.1 1.2-4.9 1.3 1.6 3.1 2.3 5.3 2.1-.4-1.9-1.4-3.5-3.1-4.7 1.9.2 3.7-.4 5.2-1.8-1.6-1.2-3.5-1.7-5.8-1.5 1.6-1.1 2.5-2.6 2.7-4.7-1.7.5-3.2 1.4-4.3 2.7.7-1.9.3-3.9-1.1-6.2z"/>
+      </svg>
+      <span>Culture</span>
+    </button>
+
+    <button class="nav-btn" data-section="aiSection">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/>
+        <circle cx="12" cy="12" r="4"/>
+      </svg>
+      <span>Soulaani AI</span>
+    </button>
+
+    <button class="nav-btn" data-section="profileSection">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="8" r="4"/>
+        <path d="M4 21c.8-4 3.5-6 8-6s7.2 2 8 6"/>
+      </svg>
+      <span>Profile</span>
     </button>
 
   </div>
+</nav>
 
-</div>
-
+<div id="toast" class="toast hidden"></div>
 
 <script>
+"use strict";
 
-/* ============================================================
-   SOULAANI CORE APP
-   Persistent browser prototype
-   ============================================================ */
+/* =========================================================
+   SOULAANI STATE
+========================================================= */
 
-const STORAGE_KEY = "soulaani_v4";
+const STORAGE_KEY = "soulaani_state_v20261004";
 
-let state = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+const DEFAULT_TRANSLATION_API =
+  "https://libretranslate.de/translate";
 
-if(!state.posts){
-  state.posts = [];
-}
-
-if(!state.profile){
-  state.profile = {
+const DEFAULT_STATE = {
+  version:"2026.10.04",
+  profile:{
     name:"Soulaani User",
-    username:"@soulaaniuser",
-    bio:"Building connections through culture, community and creativity."
-  };
-}
+    username:"soulaaniuser",
+    bio:"Building my Soulaani world.",
+    location:""
+  },
+  theme:{
+    gold:"#d6a84f",
+    bg:"#060606"
+  },
+  posts:[
+    {
+      id:"welcome",
+      author:"Soulaani",
+      username:"soulaani",
+      text:"Welcome to Soulaani. The culture, the people, the platform.",
+      type:"text",
+      reactions:{},
+      comments:[],
+      saved:false
+    }
+  ],
+  saved:[],
+  language:{
+    source:"en",
+    target:"fr",
+    currentServer:"global",
+    apiUrl:DEFAULT_TRANSLATION_API
+  },
+  ai:{
+    apiUrl:""
+  },
+  location:{
+    city:"",
+    state:""
+  },
+  chats:{
+    language:[],
+    general:[],
+    ai:[]
+  },
+  lastSection:"homeSection"
+};
 
-if(!state.saved){
-  state.saved = [];
-}
+let state = loadState();
 
-if(!state.location){
-  state.location = "";
-}
+function loadState(){
+  try{
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if(!saved) return structuredClone(DEFAULT_STATE);
 
-function persist(){
-  localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
-}
+    const merged = structuredClone(DEFAULT_STATE);
 
+    Object.assign(merged,saved);
+    merged.profile = {...DEFAULT_STATE.profile,...(saved.profile||{})};
+    merged.theme = {...DEFAULT_STATE.theme,...(saved.theme||{})};
+    merged.language = {...DEFAULT_STATE.language,...(saved.language||{})};
+    merged.ai = {...DEFAULT_STATE.ai,...(saved.ai||{})};
+    merged.location = {...DEFAULT_STATE.location,...(saved.location||{})};
+    merged.chats = {...DEFAULT_STATE.chats,...(saved.chats||{})};
 
-/* PAGE NAVIGATION */
+    if(!Array.isArray(merged.posts)) merged.posts=[];
+    if(!Array.isArray(merged.saved)) merged.saved=[];
+    if(!Array.isArray(merged.chats.language)) merged.chats.language=[];
+    if(!Array.isArray(merged.chats.general)) merged.chats.general=[];
+    if(!Array.isArray(merged.chats.ai)) merged.chats.ai=[];
 
-function openPage(page){
-
-  document.querySelectorAll(".page").forEach(p=>{
-    p.classList.remove("active");
-  });
-
-  const target=document.getElementById(page);
-
-  if(target){
-    target.classList.add("active");
+    return merged;
+  }catch(e){
+    return structuredClone(DEFAULT_STATE);
   }
+}
 
-  document.querySelectorAll(".side-nav button[data-page], .bottom-nav button[data-page]")
-    .forEach(btn=>{
-      btn.classList.toggle("active",btn.dataset.page===page);
-    });
+function saveState(){
+  try{
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+    updateCounters();
+  }catch(e){
+    showToast("Local storage is unavailable.");
+  }
+}
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
+/* =========================================================
+   UTILITIES
+========================================================= */
+
+function $(id){
+  return document.getElementById(id);
+}
+
+function escapeHTML(value){
+  return String(value??"")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+function uid(prefix="id"){
+  return prefix+"_"+Date.now()+"_"+Math.random().toString(36).slice(2,8);
+}
+
+let toastTimer;
+
+function showToast(message){
+  const el=$("toast");
+  el.textContent=message;
+  el.classList.remove("hidden");
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>el.classList.add("hidden"),2800);
+}
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function openSection(id){
+  const section=document.getElementById(id);
+  if(!section)return;
+
+  document.querySelectorAll(".section").forEach(s=>{
+    s.classList.toggle("active",s.id===id);
   });
+
+  document.querySelectorAll(".nav-btn").forEach(btn=>{
+    btn.classList.toggle("active",btn.dataset.section===id);
+  });
+
+  state.lastSection=id;
+  saveState();
 
   closeDrawer();
 
-  if(page==="profile"){
-    renderProfile();
-  }
+  window.scrollTo({top:0,behavior:"smooth"});
 
-  if(page==="discover"){
-    loadLocation();
-  }
+  if(id==="savedSection") renderSaved();
 }
 
+document.addEventListener("click",e=>{
+  const target=e.target.closest("[data-section]");
+  if(target){
+    openSection(target.dataset.section);
+  }
+});
 
-/* DRAWER */
+/* =========================================================
+   DRAWER
+========================================================= */
 
 function openDrawer(){
-  document.getElementById("drawer").classList.add("open");
+  $("drawerBackdrop").classList.add("open");
 }
 
 function closeDrawer(){
-  document.getElementById("drawer").classList.remove("open");
+  $("drawerBackdrop").classList.remove("open");
 }
 
-function drawerPage(page){
-  openPage(page);
+$("menuBtn").addEventListener("click",openDrawer);
+$("closeDrawer").addEventListener("click",closeDrawer);
+
+$("drawerBackdrop").addEventListener("click",e=>{
+  if(e.target===$("drawerBackdrop")) closeDrawer();
+});
+
+$("searchBtn").addEventListener("click",()=>{
+  openSection("newsfeedSection");
+  setTimeout(()=> $("postInput").focus(),250);
+  showToast("Use the Newsfeed composer to start a post.");
+});
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+function renderProfile(){
+  const name=state.profile.name||"Soulaani User";
+  const username=state.profile.username||"soulaaniuser";
+
+  $("profileDisplayName").textContent=name;
+  $("profileUsername").textContent="@"+username;
+  $("composerName").textContent=name;
+
+  const initial=name.trim().charAt(0).toUpperCase()||"S";
+  $("profileAvatar").textContent=initial;
+  $("composerAvatar").textContent=initial;
+
+  $("profileNameInput").value=state.profile.name;
+  $("profileUsernameInput").value=state.profile.username;
+  $("profileBioInput").value=state.profile.bio;
+  $("profileLocationInput").value=state.profile.location;
+
+  $("goldPicker").value=state.theme.gold;
+  $("bgPicker").value=state.theme.bg;
+
+  $("translationApiUrl").value=state.language.apiUrl;
+  $("aiApiUrl").value=state.ai.apiUrl;
+
+  document.documentElement.style.setProperty("--gold",state.theme.gold);
+  document.documentElement.style.setProperty("--gold2",lighten(state.theme.gold));
 }
 
-
-/* MODALS */
-
-function openModal(id){
-  document.getElementById(id).classList.add("open");
+function lighten(hex){
+  const h=hex.replace("#","");
+  if(h.length!==6)return "#f0c76a";
+  const r=Math.min(255,parseInt(h.slice(0,2),16)+35);
+  const g=Math.min(255,parseInt(h.slice(2,4),16)+35);
+  const b=Math.min(255,parseInt(h.slice(4,6),16)+35);
+  return "#"+[r,g,b].map(x=>x.toString(16).padStart(2,"0")).join("");
 }
 
-function closeModal(id){
-  document.getElementById(id).classList.remove("open");
+$("saveProfile").addEventListener("click",()=>{
+  state.profile.name=$("profileNameInput").value.trim()||"Soulaani User";
+  state.profile.username=$("profileUsernameInput").value.trim().replace(/^@/,"")||"soulaaniuser";
+  state.profile.bio=$("profileBioInput").value.trim();
+  state.profile.location=$("profileLocationInput").value.trim();
+
+  saveState();
+  renderProfile();
+  showToast("Profile saved.");
+});
+
+$("saveTheme").addEventListener("click",()=>{
+  state.theme.gold=$("goldPicker").value;
+  state.theme.bg=$("bgPicker").value;
+
+  saveState();
+  renderProfile();
+  showToast("Profile theme saved.");
+});
+
+$("playMusic").addEventListener("click",()=>{
+  showToast("Playlist player ready for your music files or streaming integration.");
+});
+
+/* =========================================================
+   POSTS
+========================================================= */
+
+function renderFeed(){
+  const feed=$("feed");
+
+  if(!state.posts.length){
+    feed.innerHTML=`<div class="card"><p class="muted">No posts yet.</p></div>`;
+    return;
+  }
+
+  feed.innerHTML=state.posts.map(post=>{
+    const reactionCount=Object.keys(post.reactions||{}).length;
+    const comments=(post.comments||[]);
+
+    return `
+      <article class="card post" data-post-id="${escapeHTML(post.id)}">
+        <div class="post-head">
+          <div class="avatar">${escapeHTML((post.author||"S").charAt(0).toUpperCase())}</div>
+          <div class="post-meta">
+            <b>${escapeHTML(post.author||"Soulaani User")}</b>
+            <span>@${escapeHTML(post.username||"soulaani")} • Public</span>
+          </div>
+        </div>
+
+        <div class="post-text">${escapeHTML(post.text||"")}</div>
+
+        ${
+          post.type!=="text"
+          ? `<div class="post-media">
+               ${post.type==="photo"?"📷 Photo post":"▶ Video post"}
+             </div>`
+          :""
+        }
+
+        <div class="small muted" style="margin-top:8px">
+          ${reactionCount} reaction${reactionCount===1?"":"s"} • ${comments.length} comment${comments.length===1?"":"s"}
+        </div>
+
+        <div class="post-actions">
+          <button class="action reaction-trigger">♡ React</button>
+          <button class="action comment-trigger">Comment</button>
+          <button class="action share-trigger">Share</button>
+          <button class="action save-trigger">${post.saved?"Saved":"Save"}</button>
+        </div>
+
+        <div class="reaction-menu hidden">
+          <button data-reaction="heart">♥</button>
+          <button data-reaction="laugh">😂</button>
+          <button data-reaction="love">❤</button>
+          <button data-reaction="dislike">👎</button>
+          <button data-reaction="fire">🔥</button>
+        </div>
+
+        <div class="comments">
+          ${comments.map(c=>`
+            <div class="comment">
+              <b>${escapeHTML(c.author)}</b> ${escapeHTML(c.text)}
+            </div>
+          `).join("")}
+        </div>
+
+        <div class="comment-box">
+          <input class="comment-input" placeholder="Write a comment...">
+          <button class="btn comment-submit">Send</button>
+        </div>
+      </article>
+    `;
+  });
 }
 
-
-/* COMPOSER */
-
-let composerType="post";
-
-function openComposer(type="post"){
-  composerType=type;
-  document.getElementById("postText").value="";
-  openModal("composerModal");
-}
-
-function publishPost(){
-
-  const text=document.getElementById("postText").value.trim();
+function createPost(type="text"){
+  const text=$("postInput").value.trim();
 
   if(!text){
-    alert("Write something first.");
+    showToast("Write something first.");
+    $("postInput").focus();
     return;
   }
 
   state.posts.unshift({
-    id:Date.now(),
-    text:text,
-    type:composerType,
-    reactions:0,
-    comments:0,
-    saved:false,
-    created:new Date().toLocaleString()
+    id:uid("post"),
+    author:state.profile.name||"Soulaani User",
+    username:state.profile.username||"soulaaniuser",
+    text,
+    type,
+    reactions:{},
+    comments:[],
+    saved:false
   });
 
-  persist();
-  closeModal("composerModal");
-  renderPosts();
-
-  openPage(composerType==="reel" ? "reels" : "newsfeed");
+  $("postInput").value="";
+  saveState();
+  renderFeed();
+  showToast("Post published.");
 }
 
-
-/* POSTS */
-
-function renderPosts(){
-
-  const containers=[
-    document.getElementById("homePosts"),
-    document.getElementById("feedPosts")
-  ];
-
-  let html="";
-
-  state.posts.forEach(post=>{
-
-    html+=`
-
-      <article class="card">
-
-        <div class="post-head">
-          <div class="avatar">S</div>
-
-          <div>
-            <div class="post-user">
-              ${escapeHTML(state.profile.name)}
-            </div>
-
-            <div class="post-time">
-              ${escapeHTML(post.created)}
-            </div>
-          </div>
-        </div>
-
-        <div class="post-text">
-          ${escapeHTML(post.text)}
-        </div>
-
-        ${
-          post.type==="reel"
-          ?
-          `<div class="post-media">▶ REEL</div>`
-          :
-          ""
-        }
-
-        <div class="post-stats">
-          <span>${post.reactions || 0} reactions</span>
-          <span>${post.comments || 0} comments</span>
-        </div>
-
-        <div class="post-actions">
-
-          <div class="reaction-wrap">
-
-            <button onclick="reactPost(${post.id})">
-              ♡ React
-            </button>
-
-            <div class="reaction-menu">
-
-              <button onclick="chooseReaction(${post.id},'❤️')">❤️</button>
-              <button onclick="chooseReaction(${post.id},'😂')">😂</button>
-              <button onclick="chooseReaction(${post.id},'🔥')">🔥</button>
-              <button onclick="chooseReaction(${post.id},'😮')">😮</button>
-              <button onclick="chooseReaction(${post.id},'😢')">😢</button>
-              <button onclick="chooseReaction(${post.id},'👎🏿')">👎🏿</button>
-
-            </div>
-
-          </div>
-
-          <button onclick="commentPost(${post.id})">💬 Comment</button>
-
-          <button onclick="shareContent()">↗ Share</button>
-
-          <button onclick="savePost(${post.id})">▱ Save</button>
-
-        </div>
-
-      </article>
-
-    `;
-  });
-
-  containers.forEach(c=>{
-    if(c){
-      c.innerHTML=html;
-    }
-  });
-
-}
-
-
-/* REACTIONS */
-
-function react(button){
-
-  button.textContent="❤️";
-}
-
-function reactPost(id){
-
-  const post=state.posts.find(p=>p.id===id);
-
-  if(post){
-    post.reactions=(post.reactions||0)+1;
-    persist();
-    renderPosts();
-  }
-
-}
-
-function chooseReaction(id,reaction){
-
-  const post=state.posts.find(p=>p.id===id);
-
-  if(post){
-    post.reactions=(post.reactions||0)+1;
-    post.lastReaction=reaction;
-    persist();
-    renderPosts();
-  }
-
-}
-
-function commentPost(id){
-
-  const comment=prompt("Write your comment:");
-
-  if(!comment){
-    return;
-  }
-
-  const post=state.posts.find(p=>p.id===id);
-
-  if(post){
-    post.comments=(post.comments||0)+1;
-    persist();
-    renderPosts();
-    alert("Comment added.");
-  }
-
-}
-
-
-/* SAVE */
-
-function savePost(id){
-
-  if(!state.saved.includes(id)){
-    state.saved.push(id);
-    persist();
-    alert("Saved to Soulaani.");
-  }else{
-    alert("Already saved.");
-  }
-
-}
-
-function saveContent(button){
-
-  button.textContent="✓";
-
-  const key="soulaani_saved_content";
-
-  let saved=JSON.parse(localStorage.getItem(key)||"[]");
-
-  saved.push(Date.now());
-
-  localStorage.setItem(key,JSON.stringify(saved));
-
-}
-
-function shareContent(){
-
-  if(navigator.share){
-
-    navigator.share({
-      title:"Soulaani",
-      text:"Check this out on Soulaani."
-    }).catch(()=>{});
-
-  }else{
-
-    navigator.clipboard?.writeText(location.href);
-
-    alert("Soulaani link copied.");
-
-  }
-
-}
-
-
-/* PROFILE */
-
-function renderProfile(){
-
-  document.getElementById("profileName").textContent=state.profile.name;
-
-  document.getElementById("profileUsername").textContent=state.profile.username;
-
-  document.getElementById("profileBio").textContent=state.profile.bio;
-
-  const letter=(state.profile.name||"S").charAt(0).toUpperCase();
-
-  document.getElementById("profileAvatar").textContent=letter;
-
-}
-
-function openProfileEditor(){
-
-  document.getElementById("editName").value=state.profile.name;
-
-  document.getElementById("editUsername").value=state.profile.username;
-
-  document.getElementById("editBio").value=state.profile.bio;
-
-  openModal("profileModal");
-
-}
-
-function saveProfile(){
-
-  state.profile.name=document.getElementById("editName").value.trim()||"Soulaani User";
-
-  state.profile.username=document.getElementById("editUsername").value.trim()||"@soulaaniuser";
-
-  state.profile.bio=document.getElementById("editBio").value.trim();
-
-  persist();
-
-  renderProfile();
-
-  closeModal("profileModal");
-
-}
-
-
-/* LANGUAGE */
-
-function selectLanguage(button,name){
-
-  document.querySelectorAll(".language-tab").forEach(b=>{
-    b.classList.remove("active");
-  });
-
-  button.classList.add("active");
-
-  document.getElementById("selectedLanguage").textContent=name;
-
-  localStorage.setItem("soulaani_selected_language",name);
-
-}
-
-function startLesson(){
-
-  const language=document.getElementById("selectedLanguage").textContent;
-
-  alert("Starting your free "+language+" lesson.");
-
-}
-
-function speakWord(word){
-
-  if("speechSynthesis" in window){
-
-    const utterance=new SpeechSynthesisUtterance(word);
-
-    speechSynthesis.speak(utterance);
-
-  }else{
-
-    alert(word);
-
-  }
-
-}
-
-
-/* BASIC LOCAL TRANSLATION DEMO */
-
-const phraseBook={
-
-  "hello|English|Haitian Creole":"Bonjou",
-
-  "how are you|English|Haitian Creole":"Kijan ou ye?",
-
-  "thank you|English|Haitian Creole":"Mèsi",
-
-  "good morning|English|Haitian Creole":"Bonjou",
-
-  "hello|Haitian Creole|English":"Hello",
-
-  "bonjou|Haitian Creole|English":"Hello",
-
-  "mèsi|Haitian Creole|English":"Thank you",
-
-  "kijan ou ye?|Haitian Creole|English":"How are you?"
-
-};
-
-function translateLocal(){
-
-  const input=document.getElementById("translateInput").value.trim();
-
-  const from=document.getElementById("translateFrom").value;
-
-  const to=document.getElementById("translateTo").value;
-
-  if(!input){
-
-    document.getElementById("translationResult").textContent=
-      "Enter text to translate.";
-
-    return;
-
-  }
-
-  const key=input.toLowerCase()+"|"+from+"|"+to;
-
-  if(phraseBook[key]){
-
-    document.getElementById("translationResult").textContent=
-      phraseBook[key];
-
-  }else{
-
-    document.getElementById("translationResult").textContent=
-      "Translation service ready. Connect Soulaani's secure translation API for full worldwide language translation.";
-
-  }
-
-}
-
-
-/* CHAT */
-
-function sendChat(){
-
-  const input=document.getElementById("chatInput");
-
-  const text=input.value.trim();
-
-  if(!text){
-    return;
-  }
-
-  const messages=document.getElementById("chatMessages");
-
-  const mine=document.createElement("div");
-
-  mine.className="chat-message mine";
-
-  mine.textContent=text;
-
-  messages.appendChild(mine);
-
-  input.value="";
-
-  messages.scrollTop=messages.scrollHeight;
-
-}
-
-
-/* AI */
-
-function sendAI(){
-
-  const input=document.getElementById("aiInput");
-
-  const text=input.value.trim();
-
-  if(!text){
-    return;
-  }
-
-  const messages=document.getElementById("aiMessages");
-
-  const user=document.createElement("div");
-
-  user.className="ai-msg user";
-
-  user.textContent=text;
-
-  messages.appendChild(user);
-
-  input.value="";
-
-  const bot=document.createElement("div");
-
-  bot.className="ai-msg bot";
-
-  bot.textContent=getLocalAIResponse(text);
-
-  messages.appendChild(bot);
-
-  messages.scrollTop=messages.scrollHeight;
-
-}
-
-function getLocalAIResponse(text){
-
-  const lower=text.toLowerCase();
-
-  if(lower.includes("language") || lower.includes("translate")){
-
-    return "You can use Language & Connections to learn Haitian Creole, Louisiana Creole, Tutnese, Gullah Geechee, Jamaican Patois and explore the wider Black diaspora language library.";
-
-  }
-
-  if(lower.includes("tutnese")){
-
-    return "Tutnese is available in the Language & Connections section as a dedicated learning area.";
-
-  }
-
-  if(lower.includes("haitian")){
-
-    return "Haitian Creole has its own learning server, free lessons, translation tools and language chat.";
-
-  }
-
-  if(lower.includes("skate")){
-
-    return "Soulaani Skate is a dedicated section for riders, clips, spots, events and community.";
-
-  }
-
-  if(lower.includes("reel")){
-
-    return "Reels is a dedicated Soulaani section for short-form video.";
-
-  }
-
-  return "I'm connected to the Soulaani prototype. I can help you navigate the platform, explore languages, culture, Skate, Reels, communities and more. A secure AI connection can power broader live responses.";
-
-}
-
-
-/* LOCAL DISCOVER */
-
-function saveLocation(){
-
-  const input=document.getElementById("localLocation");
-
-  state.location=input.value.trim();
-
-  persist();
-
-  loadLocation();
-
-}
-
-function loadLocation(){
-
-  const saved=document.getElementById("savedLocation");
-
-  const input=document.getElementById("localLocation");
-
-  if(!saved){
-    return;
-  }
-
-  if(state.location){
-
-    saved.textContent="Current Soulaani area: "+state.location;
-
-    if(input){
-      input.value=state.location;
-    }
-
-  }else{
-
-    saved.textContent="No local area selected yet.";
-
-  }
-
-}
-
-
-/* ESCAPE HTML */
-
-function escapeHTML(value){
-
-  return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-
-}
-
-
-/* INITIALIZE */
-
-renderPosts();
-renderProfile();
-loadLocation();
-openPage("home");
-
-
-/* CLOSE MODAL WHEN CLICKING OUTSIDE */
-
-document.querySelectorAll(".modal").forEach(modal=>{
-
-  modal.addEventListener("click",function(e){
-
-    if(e.target===modal){
-      modal.classList.remove("open");
-    }
-
-  });
-
+$("publishPost").addEventListener("click",()=>createPost("text"));
+$("photoPostBtn").addEventListener("click",()=>createPost("photo"));
+$("videoPostBtn").addEventListener("click",()=>createPost("video"));
+$("feelingPostBtn").addEventListener("click",()=>{
+  $("postInput").value="I'm feeling good today on Soulaani.";
+  $("postInput").focus();
 });
 
+$("feed").addEventListener("click",e=>{
+  const post=e.target.closest(".post");
+  if(!post)return;
 
-/* SAVE LANGUAGE SELECTION */
+  const id=post.dataset.postId;
+  const item=state.posts.find(p=>p.id===id);
+  if(!item)return;
 
-const savedLanguage=localStorage.getItem("soulaani_selected_language");
-
-if(savedLanguage){
-
-  const selected=document.getElementById("selectedLanguage");
-
-  if(selected){
-    selected.textContent=savedLanguage;
+  if(e.target.closest(".reaction-trigger")){
+    post.querySelector(".reaction-menu").classList.toggle("hidden");
   }
 
+  const reaction=e.target.closest("[data-reaction]");
+  if(reaction){
+    const r=reaction.dataset.reaction;
+    item.reactions[r]=!item.reactions[r];
+    saveState();
+    renderFeed();
+  }
+
+  if(e.target.closest(".save-trigger")){
+    item.saved=!item.saved;
+
+    if(item.saved){
+      if(!state.saved.includes(id))state.saved.push(id);
+    }else{
+      state.saved=state.saved.filter(x=>x!==id);
+    }
+
+    saveState();
+    renderFeed();
+    showToast(item.saved?"Post saved.":"Post removed from Saved.");
+  }
+
+  if(e.target.closest(".share-trigger")){
+    const shareText=`${item.author}: ${item.text}`;
+
+    if(navigator.share){
+      navigator.share({title:"Soulaani",text:shareText}).catch(()=>{});
+    }else{
+      showToast("Share ready. Native sharing is unavailable in this browser.");
+    }
+  }
+
+  if(e.target.closest(".comment-submit")){
+    const input=post.querySelector(".comment-input");
+    const text=input.value.trim();
+
+    if(!text)return;
+
+    item.comments.push({
+      id:uid("comment"),
+      author:state.profile.name||"Soulaani User",
+      text
+    });
+
+    input.value="";
+    saveState();
+    renderFeed();
+  }
+});
+
+/* =========================================================
+   LANGUAGE DATA
+========================================================= */
+
+const LANGUAGES=[
+  ["auto","Auto Detect"],
+  ["en","English"],
+  ["es","Spanish"],
+  ["fr","French"],
+  ["ht","Haitian Creole"],
+  ["de","German"],
+  ["it","Italian"],
+  ["pt","Portuguese"],
+  ["ar","Arabic"],
+  ["zh","Chinese"],
+  ["zt","Chinese Traditional"],
+  ["ja","Japanese"],
+  ["ko","Korean"],
+  ["ru","Russian"],
+  ["uk","Ukrainian"],
+  ["pl","Polish"],
+  ["nl","Dutch"],
+  ["tr","Turkish"],
+  ["sv","Swedish"],
+  ["da","Danish"],
+  ["no","Norwegian"],
+  ["fi","Finnish"],
+  ["el","Greek"],
+  ["he","Hebrew"],
+  ["hi","Hindi"],
+  ["bn","Bengali"],
+  ["id","Indonesian"],
+  ["ms","Malay"],
+  ["vi","Vietnamese"],
+  ["th","Thai"],
+  ["cs","Czech"],
+  ["sk","Slovak"],
+  ["ro","Romanian"],
+  ["hu","Hungarian"],
+  ["fa","Persian"],
+  ["sw","Swahili"],
+  ["am","Amharic"],
+  ["af","Afrikaans"],
+  ["ca","Catalan"],
+  ["eu","Basque"],
+  ["ga","Irish"],
+  ["eo","Esperanto"]
+];
+
+const DIASPORA_LANGUAGES=[
+  ["ht","Haitian Creole"],
+  ["gcf","Louisiana Creole"],
+  ["tut","Tutnese"],
+  ["gullah","Gullah Geechee"],
+  ["jam","Jamaican Patois"],
+  ["sw","Swahili"],
+  ["yo","Yorùbá"],
+  ["ig","Igbo"],
+  ["ff","Fulfulde"],
+  ["wo","Wolof"],
+  ["am","Amharic"],
+  ["so","Somali"],
+  ["af","Afrikaans"],
+  ["pt","Portuguese"],
+  ["fr","French"],
+  ["es","Spanish"],
+  ["ar","Arabic"],
+  ["en","English"]
+];
+
+const SERVERS=[
+  {
+    id:"global",
+    name:"Global English",
+    description:"Worldwide English-speaking connection"
+  },
+  {
+    id:"haitian",
+    name:"Haitian Creole",
+    description:"Kreyòl community"
+  },
+  {
+    id:"louisiana",
+    name:"Louisiana Creole",
+    description:"Louisiana Creole community"
+  },
+  {
+    id:"tutnese",
+    name:"Tutnese",
+    description:"Language learning and cultural preservation"
+  },
+  {
+    id:"gullah",
+    name:"Gullah Geechee",
+    description:"Gullah Geechee language community"
+  },
+  {
+    id:"jamaican",
+    name:"Jamaican Patois",
+    description:"Jamaican language community"
+  },
+  {
+    id:"french",
+    name:"Francophone",
+    description:"French-speaking connection"
+  },
+  {
+    id:"spanish",
+    name:"Español",
+    description:"Spanish-speaking connection"
+  }
+];
+
+function populateLanguageSelects(){
+  const source=$("sourceLanguage");
+  const target=$("targetLanguage");
+
+  source.innerHTML=LANGUAGES.map(([code,name])=>
+    `<option value="${code}">${escapeHTML(name)}</option>`
+  ).join("");
+
+  target.innerHTML=LANGUAGES
+    .filter(([code])=>code!=="auto")
+    .map(([code,name])=>
+      `<option value="${code}">${escapeHTML(name)}</option>`
+    ).join("");
+
+  source.value=state.language.source||"en";
+  target.value=state.language.target||"fr";
 }
+
+function renderDiasporaLanguages(){
+  $("diasporaLanguages").innerHTML=DIASPORA_LANGUAGES.map(([code,name])=>
+    `<button class="lang-chip" data-lang="${escapeHTML(code)}">${escapeHTML(name)}</button>`
+  ).join("");
+}
+
+function renderServers(){
+  $("serverList").innerHTML=SERVERS.map(server=>`
+    <button class="server ${state.language.currentServer===server.id?"selected":""}" data-server="${server.id}">
+      <b>${escapeHTML(server.name)}</b>
+      <small>${escapeHTML(server.description)}</small>
+    </button>
+  `).join("");
+
+  const current=SERVERS.find(s=>s.id===state.language.currentServer)||SERVERS[0];
+  $("currentServerName").textContent=current.name;
+}
+
+$("diasporaLanguages").addEventListener("click",e=>{
+  const chip=e.target.closest("[data-lang]");
+  if(!chip)return;
+
+  const code=chip.dataset.lang;
+
+  if(LANGUAGES.some(x=>x[0]===code)){
+    $("targetLanguage").value=code;
+    showToast(`${chip.textContent} selected.`);
+  }else{
+    showToast(`${chip.textContent} is in the Soulaani language network and can be added to the active translation engine when its model is available.`);
+  }
+});
+
+$("serverList").addEventListener("click",e=>{
+  const server=e.target.closest("[data-server]");
+  if(!server)return;
+
+  state.language.currentServer=server.dataset.server;
+  saveState();
+  renderServers();
+  renderLanguageChat();
+  showToast("Language server changed.");
+});
+
+/* =========================================================
+   REAL TRANSLATION
+========================================================= */
+
+async function translateText(text,source,target){
+  const clean=String(text||"").trim();
+
+  if(!clean)throw new Error("Enter text to translate.");
+
+  if(target==="auto")throw new Error("Choose a target language.");
+
+  const apiUrl=(state.language.apiUrl||DEFAULT_TRANSLATION_API).trim();
+
+  if(!apiUrl)throw new Error("No translation server configured.");
+
+  const controller=new AbortController();
+  const timeout=setTimeout(()=>controller.abort(),20000);
+
+  try{
+    const response=await fetch(apiUrl,{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+        "Accept":"application/json"
+      },
+      body:JSON.stringify({
+        q:clean,
+        source:source||"auto",
+        target,
+        format:"text"
+      }),
+      signal:controller.signal
+    });
+
+    let data={};
+
+    try{
+      data=await response.json();
+    }catch(e){}
+
+    if(!response.ok){
+      throw new Error(
+        data.error ||
+        `Translation server returned ${response.status}.`
+      );
+    }
+
+    if(!data.translatedText){
+      throw new Error("Translation server did not return translated text.");
+    }
+
+    return data.translatedText;
+
+  }finally{
+    clearTimeout(timeout);
+  }
+}
+
+async function detectLanguage(text){
+  const apiUrl=(state.language.apiUrl||DEFAULT_TRANSLATION_API)
+    .replace(/\/translate\/?$/,"/detect");
+
+  const controller=new AbortController();
+  const timeout=setTimeout(()=>controller.abort(),15000);
+
+  try{
+    const response=await fetch(apiUrl,{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+        "Accept":"application/json"
+      },
+      body:JSON.stringify({q:text}),
+      signal:controller.signal
+    });
+
+    const data=await response.json();
+
+    if(!response.ok)throw new Error(data.error||"Language detection failed.");
+
+    if(!Array.isArray(data)||!data[0])throw new Error("No detected language.");
+
+    return data[0].language;
+
+  }finally{
+    clearTimeout(timeout);
+  }
+}
+
+async function doTranslation(){
+  const input=$("translationInput").value.trim();
+  const source=$("sourceLanguage").value;
+  const target=$("targetLanguage").value;
+
+  if(!input){
+    showToast("Type something to translate.");
+    return;
+  }
+
+  if(source===target && source!=="auto"){
+    $("translationOutput").textContent=input;
+    return;
+  }
+
+  const btn=$("translateBtn");
+  const output=$("translationOutput");
+  const dot=$("translationDot");
+  const status=$("translationStatusText");
+
+  btn.disabled=true;
+  btn.innerHTML=`<span class="loading"><span class="spinner"></span> Translating...</span>`;
+  output.textContent="";
+
+  try{
+    const result=await translateText(input,source,target);
+
+    output.textContent=result;
+
+    dot.classList.add("online");
+    dot.classList.remove("error");
+    status.textContent="Translation completed through the live translation API.";
+
+    showToast("Translation completed.");
+
+  }catch(error){
+    output.textContent=
+      "Translation could not be completed.\n\n"+
+      error.message+
+      "\n\nYou can change the translation server in Data & Backup.";
+
+    dot.classList.remove("online");
+    dot.classList.add("error");
+    status.textContent="Translation server unavailable or language pair unsupported.";
+
+  }finally{
+    btn.disabled=false;
+    btn.textContent="Translate";
+  }
+}
+
+$("translateBtn").addEventListener("click",doTranslation);
+
+$("swapLanguages").addEventListener("click",()=>{
+  const source=$("sourceLanguage");
+  const target=$("targetLanguage");
+
+  if(source.value==="auto"){
+    showToast("Auto Detect cannot be swapped. Choose a source language first.");
+    return;
+  }
+
+  const oldSource=source.value;
+  source.value=target.value;
+  target.value=oldSource;
+
+  const output=$("translationOutput").textContent;
+
+  if(output && output!=="Your real translation will appear here."){
+    $("translationInput").value=output;
+    $("translationOutput").textContent="Ready for the swapped translation.";
+  }
+
+  state.language.source=source.value;
+  state.language.target=target.value;
+  saveState();
+});
+
+$("detectBtn").addEventListener("click",async()=>{
+  const text=$("translationInput").value.trim();
+
+  if(!text){
+    showToast("Type something first.");
+    return;
+  }
+
+  const btn=$("detectBtn");
+  btn.disabled=true;
+  btn.textContent="Detecting...";
+
+  try{
+    const detected=await detectLanguage(text);
+    const exists=LANGUAGES.some(x=>x[0]===detected);
+
+    if(exists){
+      $("sourceLanguage").value=detected;
+      state.language.source=detected;
+      saveState();
+
+      const found=LANGUAGES.find(x=>x[0]===detected);
+      showToast(`Detected: ${found?found[1]:detected}`);
+    }else{
+      showToast(`Detected language code: ${detected}`);
+    }
+
+  }catch(error){
+    showToast("Automatic detection failed: "+error.message);
+  }finally{
+    btn.disabled=false;
+    btn.textContent="Auto Detect";
+  }
+});
+
+$("sourceLanguage").addEventListener("change",()=>{
+  state.language.source=$("sourceLanguage").value;
+  saveState();
+});
+
+$("targetLanguage").addEventListener("change",()=>{
+  state.language.target=$("targetLanguage").value;
+  saveState();
+});
+
+/* =========================================================
+   LANGUAGE CHAT
+========================================================= */
+
+function renderLanguageChat(){
+  const server=state.language.currentServer;
+
+  const messages=state.chats.language.filter(
+    m=>m.server===server
+  );
+
+  const box=$("languageChat");
+
+  if(!messages.length){
+    box.innerHTML=`
+      <div class="message">
+        Welcome to this language server.
+        <small>Start the conversation.</small>
+      </div>`;
+    return;
+  }
+
+  box.innerHTML=messages.map(m=>`
+    <div class="message ${m.me?"me":""}">
+      ${escapeHTML(m.text)}
+      <small>${escapeHTML(m.author)}</small>
+    </div>
+  `).join("");
+
+  box.scrollTop=box.scrollHeight;
+}
+
+function sendLanguageMessage(){
+  const input=$("languageChatInput");
+  const text=input.value.trim();
+
+  if(!text)return;
+
+  state.chats.language.push({
+    id:uid("langmsg"),
+    server:state.language.currentServer,
+    text,
+    author:state.profile.name||"Soulaani User",
+    me:true,
+    time:Date.now()
+  });
+
+  input.value="";
+  saveState();
+  renderLanguageChat();
+}
+
+$("languageChatSend").addEventListener("click",sendLanguageMessage);
+
+$("languageChatInput").addEventListener("keydown",e=>{
+  if(e.key==="Enter"&&!e.shiftKey){
+    e.preventDefault();
+    sendLanguageMessage();
+  }
+});
+
+$("translateLastMessage").addEventListener("click",async()=>{
+  const messages=state.chats.language.filter(
+    m=>m.server===state.language.currentServer
+  );
+
+  if(!messages.length){
+    showToast("There is no message to translate yet.");
+    return;
+  }
+
+  const last=messages[messages.length-1];
+
+  $("translationInput").value=last.text;
+  openSection("languageSection");
+
+  await doTranslation();
+});
+
+/* =========================================================
+   AI
+========================================================= */
+
+async function callSoulaaniAI(message){
+  const url=(state.ai.apiUrl||"").trim();
+
+  if(!url){
+    throw new Error("Soulaani AI server is not connected yet.");
+  }
+
+  const controller=new AbortController();
+  const timeout=setTimeout(()=>controller.abort(),30000);
+
+  try{
+    const response=await fetch(url,{
+      method:"POST",
+      credentials:"include",
+      headers:{
+        "Content-Type":"application/json",
+        "Accept":"application/json"
+      },
+      body:JSON.stringify({
+        message,
+        conversation:state.chats.ai.slice(-20)
+      }),
+      signal:controller.signal
+    });
+
+    const data=await response.json();
+
+    if(!response.ok){
+      throw new Error(data.error||`AI server returned ${response.status}.`);
+    }
+
+    return data.reply||data.message||data.output||"The AI server returned no response.";
+
+  }finally{
+    clearTimeout(timeout);
+  }
+}
+
+function addAIMessage(text,me=false){
+  const box=$("aiChat");
+
+  const div=document.createElement("div");
+  div.className="message"+(me?" me":"");
+  div.textContent=text;
+
+  box.appendChild(div);
+  box.scrollTop=box.scrollHeight;
+}
+
+async function sendAI(){
+  const input=$("aiInput");
+  const text=input.value.trim();
+
+  if(!text)return;
+
+  input.value="";
+  addAIMessage(text,true);
+
+  state.chats.ai.push({
+    role:"user",
+    content:text
+  });
+
+  saveState();
+
+  try{
+    const reply=await callSoulaaniAI(text);
+
+    addAIMessage(reply,false);
+
+    state.chats.ai.push({
+      role:"assistant",
+      content:reply
+    });
+
+    saveState();
+
+  }catch(error){
+    addAIMessage(
+      "Soulaani AI server is not connected yet. Add your real /api/ai/chat server in Data & Backup. Translation works independently through the translation engine."
+    );
+  }
+}
+
+$("aiSend").addEventListener("click",sendAI);
+
+$("aiInput").addEventListener("keydown",e=>{
+  if(e.key==="Enter"){
+    e.preventDefault();
+    sendAI();
+  }
+});
+
+/* =========================================================
+   GENERAL MESSAGES
+========================================================= */
+
+function renderGeneralMessages(){
+  const box=$("generalMessages");
+
+  if(!state.chats.general.length){
+    box.innerHTML=`<div class="message">Your messages will appear here.</div>`;
+    return;
+  }
+
+  box.innerHTML=state.chats.general.map(m=>`
+    <div class="message ${m.me?"me":""}">
+      ${escapeHTML(m.text)}
+      <small>${escapeHTML(m.author)}</small>
+    </div>
+  `).join("");
+
+  box.scrollTop=box.scrollHeight;
+}
+
+$("generalMessageSend").addEventListener("click",()=>{
+  const input=$("generalMessageInput");
+  const text=input.value.trim();
+
+  if(!text)return;
+
+  state.chats.general.push({
+    id:uid("msg"),
+    text,
+    author:state.profile.name||"Soulaani User",
+    me:true
+  });
+
+  input.value="";
+  saveState();
+  renderGeneralMessages();
+});
+
+/* =========================================================
+   LOCATION
+========================================================= */
+
+$("saveLocation").addEventListener("click",()=>{
+  state.location.city=$("localCity").value.trim();
+  state.location.state=$("localState").value.trim();
+
+  saveState();
+
+  showToast(
+    state.location.city
+      ? `Local FYP set to ${state.location.city}${state.location.state?", "+state.location.state:""}.`
+      : "Local FYP saved."
+  );
+});
+
+/* =========================================================
+   SAVED
+========================================================= */
+
+function renderSaved(){
+  const box=$("savedContent");
+
+  const posts=state.posts.filter(p=>state.saved.includes(p.id));
+
+  if(!posts.length){
+    box.innerHTML=`
+      <div class="card">
+        <h3>No saved posts yet.</h3>
+        <p class="muted" style="margin-top:6px">Tap Save on a Newsfeed post to keep it here.</p>
+      </div>`;
+    return;
+  }
+
+  box.innerHTML=posts.map(p=>`
+    <div class="card">
+      <b>${escapeHTML(p.author)}</b>
+      <p style="margin-top:8px">${escapeHTML(p.text)}</p>
+    </div>
+  `).join("");
+}
+
+/* =========================================================
+   BACKUP
+========================================================= */
+
+$("exportData").addEventListener("click",()=>{
+  const json=JSON.stringify(state,null,2);
+  const blob=new Blob([json],{type:"application/json"});
+  const url=URL.createObjectURL(blob);
+
+  const a=document.createElement("a");
+  a.href=url;
+  a.download="soulaani-backup.json";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+
+  URL.revokeObjectURL(url);
+
+  showToast("Soulaani backup exported.");
+});
+
+$("importDataBtn").addEventListener("click",()=>{
+  $("importDataFile").click();
+});
+
+$("importDataFile").addEventListener("change",async e=>{
+  const file=e.target.files[0];
+
+  if(!file)return;
+
+  try{
+    const text=await file.text();
+    const imported=JSON.parse(text);
+
+    if(!imported||typeof imported!=="object"){
+      throw new Error("Invalid backup.");
+    }
+
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(imported));
+    state=loadState();
+
+    initialize();
+
+    showToast("Backup imported.");
+
+  }catch(error){
+    showToast("Could not import backup.");
+  }finally{
+    e.target.value="";
+  }
+});
+
+$("resetData").addEventListener("click",()=>{
+  const yes=confirm(
+    "Reset all Soulaani data saved in this browser?"
+  );
+
+  if(!yes)return;
+
+  localStorage.removeItem(STORAGE_KEY);
+  state=structuredClone(DEFAULT_STATE);
+
+  initialize();
+
+  showToast("Local Soulaani data reset.");
+});
+
+$("saveTranslationApi").addEventListener("click",()=>{
+  let url=$("translationApiUrl").value.trim();
+
+  if(!url){
+    url=DEFAULT_TRANSLATION_API;
+  }
+
+  state.language.apiUrl=url;
+  saveState();
+
+  showToast("Translation server saved.");
+});
+
+$("saveAiApi").addEventListener("click",()=>{
+  state.ai.apiUrl=$("aiApiUrl").value.trim();
+  saveState();
+
+  showToast(
+    state.ai.apiUrl
+      ? "Soulaani AI server saved."
+      : "AI server cleared."
+  );
+});
+
+/* =========================================================
+   EXTRA ACTIONS
+========================================================= */
+
+$("ridersBtn").addEventListener("click",()=>{
+  showToast("Rider discovery is ready for real community profiles.");
+});
+
+$("eventBtn").addEventListener("click",()=>{
+  showToast("Event creation interface opened for the next community layer.");
+});
+
+$("foodBtn").addEventListener("click",()=>{
+  showToast("Soul food culture is part of the Culture marketplace layer.");
+});
+
+$("discoverPeople").addEventListener("click",()=>{
+  showToast("People discovery is ready for real profiles.");
+});
+
+$("dateProfileBtn").addEventListener("click",()=>{
+  showToast("Dating profile setup is ready for the dating backend.");
+});
+
+$("reelComment").addEventListener("click",()=>{
+  showToast("Reel comments are ready for the social backend.");
+});
+
+$("reelShare").addEventListener("click",()=>{
+  if(navigator.share){
+    navigator.share({
+      title:"Soulaani Reel",
+      text:"Check out this Soulaani Reel."
+    }).catch(()=>{});
+  }else{
+    showToast("Native sharing is unavailable here.");
+  }
+});
+
+$("reelSave").addEventListener("click",()=>{
+  showToast("Reel saved.");
+});
+
+$("reelFollow").addEventListener("click",e=>{
+  e.target.textContent="Following";
+  showToast("Following.");
+});
+
+/* =========================================================
+   LESSONS
+========================================================= */
+
+document.addEventListener("click",e=>{
+  const lesson=e.target.closest("[data-lesson]");
+  if(!lesson)return;
+
+  showToast(
+    `${lesson.dataset.lesson} lesson opened. Language courses can be expanded here.`
+  );
+});
+
+/* =========================================================
+   COUNTERS
+========================================================= */
+
+function updateCounters(){
+  $("homePostCount").textContent=state.posts.length;
+  $("homeSavedCount").textContent=state.saved.length;
+
+  const target=LANGUAGES.find(x=>x[0]===state.language.target);
+  $("homeLanguage").textContent=target?target[1]:"English";
+}
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+function initialize(){
+  populateLanguageSelects();
+  renderDiasporaLanguages();
+  renderServers();
+  renderLanguageChat();
+  renderGeneralMessages();
+  renderProfile();
+  renderFeed();
+  renderSaved();
+
+  $("localCity").value=state.location.city||"";
+  $("localState").value=state.location.state||"";
+
+  updateCounters();
+
+  const start=state.lastSection||"homeSection";
+
+  if(document.getElementById(start)){
+    openSection(start);
+  }else{
+    openSection("homeSection");
+  }
+}
+
+initialize();
+
+/* =========================================================
+   PERIODIC LOCAL SAVE
+========================================================= */
+
+setInterval(()=>{
+  try{
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+  }catch(e){}
+},15000);
 
 </script>
 
